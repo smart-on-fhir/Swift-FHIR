@@ -2,7 +2,7 @@
 //  Coding.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Coding) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Coding) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A reference to a code defined by a terminology system.
- */
+A reference to a code defined by a terminology system.
+*/
 open class Coding: Element {
 	override open class var resourceType: String {
 		get { return "Coding" }

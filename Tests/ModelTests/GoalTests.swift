@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -52,10 +52,10 @@ class GoalTests: XCTestCase {
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.low?.value, NSDecimalNumber(string: "160"))
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/goal-target")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.status, "in-progress")
+		XCTAssertEqual(inst.status, GoalStatus(rawValue: "in-progress")!)
 		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "additional")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -37,19 +37,19 @@ class SubscriptionTests: XCTestCase {
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst.channel?.payload, "application/fhir+json")
-		XCTAssertEqual(inst.channel?.type, "rest-hook")
-		XCTAssertEqual(inst.contact?[0].system, "phone")
+		XCTAssertEqual(inst.channel?.type, SubscriptionChannelType(rawValue: "rest-hook")!)
+		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].value, "ext 4123")
 		XCTAssertEqual(inst.criteria, "Observation?code=http://loinc.org|1975-2")
 		XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
 		XCTAssertEqual(inst.error, "Socket Error 10060 - can't connect to host")
 		XCTAssertEqual(inst.id, "example-error")
 		XCTAssertEqual(inst.reason, "Monitor new neonatal function")
-		XCTAssertEqual(inst.status, "error")
+		XCTAssertEqual(inst.status, SubscriptionStatus(rawValue: "error")!)
 		XCTAssertEqual(inst.tag?[0].code, "bili-done")
 		XCTAssertEqual(inst.tag?[0].system?.absoluteString, "http://example.org/fhir/cs/internal")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -71,18 +71,18 @@ class SubscriptionTests: XCTestCase {
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst.channel?.payload, "application/fhir+json")
-		XCTAssertEqual(inst.channel?.type, "rest-hook")
-		XCTAssertEqual(inst.contact?[0].system, "phone")
+		XCTAssertEqual(inst.channel?.type, SubscriptionChannelType(rawValue: "rest-hook")!)
+		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].value, "ext 4123")
 		XCTAssertEqual(inst.criteria, "Observation?code=http://loinc.org|1975-2")
 		XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.reason, "Monitor new neonatal function")
-		XCTAssertEqual(inst.status, "requested")
+		XCTAssertEqual(inst.status, SubscriptionStatus(rawValue: "requested")!)
 		XCTAssertEqual(inst.tag?[0].code, "bili-done")
 		XCTAssertEqual(inst.tag?[0].system?.absoluteString, "http://example.org/fhir/cs/internal")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

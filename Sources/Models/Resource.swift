@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Base Resource.
- *
- *  This is the base resource type for everything.
- */
+Base Resource.
+
+This is the base resource type for everything.
+*/
 open class Resource: FHIRAbstractResource {
 	override open class var resourceType: String {
 		get { return "Resource" }

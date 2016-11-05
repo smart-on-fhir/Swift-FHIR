@@ -2,7 +2,7 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  The definition of a specific activity to be taken, independent of any particular patient or context.
- *
- *  This resource allows for the definition of some activity to be performed, independent of a particular patient,
- *  practitioner, or other performance context.
- */
+The definition of a specific activity to be taken, independent of any particular patient or context.
+
+This resource allows for the definition of some activity to be performed, independent of a particular patient,
+practitioner, or other performance context.
+*/
 open class ActivityDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "ActivityDefinition" }
@@ -23,8 +23,8 @@ open class ActivityDefinition: DomainResource {
 	/// When activity definition approved by publisher.
 	public var approvalDate: FHIRDate?
 	
-	/// communication | device | diagnostic | diet | drug | encounter | immunization | observation | procedure | referral | supply | vision | other.
-	public var category: String?
+	/// High-level categorization of the type of activity.
+	public var category: ActivityDefinitionCategory?
 	
 	/// Detail type of activity.
 	public var code: CodeableConcept?
@@ -74,8 +74,8 @@ open class ActivityDefinition: DomainResource {
 	/// Name for this activity definition (Computer friendly).
 	public var name: String?
 	
-	/// patient | practitioner | related-person.
-	public var participantType: [String]?
+	/// The type of participant in the action.
+	public var participantType: [PlanActionParticipantType]?
 	
 	/// What's administered/supplied.
 	public var productCodeableConcept: CodeableConcept?
@@ -95,8 +95,8 @@ open class ActivityDefinition: DomainResource {
 	/// Related artifacts for the asset.
 	public var relatedArtifact: [RelatedArtifact]?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this activity definition. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// When activity is to occur.
 	public var timingCodeableConcept: CodeableConcept?
@@ -127,7 +127,7 @@ open class ActivityDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -147,7 +147,12 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["category"] {
 			presentKeys.insert("category")
 			if let val = exist as? String {
-				self.category = val
+				if let enumval = ActivityDefinitionCategory(rawValue: val) {
+					self.category = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "category", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "category", wants: String.self, has: type(of: exist)))
@@ -349,8 +354,12 @@ open class ActivityDefinition: DomainResource {
 		}
 		if let exist = json["participantType"] {
 			presentKeys.insert("participantType")
-			if let val = exist as? [String] {
-				self.participantType = val
+			if let val = exist as? [String] { var i = -1
+				self.participantType = val.map() { i += 1
+					if let enumval = PlanActionParticipantType(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "participantType.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "participantType", wants: Array<String>.self, has: type(of: exist)))
@@ -433,7 +442,12 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -558,7 +572,7 @@ open class ActivityDefinition: DomainResource {
 			json["approvalDate"] = approvalDate.asJSON()
 		}
 		if let category = self.category {
-			json["category"] = category.asJSON()
+			json["category"] = category.rawValue
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
@@ -609,11 +623,7 @@ open class ActivityDefinition: DomainResource {
 			json["name"] = name.asJSON()
 		}
 		if let participantType = self.participantType {
-			var arr = [Any]()
-			for val in participantType {
-				arr.append(val.asJSON())
-			}
-			json["participantType"] = arr
+			json["participantType"] = participantType.map() { $0.rawValue }
 		}
 		if let productCodeableConcept = self.productCodeableConcept {
 			json["productCodeableConcept"] = productCodeableConcept.asJSON(errors: &errors)
@@ -634,7 +644,7 @@ open class ActivityDefinition: DomainResource {
 			json["relatedArtifact"] = relatedArtifact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let timingCodeableConcept = self.timingCodeableConcept {
 			json["timingCodeableConcept"] = timingCodeableConcept.asJSON(errors: &errors)
@@ -670,12 +680,12 @@ open class ActivityDefinition: DomainResource {
 
 
 /**
- *  Dynamic aspects of the definition.
- *
- *  Dynamic values that will be evaluated to produce values for elements of the resulting resource. For example, if the
- *  dosage of a medication must be computed based on the patient's weight, a dynamic value would be used to specify an
- *  expression that calculated the weight, and the path on the intent resource that would contain the result.
- */
+Dynamic aspects of the definition.
+
+Dynamic values that will be evaluated to produce values for elements of the resulting resource. For example, if the
+dosage of a medication must be computed based on the patient's weight, a dynamic value would be used to specify an
+expression that calculated the weight, and the path on the intent resource that would contain the result.
+*/
 open class ActivityDefinitionDynamicValue: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ActivityDefinitionDynamicValue" }

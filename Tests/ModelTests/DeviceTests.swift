@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -41,8 +41,8 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.location?.display, "Central Supply")
 		XCTAssertEqual(inst.manufactureDate?.description, "2015-08-08")
 		XCTAssertEqual(inst.owner?.reference, "Organization/2.16.840.1.113883.19.5")
-		XCTAssertEqual(inst.status, "available")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "available")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "25062003")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Feeding tube, device")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -74,7 +74,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.lotNumber, "12345")
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model, "A.1.1")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.text, "Vital Signs Monitor")
 		
 		return inst
@@ -94,7 +94,7 @@ class DeviceTests: XCTestCase {
 	func runDevice3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-pacemaker.json")
 		
-		XCTAssertEqual(inst.contact?[0].system, "phone")
+		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].value, "ext 4352")
 		XCTAssertEqual(inst.id, "example-pacemaker")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/devices/pacemakers/octane/serial")
@@ -103,7 +103,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model, "PM/Octane 2014")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "octane2014")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Performance pace maker for high octane patients")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://acme.com/devices")
@@ -125,13 +125,13 @@ class DeviceTests: XCTestCase {
 	func runDevice4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-software.json")
 		
-		XCTAssertEqual(inst.contact?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].value, "http://acme.com")
 		XCTAssertEqual(inst.id, "software")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/ehr/client-ids")
 		XCTAssertEqual(inst.identifier?[0].value, "goodhealth")
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.text, "EHR")
 		XCTAssertEqual(inst.url?.absoluteString, "http://acme.com/goodhealth/ehr/")
 		XCTAssertEqual(inst.version, "10.23-23423")
@@ -164,8 +164,8 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model, "PM/Octane 2014")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "not-available")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "09504000059118")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/gs1-di")
 		XCTAssertEqual(inst.type?.coding?[1].code, "468063009")
@@ -203,8 +203,8 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model, "Bone,Putty Demineralized")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "not-available")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "A9999XYZ100T0474")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-other-di")
 		XCTAssertEqual(inst.type?.text, "DI = A9999XYZ100T0474")
@@ -240,8 +240,8 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
 		XCTAssertEqual(inst.model, "Ultra Implantable")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "not-available")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "H123PARTNO1234567890120")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/hibcc-di")
 		XCTAssertEqual(inst.type?.text, "DI =H123PARTNO1234567890120")
@@ -271,8 +271,8 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.lotNumber, "RZ12345678")
 		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "not-available")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "1TE123456A")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-blood-di")
 		XCTAssertEqual(inst.type?.text, "DI = 1TE123456A")
@@ -298,7 +298,7 @@ class DeviceTests: XCTestCase {
 	func runDevice9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example.json")
 		
-		XCTAssertEqual(inst.contact?[0].system, "phone")
+		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].value, "ext 4352")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodcare.org/devices/id")
@@ -313,8 +313,8 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].authorReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.note?[0].text, "QA Checked")
 		XCTAssertEqual(inst.note?[0].time?.description, "2015-06-28T14:03:32+10:00")
-		XCTAssertEqual(inst.status, "available")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "available")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "86184003")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Electrocardiographic monitor and recorder")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")

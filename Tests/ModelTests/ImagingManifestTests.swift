@@ -2,7 +2,7 @@
 //  ImagingManifestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ class ImagingManifestTests: XCTestCase {
 		XCTAssertEqual(inst.study?[0].series?[1].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092902")
 		XCTAssertEqual(inst.study?[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A set of images to share accompanying an report document, including one SC image and two CT image</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title?.coding?[0].code, "113030")
 		XCTAssertEqual(inst.title?.coding?[0].display, "Manifest")
 		XCTAssertEqual(inst.title?.coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")

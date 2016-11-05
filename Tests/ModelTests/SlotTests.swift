@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -44,8 +44,8 @@ class SlotTests: XCTestCase {
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "17")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T09:00:00Z")
-		XCTAssertEqual(inst.status, "busy")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, SlotStatus(rawValue: "busy")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -71,8 +71,8 @@ class SlotTests: XCTestCase {
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "17")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T09:45:00Z")
-		XCTAssertEqual(inst.status, "busy-tentative")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, SlotStatus(rawValue: "busy-tentative")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -98,8 +98,8 @@ class SlotTests: XCTestCase {
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "17")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T09:30:00Z")
-		XCTAssertEqual(inst.status, "busy-unavailable")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, SlotStatus(rawValue: "busy-unavailable")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -132,8 +132,8 @@ class SlotTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "408480009")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Clinical immunology")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T09:15:00Z")
-		XCTAssertEqual(inst.status, "free")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, SlotStatus(rawValue: "free")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Communication) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Communication) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A record of information transmitted from a sender to a receiver.
- *
- *  An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public
- *  health agency was notified about a reportable condition.
- */
+A record of information transmitted from a sender to a receiver.
+
+An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public health
+agency was notified about a reportable condition.
+*/
 open class Communication: DomainResource {
 	override open class var resourceType: String {
 		get { return "Communication" }
@@ -59,8 +59,8 @@ open class Communication: DomainResource {
 	/// When sent.
 	public var sent: DateTime?
 	
-	/// in-progress | completed | suspended | rejected | failed.
-	public var status: String?
+	/// The status of the transmission.
+	public var status: CommunicationStatus?
 	
 	/// Focus of message.
 	public var subject: Reference?
@@ -246,7 +246,12 @@ open class Communication: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = CommunicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -326,7 +331,7 @@ open class Communication: DomainResource {
 			json["sent"] = sent.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -341,10 +346,10 @@ open class Communication: DomainResource {
 
 
 /**
- *  Message payload.
- *
- *  Text, attachment(s), or resource(s) that was communicated to the recipient.
- */
+Message payload.
+
+Text, attachment(s), or resource(s) that was communicated to the recipient.
+*/
 open class CommunicationPayload: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CommunicationPayload" }

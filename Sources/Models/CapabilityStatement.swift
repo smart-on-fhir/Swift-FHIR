@@ -2,7 +2,7 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,18 +10,18 @@ import Foundation
 
 
 /**
- *  A statement of system Capabilities.
- *
- *  A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server that may be used as a statement
- *  of actual server functionality or a statement of required or desired server implementation.
- */
+A statement of system Capabilities.
+
+A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server that may be used as a statement of
+actual server functionality or a statement of required or desired server implementation.
+*/
 open class CapabilityStatement: DomainResource {
 	override open class var resourceType: String {
 		get { return "CapabilityStatement" }
 	}
 	
-	/// no | extensions | elements | both.
-	public var acceptUnknown: String?
+	/// A code that indicates whether the application accepts unknown elements or extensions when reading resources.
+	public var acceptUnknown: UnknownContentCode?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
@@ -56,8 +56,9 @@ open class CapabilityStatement: DomainResource {
 	/// Intended jurisdiction for capability statement (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// instance | capability | requirements.
-	public var kind: String?
+	/// The way that this statement is intended to be used, to describe an actual running instance of software, a
+	/// particular product (kind not instance of software) or a class of implementation (e.g. a desired purchase).
+	public var kind: CapabilityStatementKind?
 	
 	/// If messaging is supported.
 	public var messaging: [CapabilityStatementMessaging]?
@@ -80,8 +81,8 @@ open class CapabilityStatement: DomainResource {
 	/// Software that is covered by this capability statement.
 	public var software: CapabilityStatementSoftware?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this capability statement. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this capability statement (Human friendly).
 	public var title: String?
@@ -97,7 +98,7 @@ open class CapabilityStatement: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(acceptUnknown: String, date: DateTime, fhirVersion: String, format: [String], kind: String, status: String) {
+	public convenience init(acceptUnknown: UnknownContentCode, date: DateTime, fhirVersion: String, format: [String], kind: CapabilityStatementKind, status: PublicationStatus) {
 		self.init()
 		self.acceptUnknown = acceptUnknown
 		self.date = date
@@ -113,7 +114,12 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["acceptUnknown"] {
 			presentKeys.insert("acceptUnknown")
 			if let val = exist as? String {
-				self.acceptUnknown = val
+				if let enumval = UnknownContentCode(rawValue: val) {
+					self.acceptUnknown = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "acceptUnknown", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "acceptUnknown", wants: String.self, has: type(of: exist)))
@@ -253,7 +259,12 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["kind"] {
 			presentKeys.insert("kind")
 			if let val = exist as? String {
-				self.kind = val
+				if let enumval = CapabilityStatementKind(rawValue: val) {
+					self.kind = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "kind", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -348,7 +359,12 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -405,7 +421,7 @@ open class CapabilityStatement: DomainResource {
 		var json = super.asJSON(errors: &errors)
 		
 		if let acceptUnknown = self.acceptUnknown {
-			json["acceptUnknown"] = acceptUnknown.asJSON()
+			json["acceptUnknown"] = acceptUnknown.rawValue
 		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
@@ -429,27 +445,19 @@ open class CapabilityStatement: DomainResource {
 			json["fhirVersion"] = fhirVersion.asJSON()
 		}
 		if let format = self.format {
-			var arr = [Any]()
-			for val in format {
-				arr.append(val.asJSON())
-			}
-			json["format"] = arr
+			json["format"] = format.map() { $0.asJSON() }
 		}
 		if let implementation = self.implementation {
 			json["implementation"] = implementation.asJSON(errors: &errors)
 		}
 		if let instantiates = self.instantiates {
-			var arr = [Any]()
-			for val in instantiates {
-				arr.append(val.asJSON())
-			}
-			json["instantiates"] = arr
+			json["instantiates"] = instantiates.map() { $0.asJSON() }
 		}
 		if let jurisdiction = self.jurisdiction {
 			json["jurisdiction"] = jurisdiction.map() { $0.asJSON(errors: &errors) }
 		}
 		if let kind = self.kind {
-			json["kind"] = kind.asJSON()
+			json["kind"] = kind.rawValue
 		}
 		if let messaging = self.messaging {
 			json["messaging"] = messaging.map() { $0.asJSON(errors: &errors) }
@@ -473,7 +481,7 @@ open class CapabilityStatement: DomainResource {
 			json["software"] = software.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -494,10 +502,10 @@ open class CapabilityStatement: DomainResource {
 
 
 /**
- *  Document definition.
- *
- *  A document definition.
- */
+Document definition.
+
+A document definition.
+*/
 open class CapabilityStatementDocument: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementDocument" }
@@ -506,15 +514,15 @@ open class CapabilityStatementDocument: BackboneElement {
 	/// Description of document support.
 	public var documentation: String?
 	
-	/// producer | consumer.
-	public var mode: String?
+	/// Mode of this document declaration - whether application is producer or consumer.
+	public var mode: DocumentMode?
 	
 	/// Constraint on a resource used in the document.
 	public var profile: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, profile: Reference) {
+	public convenience init(mode: DocumentMode, profile: Reference) {
 		self.init()
 		self.mode = mode
 		self.profile = profile
@@ -535,7 +543,12 @@ open class CapabilityStatementDocument: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = DocumentMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -571,7 +584,7 @@ open class CapabilityStatementDocument: BackboneElement {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON(errors: &errors)
@@ -583,11 +596,11 @@ open class CapabilityStatementDocument: BackboneElement {
 
 
 /**
- *  If this describes a specific instance.
- *
- *  Identifies a specific implementation instance that is described by the capability statement - i.e. a particular
- *  installation, rather than the capabilities of a software program.
- */
+If this describes a specific instance.
+
+Identifies a specific implementation instance that is described by the capability statement - i.e. a particular
+installation, rather than the capabilities of a software program.
+*/
 open class CapabilityStatementImplementation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementImplementation" }
@@ -649,10 +662,10 @@ open class CapabilityStatementImplementation: BackboneElement {
 
 
 /**
- *  If messaging is supported.
- *
- *  A description of the messaging capabilities of the solution.
- */
+If messaging is supported.
+
+A description of the messaging capabilities of the solution.
+*/
 open class CapabilityStatementMessaging: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementMessaging" }
@@ -754,10 +767,10 @@ open class CapabilityStatementMessaging: BackboneElement {
 
 
 /**
- *  Where messages should be sent.
- *
- *  An endpoint (network accessible address) to which messages and/or replies are to be sent.
- */
+Where messages should be sent.
+
+An endpoint (network accessible address) to which messages and/or replies are to be sent.
+*/
 open class CapabilityStatementMessagingEndpoint: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementMessagingEndpoint" }
@@ -828,17 +841,17 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 
 
 /**
- *  Declare support for this event.
- *
- *  A description of the solution's support for an event at this end-point.
- */
+Declare support for this event.
+
+A description of the solution's support for an event at this end-point.
+*/
 open class CapabilityStatementMessagingEvent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementMessagingEvent" }
 	}
 	
-	/// Consequence | Currency | Notification.
-	public var category: String?
+	/// The impact of the content of the message.
+	public var category: MessageSignificanceCategory?
 	
 	/// Event type.
 	public var code: Coding?
@@ -849,8 +862,8 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 	/// Resource that's focus of message.
 	public var focus: String?
 	
-	/// sender | receiver.
-	public var mode: String?
+	/// The mode of this event declaration - whether application is sender or receiver.
+	public var mode: EventCapabilityMode?
 	
 	/// Profile that describes the request.
 	public var request: Reference?
@@ -860,7 +873,7 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding, focus: String, mode: String, request: Reference, response: Reference) {
+	public convenience init(code: Coding, focus: String, mode: EventCapabilityMode, request: Reference, response: Reference) {
 		self.init()
 		self.code = code
 		self.focus = focus
@@ -875,7 +888,12 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		if let exist = json["category"] {
 			presentKeys.insert("category")
 			if let val = exist as? String {
-				self.category = val
+				if let enumval = MessageSignificanceCategory(rawValue: val) {
+					self.category = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "category", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "category", wants: String.self, has: type(of: exist)))
@@ -922,7 +940,12 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = EventCapabilityMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -972,7 +995,7 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let category = self.category {
-			json["category"] = category.asJSON()
+			json["category"] = category.rawValue
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
@@ -984,7 +1007,7 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 			json["focus"] = focus.asJSON()
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let request = self.request {
 			json["request"] = request.asJSON(errors: &errors)
@@ -999,10 +1022,10 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 
 
 /**
- *  If the endpoint is a RESTful one.
- *
- *  A definition of the restful capabilities of the solution, if any.
- */
+If the endpoint is a RESTful one.
+
+A definition of the restful capabilities of the solution, if any.
+*/
 open class CapabilityStatementRest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRest" }
@@ -1017,8 +1040,9 @@ open class CapabilityStatementRest: BackboneElement {
 	/// What operations are supported?.
 	public var interaction: [CapabilityStatementRestInteraction]?
 	
-	/// client | server.
-	public var mode: String?
+	/// Identifies whether this portion of the statement is describing ability to initiate or receive restful
+	/// operations.
+	public var mode: RestfulCapabilityMode?
 	
 	/// Definition of an operation or a custom query.
 	public var operation: [CapabilityStatementRestOperation]?
@@ -1034,7 +1058,7 @@ open class CapabilityStatementRest: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String) {
+	public convenience init(mode: RestfulCapabilityMode) {
 		self.init()
 		self.mode = mode
 	}
@@ -1077,7 +1101,12 @@ open class CapabilityStatementRest: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = RestfulCapabilityMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -1149,11 +1178,7 @@ open class CapabilityStatementRest: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let compartment = self.compartment {
-			var arr = [Any]()
-			for val in compartment {
-				arr.append(val.asJSON())
-			}
-			json["compartment"] = arr
+			json["compartment"] = compartment.map() { $0.asJSON() }
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
@@ -1162,7 +1187,7 @@ open class CapabilityStatementRest: BackboneElement {
 			json["interaction"] = interaction.map() { $0.asJSON(errors: &errors) }
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let operation = self.operation {
 			json["operation"] = operation.map() { $0.asJSON(errors: &errors) }
@@ -1183,24 +1208,25 @@ open class CapabilityStatementRest: BackboneElement {
 
 
 /**
- *  What operations are supported?.
- *
- *  A specification of restful operations supported by the system.
- */
+What operations are supported?.
+
+A specification of restful operations supported by the system.
+*/
 open class CapabilityStatementRestInteraction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRestInteraction" }
 	}
 	
-	/// transaction | batch | search-system | history-system.
-	public var code: String?
+	/// A coded identifier of the operation, supported by the system.
+	/// Only use: ['transaction', 'batch', 'search-system', 'history-system']
+	public var code: FHIRRestfulInteractions?
 	
 	/// Anything special about operation behavior.
 	public var documentation: String?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
+	public convenience init(code: FHIRRestfulInteractions) {
 		self.init()
 		self.code = code
 	}
@@ -1211,7 +1237,12 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				if let enumval = FHIRRestfulInteractions(rawValue: val) {
+					self.code = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "code", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -1236,7 +1267,7 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.rawValue
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
@@ -1248,10 +1279,10 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 
 
 /**
- *  Definition of an operation or a custom query.
- *
- *  Definition of an operation or a named query and with its parameters and their meaning and type.
- */
+Definition of an operation or a custom query.
+
+Definition of an operation or a named query and with its parameters and their meaning and type.
+*/
 open class CapabilityStatementRestOperation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRestOperation" }
@@ -1322,10 +1353,10 @@ open class CapabilityStatementRestOperation: BackboneElement {
 
 
 /**
- *  Resource served on the REST interface.
- *
- *  A specification of the restful capabilities of the solution for a specific resource type.
- */
+Resource served on the REST interface.
+
+A specification of the restful capabilities of the solution for a specific resource type.
+*/
 open class CapabilityStatementRestResource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRestResource" }
@@ -1334,11 +1365,11 @@ open class CapabilityStatementRestResource: BackboneElement {
 	/// If allows/uses conditional create.
 	public var conditionalCreate: Bool?
 	
-	/// not-supported | single | multiple - how conditional delete is supported.
-	public var conditionalDelete: String?
+	/// A code that indicates how the server supports conditional delete.
+	public var conditionalDelete: ConditionalDeleteStatus?
 	
-	/// not-supported | modified-since | not-match | full-support.
-	public var conditionalRead: String?
+	/// A code that indicates how the server supports conditional read.
+	public var conditionalRead: ConditionalReadStatus?
 	
 	/// If allows/uses conditional update.
 	public var conditionalUpdate: Bool?
@@ -1355,8 +1386,8 @@ open class CapabilityStatementRestResource: BackboneElement {
 	/// Whether vRead can return past versions.
 	public var readHistory: Bool?
 	
-	/// literal | logical | resolves | enforced | local.
-	public var referencePolicy: [String]?
+	/// A set of flags that defines how references are supported.
+	public var referencePolicy: [ReferenceHandlingPolicy]?
 	
 	/// _include values supported by the server.
 	public var searchInclude: [String]?
@@ -1373,8 +1404,11 @@ open class CapabilityStatementRestResource: BackboneElement {
 	/// If update can commit to a new identity.
 	public var updateCreate: Bool?
 	
-	/// no-version | versioned | versioned-update.
-	public var versioning: String?
+	/// This field is set to no-version to specify that the system does not support (server) or use (client) versioning
+	/// for this resource type. If this has some other value, the server must at least correctly track and populate the
+	/// versionId meta-property on resources. If the value is 'versioned-update', then the server supports all the
+	/// versioning features, including using e-tags for version integrity in the API.
+	public var versioning: ResourceVersionPolicy?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1399,7 +1433,12 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let exist = json["conditionalDelete"] {
 			presentKeys.insert("conditionalDelete")
 			if let val = exist as? String {
-				self.conditionalDelete = val
+				if let enumval = ConditionalDeleteStatus(rawValue: val) {
+					self.conditionalDelete = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "conditionalDelete", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "conditionalDelete", wants: String.self, has: type(of: exist)))
@@ -1408,7 +1447,12 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let exist = json["conditionalRead"] {
 			presentKeys.insert("conditionalRead")
 			if let val = exist as? String {
-				self.conditionalRead = val
+				if let enumval = ConditionalReadStatus(rawValue: val) {
+					self.conditionalRead = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "conditionalRead", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "conditionalRead", wants: String.self, has: type(of: exist)))
@@ -1474,8 +1518,12 @@ open class CapabilityStatementRestResource: BackboneElement {
 		}
 		if let exist = json["referencePolicy"] {
 			presentKeys.insert("referencePolicy")
-			if let val = exist as? [String] {
-				self.referencePolicy = val
+			if let val = exist as? [String] { var i = -1
+				self.referencePolicy = val.map() { i += 1
+					if let enumval = ReferenceHandlingPolicy(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "referencePolicy.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "referencePolicy", wants: Array<String>.self, has: type(of: exist)))
@@ -1537,7 +1585,12 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let exist = json["versioning"] {
 			presentKeys.insert("versioning")
 			if let val = exist as? String {
-				self.versioning = val
+				if let enumval = ResourceVersionPolicy(rawValue: val) {
+					self.versioning = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "versioning", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "versioning", wants: String.self, has: type(of: exist)))
@@ -1553,10 +1606,10 @@ open class CapabilityStatementRestResource: BackboneElement {
 			json["conditionalCreate"] = conditionalCreate.asJSON()
 		}
 		if let conditionalDelete = self.conditionalDelete {
-			json["conditionalDelete"] = conditionalDelete.asJSON()
+			json["conditionalDelete"] = conditionalDelete.rawValue
 		}
 		if let conditionalRead = self.conditionalRead {
-			json["conditionalRead"] = conditionalRead.asJSON()
+			json["conditionalRead"] = conditionalRead.rawValue
 		}
 		if let conditionalUpdate = self.conditionalUpdate {
 			json["conditionalUpdate"] = conditionalUpdate.asJSON()
@@ -1574,28 +1627,16 @@ open class CapabilityStatementRestResource: BackboneElement {
 			json["readHistory"] = readHistory.asJSON()
 		}
 		if let referencePolicy = self.referencePolicy {
-			var arr = [Any]()
-			for val in referencePolicy {
-				arr.append(val.asJSON())
-			}
-			json["referencePolicy"] = arr
+			json["referencePolicy"] = referencePolicy.map() { $0.rawValue }
 		}
 		if let searchInclude = self.searchInclude {
-			var arr = [Any]()
-			for val in searchInclude {
-				arr.append(val.asJSON())
-			}
-			json["searchInclude"] = arr
+			json["searchInclude"] = searchInclude.map() { $0.asJSON() }
 		}
 		if let searchParam = self.searchParam {
 			json["searchParam"] = searchParam.map() { $0.asJSON(errors: &errors) }
 		}
 		if let searchRevInclude = self.searchRevInclude {
-			var arr = [Any]()
-			for val in searchRevInclude {
-				arr.append(val.asJSON())
-			}
-			json["searchRevInclude"] = arr
+			json["searchRevInclude"] = searchRevInclude.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -1604,7 +1645,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 			json["updateCreate"] = updateCreate.asJSON()
 		}
 		if let versioning = self.versioning {
-			json["versioning"] = versioning.asJSON()
+			json["versioning"] = versioning.rawValue
 		}
 		
 		return json
@@ -1613,24 +1654,25 @@ open class CapabilityStatementRestResource: BackboneElement {
 
 
 /**
- *  What operations are supported?.
- *
- *  Identifies a restful operation supported by the solution.
- */
+What operations are supported?.
+
+Identifies a restful operation supported by the solution.
+*/
 open class CapabilityStatementRestResourceInteraction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRestResourceInteraction" }
 	}
 	
-	/// read | vread | update | delete | history-instance | history-type | create | search-type.
-	public var code: String?
+	/// Coded identifier of the operation, supported by the system resource.
+	/// Only use: ['read', 'vread', 'update', 'delete', 'history-instance', 'history-type', 'create', 'search-type']
+	public var code: FHIRRestfulInteractions?
 	
 	/// Anything special about operation behavior.
 	public var documentation: String?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
+	public convenience init(code: FHIRRestfulInteractions) {
 		self.init()
 		self.code = code
 	}
@@ -1641,7 +1683,12 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				if let enumval = FHIRRestfulInteractions(rawValue: val) {
+					self.code = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "code", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -1666,7 +1713,7 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.rawValue
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
@@ -1678,11 +1725,11 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 
 
 /**
- *  Search params supported by implementation.
- *
- *  Search parameters for implementations to support and/or make use of - either references to ones defined in the
- *  specification, or additional ones defined for/by the implementation.
- */
+Search params supported by implementation.
+
+Search parameters for implementations to support and/or make use of - either references to ones defined in the
+specification, or additional ones defined for/by the implementation.
+*/
 open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRestResourceSearchParam" }
@@ -1697,8 +1744,8 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	/// Server-specific usage.
 	public var documentation: String?
 	
-	/// missing | exact | contains | not | text | in | not-in | below | above | type.
-	public var modifier: [String]?
+	/// A modifier supported for the search parameter.
+	public var modifier: [SearchModifierCode]?
 	
 	/// Name of search parameter.
 	public var name: String?
@@ -1706,12 +1753,12 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	/// Types of resource (if a resource reference).
 	public var target: [String]?
 	
-	/// number | date | string | token | reference | composite | quantity | uri.
-	public var type: String?
+	/// The type of value a search parameter refers to, and how the content is interpreted.
+	public var type: SearchParamType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, type: String) {
+	public convenience init(name: String, type: SearchParamType) {
 		self.init()
 		self.name = name
 		self.type = type
@@ -1749,8 +1796,12 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		}
 		if let exist = json["modifier"] {
 			presentKeys.insert("modifier")
-			if let val = exist as? [String] {
-				self.modifier = val
+			if let val = exist as? [String] { var i = -1
+				self.modifier = val.map() { i += 1
+					if let enumval = SearchModifierCode(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "modifier.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "modifier", wants: Array<String>.self, has: type(of: exist)))
@@ -1780,7 +1831,12 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = SearchParamType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -1796,11 +1852,7 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let chain = self.chain {
-			var arr = [Any]()
-			for val in chain {
-				arr.append(val.asJSON())
-			}
-			json["chain"] = arr
+			json["chain"] = chain.map() { $0.asJSON() }
 		}
 		if let definition = self.definition {
 			json["definition"] = definition.asJSON()
@@ -1809,24 +1861,16 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let modifier = self.modifier {
-			var arr = [Any]()
-			for val in modifier {
-				arr.append(val.asJSON())
-			}
-			json["modifier"] = arr
+			json["modifier"] = modifier.map() { $0.rawValue }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let target = self.target {
-			var arr = [Any]()
-			for val in target {
-				arr.append(val.asJSON())
-			}
-			json["target"] = arr
+			json["target"] = target.map() { $0.asJSON() }
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -1835,10 +1879,10 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 
 
 /**
- *  Information about security of implementation.
- *
- *  Information about security implementation from an interface perspective - what a client needs to know.
- */
+Information about security of implementation.
+
+Information about security implementation from an interface perspective - what a client needs to know.
+*/
 open class CapabilityStatementRestSecurity: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRestSecurity" }
@@ -1930,8 +1974,8 @@ open class CapabilityStatementRestSecurity: BackboneElement {
 
 
 /**
- *  Certificates associated with security profiles.
- */
+Certificates associated with security profiles.
+*/
 open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementRestSecurityCertificate" }
@@ -1983,11 +2027,11 @@ open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 
 
 /**
- *  Software that is covered by this capability statement.
- *
- *  Software that is covered by this capability statement.  It is used when the capability statement describes the
- *  capabilities of a particular software version, independent of an installation.
- */
+Software that is covered by this capability statement.
+
+Software that is covered by this capability statement.  It is used when the capability statement describes the
+capabilities of a particular software version, independent of an installation.
+*/
 open class CapabilityStatementSoftware: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CapabilityStatementSoftware" }

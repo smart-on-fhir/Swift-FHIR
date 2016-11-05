@@ -2,7 +2,7 @@
 //  ImagingManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,16 +10,16 @@ import Foundation
 
 
 /**
- *  Key Object Selection.
- *
- *  A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or
- *  other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances may have
- *  been selected for a purpose, such as  conference, or consult.  Reflecting a range of sharing purposes, typical
- *  ImagingManifest resources may include all SOP Instances in a study (perhaps for sharing through a Health Information
- *  Exchange); key images from multiple studies (for reference by a referring or treating physician); both a multi-frame
- *  ultrasound instance ("cine" video clip) and a set of measurements taken from that instance (for inclusion in a
- *  teaching file); and so on.
- */
+Key Object Selection.
+
+A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or
+other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances may have been
+selected for a purpose, such as  conference, or consult.  Reflecting a range of sharing purposes, typical
+ImagingManifest resources may include all SOP Instances in a study (perhaps for sharing through a Health Information
+Exchange); key images from multiple studies (for reference by a referring or treating physician); both a multi-frame
+ultrasound instance ("cine" video clip) and a set of measurements taken from that instance (for inclusion in a teaching
+file); and so on.
+*/
 open class ImagingManifest: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImagingManifest" }
@@ -184,10 +184,10 @@ open class ImagingManifest: DomainResource {
 
 
 /**
- *  Study identity of the selected instances.
- *
- *  Study identity and locating information of the DICOM SOP instances in the selection.
- */
+Study identity of the selected instances.
+
+Study identity and locating information of the DICOM SOP instances in the selection.
+*/
 open class ImagingManifestStudy: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingManifestStudy" }
@@ -298,10 +298,10 @@ open class ImagingManifestStudy: BackboneElement {
 
 
 /**
- *  Study access service endpoint.
- *
- *  Methods of accessing  (e.g., retrieving, viewing) the study.
- */
+Study access service endpoint.
+
+Methods of accessing  (e.g., retrieving, viewing) the study.
+*/
 open class ImagingManifestStudyBaseLocation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingManifestStudyBaseLocation" }
@@ -372,10 +372,10 @@ open class ImagingManifestStudyBaseLocation: BackboneElement {
 
 
 /**
- *  Series identity of the selected instances.
- *
- *  Series identity and locating information of the DICOM SOP instances in the selection.
- */
+Series identity of the selected instances.
+
+Series identity and locating information of the DICOM SOP instances in the selection.
+*/
 open class ImagingManifestStudySeries: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingManifestStudySeries" }
@@ -466,10 +466,10 @@ open class ImagingManifestStudySeries: BackboneElement {
 
 
 /**
- *  Series access endpoint.
- *
- *  Methods of accessing (e.g. retrieving) the series.
- */
+Series access endpoint.
+
+Methods of accessing (e.g. retrieving) the series.
+*/
 open class ImagingManifestStudySeriesBaseLocation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingManifestStudySeriesBaseLocation" }
@@ -540,10 +540,10 @@ open class ImagingManifestStudySeriesBaseLocation: BackboneElement {
 
 
 /**
- *  The selected instance.
- *
- *  Identity and locating information of the selected DICOM SOP instances.
- */
+The selected instance.
+
+Identity and locating information of the selected DICOM SOP instances.
+*/
 open class ImagingManifestStudySeriesInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingManifestStudySeriesInstance" }

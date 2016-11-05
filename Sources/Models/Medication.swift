@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Medication) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Medication) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Definition of a Medication.
- *
- *  This resource is primarily used for the identification and definition of a medication. It covers the ingredients and
- *  the packaging for a medication.
- */
+Definition of a Medication.
+
+This resource is primarily used for the identification and definition of a medication. It covers the ingredients and the
+packaging for a medication.
+*/
 open class Medication: DomainResource {
 	override open class var resourceType: String {
 		get { return "Medication" }
@@ -131,10 +131,10 @@ open class Medication: DomainResource {
 
 
 /**
- *  Details about packaged medications.
- *
- *  Information that only applies to packages (not products).
- */
+Details about packaged medications.
+
+Information that only applies to packages (not products).
+*/
 open class MedicationPackage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationPackage" }
@@ -196,10 +196,10 @@ open class MedicationPackage: BackboneElement {
 
 
 /**
- *  What is  in the package.
- *
- *  A set of components that go to make up the described item.
- */
+What is  in the package.
+
+A set of components that go to make up the described item.
+*/
 open class MedicationPackageContent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationPackageContent" }
@@ -301,10 +301,10 @@ open class MedicationPackageContent: BackboneElement {
 
 
 /**
- *  Administrable medication details.
- *
- *  Information that only applies to products (not packages).
- */
+Administrable medication details.
+
+Information that only applies to products (not packages).
+*/
 open class MedicationProduct: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationProduct" }
@@ -386,10 +386,10 @@ open class MedicationProduct: BackboneElement {
 
 
 /**
- *  Identifies a single production run.
- *
- *  Information about a group of medication produced or packaged from one production run.
- */
+Identifies a single production run.
+
+Information about a group of medication produced or packaged from one production run.
+*/
 open class MedicationProductBatch: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationProductBatch" }
@@ -441,10 +441,10 @@ open class MedicationProductBatch: BackboneElement {
 
 
 /**
- *  Active or inactive ingredient.
- *
- *  Identifies a particular constituent of interest in the product.
- */
+Active or inactive ingredient.
+
+Identifies a particular constituent of interest in the product.
+*/
 open class MedicationProductIngredient: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationProductIngredient" }

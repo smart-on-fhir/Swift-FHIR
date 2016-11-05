@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A structured set of questions.
- *
- *  A structured set of questions intended to guide the collection of answers. The questions are ordered and grouped
- *  into coherent subsets, corresponding to the structure of the grouping of the underlying questions.
- */
+A structured set of questions.
+
+A structured set of questions intended to guide the collection of answers. The questions are ordered and grouped into
+coherent subsets, corresponding to the structure of the grouping of the underlying questions.
+*/
 open class Questionnaire: DomainResource {
 	override open class var resourceType: String {
 		get { return "Questionnaire" }
@@ -35,8 +35,8 @@ open class Questionnaire: DomainResource {
 	/// Organization/individual who designed the questionnaire.
 	public var publisher: String?
 	
-	/// draft | published | retired.
-	public var status: String?
+	/// The lifecycle status of the questionnaire as a whole.
+	public var status: QuestionnaireStatus?
 	
 	/// Resource that can be subject of QuestionnaireResponse.
 	public var subjectType: [String]?
@@ -58,7 +58,7 @@ open class Questionnaire: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: QuestionnaireStatus) {
 		self.init()
 		self.status = status
 	}
@@ -129,7 +129,12 @@ open class Questionnaire: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = QuestionnaireStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -224,14 +229,10 @@ open class Questionnaire: DomainResource {
 			json["publisher"] = publisher.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subjectType = self.subjectType {
-			var arr = [Any]()
-			for val in subjectType {
-				arr.append(val.asJSON())
-			}
-			json["subjectType"] = arr
+			json["subjectType"] = subjectType.map() { $0.asJSON() }
 		}
 		if let telecom = self.telecom {
 			json["telecom"] = telecom.map() { $0.asJSON(errors: &errors) }
@@ -255,10 +256,10 @@ open class Questionnaire: DomainResource {
 
 
 /**
- *  Questions and sections within the Questionnaire.
- *
- *  The questions and groupings of questions that make up the questionnaire.
- */
+Questions and sections within the Questionnaire.
+
+The questions and groupings of questions that make up the questionnaire.
+*/
 open class QuestionnaireItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireItem" }
@@ -339,12 +340,13 @@ open class QuestionnaireItem: BackboneElement {
 	/// Primary text for the item.
 	public var text: String?
 	
-	/// group | display | question | boolean | decimal | integer | date | dateTime +.
-	public var type: String?
+	/// Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a
+	/// particular type of data to be captured (string, integer, coded choice, etc.).
+	public var type: QuestionnaireItemType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: QuestionnaireItemType) {
 		self.init()
 		self.type = type
 	}
@@ -625,7 +627,12 @@ open class QuestionnaireItem: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = QuestionnaireItemType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -716,7 +723,7 @@ open class QuestionnaireItem: BackboneElement {
 			json["text"] = text.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -725,11 +732,11 @@ open class QuestionnaireItem: BackboneElement {
 
 
 /**
- *  Only allow data when:.
- *
- *  If present, indicates that this item should only be enabled (displayed/allow answers to be captured) when the
- *  specified condition is true.
- */
+Only allow data when:.
+
+If present, indicates that this item should only be enabled (displayed/allow answers to be captured) when the specified
+condition is true.
+*/
 open class QuestionnaireItemEnableWhen: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireItemEnableWhen" }
@@ -1006,10 +1013,10 @@ open class QuestionnaireItemEnableWhen: BackboneElement {
 
 
 /**
- *  Permitted answer.
- *
- *  For a "choice" question, identifies one of the permitted answers for the question.
- */
+Permitted answer.
+
+For a "choice" question, identifies one of the permitted answers for the question.
+*/
 open class QuestionnaireItemOption: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireItemOption" }

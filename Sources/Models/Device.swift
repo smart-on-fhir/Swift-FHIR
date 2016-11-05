@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Device) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Device) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,14 +10,14 @@ import Foundation
 
 
 /**
- *  Item used in healthcare.
- *
- *  This resource identifies an instance or a type of a manufactured item that is used in the provision of healthcare
- *  without being substantially changed through that activity. The device may be a medical or non-medical device.
- *  Medical devices includes durable (reusable) medical equipment, implantable devices, as well as disposable equipment
- *  used for diagnostic, treatment, and research for healthcare and public health.  Non-medical devices may include
- *  items such as a machine, cellphone, computer, application, etc.
- */
+Item used in healthcare.
+
+This resource identifies an instance or a type of a manufactured item that is used in the provision of healthcare
+without being substantially changed through that activity. The device may be a medical or non-medical device.  Medical
+devices includes durable (reusable) medical equipment, implantable devices, as well as disposable equipment used for
+diagnostic, treatment, and research for healthcare and public health.  Non-medical devices may include items such as a
+machine, cellphone, computer, application, etc.
+*/
 open class Device: DomainResource {
 	override open class var resourceType: String {
 		get { return "Device" }
@@ -56,8 +56,8 @@ open class Device: DomainResource {
 	/// Patient to whom Device is affixed.
 	public var patient: Reference?
 	
-	/// available | not-available | entered-in-error.
-	public var status: String?
+	/// Status of the Device availability.
+	public var status: DeviceStatus?
 	
 	/// What kind of device this is.
 	public var type: CodeableConcept?
@@ -213,7 +213,12 @@ open class Device: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = DeviceStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -308,7 +313,7 @@ open class Device: DomainResource {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)

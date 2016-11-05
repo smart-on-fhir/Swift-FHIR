@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A measured or measurable amount.
- *
- *  A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that
- *  are not precisely quantified, including amounts involving arbitrary units and floating currencies.
- */
+A measured or measurable amount.
+
+A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that are
+not precisely quantified, including amounts involving arbitrary units and floating currencies.
+*/
 open class Quantity: Element {
 	override open class var resourceType: String {
 		get { return "Quantity" }
@@ -23,8 +23,9 @@ open class Quantity: Element {
 	/// Coded form of the unit.
 	public var code: String?
 	
-	/// < | <= | >= | > - how to understand the value.
-	public var comparator: String?
+	/// How the value should be understood and represented - whether the actual value is greater or less than the stated
+	/// value due to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
+	public var comparator: QuantityComparator?
 	
 	/// System that defines coded unit form.
 	public var system: URL?
@@ -50,7 +51,12 @@ open class Quantity: Element {
 		if let exist = json["comparator"] {
 			presentKeys.insert("comparator")
 			if let val = exist as? String {
-				self.comparator = val
+				if let enumval = QuantityComparator(rawValue: val) {
+					self.comparator = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "comparator", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comparator", wants: String.self, has: type(of: exist)))
@@ -93,7 +99,7 @@ open class Quantity: Element {
 			json["code"] = code.asJSON()
 		}
 		if let comparator = self.comparator {
-			json["comparator"] = comparator.asJSON()
+			json["comparator"] = comparator.rawValue
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()

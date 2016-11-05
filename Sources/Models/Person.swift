@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Person) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Person) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A generic person record.
- *
- *  Demographics and administrative information about a person independent of a specific health-related context.
- */
+A generic person record.
+
+Demographics and administrative information about a person independent of a specific health-related context.
+*/
 open class Person: DomainResource {
 	override open class var resourceType: String {
 		get { return "Person" }
@@ -28,8 +28,8 @@ open class Person: DomainResource {
 	/// The date on which the person was born.
 	public var birthDate: FHIRDate?
 	
-	/// male | female | other | unknown.
-	public var gender: String?
+	/// Administrative Gender.
+	public var gender: AdministrativeGender?
 	
 	/// A human identifier for this person.
 	public var identifier: [Identifier]?
@@ -87,7 +87,12 @@ open class Person: DomainResource {
 		if let exist = json["gender"] {
 			presentKeys.insert("gender")
 			if let val = exist as? String {
-				self.gender = val
+				if let enumval = AdministrativeGender(rawValue: val) {
+					self.gender = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "gender", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -193,7 +198,7 @@ open class Person: DomainResource {
 			json["birthDate"] = birthDate.asJSON()
 		}
 		if let gender = self.gender {
-			json["gender"] = gender.asJSON()
+			json["gender"] = gender.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
@@ -220,15 +225,15 @@ open class Person: DomainResource {
 
 
 /**
- *  Link to a resource that concerns the same actual person.
- */
+Link to a resource that concerns the same actual person.
+*/
 open class PersonLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PersonLink" }
 	}
 	
-	/// level1 | level2 | level3 | level4.
-	public var assurance: String?
+	/// Level of assurance that this link is actually associated with the target resource.
+	public var assurance: IdentityAssuranceLevel?
 	
 	/// The resource to which this actual person is associated.
 	public var target: Reference?
@@ -246,7 +251,12 @@ open class PersonLink: BackboneElement {
 		if let exist = json["assurance"] {
 			presentKeys.insert("assurance")
 			if let val = exist as? String {
-				self.assurance = val
+				if let enumval = IdentityAssuranceLevel(rawValue: val) {
+					self.assurance = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "assurance", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "assurance", wants: String.self, has: type(of: exist)))
@@ -276,7 +286,7 @@ open class PersonLink: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let assurance = self.assurance {
-			json["assurance"] = assurance.asJSON()
+			json["assurance"] = assurance.rawValue
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON(errors: &errors)

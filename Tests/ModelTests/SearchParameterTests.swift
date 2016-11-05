@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -36,20 +36,20 @@ class SearchParameterTests: XCTestCase {
 		
 		XCTAssertEqual(inst.base, "Patient")
 		XCTAssertEqual(inst.code, "part-agree")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.description_fhir, "Search by url for a participation agreement, which is stored in a DocumentReference")
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "example-extension")
 		XCTAssertEqual(inst.name, "Example Search Parameter on an extension")
 		XCTAssertEqual(inst.publisher, "Health Level Seven International (FHIR Infrastructure)")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.target?[0], "DocumentReference")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type, "reference")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type, SearchParamType(rawValue: "reference")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/SearchParameter/example-extension")
 		XCTAssertEqual(inst.xpath, "f:DocumentReference/f:extension[@url='http://example.org/fhir/StructureDefinition/participation-agreement']")
-		XCTAssertEqual(inst.xpathUsage, "normal")
+		XCTAssertEqual(inst.xpathUsage, XPathUsageType(rawValue: "normal")!)
 		
 		return inst
 	}
@@ -71,7 +71,7 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.base, "Resource")
 		XCTAssertEqual(inst.code, "_id")
 		XCTAssertEqual(inst.contact?[0].name, "[string]")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2013-10-23")
 		XCTAssertEqual(inst.description_fhir, "Search by resource identifier - e.g. same as the read interaction, but can return included resources")
@@ -80,12 +80,12 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.name, "Example Search Parameter")
 		XCTAssertEqual(inst.publisher, "Health Level Seven International (FHIR Infrastructure)")
 		XCTAssertEqual(inst.purpose, "Need to search by identifier for various infrastructural cases - mainly retrieving packages, and matching as part of a chain")
-		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type, "token")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type, SearchParamType(rawValue: "token")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/SearchParameter/example")
 		XCTAssertEqual(inst.xpath, "f:*/f:id")
-		XCTAssertEqual(inst.xpathUsage, "normal")
+		XCTAssertEqual(inst.xpathUsage, XPathUsageType(rawValue: "normal")!)
 		
 		return inst
 	}

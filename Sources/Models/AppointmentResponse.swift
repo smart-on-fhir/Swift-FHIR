@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection.
- */
+A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection.
+*/
 open class AppointmentResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "AppointmentResponse" }
@@ -32,8 +32,11 @@ open class AppointmentResponse: DomainResource {
 	/// External Ids for this item.
 	public var identifier: [Identifier]?
 	
-	/// accepted | declined | tentative | in-process | completed | needs-action | entered-in-error.
-	public var participantStatus: String?
+	/// Participation status of the participant. When the status is declined or tentative if the start/end times are
+	/// different to the appointment, then these times should be interpreted as a requested time change. When the status
+	/// is accepted, the times can either be the time of the appointment (as a confirmation of the time) or can be
+	/// empty.
+	public var participantStatus: ParticipationStatus?
 	
 	/// Role of participant in the appointment.
 	public var participantType: [CodeableConcept]?
@@ -43,7 +46,7 @@ open class AppointmentResponse: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(appointment: Reference, participantStatus: String) {
+	public convenience init(appointment: Reference, participantStatus: ParticipationStatus) {
 		self.init()
 		self.appointment = appointment
 		self.participantStatus = participantStatus
@@ -118,7 +121,12 @@ open class AppointmentResponse: DomainResource {
 		if let exist = json["participantStatus"] {
 			presentKeys.insert("participantStatus")
 			if let val = exist as? String {
-				self.participantStatus = val
+				if let enumval = ParticipationStatus(rawValue: val) {
+					self.participantStatus = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "participantStatus", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "participantStatus", wants: String.self, has: type(of: exist)))
@@ -172,7 +180,7 @@ open class AppointmentResponse: DomainResource {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let participantStatus = self.participantStatus {
-			json["participantStatus"] = participantStatus.asJSON()
+			json["participantStatus"] = participantStatus.rawValue
 		}
 		if let participantType = self.participantType {
 			json["participantType"] = participantType.map() { $0.asJSON(errors: &errors) }

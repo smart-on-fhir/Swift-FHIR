@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Resource data element.
- *
- *  The formal description of a single piece of information that can be gathered and reported.
- */
+Resource data element.
+
+The formal description of a single piece of information that can be gathered and reported.
+*/
 open class DataElement: DomainResource {
 	override open class var resourceType: String {
 		get { return "DataElement" }
@@ -49,11 +49,11 @@ open class DataElement: DomainResource {
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this data element. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
-	/// comparable | fully-specified | equivalent | convertable | scaleable | flexible.
-	public var stringency: String?
+	/// Identifies how precise the data element is in its definition.
+	public var stringency: DataElementStringency?
 	
 	/// Name for this data element (Human friendly).
 	public var title: String?
@@ -69,7 +69,7 @@ open class DataElement: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ElementDefinition], status: String) {
+	public convenience init(element: [ElementDefinition], status: PublicationStatus) {
 		self.init()
 		self.element = element
 		self.status = status
@@ -199,7 +199,12 @@ open class DataElement: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -211,7 +216,12 @@ open class DataElement: DomainResource {
 		if let exist = json["stringency"] {
 			presentKeys.insert("stringency")
 			if let val = exist as? String {
-				self.stringency = val
+				if let enumval = DataElementStringency(rawValue: val) {
+					self.stringency = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "stringency", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "stringency", wants: String.self, has: type(of: exist)))
@@ -295,10 +305,10 @@ open class DataElement: DomainResource {
 			json["publisher"] = publisher.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let stringency = self.stringency {
-			json["stringency"] = stringency.asJSON()
+			json["stringency"] = stringency.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -319,11 +329,11 @@ open class DataElement: DomainResource {
 
 
 /**
- *  External specification mapped to.
- *
- *  Identifies a specification (other than a terminology) that the elements which make up the DataElement have some
- *  correspondence with.
- */
+External specification mapped to.
+
+Identifies a specification (other than a terminology) that the elements which make up the DataElement have some
+correspondence with.
+*/
 open class DataElementMapping: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DataElementMapping" }

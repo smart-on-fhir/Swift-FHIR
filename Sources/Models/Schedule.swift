@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A container for slot(s) of time that may be available for booking appointments.
- */
+A container for slot(s) of time that may be available for booking appointments.
+*/
 open class Schedule: DomainResource {
 	override open class var resourceType: String {
 		get { return "Schedule" }
@@ -20,16 +20,20 @@ open class Schedule: DomainResource {
 	/// Whether this schedule is in active use.
 	public var active: Bool?
 	
-	/// The resource this Schedule resource is providing availability information for. These are expected to usually be one of HealthcareService, Location, Practitioner, Device, Patient or RelatedPerson.
+	/// The resource this Schedule resource is providing availability information for. These are expected to usually be
+	/// one of HealthcareService, Location, Practitioner, Device, Patient or RelatedPerson.
 	public var actor: Reference?
 	
-	/// Comments on the availability to describe any extended information. Such as custom constraints on the slot(s) that may be associated.
+	/// Comments on the availability to describe any extended information. Such as custom constraints on the slot(s)
+	/// that may be associated.
 	public var comment: String?
 	
 	/// External Ids for this item.
 	public var identifier: [Identifier]?
 	
-	/// The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These  cover the amount of time that an organization's planning horizon; the interval for which they are currently accepting appointments. This does not define a "template" for planning outside these dates.
+	/// The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These
+	/// cover the amount of time that an organization's planning horizon; the interval for which they are currently
+	/// accepting appointments. This does not define a "template" for planning outside these dates.
 	public var planningHorizon: Period?
 	
 	/// A broad categorisation of the service that is to be performed during this appointment.

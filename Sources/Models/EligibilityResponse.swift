@@ -2,7 +2,7 @@
 //  EligibilityResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/EligibilityResponse) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/EligibilityResponse) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  EligibilityResponse resource.
- *
- *  This resource provides eligibility and plan details from the processing of an Eligibility resource.
- */
+EligibilityResponse resource.
+
+This resource provides eligibility and plan details from the processing of an Eligibility resource.
+*/
 open class EligibilityResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "EligibilityResponse" }
@@ -64,12 +64,12 @@ open class EligibilityResponse: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: EligibilityResponseStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: EligibilityResponseStatus) {
 		self.init()
 		self.status = status
 	}
@@ -270,7 +270,12 @@ open class EligibilityResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EligibilityResponseStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -331,7 +336,7 @@ open class EligibilityResponse: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json
@@ -340,10 +345,10 @@ open class EligibilityResponse: DomainResource {
 
 
 /**
- *  Benefits by Category.
- *
- *  Benefits and optionally current balances by Category.
- */
+Benefits by Category.
+
+Benefits and optionally current balances by Category.
+*/
 open class EligibilityResponseBenefitBalance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EligibilityResponseBenefitBalance" }
@@ -525,10 +530,10 @@ open class EligibilityResponseBenefitBalance: BackboneElement {
 
 
 /**
- *  Benefit Summary.
- *
- *  Benefits Used to date.
- */
+Benefit Summary.
+
+Benefits Used to date.
+*/
 open class EligibilityResponseBenefitBalanceFinancial: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EligibilityResponseBenefitBalanceFinancial" }
@@ -665,10 +670,10 @@ open class EligibilityResponseBenefitBalanceFinancial: BackboneElement {
 
 
 /**
- *  Processing errors.
- *
- *  Mutually exclusive with Services Provided (Item).
- */
+Processing errors.
+
+Mutually exclusive with Services Provided (Item).
+*/
 open class EligibilityResponseError: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EligibilityResponseError" }

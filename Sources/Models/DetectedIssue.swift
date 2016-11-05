@@ -2,7 +2,7 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Clinical issue with action.
- *
- *  Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for
- *  a patient; e.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
- */
+Clinical issue with action.
+
+Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for a
+patient; e.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
+*/
 open class DetectedIssue: DomainResource {
 	override open class var resourceType: String {
 		get { return "DetectedIssue" }
@@ -47,8 +47,9 @@ open class DetectedIssue: DomainResource {
 	/// Authority for issue.
 	public var reference: URL?
 	
-	/// high | moderate | low.
-	public var severity: String?
+	/// Indicates the degree of importance associated with the identified issue based on the potential impact on the
+	/// patient.
+	public var severity: DetectedIssueSeverity?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -167,7 +168,12 @@ open class DetectedIssue: DomainResource {
 		if let exist = json["severity"] {
 			presentKeys.insert("severity")
 			if let val = exist as? String {
-				self.severity = val
+				if let enumval = DetectedIssueSeverity(rawValue: val) {
+					self.severity = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "severity", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "severity", wants: String.self, has: type(of: exist)))
@@ -207,7 +213,7 @@ open class DetectedIssue: DomainResource {
 			json["reference"] = reference.asJSON()
 		}
 		if let severity = self.severity {
-			json["severity"] = severity.asJSON()
+			json["severity"] = severity.rawValue
 		}
 		
 		return json
@@ -216,12 +222,12 @@ open class DetectedIssue: DomainResource {
 
 
 /**
- *  Step taken to address.
- *
- *  Indicates an action that has been taken or is committed to to reduce or eliminate the likelihood of the risk
- *  identified by the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that
- *  may reduce/eliminate the need for any action.
- */
+Step taken to address.
+
+Indicates an action that has been taken or is committed to to reduce or eliminate the likelihood of the risk identified
+by the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that may
+reduce/eliminate the need for any action.
+*/
 open class DetectedIssueMitigation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DetectedIssueMitigation" }

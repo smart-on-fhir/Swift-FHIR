@@ -2,7 +2,7 @@
 //  Measure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A quality measure definition.
- *
- *  The Measure resource provides the definition of a quality measure.
- */
+A quality measure definition.
+
+The Measure resource provides the definition of a quality measure.
+*/
 open class Measure: DomainResource {
 	override open class var resourceType: String {
 		get { return "Measure" }
@@ -94,14 +94,14 @@ open class Measure: DomainResource {
 	/// How is risk adjustment applied for this measure.
 	public var riskAdjustment: String?
 	
-	/// proportion | ratio | continuous-variable | cohort.
-	public var scoring: String?
+	/// The measure scoring type, e.g. proportion, CV.
+	public var scoring: MeasureScoring?
 	
 	/// The measure set, e.g. Preventive Care and Screening.
 	public var set: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this measure. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Supplemental data.
 	public var supplementalData: [MeasureSupplementalData]?
@@ -112,8 +112,8 @@ open class Measure: DomainResource {
 	/// Descriptional topics for the measure.
 	public var topic: [CodeableConcept]?
 	
-	/// process | outcome.
-	public var type: [String]?
+	/// The measure type, e.g. process, outcome.
+	public var type: [MeasureType]?
 	
 	/// Logical uri to reference this measure (globally unique).
 	public var url: URL?
@@ -129,7 +129,7 @@ open class Measure: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -405,7 +405,12 @@ open class Measure: DomainResource {
 		if let exist = json["scoring"] {
 			presentKeys.insert("scoring")
 			if let val = exist as? String {
-				self.scoring = val
+				if let enumval = MeasureScoring(rawValue: val) {
+					self.scoring = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "scoring", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "scoring", wants: String.self, has: type(of: exist)))
@@ -423,7 +428,12 @@ open class Measure: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -471,8 +481,12 @@ open class Measure: DomainResource {
 		}
 		if let exist = json["type"] {
 			presentKeys.insert("type")
-			if let val = exist as? [String] {
-				self.type = val
+			if let val = exist as? [String] { var i = -1
+				self.type = val.map() { i += 1
+					if let enumval = MeasureType(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "type.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: Array<String>.self, has: type(of: exist)))
@@ -601,13 +615,13 @@ open class Measure: DomainResource {
 			json["riskAdjustment"] = riskAdjustment.asJSON()
 		}
 		if let scoring = self.scoring {
-			json["scoring"] = scoring.asJSON()
+			json["scoring"] = scoring.rawValue
 		}
 		if let set = self.set {
 			json["set"] = set.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let supplementalData = self.supplementalData {
 			json["supplementalData"] = supplementalData.map() { $0.asJSON(errors: &errors) }
@@ -619,11 +633,7 @@ open class Measure: DomainResource {
 			json["topic"] = topic.map() { $0.asJSON(errors: &errors) }
 		}
 		if let type = self.type {
-			var arr = [Any]()
-			for val in type {
-				arr.append(val.asJSON())
-			}
-			json["type"] = arr
+			json["type"] = type.map() { $0.rawValue }
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -644,10 +654,10 @@ open class Measure: DomainResource {
 
 
 /**
- *  Population criteria group.
- *
- *  A group of population criteria for the measure.
- */
+Population criteria group.
+
+A group of population criteria for the measure.
+*/
 open class MeasureGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureGroup" }
@@ -769,10 +779,10 @@ open class MeasureGroup: BackboneElement {
 
 
 /**
- *  Population criteria.
- *
- *  A population criteria for the measure.
- */
+Population criteria.
+
+A population criteria for the measure.
+*/
 open class MeasureGroupPopulation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureGroupPopulation" }
@@ -790,12 +800,12 @@ open class MeasureGroupPopulation: BackboneElement {
 	/// Short name.
 	public var name: String?
 	
-	/// initial-population | numerator | numerator-exclusion | denominator | denominator-exclusion | denominator-exception | measure-population | measure-population-exclusion | measure-observation.
-	public var type: String?
+	/// The type of population criteria.
+	public var type: MeasurePopulationType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(criteria: String, identifier: Identifier, type: String) {
+	public convenience init(criteria: String, identifier: Identifier, type: MeasurePopulationType) {
 		self.init()
 		self.criteria = criteria
 		self.identifier = identifier
@@ -855,7 +865,12 @@ open class MeasureGroupPopulation: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = MeasurePopulationType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -883,7 +898,7 @@ open class MeasureGroupPopulation: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -892,11 +907,11 @@ open class MeasureGroupPopulation: BackboneElement {
 
 
 /**
- *  Stratifier criteria for the measure.
- *
- *  The stratifier criteria for the measure report, specified as either the name of a valid CQL expression defined
- *  within a referenced library, or a valid FHIR Resource Path.
- */
+Stratifier criteria for the measure.
+
+The stratifier criteria for the measure report, specified as either the name of a valid CQL expression defined within a
+referenced library, or a valid FHIR Resource Path.
+*/
 open class MeasureGroupStratifier: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureGroupStratifier" }
@@ -978,11 +993,11 @@ open class MeasureGroupStratifier: BackboneElement {
 
 
 /**
- *  Supplemental data.
- *
- *  The supplemental data criteria for the measure report, specified as either the name of a valid CQL expression within
- *  a referenced library, or a valid FHIR Resource Path.
- */
+Supplemental data.
+
+The supplemental data criteria for the measure report, specified as either the name of a valid CQL expression within a
+referenced library, or a valid FHIR Resource Path.
+*/
 open class MeasureSupplementalData: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureSupplementalData" }
@@ -997,8 +1012,11 @@ open class MeasureSupplementalData: BackboneElement {
 	/// Path to the supplemental data element.
 	public var path: String?
 	
-	/// supplemental-data | risk-adjustment-factor.
-	public var usage: [String]?
+	/// An indicator of the intended usage for the supplemental data element. Supplemental data indicates the data is
+	/// additional information requested to augment the measure information. Risk adjustment factor indicates the data
+	/// is additional information used to calculate risk adjustment factors when applying a risk model to the measure
+	/// calculation.
+	public var usage: [MeasureDataUsage]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1047,8 +1065,12 @@ open class MeasureSupplementalData: BackboneElement {
 		}
 		if let exist = json["usage"] {
 			presentKeys.insert("usage")
-			if let val = exist as? [String] {
-				self.usage = val
+			if let val = exist as? [String] { var i = -1
+				self.usage = val.map() { i += 1
+					if let enumval = MeasureDataUsage(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "usage.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "usage", wants: Array<String>.self, has: type(of: exist)))
@@ -1070,11 +1092,7 @@ open class MeasureSupplementalData: BackboneElement {
 			json["path"] = path.asJSON()
 		}
 		if let usage = self.usage {
-			var arr = [Any]()
-			for val in usage {
-				arr.append(val.asJSON())
-			}
-			json["usage"] = arr
+			json["usage"] = usage.map() { $0.rawValue }
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -52,7 +52,7 @@ class ImagingStudyTests: XCTestCase {
 		XCTAssertEqual(inst.series?[0].uid, "urn:oid:2.16.124.113543.6003.2588828330.45298.17418.2723805630")
 		XCTAssertEqual(inst.started?.description, "2011-01-01T11:01:20+03:00")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">CT Chest.  John Smith (MRN: 09236). Accession: W12342398. Performed: 2011-01-01. 3 series, 12 images.</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.uid, "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045")
 		
 		return inst

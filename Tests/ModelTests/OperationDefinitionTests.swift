@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -38,30 +38,30 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.code, "populate")
 		XCTAssertEqual(inst.comment, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.contact?[0].name, "System Administrator")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "email")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "email")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "beep@coyote.acme.com")
 		XCTAssertEqual(inst.date?.description, "2015-08-04")
 		XCTAssertEqual(inst.description_fhir, "Limited implementation of the Populate Questionnaire implemenation")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertTrue(inst.instance ?? false)
-		XCTAssertEqual(inst.kind, "operation")
+		XCTAssertEqual(inst.kind, OperationKind(rawValue: "operation")!)
 		XCTAssertEqual(inst.name, "Populate Questionnaire")
 		XCTAssertEqual(inst.parameter?[0].max, "1")
 		XCTAssertEqual(inst.parameter?[0].min, 1)
 		XCTAssertEqual(inst.parameter?[0].name, "subject")
 		XCTAssertEqual(inst.parameter?[0].type, "Reference")
-		XCTAssertEqual(inst.parameter?[0].use, "in")
+		XCTAssertEqual(inst.parameter?[0].use, OperationParameterUse(rawValue: "in")!)
 		XCTAssertEqual(inst.parameter?[1].documentation, "The partially (or fully)-populated set of answers for the specified Questionnaire")
 		XCTAssertEqual(inst.parameter?[1].max, "1")
 		XCTAssertEqual(inst.parameter?[1].min, 1)
 		XCTAssertEqual(inst.parameter?[1].name, "return")
 		XCTAssertEqual(inst.parameter?[1].type, "QuestionnaireResponse")
-		XCTAssertEqual(inst.parameter?[1].use, "out")
+		XCTAssertEqual(inst.parameter?[1].use, OperationParameterUse(rawValue: "out")!)
 		XCTAssertEqual(inst.publisher, "Acme Healthcare Services")
 		XCTAssertEqual(inst.resource?[0], "Questionnaire")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertFalse(inst.system ?? true)
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertFalse(inst.type ?? true)
 		XCTAssertEqual(inst.url?.absoluteString, "http://h7.org/fhir/OperationDefinition/example")
 		XCTAssertEqual(inst.version, "B")

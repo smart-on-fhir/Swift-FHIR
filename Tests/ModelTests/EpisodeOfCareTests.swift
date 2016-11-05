@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -47,21 +47,21 @@ class EpisodeOfCareTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.period?.start?.description, "2014-09-01")
 		XCTAssertEqual(inst.referralRequest?[0].display, "Referral from Example Aged Care Services")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, EpisodeOfCareStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.statusHistory?[0].period?.end?.description, "2014-09-14")
 		XCTAssertEqual(inst.statusHistory?[0].period?.start?.description, "2014-09-01")
-		XCTAssertEqual(inst.statusHistory?[0].status, "planned")
+		XCTAssertEqual(inst.statusHistory?[0].status, EpisodeOfCareStatus(rawValue: "planned")!)
 		XCTAssertEqual(inst.statusHistory?[1].period?.end?.description, "2014-09-21")
 		XCTAssertEqual(inst.statusHistory?[1].period?.start?.description, "2014-09-15")
-		XCTAssertEqual(inst.statusHistory?[1].status, "active")
+		XCTAssertEqual(inst.statusHistory?[1].status, EpisodeOfCareStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.statusHistory?[2].period?.end?.description, "2014-09-24")
 		XCTAssertEqual(inst.statusHistory?[2].period?.start?.description, "2014-09-22")
-		XCTAssertEqual(inst.statusHistory?[2].status, "onhold")
+		XCTAssertEqual(inst.statusHistory?[2].status, EpisodeOfCareStatus(rawValue: "onhold")!)
 		XCTAssertEqual(inst.statusHistory?[3].period?.start?.description, "2014-09-25")
-		XCTAssertEqual(inst.statusHistory?[3].status, "active")
+		XCTAssertEqual(inst.statusHistory?[3].status, EpisodeOfCareStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.team?[0].display, "example care team")
 		XCTAssertEqual(inst.team?[0].reference, "CareTeam/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?[0].coding?[0].code, "HACC")
 		XCTAssertEqual(inst.type?[0].coding?[0].display, "Home and Community Care Package")
 		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://example.org/EpisodeOfCare/Type")

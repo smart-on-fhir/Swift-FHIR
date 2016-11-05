@@ -2,7 +2,7 @@
 //  AppointmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -43,12 +43,12 @@ class AppointmentResponseTests: XCTestCase {
 		XCTAssertEqual(inst.id, "exampleresp")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/sampleappointmentresponse-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "response123")
-		XCTAssertEqual(inst.participantStatus, "tentative")
+		XCTAssertEqual(inst.participantStatus, ParticipationStatus(rawValue: "tentative")!)
 		XCTAssertEqual(inst.participantType?[0].coding?[0].code, "ATND")
 		XCTAssertEqual(inst.participantType?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T13:15:00Z")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Accept Brian MRI results discussion</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -72,9 +72,9 @@ class AppointmentResponseTests: XCTestCase {
 		XCTAssertEqual(inst.appointment?.display, "Brian MRI results discussion")
 		XCTAssertEqual(inst.appointment?.reference, "Appointment/example")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.participantStatus, "accepted")
+		XCTAssertEqual(inst.participantStatus, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Accept Brian MRI results discussion</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

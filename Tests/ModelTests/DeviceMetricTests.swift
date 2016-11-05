@@ -2,7 +2,7 @@
 //  DeviceMetricTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -34,11 +34,11 @@ class DeviceMetricTests: XCTestCase {
 	func runDeviceMetric1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DeviceMetric {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "devicemetric-example.json")
 		
-		XCTAssertEqual(inst.category, "measurement")
+		XCTAssertEqual(inst.category, DeviceMetricCategory(rawValue: "measurement")!)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://goodcare.org/devicemetric/id")
 		XCTAssertEqual(inst.identifier?.value, "345675")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "150456")
 		XCTAssertEqual(inst.type?.coding?[0].display, "MDC_PULS_OXIM_SAT_O2")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "https://rtmms.nist.gov")

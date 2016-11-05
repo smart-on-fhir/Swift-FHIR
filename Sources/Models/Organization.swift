@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Organization) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Organization) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  A grouping of people or organizations with a common purpose.
- *
- *  A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some
- *  form of collective action.  Includes companies, institutions, corporations, departments, community groups,
- *  healthcare practice groups, etc.
- */
+A grouping of people or organizations with a common purpose.
+
+A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of
+collective action.  Includes companies, institutions, corporations, departments, community groups, healthcare practice
+groups, etc.
+*/
 open class Organization: DomainResource {
 	override open class var resourceType: String {
 		get { return "Organization" }
@@ -192,11 +192,7 @@ open class Organization: DomainResource {
 			json["address"] = address.map() { $0.asJSON(errors: &errors) }
 		}
 		if let alias = self.alias {
-			var arr = [Any]()
-			for val in alias {
-				arr.append(val.asJSON())
-			}
-			json["alias"] = arr
+			json["alias"] = alias.map() { $0.asJSON() }
 		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
@@ -226,8 +222,8 @@ open class Organization: DomainResource {
 
 
 /**
- *  Contact for the organization for a certain purpose.
- */
+Contact for the organization for a certain purpose.
+*/
 open class OrganizationContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OrganizationContact" }

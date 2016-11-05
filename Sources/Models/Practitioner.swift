@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A person with a  formal responsibility in the provisioning of healthcare or related services.
- *
- *  A person who is directly or indirectly involved in the provisioning of healthcare.
- */
+A person with a  formal responsibility in the provisioning of healthcare or related services.
+
+A person who is directly or indirectly involved in the provisioning of healthcare.
+*/
 open class Practitioner: DomainResource {
 	override open class var resourceType: String {
 		get { return "Practitioner" }
@@ -31,8 +31,9 @@ open class Practitioner: DomainResource {
 	/// A language the practitioner is able to use in patient communication.
 	public var communication: [CodeableConcept]?
 	
-	/// male | female | other | unknown.
-	public var gender: String?
+	/// Administrative Gender - the gender that the person is considered to have for administration and record keeping
+	/// purposes.
+	public var gender: AdministrativeGender?
 	
 	/// A identifier for the person as this agent.
 	public var identifier: [Identifier]?
@@ -104,7 +105,12 @@ open class Practitioner: DomainResource {
 		if let exist = json["gender"] {
 			presentKeys.insert("gender")
 			if let val = exist as? String {
-				self.gender = val
+				if let enumval = AdministrativeGender(rawValue: val) {
+					self.gender = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "gender", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -213,7 +219,7 @@ open class Practitioner: DomainResource {
 			json["communication"] = communication.map() { $0.asJSON(errors: &errors) }
 		}
 		if let gender = self.gender {
-			json["gender"] = gender.asJSON()
+			json["gender"] = gender.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
@@ -240,10 +246,10 @@ open class Practitioner: DomainResource {
 
 
 /**
- *  Roles/organizations the practitioner is associated with.
- *
- *  The list of roles/organizations that the practitioner is associated with.
- */
+Roles/organizations the practitioner is associated with.
+
+The list of roles/organizations that the practitioner is associated with.
+*/
 open class PractitionerPractRole: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PractitionerPractRole" }
@@ -445,8 +451,8 @@ open class PractitionerPractRole: BackboneElement {
 
 
 /**
- *  Qualifications obtained by training and certification.
- */
+Qualifications obtained by training and certification.
+*/
 open class PractitionerQualification: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PractitionerQualification" }

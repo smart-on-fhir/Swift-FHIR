@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -46,7 +46,7 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.dispense?[0].duration?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.dispense?[0].duration?.unit, "month")
 		XCTAssertEqual(inst.dispense?[0].duration?.value, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dispense?[0].eye, "right")
+		XCTAssertEqual(inst.dispense?[0].eye, VisionEyes(rawValue: "right")!)
 		XCTAssertEqual(inst.dispense?[0].power, NSDecimalNumber(string: "-2.75"))
 		XCTAssertEqual(inst.dispense?[0].product?.code, "contact")
 		XCTAssertEqual(inst.dispense?[0].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
@@ -61,7 +61,7 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.dispense?[1].duration?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.dispense?[1].duration?.unit, "month")
 		XCTAssertEqual(inst.dispense?[1].duration?.value, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dispense?[1].eye, "left")
+		XCTAssertEqual(inst.dispense?[1].eye, VisionEyes(rawValue: "left")!)
 		XCTAssertEqual(inst.dispense?[1].power, NSDecimalNumber(string: "-2.75"))
 		XCTAssertEqual(inst.dispense?[1].product?.code, "contact")
 		XCTAssertEqual(inst.dispense?[1].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
@@ -70,9 +70,9 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "15014")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.prescriber?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, VisionStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sample Contract Lens prescription</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -93,17 +93,17 @@ class VisionPrescriptionTests: XCTestCase {
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
 		XCTAssertEqual(inst.dispense?[0].add, NSDecimalNumber(string: "2.0"))
-		XCTAssertEqual(inst.dispense?[0].base, "down")
-		XCTAssertEqual(inst.dispense?[0].eye, "right")
+		XCTAssertEqual(inst.dispense?[0].base, VisionBase(rawValue: "down")!)
+		XCTAssertEqual(inst.dispense?[0].eye, VisionEyes(rawValue: "right")!)
 		XCTAssertEqual(inst.dispense?[0].prism, NSDecimalNumber(string: "0.5"))
 		XCTAssertEqual(inst.dispense?[0].product?.code, "lens")
 		XCTAssertEqual(inst.dispense?[0].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense?[0].sphere, NSDecimalNumber(string: "-2.0"))
 		XCTAssertEqual(inst.dispense?[1].add, NSDecimalNumber(string: "2.0"))
 		XCTAssertEqual(inst.dispense?[1].axis, 180)
-		XCTAssertEqual(inst.dispense?[1].base, "up")
+		XCTAssertEqual(inst.dispense?[1].base, VisionBase(rawValue: "up")!)
 		XCTAssertEqual(inst.dispense?[1].cylinder, NSDecimalNumber(string: "-0.5"))
-		XCTAssertEqual(inst.dispense?[1].eye, "left")
+		XCTAssertEqual(inst.dispense?[1].eye, VisionEyes(rawValue: "left")!)
 		XCTAssertEqual(inst.dispense?[1].prism, NSDecimalNumber(string: "0.5"))
 		XCTAssertEqual(inst.dispense?[1].product?.code, "lens")
 		XCTAssertEqual(inst.dispense?[1].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
@@ -113,8 +113,8 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "15013")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.prescriber?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, VisionStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Location) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Location) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Details and position information for a physical place.
- *
- *  Details and position information for a physical place where services are provided  and resources and participants
- *  may be stored, found, contained or accommodated.
- */
+Details and position information for a physical place.
+
+Details and position information for a physical place where services are provided  and resources and participants may be
+stored, found, contained or accommodated.
+*/
 open class Location: DomainResource {
 	override open class var resourceType: String {
 		get { return "Location" }
@@ -26,7 +26,8 @@ open class Location: DomainResource {
 	/// A list of alternate names that the location is known as, or was known as in the past.
 	public var alias: [String]?
 	
-	/// Additional details about the location that could be displayed as further information to identify the location beyond its name.
+	/// Additional details about the location that could be displayed as further information to identify the location
+	/// beyond its name.
 	public var description_fhir: String?
 	
 	/// Technical endpoints providing access to services operated for the location.
@@ -38,8 +39,8 @@ open class Location: DomainResource {
 	/// Organization responsible for provisioning and upkeep.
 	public var managingOrganization: Reference?
 	
-	/// instance | kind.
-	public var mode: String?
+	/// Indicates whether a resource instance represents a specific location or a class of locations.
+	public var mode: LocationMode?
 	
 	/// Name of the location as used by humans.
 	public var name: String?
@@ -53,8 +54,8 @@ open class Location: DomainResource {
 	/// The absolute geographic location.
 	public var position: LocationPosition?
 	
-	/// active | suspended | inactive.
-	public var status: String?
+	/// None
+	public var status: LocationStatus?
 	
 	/// Contact details of the location.
 	public var telecom: [ContactPoint]?
@@ -142,7 +143,12 @@ open class Location: DomainResource {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = LocationMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -202,7 +208,12 @@ open class Location: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = LocationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -246,11 +257,7 @@ open class Location: DomainResource {
 			json["address"] = address.asJSON(errors: &errors)
 		}
 		if let alias = self.alias {
-			var arr = [Any]()
-			for val in alias {
-				arr.append(val.asJSON())
-			}
-			json["alias"] = arr
+			json["alias"] = alias.map() { $0.asJSON() }
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -265,7 +272,7 @@ open class Location: DomainResource {
 			json["managingOrganization"] = managingOrganization.asJSON(errors: &errors)
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -280,7 +287,7 @@ open class Location: DomainResource {
 			json["position"] = position.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let telecom = self.telecom {
 			json["telecom"] = telecom.map() { $0.asJSON(errors: &errors) }
@@ -295,11 +302,11 @@ open class Location: DomainResource {
 
 
 /**
- *  The absolute geographic location.
- *
- *  The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate
- *  system used in KML).
- */
+The absolute geographic location.
+
+The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate system
+used in KML).
+*/
 open class LocationPosition: BackboneElement {
 	override open class var resourceType: String {
 		get { return "LocationPosition" }

@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,9 +10,9 @@ import Foundation
 
 
 /**
- *  A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific
- *  date/time. This may result in one or more Encounter(s).
- */
+A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific
+date/time. This may result in one or more Encounter(s).
+*/
 open class Appointment: DomainResource {
 	override open class var resourceType: String {
 		get { return "Appointment" }
@@ -66,12 +66,13 @@ open class Appointment: DomainResource {
 	/// When appointment is to take place.
 	public var start: Instant?
 	
-	/// proposed | pending | booked | arrived | fulfilled | cancelled | noshow | entered-in-error.
-	public var status: String?
+	/// The overall status of the Appointment. Each of the participants has their own participation status which
+	/// indicates their involvement in the process, however this status indicates the shared status.
+	public var status: AppointmentStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(participant: [AppointmentParticipant], status: String) {
+	public convenience init(participant: [AppointmentParticipant], status: AppointmentStatus) {
 		self.init()
 		self.participant = participant
 		self.status = status
@@ -275,7 +276,12 @@ open class Appointment: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = AppointmentStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -339,7 +345,7 @@ open class Appointment: DomainResource {
 			json["start"] = start.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json
@@ -348,10 +354,10 @@ open class Appointment: DomainResource {
 
 
 /**
- *  Participants involved in appointment.
- *
- *  List of participants involved in the appointment.
- */
+Participants involved in appointment.
+
+List of participants involved in the appointment.
+*/
 open class AppointmentParticipant: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AppointmentParticipant" }
@@ -360,18 +366,19 @@ open class AppointmentParticipant: BackboneElement {
 	/// Person, Location/HealthcareService or Device.
 	public var actor: Reference?
 	
-	/// required | optional | information-only.
-	public var required: String?
+	/// Is this participant required to be present at the meeting. This covers a use-case where 2 doctors need to meet
+	/// to discuss the results for a specific patient, and the patient is not required to be present.
+	public var required: ParticipantRequired?
 	
-	/// accepted | declined | tentative | needs-action.
-	public var status: String?
+	/// Participation status of the Patient.
+	public var status: ParticipationStatus?
 	
 	/// Role of participant in the appointment.
 	public var type: [CodeableConcept]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: ParticipationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -396,7 +403,12 @@ open class AppointmentParticipant: BackboneElement {
 		if let exist = json["required"] {
 			presentKeys.insert("required")
 			if let val = exist as? String {
-				self.required = val
+				if let enumval = ParticipantRequired(rawValue: val) {
+					self.required = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "required", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "required", wants: String.self, has: type(of: exist)))
@@ -405,7 +417,12 @@ open class AppointmentParticipant: BackboneElement {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ParticipationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -438,10 +455,10 @@ open class AppointmentParticipant: BackboneElement {
 			json["actor"] = actor.asJSON(errors: &errors)
 		}
 		if let required = self.required {
-			json["required"] = required.asJSON()
+			json["required"] = required.rawValue
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let type = self.type {
 			json["type"] = type.map() { $0.asJSON(errors: &errors) }

@@ -2,7 +2,7 @@
 //  Contributor.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Contributor) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Contributor) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Contributor information.
- *
- *  A contributor to the content of a knowledge asset, including authors, editors, reviewers, and endorsers.
- */
+Contributor information.
+
+A contributor to the content of a knowledge asset, including authors, editors, reviewers, and endorsers.
+*/
 open class Contributor: Element {
 	override open class var resourceType: String {
 		get { return "Contributor" }
@@ -25,12 +25,12 @@ open class Contributor: Element {
 	/// Name of the contributor.
 	public var name: String?
 	
-	/// author | editor | reviewer | endorser.
-	public var type: String?
+	/// The type of contributor.
+	public var type: ContributorType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, type: String) {
+	public convenience init(name: String, type: ContributorType) {
 		self.init()
 		self.name = name
 		self.type = type
@@ -68,7 +68,12 @@ open class Contributor: Element {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = ContributorType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -90,7 +95,7 @@ open class Contributor: Element {
 			json["name"] = name.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json

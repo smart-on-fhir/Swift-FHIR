@@ -113,7 +113,7 @@ open class FHIROperation: CustomStringConvertible {
 					continue
 				}
 				
-				if "in" == param.use {
+				if .in == param.use {
 					
 					// have the parameter, validate it
 					if nil != inParams?[param.name!] {

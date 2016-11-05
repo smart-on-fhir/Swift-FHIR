@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -42,12 +42,12 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[0].item?.reference, "AllergyIntolerance/example")
 		XCTAssertEqual(inst.entry?[1].item?.reference, "AllergyIntolerance/medication")
 		XCTAssertEqual(inst.id, "current-allergies")
-		XCTAssertEqual(inst.mode, "working")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "working")!)
 		XCTAssertEqual(inst.orderedBy?.coding?[0].code, "entry-date")
 		XCTAssertEqual(inst.orderedBy?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/list-order")
 		XCTAssertEqual(inst.source?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "current")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Current Allergy List")
 		
 		return inst
@@ -77,10 +77,10 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.emptyReason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/list-empty-reason")
 		XCTAssertEqual(inst.emptyReason?.text, "The patient is not on any medications")
 		XCTAssertEqual(inst.id, "example-empty")
-		XCTAssertEqual(inst.mode, "snapshot")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
 		XCTAssertEqual(inst.source?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "current")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -107,12 +107,12 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[0].item?.reference, "#fmh-1")
 		XCTAssertEqual(inst.entry?[1].item?.reference, "#fmh-2")
 		XCTAssertEqual(inst.id, "f201")
-		XCTAssertEqual(inst.mode, "snapshot")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
 		XCTAssertEqual(inst.note?[0].text, "Both parents, both brothers and both children (twin) are still alive.")
-		XCTAssertEqual(inst.status, "current")
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -155,11 +155,11 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[8].item?.reference, "#9")
 		XCTAssertEqual(inst.entry?[9].item?.reference, "#10")
 		XCTAssertEqual(inst.id, "prognosis")
-		XCTAssertEqual(inst.mode, "snapshot")
-		XCTAssertEqual(inst.status, "current")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
 		XCTAssertEqual(inst.subject?.display, "Annie Proband, female, born 1966")
 		XCTAssertEqual(inst.subject?.reference, "Patient/proband")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -198,12 +198,12 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[6].item?.reference, "#7")
 		XCTAssertEqual(inst.entry?[7].item?.reference, "#8")
 		XCTAssertEqual(inst.id, "genetic")
-		XCTAssertEqual(inst.mode, "snapshot")
-		XCTAssertEqual(inst.status, "current")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To do</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -237,10 +237,10 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[1].flag?.coding?[0].system?.absoluteString, "http://nehta.gov.au/codes/medications/changetype")
 		XCTAssertEqual(inst.entry?[1].item?.display, "Morphine Sulfate")
 		XCTAssertEqual(inst.id, "med-list")
-		XCTAssertEqual(inst.mode, "changes")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "changes")!)
 		XCTAssertEqual(inst.source?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "current")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -264,9 +264,9 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://acme.com/list-codes")
 		XCTAssertEqual(inst.date?.description, "2016-07-14T11:54:05+10:00")
 		XCTAssertEqual(inst.id, "example-simple-empty")
-		XCTAssertEqual(inst.mode, "snapshot")
-		XCTAssertEqual(inst.status, "current")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -296,11 +296,11 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:uuid:a9fcea7c-fcdf-4d17-a5e0-f26dda030b59")
 		XCTAssertEqual(inst.identifier?[0].value, "23974652")
-		XCTAssertEqual(inst.mode, "changes")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "changes")!)
 		XCTAssertEqual(inst.source?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "current")
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

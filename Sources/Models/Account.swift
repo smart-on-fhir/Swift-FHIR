@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Tracks balance, charges, for patient or cost center.
- *
- *  A financial tool for tracking value accrued for a particular purpose.  In the healthcare field, used to track
- *  charges for a patient, cost centers, etc.
- */
+Tracks balance, charges, for patient or cost center.
+
+A financial tool for tracking value accrued for a particular purpose.  In the healthcare field, used to track charges
+for a patient, cost centers, etc.
+*/
 open class Account: DomainResource {
 	override open class var resourceType: String {
 		get { return "Account" }
@@ -47,8 +47,8 @@ open class Account: DomainResource {
 	/// Who is responsible?.
 	public var owner: Reference?
 	
-	/// active | inactive | entered-in-error.
-	public var status: String?
+	/// Indicates whether the account is presently used/useable or not.
+	public var status: AccountStatus?
 	
 	/// What is account tied to?.
 	public var subject: Reference?
@@ -178,7 +178,12 @@ open class Account: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = AccountStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -246,7 +251,7 @@ open class Account: DomainResource {
 			json["owner"] = owner.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)

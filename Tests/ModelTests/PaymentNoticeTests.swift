@@ -2,7 +2,7 @@
 //  PaymentNoticeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -42,9 +42,9 @@ class PaymentNoticeTests: XCTestCase {
 		XCTAssertEqual(inst.paymentStatus?.code, "paid")
 		XCTAssertEqual(inst.paymentStatus?.system?.absoluteString, "http://hl7.org/fhir/paymentstatus")
 		XCTAssertEqual(inst.request?.reference, "http://benefitsinc.com/fhir/claim/12345")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, PaymentNoticeStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the PaymentNotice</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

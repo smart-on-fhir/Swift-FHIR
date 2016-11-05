@@ -2,7 +2,7 @@
 //  GuidanceResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -36,9 +36,9 @@ class GuidanceResponseTests: XCTestCase {
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.module?.reference, "ServiceDefinition/example")
-		XCTAssertEqual(inst.status, "success")
+		XCTAssertEqual(inst.status, GuidanceResponseStatus(rawValue: "success")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

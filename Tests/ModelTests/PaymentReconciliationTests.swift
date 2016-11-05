@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -63,9 +63,9 @@ class PaymentReconciliationTests: XCTestCase {
 		XCTAssertEqual(inst.outcome, "complete")
 		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
 		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, PaymentReconciliationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the PaymentReconciliation</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.total?.code, "USD")
 		XCTAssertEqual(inst.total?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.total?.value, NSDecimalNumber(string: "3500.0"))

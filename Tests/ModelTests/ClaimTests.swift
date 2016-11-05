@@ -2,7 +2,7 @@
 //  ClaimTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -63,15 +63,15 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Claim</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.total?.code, "USD")
 		XCTAssertEqual(inst.total?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.total?.value, NSDecimalNumber(string: "125.0"))
 		XCTAssertEqual(inst.type?.code, "institutional")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -161,12 +161,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Oral Health Claim</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "oral")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -213,12 +213,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "#patient-1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">This example assumes a national health care scheme where patients, providers and organizations have known business identifiers.</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "oral")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -266,12 +266,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "#patient-1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Oral Health Claim</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "oral")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -319,12 +319,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.identifier?.value, "123AB345")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">This example assumes a national health care scheme where patients, providers and organizations have known business identifiers.</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "oral")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -458,12 +458,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Oral Health Claim</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "oral")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "proposed")
+		XCTAssertEqual(inst.use, Use(rawValue: "proposed")!)
 		
 		return inst
 	}
@@ -507,12 +507,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "stat")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Pharmacy Claim</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "pharmacy")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -556,12 +556,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Claim</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "professional")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -635,12 +635,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.prescription?.reference, "http://www.optdocs.com/prescription/12345")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Vision Claim for Glasses</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "vision")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}
@@ -684,12 +684,12 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/1")
 		XCTAssertEqual(inst.payee?.type?.code, "provider")
 		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ClaimStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Vision Claim</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "vision")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
-		XCTAssertEqual(inst.use, "complete")
+		XCTAssertEqual(inst.use, Use(rawValue: "complete")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  SequenceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -45,7 +45,7 @@ class SequenceTests: XCTestCase {
 		XCTAssertEqual(inst.repository?[0].name, "ga4gh")
 		XCTAssertEqual(inst.repository?[0].url?.absoluteString, "https://www.googleapis.com/genomics/v1beta2")
 		XCTAssertEqual(inst.repository?[0].variantId, "A1A2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, "DNA")
 		XCTAssertEqual(inst.variant?[0].end, 55227977)
 		XCTAssertEqual(inst.variant?[0].observedAllele, "T")

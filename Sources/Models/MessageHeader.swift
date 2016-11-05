@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  A resource that describes a message that is exchanged between systems.
- *
- *  The header for a message exchange that is either requesting or responding to an action.  The reference(s) that are
- *  the subject of the action as well as other information related to the action are typically transmitted in a bundle
- *  in which the MessageHeader resource instance is the first resource in the bundle.
- */
+A resource that describes a message that is exchanged between systems.
+
+The header for a message exchange that is either requesting or responding to an action.  The reference(s) that are the
+subject of the action as well as other information related to the action are typically transmitted in a bundle in which
+the MessageHeader resource instance is the first resource in the bundle.
+*/
 open class MessageHeader: DomainResource {
 	override open class var resourceType: String {
 		get { return "MessageHeader" }
@@ -270,10 +270,10 @@ open class MessageHeader: DomainResource {
 
 
 /**
- *  Message Destination Application(s).
- *
- *  The destination application which the message is intended for.
- */
+Message Destination Application(s).
+
+The destination application which the message is intended for.
+*/
 open class MessageHeaderDestination: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MessageHeaderDestination" }
@@ -355,17 +355,18 @@ open class MessageHeaderDestination: BackboneElement {
 
 
 /**
- *  If this is a reply to prior message.
- *
- *  Information about the message that this message is a response to.  Only present if this message is a response.
- */
+If this is a reply to prior message.
+
+Information about the message that this message is a response to.  Only present if this message is a response.
+*/
 open class MessageHeaderResponse: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MessageHeaderResponse" }
 	}
 	
-	/// ok | transient-error | fatal-error.
-	public var code: String?
+	/// Code that identifies the type of response to the message - whether it was successful or not, and whether it
+	/// should be resent or not.
+	public var code: ResponseType?
 	
 	/// Specific list of hints/warnings/errors.
 	public var details: Reference?
@@ -375,7 +376,7 @@ open class MessageHeaderResponse: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, identifier: String) {
+	public convenience init(code: ResponseType, identifier: String) {
 		self.init()
 		self.code = code
 		self.identifier = identifier
@@ -387,7 +388,12 @@ open class MessageHeaderResponse: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				if let enumval = ResponseType(rawValue: val) {
+					self.code = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "code", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -429,7 +435,7 @@ open class MessageHeaderResponse: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.rawValue
 		}
 		if let details = self.details {
 			json["details"] = details.asJSON(errors: &errors)
@@ -444,10 +450,10 @@ open class MessageHeaderResponse: BackboneElement {
 
 
 /**
- *  Message Source Application.
- *
- *  The source application from which this message originated.
- */
+Message Source Application.
+
+The source application from which this message originated.
+*/
 open class MessageHeaderSource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MessageHeaderSource" }

@@ -2,7 +2,7 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  The definition of a plan for a series of actions, independent of any specific patient or context.
- *
- *  This resource allows for the definition of various types of plans as a sharable, consumable, and executable
- *  artifact. The resource is general enough to support the description of a broad range of clinical artifacts such as
- *  clinical decision support rules, order sets and protocols.
- */
+The definition of a plan for a series of actions, independent of any specific patient or context.
+
+This resource allows for the definition of various types of plans as a sharable, consumable, and executable artifact.
+The resource is general enough to support the description of a broad range of clinical artifacts such as clinical
+decision support rules, order sets and protocols.
+*/
 open class PlanDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "PlanDefinition" }
@@ -72,8 +72,8 @@ open class PlanDefinition: DomainResource {
 	/// Related artifacts for the asset.
 	public var relatedArtifact: [RelatedArtifact]?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this plan definition. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this plan definition (Human friendly).
 	public var title: String?
@@ -98,7 +98,7 @@ open class PlanDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -302,7 +302,12 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -447,7 +452,7 @@ open class PlanDefinition: DomainResource {
 			json["relatedArtifact"] = relatedArtifact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -477,10 +482,10 @@ open class PlanDefinition: DomainResource {
 
 
 /**
- *  Action defined by the plan.
- *
- *  An action to be taken as part of the plan.
- */
+Action defined by the plan.
+
+An action to be taken as part of the plan.
+*/
 open class PlanDefinitionActionDefinition: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PlanDefinitionActionDefinition" }
@@ -495,8 +500,8 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	/// Description of the activity to be performed.
 	public var activityDefinition: Reference?
 	
-	/// single | multiple.
-	public var cardinalityBehavior: String?
+	/// Defines whether the action can be selected multiple times.
+	public var cardinalityBehavior: PlanActionCardinalityBehavior?
 	
 	/// The meaning of the action or its sub-actions.
 	public var code: [CodeableConcept]?
@@ -513,26 +518,26 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	/// Dynamic aspects of the definition.
 	public var dynamicValue: [PlanDefinitionActionDefinitionDynamicValue]?
 	
-	/// visual-group | logical-group | sentence-group.
-	public var groupingBehavior: String?
+	/// Defines the grouping behavior for the action and its children.
+	public var groupingBehavior: PlanActionGroupingBehavior?
 	
 	/// User-visible label for the action (e.g. 1. or A.).
 	public var label: String?
 	
-	/// patient | practitioner | related-person.
-	public var participantType: [String]?
+	/// The type of participant in the action.
+	public var participantType: [PlanActionParticipantType]?
 	
-	/// yes | no.
-	public var precheckBehavior: String?
+	/// Defines whether the action should usually be preselected.
+	public var precheckBehavior: PlanActionPrecheckBehavior?
 	
 	/// Relationship to another action.
 	public var relatedAction: [PlanDefinitionActionDefinitionRelatedAction]?
 	
-	/// must | could | must-unless-documented.
-	public var requiredBehavior: String?
+	/// Defines the requiredness behavior for the action.
+	public var requiredBehavior: PlanActionRequiredBehavior?
 	
-	/// any | all | all-or-none | exactly-one | at-most-one | one-or-more.
-	public var selectionBehavior: String?
+	/// Defines the selection behavior for the action and its children.
+	public var selectionBehavior: PlanActionSelectionBehavior?
 	
 	/// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system.
 	public var textEquivalent: String?
@@ -612,7 +617,12 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["cardinalityBehavior"] {
 			presentKeys.insert("cardinalityBehavior")
 			if let val = exist as? String {
-				self.cardinalityBehavior = val
+				if let enumval = PlanActionCardinalityBehavior(rawValue: val) {
+					self.cardinalityBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "cardinalityBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "cardinalityBehavior", wants: String.self, has: type(of: exist)))
@@ -686,7 +696,12 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["groupingBehavior"] {
 			presentKeys.insert("groupingBehavior")
 			if let val = exist as? String {
-				self.groupingBehavior = val
+				if let enumval = PlanActionGroupingBehavior(rawValue: val) {
+					self.groupingBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "groupingBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "groupingBehavior", wants: String.self, has: type(of: exist)))
@@ -703,8 +718,12 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		}
 		if let exist = json["participantType"] {
 			presentKeys.insert("participantType")
-			if let val = exist as? [String] {
-				self.participantType = val
+			if let val = exist as? [String] { var i = -1
+				self.participantType = val.map() { i += 1
+					if let enumval = PlanActionParticipantType(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "participantType.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "participantType", wants: Array<String>.self, has: type(of: exist)))
@@ -713,7 +732,12 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["precheckBehavior"] {
 			presentKeys.insert("precheckBehavior")
 			if let val = exist as? String {
-				self.precheckBehavior = val
+				if let enumval = PlanActionPrecheckBehavior(rawValue: val) {
+					self.precheckBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "precheckBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "precheckBehavior", wants: String.self, has: type(of: exist)))
@@ -736,7 +760,12 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["requiredBehavior"] {
 			presentKeys.insert("requiredBehavior")
 			if let val = exist as? String {
-				self.requiredBehavior = val
+				if let enumval = PlanActionRequiredBehavior(rawValue: val) {
+					self.requiredBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "requiredBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "requiredBehavior", wants: String.self, has: type(of: exist)))
@@ -745,7 +774,12 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["selectionBehavior"] {
 			presentKeys.insert("selectionBehavior")
 			if let val = exist as? String {
-				self.selectionBehavior = val
+				if let enumval = PlanActionSelectionBehavior(rawValue: val) {
+					self.selectionBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "selectionBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "selectionBehavior", wants: String.self, has: type(of: exist)))
@@ -892,7 +926,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 			json["activityDefinition"] = activityDefinition.asJSON(errors: &errors)
 		}
 		if let cardinalityBehavior = self.cardinalityBehavior {
-			json["cardinalityBehavior"] = cardinalityBehavior.asJSON()
+			json["cardinalityBehavior"] = cardinalityBehavior.rawValue
 		}
 		if let code = self.code {
 			json["code"] = code.map() { $0.asJSON(errors: &errors) }
@@ -910,29 +944,25 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 			json["dynamicValue"] = dynamicValue.map() { $0.asJSON(errors: &errors) }
 		}
 		if let groupingBehavior = self.groupingBehavior {
-			json["groupingBehavior"] = groupingBehavior.asJSON()
+			json["groupingBehavior"] = groupingBehavior.rawValue
 		}
 		if let label = self.label {
 			json["label"] = label.asJSON()
 		}
 		if let participantType = self.participantType {
-			var arr = [Any]()
-			for val in participantType {
-				arr.append(val.asJSON())
-			}
-			json["participantType"] = arr
+			json["participantType"] = participantType.map() { $0.rawValue }
 		}
 		if let precheckBehavior = self.precheckBehavior {
-			json["precheckBehavior"] = precheckBehavior.asJSON()
+			json["precheckBehavior"] = precheckBehavior.rawValue
 		}
 		if let relatedAction = self.relatedAction {
 			json["relatedAction"] = relatedAction.map() { $0.asJSON(errors: &errors) }
 		}
 		if let requiredBehavior = self.requiredBehavior {
-			json["requiredBehavior"] = requiredBehavior.asJSON()
+			json["requiredBehavior"] = requiredBehavior.rawValue
 		}
 		if let selectionBehavior = self.selectionBehavior {
-			json["selectionBehavior"] = selectionBehavior.asJSON()
+			json["selectionBehavior"] = selectionBehavior.rawValue
 		}
 		if let textEquivalent = self.textEquivalent {
 			json["textEquivalent"] = textEquivalent.asJSON()
@@ -971,10 +1001,10 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 
 
 /**
- *  Whether or not the action is applicable.
- *
- *  An expression specifying whether or not the action is applicable in a given context.
- */
+Whether or not the action is applicable.
+
+An expression specifying whether or not the action is applicable in a given context.
+*/
 open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PlanDefinitionActionDefinitionCondition" }
@@ -1041,12 +1071,12 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 
 
 /**
- *  Dynamic aspects of the definition.
- *
- *  Customizations that should be applied to the statically defined resource. For example, if the dosage of a medication
- *  must be computed based on the patient's weight, a customization would be used to specify an expression that
- *  calculated the weight, and the path on the resource that would contain the result.
- */
+Dynamic aspects of the definition.
+
+Customizations that should be applied to the statically defined resource. For example, if the dosage of a medication
+must be computed based on the patient's weight, a customization would be used to specify an expression that calculated
+the weight, and the path on the resource that would contain the result.
+*/
 open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PlanDefinitionActionDefinitionDynamicValue" }
@@ -1128,10 +1158,10 @@ open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 
 
 /**
- *  Relationship to another action.
- *
- *  A relationship to another action such as "before" or "30-60 minutes after start of".
- */
+Relationship to another action.
+
+A relationship to another action such as "before" or "30-60 minutes after start of".
+*/
 open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PlanDefinitionActionDefinitionRelatedAction" }
@@ -1146,12 +1176,12 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 	/// Time offset for the relationship.
 	public var offsetRange: Range?
 	
-	/// before-start | before | before-end | concurrent-with-start | concurrent | concurrent-with-end | after-start | after | after-end.
-	public var relationship: String?
+	/// The relationship of this action to the related action.
+	public var relationship: PlanActionRelationshipType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actionIdentifier: Identifier, relationship: String) {
+	public convenience init(actionIdentifier: Identifier, relationship: PlanActionRelationshipType) {
 		self.init()
 		self.actionIdentifier = actionIdentifier
 		self.relationship = relationship
@@ -1208,7 +1238,12 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		if let exist = json["relationship"] {
 			presentKeys.insert("relationship")
 			if let val = exist as? String {
-				self.relationship = val
+				if let enumval = PlanActionRelationshipType(rawValue: val) {
+					self.relationship = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "relationship", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "relationship", wants: String.self, has: type(of: exist)))
@@ -1233,7 +1268,7 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 			json["offsetRange"] = offsetRange.asJSON(errors: &errors)
 		}
 		if let relationship = self.relationship {
-			json["relationship"] = relationship.asJSON()
+			json["relationship"] = relationship.rawValue
 		}
 		
 		return json

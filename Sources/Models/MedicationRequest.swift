@@ -2,7 +2,7 @@
 //  MedicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,13 +10,12 @@ import Foundation
 
 
 /**
- *  Prescription of medication to for patient.
- *
- *  An order for both supply of the medication and the instructions for administration of the medication to a patient.
- *  The resource is called "MedicationRequest" rather than "MedicationPrescription" or "MedicationOrder" to generalize
- *  the use across inpatient and outpatient settings as well as for care plans, etc and to harmonize with workflow
- *  patterns.
- */
+Prescription of medication to for patient.
+
+An order for both supply of the medication and the instructions for administration of the medication to a patient. The
+resource is called "MedicationRequest" rather than "MedicationPrescription" or "MedicationOrder" to generalize the use
+across inpatient and outpatient settings as well as for care plans, etc and to harmonize with workflow patterns.
+*/
 open class MedicationRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "MedicationRequest" }
@@ -79,8 +78,8 @@ open class MedicationRequest: DomainResource {
 	/// proposal | plan | original-order.
 	public var stage: CodeableConcept?
 	
-	/// active | on-hold | cancelled | completed | entered-in-error | stopped | draft.
-	public var status: String?
+	/// A code specifying the state of the order.  Generally this will be active or completed state.
+	public var status: MedicationRequestStatus?
 	
 	/// Any restrictions on medication substitution.
 	public var substitution: MedicationRequestSubstitution?
@@ -378,7 +377,12 @@ open class MedicationRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = MedicationRequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -481,7 +485,7 @@ open class MedicationRequest: DomainResource {
 			json["stage"] = stage.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let substitution = self.substitution {
 			json["substitution"] = substitution.asJSON(errors: &errors)
@@ -496,13 +500,12 @@ open class MedicationRequest: DomainResource {
 
 
 /**
- *  Medication supply authorization.
- *
- *  Indicates the specific details for the dispense or medication supply part of a medication order (also known as a
- *  Medication Prescription).  Note that this information is NOT always sent with the order.  There may be in some
- *  settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy
- *  department.
- */
+Medication supply authorization.
+
+Indicates the specific details for the dispense or medication supply part of a medication order (also known as a
+Medication Prescription).  Note that this information is NOT always sent with the order.  There may be in some settings
+(e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department.
+*/
 open class MedicationRequestDispenseRequest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationRequestDispenseRequest" }
@@ -619,12 +622,12 @@ open class MedicationRequestDispenseRequest: BackboneElement {
 
 
 /**
- *  Any restrictions on medication substitution.
- *
- *  Indicates whether or not substitution can or should be part of the dispense. In some cases substitution must happen,
- *  in other cases substitution must not happen, and in others it does not matter. This block explains the prescriber's
- *  intent. If nothing is specified substitution may be done.
- */
+Any restrictions on medication substitution.
+
+Indicates whether or not substitution can or should be part of the dispense. In some cases substitution must happen, in
+other cases substitution must not happen, and in others it does not matter. This block explains the prescriber's intent.
+If nothing is specified substitution may be done.
+*/
 open class MedicationRequestSubstitution: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationRequestSubstitution" }

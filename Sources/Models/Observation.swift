@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Measurements and simple assertions.
- *
- *  Measurements and simple assertions made about a patient, device or other subject.
- */
+Measurements and simple assertions.
+
+Measurements and simple assertions made about a patient, device or other subject.
+*/
 open class Observation: DomainResource {
 	override open class var resourceType: String {
 		get { return "Observation" }
@@ -73,8 +73,8 @@ open class Observation: DomainResource {
 	/// Specimen used for this observation.
 	public var specimen: Reference?
 	
-	/// registered | preliminary | final | amended +.
-	public var status: String?
+	/// The status of the result value.
+	public var status: ObservationStatus?
 	
 	/// Who and/or what this is about.
 	public var subject: Reference?
@@ -111,7 +111,7 @@ open class Observation: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, status: String) {
+	public convenience init(code: CodeableConcept, status: ObservationStatus) {
 		self.init()
 		self.code = code
 		self.status = status
@@ -363,7 +363,12 @@ open class Observation: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ObservationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -572,7 +577,7 @@ open class Observation: DomainResource {
 			json["specimen"] = specimen.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -614,12 +619,12 @@ open class Observation: DomainResource {
 
 
 /**
- *  Component results.
- *
- *  Some observations have multiple component observations.  These component observations are expressed as separate code
- *  value pairs that share the same attributes.  Examples include systolic and diastolic component observations for
- *  blood pressure measurement and multiple component observations for genetics observations.
- */
+Component results.
+
+Some observations have multiple component observations.  These component observations are expressed as separate code
+value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood
+pressure measurement and multiple component observations for genetics observations.
+*/
 open class ObservationComponent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ObservationComponent" }
@@ -916,10 +921,10 @@ open class ObservationComponent: BackboneElement {
 
 
 /**
- *  Provides guide for interpretation.
- *
- *  Guidance on how to interpret the value by comparison to a normal or recommended range.
- */
+Provides guide for interpretation.
+
+Guidance on how to interpret the value by comparison to a normal or recommended range.
+*/
 open class ObservationReferenceRange: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ObservationReferenceRange" }
@@ -1036,11 +1041,11 @@ open class ObservationReferenceRange: BackboneElement {
 
 
 /**
- *  Resource related to this observation.
- *
- *  A  reference to another resource (usually another Observation) whose relationship is defined by the relationship
- *  type code.
- */
+Resource related to this observation.
+
+A  reference to another resource (usually another Observation) whose relationship is defined by the relationship type
+code.
+*/
 open class ObservationRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ObservationRelated" }
@@ -1049,8 +1054,8 @@ open class ObservationRelated: BackboneElement {
 	/// Resource that is related to this one.
 	public var target: Reference?
 	
-	/// has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by.
-	public var type: String?
+	/// A code specifying the kind of relationship that exists with the target resource.
+	public var type: ObservationRelationshipType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1082,7 +1087,12 @@ open class ObservationRelated: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = ObservationRelationshipType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -1098,7 +1108,7 @@ open class ObservationRelated: BackboneElement {
 			json["target"] = target.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json

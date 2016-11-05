@@ -2,7 +2,7 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/List) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/List) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Information summarized from a list of other resources.
- *
- *  A set of information summarized from a list of other resources.
- */
+Information summarized from a list of other resources.
+
+A set of information summarized from a list of other resources.
+*/
 open class List: DomainResource {
 	override open class var resourceType: String {
 		get { return "List" }
@@ -37,8 +37,10 @@ open class List: DomainResource {
 	/// Business identifier.
 	public var identifier: [Identifier]?
 	
-	/// working | snapshot | changes.
-	public var mode: String?
+	/// How this list was prepared - whether it is a working list that is suitable for being maintained on an ongoing
+	/// basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list
+	/// where items may be marked as added, modified or deleted.
+	public var mode: ListMode?
 	
 	/// Comments about the list.
 	public var note: [Annotation]?
@@ -49,8 +51,8 @@ open class List: DomainResource {
 	/// Who and/or what defined the list contents (aka Author).
 	public var source: Reference?
 	
-	/// current | retired | entered-in-error.
-	public var status: String?
+	/// Indicates the current state of this list.
+	public var status: ListStatus?
 	
 	/// If all resources have the same subject.
 	public var subject: Reference?
@@ -60,7 +62,7 @@ open class List: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, status: String) {
+	public convenience init(mode: ListMode, status: ListStatus) {
 		self.init()
 		self.mode = mode
 		self.status = status
@@ -151,7 +153,12 @@ open class List: DomainResource {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = ListMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -205,7 +212,12 @@ open class List: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ListStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -262,7 +274,7 @@ open class List: DomainResource {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
@@ -274,7 +286,7 @@ open class List: DomainResource {
 			json["source"] = source.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -289,10 +301,10 @@ open class List: DomainResource {
 
 
 /**
- *  Entries in the list.
- *
- *  Entries in this list.
- */
+Entries in the list.
+
+Entries in this list.
+*/
 open class ListEntry: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ListEntry" }

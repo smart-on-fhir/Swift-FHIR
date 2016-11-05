@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  Dispensing a medication to a named patient.
- *
- *  Indicates that a medication product is to be or has been dispensed for a named person/patient.  This includes a
- *  description of the medication product (supply) provided and the instructions for administering the medication.  The
- *  medication dispense is the result of a pharmacy system responding to a medication order.
- */
+Dispensing a medication to a named patient.
+
+Indicates that a medication product is to be or has been dispensed for a named person/patient.  This includes a
+description of the medication product (supply) provided and the instructions for administering the medication.  The
+medication dispense is the result of a pharmacy system responding to a medication order.
+*/
 open class MedicationDispense: DomainResource {
 	override open class var resourceType: String {
 		get { return "MedicationDispense" }
@@ -63,8 +63,8 @@ open class MedicationDispense: DomainResource {
 	/// Who collected the medication.
 	public var receiver: [Reference]?
 	
-	/// in-progress | on-hold | completed | entered-in-error | stopped.
-	public var status: String?
+	/// A code specifying the state of the set of dispense events.
+	public var status: MedicationDispenseStatus?
 	
 	/// Deals with substitution of one medicine for another.
 	public var substitution: MedicationDispenseSubstitution?
@@ -298,7 +298,12 @@ open class MedicationDispense: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = MedicationDispenseStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -418,7 +423,7 @@ open class MedicationDispense: DomainResource {
 			json["receiver"] = receiver.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let substitution = self.substitution {
 			json["substitution"] = substitution.asJSON(errors: &errors)
@@ -442,12 +447,12 @@ open class MedicationDispense: DomainResource {
 
 
 /**
- *  Deals with substitution of one medicine for another.
- *
- *  Indicates whether or not substitution was made as part of the dispense.  In some cases substitution will be expected
- *  but does not happen, in other cases substitution is not expected but does happen.  This block explains what
- *  substitution did or did not happen and why.
- */
+Deals with substitution of one medicine for another.
+
+Indicates whether or not substitution was made as part of the dispense.  In some cases substitution will be expected but
+does not happen, in other cases substitution is not expected but does happen.  This block explains what substitution did
+or did not happen and why.
+*/
 open class MedicationDispenseSubstitution: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationDispenseSubstitution" }

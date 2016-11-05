@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Patient) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Patient) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Information about an individual or animal receiving health care services.
- *
- *  Demographics and other administrative information about an individual or animal receiving care or other health-
- *  related services.
- */
+Information about an individual or animal receiving health care services.
+
+Demographics and other administrative information about an individual or animal receiving care or other health-related
+services.
+*/
 open class Patient: DomainResource {
 	override open class var resourceType: String {
 		get { return "Patient" }
@@ -44,8 +44,9 @@ open class Patient: DomainResource {
 	/// Indicates if the individual is deceased or not.
 	public var deceasedDateTime: DateTime?
 	
-	/// male | female | other | unknown.
-	public var gender: String?
+	/// Administrative Gender - the gender that the patient is considered to have for administration and record keeping
+	/// purposes.
+	public var gender: AdministrativeGender?
 	
 	/// Patient's nominated primary care provider.
 	public var generalPractitioner: [Reference]?
@@ -175,7 +176,12 @@ open class Patient: DomainResource {
 		if let exist = json["gender"] {
 			presentKeys.insert("gender")
 			if let val = exist as? String {
-				self.gender = val
+				if let enumval = AdministrativeGender(rawValue: val) {
+					self.gender = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "gender", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -342,7 +348,7 @@ open class Patient: DomainResource {
 			json["deceasedDateTime"] = deceasedDateTime.asJSON()
 		}
 		if let gender = self.gender {
-			json["gender"] = gender.asJSON()
+			json["gender"] = gender.rawValue
 		}
 		if let generalPractitioner = self.generalPractitioner {
 			json["generalPractitioner"] = generalPractitioner.map() { $0.asJSON(errors: &errors) }
@@ -381,10 +387,10 @@ open class Patient: DomainResource {
 
 
 /**
- *  This patient is known to be an animal (non-human).
- *
- *  This patient is known to be an animal.
- */
+This patient is known to be an animal (non-human).
+
+This patient is known to be an animal.
+*/
 open class PatientAnimal: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientAnimal" }
@@ -476,10 +482,10 @@ open class PatientAnimal: BackboneElement {
 
 
 /**
- *  A list of Languages which may be used to communicate with the patient about his or her health.
- *
- *  Languages which may be used to communicate with the patient about his or her health.
- */
+A list of Languages which may be used to communicate with the patient about his or her health.
+
+Languages which may be used to communicate with the patient about his or her health.
+*/
 open class PatientCommunication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientCommunication" }
@@ -546,8 +552,8 @@ open class PatientCommunication: BackboneElement {
 
 
 /**
- *  A contact party (e.g. guardian, partner, friend) for the patient.
- */
+A contact party (e.g. guardian, partner, friend) for the patient.
+*/
 open class PatientContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientContact" }
@@ -556,8 +562,9 @@ open class PatientContact: BackboneElement {
 	/// Address for the contact person.
 	public var address: Address?
 	
-	/// male | female | other | unknown.
-	public var gender: String?
+	/// Administrative Gender - the gender that the contact person is considered to have for administration and record
+	/// keeping purposes.
+	public var gender: AdministrativeGender?
 	
 	/// A name associated with the contact person.
 	public var name: HumanName?
@@ -594,7 +601,12 @@ open class PatientContact: BackboneElement {
 		if let exist = json["gender"] {
 			presentKeys.insert("gender")
 			if let val = exist as? String {
-				self.gender = val
+				if let enumval = AdministrativeGender(rawValue: val) {
+					self.gender = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "gender", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -680,7 +692,7 @@ open class PatientContact: BackboneElement {
 			json["address"] = address.asJSON(errors: &errors)
 		}
 		if let gender = self.gender {
-			json["gender"] = gender.asJSON()
+			json["gender"] = gender.rawValue
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON(errors: &errors)
@@ -704,10 +716,10 @@ open class PatientContact: BackboneElement {
 
 
 /**
- *  Link to another patient resource that concerns the same actual person.
- *
- *  Link to another patient resource that concerns the same actual patient.
- */
+Link to another patient resource that concerns the same actual person.
+
+Link to another patient resource that concerns the same actual patient.
+*/
 open class PatientLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientLink" }
@@ -716,12 +728,12 @@ open class PatientLink: BackboneElement {
 	/// The other patient or related person resource that the link refers to.
 	public var other: Reference?
 	
-	/// replace | refer | seealso - type of link.
-	public var type: String?
+	/// The type of link between this patient resource and another patient resource.
+	public var type: LinkType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(other: Reference, type: String) {
+	public convenience init(other: Reference, type: LinkType) {
 		self.init()
 		self.other = other
 		self.type = type
@@ -750,7 +762,12 @@ open class PatientLink: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = LinkType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -769,7 +786,7 @@ open class PatientLink: BackboneElement {
 			json["other"] = other.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json

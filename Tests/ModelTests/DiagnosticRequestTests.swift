@@ -2,7 +2,7 @@
 //  DiagnosticRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -46,7 +46,7 @@ class DiagnosticRequestTests: XCTestCase {
 		XCTAssertEqual(inst.stage?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/request-stage")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subject?.reference, "Patient/dicom")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -75,7 +75,7 @@ class DiagnosticRequestTests: XCTestCase {
 		XCTAssertEqual(inst.stage?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/request-stage")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -117,7 +117,7 @@ class DiagnosticRequestTests: XCTestCase {
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.supportingInformation?[0].reference, "#fasting")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -148,7 +148,7 @@ class DiagnosticRequestTests: XCTestCase {
 		XCTAssertEqual(inst.stage?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/request-stage")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

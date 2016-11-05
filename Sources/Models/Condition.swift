@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Condition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Condition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  Detailed information about conditions, problems or diagnoses.
- *
- *  Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many
- *  uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as
- *  a discharge summary.
- */
+Detailed information about conditions, problems or diagnoses.
+
+Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many
+uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as a
+discharge summary.
+*/
 open class Condition: DomainResource {
 	override open class var resourceType: String {
 		get { return "Condition" }
@@ -93,12 +93,12 @@ open class Condition: DomainResource {
 	/// Who has the condition?.
 	public var subject: Reference?
 	
-	/// provisional | differential | confirmed | refuted | entered-in-error | unknown.
-	public var verificationStatus: String?
+	/// The verification status to support the clinical status of the condition.
+	public var verificationStatus: ConditionVerificationStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, subject: Reference, verificationStatus: String) {
+	public convenience init(code: CodeableConcept, subject: Reference, verificationStatus: ConditionVerificationStatus) {
 		self.init()
 		self.code = code
 		self.subject = subject
@@ -418,7 +418,12 @@ open class Condition: DomainResource {
 		if let exist = json["verificationStatus"] {
 			presentKeys.insert("verificationStatus")
 			if let val = exist as? String {
-				self.verificationStatus = val
+				if let enumval = ConditionVerificationStatus(rawValue: val) {
+					self.verificationStatus = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "verificationStatus", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "verificationStatus", wants: String.self, has: type(of: exist)))
@@ -506,7 +511,7 @@ open class Condition: DomainResource {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
 		if let verificationStatus = self.verificationStatus {
-			json["verificationStatus"] = verificationStatus.asJSON()
+			json["verificationStatus"] = verificationStatus.rawValue
 		}
 		
 		return json
@@ -515,10 +520,10 @@ open class Condition: DomainResource {
 
 
 /**
- *  Supporting evidence.
- *
- *  Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed.
- */
+Supporting evidence.
+
+Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed.
+*/
 open class ConditionEvidence: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConditionEvidence" }
@@ -580,10 +585,10 @@ open class ConditionEvidence: BackboneElement {
 
 
 /**
- *  Stage/grade, usually assessed formally.
- *
- *  Clinical stage or grade of a condition. May include formal severity assessments.
- */
+Stage/grade, usually assessed formally.
+
+Clinical stage or grade of a condition. May include formal severity assessments.
+*/
 open class ConditionStage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConditionStage" }

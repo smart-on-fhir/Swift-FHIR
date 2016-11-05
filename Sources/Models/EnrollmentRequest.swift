@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Enrollment request.
- *
- *  This resource provides the insurance enrollment details to the insurer regarding a specified coverage.
- */
+Enrollment request.
+
+This resource provides the insurance enrollment details to the insurer regarding a specified coverage.
+*/
 open class EnrollmentRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "EnrollmentRequest" }
@@ -52,8 +52,8 @@ open class EnrollmentRequest: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: EnrollmentRequestStatus?
 	
 	/// The subject of the Products and Services.
 	public var subjectIdentifier: Identifier?
@@ -63,7 +63,7 @@ open class EnrollmentRequest: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverage: Reference, status: String, subject: Any) {
+	public convenience init(coverage: Reference, status: EnrollmentRequestStatus, subject: Any) {
 		self.init()
 		self.coverage = coverage
 		self.status = status
@@ -236,7 +236,12 @@ open class EnrollmentRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EnrollmentRequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -318,7 +323,7 @@ open class EnrollmentRequest: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subjectIdentifier = self.subjectIdentifier {
 			json["subjectIdentifier"] = subjectIdentifier.asJSON(errors: &errors)

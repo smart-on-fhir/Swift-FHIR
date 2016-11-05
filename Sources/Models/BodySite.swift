@@ -2,7 +2,7 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Specific and identified anatomical location.
- *
- *  Record details about the anatomical location of a specimen or body part.  This resource may be used when a coded
- *  concept does not provide the necessary detail needed for the use case.
- */
+Specific and identified anatomical location.
+
+Record details about the anatomical location of a specimen or body part.  This resource may be used when a coded concept
+does not provide the necessary detail needed for the use case.
+*/
 open class BodySite: DomainResource {
 	override open class var resourceType: String {
 		get { return "BodySite" }

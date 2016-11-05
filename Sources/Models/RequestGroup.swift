@@ -2,7 +2,7 @@
 //  RequestGroup.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A group of related requests.
- *
- *  A group of related requests that can be used to capture intended activities that have inter-dependencies such as
- *  "give this medication after that one".
- */
+A group of related requests.
+
+A group of related requests that can be used to capture intended activities that have inter-dependencies such as "give
+this medication after that one".
+*/
 open class RequestGroup: DomainResource {
 	override open class var resourceType: String {
 		get { return "RequestGroup" }
@@ -211,10 +211,10 @@ open class RequestGroup: DomainResource {
 
 
 /**
- *  Proposed actions, if any.
- *
- *  The actions, if any, produced by the evaluation of the artifact.
- */
+Proposed actions, if any.
+
+The actions, if any, produced by the evaluation of the artifact.
+*/
 open class RequestGroupAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "RequestGroupAction" }
@@ -226,8 +226,8 @@ open class RequestGroupAction: BackboneElement {
 	/// Unique identifier.
 	public var actionIdentifier: Identifier?
 	
-	/// single | multiple.
-	public var cardinalityBehavior: String?
+	/// Defines whether the action can be selected multiple times.
+	public var cardinalityBehavior: PlanActionCardinalityBehavior?
 	
 	/// The meaning of the action or its sub-actions.
 	public var code: [CodeableConcept]?
@@ -238,8 +238,8 @@ open class RequestGroupAction: BackboneElement {
 	/// Supporting documentation for the intended performer of the action.
 	public var documentation: [RelatedArtifact]?
 	
-	/// visual-group | logical-group | sentence-group.
-	public var groupingBehavior: String?
+	/// Defines the grouping behavior for the action and its children.
+	public var groupingBehavior: PlanActionGroupingBehavior?
 	
 	/// User-visible label for the action (e.g. 1. or A.).
 	public var label: String?
@@ -247,20 +247,20 @@ open class RequestGroupAction: BackboneElement {
 	/// Participant.
 	public var participant: [Reference]?
 	
-	/// yes | no.
-	public var precheckBehavior: String?
+	/// Defines whether the action should usually be preselected.
+	public var precheckBehavior: PlanActionPrecheckBehavior?
 	
 	/// Relationship to another action.
 	public var relatedAction: RequestGroupActionRelatedAction?
 	
-	/// must | could | must-unless-documented.
-	public var requiredBehavior: String?
+	/// Defines the requiredness behavior for the action.
+	public var requiredBehavior: PlanActionRequiredBehavior?
 	
 	/// The target of the action.
 	public var resource: Reference?
 	
-	/// any | all | all-or-none | exactly-one | at-most-one | one-or-more.
-	public var selectionBehavior: String?
+	/// Defines the selection behavior for the action and its children.
+	public var selectionBehavior: PlanActionSelectionBehavior?
 	
 	/// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system.
 	public var textEquivalent: String?
@@ -317,7 +317,12 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["cardinalityBehavior"] {
 			presentKeys.insert("cardinalityBehavior")
 			if let val = exist as? String {
-				self.cardinalityBehavior = val
+				if let enumval = PlanActionCardinalityBehavior(rawValue: val) {
+					self.cardinalityBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "cardinalityBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "cardinalityBehavior", wants: String.self, has: type(of: exist)))
@@ -363,7 +368,12 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["groupingBehavior"] {
 			presentKeys.insert("groupingBehavior")
 			if let val = exist as? String {
-				self.groupingBehavior = val
+				if let enumval = PlanActionGroupingBehavior(rawValue: val) {
+					self.groupingBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "groupingBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "groupingBehavior", wants: String.self, has: type(of: exist)))
@@ -395,7 +405,12 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["precheckBehavior"] {
 			presentKeys.insert("precheckBehavior")
 			if let val = exist as? String {
-				self.precheckBehavior = val
+				if let enumval = PlanActionPrecheckBehavior(rawValue: val) {
+					self.precheckBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "precheckBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "precheckBehavior", wants: String.self, has: type(of: exist)))
@@ -418,7 +433,12 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["requiredBehavior"] {
 			presentKeys.insert("requiredBehavior")
 			if let val = exist as? String {
-				self.requiredBehavior = val
+				if let enumval = PlanActionRequiredBehavior(rawValue: val) {
+					self.requiredBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "requiredBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "requiredBehavior", wants: String.self, has: type(of: exist)))
@@ -441,7 +461,12 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["selectionBehavior"] {
 			presentKeys.insert("selectionBehavior")
 			if let val = exist as? String {
-				self.selectionBehavior = val
+				if let enumval = PlanActionSelectionBehavior(rawValue: val) {
+					self.selectionBehavior = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "selectionBehavior", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "selectionBehavior", wants: String.self, has: type(of: exist)))
@@ -543,7 +568,7 @@ open class RequestGroupAction: BackboneElement {
 			json["actionIdentifier"] = actionIdentifier.asJSON(errors: &errors)
 		}
 		if let cardinalityBehavior = self.cardinalityBehavior {
-			json["cardinalityBehavior"] = cardinalityBehavior.asJSON()
+			json["cardinalityBehavior"] = cardinalityBehavior.rawValue
 		}
 		if let code = self.code {
 			json["code"] = code.map() { $0.asJSON(errors: &errors) }
@@ -555,7 +580,7 @@ open class RequestGroupAction: BackboneElement {
 			json["documentation"] = documentation.map() { $0.asJSON(errors: &errors) }
 		}
 		if let groupingBehavior = self.groupingBehavior {
-			json["groupingBehavior"] = groupingBehavior.asJSON()
+			json["groupingBehavior"] = groupingBehavior.rawValue
 		}
 		if let label = self.label {
 			json["label"] = label.asJSON()
@@ -564,19 +589,19 @@ open class RequestGroupAction: BackboneElement {
 			json["participant"] = participant.map() { $0.asJSON(errors: &errors) }
 		}
 		if let precheckBehavior = self.precheckBehavior {
-			json["precheckBehavior"] = precheckBehavior.asJSON()
+			json["precheckBehavior"] = precheckBehavior.rawValue
 		}
 		if let relatedAction = self.relatedAction {
 			json["relatedAction"] = relatedAction.asJSON(errors: &errors)
 		}
 		if let requiredBehavior = self.requiredBehavior {
-			json["requiredBehavior"] = requiredBehavior.asJSON()
+			json["requiredBehavior"] = requiredBehavior.rawValue
 		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON(errors: &errors)
 		}
 		if let selectionBehavior = self.selectionBehavior {
-			json["selectionBehavior"] = selectionBehavior.asJSON()
+			json["selectionBehavior"] = selectionBehavior.rawValue
 		}
 		if let textEquivalent = self.textEquivalent {
 			json["textEquivalent"] = textEquivalent.asJSON()
@@ -606,10 +631,10 @@ open class RequestGroupAction: BackboneElement {
 
 
 /**
- *  Relationship to another action.
- *
- *  A relationship to another action such as "before" or "30-60 minutes after start of".
- */
+Relationship to another action.
+
+A relationship to another action such as "before" or "30-60 minutes after start of".
+*/
 open class RequestGroupActionRelatedAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "RequestGroupActionRelatedAction" }
@@ -624,12 +649,12 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 	/// Time offset for the relationship.
 	public var offsetRange: Range?
 	
-	/// before-start | before | before-end | concurrent-with-start | concurrent | concurrent-with-end | after-start | after | after-end.
-	public var relationship: String?
+	/// The relationship of this action to the related action.
+	public var relationship: PlanActionRelationshipType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actionIdentifier: Identifier, relationship: String) {
+	public convenience init(actionIdentifier: Identifier, relationship: PlanActionRelationshipType) {
 		self.init()
 		self.actionIdentifier = actionIdentifier
 		self.relationship = relationship
@@ -686,7 +711,12 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 		if let exist = json["relationship"] {
 			presentKeys.insert("relationship")
 			if let val = exist as? String {
-				self.relationship = val
+				if let enumval = PlanActionRelationshipType(rawValue: val) {
+					self.relationship = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "relationship", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "relationship", wants: String.self, has: type(of: exist)))
@@ -711,7 +741,7 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 			json["offsetRange"] = offsetRange.asJSON(errors: &errors)
 		}
 		if let relationship = self.relationship {
-			json["relationship"] = relationship.asJSON()
+			json["relationship"] = relationship.rawValue
 		}
 		
 		return json

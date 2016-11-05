@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,13 +10,13 @@ import Foundation
 
 
 /**
- *  A server push subscription criteria.
- *
- *  The subscription resource is used to define a push based subscription from a server to another system. Once a
- *  subscription is registered with the server, the server checks every resource that is created or updated, and if the
- *  resource matches the given criteria, it sends a message on the defined "channel" so that another system is able to
- *  take an appropriate action.
- */
+A server push subscription criteria.
+
+The subscription resource is used to define a push based subscription from a server to another system. Once a
+subscription is registered with the server, the server checks every resource that is created or updated, and if the
+resource matches the given criteria, it sends a message on the defined "channel" so that another system is able to take
+an appropriate action.
+*/
 open class Subscription: DomainResource {
 	override open class var resourceType: String {
 		get { return "Subscription" }
@@ -40,15 +40,15 @@ open class Subscription: DomainResource {
 	/// Description of why this subscription was created.
 	public var reason: String?
 	
-	/// requested | active | error | off.
-	public var status: String?
+	/// The status of the subscription, which marks the server state for managing the subscription.
+	public var status: SubscriptionStatus?
 	
 	/// A tag to add to matching resources.
 	public var tag: [Coding]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(channel: SubscriptionChannel, criteria: String, reason: String, status: String) {
+	public convenience init(channel: SubscriptionChannel, criteria: String, reason: String, status: SubscriptionStatus) {
 		self.init()
 		self.channel = channel
 		self.criteria = criteria
@@ -135,7 +135,12 @@ open class Subscription: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = SubscriptionStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -183,7 +188,7 @@ open class Subscription: DomainResource {
 			json["reason"] = reason.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let tag = self.tag {
 			json["tag"] = tag.map() { $0.asJSON(errors: &errors) }
@@ -195,10 +200,10 @@ open class Subscription: DomainResource {
 
 
 /**
- *  The channel on which to report matches to the criteria.
- *
- *  Details where to send notifications when resources are received that meet the criteria.
- */
+The channel on which to report matches to the criteria.
+
+Details where to send notifications when resources are received that meet the criteria.
+*/
 open class SubscriptionChannel: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubscriptionChannel" }
@@ -213,12 +218,12 @@ open class SubscriptionChannel: BackboneElement {
 	/// Mimetype to send, or omit for no payload.
 	public var payload: String?
 	
-	/// rest-hook | websocket | email | sms | message.
-	public var type: String?
+	/// The type of channel to send notifications on.
+	public var type: SubscriptionChannelType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: SubscriptionChannelType) {
 		self.init()
 		self.type = type
 	}
@@ -256,7 +261,12 @@ open class SubscriptionChannel: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = SubscriptionChannelType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -281,7 +291,7 @@ open class SubscriptionChannel: BackboneElement {
 			json["payload"] = payload.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json

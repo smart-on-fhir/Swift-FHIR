@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.signature?[0].whoReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.target?[0].reference, "DocumentReference/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -88,7 +88,7 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].role?.system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.entity?[0].display, "CDA Document in XDS repository")
 		XCTAssertEqual(inst.entity?[0].reference?.absoluteString, "DocumentReference/90f55916-9d15-4b8f-87a9-2d7ade8670c8")
-		XCTAssertEqual(inst.entity?[0].role, "source")
+		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
 		XCTAssertEqual(inst.entity?[0].type?.code, "57133-1")
 		XCTAssertEqual(inst.entity?[0].type?.display, "Referral note")
 		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://loinc.org")
@@ -102,7 +102,7 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.recorded?.description, "2015-06-27T08:39:24+10:00")
 		XCTAssertEqual(inst.target?[0].reference, "Procedure/example/_history/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

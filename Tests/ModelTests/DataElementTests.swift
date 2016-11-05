@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.contained?[0].id, "2179414")
 		XCTAssertEqual(inst.contained?[1].id, "2179414-permitted")
 		XCTAssertEqual(inst.contained?[2].id, "2179414-cm")
-		XCTAssertEqual(inst.element?[0].binding?.strength, "required")
+		XCTAssertEqual(inst.element?[0].binding?.strength, BindingStrength(rawValue: "required")!)
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].valueReference?.reference, "#2179414-permitted")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap")
@@ -55,8 +55,8 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "2179650")
 		XCTAssertEqual(inst.name, "Gender Code")
 		XCTAssertEqual(inst.publisher, "DCP")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.version, "1.0")
 		
 		return inst
@@ -103,8 +103,8 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.mapping?[0].name, "LOINC")
 		XCTAssertEqual(inst.mapping?[0].uri?.absoluteString, "http://loinc.org/")
 		XCTAssertEqual(inst.name, "Prothrombin Time")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A Map of relationships between 2 structures that can be used to transform data.
- */
+A Map of relationships between 2 structures that can be used to transform data.
+*/
 open class StructureMap: DomainResource {
 	override open class var resourceType: String {
 		get { return "StructureMap" }
@@ -53,8 +53,8 @@ open class StructureMap: DomainResource {
 	/// Why this structure map is defined.
 	public var purpose: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this structure map. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Structure Definition used by this map.
 	public var structure: [StructureMapStructure]?
@@ -73,7 +73,7 @@ open class StructureMap: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(group: [StructureMapGroup], name: String, status: String, url: URL) {
+	public convenience init(group: [StructureMapGroup], name: String, status: PublicationStatus, url: URL) {
 		self.init()
 		self.group = group
 		self.name = name
@@ -221,7 +221,12 @@ open class StructureMap: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -316,11 +321,7 @@ open class StructureMap: DomainResource {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let import_fhir = self.import_fhir {
-			var arr = [Any]()
-			for val in import_fhir {
-				arr.append(val.asJSON())
-			}
-			json["import"] = arr
+			json["import"] = import_fhir.map() { $0.asJSON() }
 		}
 		if let jurisdiction = self.jurisdiction {
 			json["jurisdiction"] = jurisdiction.map() { $0.asJSON(errors: &errors) }
@@ -335,7 +336,7 @@ open class StructureMap: DomainResource {
 			json["purpose"] = purpose.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let structure = self.structure {
 			json["structure"] = structure.map() { $0.asJSON(errors: &errors) }
@@ -359,8 +360,8 @@ open class StructureMap: DomainResource {
 
 
 /**
- *  Named sections for reader convenience.
- */
+Named sections for reader convenience.
+*/
 open class StructureMapGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroup" }
@@ -485,10 +486,10 @@ open class StructureMapGroup: BackboneElement {
 
 
 /**
- *  Named instance provided when invoking the map.
- *
- *  A name assigned to an instance of data. The instance must be provided when the mapping is invoked.
- */
+Named instance provided when invoking the map.
+
+A name assigned to an instance of data. The instance must be provided when the mapping is invoked.
+*/
 open class StructureMapGroupInput: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroupInput" }
@@ -497,8 +498,8 @@ open class StructureMapGroupInput: BackboneElement {
 	/// Documentation for this instance of data.
 	public var documentation: String?
 	
-	/// source | target.
-	public var mode: String?
+	/// Mode for this instance of data.
+	public var mode: StructureMapInputMode?
 	
 	/// Name for this instance of data.
 	public var name: String?
@@ -508,7 +509,7 @@ open class StructureMapGroupInput: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, name: String) {
+	public convenience init(mode: StructureMapInputMode, name: String) {
 		self.init()
 		self.mode = mode
 		self.name = name
@@ -529,7 +530,12 @@ open class StructureMapGroupInput: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = StructureMapInputMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -569,7 +575,7 @@ open class StructureMapGroupInput: BackboneElement {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -584,8 +590,8 @@ open class StructureMapGroupInput: BackboneElement {
 
 
 /**
- *  Transform Rule from source to target.
- */
+Transform Rule from source to target.
+*/
 open class StructureMapGroupRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroupRule" }
@@ -731,8 +737,8 @@ open class StructureMapGroupRule: BackboneElement {
 
 
 /**
- *  Which other rules to apply in the context of this rule.
- */
+Which other rules to apply in the context of this rule.
+*/
 open class StructureMapGroupRuleDependent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleDependent" }
@@ -789,11 +795,7 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let variable = self.variable {
-			var arr = [Any]()
-			for val in variable {
-				arr.append(val.asJSON())
-			}
-			json["variable"] = arr
+			json["variable"] = variable.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -802,8 +804,8 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 
 
 /**
- *  Source inputs to the mapping.
- */
+Source inputs to the mapping.
+*/
 open class StructureMapGroupRuleSource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleSource" }
@@ -818,14 +820,14 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	/// Type or variable this rule applies to.
 	public var context: String?
 	
-	/// type | variable.
-	public var contextType: String?
+	/// How to interpret the context.
+	public var contextType: StructureMapContextType?
 	
 	/// Optional field for this source.
 	public var element: String?
 	
-	/// first | share | last.
-	public var listMode: String?
+	/// How to handle the list mode for this element.
+	public var listMode: StructureMapListMode?
 	
 	/// Whether this rule applies if the source isn't found.
 	public var required: Bool?
@@ -835,7 +837,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(context: String, contextType: String, required: Bool) {
+	public convenience init(context: String, contextType: StructureMapContextType, required: Bool) {
 		self.init()
 		self.context = context
 		self.contextType = contextType
@@ -878,7 +880,12 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["contextType"] {
 			presentKeys.insert("contextType")
 			if let val = exist as? String {
-				self.contextType = val
+				if let enumval = StructureMapContextType(rawValue: val) {
+					self.contextType = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "contextType", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contextType", wants: String.self, has: type(of: exist)))
@@ -899,7 +906,12 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["listMode"] {
 			presentKeys.insert("listMode")
 			if let val = exist as? String {
-				self.listMode = val
+				if let enumval = StructureMapListMode(rawValue: val) {
+					self.listMode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "listMode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "listMode", wants: String.self, has: type(of: exist)))
@@ -942,13 +954,13 @@ open class StructureMapGroupRuleSource: BackboneElement {
 			json["context"] = context.asJSON()
 		}
 		if let contextType = self.contextType {
-			json["contextType"] = contextType.asJSON()
+			json["contextType"] = contextType.rawValue
 		}
 		if let element = self.element {
 			json["element"] = element.asJSON()
 		}
 		if let listMode = self.listMode {
-			json["listMode"] = listMode.asJSON()
+			json["listMode"] = listMode.rawValue
 		}
 		if let required = self.required {
 			json["required"] = required.asJSON()
@@ -963,8 +975,8 @@ open class StructureMapGroupRuleSource: BackboneElement {
 
 
 /**
- *  Content to create because of this mapping rule.
- */
+Content to create because of this mapping rule.
+*/
 open class StructureMapGroupRuleTarget: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleTarget" }
@@ -973,14 +985,14 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 	/// Type or variable this rule applies to.
 	public var context: String?
 	
-	/// type | variable.
-	public var contextType: String?
+	/// How to interpret the context.
+	public var contextType: StructureMapContextType?
 	
 	/// Field to create in the context.
 	public var element: String?
 	
-	/// first | share | last.
-	public var listMode: [String]?
+	/// If field is a list, how to manage the list.
+	public var listMode: [StructureMapListMode]?
 	
 	/// Internal rule reference for shared list items.
 	public var listRuleId: String?
@@ -988,8 +1000,8 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 	/// Parameters to the transform.
 	public var parameter: [StructureMapGroupRuleTargetParameter]?
 	
-	/// create | copy +.
-	public var transform: String?
+	/// How the data is copied / created.
+	public var transform: StructureMapTransform?
 	
 	/// Named context for field, if desired, and a field is specified.
 	public var variable: String?
@@ -1009,7 +1021,12 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		if let exist = json["contextType"] {
 			presentKeys.insert("contextType")
 			if let val = exist as? String {
-				self.contextType = val
+				if let enumval = StructureMapContextType(rawValue: val) {
+					self.contextType = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "contextType", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contextType", wants: String.self, has: type(of: exist)))
@@ -1026,8 +1043,12 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		}
 		if let exist = json["listMode"] {
 			presentKeys.insert("listMode")
-			if let val = exist as? [String] {
-				self.listMode = val
+			if let val = exist as? [String] { var i = -1
+				self.listMode = val.map() { i += 1
+					if let enumval = StructureMapListMode(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "listMode.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "listMode", wants: Array<String>.self, has: type(of: exist)))
@@ -1059,7 +1080,12 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		if let exist = json["transform"] {
 			presentKeys.insert("transform")
 			if let val = exist as? String {
-				self.transform = val
+				if let enumval = StructureMapTransform(rawValue: val) {
+					self.transform = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "transform", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "transform", wants: String.self, has: type(of: exist)))
@@ -1084,17 +1110,13 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 			json["context"] = context.asJSON()
 		}
 		if let contextType = self.contextType {
-			json["contextType"] = contextType.asJSON()
+			json["contextType"] = contextType.rawValue
 		}
 		if let element = self.element {
 			json["element"] = element.asJSON()
 		}
 		if let listMode = self.listMode {
-			var arr = [Any]()
-			for val in listMode {
-				arr.append(val.asJSON())
-			}
-			json["listMode"] = arr
+			json["listMode"] = listMode.map() { $0.rawValue }
 		}
 		if let listRuleId = self.listRuleId {
 			json["listRuleId"] = listRuleId.asJSON()
@@ -1103,7 +1125,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 			json["parameter"] = parameter.map() { $0.asJSON(errors: &errors) }
 		}
 		if let transform = self.transform {
-			json["transform"] = transform.asJSON()
+			json["transform"] = transform.rawValue
 		}
 		if let variable = self.variable {
 			json["variable"] = variable.asJSON()
@@ -1115,8 +1137,8 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 
 
 /**
- *  Parameters to the transform.
- */
+Parameters to the transform.
+*/
 open class StructureMapGroupRuleTargetParameter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleTargetParameter" }
@@ -1242,11 +1264,11 @@ open class StructureMapGroupRuleTargetParameter: BackboneElement {
 
 
 /**
- *  Structure Definition used by this map.
- *
- *  A structure definition used by this map. The structure definition may describe instances that are converted, or the
- *  instances that are produced.
- */
+Structure Definition used by this map.
+
+A structure definition used by this map. The structure definition may describe instances that are converted, or the
+instances that are produced.
+*/
 open class StructureMapStructure: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapStructure" }
@@ -1255,15 +1277,15 @@ open class StructureMapStructure: BackboneElement {
 	/// Documentation on use of structure.
 	public var documentation: String?
 	
-	/// source | queried | target | produced.
-	public var mode: String?
+	/// How the referenced structure is used in this mapping.
+	public var mode: StructureMapModelMode?
 	
 	/// Canonical URL for structure definition.
 	public var url: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, url: URL) {
+	public convenience init(mode: StructureMapModelMode, url: URL) {
 		self.init()
 		self.mode = mode
 		self.url = url
@@ -1284,7 +1306,12 @@ open class StructureMapStructure: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = StructureMapModelMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -1315,7 +1342,7 @@ open class StructureMapStructure: BackboneElement {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()

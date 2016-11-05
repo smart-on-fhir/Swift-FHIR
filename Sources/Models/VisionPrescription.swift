@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Prescription for vision correction products for a patient.
- *
- *  An authorization for the supply of glasses and/or contact lenses to a patient.
- */
+Prescription for vision correction products for a patient.
+
+An authorization for the supply of glasses and/or contact lenses to a patient.
+*/
 open class VisionPrescription: DomainResource {
 	override open class var resourceType: String {
 		get { return "VisionPrescription" }
@@ -43,12 +43,12 @@ open class VisionPrescription: DomainResource {
 	/// Reason or indication for writing the prescription.
 	public var reasonReference: Reference?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: VisionStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: VisionStatus) {
 		self.init()
 		self.status = status
 	}
@@ -166,7 +166,12 @@ open class VisionPrescription: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = VisionStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -206,7 +211,7 @@ open class VisionPrescription: DomainResource {
 			json["reasonReference"] = reasonReference.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json
@@ -215,10 +220,10 @@ open class VisionPrescription: DomainResource {
 
 
 /**
- *  Vision supply authorization.
- *
- *  Deals with details of the dispense part of the supply specification.
- */
+Vision supply authorization.
+
+Deals with details of the dispense part of the supply specification.
+*/
 open class VisionPrescriptionDispense: BackboneElement {
 	override open class var resourceType: String {
 		get { return "VisionPrescriptionDispense" }
@@ -233,8 +238,8 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// Contact lens back curvature.
 	public var backCurve: NSDecimalNumber?
 	
-	/// up | down | in | out.
-	public var base: String?
+	/// The relative base, or reference lens edge, for the prism.
+	public var base: VisionBase?
 	
 	/// Brand required.
 	public var brand: String?
@@ -251,8 +256,8 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// Lens wear duration.
 	public var duration: Quantity?
 	
-	/// right | left.
-	public var eye: String?
+	/// The eye for which the lens applies.
+	public var eye: VisionEyes?
 	
 	/// Notes for coatings.
 	public var notes: String?
@@ -309,7 +314,12 @@ open class VisionPrescriptionDispense: BackboneElement {
 		if let exist = json["base"] {
 			presentKeys.insert("base")
 			if let val = exist as? String {
-				self.base = val
+				if let enumval = VisionBase(rawValue: val) {
+					self.base = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "base", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "base", wants: String.self, has: type(of: exist)))
@@ -368,7 +378,12 @@ open class VisionPrescriptionDispense: BackboneElement {
 		if let exist = json["eye"] {
 			presentKeys.insert("eye")
 			if let val = exist as? String {
-				self.eye = val
+				if let enumval = VisionEyes(rawValue: val) {
+					self.eye = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "eye", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "eye", wants: String.self, has: type(of: exist)))
@@ -443,7 +458,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 			json["backCurve"] = backCurve.asJSON()
 		}
 		if let base = self.base {
-			json["base"] = base.asJSON()
+			json["base"] = base.rawValue
 		}
 		if let brand = self.brand {
 			json["brand"] = brand.asJSON()
@@ -461,7 +476,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 			json["duration"] = duration.asJSON(errors: &errors)
 		}
 		if let eye = self.eye {
-			json["eye"] = eye.asJSON()
+			json["eye"] = eye.rawValue
 		}
 		if let notes = self.notes {
 			json["notes"] = notes.asJSON()

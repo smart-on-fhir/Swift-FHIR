@@ -2,7 +2,7 @@
 //  TriggerDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Defines an expected trigger for a module.
- *
- *  A description of a triggering event.
- */
+Defines an expected trigger for a module.
+
+A description of a triggering event.
+*/
 open class TriggerDefinition: Element {
 	override open class var resourceType: String {
 		get { return "TriggerDefinition" }
@@ -37,12 +37,12 @@ open class TriggerDefinition: Element {
 	/// Timing of the event.
 	public var eventTimingTiming: Timing?
 	
-	/// named-event | periodic | data-added | data-modified | data-removed | data-accessed | data-access-ended.
-	public var type: String?
+	/// The type of triggering event.
+	public var type: TriggerType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: TriggerType) {
 		self.init()
 		self.type = type
 	}
@@ -122,7 +122,12 @@ open class TriggerDefinition: Element {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = TriggerType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -156,7 +161,7 @@ open class TriggerDefinition: Element {
 			json["eventTimingTiming"] = eventTimingTiming.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json

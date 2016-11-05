@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A set of codes drawn from one or more code systems.
- *
- *  A value set specifies a set of codes drawn from one or more code systems.
- */
+A set of codes drawn from one or more code systems.
+
+A value set specifies a set of codes drawn from one or more code systems.
+*/
 open class ValueSet: DomainResource {
 	override open class var resourceType: String {
 		get { return "ValueSet" }
@@ -61,8 +61,8 @@ open class ValueSet: DomainResource {
 	/// Why this value set is defined.
 	public var purpose: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this value set. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this value set (Human friendly).
 	public var title: String?
@@ -78,7 +78,7 @@ open class ValueSet: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -240,7 +240,12 @@ open class ValueSet: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -339,7 +344,7 @@ open class ValueSet: DomainResource {
 			json["purpose"] = purpose.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -360,11 +365,11 @@ open class ValueSet: DomainResource {
 
 
 /**
- *  Definition of the content of the value set (CLD).
- *
- *  A set of criteria that define the content logical definition of the value set by including or excluding codes from
- *  outside this value set. This I also known as the "Content Logical Definition" (CLD).
- */
+Definition of the content of the value set (CLD).
+
+A set of criteria that define the content logical definition of the value set by including or excluding codes from
+outside this value set. This I also known as the "Content Logical Definition" (CLD).
+*/
 open class ValueSetCompose: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCompose" }
@@ -451,8 +456,8 @@ open class ValueSetCompose: BackboneElement {
 
 
 /**
- *  Include one or more codes from a code system or other value set(s).
- */
+Include one or more codes from a code system or other value set(s).
+*/
 open class ValueSetComposeInclude: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeInclude" }
@@ -547,11 +552,7 @@ open class ValueSetComposeInclude: BackboneElement {
 			json["system"] = system.asJSON()
 		}
 		if let valueSet = self.valueSet {
-			var arr = [Any]()
-			for val in valueSet {
-				arr.append(val.asJSON())
-			}
-			json["valueSet"] = arr
+			json["valueSet"] = valueSet.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -563,10 +564,10 @@ open class ValueSetComposeInclude: BackboneElement {
 
 
 /**
- *  A concept defined in the system.
- *
- *  Specifies a concept to be included or excluded.
- */
+A concept defined in the system.
+
+Specifies a concept to be included or excluded.
+*/
 open class ValueSetComposeIncludeConcept: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeConcept" }
@@ -648,11 +649,11 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 
 
 /**
- *  Additional representations for this concept.
- *
- *  Additional representations for this concept when used in this value set - other languages, aliases, specialized
- *  purposes, used for particular purposes, etc.
- */
+Additional representations for this concept.
+
+Additional representations for this concept when used in this value set - other languages, aliases, specialized
+purposes, used for particular purposes, etc.
+*/
 open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeConceptDesignation" }
@@ -734,18 +735,18 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 
 
 /**
- *  Select codes/concepts by their properties (including relationships).
- *
- *  Select concepts by specify a matching criteria based on the properties (including relationships) defined by the
- *  system. If multiple filters are specified, they SHALL all be true.
- */
+Select codes/concepts by their properties (including relationships).
+
+Select concepts by specify a matching criteria based on the properties (including relationships) defined by the system.
+If multiple filters are specified, they SHALL all be true.
+*/
 open class ValueSetComposeIncludeFilter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeFilter" }
 	}
 	
-	/// = | is-a | is-not-a | regex | in | not-in | generalizes.
-	public var op: String?
+	/// The kind of operation to perform as a part of the filter criteria.
+	public var op: FilterOperator?
 	
 	/// A property defined by the code system.
 	public var property: String?
@@ -755,7 +756,7 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(op: String, property: String, value: String) {
+	public convenience init(op: FilterOperator, property: String, value: String) {
 		self.init()
 		self.op = op
 		self.property = property
@@ -768,7 +769,12 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		if let exist = json["op"] {
 			presentKeys.insert("op")
 			if let val = exist as? String {
-				self.op = val
+				if let enumval = FilterOperator(rawValue: val) {
+					self.op = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "op", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "op", wants: String.self, has: type(of: exist)))
@@ -808,7 +814,7 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let op = self.op {
-			json["op"] = op.asJSON()
+			json["op"] = op.rawValue
 		}
 		if let property = self.property {
 			json["property"] = property.asJSON()
@@ -823,11 +829,11 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 
 
 /**
- *  Used when the value set is "expanded".
- *
- *  A value set can also be "expanded", where the value set is turned into a simple collection of enumerated codes. This
- *  element holds the expansion, if it has been performed.
- */
+Used when the value set is "expanded".
+
+A value set can also be "expanded", where the value set is turned into a simple collection of enumerated codes. This
+element holds the expansion, if it has been performed.
+*/
 open class ValueSetExpansion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansion" }
@@ -963,10 +969,10 @@ open class ValueSetExpansion: BackboneElement {
 
 
 /**
- *  Codes in the value set.
- *
- *  The codes that are contained in the value set expansion.
- */
+Codes in the value set.
+
+The codes that are contained in the value set expansion.
+*/
 open class ValueSetExpansionContains: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansionContains" }
@@ -1103,11 +1109,11 @@ open class ValueSetExpansionContains: BackboneElement {
 
 
 /**
- *  Parameter that controlled the expansion process.
- *
- *  A parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to
- *  check whether the expansion is suitable for a particular purpose, or to pick the correct expansion.
- */
+Parameter that controlled the expansion process.
+
+A parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to check
+whether the expansion is suitable for a particular purpose, or to pick the correct expansion.
+*/
 open class ValueSetExpansionParameter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansionParameter" }

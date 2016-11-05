@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Contract.
- *
- *  A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
- */
+Contract.
+
+A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
+*/
 open class Contract: DomainResource {
 	override open class var resourceType: String {
 		get { return "Contract" }
@@ -430,11 +430,11 @@ open class Contract: DomainResource {
 
 
 /**
- *  Contract Agent.
- *
- *  An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity
- *  taking place.
- */
+Contract Agent.
+
+An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity taking
+place.
+*/
 open class ContractAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractAgent" }
@@ -506,13 +506,13 @@ open class ContractAgent: BackboneElement {
 
 
 /**
- *  Contract Friendly Language.
- *
- *  The "patient friendly language" versionof the Contract in whole or in parts. "Patient friendly language" means the
- *  representation of the Contract and Contract Provisions in a manner that is readily accessible and understandable by
- *  a layperson in accordance with best practices for communication styles that ensure that those agreeing to or signing
- *  the Contract understand the roles, actions, obligations, responsibilities, and implication of the agreement.
- */
+Contract Friendly Language.
+
+The "patient friendly language" versionof the Contract in whole or in parts. "Patient friendly language" means the
+representation of the Contract and Contract Provisions in a manner that is readily accessible and understandable by a
+layperson in accordance with best practices for communication styles that ensure that those agreeing to or signing the
+Contract understand the roles, actions, obligations, responsibilities, and implication of the agreement.
+*/
 open class ContractFriendly: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractFriendly" }
@@ -594,10 +594,10 @@ open class ContractFriendly: BackboneElement {
 
 
 /**
- *  Contract Legal Language.
- *
- *  List of Legal expressions or representations of this Contract.
- */
+Contract Legal Language.
+
+List of Legal expressions or representations of this Contract.
+*/
 open class ContractLegal: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractLegal" }
@@ -679,10 +679,10 @@ open class ContractLegal: BackboneElement {
 
 
 /**
- *  Computable Contract Language.
- *
- *  List of Computable Policy Rule Language Representations of this Contract.
- */
+Computable Contract Language.
+
+List of Computable Policy Rule Language Representations of this Contract.
+*/
 open class ContractRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractRule" }
@@ -764,12 +764,12 @@ open class ContractRule: BackboneElement {
 
 
 /**
- *  Contract Signer.
- *
- *  Parties with legal standing in the Contract, including the principal parties, the grantor(s) and grantee(s), which
- *  are any person or organization bound by the contract, and any ancillary parties, which facilitate the execution of
- *  the contract such as a notary or witness.
- */
+Contract Signer.
+
+Parties with legal standing in the Contract, including the principal parties, the grantor(s) and grantee(s), which are
+any person or organization bound by the contract, and any ancillary parties, which facilitate the execution of the
+contract such as a notary or witness.
+*/
 open class ContractSigner: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractSigner" }
@@ -869,10 +869,10 @@ open class ContractSigner: BackboneElement {
 
 
 /**
- *  Contract Term List.
- *
- *  One or more Contract Provisions, which may be related and conveyed as a group, and may contain nested groups.
- */
+Contract Term List.
+
+One or more Contract Provisions, which may be related and conveyed as a group, and may contain nested groups.
+*/
 open class ContractTerm: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTerm" }
@@ -1124,11 +1124,11 @@ open class ContractTerm: BackboneElement {
 
 
 /**
- *  Contract Term Agent List.
- *
- *  An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity
- *  taking place.
- */
+Contract Term Agent List.
+
+An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity taking
+place.
+*/
 open class ContractTermAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTermAgent" }
@@ -1200,10 +1200,10 @@ open class ContractTermAgent: BackboneElement {
 
 
 /**
- *  Contract Term Valued Item.
- *
- *  Contract Provision Valued Item List.
- */
+Contract Term Valued Item.
+
+Contract Provision Valued Item List.
+*/
 open class ContractTermValuedItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTermValuedItem" }
@@ -1390,10 +1390,10 @@ open class ContractTermValuedItem: BackboneElement {
 
 
 /**
- *  Contract Valued Item.
- *
- *  Contract Valued Item List.
- */
+Contract Valued Item.
+
+Contract Valued Item List.
+*/
 open class ContractValuedItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractValuedItem" }

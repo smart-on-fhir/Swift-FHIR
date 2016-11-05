@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  PaymentNotice request.
- *
- *  This resource provides the status of the payment for goods and services rendered, and the request and response
- *  resource references.
- */
+PaymentNotice request.
+
+This resource provides the status of the payment for goods and services rendered, and the request and response resource
+references.
+*/
 open class PaymentNotice: DomainResource {
 	override open class var resourceType: String {
 		get { return "PaymentNotice" }
@@ -47,8 +47,8 @@ open class PaymentNotice: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: PaymentNoticeStatus?
 	
 	/// Payment or clearing date.
 	public var statusDate: FHIRDate?
@@ -58,7 +58,7 @@ open class PaymentNotice: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(paymentStatus: Coding, status: String) {
+	public convenience init(paymentStatus: Coding, status: PaymentNoticeStatus) {
 		self.init()
 		self.paymentStatus = paymentStatus
 		self.status = status
@@ -194,7 +194,12 @@ open class PaymentNotice: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PaymentNoticeStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -260,7 +265,7 @@ open class PaymentNotice: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let statusDate = self.statusDate {
 			json["statusDate"] = statusDate.asJSON()

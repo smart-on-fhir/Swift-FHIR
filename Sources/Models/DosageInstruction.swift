@@ -2,7 +2,7 @@
 //  DosageInstruction.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DosageInstruction) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DosageInstruction) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  How medication should be taken.
- *
- *  Indicates how the medication is to be used by the patient.
- */
+How medication should be taken.
+
+Indicates how the medication is to be used by the patient.
+*/
 open class DosageInstruction: Element {
 	override open class var resourceType: String {
 		get { return "DosageInstruction" }

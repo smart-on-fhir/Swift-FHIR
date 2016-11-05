@@ -2,7 +2,7 @@
 //  Library.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Library) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Library) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  Represents a library of quality improvement components.
- *
- *  The Library resource is a general-purpose container for knowledge asset definitions. It can be used to describe and
- *  expose exist knowledge assets such as logic libraries and information model descriptions, as well as to describe a
- *  collection of knowledge assets.
- */
+Represents a library of quality improvement components.
+
+The Library resource is a general-purpose container for knowledge asset definitions. It can be used to describe and
+expose exist knowledge assets such as logic libraries and information model descriptions, as well as to describe a
+collection of knowledge assets.
+*/
 open class Library: DomainResource {
 	override open class var resourceType: String {
 		get { return "Library" }
@@ -75,8 +75,8 @@ open class Library: DomainResource {
 	/// Related artifacts for the library.
 	public var relatedArtifact: [RelatedArtifact]?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this library. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this library (Human friendly).
 	public var title: String?
@@ -101,7 +101,7 @@ open class Library: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Attachment, status: String, type: CodeableConcept) {
+	public convenience init(content: Attachment, status: PublicationStatus, type: CodeableConcept) {
 		self.init()
 		self.content = content
 		self.status = status
@@ -324,7 +324,12 @@ open class Library: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -475,7 +480,7 @@ open class Library: DomainResource {
 			json["relatedArtifact"] = relatedArtifact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()

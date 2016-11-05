@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Composition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Composition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,27 +10,26 @@ import Foundation
 
 
 /**
- *  A set of resources composed into a single coherent clinical statement with clinical attestation.
- *
- *  A set of healthcare-related information that is assembled together into a single logical document that provides a
- *  single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to
- *  who is making the statement. While a Composition defines the structure, it does not actually contain the content:
- *  rather the full content of a document is contained in a Bundle, of which the Composition is the first resource
- *  contained.
- */
+A set of resources composed into a single coherent clinical statement with clinical attestation.
+
+A set of healthcare-related information that is assembled together into a single logical document that provides a single
+coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is
+making the statement. While a Composition defines the structure, it does not actually contain the content: rather the
+full content of a document is contained in a Bundle, of which the Composition is the first resource contained.
+*/
 open class Composition: DomainResource {
 	override open class var resourceType: String {
 		get { return "Composition" }
 	}
+	
+	/// Categorization of Composition.
+	public var `class`: CodeableConcept?
 	
 	/// Attests to accuracy of composition.
 	public var attester: [CompositionAttester]?
 	
 	/// Who and/or what authored the composition.
 	public var author: [Reference]?
-	
-	/// Categorization of Composition.
-	public var class_fhir: CodeableConcept?
 	
 	/// As defined by affinity domain.
 	public var confidentiality: String?
@@ -53,8 +52,9 @@ open class Composition: DomainResource {
 	/// Composition is broken into sections.
 	public var section: [CompositionSection]?
 	
-	/// preliminary | final | amended | entered-in-error.
-	public var status: String?
+	/// The workflow/clinical status of this composition. The status is a marker for the clinical standing of the
+	/// document.
+	public var status: CompositionStatus?
 	
 	/// Who and/or what the composition is about.
 	public var subject: Reference?
@@ -67,7 +67,7 @@ open class Composition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(author: [Reference], date: DateTime, status: String, subject: Reference, title: String, type: CodeableConcept) {
+	public convenience init(author: [Reference], date: DateTime, status: CompositionStatus, subject: Reference, title: String, type: CodeableConcept) {
 		self.init()
 		self.author = author
 		self.date = date
@@ -80,6 +80,20 @@ open class Composition: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["class"] {
+			presentKeys.insert("class")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.`class` = try CodeableConcept(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "class"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["attester"] {
 			presentKeys.insert("attester")
 			if let val = exist as? [FHIRJSON] {
@@ -110,20 +124,6 @@ open class Composition: DomainResource {
 		}
 		else {
 			errors.append(FHIRValidationError(missing: "author"))
-		}
-		if let exist = json["class"] {
-			presentKeys.insert("class")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.class_fhir = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "class"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
-			}
 		}
 		if let exist = json["confidentiality"] {
 			presentKeys.insert("confidentiality")
@@ -219,7 +219,12 @@ open class Composition: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = CompositionStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -280,14 +285,14 @@ open class Composition: DomainResource {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
+		if let `class` = self.`class` {
+			json["class"] = `class`.asJSON(errors: &errors)
+		}
 		if let attester = self.attester {
 			json["attester"] = attester.map() { $0.asJSON(errors: &errors) }
 		}
 		if let author = self.author {
 			json["author"] = author.map() { $0.asJSON(errors: &errors) }
-		}
-		if let class_fhir = self.class_fhir {
-			json["class"] = class_fhir.asJSON(errors: &errors)
 		}
 		if let confidentiality = self.confidentiality {
 			json["confidentiality"] = confidentiality.asJSON()
@@ -311,7 +316,7 @@ open class Composition: DomainResource {
 			json["section"] = section.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -329,17 +334,17 @@ open class Composition: DomainResource {
 
 
 /**
- *  Attests to accuracy of composition.
- *
- *  A participant who has attested to the accuracy of the composition/document.
- */
+Attests to accuracy of composition.
+
+A participant who has attested to the accuracy of the composition/document.
+*/
 open class CompositionAttester: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionAttester" }
 	}
 	
-	/// personal | professional | legal | official.
-	public var mode: [String]?
+	/// The type of attestation the authenticator offers.
+	public var mode: [CompositionAttestationMode]?
 	
 	/// Who attested the composition.
 	public var party: Reference?
@@ -349,7 +354,7 @@ open class CompositionAttester: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: [String]) {
+	public convenience init(mode: [CompositionAttestationMode]) {
 		self.init()
 		self.mode = mode
 	}
@@ -359,8 +364,12 @@ open class CompositionAttester: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
-			if let val = exist as? [String] {
-				self.mode = val
+			if let val = exist as? [String] { var i = -1
+				self.mode = val.map() { i += 1
+					if let enumval = CompositionAttestationMode(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "mode.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: Array<String>.self, has: type(of: exist)))
@@ -399,11 +408,7 @@ open class CompositionAttester: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let mode = self.mode {
-			var arr = [Any]()
-			for val in mode {
-				arr.append(val.asJSON())
-			}
-			json["mode"] = arr
+			json["mode"] = mode.map() { $0.rawValue }
 		}
 		if let party = self.party {
 			json["party"] = party.asJSON(errors: &errors)
@@ -418,10 +423,10 @@ open class CompositionAttester: BackboneElement {
 
 
 /**
- *  The clinical service(s) being documented.
- *
- *  The clinical service, such as a colonoscopy or an appendectomy, being documented.
- */
+The clinical service(s) being documented.
+
+The clinical service, such as a colonoscopy or an appendectomy, being documented.
+*/
 open class CompositionEvent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionEvent" }
@@ -503,10 +508,10 @@ open class CompositionEvent: BackboneElement {
 
 
 /**
- *  Composition is broken into sections.
- *
- *  The root of the sections that make up the composition.
- */
+Composition is broken into sections.
+
+The root of the sections that make up the composition.
+*/
 open class CompositionSection: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionSection" }
@@ -521,8 +526,10 @@ open class CompositionSection: BackboneElement {
 	/// A reference to data that supports this section.
 	public var entry: [Reference]?
 	
-	/// working | snapshot | changes.
-	public var mode: String?
+	/// How the entry list was prepared - whether it is a working list that is suitable for being maintained on an
+	/// ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a
+	/// prepared list where items may be marked as added, modified or deleted.
+	public var mode: ListMode?
 	
 	/// Order of section entries.
 	public var orderedBy: CodeableConcept?
@@ -584,7 +591,12 @@ open class CompositionSection: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = ListMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -657,7 +669,7 @@ open class CompositionSection: BackboneElement {
 			json["entry"] = entry.map() { $0.asJSON(errors: &errors) }
 		}
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let orderedBy = self.orderedBy {
 			json["orderedBy"] = orderedBy.asJSON(errors: &errors)

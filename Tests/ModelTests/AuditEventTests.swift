@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -34,7 +34,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-login.json")
 		
-		XCTAssertEqual(inst.action, "E")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
 		XCTAssertEqual(inst.agent?[0].altId, "601847123")
 		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
 		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
@@ -60,7 +60,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].code, "110122")
 		XCTAssertEqual(inst.subtype?[0].display, "Login")
 		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110114")
 		XCTAssertEqual(inst.type?.display, "User Authentication")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
@@ -82,7 +82,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-logout.json")
 		
-		XCTAssertEqual(inst.action, "E")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
 		XCTAssertEqual(inst.agent?[0].altId, "601847123")
 		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
 		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
@@ -108,7 +108,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].code, "110123")
 		XCTAssertEqual(inst.subtype?[0].display, "Logout")
 		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110114")
 		XCTAssertEqual(inst.type?.display, "User Authentication")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
@@ -130,7 +130,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-media.json")
 		
-		XCTAssertEqual(inst.action, "R")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
 		XCTAssertFalse(inst.agent?[0].requestor ?? true)
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].display, "Source Role ID")
@@ -173,7 +173,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].code, "ITI-32")
 		XCTAssertEqual(inst.subtype?[0].display, "Distribute Document Set on Media")
 		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "urn:oid:1.3.6.1.4.1.19376.1.2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110106")
 		XCTAssertEqual(inst.type?.display, "Export")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
@@ -195,7 +195,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-pixQuery.json")
 		
-		XCTAssertEqual(inst.action, "E")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
 		XCTAssertEqual(inst.agent?[0].altId, "6580")
 		XCTAssertEqual(inst.agent?[0].network?.address, "Workstation1.ehr.familyclinic.com")
 		XCTAssertEqual(inst.agent?[0].network?.type, "1")
@@ -230,7 +230,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].code, "ITI-9")
 		XCTAssertEqual(inst.subtype?[0].display, "PIX Query")
 		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "urn:oid:1.3.6.1.4.1.19376.1.2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110112")
 		XCTAssertEqual(inst.type?.display, "Query")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
@@ -252,7 +252,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-search.json")
 		
-		XCTAssertEqual(inst.action, "E")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
 		XCTAssertEqual(inst.agent?[0].altId, "601847123")
 		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
 		XCTAssertTrue(inst.agent?[0].requestor ?? false)
@@ -283,7 +283,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].code, "search")
 		XCTAssertEqual(inst.subtype?[0].display, "search")
 		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://hl7.org/fhir/restful-interaction")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "rest")
 		XCTAssertEqual(inst.type?.display, "Restful Operation")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/audit-event-type")
@@ -305,7 +305,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-vread.json")
 		
-		XCTAssertEqual(inst.action, "R")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
 		XCTAssertEqual(inst.agent?[0].altId, "601847123")
 		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
 		XCTAssertTrue(inst.agent?[0].requestor ?? false)
@@ -336,7 +336,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].code, "vread")
 		XCTAssertEqual(inst.subtype?[0].display, "vread")
 		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://hl7.org/fhir/restful-interaction")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "rest")
 		XCTAssertEqual(inst.type?.display, "Restful Operation")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/audit-event-type")
@@ -358,7 +358,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example-disclosure.json")
 		
-		XCTAssertEqual(inst.action, "R")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
 		XCTAssertEqual(inst.agent?[0].altId, "notMe")
 		XCTAssertEqual(inst.agent?[0].location?.reference, "Location/1")
 		XCTAssertEqual(inst.agent?[0].name, "That guy everyone wishes would be caught")
@@ -425,7 +425,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].code, "Disclosure")
 		XCTAssertEqual(inst.subtype?[0].display, "HIPAA disclosure")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Disclosure by some idiot, for marketing reasons, to places unknown, of a Poor Sap, data about Everthing important.</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110106")
 		XCTAssertEqual(inst.type?.display, "Export")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
@@ -447,7 +447,7 @@ class AuditEventTests: XCTestCase {
 	func runAuditEvent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example.json")
 		
-		XCTAssertEqual(inst.action, "E")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
 		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
 		XCTAssertEqual(inst.agent?[0].network?.type, "2")
 		XCTAssertFalse(inst.agent?[0].requestor ?? true)
@@ -486,7 +486,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?[0].display, "Application Start")
 		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Application Start for under service login &quot;Grahame&quot; (id: Grahame's Test HL7Connect)</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110100")
 		XCTAssertEqual(inst.type?.display, "Application Activity")
 		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")

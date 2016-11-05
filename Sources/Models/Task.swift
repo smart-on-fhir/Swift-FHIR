@@ -2,7 +2,7 @@
 //  Task.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A task to be performed.
- */
+A task to be performed.
+*/
 open class Task: DomainResource {
 	override open class var resourceType: String {
 		get { return "Task" }
@@ -71,8 +71,8 @@ open class Task: DomainResource {
 	/// requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer.
 	public var performerType: [CodeableConcept]?
 	
-	/// low | normal | high.
-	public var priority: String?
+	/// The priority of the task among other tasks of the same type.
+	public var priority: TaskPriority?
 	
 	/// Why task is needed.
 	public var reason: CodeableConcept?
@@ -86,15 +86,15 @@ open class Task: DomainResource {
 	/// proposed | planned | actionable +.
 	public var stage: CodeableConcept?
 	
-	/// draft | requested | received | accepted | +.
-	public var status: String?
+	/// The current status of the task.
+	public var status: TaskStatus?
 	
 	/// Reason for current status.
 	public var statusReason: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(created: DateTime, lastModified: DateTime, requester: Reference, stage: CodeableConcept, status: String) {
+	public convenience init(created: DateTime, lastModified: DateTime, requester: Reference, stage: CodeableConcept, status: TaskStatus) {
 		self.init()
 		self.created = created
 		self.lastModified = lastModified
@@ -347,7 +347,12 @@ open class Task: DomainResource {
 		if let exist = json["priority"] {
 			presentKeys.insert("priority")
 			if let val = exist as? String {
-				self.priority = val
+				if let enumval = TaskPriority(rawValue: val) {
+					self.priority = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "priority", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "priority", wants: String.self, has: type(of: exist)))
@@ -418,7 +423,12 @@ open class Task: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = TaskStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -502,7 +512,7 @@ open class Task: DomainResource {
 			json["performerType"] = performerType.map() { $0.asJSON(errors: &errors) }
 		}
 		if let priority = self.priority {
-			json["priority"] = priority.asJSON()
+			json["priority"] = priority.rawValue
 		}
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON(errors: &errors)
@@ -517,7 +527,7 @@ open class Task: DomainResource {
 			json["stage"] = stage.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let statusReason = self.statusReason {
 			json["statusReason"] = statusReason.asJSON(errors: &errors)
@@ -529,10 +539,10 @@ open class Task: DomainResource {
 
 
 /**
- *  Constraints on fulfillment tasks.
- *
- *  Identifies any limitations on what part of a referenced task subject request should be actioned.
- */
+Constraints on fulfillment tasks.
+
+Identifies any limitations on what part of a referenced task subject request should be actioned.
+*/
 open class TaskFulfillment: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TaskFulfillment" }
@@ -609,10 +619,10 @@ open class TaskFulfillment: BackboneElement {
 
 
 /**
- *  Supporting information.
- *
- *  Additional information that may be needed in the execution of the task.
- */
+Supporting information.
+
+Additional information that may be needed in the execution of the task.
+*/
 open class TaskInput: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TaskInput" }
@@ -1466,10 +1476,10 @@ open class TaskInput: BackboneElement {
 
 
 /**
- *  Task Output.
- *
- *  Outputs produced by the Task.
- */
+Task Output.
+
+Outputs produced by the Task.
+*/
 open class TaskOutput: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TaskOutput" }

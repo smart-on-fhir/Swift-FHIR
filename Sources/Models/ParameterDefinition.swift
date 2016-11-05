@@ -2,7 +2,7 @@
 //  ParameterDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Definition of a parameter to a module.
- *
- *  The parameters to the module. This collection specifies both the input and output parameters. Input parameters are
- *  provided by the caller as part of the $evaluate operation. Output parameters are included in the GuidanceResponse.
- */
+Definition of a parameter to a module.
+
+The parameters to the module. This collection specifies both the input and output parameters. Input parameters are
+provided by the caller as part of the $evaluate operation. Output parameters are included in the GuidanceResponse.
+*/
 open class ParameterDefinition: Element {
 	override open class var resourceType: String {
 		get { return "ParameterDefinition" }
@@ -38,12 +38,12 @@ open class ParameterDefinition: Element {
 	/// Type for the parameter.
 	public var type: String?
 	
-	/// input | output.
-	public var use: String?
+	/// Whether the parameter is input or output for the module.
+	public var use: OperationParameterUse?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, use: String) {
+	public convenience init(type: String, use: OperationParameterUse) {
 		self.init()
 		self.type = type
 		self.use = use
@@ -117,7 +117,12 @@ open class ParameterDefinition: Element {
 		if let exist = json["use"] {
 			presentKeys.insert("use")
 			if let val = exist as? String {
-				self.use = val
+				if let enumval = OperationParameterUse(rawValue: val) {
+					self.use = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
@@ -151,7 +156,7 @@ open class ParameterDefinition: Element {
 			json["type"] = type.asJSON()
 		}
 		if let use = self.use {
-			json["use"] = use.asJSON()
+			json["use"] = use.rawValue
 		}
 		
 		return json

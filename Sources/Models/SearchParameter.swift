@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Search Parameter for a resource.
- *
- *  A search parameter that defines a named search item that can be used to search/filter on a resource.
- */
+Search Parameter for a resource.
+
+A search parameter that defines a named search item that can be used to search/filter on a resource.
+*/
 open class SearchParameter: DomainResource {
 	override open class var resourceType: String {
 		get { return "SearchParameter" }
@@ -55,14 +55,14 @@ open class SearchParameter: DomainResource {
 	/// Why this search parameter is defined.
 	public var purpose: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this search parameter. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Types of resource (if a resource reference).
 	public var target: [String]?
 	
-	/// number | date | string | token | reference | composite | quantity | uri.
-	public var type: String?
+	/// The type of value a search parameter refers to, and how the content is interpreted.
+	public var type: SearchParamType?
 	
 	/// Logical uri to reference this search parameter (globally unique).
 	public var url: URL?
@@ -76,12 +76,12 @@ open class SearchParameter: DomainResource {
 	/// XPath that extracts the values.
 	public var xpath: String?
 	
-	/// normal | phonetic | nearby | distance | other.
-	public var xpathUsage: String?
+	/// How the search parameter relates to the set of elements returned by evaluating the xpath query.
+	public var xpathUsage: XPathUsageType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(base: String, code: String, description_fhir: String, name: String, status: String, type: String, url: URL) {
+	public convenience init(base: String, code: String, description_fhir: String, name: String, status: PublicationStatus, type: SearchParamType, url: URL) {
 		self.init()
 		self.base = base
 		self.code = code
@@ -233,7 +233,12 @@ open class SearchParameter: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -254,7 +259,12 @@ open class SearchParameter: DomainResource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = SearchParamType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -310,7 +320,12 @@ open class SearchParameter: DomainResource {
 		if let exist = json["xpathUsage"] {
 			presentKeys.insert("xpathUsage")
 			if let val = exist as? String {
-				self.xpathUsage = val
+				if let enumval = XPathUsageType(rawValue: val) {
+					self.xpathUsage = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "xpathUsage", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "xpathUsage", wants: String.self, has: type(of: exist)))
@@ -359,17 +374,13 @@ open class SearchParameter: DomainResource {
 			json["purpose"] = purpose.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let target = self.target {
-			var arr = [Any]()
-			for val in target {
-				arr.append(val.asJSON())
-			}
-			json["target"] = arr
+			json["target"] = target.map() { $0.asJSON() }
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -384,7 +395,7 @@ open class SearchParameter: DomainResource {
 			json["xpath"] = xpath.asJSON()
 		}
 		if let xpathUsage = self.xpathUsage {
-			json["xpathUsage"] = xpathUsage.asJSON()
+			json["xpathUsage"] = xpathUsage.rawValue
 		}
 		
 		return json

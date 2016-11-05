@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -50,8 +50,8 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.unit, "years")
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.value, NSDecimalNumber(string: "39"))
-		XCTAssertEqual(inst.status, "final")
-		XCTAssertEqual(inst.text?.status, "additional")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
 	}
@@ -71,8 +71,8 @@ class RiskAssessmentTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id, "population")
-		XCTAssertEqual(inst.status, "final")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -101,8 +101,8 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].code, "moderate")
 		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].display, "moderate likelihood")
 		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/risk-probability")
-		XCTAssertEqual(inst.status, "final")
-		XCTAssertEqual(inst.text?.status, "additional")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
 	}
@@ -201,8 +201,8 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.prediction?[7].whenRange?.low?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction?[7].whenRange?.low?.unit, "years")
 		XCTAssertEqual(inst.prediction?[7].whenRange?.low?.value, NSDecimalNumber(string: "83"))
-		XCTAssertEqual(inst.status, "final")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

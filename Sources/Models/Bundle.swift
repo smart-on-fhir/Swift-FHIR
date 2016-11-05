@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Contains a collection of resources.
- *
- *  A container for a collection of resources.
- */
+Contains a collection of resources.
+
+A container for a collection of resources.
+*/
 open class Bundle: Resource {
 	override open class var resourceType: String {
 		get { return "Bundle" }
@@ -31,12 +31,12 @@ open class Bundle: Resource {
 	/// If search, the total number of matches.
 	public var total: UInt?
 	
-	/// document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection.
-	public var type: String?
+	/// Indicates the purpose of this bundle- how it was intended to be used.
+	public var type: BundleType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: BundleType) {
 		self.init()
 		self.type = type
 	}
@@ -98,7 +98,12 @@ open class Bundle: Resource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = BundleType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -126,7 +131,7 @@ open class Bundle: Resource {
 			json["total"] = total.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -135,11 +140,11 @@ open class Bundle: Resource {
 
 
 /**
- *  Entry in the bundle - will have a resource, or information.
- *
- *  An entry in a bundle resource - will either contain a resource, or information about a resource (transactions and
- *  history only).
- */
+Entry in the bundle - will have a resource, or information.
+
+An entry in a bundle resource - will either contain a resource, or information about a resource (transactions and
+history only).
+*/
 open class BundleEntry: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntry" }
@@ -276,10 +281,10 @@ open class BundleEntry: BackboneElement {
 
 
 /**
- *  Transaction Related Information.
- *
- *  Additional information about how this entry should be processed as part of a transaction.
- */
+Transaction Related Information.
+
+Additional information about how this entry should be processed as part of a transaction.
+*/
 open class BundleEntryRequest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntryRequest" }
@@ -297,15 +302,15 @@ open class BundleEntryRequest: BackboneElement {
 	/// For managing cache currency.
 	public var ifNoneMatch: String?
 	
-	/// GET | POST | PUT | DELETE.
-	public var method: String?
+	/// The HTTP verb for this entry in either a change history, or a transaction/ transaction response.
+	public var method: HTTPVerb?
 	
 	/// URL for HTTP equivalent of this entry.
 	public var url: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(method: String, url: URL) {
+	public convenience init(method: HTTPVerb, url: URL) {
 		self.init()
 		self.method = method
 		self.url = url
@@ -353,7 +358,12 @@ open class BundleEntryRequest: BackboneElement {
 		if let exist = json["method"] {
 			presentKeys.insert("method")
 			if let val = exist as? String {
-				self.method = val
+				if let enumval = HTTPVerb(rawValue: val) {
+					self.method = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "method", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "method", wants: String.self, has: type(of: exist)))
@@ -393,7 +403,7 @@ open class BundleEntryRequest: BackboneElement {
 			json["ifNoneMatch"] = ifNoneMatch.asJSON()
 		}
 		if let method = self.method {
-			json["method"] = method.asJSON()
+			json["method"] = method.rawValue
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -405,10 +415,10 @@ open class BundleEntryRequest: BackboneElement {
 
 
 /**
- *  Transaction Related Information.
- *
- *  Additional information about how this entry should be processed as part of a transaction.
- */
+Transaction Related Information.
+
+Additional information about how this entry should be processed as part of a transaction.
+*/
 open class BundleEntryResponse: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntryResponse" }
@@ -520,17 +530,17 @@ open class BundleEntryResponse: BackboneElement {
 
 
 /**
- *  Search related information.
- *
- *  Information about the search process that lead to the creation of this entry.
- */
+Search related information.
+
+Information about the search process that lead to the creation of this entry.
+*/
 open class BundleEntrySearch: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntrySearch" }
 	}
 	
-	/// match | include | outcome - why this is in the result set.
-	public var mode: String?
+	/// Why this entry is in the result set - whether it's included as a match or because of an _include requirement.
+	public var mode: SearchEntryMode?
 	
 	/// Search ranking (between 0 and 1).
 	public var score: NSDecimalNumber?
@@ -541,7 +551,12 @@ open class BundleEntrySearch: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = SearchEntryMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -563,7 +578,7 @@ open class BundleEntrySearch: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let score = self.score {
 			json["score"] = score.asJSON()
@@ -575,10 +590,10 @@ open class BundleEntrySearch: BackboneElement {
 
 
 /**
- *  Links related to this Bundle.
- *
- *  A series of links that provide context to this bundle.
- */
+Links related to this Bundle.
+
+A series of links that provide context to this bundle.
+*/
 open class BundleLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleLink" }

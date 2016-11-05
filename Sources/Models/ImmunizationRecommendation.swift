@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Guidance or advice relating to an immunization.
- *
- *  A patient's point-in-time immunization and recommendation (i.e. forecasting a patient's immunization eligibility
- *  according to a published schedule) with optional supporting justification.
- */
+Guidance or advice relating to an immunization.
+
+A patient's point-in-time immunization and recommendation (i.e. forecasting a patient's immunization eligibility
+according to a published schedule) with optional supporting justification.
+*/
 open class ImmunizationRecommendation: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendation" }
@@ -110,8 +110,8 @@ open class ImmunizationRecommendation: DomainResource {
 
 
 /**
- *  Vaccine administration recommendations.
- */
+Vaccine administration recommendations.
+*/
 open class ImmunizationRecommendationRecommendation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendationRecommendation" }
@@ -301,10 +301,10 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 
 
 /**
- *  Dates governing proposed immunization.
- *
- *  Vaccine date recommendations.  For example, earliest date to administer, latest date to administer, etc.
- */
+Dates governing proposed immunization.
+
+Vaccine date recommendations.  For example, earliest date to administer, latest date to administer, etc.
+*/
 open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendationRecommendationDateCriterion" }
@@ -375,10 +375,10 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 
 
 /**
- *  Protocol used by recommendation.
- *
- *  Contains information about the protocol under which the vaccine was administered.
- */
+Protocol used by recommendation.
+
+Contains information about the protocol under which the vaccine was administered.
+*/
 open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendationRecommendationProtocol" }

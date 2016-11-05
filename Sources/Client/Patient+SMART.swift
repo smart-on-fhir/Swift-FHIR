@@ -21,10 +21,10 @@ extension Patient {
 		}
 		var useName: HumanName?
 		for name in names {
-			if nil == useName || "usual" == name.use {
+			if nil == useName || .usual == name.use {
 				useName = name
 			}
-			else if let use = name.use, "usual" == use || "official" == use {
+			else if let use = name.use, .usual == use || .official == use {
 				useName = name
 			}
 		}

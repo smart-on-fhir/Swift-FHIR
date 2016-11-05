@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -45,16 +45,16 @@ class MessageHeaderTests: XCTestCase {
 		XCTAssertEqual(inst.id, "1cbdfb97-5859-48a4-8301-d54eab818d68")
 		XCTAssertEqual(inst.reason?.coding?[0].code, "admit")
 		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/message-reasons-encounter")
-		XCTAssertEqual(inst.response?.code, "ok")
+		XCTAssertEqual(inst.response?.code, ResponseType(rawValue: "ok")!)
 		XCTAssertEqual(inst.response?.identifier, "5015fe84-8e76-4526-89d8-44b322e8d4fb")
 		XCTAssertEqual(inst.responsible?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.source?.contact?.system, "phone")
+		XCTAssertEqual(inst.source?.contact?.system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.source?.contact?.value, "+1 (555) 123 4567")
 		XCTAssertEqual(inst.source?.endpoint?.absoluteString, "llp:10.11.12.13:5432")
 		XCTAssertEqual(inst.source?.name, "Acme Central Patient Registry")
 		XCTAssertEqual(inst.source?.software, "FooBar Patient Manager")
 		XCTAssertEqual(inst.source?.version, "3.1.45.AABB")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.timestamp?.description, "2012-01-04T09:10:14Z")
 		
 		return inst

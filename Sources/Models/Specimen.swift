@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Sample for analysis.
- *
- *  A sample to be used for analysis.
- */
+Sample for analysis.
+
+A sample to be used for analysis.
+*/
 open class Specimen: DomainResource {
 	override open class var resourceType: String {
 		get { return "Specimen" }
@@ -43,8 +43,8 @@ open class Specimen: DomainResource {
 	/// Why the specimen was collected.
 	public var request: [Reference]?
 	
-	/// available | unavailable | unsatisfactory | entered-in-error.
-	public var status: String?
+	/// The availability of the specimen.
+	public var status: SpecimenStatus?
 	
 	/// Where the specimen came from. This may be from the patient(s) or from the environment or a device.
 	public var subject: Reference?
@@ -175,7 +175,12 @@ open class Specimen: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = SpecimenStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -257,7 +262,7 @@ open class Specimen: DomainResource {
 			json["request"] = request.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -275,10 +280,10 @@ open class Specimen: DomainResource {
 
 
 /**
- *  Collection details.
- *
- *  Details concerning the specimen collection.
- */
+Collection details.
+
+Details concerning the specimen collection.
+*/
 open class SpecimenCollection: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SpecimenCollection" }
@@ -415,11 +420,11 @@ open class SpecimenCollection: BackboneElement {
 
 
 /**
- *  Direct container of specimen (tube/slide, etc.).
- *
- *  The container holding the specimen.  The recursive nature of containers; i.e. blood in tube in tray in rack is not
- *  addressed here.
- */
+Direct container of specimen (tube/slide, etc.).
+
+The container holding the specimen.  The recursive nature of containers; i.e. blood in tube in tray in rack is not
+addressed here.
+*/
 open class SpecimenContainer: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SpecimenContainer" }
@@ -576,10 +581,10 @@ open class SpecimenContainer: BackboneElement {
 
 
 /**
- *  Treatment and processing step details.
- *
- *  Details concerning treatment and processing steps for the specimen.
- */
+Treatment and processing step details.
+
+Details concerning treatment and processing steps for the specimen.
+*/
 open class SpecimenTreatment: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SpecimenTreatment" }

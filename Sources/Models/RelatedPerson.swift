@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  An person that is related to a patient, but who is not a direct target of care.
- *
- *  Information about a person that is involved in the care for a patient, but who is not the target of healthcare, nor
- *  has a formal responsibility in the care process.
- */
+An person that is related to a patient, but who is not a direct target of care.
+
+Information about a person that is involved in the care for a patient, but who is not the target of healthcare, nor has
+a formal responsibility in the care process.
+*/
 open class RelatedPerson: DomainResource {
 	override open class var resourceType: String {
 		get { return "RelatedPerson" }
@@ -29,8 +29,9 @@ open class RelatedPerson: DomainResource {
 	/// The date on which the related person was born.
 	public var birthDate: FHIRDate?
 	
-	/// male | female | other | unknown.
-	public var gender: String?
+	/// Administrative Gender - the gender that the person is considered to have for administration and record keeping
+	/// purposes.
+	public var gender: AdministrativeGender?
 	
 	/// A human identifier for this person.
 	public var identifier: [Identifier]?
@@ -98,7 +99,12 @@ open class RelatedPerson: DomainResource {
 		if let exist = json["gender"] {
 			presentKeys.insert("gender")
 			if let val = exist as? String {
-				self.gender = val
+				if let enumval = AdministrativeGender(rawValue: val) {
+					self.gender = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "gender", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -221,7 +227,7 @@ open class RelatedPerson: DomainResource {
 			json["birthDate"] = birthDate.asJSON()
 		}
 		if let gender = self.gender {
-			json["gender"] = gender.asJSON()
+			json["gender"] = gender.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }

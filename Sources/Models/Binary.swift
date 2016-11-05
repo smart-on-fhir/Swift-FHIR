@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Binary) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Binary) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Pure binary content defined by some other format than FHIR.
- *
- *  A binary resource can contain any content, whether text, image, pdf, zip archive, etc.
- */
+Pure binary content defined by some other format than FHIR.
+
+A binary resource can contain any content, whether text, image, pdf, zip archive, etc.
+*/
 open class Binary: Resource {
 	override open class var resourceType: String {
 		get { return "Binary" }

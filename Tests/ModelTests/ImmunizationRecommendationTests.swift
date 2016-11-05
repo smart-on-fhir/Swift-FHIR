@@ -2,7 +2,7 @@
 //  ImmunizationRecommendationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -63,7 +63,7 @@ class ImmunizationRecommendationTests: XCTestCase {
 		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].display, "Hepatitis A vaccine")
 		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Authored by Joginder Madra</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,14 +10,14 @@ import Foundation
 
 
 /**
- *  A Diagnostic report - a combination of request information, atomic results, images, interpretation, as well as
- *  formatted reports.
- *
- *  The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and
- *  locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider
- *  information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation
- *  of diagnostic reports.
- */
+A Diagnostic report - a combination of request information, atomic results, images, interpretation, as well as formatted
+reports.
+
+The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and locations,
+and/or specimens derived from these. The report includes clinical context such as requesting and provider information,
+and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic
+reports.
+*/
 open class DiagnosticReport: DomainResource {
 	override open class var resourceType: String {
 		get { return "DiagnosticReport" }
@@ -71,15 +71,15 @@ open class DiagnosticReport: DomainResource {
 	/// Specimens this report is based on.
 	public var specimen: [Reference]?
 	
-	/// registered | partial | final | corrected | appended | cancelled | entered-in-error.
-	public var status: String?
+	/// The status of the diagnostic report as a whole.
+	public var status: DiagnosticReportStatus?
 	
 	/// The subject of the report, usually, but not always, the patient.
 	public var subject: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, effective: Any, issued: Instant, performer: [Reference], status: String, subject: Reference) {
+	public convenience init(code: CodeableConcept, effective: Any, issued: Instant, performer: [Reference], status: DiagnosticReportStatus, subject: Reference) {
 		self.init()
 		self.code = code
 		if let value = effective as? DateTime {
@@ -321,7 +321,12 @@ open class DiagnosticReport: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = DiagnosticReportStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -407,7 +412,7 @@ open class DiagnosticReport: DomainResource {
 			json["specimen"] = specimen.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -419,11 +424,11 @@ open class DiagnosticReport: DomainResource {
 
 
 /**
- *  Key images associated with this report.
- *
- *  A list of key images associated with this report. The images are generally created during the diagnostic process,
- *  and may be directly of the patient, or of treated specimens (i.e. slides of interest).
- */
+Key images associated with this report.
+
+A list of key images associated with this report. The images are generally created during the diagnostic process, and
+may be directly of the patient, or of treated specimens (i.e. slides of interest).
+*/
 open class DiagnosticReportImage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DiagnosticReportImage" }

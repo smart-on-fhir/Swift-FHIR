@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Information about the success/failure of an action.
- *
- *  A collection of error, warning or information messages that result from a system action.
- */
+Information about the success/failure of an action.
+
+A collection of error, warning or information messages that result from a system action.
+*/
 open class OperationOutcome: DomainResource {
 	override open class var resourceType: String {
 		get { return "OperationOutcome" }
@@ -65,17 +65,18 @@ open class OperationOutcome: DomainResource {
 
 
 /**
- *  A single issue associated with the action.
- *
- *  An error, warning or information message that results from a system action.
- */
+A single issue associated with the action.
+
+An error, warning or information message that results from a system action.
+*/
 open class OperationOutcomeIssue: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OperationOutcomeIssue" }
 	}
 	
-	/// Error or warning code.
-	public var code: String?
+	/// Describes the type of the issue. The system that creates an OperationOutcome SHALL choose the most applicable
+	/// code from the IssueType value set, and may additional provide its own code for the error in the details element.
+	public var code: IssueType?
 	
 	/// Additional details about the error.
 	public var details: CodeableConcept?
@@ -89,12 +90,12 @@ open class OperationOutcomeIssue: BackboneElement {
 	/// XPath of element(s) related to issue.
 	public var location: [String]?
 	
-	/// fatal | error | warning | information.
-	public var severity: String?
+	/// Indicates whether the issue indicates a variation from successful processing.
+	public var severity: IssueSeverity?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, severity: String) {
+	public convenience init(code: IssueType, severity: IssueSeverity) {
 		self.init()
 		self.code = code
 		self.severity = severity
@@ -106,7 +107,12 @@ open class OperationOutcomeIssue: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				if let enumval = IssueType(rawValue: val) {
+					self.code = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "code", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -159,7 +165,12 @@ open class OperationOutcomeIssue: BackboneElement {
 		if let exist = json["severity"] {
 			presentKeys.insert("severity")
 			if let val = exist as? String {
-				self.severity = val
+				if let enumval = IssueSeverity(rawValue: val) {
+					self.severity = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "severity", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "severity", wants: String.self, has: type(of: exist)))
@@ -175,7 +186,7 @@ open class OperationOutcomeIssue: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.rawValue
 		}
 		if let details = self.details {
 			json["details"] = details.asJSON(errors: &errors)
@@ -184,21 +195,13 @@ open class OperationOutcomeIssue: BackboneElement {
 			json["diagnostics"] = diagnostics.asJSON()
 		}
 		if let expression = self.expression {
-			var arr = [Any]()
-			for val in expression {
-				arr.append(val.asJSON())
-			}
-			json["expression"] = arr
+			json["expression"] = expression.map() { $0.asJSON() }
 		}
 		if let location = self.location {
-			var arr = [Any]()
-			for val in location {
-				arr.append(val.asJSON())
-			}
-			json["location"] = arr
+			json["location"] = location.map() { $0.asJSON() }
 		}
 		if let severity = self.severity {
-			json["severity"] = severity.asJSON()
+			json["severity"] = severity.rawValue
 		}
 		
 		return json

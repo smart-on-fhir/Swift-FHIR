@@ -2,7 +2,7 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -54,9 +54,9 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.concept?[2].designation?[0].value, "Obdurate Labs uses this with both kinds of units...")
 		XCTAssertEqual(inst.concept?[2].display, "SChol")
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.content, "complete")
+		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
 		XCTAssertEqual(inst.date?.description, "2016-01-28")
 		XCTAssertEqual(inst.description_fhir, "This is an example code system that includes all the ACME codes for serum/plasma cholesterol from v2.36.")
 		XCTAssertTrue(inst.experimental ?? false)
@@ -66,8 +66,8 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition")
 		XCTAssertEqual(inst.name, "ACME Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
-		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/CodeSystem/example")
 		XCTAssertEqual(inst.version, "20160128")
 		
@@ -116,20 +116,20 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.concept?[8].code, "plans")
 		XCTAssertEqual(inst.concept?[8].definition, "A set of care plans that apply in a particular context of care.")
 		XCTAssertEqual(inst.concept?[8].display, "Care Plans")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.content, "complete")
+		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.173")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-11-01T13:32:59.924+00:00")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-11-04T22:07:34.007+00:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
-		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
 		XCTAssertEqual(inst.version, "1.7.0")

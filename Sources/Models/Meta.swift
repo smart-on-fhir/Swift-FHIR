@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Meta) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Meta) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Metadata about a resource.
- *
- *  The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to
- *  the content may not always be associated with version changes to the resource.
- */
+Metadata about a resource.
+
+The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the
+content may not always be associated with version changes to the resource.
+*/
 open class Meta: Element {
 	override open class var resourceType: String {
 		get { return "Meta" }
@@ -103,11 +103,7 @@ open class Meta: Element {
 			json["lastUpdated"] = lastUpdated.asJSON()
 		}
 		if let profile = self.profile {
-			var arr = [Any]()
-			for val in profile {
-				arr.append(val.asJSON())
-			}
-			json["profile"] = arr
+			json["profile"] = profile.map() { $0.asJSON() }
 		}
 		if let security = self.security {
 			json["security"] = security.map() { $0.asJSON(errors: &errors) }

@@ -2,7 +2,7 @@
 //  CodeSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A set of codes drawn from one or more code systems.
- *
- *  A code system resource specifies a set of codes drawn from one or more code systems.
- */
+A set of codes drawn from one or more code systems.
+
+A code system resource specifies a set of codes drawn from one or more code systems.
+*/
 open class CodeSystem: DomainResource {
 	override open class var resourceType: String {
 		get { return "CodeSystem" }
@@ -31,8 +31,9 @@ open class CodeSystem: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// not-present | examplar | fragment | complete.
-	public var content: String?
+	/// How much of the content of the code system - the concepts and codes it defines - are represented in this
+	/// resource.
+	public var content: CodeSystemContentMode?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
@@ -52,8 +53,8 @@ open class CodeSystem: DomainResource {
 	/// Filter that can be used in a value set.
 	public var filter: [CodeSystemFilter]?
 	
-	/// grouped-by | subsumes | part-of | classified-with.
-	public var hierarchyMeaning: String?
+	/// The meaning of the heirarchy of concepts.
+	public var hierarchyMeaning: CodeSystemHierarchyMeaning?
 	
 	/// Additional identifier for the code system.
 	public var identifier: Identifier?
@@ -73,8 +74,8 @@ open class CodeSystem: DomainResource {
 	/// Why this code system is defined.
 	public var purpose: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this code system. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this code system (Human friendly).
 	public var title: String?
@@ -96,7 +97,7 @@ open class CodeSystem: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: String, status: String) {
+	public convenience init(content: CodeSystemContentMode, status: PublicationStatus) {
 		self.init()
 		self.content = content
 		self.status = status
@@ -154,7 +155,12 @@ open class CodeSystem: DomainResource {
 		if let exist = json["content"] {
 			presentKeys.insert("content")
 			if let val = exist as? String {
-				self.content = val
+				if let enumval = CodeSystemContentMode(rawValue: val) {
+					self.content = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "content", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "content", wants: String.self, has: type(of: exist)))
@@ -225,7 +231,12 @@ open class CodeSystem: DomainResource {
 		if let exist = json["hierarchyMeaning"] {
 			presentKeys.insert("hierarchyMeaning")
 			if let val = exist as? String {
-				self.hierarchyMeaning = val
+				if let enumval = CodeSystemHierarchyMeaning(rawValue: val) {
+					self.hierarchyMeaning = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "hierarchyMeaning", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "hierarchyMeaning", wants: String.self, has: type(of: exist)))
@@ -303,7 +314,12 @@ open class CodeSystem: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -390,7 +406,7 @@ open class CodeSystem: DomainResource {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let content = self.content {
-			json["content"] = content.asJSON()
+			json["content"] = content.rawValue
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -411,7 +427,7 @@ open class CodeSystem: DomainResource {
 			json["filter"] = filter.map() { $0.asJSON(errors: &errors) }
 		}
 		if let hierarchyMeaning = self.hierarchyMeaning {
-			json["hierarchyMeaning"] = hierarchyMeaning.asJSON()
+			json["hierarchyMeaning"] = hierarchyMeaning.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
@@ -432,7 +448,7 @@ open class CodeSystem: DomainResource {
 			json["purpose"] = purpose.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -459,11 +475,11 @@ open class CodeSystem: DomainResource {
 
 
 /**
- *  Concepts in the code system.
- *
- *  Concepts that are in the code system. The concept definitions are inherently hierarchical, but the definitions must
- *  be consulted to determine what the meaning of the hierarchical relationships are.
- */
+Concepts in the code system.
+
+Concepts that are in the code system. The concept definitions are inherently hierarchical, but the definitions must be
+consulted to determine what the meaning of the hierarchical relationships are.
+*/
 open class CodeSystemConcept: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CodeSystemConcept" }
@@ -600,11 +616,11 @@ open class CodeSystemConcept: BackboneElement {
 
 
 /**
- *  Additional representations for the concept.
- *
- *  Additional representations for the concept - other languages, aliases, specialized purposes, used for particular
- *  purposes, etc.
- */
+Additional representations for the concept.
+
+Additional representations for the concept - other languages, aliases, specialized purposes, used for particular
+purposes, etc.
+*/
 open class CodeSystemConceptDesignation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CodeSystemConceptDesignation" }
@@ -686,10 +702,10 @@ open class CodeSystemConceptDesignation: BackboneElement {
 
 
 /**
- *  Property value for the concept.
- *
- *  A property value for this concept.
- */
+Property value for the concept.
+
+A property value for this concept.
+*/
 open class CodeSystemConceptProperty: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CodeSystemConceptProperty" }
@@ -857,10 +873,10 @@ open class CodeSystemConceptProperty: BackboneElement {
 
 
 /**
- *  Filter that can be used in a value set.
- *
- *  A filter that can be used in a value set compose statement when selecting concepts using a filter.
- */
+Filter that can be used in a value set.
+
+A filter that can be used in a value set compose statement when selecting concepts using a filter.
+*/
 open class CodeSystemFilter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CodeSystemFilter" }
@@ -872,15 +888,15 @@ open class CodeSystemFilter: BackboneElement {
 	/// How or why the filter is used.
 	public var description_fhir: String?
 	
-	/// Operators that can be used with filter.
-	public var operator_fhir: [String]?
+	/// A list of operators that can be used with the filter.
+	public var operator_fhir: [FilterOperator]?
 	
 	/// What to use for the value.
 	public var value: String?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, operator_fhir: [String], value: String) {
+	public convenience init(code: String, operator_fhir: [FilterOperator], value: String) {
 		self.init()
 		self.code = code
 		self.operator_fhir = operator_fhir
@@ -913,8 +929,12 @@ open class CodeSystemFilter: BackboneElement {
 		}
 		if let exist = json["operator"] {
 			presentKeys.insert("operator")
-			if let val = exist as? [String] {
-				self.operator_fhir = val
+			if let val = exist as? [String] { var i = -1
+				self.operator_fhir = val.map() { i += 1
+					if let enumval = FilterOperator(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "operator_fhir.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "operator", wants: Array<String>.self, has: type(of: exist)))
@@ -948,11 +968,7 @@ open class CodeSystemFilter: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let operator_fhir = self.operator_fhir {
-			var arr = [Any]()
-			for val in operator_fhir {
-				arr.append(val.asJSON())
-			}
-			json["operator"] = arr
+			json["operator"] = operator_fhir.map() { $0.rawValue }
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
@@ -964,10 +980,10 @@ open class CodeSystemFilter: BackboneElement {
 
 
 /**
- *  Additional information supplied about each concept.
- *
- *  A property defines an additional slot through which additional information can be provided about a concept.
- */
+Additional information supplied about each concept.
+
+A property defines an additional slot through which additional information can be provided about a concept.
+*/
 open class CodeSystemProperty: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CodeSystemProperty" }
@@ -979,15 +995,16 @@ open class CodeSystemProperty: BackboneElement {
 	/// Why the property is defined, and/or what it conveys.
 	public var description_fhir: String?
 	
-	/// code | Coding | string | integer | boolean | dateTime.
-	public var type: String?
+	/// The type of the property value. Properties of type "code" contain a code defined by the code system (e.g. a
+	/// reference to anotherr defined concept).
+	public var type: PropertyType?
 	
 	/// Formal identifier for the property.
 	public var uri: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, type: String) {
+	public convenience init(code: String, type: PropertyType) {
 		self.init()
 		self.code = code
 		self.type = type
@@ -1020,7 +1037,12 @@ open class CodeSystemProperty: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = PropertyType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -1051,7 +1073,7 @@ open class CodeSystemProperty: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let uri = self.uri {
 			json["uri"] = uri.asJSON()

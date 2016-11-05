@@ -2,7 +2,7 @@
 //  ExplanationOfBenefit.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Explanation of Benefit resource.
- *
- *  This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally
- *  account balance information, for informing the subscriber of the benefits provided.
- */
+Explanation of Benefit resource.
+
+This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account
+balance information, for informing the subscriber of the benefits provided.
+*/
 open class ExplanationOfBenefit: DomainResource {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefit" }
@@ -122,8 +122,8 @@ open class ExplanationOfBenefit: DomainResource {
 	/// Current specification followed.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: ExplanationOfBenefitStatus?
 	
 	/// Finer grained claim type information.
 	public var subType: [Coding]?
@@ -142,7 +142,7 @@ open class ExplanationOfBenefit: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverage: ExplanationOfBenefitCoverage, patient: Reference, status: String, type: Coding) {
+	public convenience init(coverage: ExplanationOfBenefitCoverage, patient: Reference, status: ExplanationOfBenefitStatus, type: Coding) {
 		self.init()
 		self.coverage = coverage
 		self.patient = patient
@@ -623,7 +623,12 @@ open class ExplanationOfBenefit: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ExplanationOfBenefitStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -814,7 +819,7 @@ open class ExplanationOfBenefit: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subType = self.subType {
 			json["subType"] = subType.map() { $0.asJSON(errors: &errors) }
@@ -838,10 +843,10 @@ open class ExplanationOfBenefit: DomainResource {
 
 
 /**
- *  Details of an accident.
- *
- *  An accident which resulted in the need for healthcare services.
- */
+Details of an accident.
+
+An accident which resulted in the need for healthcare services.
+*/
 open class ExplanationOfBenefitAccident: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitAccident" }
@@ -938,10 +943,10 @@ open class ExplanationOfBenefitAccident: BackboneElement {
 
 
 /**
- *  Insurer added line items.
- *
- *  The first tier service adjudications for payor added services.
- */
+Insurer added line items.
+
+The first tier service adjudications for payor added services.
+*/
 open class ExplanationOfBenefitAddItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitAddItem" }
@@ -1115,21 +1120,13 @@ open class ExplanationOfBenefitAddItem: BackboneElement {
 			json["modifier"] = modifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let revenue = self.revenue {
 			json["revenue"] = revenue.asJSON(errors: &errors)
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
-			var arr = [Any]()
-			for val in sequenceLinkId {
-				arr.append(val.asJSON())
-			}
-			json["sequenceLinkId"] = arr
+			json["sequenceLinkId"] = sequenceLinkId.map() { $0.asJSON() }
 		}
 		if let service = self.service {
 			json["service"] = service.asJSON(errors: &errors)
@@ -1141,10 +1138,10 @@ open class ExplanationOfBenefitAddItem: BackboneElement {
 
 
 /**
- *  Added items details.
- *
- *  The second tier service adjudications for payor added services.
- */
+Added items details.
+
+The second tier service adjudications for payor added services.
+*/
 open class ExplanationOfBenefitAddItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitAddItemDetail" }
@@ -1286,11 +1283,7 @@ open class ExplanationOfBenefitAddItemDetail: BackboneElement {
 			json["modifier"] = modifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let revenue = self.revenue {
 			json["revenue"] = revenue.asJSON(errors: &errors)
@@ -1305,8 +1298,8 @@ open class ExplanationOfBenefitAddItemDetail: BackboneElement {
 
 
 /**
- *  Balance by Benefit Category.
- */
+Balance by Benefit Category.
+*/
 open class ExplanationOfBenefitBenefitBalance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitBenefitBalance" }
@@ -1488,10 +1481,10 @@ open class ExplanationOfBenefitBenefitBalance: BackboneElement {
 
 
 /**
- *  Benefit Summary.
- *
- *  Benefits Used to date.
- */
+Benefit Summary.
+
+Benefits Used to date.
+*/
 open class ExplanationOfBenefitBenefitBalanceFinancial: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitBenefitBalanceFinancial" }
@@ -1628,10 +1621,10 @@ open class ExplanationOfBenefitBenefitBalanceFinancial: BackboneElement {
 
 
 /**
- *  Insurance or medical plan.
- *
- *  Financial instrument by which payment information for health care.
- */
+Insurance or medical plan.
+
+Financial instrument by which payment information for health care.
+*/
 open class ExplanationOfBenefitCoverage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitCoverage" }
@@ -1679,11 +1672,7 @@ open class ExplanationOfBenefitCoverage: BackboneElement {
 			json["coverage"] = coverage.asJSON(errors: &errors)
 		}
 		if let preAuthRef = self.preAuthRef {
-			var arr = [Any]()
-			for val in preAuthRef {
-				arr.append(val.asJSON())
-			}
-			json["preAuthRef"] = arr
+			json["preAuthRef"] = preAuthRef.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -1692,10 +1681,10 @@ open class ExplanationOfBenefitCoverage: BackboneElement {
 
 
 /**
- *  Diagnosis.
- *
- *  Ordered list of patient diagnosis for which care is sought.
- */
+Diagnosis.
+
+Ordered list of patient diagnosis for which care is sought.
+*/
 open class ExplanationOfBenefitDiagnosis: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitDiagnosis" }
@@ -1806,11 +1795,11 @@ open class ExplanationOfBenefitDiagnosis: BackboneElement {
 
 
 /**
- *  Exceptions, special considerations, the condition, situation, prior or concurrent issues.
- *
- *  Additional information codes regarding exceptions, special considerations, the condition, situation, prior or
- *  concurrent issues. Often there are mutiple jurisdiction specific valuesets which are required.
- */
+Exceptions, special considerations, the condition, situation, prior or concurrent issues.
+
+Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent
+issues. Often there are mutiple jurisdiction specific valuesets which are required.
+*/
 open class ExplanationOfBenefitInformation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitInformation" }
@@ -1952,10 +1941,10 @@ open class ExplanationOfBenefitInformation: BackboneElement {
 
 
 /**
- *  Goods and Services.
- *
- *  First tier of goods and services.
- */
+Goods and Services.
+
+First tier of goods and services.
+*/
 open class ExplanationOfBenefitItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitItem" }
@@ -2391,11 +2380,7 @@ open class ExplanationOfBenefitItem: BackboneElement {
 			json["detail"] = detail.map() { $0.asJSON(errors: &errors) }
 		}
 		if let diagnosisLinkId = self.diagnosisLinkId {
-			var arr = [Any]()
-			for val in diagnosisLinkId {
-				arr.append(val.asJSON())
-			}
-			json["diagnosisLinkId"] = arr
+			json["diagnosisLinkId"] = diagnosisLinkId.map() { $0.asJSON() }
 		}
 		if let factor = self.factor {
 			json["factor"] = factor.asJSON()
@@ -2416,11 +2401,7 @@ open class ExplanationOfBenefitItem: BackboneElement {
 			json["net"] = net.asJSON(errors: &errors)
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let points = self.points {
 			json["points"] = points.asJSON()
@@ -2465,10 +2446,10 @@ open class ExplanationOfBenefitItem: BackboneElement {
 
 
 /**
- *  Adjudication details.
- *
- *  The adjudications results.
- */
+Adjudication details.
+
+The adjudications results.
+*/
 open class ExplanationOfBenefitItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitItemAdjudication" }
@@ -2575,11 +2556,11 @@ open class ExplanationOfBenefitItemAdjudication: BackboneElement {
 
 
 /**
- *  Care Team members.
- *
- *  The members of the team who provided the overall service as well as their role and whether responsible and
- *  qualifications.
- */
+Care Team members.
+
+The members of the team who provided the overall service as well as their role and whether responsible and
+qualifications.
+*/
 open class ExplanationOfBenefitItemCareTeam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitItemCareTeam" }
@@ -2686,10 +2667,10 @@ open class ExplanationOfBenefitItemCareTeam: BackboneElement {
 
 
 /**
- *  Additional items.
- *
- *  Second tier of goods and services.
- */
+Additional items.
+
+Second tier of goods and services.
+*/
 open class ExplanationOfBenefitItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitItemDetail" }
@@ -2986,11 +2967,7 @@ open class ExplanationOfBenefitItemDetail: BackboneElement {
 			json["net"] = net.asJSON(errors: &errors)
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let points = self.points {
 			json["points"] = points.asJSON()
@@ -3029,10 +3006,10 @@ open class ExplanationOfBenefitItemDetail: BackboneElement {
 
 
 /**
- *  Additional items.
- *
- *  Third tier of goods and services.
- */
+Additional items.
+
+Third tier of goods and services.
+*/
 open class ExplanationOfBenefitItemDetailSubDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitItemDetailSubDetail" }
@@ -3312,11 +3289,7 @@ open class ExplanationOfBenefitItemDetailSubDetail: BackboneElement {
 			json["net"] = net.asJSON(errors: &errors)
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let points = self.points {
 			json["points"] = points.asJSON()
@@ -3352,10 +3325,10 @@ open class ExplanationOfBenefitItemDetailSubDetail: BackboneElement {
 
 
 /**
- *  Prosthetic details.
- *
- *  The materials and placement date of prior fixed prosthesis.
- */
+Prosthetic details.
+
+The materials and placement date of prior fixed prosthesis.
+*/
 open class ExplanationOfBenefitItemProsthesis: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitItemProsthesis" }
@@ -3427,11 +3400,10 @@ open class ExplanationOfBenefitItemProsthesis: BackboneElement {
 
 
 /**
- *  Only if type = oral.
- *
- *  A list of teeth which would be expected but are not found due to having been previously  extracted or for other
- *  reasons.
- */
+Only if type = oral.
+
+A list of teeth which would be expected but are not found due to having been previously  extracted or for other reasons.
+*/
 open class ExplanationOfBenefitMissingTeeth: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitMissingTeeth" }
@@ -3518,10 +3490,10 @@ open class ExplanationOfBenefitMissingTeeth: BackboneElement {
 
 
 /**
- *  Processing notes.
- *
- *  Note text.
- */
+Processing notes.
+
+Note text.
+*/
 open class ExplanationOfBenefitNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitNote" }
@@ -3613,10 +3585,10 @@ open class ExplanationOfBenefitNote: BackboneElement {
 
 
 /**
- *  Payee.
- *
- *  The party to be reimbursed for the services.
- */
+Payee.
+
+The party to be reimbursed for the services.
+*/
 open class ExplanationOfBenefitPayee: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitPayee" }
@@ -3718,10 +3690,10 @@ open class ExplanationOfBenefitPayee: BackboneElement {
 
 
 /**
- *  Payment (if paid).
- *
- *  Payment details for the claim if the claim has been paid.
- */
+Payment (if paid).
+
+Payment details for the claim if the claim has been paid.
+*/
 open class ExplanationOfBenefitPayment: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitPayment" }
@@ -3858,10 +3830,10 @@ open class ExplanationOfBenefitPayment: BackboneElement {
 
 
 /**
- *  Procedures performed.
- *
- *  Ordered list of patient procedures performed to support the adjudication.
- */
+Procedures performed.
+
+Ordered list of patient procedures performed to support the adjudication.
+*/
 open class ExplanationOfBenefitProcedure: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitProcedure" }
@@ -3977,10 +3949,10 @@ open class ExplanationOfBenefitProcedure: BackboneElement {
 
 
 /**
- *  Related Claims which may be revelant to processing this claimn.
- *
- *  Other claims which are related to this claim such as prior claim versions or for related services.
- */
+Related Claims which may be revelant to processing this claimn.
+
+Other claims which are related to this claim such as prior claim versions or for related services.
+*/
 open class ExplanationOfBenefitRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefitRelated" }

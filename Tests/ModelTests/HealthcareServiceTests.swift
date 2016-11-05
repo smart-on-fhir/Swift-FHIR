@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -39,15 +39,15 @@ class HealthcareServiceTests: XCTestCase {
 		XCTAssertEqual(inst.availabilityExceptions, "Reduced capacity is available during the Christmas period")
 		XCTAssertEqual(inst.availableTime?[0].availableEndTime?.description, "05:30:00")
 		XCTAssertEqual(inst.availableTime?[0].availableStartTime?.description, "08:30:00")
-		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[0], "mon")
-		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[1], "tue")
-		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[2], "wed")
-		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[3], "thu")
-		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[4], "fri")
+		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[0], DaysOfWeek(rawValue: "mon")!)
+		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[1], DaysOfWeek(rawValue: "tue")!)
+		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[2], DaysOfWeek(rawValue: "wed")!)
+		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[3], DaysOfWeek(rawValue: "thu")!)
+		XCTAssertEqual(inst.availableTime?[0].daysOfWeek?[4], DaysOfWeek(rawValue: "fri")!)
 		XCTAssertEqual(inst.availableTime?[1].availableEndTime?.description, "04:30:00")
 		XCTAssertEqual(inst.availableTime?[1].availableStartTime?.description, "09:30:00")
-		XCTAssertEqual(inst.availableTime?[1].daysOfWeek?[0], "sat")
-		XCTAssertEqual(inst.availableTime?[1].daysOfWeek?[1], "fri")
+		XCTAssertEqual(inst.availableTime?[1].daysOfWeek?[0], DaysOfWeek(rawValue: "sat")!)
+		XCTAssertEqual(inst.availableTime?[1].daysOfWeek?[1], DaysOfWeek(rawValue: "fri")!)
 		XCTAssertEqual(inst.characteristic?[0].coding?[0].display, "Wheelchair access")
 		XCTAssertEqual(inst.comment, "Providing Specialist psychology services to the greater Den Burg area, many years of experience dealing with PTSD issues")
 		XCTAssertEqual(inst.contained?[0].id, "DenBurg")
@@ -83,13 +83,13 @@ class HealthcareServiceTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "47505003")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Posttraumatic stress disorder")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.telecom?[0].system, "phone")
-		XCTAssertEqual(inst.telecom?[0].use, "work")
+		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
+		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.telecom?[0].value, "(555) silent")
-		XCTAssertEqual(inst.telecom?[1].system, "email")
-		XCTAssertEqual(inst.telecom?[1].use, "work")
+		XCTAssertEqual(inst.telecom?[1].system, ContactPointSystem(rawValue: "email")!)
+		XCTAssertEqual(inst.telecom?[1].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.telecom?[1].value, "directaddress@example.com")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

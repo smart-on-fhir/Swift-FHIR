@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Measurement, calculation or setting capability of a medical device.
- *
- *  Describes a measurement, calculation or setting capability of a medical device.
- */
+Measurement, calculation or setting capability of a medical device.
+
+Describes a measurement, calculation or setting capability of a medical device.
+*/
 open class DeviceMetric: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceMetric" }
@@ -22,11 +22,15 @@ open class DeviceMetric: DomainResource {
 	/// Describes the calibrations that have been performed or that are required to be performed.
 	public var calibration: [DeviceMetricCalibration]?
 	
-	/// measurement | setting | calculation | unspecified.
-	public var category: String?
+	/// Indicates the category of the observation generation process. A DeviceMetric can be for example a setting,
+	/// measurement, or calculation.
+	public var category: DeviceMetricCategory?
 	
-	/// black | red | green | yellow | blue | magenta | cyan | white.
-	public var color: String?
+	/// Describes the color representation for the metric. This is often used to aid clinicians to track and identify
+	/// parameter types by color. In practice, consider a Patient Monitor that has ECG/HR and Pleth for example; the
+	/// parameters are displayed in different characteristic colors, such as HR-blue, BP-green, and PR and SpO2-
+	/// magenta.
+	public var color: DeviceMetricColor?
 	
 	/// Unique identifier of this DeviceMetric.
 	public var identifier: Identifier?
@@ -34,8 +38,8 @@ open class DeviceMetric: DomainResource {
 	/// Describes the measurement repetition time.
 	public var measurementPeriod: Timing?
 	
-	/// on | off | standby.
-	public var operationalStatus: String?
+	/// Indicates current operational state of the device. For example: On, Off, Standby, etc.
+	public var operationalStatus: DeviceMetricOperationalStatus?
 	
 	/// Describes the link to the parent DeviceComponent.
 	public var parent: Reference?
@@ -51,7 +55,7 @@ open class DeviceMetric: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: String, identifier: Identifier, type: CodeableConcept) {
+	public convenience init(category: DeviceMetricCategory, identifier: Identifier, type: CodeableConcept) {
 		self.init()
 		self.category = category
 		self.identifier = identifier
@@ -78,7 +82,12 @@ open class DeviceMetric: DomainResource {
 		if let exist = json["category"] {
 			presentKeys.insert("category")
 			if let val = exist as? String {
-				self.category = val
+				if let enumval = DeviceMetricCategory(rawValue: val) {
+					self.category = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "category", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "category", wants: String.self, has: type(of: exist)))
@@ -90,7 +99,12 @@ open class DeviceMetric: DomainResource {
 		if let exist = json["color"] {
 			presentKeys.insert("color")
 			if let val = exist as? String {
-				self.color = val
+				if let enumval = DeviceMetricColor(rawValue: val) {
+					self.color = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "color", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "color", wants: String.self, has: type(of: exist)))
@@ -130,7 +144,12 @@ open class DeviceMetric: DomainResource {
 		if let exist = json["operationalStatus"] {
 			presentKeys.insert("operationalStatus")
 			if let val = exist as? String {
-				self.operationalStatus = val
+				if let enumval = DeviceMetricOperationalStatus(rawValue: val) {
+					self.operationalStatus = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "operationalStatus", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "operationalStatus", wants: String.self, has: type(of: exist)))
@@ -205,10 +224,10 @@ open class DeviceMetric: DomainResource {
 			json["calibration"] = calibration.map() { $0.asJSON(errors: &errors) }
 		}
 		if let category = self.category {
-			json["category"] = category.asJSON()
+			json["category"] = category.rawValue
 		}
 		if let color = self.color {
-			json["color"] = color.asJSON()
+			json["color"] = color.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
@@ -217,7 +236,7 @@ open class DeviceMetric: DomainResource {
 			json["measurementPeriod"] = measurementPeriod.asJSON(errors: &errors)
 		}
 		if let operationalStatus = self.operationalStatus {
-			json["operationalStatus"] = operationalStatus.asJSON()
+			json["operationalStatus"] = operationalStatus.rawValue
 		}
 		if let parent = self.parent {
 			json["parent"] = parent.asJSON(errors: &errors)
@@ -238,21 +257,21 @@ open class DeviceMetric: DomainResource {
 
 
 /**
- *  Describes the calibrations that have been performed or that are required to be performed.
- */
+Describes the calibrations that have been performed or that are required to be performed.
+*/
 open class DeviceMetricCalibration: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DeviceMetricCalibration" }
 	}
 	
-	/// not-calibrated | calibration-required | calibrated | unspecified.
-	public var state: String?
+	/// Describes the state of the calibration.
+	public var state: DeviceMetricCalibrationState?
 	
 	/// Describes the time last calibration has been performed.
 	public var time: Instant?
 	
-	/// unspecified | offset | gain | two-point.
-	public var type: String?
+	/// Describes the type of the calibration method.
+	public var type: DeviceMetricCalibrationType?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -260,7 +279,12 @@ open class DeviceMetricCalibration: BackboneElement {
 		if let exist = json["state"] {
 			presentKeys.insert("state")
 			if let val = exist as? String {
-				self.state = val
+				if let enumval = DeviceMetricCalibrationState(rawValue: val) {
+					self.state = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "state", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "state", wants: String.self, has: type(of: exist)))
@@ -278,7 +302,12 @@ open class DeviceMetricCalibration: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = DeviceMetricCalibrationType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -291,13 +320,13 @@ open class DeviceMetricCalibration: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let state = self.state {
-			json["state"] = state.asJSON()
+			json["state"] = state.rawValue
 		}
 		if let time = self.time {
 			json["time"] = time.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json

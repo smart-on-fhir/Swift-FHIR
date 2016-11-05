@@ -2,7 +2,7 @@
 //  EndpointTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -37,8 +37,8 @@ class EndpointTests: XCTestCase {
 		XCTAssertEqual(inst.address?.absoluteString, "http://fhir3.healthintersections.com.au/open/CarePlan")
 		XCTAssertEqual(inst.connectionType?.code, "hl7-fhir-rest")
 		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://hl7.org/fhir/endpoint-connection-type")
-		XCTAssertEqual(inst.contact?[0].system, "email")
-		XCTAssertEqual(inst.contact?[0].use, "work")
+		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "email")!)
+		XCTAssertEqual(inst.contact?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].value, "endpointmanager@example.org")
 		XCTAssertEqual(inst.header?[0], "bearer-code BASGS534s4")
 		XCTAssertEqual(inst.id, "example")
@@ -50,8 +50,8 @@ class EndpointTests: XCTestCase {
 		XCTAssertEqual(inst.payloadType?[0].coding?[0].code, "CarePlan")
 		XCTAssertEqual(inst.payloadType?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/resource-types")
 		XCTAssertEqual(inst.period?.start?.description, "2014-09-01")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, EndpointStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

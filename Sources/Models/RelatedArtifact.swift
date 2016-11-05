@@ -2,7 +2,7 @@
 //  RelatedArtifact.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Related artifacts for a knowledge resource.
- *
- *  Related artifacts such as additional documentation, justification, or bibliographic references.
- */
+Related artifacts for a knowledge resource.
+
+Related artifacts such as additional documentation, justification, or bibliographic references.
+*/
 open class RelatedArtifact: Element {
 	override open class var resourceType: String {
 		get { return "RelatedArtifact" }
@@ -31,15 +31,15 @@ open class RelatedArtifact: Element {
 	/// The related resource.
 	public var resource: Reference?
 	
-	/// documentation | justification | citation | predecessor | successor | derived-from | depends-on | composed-of.
-	public var type: String?
+	/// The type of relationship to the related artifact.
+	public var type: RelatedArtifactType?
 	
 	/// Url for the related artifact.
 	public var url: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: RelatedArtifactType) {
 		self.init()
 		self.type = type
 	}
@@ -96,7 +96,12 @@ open class RelatedArtifact: Element {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = RelatedArtifactType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -133,7 +138,7 @@ open class RelatedArtifact: Element {
 			json["resource"] = resource.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()

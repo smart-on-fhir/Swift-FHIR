@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -42,7 +42,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.id, "1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "InstanceUID")
-		XCTAssertEqual(inst.identifier?[0].use, "official")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "http://acme-imaging.com/accession/2012")
 		XCTAssertEqual(inst.identifier?[1].type?.text, "accessionNo")
@@ -56,8 +56,8 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.subtype?.coding?[0].code, "US")
 		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type, "photo")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
 		XCTAssertEqual(inst.view?.coding?[0].code, "399067008")
 		XCTAssertEqual(inst.view?.coding?[0].display, "Lateral projection")
 		XCTAssertEqual(inst.view?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -88,8 +88,8 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sound recording of speech example for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type, "video")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "video")!)
 		
 		return inst
 	}
@@ -120,8 +120,8 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.subtype?.coding?[0].code, "diagram")
 		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/media-method")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagram for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type, "photo")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
 		XCTAssertEqual(inst.width, UInt(126))
 		
 		return inst

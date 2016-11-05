@@ -2,7 +2,7 @@
 //  ContactDetail.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ContactDetail) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ContactDetail) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Contact information.
- *
- *  Specifies contact information for a person or organization.
- */
+Contact information.
+
+Specifies contact information for a person or organization.
+*/
 open class ContactDetail: Element {
 	override open class var resourceType: String {
 		get { return "ContactDetail" }

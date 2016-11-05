@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Allergy or Intolerance (generally: Risk of adverse reaction to a substance).
- *
- *  Risk of harmful or undesirable, physiological response which is unique to an individual and associated with exposure
- *  to a substance.
- */
+Allergy or Intolerance (generally: Risk of adverse reaction to a substance).
+
+Risk of harmful or undesirable, physiological response which is unique to an individual and associated with exposure to
+a substance.
+*/
 open class AllergyIntolerance: DomainResource {
 	override open class var resourceType: String {
 		get { return "AllergyIntolerance" }
@@ -23,14 +23,14 @@ open class AllergyIntolerance: DomainResource {
 	/// Date record was believed accurate.
 	public var attestedDate: DateTime?
 	
-	/// food | medication | biologic | environment.
-	public var category: [String]?
+	/// Category of the identified substance.
+	public var category: [AllergyIntoleranceCategory]?
 	
 	/// Allergy or intolerance code.
 	public var code: CodeableConcept?
 	
-	/// low | high | unable-to-assess.
-	public var criticality: String?
+	/// Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance.
+	public var criticality: AllergyIntoleranceCriticality?
 	
 	/// External ids for this item.
 	public var identifier: [Identifier]?
@@ -41,7 +41,7 @@ open class AllergyIntolerance: DomainResource {
 	/// Additional text not captured in other fields.
 	public var note: [Annotation]?
 	
-	/// Date(/time) when manifestations showed.
+	/// Date(/time) when allergy or intolerance was identified.
 	public var onset: DateTime?
 	
 	/// Who the sensitivity is for.
@@ -56,11 +56,12 @@ open class AllergyIntolerance: DomainResource {
 	/// Source of the information about the allergy.
 	public var reporter: Reference?
 	
-	/// active | active-confirmed | inactive | resolved | refuted | entered-in-error.
-	public var status: String?
+	/// Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified
+	/// substance (including pharmaceutical product).
+	public var status: AllergyIntoleranceStatus?
 	
-	/// allergy | intolerance - Underlying mechanism (if known).
-	public var type: String?
+	/// Identification of the underlying physiological mechanism for the reaction risk.
+	public var type: AllergyIntoleranceType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -83,8 +84,12 @@ open class AllergyIntolerance: DomainResource {
 		}
 		if let exist = json["category"] {
 			presentKeys.insert("category")
-			if let val = exist as? [String] {
-				self.category = val
+			if let val = exist as? [String] { var i = -1
+				self.category = val.map() { i += 1
+					if let enumval = AllergyIntoleranceCategory(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "category.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "category", wants: Array<String>.self, has: type(of: exist)))
@@ -107,7 +112,12 @@ open class AllergyIntolerance: DomainResource {
 		if let exist = json["criticality"] {
 			presentKeys.insert("criticality")
 			if let val = exist as? String {
-				self.criticality = val
+				if let enumval = AllergyIntoleranceCriticality(rawValue: val) {
+					self.criticality = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "criticality", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "criticality", wants: String.self, has: type(of: exist)))
@@ -221,7 +231,12 @@ open class AllergyIntolerance: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = AllergyIntoleranceStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -230,7 +245,12 @@ open class AllergyIntolerance: DomainResource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = AllergyIntoleranceType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -246,17 +266,13 @@ open class AllergyIntolerance: DomainResource {
 			json["attestedDate"] = attestedDate.asJSON()
 		}
 		if let category = self.category {
-			var arr = [Any]()
-			for val in category {
-				arr.append(val.asJSON())
-			}
-			json["category"] = arr
+			json["category"] = category.map() { $0.rawValue }
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
 		if let criticality = self.criticality {
-			json["criticality"] = criticality.asJSON()
+			json["criticality"] = criticality.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
@@ -283,10 +299,10 @@ open class AllergyIntolerance: DomainResource {
 			json["reporter"] = reporter.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -295,17 +311,18 @@ open class AllergyIntolerance: DomainResource {
 
 
 /**
- *  Adverse Reaction Events linked to exposure to substance.
- *
- *  Details about each adverse reaction event linked to exposure to the identified substance.
- */
+Adverse Reaction Events linked to exposure to substance.
+
+Details about each adverse reaction event linked to exposure to the identified substance.
+*/
 open class AllergyIntoleranceReaction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AllergyIntoleranceReaction" }
 	}
 	
-	/// unlikely | likely | confirmed | unknown.
-	public var certainty: String?
+	/// Statement about the degree of clinical certainty that the specific substance was the cause of the manifestation
+	/// in this reaction event.
+	public var certainty: AllergyIntoleranceCertainty?
 	
 	/// Description of the event as a whole.
 	public var description_fhir: String?
@@ -322,8 +339,9 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	/// Date(/time) when manifestations showed.
 	public var onset: DateTime?
 	
-	/// mild | moderate | severe (of event as a whole).
-	public var severity: String?
+	/// Clinical assessment of the severity of the reaction event as a whole, potentially considering multiple different
+	/// manifestations.
+	public var severity: AllergyIntoleranceSeverity?
 	
 	/// Specific substance or pharmaceutical product considered to be responsible for event.
 	public var substance: CodeableConcept?
@@ -341,7 +359,12 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		if let exist = json["certainty"] {
 			presentKeys.insert("certainty")
 			if let val = exist as? String {
-				self.certainty = val
+				if let enumval = AllergyIntoleranceCertainty(rawValue: val) {
+					self.certainty = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "certainty", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "certainty", wants: String.self, has: type(of: exist)))
@@ -413,7 +436,12 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		if let exist = json["severity"] {
 			presentKeys.insert("severity")
 			if let val = exist as? String {
-				self.severity = val
+				if let enumval = AllergyIntoleranceSeverity(rawValue: val) {
+					self.severity = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "severity", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "severity", wants: String.self, has: type(of: exist)))
@@ -440,7 +468,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let certainty = self.certainty {
-			json["certainty"] = certainty.asJSON()
+			json["certainty"] = certainty.rawValue
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -458,7 +486,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 			json["onset"] = onset.asJSON()
 		}
 		if let severity = self.severity {
-			json["severity"] = severity.asJSON()
+			json["severity"] = severity.rawValue
 		}
 		if let substance = self.substance {
 			json["substance"] = substance.asJSON(errors: &errors)

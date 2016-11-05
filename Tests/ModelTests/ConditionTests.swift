@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -59,8 +59,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f001")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -106,8 +106,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.stage?.summary?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f001")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -150,8 +150,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f001")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -197,8 +197,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -239,8 +239,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -284,8 +284,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -331,8 +331,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.stage?.summary?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "differential")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "differential")!)
 		
 		return inst
 	}
@@ -360,8 +360,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.id, "f205")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "differential")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "differential")!)
 		
 		return inst
 	}
@@ -392,8 +392,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.onsetDateTime?.description, "2010-07-18")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Ischemic stroke, July 18, 2010</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -433,8 +433,8 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Severe burn of left ear (Date: 24-May 2012)</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.verificationStatus, "confirmed")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}

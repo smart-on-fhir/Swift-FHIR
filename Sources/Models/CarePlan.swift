@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Healthcare plan for patient or group.
- *
- *  Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or
- *  community for a period of time, possibly limited to care for a specific condition or set of conditions.
- */
+Healthcare plan for patient or group.
+
+Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or
+community for a period of time, possibly limited to care for a specific condition or set of conditions.
+*/
 open class CarePlan: DomainResource {
 	override open class var resourceType: String {
 		get { return "CarePlan" }
@@ -38,6 +38,9 @@ open class CarePlan: DomainResource {
 	/// Created in context of.
 	public var context: Reference?
 	
+	/// Protocol or definition.
+	public var definition: Reference?
+	
 	/// Summary of nature of plan.
 	public var description_fhir: String?
 	
@@ -59,8 +62,9 @@ open class CarePlan: DomainResource {
 	/// Plans related to this one.
 	public var relatedPlan: [CarePlanRelatedPlan]?
 	
-	/// proposed | draft | active | suspended | completed | entered-in-error | cancelled.
-	public var status: String?
+	/// Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical
+	/// record.
+	public var status: CarePlanStatus?
 	
 	/// Who care plan is for.
 	public var subject: Reference?
@@ -70,7 +74,7 @@ open class CarePlan: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: CarePlanStatus) {
 		self.init()
 		self.status = status
 	}
@@ -160,6 +164,20 @@ open class CarePlan: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "context", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["definition"] {
+			presentKeys.insert("definition")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.definition = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "definition"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "definition", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["description"] {
@@ -253,7 +271,12 @@ open class CarePlan: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = CarePlanStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -314,6 +337,9 @@ open class CarePlan: DomainResource {
 		if let context = self.context {
 			json["context"] = context.asJSON(errors: &errors)
 		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON(errors: &errors)
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
@@ -336,7 +362,7 @@ open class CarePlan: DomainResource {
 			json["relatedPlan"] = relatedPlan.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -351,11 +377,11 @@ open class CarePlan: DomainResource {
 
 
 /**
- *  Action to occur as part of plan.
- *
- *  Identifies a planned action to occur as part of the plan.  For example, a medication to be used, lab tests to
- *  perform, self-monitoring, education, etc.
- */
+Action to occur as part of plan.
+
+Identifies a planned action to occur as part of the plan.  For example, a medication to be used, lab tests to perform,
+self-monitoring, education, etc.
+*/
 open class CarePlanActivity: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CarePlanActivity" }
@@ -477,11 +503,11 @@ open class CarePlanActivity: BackboneElement {
 
 
 /**
- *  In-line definition of activity.
- *
- *  A simple summary of a planned activity suitable for a general care plan system (e.g. form driven) that doesn't know
- *  about specific resources such as procedure etc.
- */
+In-line definition of activity.
+
+A simple summary of a planned activity suitable for a general care plan system (e.g. form driven) that doesn't know
+about specific resources such as procedure etc.
+*/
 open class CarePlanActivityDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CarePlanActivityDetail" }
@@ -538,11 +564,18 @@ open class CarePlanActivityDetail: BackboneElement {
 	/// When activity is to occur.
 	public var scheduledTiming: Timing?
 	
-	/// not-started | scheduled | in-progress | on-hold | completed | cancelled.
-	public var status: String?
+	/// Identifies what progress is being made for the specific activity.
+	public var status: CarePlanActivityStatus?
 	
 	/// Reason for current status.
 	public var statusReason: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: CarePlanActivityStatus) {
+		self.init()
+		self.status = status
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -773,11 +806,19 @@ open class CarePlanActivityDetail: BackboneElement {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = CarePlanActivityStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let exist = json["statusReason"] {
 			presentKeys.insert("statusReason")
@@ -851,7 +892,7 @@ open class CarePlanActivityDetail: BackboneElement {
 			json["scheduledTiming"] = scheduledTiming.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let statusReason = self.statusReason {
 			json["statusReason"] = statusReason.asJSON(errors: &errors)
@@ -863,17 +904,17 @@ open class CarePlanActivityDetail: BackboneElement {
 
 
 /**
- *  Plans related to this one.
- *
- *  Identifies CarePlans with some sort of formal relationship to the current plan.
- */
+Plans related to this one.
+
+Identifies CarePlans with some sort of formal relationship to the current plan.
+*/
 open class CarePlanRelatedPlan: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CarePlanRelatedPlan" }
 	}
 	
-	/// includes | replaces | fulfills.
-	public var code: String?
+	/// Identifies the type of relationship this plan has to the target plan.
+	public var code: CarePlanRelationship?
 	
 	/// Plan relationship exists with.
 	public var plan: Reference?
@@ -891,7 +932,12 @@ open class CarePlanRelatedPlan: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				if let enumval = CarePlanRelationship(rawValue: val) {
+					self.code = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "code", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -921,7 +967,7 @@ open class CarePlanRelatedPlan: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.rawValue
 		}
 		if let plan = self.plan {
 			json["plan"] = plan.asJSON(errors: &errors)

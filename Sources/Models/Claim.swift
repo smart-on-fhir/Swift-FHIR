@@ -2,7 +2,7 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Claim) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Claim) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Claim, Pre-determination or Pre-authorization.
- *
- *  A provider issued list of services and products provided, or to be provided, to a patient which is provided to an
- *  insurer for payment recovery.
- */
+Claim, Pre-determination or Pre-authorization.
+
+A provider issued list of services and products provided, or to be provided, to a patient which is provided to an
+insurer for payment recovery.
+*/
 open class Claim: DomainResource {
 	override open class var resourceType: String {
 		get { return "Claim" }
@@ -101,8 +101,8 @@ open class Claim: DomainResource {
 	/// Current specification followed.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: ClaimStatus?
 	
 	/// Finer grained claim type information.
 	public var subType: [Coding]?
@@ -113,12 +113,12 @@ open class Claim: DomainResource {
 	/// Type or discipline.
 	public var type: Coding?
 	
-	/// complete | proposed | exploratory | other.
-	public var use: String?
+	/// Complete (Bill or Claim), Proposed (Pre-Authorization), Exploratory (Pre-determination).
+	public var use: Use?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, status: String, type: Coding) {
+	public convenience init(patient: Reference, status: ClaimStatus, type: Coding) {
 		self.init()
 		self.patient = patient
 		self.status = status
@@ -507,7 +507,12 @@ open class Claim: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ClaimStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -564,7 +569,12 @@ open class Claim: DomainResource {
 		if let exist = json["use"] {
 			presentKeys.insert("use")
 			if let val = exist as? String {
-				self.use = val
+				if let enumval = Use(rawValue: val) {
+					self.use = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
@@ -658,7 +668,7 @@ open class Claim: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subType = self.subType {
 			json["subType"] = subType.map() { $0.asJSON(errors: &errors) }
@@ -670,7 +680,7 @@ open class Claim: DomainResource {
 			json["type"] = type.asJSON(errors: &errors)
 		}
 		if let use = self.use {
-			json["use"] = use.asJSON()
+			json["use"] = use.rawValue
 		}
 		
 		return json
@@ -679,16 +689,18 @@ open class Claim: DomainResource {
 
 
 /**
- *  Details about an accident.
- *
- *  An accident which resulted in the need for healthcare services.
- */
+Details about an accident.
+
+An accident which resulted in the need for healthcare services.
+*/
 open class ClaimAccident: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimAccident" }
 	}
 	
-	/// When the accident occurred see information codes see information codes.
+	/// When the accident occurred
+	/// see information codes
+	/// see information codes.
 	public var date: FHIRDate?
 	
 	/// Accident Place.
@@ -789,10 +801,10 @@ open class ClaimAccident: BackboneElement {
 
 
 /**
- *  Insurance or medical plan.
- *
- *  Financial instrument by which payment information for health care.
- */
+Insurance or medical plan.
+
+Financial instrument by which payment information for health care.
+*/
 open class ClaimCoverage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimCoverage" }
@@ -940,11 +952,7 @@ open class ClaimCoverage: BackboneElement {
 			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
 		}
 		if let preAuthRef = self.preAuthRef {
-			var arr = [Any]()
-			for val in preAuthRef {
-				arr.append(val.asJSON())
-			}
-			json["preAuthRef"] = arr
+			json["preAuthRef"] = preAuthRef.map() { $0.asJSON() }
 		}
 		if let sequence = self.sequence {
 			json["sequence"] = sequence.asJSON()
@@ -956,10 +964,10 @@ open class ClaimCoverage: BackboneElement {
 
 
 /**
- *  Diagnosis.
- *
- *  Ordered list of patient diagnosis for which care is sought.
- */
+Diagnosis.
+
+Ordered list of patient diagnosis for which care is sought.
+*/
 open class ClaimDiagnosis: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimDiagnosis" }
@@ -1070,11 +1078,11 @@ open class ClaimDiagnosis: BackboneElement {
 
 
 /**
- *  Exceptions, special considerations, the condition, situation, prior or concurrent issues.
- *
- *  Additional information codes regarding exceptions, special considerations, the condition, situation, prior or
- *  concurrent issues. Often there are mutiple jurisdiction specific valuesets which are required.
- */
+Exceptions, special considerations, the condition, situation, prior or concurrent issues.
+
+Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent
+issues. Often there are mutiple jurisdiction specific valuesets which are required.
+*/
 open class ClaimInformation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimInformation" }
@@ -1216,10 +1224,10 @@ open class ClaimInformation: BackboneElement {
 
 
 /**
- *  Goods and Services.
- *
- *  First tier of goods and services.
- */
+Goods and Services.
+
+First tier of goods and services.
+*/
 open class ClaimItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimItem" }
@@ -1623,11 +1631,7 @@ open class ClaimItem: BackboneElement {
 			json["detail"] = detail.map() { $0.asJSON(errors: &errors) }
 		}
 		if let diagnosisLinkId = self.diagnosisLinkId {
-			var arr = [Any]()
-			for val in diagnosisLinkId {
-				arr.append(val.asJSON())
-			}
-			json["diagnosisLinkId"] = arr
+			json["diagnosisLinkId"] = diagnosisLinkId.map() { $0.asJSON() }
 		}
 		if let factor = self.factor {
 			json["factor"] = factor.asJSON()
@@ -1690,11 +1694,11 @@ open class ClaimItem: BackboneElement {
 
 
 /**
- *  Members of the care team.
- *
- *  The members of the team who provided the overall service as well as their role and whether responsible and
- *  qualifications.
- */
+Members of the care team.
+
+The members of the team who provided the overall service as well as their role and whether responsible and
+qualifications.
+*/
 open class ClaimItemCareTeam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimItemCareTeam" }
@@ -1801,10 +1805,10 @@ open class ClaimItemCareTeam: BackboneElement {
 
 
 /**
- *  Additional items.
- *
- *  Second tier of goods and services.
- */
+Additional items.
+
+Second tier of goods and services.
+*/
 open class ClaimItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimItemDetail" }
@@ -2081,10 +2085,10 @@ open class ClaimItemDetail: BackboneElement {
 
 
 /**
- *  Additional items.
- *
- *  Third tier of goods and services.
- */
+Additional items.
+
+Third tier of goods and services.
+*/
 open class ClaimItemDetailSubDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimItemDetailSubDetail" }
@@ -2341,10 +2345,10 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 
 
 /**
- *  Prosthetic details.
- *
- *  The materials and placement date of prior fixed prosthesis.
- */
+Prosthetic details.
+
+The materials and placement date of prior fixed prosthesis.
+*/
 open class ClaimItemProsthesis: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimItemProsthesis" }
@@ -2416,11 +2420,10 @@ open class ClaimItemProsthesis: BackboneElement {
 
 
 /**
- *  Only if type = oral.
- *
- *  A list of teeth which would be expected but are not found due to having been previously  extracted or for other
- *  reasons.
- */
+Only if type = oral.
+
+A list of teeth which would be expected but are not found due to having been previously  extracted or for other reasons.
+*/
 open class ClaimMissingTeeth: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimMissingTeeth" }
@@ -2507,10 +2510,10 @@ open class ClaimMissingTeeth: BackboneElement {
 
 
 /**
- *  Party to be paid any benefits payable.
- *
- *  The party to be reimbursed for the services.
- */
+Party to be paid any benefits payable.
+
+The party to be reimbursed for the services.
+*/
 open class ClaimPayee: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimPayee" }
@@ -2602,10 +2605,10 @@ open class ClaimPayee: BackboneElement {
 
 
 /**
- *  Procedures performed.
- *
- *  Ordered list of patient procedures performed to support the adjudication.
- */
+Procedures performed.
+
+Ordered list of patient procedures performed to support the adjudication.
+*/
 open class ClaimProcedure: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimProcedure" }
@@ -2721,10 +2724,10 @@ open class ClaimProcedure: BackboneElement {
 
 
 /**
- *  Related Claims which may be revelant to processing this claimn.
- *
- *  Other claims which are related to this claim such as prior claim versions or for related services.
- */
+Related Claims which may be revelant to processing this claimn.
+
+Other claims which are related to this claim such as prior claim versions or for related services.
+*/
 open class ClaimRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimRelated" }

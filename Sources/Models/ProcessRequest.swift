@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,18 +10,19 @@ import Foundation
 
 
 /**
- *  Process request.
- *
- *  This resource provides the target, request and response, and action details for an action to be performed by the
- *  target on or about existing resources.
- */
+Process request.
+
+This resource provides the target, request and response, and action details for an action to be performed by the target
+on or about existing resources.
+*/
 open class ProcessRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "ProcessRequest" }
 	}
 	
-	/// cancel | poll | reprocess | status.
-	public var action: String?
+	/// The type of processing action being requested, for example Reversal, Readjudication,
+	/// StatusRequest,PendedRequest.
+	public var action: ActionList?
 	
 	/// Creation date.
 	public var created: DateTime?
@@ -65,15 +66,15 @@ open class ProcessRequest: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: ProcessRequestStatus?
 	
 	/// Target of the request.
 	public var target: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: String, status: String) {
+	public convenience init(action: ActionList, status: ProcessRequestStatus) {
 		self.init()
 		self.action = action
 		self.status = status
@@ -85,7 +86,12 @@ open class ProcessRequest: DomainResource {
 		if let exist = json["action"] {
 			presentKeys.insert("action")
 			if let val = exist as? String {
-				self.action = val
+				if let enumval = ActionList(rawValue: val) {
+					self.action = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "action", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "action", wants: String.self, has: type(of: exist)))
@@ -268,7 +274,12 @@ open class ProcessRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ProcessRequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -298,27 +309,19 @@ open class ProcessRequest: DomainResource {
 		var json = super.asJSON(errors: &errors)
 		
 		if let action = self.action {
-			json["action"] = action.asJSON()
+			json["action"] = action.rawValue
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
 		if let exclude = self.exclude {
-			var arr = [Any]()
-			for val in exclude {
-				arr.append(val.asJSON())
-			}
-			json["exclude"] = arr
+			json["exclude"] = exclude.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let include = self.include {
-			var arr = [Any]()
-			for val in include {
-				arr.append(val.asJSON())
-			}
-			json["include"] = arr
+			json["include"] = include.map() { $0.asJSON() }
 		}
 		if let item = self.item {
 			json["item"] = item.map() { $0.asJSON(errors: &errors) }
@@ -351,7 +354,7 @@ open class ProcessRequest: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON(errors: &errors)
@@ -363,10 +366,10 @@ open class ProcessRequest: DomainResource {
 
 
 /**
- *  Items to re-adjudicate.
- *
- *  List of top level items to be re-adjudicated, if none specified then the entire submission is re-adjudicated.
- */
+Items to re-adjudicate.
+
+List of top level items to be re-adjudicated, if none specified then the entire submission is re-adjudicated.
+*/
 open class ProcessRequestItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProcessRequestItem" }

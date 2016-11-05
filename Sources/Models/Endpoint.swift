@@ -2,7 +2,7 @@
 //  Endpoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  The technical details of an endpoint that can be used for electronic services.
- *
- *  The technical details of an endpoint that can be used for electronic services, such as for web services providing
- *  XDS.b or a REST endpoint for another FHIR server. This may include any security context information.
- */
+The technical details of an endpoint that can be used for electronic services.
+
+The technical details of an endpoint that can be used for electronic services, such as for web services providing XDS.b
+or a REST endpoint for another FHIR server. This may include any security context information.
+*/
 open class Endpoint: DomainResource {
 	override open class var resourceType: String {
 		get { return "Endpoint" }
@@ -41,7 +41,8 @@ open class Endpoint: DomainResource {
 	/// A name that this endpoint can be identified by.
 	public var name: String?
 	
-	/// Mimetype to send. If not specified, the content could be anything (including no payload, if the connectionType defined this).
+	/// Mimetype to send. If not specified, the content could be anything (including no payload, if the connectionType
+	/// defined this).
 	public var payloadMimeType: [String]?
 	
 	/// The type of content that may be used at this endpoint (e.g. XDS Discharge summaries).
@@ -53,12 +54,12 @@ open class Endpoint: DomainResource {
 	/// PKI Public keys to support secure communications.
 	public var publicKey: String?
 	
-	/// active | suspended | error | off | entered-in-error | test.
-	public var status: String?
+	/// active | suspended | error | off | test.
+	public var status: EndpointStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(address: URL, connectionType: Coding, payloadType: [CodeableConcept], status: String) {
+	public convenience init(address: URL, connectionType: Coding, payloadType: [CodeableConcept], status: EndpointStatus) {
 		self.init()
 		self.address = address
 		self.connectionType = connectionType
@@ -210,7 +211,12 @@ open class Endpoint: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EndpointStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -235,11 +241,7 @@ open class Endpoint: DomainResource {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let header = self.header {
-			var arr = [Any]()
-			for val in header {
-				arr.append(val.asJSON())
-			}
-			json["header"] = arr
+			json["header"] = header.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
@@ -251,11 +253,7 @@ open class Endpoint: DomainResource {
 			json["name"] = name.asJSON()
 		}
 		if let payloadMimeType = self.payloadMimeType {
-			var arr = [Any]()
-			for val in payloadMimeType {
-				arr.append(val.asJSON())
-			}
-			json["payloadMimeType"] = arr
+			json["payloadMimeType"] = payloadMimeType.map() { $0.asJSON() }
 		}
 		if let payloadType = self.payloadType {
 			json["payloadType"] = payloadType.map() { $0.asJSON(errors: &errors) }
@@ -267,7 +265,7 @@ open class Endpoint: DomainResource {
 			json["publicKey"] = publicKey.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

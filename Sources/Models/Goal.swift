@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Describes the intended objective(s) for a patient, group or organization.
- *
- *  Describes the intended objective(s) for a patient, group or organization care, for example, weight loss, restoring
- *  an activity of daily living, obtaining herd immunity via immunization, meeting a process improvement objective, etc.
- */
+Describes the intended objective(s) for a patient, group or organization.
+
+Describes the intended objective(s) for a patient, group or organization care, for example, weight loss, restoring an
+activity of daily living, obtaining herd immunity via immunization, meeting a process improvement objective, etc.
+*/
 open class Goal: DomainResource {
 	override open class var resourceType: String {
 		get { return "Goal" }
@@ -50,8 +50,8 @@ open class Goal: DomainResource {
 	/// When goal pursuit begins.
 	public var startDate: FHIRDate?
 	
-	/// proposed | planned | accepted | rejected | in-progress | achieved | sustaining | on-hold | cancelled | on-target | ahead-of-target | behind-target | entered-in-error.
-	public var status: String?
+	/// Indicates whether the goal has been reached and is still considered relevant.
+	public var status: GoalStatus?
 	
 	/// When goal status took effect.
 	public var statusDate: FHIRDate?
@@ -70,7 +70,7 @@ open class Goal: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: CodeableConcept, status: String) {
+	public convenience init(description_fhir: CodeableConcept, status: GoalStatus) {
 		self.init()
 		self.description_fhir = description_fhir
 		self.status = status
@@ -220,7 +220,12 @@ open class Goal: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = GoalStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -326,7 +331,7 @@ open class Goal: DomainResource {
 			json["startDate"] = startDate.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let statusDate = self.statusDate {
 			json["statusDate"] = statusDate.asJSON()
@@ -350,10 +355,10 @@ open class Goal: DomainResource {
 
 
 /**
- *  What result was achieved regarding the goal?.
- *
- *  Identifies the change (or lack of change) at the point where the goal was deemed to be cancelled or achieved.
- */
+What result was achieved regarding the goal?.
+
+Identifies the change (or lack of change) at the point where the goal was deemed to be cancelled or achieved.
+*/
 open class GoalOutcome: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GoalOutcome" }

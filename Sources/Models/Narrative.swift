@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A human-readable formatted text, including images.
- */
+A human-readable formatted text, including images.
+*/
 open class Narrative: Element {
 	override open class var resourceType: String {
 		get { return "Narrative" }
@@ -20,12 +20,13 @@ open class Narrative: Element {
 	/// Limited xhtml content.
 	public var div: String?
 	
-	/// generated | extensions | additional | empty.
-	public var status: String?
+	/// The status of the narrative - whether it's entirely generated (from just the defined data or the extensions
+	/// too), or whether a human authored it and it may contain additional data.
+	public var status: NarrativeStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(div: String, status: String) {
+	public convenience init(div: String, status: NarrativeStatus) {
 		self.init()
 		self.div = div
 		self.status = status
@@ -49,7 +50,12 @@ open class Narrative: Element {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = NarrativeStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -68,7 +74,7 @@ open class Narrative: Element {
 			json["div"] = div.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

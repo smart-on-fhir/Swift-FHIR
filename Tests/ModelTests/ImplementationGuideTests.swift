@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -36,14 +36,14 @@ class ImplementationGuideTests: XCTestCase {
 		
 		XCTAssertEqual(inst.binary?[0].absoluteString, "http://h7.org/fhir/fhir.css")
 		XCTAssertEqual(inst.contact?[0].name, "ONC")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://www.healthit.gov")
 		XCTAssertEqual(inst.contact?[1].name, "HL7")
-		XCTAssertEqual(inst.contact?[1].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[1].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[1].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.copyright, "Published by ONC under the standard FHIR license (CC0)")
 		XCTAssertEqual(inst.date?.description, "2015-01-01")
-		XCTAssertEqual(inst.dependency?[0].type, "reference")
+		XCTAssertEqual(inst.dependency?[0].type, GuideDependencyType(rawValue: "reference")!)
 		XCTAssertEqual(inst.dependency?[0].uri?.absoluteString, "http://hl7.org/fhir/ImplementationGuide/uscore")
 		XCTAssertFalse(inst.experimental ?? true)
 		XCTAssertEqual(inst.fhirVersion, "1.0.0")
@@ -61,9 +61,9 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.package?[0].resource?[0].exampleFor?.reference, "StructureDefinition/daf-patient")
 		XCTAssertEqual(inst.package?[0].resource?[0].name, "Test Example")
 		XCTAssertEqual(inst.package?[0].resource?[0].sourceUri?.absoluteString, "test.html")
-		XCTAssertEqual(inst.page?.kind, "page")
+		XCTAssertEqual(inst.page?.kind, GuidePageKind(rawValue: "page")!)
 		XCTAssertEqual(inst.page?.page?[0].format, "text/html")
-		XCTAssertEqual(inst.page?.page?[0].kind, "list")
+		XCTAssertEqual(inst.page?.page?[0].kind, GuidePageKind(rawValue: "list")!)
 		XCTAssertEqual(inst.page?.page?[0].package?[0], "test")
 		XCTAssertEqual(inst.page?.page?[0].source?.absoluteString, "list.html")
 		XCTAssertEqual(inst.page?.page?[0].title, "Value Set Page")
@@ -71,8 +71,8 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.page?.source?.absoluteString, "patient-example.html")
 		XCTAssertEqual(inst.page?.title, "Example Patient Page")
 		XCTAssertEqual(inst.publisher, "ONC / HL7 Joint project")
-		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/daf")
 		XCTAssertEqual(inst.version, "0")
 		

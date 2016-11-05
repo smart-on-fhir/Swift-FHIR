@@ -2,7 +2,7 @@
 //  UsageContext.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  Describes the context of use for a knowledge resource.
- *
- *  Specifies clinical/business/etc metadata that can be used to retrieve, index and/or categorize an artifact. This
- *  metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific context of
- *  care (e.g., venue, care setting, provider of care).
- */
+Describes the context of use for a conformance or knowledge resource.
+
+Specifies clinical/business/etc metadata that can be used to retrieve, index and/or categorize an artifact. This
+metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific context of care
+(e.g., venue, care setting, provider of care).
+*/
 open class UsageContext: Element {
 	override open class var resourceType: String {
 		get { return "UsageContext" }

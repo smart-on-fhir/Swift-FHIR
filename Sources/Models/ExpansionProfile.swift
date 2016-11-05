@@ -2,7 +2,7 @@
 //  ExpansionProfile.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Defines behaviour and contraints on the ValueSet Expansion operation.
- *
- *  Resource to define constraints on the Expansion of a FHIR ValueSet.
- */
+Defines behaviour and contraints on the ValueSet Expansion operation.
+
+Resource to define constraints on the Expansion of a FHIR ValueSet.
+*/
 open class ExpansionProfile: DomainResource {
 	override open class var resourceType: String {
 		get { return "ExpansionProfile" }
@@ -76,8 +76,8 @@ open class ExpansionProfile: DomainResource {
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this expansion profile. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Logical uri to reference this expansion profile (globally unique).
 	public var url: URL?
@@ -90,7 +90,7 @@ open class ExpansionProfile: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -302,7 +302,12 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -407,7 +412,7 @@ open class ExpansionProfile: DomainResource {
 			json["publisher"] = publisher.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -425,11 +430,11 @@ open class ExpansionProfile: DomainResource {
 
 
 /**
- *  When the expansion profile imposes designation contraints.
- *
- *  A set of criteria that provide the constraints imposed on the value set expansion by including or excluding
- *  designations.
- */
+When the expansion profile imposes designation contraints.
+
+A set of criteria that provide the constraints imposed on the value set expansion by including or excluding
+designations.
+*/
 open class ExpansionProfileDesignation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExpansionProfileDesignation" }
@@ -491,8 +496,8 @@ open class ExpansionProfileDesignation: BackboneElement {
 
 
 /**
- *  Designations to be excluded.
- */
+Designations to be excluded.
+*/
 open class ExpansionProfileDesignationExclude: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExpansionProfileDesignationExclude" }
@@ -534,10 +539,10 @@ open class ExpansionProfileDesignationExclude: BackboneElement {
 
 
 /**
- *  The designation to be excluded.
- *
- *  A data group for each designation to be excluded.
- */
+The designation to be excluded.
+
+A data group for each designation to be excluded.
+*/
 open class ExpansionProfileDesignationExcludeDesignation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExpansionProfileDesignationExcludeDesignation" }
@@ -594,8 +599,8 @@ open class ExpansionProfileDesignationExcludeDesignation: BackboneElement {
 
 
 /**
- *  Designations to be included.
- */
+Designations to be included.
+*/
 open class ExpansionProfileDesignationInclude: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExpansionProfileDesignationInclude" }
@@ -637,10 +642,10 @@ open class ExpansionProfileDesignationInclude: BackboneElement {
 
 
 /**
- *  The designation to be included.
- *
- *  A data group for each designation to be included.
- */
+The designation to be included.
+
+A data group for each designation to be included.
+*/
 open class ExpansionProfileDesignationIncludeDesignation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExpansionProfileDesignationIncludeDesignation" }
@@ -697,10 +702,10 @@ open class ExpansionProfileDesignationIncludeDesignation: BackboneElement {
 
 
 /**
- *  Systems/Versions to be exclude.
- *
- *  Code system, or a particular version of a code system to be excluded from value set expansions.
- */
+Systems/Versions to be exclude.
+
+Code system, or a particular version of a code system to be excluded from value set expansions.
+*/
 open class ExpansionProfileExcludedSystem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExpansionProfileExcludedSystem" }
@@ -762,17 +767,18 @@ open class ExpansionProfileExcludedSystem: BackboneElement {
 
 
 /**
- *  Fix use of a code system to a particular version.
- *
- *  Fix use of a particular code system to a particular version.
- */
+Fix use of a code system to a particular version.
+
+Fix use of a particular code system to a particular version.
+*/
 open class ExpansionProfileFixedVersion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ExpansionProfileFixedVersion" }
 	}
 	
-	/// default | check | override.
-	public var mode: String?
+	/// How to manage the intersection between a fixed version in a value set, and this fixed version of the system in
+	/// the expansion profile.
+	public var mode: SystemVersionProcessingMode?
 	
 	/// System to have it's version fixed.
 	public var system: URL?
@@ -782,7 +788,7 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, system: URL, version: String) {
+	public convenience init(mode: SystemVersionProcessingMode, system: URL, version: String) {
 		self.init()
 		self.mode = mode
 		self.system = system
@@ -795,7 +801,12 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 		if let exist = json["mode"] {
 			presentKeys.insert("mode")
 			if let val = exist as? String {
-				self.mode = val
+				if let enumval = SystemVersionProcessingMode(rawValue: val) {
+					self.mode = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "mode", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -835,7 +846,7 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
+			json["mode"] = mode.rawValue
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()

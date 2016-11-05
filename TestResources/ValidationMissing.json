@@ -14,7 +14,7 @@
 				},
 				{
 					"fhir_comments": "invalid “type”",
-					"type": "invalid"
+					"type": "date"
 				}
 			]
 		},

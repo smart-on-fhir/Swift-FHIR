@@ -2,7 +2,7 @@
 //  SupplyRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Request for a medication, substance or device.
- *
- *  A record of a request for a medication, substance or device used in the healthcare setting.
- */
+Request for a medication, substance or device.
+
+A record of a request for a medication, substance or device used in the healthcare setting.
+*/
 open class SupplyRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "SupplyRequest" }
@@ -46,8 +46,8 @@ open class SupplyRequest: DomainResource {
 	/// Who initiated this order.
 	public var source: Reference?
 	
-	/// requested | completed | failed | cancelled.
-	public var status: String?
+	/// Status of the supply request.
+	public var status: SupplyRequestStatus?
 	
 	/// Who is intended to fulfill the request.
 	public var supplier: [Reference]?
@@ -182,7 +182,12 @@ open class SupplyRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = SupplyRequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -250,7 +255,7 @@ open class SupplyRequest: DomainResource {
 			json["source"] = source.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let supplier = self.supplier {
 			json["supplier"] = supplier.map() { $0.asJSON(errors: &errors) }
@@ -265,8 +270,8 @@ open class SupplyRequest: DomainResource {
 
 
 /**
- *  When the request should be fulfilled.
- */
+When the request should be fulfilled.
+*/
 open class SupplyRequestWhen: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SupplyRequestWhen" }

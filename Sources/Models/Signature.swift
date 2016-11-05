@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  A digital Signature - XML DigSig, JWT, Graphical image of signature, etc..
- *
- *  A digital signature along with supporting context. The signature may be electronic/cryptographic in nature, or a
- *  graphical image representing a hand-written signature, or a signature process. Different Signature approaches have
- *  different utilities.
- */
+A digital Signature - XML DigSig, JWT, Graphical image of signature, etc..
+
+A digital signature along with supporting context. The signature may be electronic/cryptographic in nature, or a
+graphical image representing a hand-written signature, or a signature process. Different Signature approaches have
+different utilities.
+*/
 open class Signature: Element {
 	override open class var resourceType: String {
 		get { return "Signature" }

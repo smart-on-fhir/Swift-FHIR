@@ -60,6 +60,7 @@ Working, at least to some extent:
 - Classes generated for FHIR's base resources
     + Use Swift native types whenever possible
     + Use custom Date/Time/DateTime/Instant structs
+    + Generate enums for many closed ValueSets
 - Create elements and resources programmatically
 - Use a FHIR server protocol for REST interactions with a server
 - Deserialize from JSON

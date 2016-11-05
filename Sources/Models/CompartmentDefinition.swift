@@ -2,7 +2,7 @@
 //  CompartmentDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,17 +10,17 @@ import Foundation
 
 
 /**
- *  Compartment Definition for a resource.
- *
- *  A compartment definition that defines how resources are accessed on a server.
- */
+Compartment Definition for a resource.
+
+A compartment definition that defines how resources are accessed on a server.
+*/
 open class CompartmentDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "CompartmentDefinition" }
 	}
 	
-	/// Patient | Encounter | RelatedPerson | Practitioner | Device.
-	public var code: String?
+	/// Which compartment this definition describes.
+	public var code: CompartmentType?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
@@ -52,8 +52,8 @@ open class CompartmentDefinition: DomainResource {
 	/// Whether the search syntax is supported.
 	public var search: Bool?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this compartment definition. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this compartment definition (Human friendly).
 	public var title: String?
@@ -66,7 +66,7 @@ open class CompartmentDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, name: String, search: Bool, status: String, url: URL) {
+	public convenience init(code: CompartmentType, name: String, search: Bool, status: PublicationStatus, url: URL) {
 		self.init()
 		self.code = code
 		self.name = name
@@ -81,7 +81,12 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				if let enumval = CompartmentType(rawValue: val) {
+					self.code = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "code", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -204,7 +209,12 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -255,7 +265,7 @@ open class CompartmentDefinition: DomainResource {
 		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.rawValue
 		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
@@ -288,7 +298,7 @@ open class CompartmentDefinition: DomainResource {
 			json["search"] = search.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -306,10 +316,10 @@ open class CompartmentDefinition: DomainResource {
 
 
 /**
- *  How resource is related to the compartment.
- *
- *  Information about how a resource it related to the compartment.
- */
+How resource is related to the compartment.
+
+Information about how a resource it related to the compartment.
+*/
 open class CompartmentDefinitionResource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompartmentDefinitionResource" }
@@ -377,11 +387,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let param = self.param {
-			var arr = [Any]()
-			for val in param {
-				arr.append(val.asJSON())
-			}
-			json["param"] = arr
+			json["param"] = param.map() { $0.asJSON() }
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  NutritionRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/NutritionRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/NutritionRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Diet, formula or nutritional supplement request.
- *
- *  A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
- */
+Diet, formula or nutritional supplement request.
+
+A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
+*/
 open class NutritionRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "NutritionRequest" }
@@ -49,8 +49,8 @@ open class NutritionRequest: DomainResource {
 	/// The person who requires the diet, formula or nutritional supplement.
 	public var patient: Reference?
 	
-	/// proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error.
-	public var status: String?
+	/// The workflow status of the nutrition order/request.
+	public var status: NutritionOrderStatus?
 	
 	/// Supplement components.
 	public var supplement: [NutritionRequestSupplement]?
@@ -210,7 +210,12 @@ open class NutritionRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = NutritionOrderStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -267,7 +272,7 @@ open class NutritionRequest: DomainResource {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let supplement = self.supplement {
 			json["supplement"] = supplement.map() { $0.asJSON(errors: &errors) }
@@ -279,11 +284,11 @@ open class NutritionRequest: DomainResource {
 
 
 /**
- *  Enteral formula components.
- *
- *  Feeding provided through the gastrointestinal tract via a tube, catheter, or stoma that delivers nutrition distal to
- *  the oral cavity.
- */
+Enteral formula components.
+
+Feeding provided through the gastrointestinal tract via a tube, catheter, or stoma that delivers nutrition distal to the
+oral cavity.
+*/
 open class NutritionRequestEnteralFormula: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionRequestEnteralFormula" }
@@ -470,12 +475,12 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 
 
 /**
- *  Formula feeding instruction as structured data.
- *
- *  Formula administration instructions as structured data.  This repeating structure allows for changing the
- *  administration rate or volume over time for both bolus and continuous feeding.  An example of this would be an
- *  instruction to increase the rate of continuous feeding every 2 hours.
- */
+Formula feeding instruction as structured data.
+
+Formula administration instructions as structured data.  This repeating structure allows for changing the administration
+rate or volume over time for both bolus and continuous feeding.  An example of this would be an instruction to increase
+the rate of continuous feeding every 2 hours.
+*/
 open class NutritionRequestEnteralFormulaAdministration: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionRequestEnteralFormulaAdministration" }
@@ -577,10 +582,10 @@ open class NutritionRequestEnteralFormulaAdministration: BackboneElement {
 
 
 /**
- *  Oral diet components.
- *
- *  Diet given orally in contrast to enteral (tube) feeding.
- */
+Oral diet components.
+
+Diet given orally in contrast to enteral (tube) feeding.
+*/
 open class NutritionRequestOralDiet: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionRequestOralDiet" }
@@ -717,11 +722,11 @@ open class NutritionRequestOralDiet: BackboneElement {
 
 
 /**
- *  Required  nutrient modifications.
- *
- *  Class that defines the quantity and type of nutrient modifications (for example carbohydrate, fiber or sodium)
- *  required for the oral diet.
- */
+Required  nutrient modifications.
+
+Class that defines the quantity and type of nutrient modifications (for example carbohydrate, fiber or sodium) required
+for the oral diet.
+*/
 open class NutritionRequestOralDietNutrient: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionRequestOralDietNutrient" }
@@ -783,11 +788,10 @@ open class NutritionRequestOralDietNutrient: BackboneElement {
 
 
 /**
- *  Required  texture modifications.
- *
- *  Class that describes any texture modifications required for the patient to safely consume various types of solid
- *  foods.
- */
+Required  texture modifications.
+
+Class that describes any texture modifications required for the patient to safely consume various types of solid foods.
+*/
 open class NutritionRequestOralDietTexture: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionRequestOralDietTexture" }
@@ -849,10 +853,10 @@ open class NutritionRequestOralDietTexture: BackboneElement {
 
 
 /**
- *  Supplement components.
- *
- *  Oral nutritional products given in order to add further nutritional value to the patient's diet.
- */
+Supplement components.
+
+Oral nutritional products given in order to add further nutritional value to the patient's diet.
+*/
 open class NutritionRequestSupplement: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionRequestSupplement" }

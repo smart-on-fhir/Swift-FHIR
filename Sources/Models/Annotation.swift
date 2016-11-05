@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Text node with attribution.
- *
- *  A  text note which also  contains information about who made the statement and when.
- */
+Text node with attribution.
+
+A  text note which also  contains information about who made the statement and when.
+*/
 open class Annotation: Element {
 	override open class var resourceType: String {
 		get { return "Annotation" }

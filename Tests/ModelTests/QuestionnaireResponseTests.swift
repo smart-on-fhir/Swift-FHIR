@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -72,9 +72,9 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[1].text, "Neonatal Information")
 		XCTAssertEqual(inst.item?[0].linkId, "birthDetails")
 		XCTAssertEqual(inst.item?[0].text, "Birth details - To be completed by health professional")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "http://hl7.org/fhir/Patient/1")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -123,10 +123,10 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[2].linkId, "3")
 		XCTAssertEqual(inst.item?[2].text, "Intoxications")
 		XCTAssertEqual(inst.source?.reference, "Practitioner/f201")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -167,10 +167,10 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[2].linkId, "1.3")
 		XCTAssertEqual(inst.questionnaire?.reference, "Questionnaire/gcs")
 		XCTAssertEqual(inst.source?.reference, "Practitioner/f007")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -203,9 +203,9 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].valueCoding?.code, "1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].valueCoding?.display, "Yes")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "#patsub")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

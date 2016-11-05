@@ -2,7 +2,7 @@
 //  NutritionRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -81,8 +81,8 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -137,8 +137,8 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -175,7 +175,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.supplement?[0].productName, "Glucerna")
 		XCTAssertEqual(inst.supplement?[0].quantity?.unit, "8 oz bottle")
 		XCTAssertEqual(inst.supplement?[0].quantity?.value, NSDecimalNumber(string: "1"))
@@ -193,7 +193,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].display, "Adult diabetic formula")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].system?.absoluteString, "http://goodhealthhospital.org/supplement-type-codes")
 		XCTAssertEqual(inst.supplement?[0].type?.text, "Adult diabetic formula")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -230,7 +230,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.supplement?[0].productName, "Ensure")
 		XCTAssertEqual(inst.supplement?[0].quantity?.unit, "8 oz can")
 		XCTAssertEqual(inst.supplement?[0].quantity?.value, NSDecimalNumber(string: "1"))
@@ -245,7 +245,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].display, "Adult high energy drink")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].system?.absoluteString, "http://goodhealthhospital.org/supplement-type-codes")
 		XCTAssertEqual(inst.supplement?[0].type?.text, "Adult high energy drink")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -310,8 +310,8 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -371,8 +371,8 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -434,8 +434,8 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -493,8 +493,8 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -523,7 +523,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.supplement?[0].instruction, "Beneprotein 1 scoop TID with meal.starting on  2015-02-10")
 		XCTAssertEqual(inst.supplement?[0].productName, "Beneprotein")
 		XCTAssertEqual(inst.supplement?[0].quantity?.code, "{scoop}")
@@ -539,7 +539,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].display, "High Protein Powder")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].system?.absoluteString, "http://goodhealthhospital.org/supplement-type-codes")
 		XCTAssertEqual(inst.supplement?[0].type?.text, "High Protein Powder")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -585,7 +585,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.patient?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, NutritionOrderStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.supplement?[0].instruction, "Ensure Pudding at breakfast, lunch, supper")
 		XCTAssertEqual(inst.supplement?[0].productName, "Ensure Pudding 4 oz container")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].code, "442971000124100")
@@ -595,7 +595,7 @@ class NutritionRequestTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].display, "Adult high energy pudding")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[1].system?.absoluteString, "http://goodhealthhospital.org/supplement-type-codes")
 		XCTAssertEqual(inst.supplement?[0].type?.text, "Adult high energy pudding")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

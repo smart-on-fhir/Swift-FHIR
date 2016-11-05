@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -67,9 +67,9 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.outcome?.code, "complete")
 		XCTAssertEqual(inst.outcome?.system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
 		XCTAssertEqual(inst.patient?.reference, "Patient/pat1")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, ExplanationOfBenefitStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ExplanationOfBenefit</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.totalBenefit?.code, "USD")
 		XCTAssertEqual(inst.totalBenefit?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.totalBenefit?.value, NSDecimalNumber(string: "96.0"))

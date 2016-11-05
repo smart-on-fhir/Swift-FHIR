@@ -2,7 +2,7 @@
 //  PractitionerRoleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -47,10 +47,10 @@ class PractitionerRoleTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/f001")
 		XCTAssertEqual(inst.period?.end?.description, "2012-03-31")
 		XCTAssertEqual(inst.period?.start?.description, "2012-01-01")
-		XCTAssertEqual(inst.telecom?[0].system, "phone")
-		XCTAssertEqual(inst.telecom?[0].use, "home")
+		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
+		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "home")!)
 		XCTAssertEqual(inst.telecom?[0].value, "(03) 5555 6473")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

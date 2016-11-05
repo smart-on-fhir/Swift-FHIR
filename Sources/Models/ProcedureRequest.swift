@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A request for a procedure to be performed.
- *
- *  A request for a procedure to be performed. May be a proposal or an order.
- */
+A request for a procedure to be performed.
+
+A request for a procedure to be performed. May be a proposal or an order.
+*/
 open class ProcedureRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "ProcedureRequest" }
@@ -49,8 +49,8 @@ open class ProcedureRequest: DomainResource {
 	/// Who should perform the procedure.
 	public var performer: Reference?
 	
-	/// routine | urgent | stat | asap.
-	public var priority: String?
+	/// The clinical priority associated with this order.
+	public var priority: ProcedureRequestPriority?
 	
 	/// Why procedure should occur.
 	public var reasonCodeableConcept: CodeableConcept?
@@ -67,11 +67,14 @@ open class ProcedureRequest: DomainResource {
 	/// When procedure should occur.
 	public var scheduledTiming: Timing?
 	
-	/// proposed | draft | requested | received | accepted | in-progress | completed | suspended | rejected | aborted.
-	public var status: String?
+	/// The status of the order.
+	public var status: ProcedureRequestStatus?
 	
 	/// Who the procedure should be done to.
 	public var subject: Reference?
+	
+	/// Extra information to use in performing request.
+	public var supportingInfo: [Reference]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -220,7 +223,12 @@ open class ProcedureRequest: DomainResource {
 		if let exist = json["priority"] {
 			presentKeys.insert("priority")
 			if let val = exist as? String {
-				self.priority = val
+				if let enumval = ProcedureRequestPriority(rawValue: val) {
+					self.priority = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "priority", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "priority", wants: String.self, has: type(of: exist)))
@@ -294,7 +302,12 @@ open class ProcedureRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ProcedureRequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -316,6 +329,20 @@ open class ProcedureRequest: DomainResource {
 		}
 		else {
 			errors.append(FHIRValidationError(missing: "subject"))
+		}
+		if let exist = json["supportingInfo"] {
+			presentKeys.insert("supportingInfo")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.supportingInfo = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "supportingInfo"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "supportingInfo", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -354,7 +381,7 @@ open class ProcedureRequest: DomainResource {
 			json["performer"] = performer.asJSON(errors: &errors)
 		}
 		if let priority = self.priority {
-			json["priority"] = priority.asJSON()
+			json["priority"] = priority.rawValue
 		}
 		if let reasonCodeableConcept = self.reasonCodeableConcept {
 			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON(errors: &errors)
@@ -372,10 +399,13 @@ open class ProcedureRequest: DomainResource {
 			json["scheduledTiming"] = scheduledTiming.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		if let supportingInfo = self.supportingInfo {
+			json["supportingInfo"] = supportingInfo.map() { $0.asJSON(errors: &errors) }
 		}
 		
 		return json

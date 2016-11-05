@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  An association of a Patient with an Organization and  Healthcare Provider(s) for a period of time that the
- *  Organization assumes some level of responsibility.
- *
- *  An association between a patient and an organization / healthcare provider(s) during which time encounters may
- *  occur. The managing organization assumes a level of responsibility for the patient during this time.
- */
+An association of a Patient with an Organization and  Healthcare Provider(s) for a period of time that the Organization
+assumes some level of responsibility.
+
+An association between a patient and an organization / healthcare provider(s) during which time encounters may occur.
+The managing organization assumes a level of responsibility for the patient during this time.
+*/
 open class EpisodeOfCare: DomainResource {
 	override open class var resourceType: String {
 		get { return "EpisodeOfCare" }
@@ -45,8 +45,8 @@ open class EpisodeOfCare: DomainResource {
 	/// Originating Referral Request(s).
 	public var referralRequest: [Reference]?
 	
-	/// planned | waitlist | active | onhold | finished | cancelled | entered-in-error.
-	public var status: String?
+	/// planned | waitlist | active | onhold | finished | cancelled.
+	public var status: EpisodeOfCareStatus?
 	
 	/// Past list of status codes.
 	public var statusHistory: [EpisodeOfCareStatusHistory]?
@@ -59,7 +59,7 @@ open class EpisodeOfCare: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, status: String) {
+	public convenience init(patient: Reference, status: EpisodeOfCareStatus) {
 		self.init()
 		self.patient = patient
 		self.status = status
@@ -186,7 +186,12 @@ open class EpisodeOfCare: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EpisodeOfCareStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -268,7 +273,7 @@ open class EpisodeOfCare: DomainResource {
 			json["referralRequest"] = referralRequest.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let statusHistory = self.statusHistory {
 			json["statusHistory"] = statusHistory.map() { $0.asJSON(errors: &errors) }
@@ -286,11 +291,11 @@ open class EpisodeOfCare: DomainResource {
 
 
 /**
- *  Past list of status codes.
- *
- *  The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the
- *  resource).
- */
+Past list of status codes.
+
+The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the
+resource).
+*/
 open class EpisodeOfCareStatusHistory: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EpisodeOfCareStatusHistory" }
@@ -299,12 +304,12 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 	/// Period for the status.
 	public var period: Period?
 	
-	/// planned | waitlist | active | onhold | finished | cancelled | entered-in-error.
-	public var status: String?
+	/// planned | waitlist | active | onhold | finished | cancelled.
+	public var status: EpisodeOfCareStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(period: Period, status: String) {
+	public convenience init(period: Period, status: EpisodeOfCareStatus) {
 		self.init()
 		self.period = period
 		self.status = status
@@ -333,7 +338,12 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EpisodeOfCareStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -352,7 +362,7 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

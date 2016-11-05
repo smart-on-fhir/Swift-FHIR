@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -45,8 +45,8 @@ class GroupTests: XCTestCase {
 		XCTAssertEqual(inst.member?[2].period?.start?.description, "2015-08-06")
 		XCTAssertEqual(inst.member?[3].entity?.reference, "Patient/pat4")
 		XCTAssertEqual(inst.member?[3].period?.start?.description, "2015-08-06")
-		XCTAssertEqual(inst.text?.status, "additional")
-		XCTAssertEqual(inst.type, "person")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		XCTAssertEqual(inst.type, GroupType(rawValue: "person")!)
 		
 		return inst
 	}
@@ -76,8 +76,8 @@ class GroupTests: XCTestCase {
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.name, "John's herd")
 		XCTAssertEqual(inst.quantity, UInt(25))
-		XCTAssertEqual(inst.text?.status, "additional")
-		XCTAssertEqual(inst.type, "animal")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		XCTAssertEqual(inst.type, GroupType(rawValue: "animal")!)
 		
 		return inst
 	}

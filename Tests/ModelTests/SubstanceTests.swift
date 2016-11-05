@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -62,7 +62,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.unit, "mg")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.value, NSDecimalNumber(string: "125"))
 		XCTAssertEqual(inst.ingredient?[1].substanceReference?.reference, "#ingr2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -85,7 +85,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "House dust allergen")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "f201")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -108,7 +108,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "Staphylococcus Aureus")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "f202")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -136,7 +136,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.id, "f203")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/identifiers/substances")
 		XCTAssertEqual(inst.identifier?[0].value, "1234")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -172,7 +172,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.instance?[0].quantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.instance?[0].quantity?.unit, "mL")
 		XCTAssertEqual(inst.instance?[0].quantity?.value, NSDecimalNumber(string: "100"))
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -198,7 +198,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/identifiers/substances")
 		XCTAssertEqual(inst.identifier?[0].value, "1463")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

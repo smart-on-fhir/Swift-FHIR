@@ -2,7 +2,7 @@
 //  Range.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Range) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Range) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Set of values bounded by low and high.
- *
- *  A set of ordered Quantities defined by a low and high limit.
- */
+Set of values bounded by low and high.
+
+A set of ordered Quantities defined by a low and high limit.
+*/
 open class Range: Element {
 	override open class var resourceType: String {
 		get { return "Range" }

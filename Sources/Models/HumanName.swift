@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Name of a human - parts and usage.
- *
- *  A human's name with the ability to identify parts and usage.
- */
+Name of a human - parts and usage.
+
+A human's name with the ability to identify parts and usage.
+*/
 open class HumanName: Element {
 	override open class var resourceType: String {
 		get { return "HumanName" }
@@ -37,8 +37,8 @@ open class HumanName: Element {
 	/// Text representation of the full name.
 	public var text: String?
 	
-	/// usual | official | temp | nickname | anonymous | old | maiden.
-	public var use: String?
+	/// Identifies the purpose for this name.
+	public var use: NameUse?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -105,7 +105,12 @@ open class HumanName: Element {
 		if let exist = json["use"] {
 			presentKeys.insert("use")
 			if let val = exist as? String {
-				self.use = val
+				if let enumval = NameUse(rawValue: val) {
+					self.use = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
@@ -118,41 +123,25 @@ open class HumanName: Element {
 		var json = super.asJSON(errors: &errors)
 		
 		if let family = self.family {
-			var arr = [Any]()
-			for val in family {
-				arr.append(val.asJSON())
-			}
-			json["family"] = arr
+			json["family"] = family.map() { $0.asJSON() }
 		}
 		if let given = self.given {
-			var arr = [Any]()
-			for val in given {
-				arr.append(val.asJSON())
-			}
-			json["given"] = arr
+			json["given"] = given.map() { $0.asJSON() }
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let prefix = self.prefix {
-			var arr = [Any]()
-			for val in prefix {
-				arr.append(val.asJSON())
-			}
-			json["prefix"] = arr
+			json["prefix"] = prefix.map() { $0.asJSON() }
 		}
 		if let suffix = self.suffix {
-			var arr = [Any]()
-			for val in suffix {
-				arr.append(val.asJSON())
-			}
-			json["suffix"] = arr
+			json["suffix"] = suffix.map() { $0.asJSON() }
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()
 		}
 		if let use = self.use {
-			json["use"] = use.asJSON()
+			json["use"] = use.rawValue
 		}
 		
 		return json

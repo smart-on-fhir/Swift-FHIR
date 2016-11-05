@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A structured set of questions and their answers.
- *
- *  A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets,
- *  corresponding to the structure of the grouping of the underlying questions.
- */
+A structured set of questions and their answers.
+
+A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets,
+corresponding to the structure of the grouping of the underlying questions.
+*/
 open class QuestionnaireResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponse" }
@@ -47,15 +47,15 @@ open class QuestionnaireResponse: DomainResource {
 	/// The person who answered the questions.
 	public var source: Reference?
 	
-	/// in-progress | completed | amended | entered-in-error.
-	public var status: String?
+	/// The lifecycle status of the questionnaire response as a whole.
+	public var status: QuestionnaireResponseStatus?
 	
 	/// The subject of the questions.
 	public var subject: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: QuestionnaireResponseStatus) {
 		self.init()
 		self.status = status
 	}
@@ -187,7 +187,12 @@ open class QuestionnaireResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = QuestionnaireResponseStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -244,7 +249,7 @@ open class QuestionnaireResponse: DomainResource {
 			json["source"] = source.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -256,10 +261,10 @@ open class QuestionnaireResponse: DomainResource {
 
 
 /**
- *  Groups and questions.
- *
- *  Corresponds to a group or question item from the original questionnaire.
- */
+Groups and questions.
+
+Corresponds to a group or question item from the original questionnaire.
+*/
 open class QuestionnaireResponseItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseItem" }
@@ -371,10 +376,10 @@ open class QuestionnaireResponseItem: BackboneElement {
 
 
 /**
- *  The response(s) to the question.
- *
- *  The respondent's answer(s) to the question.
- */
+The response(s) to the question.
+
+The respondent's answer(s) to the question.
+*/
 open class QuestionnaireResponseItemAnswer: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseItemAnswer" }

@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Structural Definition.
- *
- *  A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined in
- *  FHIR, and also for describing extensions, and constraints on resources and data types.
- */
+Structural Definition.
+
+A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined in
+FHIR, and also for describing extensions, and constraints on resources and data types.
+*/
 open class StructureDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "StructureDefinition" }
@@ -35,8 +35,8 @@ open class StructureDefinition: DomainResource {
 	/// FluentPath invariants - when the extension can be used.
 	public var contextInvariant: [String]?
 	
-	/// resource | datatype | extension.
-	public var contextType: String?
+	/// If this is an extension, Identifies the context within FHIR resources where the extension can be used.
+	public var contextType: ExtensionContext?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
@@ -44,8 +44,8 @@ open class StructureDefinition: DomainResource {
 	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// specialization | constraint - How relates to base definition.
-	public var derivation: String?
+	/// How the type relates to the baseDefinition.
+	public var derivation: TypeDerivationRule?
 	
 	/// Natural language description of the structure definition.
 	public var description_fhir: String?
@@ -68,8 +68,8 @@ open class StructureDefinition: DomainResource {
 	/// Assist with indexing and finding.
 	public var keyword: [Coding]?
 	
-	/// primitive-type | complex-type | resource | logical.
-	public var kind: String?
+	/// Defines the kind of structure that this definition is describing.
+	public var kind: StructureDefinitionKind?
 	
 	/// External specification that the content is mapped to.
 	public var mapping: [StructureDefinitionMapping]?
@@ -86,8 +86,8 @@ open class StructureDefinition: DomainResource {
 	/// Snapshot view of the structure.
 	public var snapshot: StructureDefinitionSnapshot?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this structure definition. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this structure definition (Human friendly).
 	public var title: String?
@@ -106,7 +106,7 @@ open class StructureDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(abstract: Bool, kind: String, name: String, status: String, type: String, url: URL) {
+	public convenience init(abstract: Bool, kind: StructureDefinitionKind, name: String, status: PublicationStatus, type: String, url: URL) {
 		self.init()
 		self.abstract = abstract
 		self.kind = kind
@@ -175,7 +175,12 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["contextType"] {
 			presentKeys.insert("contextType")
 			if let val = exist as? String {
-				self.contextType = val
+				if let enumval = ExtensionContext(rawValue: val) {
+					self.contextType = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "contextType", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contextType", wants: String.self, has: type(of: exist)))
@@ -202,7 +207,12 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["derivation"] {
 			presentKeys.insert("derivation")
 			if let val = exist as? String {
-				self.derivation = val
+				if let enumval = TypeDerivationRule(rawValue: val) {
+					self.derivation = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "derivation", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "derivation", wants: String.self, has: type(of: exist)))
@@ -294,7 +304,12 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["kind"] {
 			presentKeys.insert("kind")
 			if let val = exist as? String {
-				self.kind = val
+				if let enumval = StructureDefinitionKind(rawValue: val) {
+					self.kind = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "kind", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -364,7 +379,12 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -445,21 +465,13 @@ open class StructureDefinition: DomainResource {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let context = self.context {
-			var arr = [Any]()
-			for val in context {
-				arr.append(val.asJSON())
-			}
-			json["context"] = arr
+			json["context"] = context.map() { $0.asJSON() }
 		}
 		if let contextInvariant = self.contextInvariant {
-			var arr = [Any]()
-			for val in contextInvariant {
-				arr.append(val.asJSON())
-			}
-			json["contextInvariant"] = arr
+			json["contextInvariant"] = contextInvariant.map() { $0.asJSON() }
 		}
 		if let contextType = self.contextType {
-			json["contextType"] = contextType.asJSON()
+			json["contextType"] = contextType.rawValue
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -468,7 +480,7 @@ open class StructureDefinition: DomainResource {
 			json["date"] = date.asJSON()
 		}
 		if let derivation = self.derivation {
-			json["derivation"] = derivation.asJSON()
+			json["derivation"] = derivation.rawValue
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -492,7 +504,7 @@ open class StructureDefinition: DomainResource {
 			json["keyword"] = keyword.map() { $0.asJSON(errors: &errors) }
 		}
 		if let kind = self.kind {
-			json["kind"] = kind.asJSON()
+			json["kind"] = kind.rawValue
 		}
 		if let mapping = self.mapping {
 			json["mapping"] = mapping.map() { $0.asJSON(errors: &errors) }
@@ -510,7 +522,7 @@ open class StructureDefinition: DomainResource {
 			json["snapshot"] = snapshot.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -534,11 +546,10 @@ open class StructureDefinition: DomainResource {
 
 
 /**
- *  Differential view of the structure.
- *
- *  A differential view is expressed relative to the base StructureDefinition - a statement of differences that it
- *  applies.
- */
+Differential view of the structure.
+
+A differential view is expressed relative to the base StructureDefinition - a statement of differences that it applies.
+*/
 open class StructureDefinitionDifferential: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionDifferential" }
@@ -590,10 +601,10 @@ open class StructureDefinitionDifferential: BackboneElement {
 
 
 /**
- *  External specification that the content is mapped to.
- *
- *  An external specification that the content is mapped to.
- */
+External specification that the content is mapped to.
+
+An external specification that the content is mapped to.
+*/
 open class StructureDefinitionMapping: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionMapping" }
@@ -685,11 +696,11 @@ open class StructureDefinitionMapping: BackboneElement {
 
 
 /**
- *  Snapshot view of the structure.
- *
- *  A snapshot view is expressed in a stand alone form that can be used and interpreted without considering the base
- *  StructureDefinition.
- */
+Snapshot view of the structure.
+
+A snapshot view is expressed in a stand alone form that can be used and interpreted without considering the base
+StructureDefinition.
+*/
 open class StructureDefinitionSnapshot: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionSnapshot" }

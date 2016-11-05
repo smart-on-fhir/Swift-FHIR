@@ -2,7 +2,7 @@
 //  Linkage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Links records for 'same' item.
- *
- *  Identifies two or more records (resource instances) that are referring to the same real-world "occurrence".
- */
+Links records for 'same' item.
+
+Identifies two or more records (resource instances) that are referring to the same real-world "occurrence".
+*/
 open class Linkage: DomainResource {
 	override open class var resourceType: String {
 		get { return "Linkage" }
@@ -85,11 +85,11 @@ open class Linkage: DomainResource {
 
 
 /**
- *  Item to be linked.
- *
- *  Identifies one of the records that is considered to refer to the same real-world occurrence as well as how the items
- *  hould be evaluated within the collection of linked items.
- */
+Item to be linked.
+
+Identifies one of the records that is considered to refer to the same real-world occurrence as well as how the items
+hould be evaluated within the collection of linked items.
+*/
 open class LinkageItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "LinkageItem" }
@@ -98,12 +98,13 @@ open class LinkageItem: BackboneElement {
 	/// Resource being linked.
 	public var resource: Reference?
 	
-	/// source | alternate | historical.
-	public var type: String?
+	/// Distinguishes which item is "source of truth" (if any) and which items are no longer considered to be current
+	/// representations.
+	public var type: LinkageType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(resource: Reference, type: String) {
+	public convenience init(resource: Reference, type: LinkageType) {
 		self.init()
 		self.resource = resource
 		self.type = type
@@ -132,7 +133,12 @@ open class LinkageItem: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = LinkageType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -151,7 +157,7 @@ open class LinkageItem: BackboneElement {
 			json["resource"] = resource.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,18 +10,18 @@ import Foundation
 
 
 /**
- *  Event record kept for security purposes.
- *
- *  A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion
- *  attempts and monitoring for inappropriate usage.
- */
+Event record kept for security purposes.
+
+A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion
+attempts and monitoring for inappropriate usage.
+*/
 open class AuditEvent: DomainResource {
 	override open class var resourceType: String {
 		get { return "AuditEvent" }
 	}
 	
-	/// Type of action performed during the event.
-	public var action: String?
+	/// Indicator for type of action performed during the event that generated the audit.
+	public var action: AuditEventAction?
 	
 	/// Actor involved in the event.
 	public var agent: [AuditEventAgent]?
@@ -66,7 +66,12 @@ open class AuditEvent: DomainResource {
 		if let exist = json["action"] {
 			presentKeys.insert("action")
 			if let val = exist as? String {
-				self.action = val
+				if let enumval = AuditEventAction(rawValue: val) {
+					self.action = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "action", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "action", wants: String.self, has: type(of: exist)))
@@ -202,7 +207,7 @@ open class AuditEvent: DomainResource {
 		var json = super.asJSON(errors: &errors)
 		
 		if let action = self.action {
-			json["action"] = action.asJSON()
+			json["action"] = action.rawValue
 		}
 		if let agent = self.agent {
 			json["agent"] = agent.map() { $0.asJSON(errors: &errors) }
@@ -238,10 +243,10 @@ open class AuditEvent: DomainResource {
 
 
 /**
- *  Actor involved in the event.
- *
- *  An actor taking an active role in the event or activity that is logged.
- */
+Actor involved in the event.
+
+An actor taking an active role in the event or activity that is logged.
+*/
 open class AuditEventAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventAgent" }
@@ -449,11 +454,7 @@ open class AuditEventAgent: BackboneElement {
 			json["network"] = network.asJSON(errors: &errors)
 		}
 		if let policy = self.policy {
-			var arr = [Any]()
-			for val in policy {
-				arr.append(val.asJSON())
-			}
-			json["policy"] = arr
+			json["policy"] = policy.map() { $0.asJSON() }
 		}
 		if let purposeOfUse = self.purposeOfUse {
 			json["purposeOfUse"] = purposeOfUse.map() { $0.asJSON(errors: &errors) }
@@ -477,10 +478,10 @@ open class AuditEventAgent: BackboneElement {
 
 
 /**
- *  Logical network location for application activity.
- *
- *  Logical network location for application activity, if the activity has a network location.
- */
+Logical network location for application activity.
+
+Logical network location for application activity, if the activity has a network location.
+*/
 open class AuditEventAgentNetwork: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventAgentNetwork" }
@@ -532,10 +533,10 @@ open class AuditEventAgentNetwork: BackboneElement {
 
 
 /**
- *  Data or objects used.
- *
- *  Specific instances of data or objects that have been accessed.
- */
+Data or objects used.
+
+Specific instances of data or objects that have been accessed.
+*/
 open class AuditEventEntity: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventEntity" }
@@ -742,8 +743,8 @@ open class AuditEventEntity: BackboneElement {
 
 
 /**
- *  Additional Information about the entity.
- */
+Additional Information about the entity.
+*/
 open class AuditEventEntityDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventEntityDetail" }
@@ -809,10 +810,10 @@ open class AuditEventEntityDetail: BackboneElement {
 
 
 /**
- *  Audit Event Reporter.
- *
- *  The system that is reporting the event.
- */
+Audit Event Reporter.
+
+The system that is reporting the event.
+*/
 open class AuditEventSource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventSource" }

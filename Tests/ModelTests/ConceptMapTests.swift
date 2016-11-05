@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -34,9 +34,9 @@ class ConceptMapTests: XCTestCase {
 	func runConceptMap1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ConceptMap {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example-specimen-type.json")
 		
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.contact?[1].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[1].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[1].telecom?[0].value, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
 		XCTAssertEqual(inst.date?.description, "2013-07-25")
 		XCTAssertFalse(inst.experimental ?? true)
@@ -68,7 +68,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[6].target?[0].comments, "TBD in detail")
 		XCTAssertEqual(inst.group?[0].element?[7].code, "ASERU")
 		XCTAssertEqual(inst.group?[0].element?[7].target?[0].comments, "pending")
-		XCTAssertEqual(inst.group?[0].element?[7].target?[0].equivalence, "unmatched")
+		XCTAssertEqual(inst.group?[0].element?[7].target?[0].equivalence, ConceptMapEquivalence(rawValue: "unmatched")!)
 		XCTAssertEqual(inst.group?[0].element?[8].code, "ASP")
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].code, "119295008")
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].product?[0].code, "14766002")
@@ -76,16 +76,16 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.group?[0].element?[9].code, "ATTE")
 		XCTAssertEqual(inst.group?[0].element?[9].target?[0].comments, "TBD")
-		XCTAssertEqual(inst.group?[0].element?[9].target?[0].equivalence, "unmatched")
+		XCTAssertEqual(inst.group?[0].element?[9].target?[0].equivalence, ConceptMapEquivalence(rawValue: "unmatched")!)
 		XCTAssertEqual(inst.group?[0].source?.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.group?[0].target?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "102")
 		XCTAssertEqual(inst.name, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher, "FHIR project team (original source: LabMCoP)")
 		XCTAssertEqual(inst.sourceReference?.reference, "http://hl7.org/fhir/ValueSet/v2-0487")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.targetReference?.reference, "http://snomed.info/id?fhir_vs")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ConceptMap/102")
 		XCTAssertEqual(inst.version, "20130725")
 		
@@ -107,7 +107,7 @@ class ConceptMapTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team (example)")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.copyright, "Creative Commons 0")
 		XCTAssertEqual(inst.date?.description, "2012-06-13")
@@ -124,7 +124,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[4].code, "old")
 		XCTAssertEqual(inst.group?[0].element?[4].target?[0].code, "BAD")
 		XCTAssertEqual(inst.group?[0].element?[4].target?[0].comments, "In the HL7 v3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
-		XCTAssertEqual(inst.group?[0].element?[4].target?[0].equivalence, "disjoint")
+		XCTAssertEqual(inst.group?[0].element?[4].target?[0].equivalence, ConceptMapEquivalence(rawValue: "disjoint")!)
 		XCTAssertEqual(inst.group?[0].source?.absoluteString, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.group?[0].target?.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.id, "101")
@@ -134,9 +134,9 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.publisher, "HL7, Inc")
 		XCTAssertEqual(inst.purpose, "To help implementers map from HL7 v3/CDA to FHIR")
 		XCTAssertEqual(inst.sourceReference?.reference, "http://hl7.org/fhir/ValueSet/address-use")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.targetReference?.reference, "http://hl7.org/fhir/ValueSet/v3-AddressUse")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ConceptMap/101")
 		XCTAssertEqual(inst.useContext?[0].code?.code, "venue")
 		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")

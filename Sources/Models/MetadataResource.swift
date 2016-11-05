@@ -2,7 +2,7 @@
 //  MetadataResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/MetadataResource) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MetadataResource) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Common Ancestor declaration for definitional resources.
- *
- *  Common Ancestor declaration for conformance and knowledge artifact resources.
- */
+Common Ancestor declaration for definitional resources.
+
+Common Ancestor declaration for conformance and knowledge artifact resources.
+*/
 open class MetadataResource: DomainResource {
 	override open class var resourceType: String {
 		get { return "MetadataResource" }
@@ -40,8 +40,8 @@ open class MetadataResource: DomainResource {
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this metadata resource. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this metadata resource (Human friendly).
 	public var title: String?
@@ -57,7 +57,7 @@ open class MetadataResource: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -141,7 +141,12 @@ open class MetadataResource: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -219,7 +224,7 @@ open class MetadataResource: DomainResource {
 			json["publisher"] = publisher.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()

@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -123,9 +123,9 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2016-05-18T22:33:22Z")
 		XCTAssertEqual(inst.id, "10minute-apgar-score")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/infant")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "10"))
@@ -236,9 +236,9 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2016-05-18T22:33:22Z")
 		XCTAssertEqual(inst.id, "1minute-apgar-score")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/infant")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "0"))
@@ -331,9 +331,9 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2016-05-18T22:33:22Z")
 		XCTAssertEqual(inst.id, "20minute-apgar-score")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/infant")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "10"))
@@ -426,9 +426,9 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2016-05-18T22:33:22Z")
 		XCTAssertEqual(inst.id, "2minute-apgar-score")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/infant")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "5"))
@@ -539,9 +539,9 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2016-05-18T22:33:22Z")
 		XCTAssertEqual(inst.id, "5minute-apgar-score")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/infant")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "10"))
@@ -598,9 +598,9 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.interpretation?.text, "Below low normal")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2014-01-30T22:35:23+11:00")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "cancelled")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "cancelled")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -617,6 +617,64 @@ class ObservationTests: XCTestCase {
 	
 	@discardableResult
 	func runObservation7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure-dar.json")
+		
+		XCTAssertEqual(inst.bodySite?.coding?[0].code, "368209003")
+		XCTAssertEqual(inst.bodySite?.coding?[0].display, "Right arm")
+		XCTAssertEqual(inst.bodySite?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "vital-signs")
+		XCTAssertEqual(inst.category?[0].coding?[0].display, "Vital Signs")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/observation-category")
+		XCTAssertEqual(inst.code?.coding?[0].code, "55284-4")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Blood pressure systolic & diastolic")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.component?[0].code?.coding?[0].code, "8480-6")
+		XCTAssertEqual(inst.component?[0].code?.coding?[0].display, "Systolic blood pressure")
+		XCTAssertEqual(inst.component?[0].code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.component?[0].code?.coding?[1].code, "271649006")
+		XCTAssertEqual(inst.component?[0].code?.coding?[1].display, "Systolic blood pressure")
+		XCTAssertEqual(inst.component?[0].code?.coding?[1].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.component?[0].code?.coding?[2].code, "bp-s")
+		XCTAssertEqual(inst.component?[0].code?.coding?[2].display, "Systolic Blood pressure")
+		XCTAssertEqual(inst.component?[0].code?.coding?[2].system?.absoluteString, "http://acme.org/devices/clinical-codes")
+		XCTAssertEqual(inst.component?[0].valueQuantity?.code, "mm[Hg]")
+		XCTAssertEqual(inst.component?[0].valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.component?[0].valueQuantity?.unit, "mmHg")
+		XCTAssertEqual(inst.component?[0].valueQuantity?.value, NSDecimalNumber(string: "107"))
+		XCTAssertEqual(inst.component?[1].code?.coding?[0].code, "8462-4")
+		XCTAssertEqual(inst.component?[1].code?.coding?[0].display, "Diastolic blood pressure")
+		XCTAssertEqual(inst.component?[1].code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.component?[1].dataAbsentReason?.coding?[0].code, "not-performed")
+		XCTAssertEqual(inst.component?[1].dataAbsentReason?.coding?[0].display, "Not Performed")
+		XCTAssertEqual(inst.component?[1].dataAbsentReason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/data-absent-reason")
+		XCTAssertEqual(inst.effectiveDateTime?.description, "2012-09-17")
+		XCTAssertEqual(inst.id, "blood-pressure-dar")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?[0].value, "urn:uuid:187e0c12-8dd2-67e2-99b2-bf273c878281")
+		XCTAssertEqual(inst.interpretation?.coding?[0].code, "L")
+		XCTAssertEqual(inst.interpretation?.coding?[0].display, "low")
+		XCTAssertEqual(inst.interpretation?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0078")
+		XCTAssertEqual(inst.interpretation?.text, "Below low normal")
+		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testObservation8() {
+		do {
+			let instance = try runObservation8()
+			try runObservation8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runObservation8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding?[0].code, "368209003")
@@ -656,46 +714,10 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.interpretation?.coding?[0].display, "low")
 		XCTAssertEqual(inst.interpretation?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0078")
 		XCTAssertEqual(inst.interpretation?.text, "Below low normal")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2014-01-30T22:35:23+11:00")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
-	
-	func testObservation8() {
-		do {
-			let instance = try runObservation8()
-			try runObservation8(instance.asJSON())
-		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
-		}
-	}
-	
-	@discardableResult
-	func runObservation8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bmd.json")
-		
-		XCTAssertEqual(inst.bodySite?.coding?[0].code, "71341001:272741003=7771000")
-		XCTAssertEqual(inst.bodySite?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.bodySite?.text, "Left Femur")
-		XCTAssertEqual(inst.code?.coding?[0].code, "24701-5")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Femur DXA Bone density")
-		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
-		XCTAssertEqual(inst.code?.text, "BMD - Left Femur")
-		XCTAssertEqual(inst.id, "bmd")
-		XCTAssertEqual(inst.performer?[0].display, "Acme Imaging Diagnostics")
-		XCTAssertEqual(inst.performer?[0].reference, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
-		XCTAssertEqual(inst.status, "final")
-		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.valueQuantity?.code, "g/cm-2")
-		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.valueQuantity?.unit, "g/cm²")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "0.887"))
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -712,15 +734,25 @@ class ObservationTests: XCTestCase {
 	
 	@discardableResult
 	func runObservation9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-eye-color.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bmd.json")
 		
-		XCTAssertEqual(inst.code?.text, "eye color")
-		XCTAssertEqual(inst.effectiveDateTime?.description, "2016-05-18")
-		XCTAssertEqual(inst.id, "eye-color")
-		XCTAssertEqual(inst.status, "final")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.valueString, "blue")
+		XCTAssertEqual(inst.bodySite?.coding?[0].code, "71341001:272741003=7771000")
+		XCTAssertEqual(inst.bodySite?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.bodySite?.text, "Left Femur")
+		XCTAssertEqual(inst.code?.coding?[0].code, "24701-5")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Femur DXA Bone density")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.code?.text, "BMD - Left Femur")
+		XCTAssertEqual(inst.id, "bmd")
+		XCTAssertEqual(inst.performer?[0].display, "Acme Imaging Diagnostics")
+		XCTAssertEqual(inst.performer?[0].reference, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.valueQuantity?.code, "g/cm-2")
+		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.valueQuantity?.unit, "g/cm²")
+		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "0.887"))
 		
 		return inst
 	}
@@ -737,38 +769,25 @@ class ObservationTests: XCTestCase {
 	
 	@discardableResult
 	func runObservation10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-f001-glucose.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bmi.json")
 		
-		XCTAssertEqual(inst.code?.coding?[0].code, "15074-8")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Glucose [Moles/volume] in Blood")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "vital-signs")
+		XCTAssertEqual(inst.category?[0].coding?[0].display, "Vital Signs")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/observation-category")
+		XCTAssertEqual(inst.category?[0].text, "Vital Signs")
+		XCTAssertEqual(inst.code?.coding?[0].code, "39156-5")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Body mass index (BMI) [Ratio]")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
-		XCTAssertEqual(inst.effectivePeriod?.start?.description, "2013-04-02T09:30:10+01:00")
-		XCTAssertEqual(inst.id, "f001")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.bmc.nl/zorgportal/identifiers/observations")
-		XCTAssertEqual(inst.identifier?[0].use, "official")
-		XCTAssertEqual(inst.identifier?[0].value, "6323")
-		XCTAssertEqual(inst.interpretation?.coding?[0].code, "H")
-		XCTAssertEqual(inst.interpretation?.coding?[0].display, "High")
-		XCTAssertEqual(inst.interpretation?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0078")
-		XCTAssertEqual(inst.issued?.description, "2013-04-03T15:30:10+01:00")
-		XCTAssertEqual(inst.performer?[0].display, "A. Langeveld")
-		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/f005")
-		XCTAssertEqual(inst.referenceRange?[0].high?.code, "mmol/L")
-		XCTAssertEqual(inst.referenceRange?[0].high?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.referenceRange?[0].high?.unit, "mmol/l")
-		XCTAssertEqual(inst.referenceRange?[0].high?.value, NSDecimalNumber(string: "6.2"))
-		XCTAssertEqual(inst.referenceRange?[0].low?.code, "mmol/L")
-		XCTAssertEqual(inst.referenceRange?[0].low?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.referenceRange?[0].low?.unit, "mmol/l")
-		XCTAssertEqual(inst.referenceRange?[0].low?.value, NSDecimalNumber(string: "3.1"))
-		XCTAssertEqual(inst.status, "final")
-		XCTAssertEqual(inst.subject?.display, "P. van de Heuvel")
-		XCTAssertEqual(inst.subject?.reference, "Patient/f001")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.valueQuantity?.code, "mmol/L")
+		XCTAssertEqual(inst.code?.text, "BMI")
+		XCTAssertEqual(inst.effectiveDateTime?.description, "1999-07-02")
+		XCTAssertEqual(inst.id, "bmi")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.valueQuantity?.code, "kg/m2")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.valueQuantity?.unit, "mmol/l")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "6.3"))
+		XCTAssertEqual(inst.valueQuantity?.unit, "kg/m2")
+		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "16.2"))
 		
 		return inst
 	}

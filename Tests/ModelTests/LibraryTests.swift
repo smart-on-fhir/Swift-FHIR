@@ -2,7 +2,7 @@
 //  LibraryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -80,13 +80,13 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Logic for CMS 146: Appropriate Testing for Children with Pharyngitis")
 		XCTAssertEqual(inst.id, "library-cms146-example")
-		XCTAssertEqual(inst.identifier?[0].use, "official")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "CMS146")
 		XCTAssertEqual(inst.relatedArtifact?[0].resource?.reference, "Library/library-quick-model-definition")
-		XCTAssertEqual(inst.relatedArtifact?[0].type, "depends-on")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "depends-on")!)
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">CMS 146 Logic</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Appropriate Testing for Children with Pharyngitis")
 		XCTAssertEqual(inst.type?.coding?[0].code, "logic-library")
 		XCTAssertEqual(inst.version, "2.0.0")
@@ -116,13 +116,13 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Common Logic for adherence to Chlamydia Screening guidelines")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?[0].use, "official")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "ChalmydiaScreening_Common")
 		XCTAssertEqual(inst.relatedArtifact?[0].resource?.reference, "Library/library-quick-model-definition")
-		XCTAssertEqual(inst.relatedArtifact?[0].type, "depends-on")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "depends-on")!)
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Chlamydia Screening Common Library</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Chlamydia Screening Common Library")
 		XCTAssertEqual(inst.topic?[0].text, "Chlamydia Screening")
 		XCTAssertEqual(inst.type?.coding?[0].code, "logic-library")

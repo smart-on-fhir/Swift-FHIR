@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -36,11 +36,11 @@ class BundleTests: XCTestCase {
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "https://example.com/base/MedicationRequest/3123")
 		XCTAssertEqual(inst.entry?[0].resource?.id, "3123")
-		XCTAssertEqual(inst.entry?[0].search?.mode, "match")
+		XCTAssertEqual(inst.entry?[0].search?.mode, SearchEntryMode(rawValue: "match")!)
 		XCTAssertEqual(inst.entry?[0].search?.score, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.entry?[1].fullUrl?.absoluteString, "https://example.com/base/Medication/example")
 		XCTAssertEqual(inst.entry?[1].resource?.id, "example")
-		XCTAssertEqual(inst.entry?[1].search?.mode, "include")
+		XCTAssertEqual(inst.entry?[1].search?.mode, SearchEntryMode(rawValue: "include")!)
 		XCTAssertEqual(inst.id, "bundle-example")
 		XCTAssertEqual(inst.link?[0].relation, "self")
 		XCTAssertEqual(inst.link?[0].url?.absoluteString, "https://example.com/base/MedicationRequest?patient=347&_include=MedicationRequest.medication")
@@ -48,7 +48,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.link?[1].url?.absoluteString, "https://example.com/base/MedicationRequest?patient=347&searchId=ff15fd40-ff71-4b48-b366-09c706bed9d0&page=2")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2014-08-18T01:43:30Z")
 		XCTAssertEqual(inst.total, UInt(3))
-		XCTAssertEqual(inst.type, "searchset")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "searchset")!)
 		
 		return inst
 	}
@@ -99,7 +99,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[9].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
 		XCTAssertEqual(inst.id, "72ac8493-52ac-41bd-8d5d-7258c289b5ea")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.type, "collection")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "collection")!)
 		
 		return inst
 	}
@@ -144,7 +144,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.signature?.type?[0].system?.absoluteString, "http://hl7.org/fhir/valueset-signature-type")
 		XCTAssertEqual(inst.signature?.when?.description, "2015-08-31T07:42:33+10:00")
 		XCTAssertEqual(inst.signature?.whoReference?.reference, "Device/software")
-		XCTAssertEqual(inst.type, "document")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "document")!)
 		
 		return inst
 	}
@@ -185,7 +185,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[9].resource?.id, "80")
 		XCTAssertEqual(inst.id, "b0a5e4277-83c4-4adb-87e2-e3efe3369b6f")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2012-05-29T23:45:32Z")
-		XCTAssertEqual(inst.type, "collection")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "collection")!)
 		
 		return inst
 	}
@@ -236,7 +236,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[9].resource?.meta?.lastUpdated?.description, "2012-06-03T23:45:32Z")
 		XCTAssertEqual(inst.id, "b0a5e4277-83c4-4adb-87e2-e3efe3369b6f")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2012-05-29T23:45:32Z")
-		XCTAssertEqual(inst.type, "collection")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "collection")!)
 		
 		return inst
 	}
@@ -287,7 +287,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[9].resource?.meta?.lastUpdated?.description, "2012-05-29T23:45:32Z")
 		XCTAssertEqual(inst.id, "b248b1b2-1686-4b94-9936-37d7a5f94b51")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2012-05-29T23:45:32Z")
-		XCTAssertEqual(inst.type, "collection")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "collection")!)
 		
 		return inst
 	}
@@ -338,7 +338,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[9].resource?.meta?.lastUpdated?.description, "2012-05-29T23:45:32Z")
 		XCTAssertEqual(inst.id, "3ad0687e-f477-468c-afd5-fcc2bf897809")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2012-05-29T23:45:32Z")
-		XCTAssertEqual(inst.type, "collection")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "collection")!)
 		
 		return inst
 	}
@@ -358,33 +358,33 @@ class BundleTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "xds-example.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "urn:uuid:3fdc72f4-a11d-4a9d-9260-a9f745779e1d")
-		XCTAssertEqual(inst.entry?[0].request?.method, "POST")
+		XCTAssertEqual(inst.entry?[0].request?.method, HTTPVerb(rawValue: "POST")!)
 		XCTAssertEqual(inst.entry?[0].request?.url?.absoluteString, "DocumentReference")
 		XCTAssertEqual(inst.entry?[0].resource?.meta?.lastUpdated?.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.entry?[1].fullUrl?.absoluteString, "http://localhost:9556/svc/fhir/Patient/a2")
 		XCTAssertEqual(inst.entry?[1].request?.ifNoneExist, "Patient?identifier=http://acme.org/xds/patients!89765a87b")
-		XCTAssertEqual(inst.entry?[1].request?.method, "POST")
+		XCTAssertEqual(inst.entry?[1].request?.method, HTTPVerb(rawValue: "POST")!)
 		XCTAssertEqual(inst.entry?[1].request?.url?.absoluteString, "Patient")
 		XCTAssertEqual(inst.entry?[1].resource?.id, "a2")
 		XCTAssertEqual(inst.entry?[1].resource?.meta?.lastUpdated?.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.entry?[2].fullUrl?.absoluteString, "http://localhost:9556/svc/fhir/Practitioner/a3")
-		XCTAssertEqual(inst.entry?[2].request?.method, "POST")
+		XCTAssertEqual(inst.entry?[2].request?.method, HTTPVerb(rawValue: "POST")!)
 		XCTAssertEqual(inst.entry?[2].request?.url?.absoluteString, "Practitioner")
 		XCTAssertEqual(inst.entry?[2].resource?.id, "a3")
 		XCTAssertEqual(inst.entry?[2].resource?.meta?.lastUpdated?.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.entry?[3].fullUrl?.absoluteString, "http://localhost:9556/svc/fhir/Practitioner/a4")
-		XCTAssertEqual(inst.entry?[3].request?.method, "POST")
+		XCTAssertEqual(inst.entry?[3].request?.method, HTTPVerb(rawValue: "POST")!)
 		XCTAssertEqual(inst.entry?[3].request?.url?.absoluteString, "Practitioner")
 		XCTAssertEqual(inst.entry?[3].resource?.id, "a4")
 		XCTAssertEqual(inst.entry?[3].resource?.meta?.lastUpdated?.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.entry?[4].fullUrl?.absoluteString, "http://localhost:9556/svc/fhir/Binary/1e404af3-077f-4bee-b7a6-a9be97e1ce32")
-		XCTAssertEqual(inst.entry?[4].request?.method, "POST")
+		XCTAssertEqual(inst.entry?[4].request?.method, HTTPVerb(rawValue: "POST")!)
 		XCTAssertEqual(inst.entry?[4].request?.url?.absoluteString, "Binary")
 		XCTAssertEqual(inst.entry?[4].resource?.id, "1e404af3-077f-4bee-b7a6-a9be97e1ce32")
 		XCTAssertEqual(inst.entry?[4].resource?.meta?.lastUpdated?.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.id, "xds")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2013-07-01T13:11:33Z")
-		XCTAssertEqual(inst.type, "transaction")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "transaction")!)
 		
 		return inst
 	}

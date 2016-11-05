@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,14 +10,14 @@ import Foundation
 
 
 /**
- *  A clinical assessment performed when planning treatments and management strategies for a patient.
- *
- *  A record of a clinical assessment performed to determine what problem(s) may affect the patient and before planning
- *  the treatments or management strategies that are best to manage a patient's condition. Assessments are often 1:1
- *  with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow. This resource
- *  is called "ClinicalImpression" rather than "ClinicalAssessment" to avoid confusion with the recording of assessment
- *  tools such as Apgar score.
- */
+A clinical assessment performed when planning treatments and management strategies for a patient.
+
+A record of a clinical assessment performed to determine what problem(s) may affect the patient and before planning the
+treatments or management strategies that are best to manage a patient's condition. Assessments are often 1:1 with a
+clinical consultation / encounter,  but this varies greatly depending on the clinical workflow. This resource is called
+"ClinicalImpression" rather than "ClinicalAssessment" to avoid confusion with the recording of assessment tools such as
+Apgar score.
+*/
 open class ClinicalImpression: DomainResource {
 	override open class var resourceType: String {
 		get { return "ClinicalImpression" }
@@ -74,8 +74,8 @@ open class ClinicalImpression: DomainResource {
 	/// Clinical Protocol followed.
 	public var protocol_fhir: [URL]?
 	
-	/// draft | completed | entered-in-error.
-	public var status: String?
+	/// Identifies the workflow status of the assessment.
+	public var status: ClinicalImpressionStatus?
 	
 	/// Patient or group assessed.
 	public var subject: Reference?
@@ -85,7 +85,7 @@ open class ClinicalImpression: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String, subject: Reference) {
+	public convenience init(status: ClinicalImpressionStatus, subject: Reference) {
 		self.init()
 		self.status = status
 		self.subject = subject
@@ -315,7 +315,12 @@ open class ClinicalImpression: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ClinicalImpressionStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -405,14 +410,10 @@ open class ClinicalImpression: DomainResource {
 			json["prognosisReference"] = prognosisReference.map() { $0.asJSON(errors: &errors) }
 		}
 		if let protocol_fhir = self.protocol_fhir {
-			var arr = [Any]()
-			for val in protocol_fhir {
-				arr.append(val.asJSON())
-			}
-			json["protocol"] = arr
+			json["protocol"] = protocol_fhir.map() { $0.asJSON() }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -427,10 +428,10 @@ open class ClinicalImpression: DomainResource {
 
 
 /**
- *  Possible or likely findings and diagnoses.
- *
- *  Specific findings or diagnoses that was considered likely or relevant to ongoing treatment.
- */
+Possible or likely findings and diagnoses.
+
+Specific findings or diagnoses that was considered likely or relevant to ongoing treatment.
+*/
 open class ClinicalImpressionFinding: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClinicalImpressionFinding" }
@@ -527,12 +528,12 @@ open class ClinicalImpressionFinding: BackboneElement {
 
 
 /**
- *  One or more sets of investigations (signs, symptions, etc.).
- *
- *  One or more sets of investigations (signs, symptions, etc.). The actual grouping of investigations vary greatly
- *  depending on the type and context of the assessment. These investigations may include data generated during the
- *  assessment process, or data previously generated and recorded that is pertinent to the outcomes.
- */
+One or more sets of investigations (signs, symptions, etc.).
+
+One or more sets of investigations (signs, symptions, etc.). The actual grouping of investigations vary greatly
+depending on the type and context of the assessment. These investigations may include data generated during the
+assessment process, or data previously generated and recorded that is pertinent to the outcomes.
+*/
 open class ClinicalImpressionInvestigation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClinicalImpressionInvestigation" }

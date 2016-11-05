@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -46,9 +46,9 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.performer?[0].display, "Acme Imaging Diagnostics")
 		XCTAssertEqual(inst.performer?[0].reference, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
 		XCTAssertEqual(inst.result?[0].reference, "Observation/bmd")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -80,7 +80,7 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2013-04-02")
 		XCTAssertEqual(inst.id, "f001")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.bmc.nl/zorgportal/identifiers/reports")
-		XCTAssertEqual(inst.identifier?[0].use, "official")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "nr1239044")
 		XCTAssertEqual(inst.issued?.description, "2013-05-15T19:32:52+01:00")
 		XCTAssertEqual(inst.performer?[0].display, "Burgers University Medical Centre")
@@ -91,10 +91,10 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.result?[2].reference, "Observation/f003")
 		XCTAssertEqual(inst.result?[3].reference, "Observation/f004")
 		XCTAssertEqual(inst.result?[4].reference, "Observation/f005")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.display, "P. van den Heuvel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f001")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -132,10 +132,10 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.issued?.description, "2012-12-01T12:00:00+01:00")
 		XCTAssertEqual(inst.performer?[0].display, "Blijdorp MC")
 		XCTAssertEqual(inst.performer?[0].reference, "Organization/f203")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -175,10 +175,10 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.request?[0].reference, "#req")
 		XCTAssertEqual(inst.result?[0].display, "Results for staphylococcus analysis on Roel's blood culture")
 		XCTAssertEqual(inst.result?[0].reference, "Observation/f206")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -230,9 +230,9 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.specimen?[1].reference, "#ltt")
 		XCTAssertEqual(inst.specimen?[2].display, "Urine Sample")
 		XCTAssertEqual(inst.specimen?[2].reference, "#urine")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -272,9 +272,9 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.result?[1].reference, "#triglyceride")
 		XCTAssertEqual(inst.result?[2].reference, "#hdlcholesterol")
 		XCTAssertEqual(inst.result?[3].reference, "#ldlcholesterol")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -299,9 +299,9 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.id, "pap")
 		XCTAssertEqual(inst.issued?.description, "2013-02-13T11:45:33+11:00")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/b248b1b2-1686-4b94-9936-37d7a5f94b51")
-		XCTAssertEqual(inst.text?.status, "additional")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
 	}
@@ -337,9 +337,9 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.image?[0].link?.reference, "Media/1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.issued?.description, "2012-12-01T12:00:00+01:00")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -397,9 +397,9 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.result?[7].reference, "#r8")
 		XCTAssertEqual(inst.result?[8].reference, "#r9")
 		XCTAssertEqual(inst.result?[9].reference, "#r10")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -440,10 +440,10 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.result?[1].reference, "Observation/ob-genetics-3-2")
 		XCTAssertEqual(inst.specimen?[0].display, "Molecular Specimen ID: MLD45-Z4-1234")
 		XCTAssertEqual(inst.specimen?[0].reference, "Specimen/genetics-example2")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers(MRN: 12345)")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

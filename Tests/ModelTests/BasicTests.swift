@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -36,7 +36,7 @@ class BasicTests: XCTestCase {
 		
 		XCTAssertEqual(inst.code?.text, "Example Narrative Tester")
 		XCTAssertEqual(inst.id, "basic-example-narrative")
-		XCTAssertEqual(inst.text?.status, "additional")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
 	}
@@ -78,7 +78,7 @@ class BasicTests: XCTestCase {
 		XCTAssertEqual(inst.modifierExtension?[2].valueCode, "complete")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -117,7 +117,7 @@ class BasicTests: XCTestCase {
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].url?.absoluteString, "attribute")
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://example.org/do-not-use/fhir-extensions/UMLclass")
 		XCTAssertEqual(inst.id, "classModel")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

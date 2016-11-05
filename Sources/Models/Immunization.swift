@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,11 @@ import Foundation
 
 
 /**
- *  Immunization event information.
- *
- *  Describes the event of a patient being administered a vaccination or a record of a vaccination as reported by a
- *  patient, a clinician or another party and may include vaccine reaction information and what vaccination protocol was
- *  followed.
- */
+Immunization event information.
+
+Describes the event of a patient being administered a vaccination or a record of a vaccination as reported by a patient,
+a clinician or another party and may include vaccine reaction information and what vaccination protocol was followed.
+*/
 open class Immunization: DomainResource {
 	override open class var resourceType: String {
 		get { return "Immunization" }
@@ -72,8 +71,9 @@ open class Immunization: DomainResource {
 	/// Body site vaccine  was administered.
 	public var site: CodeableConcept?
 	
-	/// in-progress | on-hold | completed | entered-in-error | stopped.
-	public var status: String?
+	/// Indicates the current status of the vaccination event.
+	/// Only use: ['completed', 'entered-in-error']
+	public var status: MedicationAdministrationStatus?
 	
 	/// What protocol was followed.
 	public var vaccinationProtocol: [ImmunizationVaccinationProtocol]?
@@ -86,7 +86,7 @@ open class Immunization: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, reported: Bool, status: String, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
+	public convenience init(patient: Reference, reported: Bool, status: MedicationAdministrationStatus, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
 		self.init()
 		self.patient = patient
 		self.reported = reported
@@ -325,7 +325,12 @@ open class Immunization: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = MedicationAdministrationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -435,7 +440,7 @@ open class Immunization: DomainResource {
 			json["site"] = site.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let vaccinationProtocol = self.vaccinationProtocol {
 			json["vaccinationProtocol"] = vaccinationProtocol.map() { $0.asJSON(errors: &errors) }
@@ -453,10 +458,10 @@ open class Immunization: DomainResource {
 
 
 /**
- *  Administration/non-administration reasons.
- *
- *  Reasons why a vaccine was or was not administered.
- */
+Administration/non-administration reasons.
+
+Reasons why a vaccine was or was not administered.
+*/
 open class ImmunizationExplanation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationExplanation" }
@@ -518,10 +523,10 @@ open class ImmunizationExplanation: BackboneElement {
 
 
 /**
- *  Details of a reaction that follows immunization.
- *
- *  Categorical data indicating that an adverse event is associated in time to an immunization.
- */
+Details of a reaction that follows immunization.
+
+Categorical data indicating that an adverse event is associated in time to an immunization.
+*/
 open class ImmunizationReaction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationReaction" }
@@ -593,10 +598,10 @@ open class ImmunizationReaction: BackboneElement {
 
 
 /**
- *  What protocol was followed.
- *
- *  Contains information about the protocol(s) under which the vaccine was administered.
- */
+What protocol was followed.
+
+Contains information about the protocol(s) under which the vaccine was administered.
+*/
 open class ImmunizationVaccinationProtocol: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationVaccinationProtocol" }

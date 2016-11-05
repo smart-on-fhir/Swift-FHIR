@@ -2,7 +2,7 @@
 //  ServiceDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -37,11 +37,11 @@ class ServiceDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Guideline appropriate ordering is used to assess appropriateness of an order given a patient, a proposed order, and a set of clinical indications.")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?[0].use, "official")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "guildeline-appropriate-ordering")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Guideline Appropriate Ordering Module</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Guideline Appropriate Ordering Module")
 		XCTAssertEqual(inst.topic?[0].text, "Guideline Appropriate Ordering")
 		XCTAssertEqual(inst.topic?[1].text, "Appropriate Use Criteria")

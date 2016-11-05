@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Base for all elements.
- *
- *  Base definition for all elements in a resource.
- */
+Base for all elements.
+
+Base definition for all elements in a resource.
+*/
 open class Element: FHIRAbstractBase {
 	override open class var resourceType: String {
 		get { return "Element" }

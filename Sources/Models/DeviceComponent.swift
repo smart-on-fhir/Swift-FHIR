@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,10 @@ import Foundation
 
 
 /**
- *  An instance of a medical-related component of a medical device.
- *
- *  Describes the characteristics, operational status and capabilities of a medical-related component of a medical
- *  device.
- */
+An instance of a medical-related component of a medical device.
+
+Describes the characteristics, operational status and capabilities of a medical-related component of a medical device.
+*/
 open class DeviceComponent: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceComponent" }
@@ -29,8 +28,8 @@ open class DeviceComponent: DomainResource {
 	/// Recent system change timestamp.
 	public var lastSystemChange: Instant?
 	
-	/// other | chemical | electrical | impedance | nuclear | optical | thermal | biological | mechanical | acoustical | manual+.
-	public var measurementPrinciple: String?
+	/// Describes the physical principle of the measurement. For example: thermal, chemical, acoustical, etc.
+	public var measurementPrinciple: MeasmntPrinciple?
 	
 	/// Component operational status.
 	public var operationalStatus: [CodeableConcept]?
@@ -108,7 +107,12 @@ open class DeviceComponent: DomainResource {
 		if let exist = json["measurementPrinciple"] {
 			presentKeys.insert("measurementPrinciple")
 			if let val = exist as? String {
-				self.measurementPrinciple = val
+				if let enumval = MeasmntPrinciple(rawValue: val) {
+					self.measurementPrinciple = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "measurementPrinciple", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "measurementPrinciple", wants: String.self, has: type(of: exist)))
@@ -217,7 +221,7 @@ open class DeviceComponent: DomainResource {
 			json["lastSystemChange"] = lastSystemChange.asJSON()
 		}
 		if let measurementPrinciple = self.measurementPrinciple {
-			json["measurementPrinciple"] = measurementPrinciple.asJSON()
+			json["measurementPrinciple"] = measurementPrinciple.rawValue
 		}
 		if let operationalStatus = self.operationalStatus {
 			json["operationalStatus"] = operationalStatus.map() { $0.asJSON(errors: &errors) }
@@ -244,10 +248,10 @@ open class DeviceComponent: DomainResource {
 
 
 /**
- *  Production specification of the component.
- *
- *  Describes the production specification such as component revision, serial number, etc.
- */
+Production specification of the component.
+
+Describes the production specification such as component revision, serial number, etc.
+*/
 open class DeviceComponentProductionSpecification: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DeviceComponentProductionSpecification" }

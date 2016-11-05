@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Remittance resource.
- *
- *  This resource provides the adjudication details from the processing of a Claim resource.
- */
+Remittance resource.
+
+This resource provides the adjudication details from the processing of a Claim resource.
+*/
 open class ClaimResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "ClaimResponse" }
@@ -76,8 +76,8 @@ open class ClaimResponse: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: ClaimResponseStatus?
 	
 	/// Total benefit payable for the Claim.
 	public var totalBenefit: Money?
@@ -90,7 +90,7 @@ open class ClaimResponse: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: ClaimResponseStatus) {
 		self.init()
 		self.status = status
 	}
@@ -357,7 +357,12 @@ open class ClaimResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ClaimResponseStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -472,7 +477,7 @@ open class ClaimResponse: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let totalBenefit = self.totalBenefit {
 			json["totalBenefit"] = totalBenefit.asJSON(errors: &errors)
@@ -490,10 +495,10 @@ open class ClaimResponse: DomainResource {
 
 
 /**
- *  Insurer added line items.
- *
- *  The first tier service adjudications for payor added services.
- */
+Insurer added line items.
+
+The first tier service adjudications for payor added services.
+*/
 open class ClaimResponseAddItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItem" }
@@ -667,21 +672,13 @@ open class ClaimResponseAddItem: BackboneElement {
 			json["modifier"] = modifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let revenue = self.revenue {
 			json["revenue"] = revenue.asJSON(errors: &errors)
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
-			var arr = [Any]()
-			for val in sequenceLinkId {
-				arr.append(val.asJSON())
-			}
-			json["sequenceLinkId"] = arr
+			json["sequenceLinkId"] = sequenceLinkId.map() { $0.asJSON() }
 		}
 		if let service = self.service {
 			json["service"] = service.asJSON(errors: &errors)
@@ -693,10 +690,10 @@ open class ClaimResponseAddItem: BackboneElement {
 
 
 /**
- *  Added items details.
- *
- *  The second tier service adjudications for payor added services.
- */
+Added items details.
+
+The second tier service adjudications for payor added services.
+*/
 open class ClaimResponseAddItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemDetail" }
@@ -838,11 +835,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 			json["modifier"] = modifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let revenue = self.revenue {
 			json["revenue"] = revenue.asJSON(errors: &errors)
@@ -857,10 +850,10 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 
 
 /**
- *  Insurance or medical plan.
- *
- *  Financial instrument by which payment information for health care.
- */
+Insurance or medical plan.
+
+Financial instrument by which payment information for health care.
+*/
 open class ClaimResponseCoverage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseCoverage" }
@@ -988,11 +981,7 @@ open class ClaimResponseCoverage: BackboneElement {
 			json["focal"] = focal.asJSON()
 		}
 		if let preAuthRef = self.preAuthRef {
-			var arr = [Any]()
-			for val in preAuthRef {
-				arr.append(val.asJSON())
-			}
-			json["preAuthRef"] = arr
+			json["preAuthRef"] = preAuthRef.map() { $0.asJSON() }
 		}
 		if let sequence = self.sequence {
 			json["sequence"] = sequence.asJSON()
@@ -1004,10 +993,10 @@ open class ClaimResponseCoverage: BackboneElement {
 
 
 /**
- *  Processing errors.
- *
- *  Mutually exclusive with Services Provided (Item).
- */
+Processing errors.
+
+Mutually exclusive with Services Provided (Item).
+*/
 open class ClaimResponseError: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseError" }
@@ -1104,10 +1093,10 @@ open class ClaimResponseError: BackboneElement {
 
 
 /**
- *  Line items.
- *
- *  The first tier service adjudications for submitted services.
- */
+Line items.
+
+The first tier service adjudications for submitted services.
+*/
 open class ClaimResponseItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItem" }
@@ -1197,11 +1186,7 @@ open class ClaimResponseItem: BackboneElement {
 			json["detail"] = detail.map() { $0.asJSON(errors: &errors) }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
@@ -1213,10 +1198,10 @@ open class ClaimResponseItem: BackboneElement {
 
 
 /**
- *  Adjudication details.
- *
- *  The adjudications results.
- */
+Adjudication details.
+
+The adjudications results.
+*/
 open class ClaimResponseItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemAdjudication" }
@@ -1323,10 +1308,10 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 
 
 /**
- *  Detail line items.
- *
- *  The second tier service adjudications for submitted services.
- */
+Detail line items.
+
+The second tier service adjudications for submitted services.
+*/
 open class ClaimResponseItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetail" }
@@ -1413,11 +1398,7 @@ open class ClaimResponseItemDetail: BackboneElement {
 			json["adjudication"] = adjudication.map() { $0.asJSON(errors: &errors) }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
@@ -1432,10 +1413,10 @@ open class ClaimResponseItemDetail: BackboneElement {
 
 
 /**
- *  Subdetail line items.
- *
- *  The third tier service adjudications for submitted services.
- */
+Subdetail line items.
+
+The third tier service adjudications for submitted services.
+*/
 open class ClaimResponseItemDetailSubDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailSubDetail" }
@@ -1505,11 +1486,7 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 			json["adjudication"] = adjudication.map() { $0.asJSON(errors: &errors) }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [Any]()
-			for val in noteNumber {
-				arr.append(val.asJSON())
-			}
-			json["noteNumber"] = arr
+			json["noteNumber"] = noteNumber.map() { $0.asJSON() }
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
@@ -1521,10 +1498,10 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 
 
 /**
- *  Processing notes.
- *
- *  Note text.
- */
+Processing notes.
+
+Note text.
+*/
 open class ClaimResponseNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseNote" }
@@ -1616,10 +1593,10 @@ open class ClaimResponseNote: BackboneElement {
 
 
 /**
- *  Payment details, if paid.
- *
- *  Payment details for the claim if the claim has been paid.
- */
+Payment details, if paid.
+
+Payment details for the claim if the claim has been paid.
+*/
 open class ClaimResponsePayment: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponsePayment" }

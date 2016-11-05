@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Insurance or medical plan or a payment agreement.
- *
- *  Financial instrument which may be used to pay for or reimburse health care products and services.
- */
+Insurance or medical plan or a payment agreement.
+
+Financial instrument which may be used to pay for or reimburse health care products and services.
+*/
 open class Coverage: DomainResource {
 	override open class var resourceType: String {
 		get { return "Coverage" }
@@ -55,15 +55,15 @@ open class Coverage: DomainResource {
 	/// The plan instance or sequence counter.
 	public var sequence: UInt?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: CoverageStatus?
 	
 	/// Type of coverage.
 	public var type: Coding?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(beneficiary: Reference, issuer: Reference, planholder: Reference, relationship: Coding, status: String) {
+	public convenience init(beneficiary: Reference, issuer: Reference, planholder: Reference, relationship: Coding, status: CoverageStatus) {
 		self.init()
 		self.beneficiary = beneficiary
 		self.issuer = issuer
@@ -238,7 +238,12 @@ open class Coverage: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = CoverageStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -304,7 +309,7 @@ open class Coverage: DomainResource {
 			json["sequence"] = sequence.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)

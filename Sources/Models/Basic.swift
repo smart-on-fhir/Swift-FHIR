@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Basic) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Basic) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Resource for non-supported content.
- *
- *  Basic is used for handling concepts not yet defined in FHIR, narrative-only resources that don't map to an existing
- *  resource, and custom resources not appropriate for inclusion in the FHIR specification.
- */
+Resource for non-supported content.
+
+Basic is used for handling concepts not yet defined in FHIR, narrative-only resources that don't map to an existing
+resource, and custom resources not appropriate for inclusion in the FHIR specification.
+*/
 open class Basic: DomainResource {
 	override open class var resourceType: String {
 		get { return "Basic" }

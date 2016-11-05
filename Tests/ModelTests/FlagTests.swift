@@ -2,7 +2,7 @@
 //  FlagTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -42,11 +42,11 @@ class FlagTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://example.org/local/if1")
 		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "example-encounter")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, FlagStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Follow Infection Control Level 3 Protocol</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -76,11 +76,11 @@ class FlagTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://example.org/local")
 		XCTAssertEqual(inst.code?.text, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, FlagStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Large Dog warning for Peter Patient</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

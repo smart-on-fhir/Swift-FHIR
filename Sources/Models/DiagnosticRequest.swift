@@ -2,7 +2,7 @@
 //  DiagnosticRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DiagnosticRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DiagnosticRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A request for a diagnostic service.
- *
- *  A record of a request for a diagnostic investigation service to be performed.
- */
+A request for a diagnostic service.
+
+A record of a request for a diagnostic investigation service to be performed.
+*/
 open class DiagnosticRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "DiagnosticRequest" }

@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Content in a format defined elsewhere.
- *
- *  For referring to data content defined in other formats.
- */
+Content in a format defined elsewhere.
+
+For referring to data content defined in other formats.
+*/
 open class Attachment: Element {
 	override open class var resourceType: String {
 		get { return "Attachment" }

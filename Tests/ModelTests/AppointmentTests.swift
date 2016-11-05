@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -46,16 +46,16 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.minutesDuration, UInt(15))
 		XCTAssertEqual(inst.participant?[0].actor?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant?[0].actor?.reference, "Patient/example")
-		XCTAssertEqual(inst.participant?[0].required, "required")
-		XCTAssertEqual(inst.participant?[0].status, "needs-action")
-		XCTAssertEqual(inst.participant?[1].required, "required")
-		XCTAssertEqual(inst.participant?[1].status, "needs-action")
+		XCTAssertEqual(inst.participant?[0].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[0].status, ParticipationStatus(rawValue: "needs-action")!)
+		XCTAssertEqual(inst.participant?[1].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[1].status, ParticipationStatus(rawValue: "needs-action")!)
 		XCTAssertEqual(inst.participant?[1].type?[0].coding?[0].code, "ATND")
 		XCTAssertEqual(inst.participant?[1].type?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.participant?[2].actor?.display, "South Wing, second floor")
 		XCTAssertEqual(inst.participant?[2].actor?.reference, "Location/1")
-		XCTAssertEqual(inst.participant?[2].required, "required")
-		XCTAssertEqual(inst.participant?[2].status, "accepted")
+		XCTAssertEqual(inst.participant?[2].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[2].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.priority, UInt(5))
 		XCTAssertEqual(inst.reason?.coding?[0].code, "413095006")
 		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -69,9 +69,9 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "gp")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://example.org/specialty")
-		XCTAssertEqual(inst.status, "proposed")
+		XCTAssertEqual(inst.status, AppointmentStatus(rawValue: "proposed")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Brian MRI results discussion</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -100,18 +100,18 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.participant?[0].actor?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant?[0].actor?.reference, "Patient/example")
-		XCTAssertEqual(inst.participant?[0].required, "required")
-		XCTAssertEqual(inst.participant?[0].status, "accepted")
+		XCTAssertEqual(inst.participant?[0].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[0].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.participant?[1].actor?.display, "Dr Adam Careful")
 		XCTAssertEqual(inst.participant?[1].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.participant?[1].required, "required")
-		XCTAssertEqual(inst.participant?[1].status, "accepted")
+		XCTAssertEqual(inst.participant?[1].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[1].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.participant?[1].type?[0].coding?[0].code, "ATND")
 		XCTAssertEqual(inst.participant?[1].type?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.participant?[2].actor?.display, "South Wing, second floor")
 		XCTAssertEqual(inst.participant?[2].actor?.reference, "Location/1")
-		XCTAssertEqual(inst.participant?[2].required, "required")
-		XCTAssertEqual(inst.participant?[2].status, "accepted")
+		XCTAssertEqual(inst.participant?[2].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[2].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.priority, UInt(5))
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "gp")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
@@ -122,9 +122,9 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.start?.description, "2013-12-10T09:00:00Z")
-		XCTAssertEqual(inst.status, "booked")
+		XCTAssertEqual(inst.status, AppointmentStatus(rawValue: "booked")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Brian MRI results discussion</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -152,19 +152,19 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.id, "2docs")
 		XCTAssertEqual(inst.participant?[0].actor?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant?[0].actor?.reference, "Patient/example")
-		XCTAssertEqual(inst.participant?[0].required, "information-only")
-		XCTAssertEqual(inst.participant?[0].status, "accepted")
+		XCTAssertEqual(inst.participant?[0].required, ParticipantRequired(rawValue: "information-only")!)
+		XCTAssertEqual(inst.participant?[0].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.participant?[1].actor?.display, "Dr Adam Careful")
 		XCTAssertEqual(inst.participant?[1].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.participant?[1].required, "required")
-		XCTAssertEqual(inst.participant?[1].status, "accepted")
+		XCTAssertEqual(inst.participant?[1].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[1].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.participant?[2].actor?.display, "Luigi Maas")
 		XCTAssertEqual(inst.participant?[2].actor?.reference, "Practitioner/f202")
-		XCTAssertEqual(inst.participant?[2].required, "required")
-		XCTAssertEqual(inst.participant?[2].status, "accepted")
+		XCTAssertEqual(inst.participant?[2].required, ParticipantRequired(rawValue: "required")!)
+		XCTAssertEqual(inst.participant?[2].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.participant?[3].actor?.display, "Phone Call")
-		XCTAssertEqual(inst.participant?[3].required, "information-only")
-		XCTAssertEqual(inst.participant?[3].status, "accepted")
+		XCTAssertEqual(inst.participant?[3].required, ParticipantRequired(rawValue: "information-only")!)
+		XCTAssertEqual(inst.participant?[3].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.priority, UInt(5))
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "gp")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
@@ -175,9 +175,9 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.start?.description, "2013-12-09T09:00:00Z")
-		XCTAssertEqual(inst.status, "booked")
+		XCTAssertEqual(inst.status, AppointmentStatus(rawValue: "booked")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Brian MRI results discussion</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Optional Extensions Element.
- *
- *  Optional Extensions Element - found in all resources.
- */
+Optional Extensions Element.
+
+Optional Extensions Element - found in all resources.
+*/
 open class Extension: Element {
 	override open class var resourceType: String {
 		get { return "Extension" }

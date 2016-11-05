@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  An action that is being or was performed on a patient.
- *
- *  An action that is or was performed on a patient. This can be a physical intervention like an operation, or less
- *  invasive like counseling or hypnotherapy.
- */
+An action that is being or was performed on a patient.
+
+An action that is or was performed on a patient. This can be a physical intervention like an operation, or less invasive
+like counseling or hypnotherapy.
+*/
 open class Procedure: DomainResource {
 	override open class var resourceType: String {
 		get { return "Procedure" }
@@ -83,8 +83,8 @@ open class Procedure: DomainResource {
 	/// A request for this procedure.
 	public var request: Reference?
 	
-	/// in-progress | aborted | completed | entered-in-error.
-	public var status: String?
+	/// A code specifying the state of the procedure. Generally this will be in-progress or completed state.
+	public var status: ProcedureStatus?
 	
 	/// Who the procedure was performed on.
 	public var subject: Reference?
@@ -97,7 +97,7 @@ open class Procedure: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, status: String, subject: Reference) {
+	public convenience init(code: CodeableConcept, status: ProcedureStatus, subject: Reference) {
 		self.init()
 		self.code = code
 		self.status = status
@@ -397,7 +397,12 @@ open class Procedure: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ProcedureStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -521,7 +526,7 @@ open class Procedure: DomainResource {
 			json["request"] = request.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -539,11 +544,11 @@ open class Procedure: DomainResource {
 
 
 /**
- *  Device changed in procedure.
- *
- *  A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a
- *  prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.
- */
+Device changed in procedure.
+
+A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a prosthesis,
+attaching a wound-vac, etc.) as a focal portion of the Procedure.
+*/
 open class ProcedureFocalDevice: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProcedureFocalDevice" }
@@ -615,10 +620,10 @@ open class ProcedureFocalDevice: BackboneElement {
 
 
 /**
- *  The people who performed the procedure.
- *
- *  Limited to 'real' people rather than equipment.
- */
+The people who performed the procedure.
+
+Limited to 'real' people rather than equipment.
+*/
 open class ProcedurePerformer: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProcedurePerformer" }

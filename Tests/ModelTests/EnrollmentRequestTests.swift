@@ -2,7 +2,7 @@
 //  EnrollmentRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -40,10 +40,10 @@ class EnrollmentRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/enrollmentrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "EN22345")
 		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, EnrollmentRequestStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.subjectReference?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EnrollmentRequest.</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  AccountTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -52,11 +52,11 @@ class AccountTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "654321")
 		XCTAssertEqual(inst.name, "HACC Funded Billing for Peter James Chalmers")
 		XCTAssertEqual(inst.owner?.reference, "Organization/hl7")
-		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.status, AccountStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">HACC Funded Billing for Peter James Chalmers</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.text, "patient")
 		
 		return inst

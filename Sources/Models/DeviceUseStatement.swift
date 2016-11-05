@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Record of use of a device.
- *
- *  A record of a device being used by a patient where the record is the result of a report from the patient or another
- *  clinician.
- */
+Record of use of a device.
+
+A record of a device being used by a patient where the record is the result of a report from the patient or another
+clinician.
+*/
 open class DeviceUseStatement: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceUseStatement" }
@@ -248,11 +248,7 @@ open class DeviceUseStatement: DomainResource {
 			json["indication"] = indication.map() { $0.asJSON(errors: &errors) }
 		}
 		if let notes = self.notes {
-			var arr = [Any]()
-			for val in notes {
-				arr.append(val.asJSON())
-			}
-			json["notes"] = arr
+			json["notes"] = notes.map() { $0.asJSON() }
 		}
 		if let recordedOn = self.recordedOn {
 			json["recordedOn"] = recordedOn.asJSON()

@@ -46,12 +46,14 @@ class ValidationTests: XCTestCase {
 		}
 		catch let error as FHIRValidationError {
 			let lines = error.description.components(separatedBy: CharacterSet.newlines)
-			XCTAssertEqual(5, lines.count)
+			XCTAssertEqual(7, lines.count)
 			XCTAssertTrue(lines[0].hasPrefix("Questionnaire.item.1.item.0.type: "), lines[0])
-			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.2.option.0.value[x]: "), lines[1])
-			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.2.option.0.valueNumber: "), lines[2])
-			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.option.1.valueCoding.code: "), lines[3])
-			XCTAssertTrue(lines[4].hasPrefix("Questionnaire.versino: "), lines[4])
+			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.1.item.1.type: "), lines[1])
+			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.2.option.0.value[x]: "), lines[2])
+			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.option.0.valueNumber: "), lines[3])
+			XCTAssertTrue(lines[4].hasPrefix("Questionnaire.item.2.option.1.valueCoding.code: "), lines[4])
+			XCTAssertTrue(lines[5].hasPrefix("Questionnaire.status: "), lines[5])
+			XCTAssertTrue(lines[6].hasPrefix("Questionnaire.versino: "), lines[6])
 		}
 		catch let error {
 			XCTAssertNil(error, "Should not have gotten this error")
@@ -59,9 +61,9 @@ class ValidationTests: XCTestCase {
 	}
 	
 	func testSerializationResource() {
-		let questionnaire1 = Questionnaire(status: "draft")
-		XCTAssertEqual("draft", questionnaire1.status)
-		let item = QuestionnaireItem(type: "display")
+		let questionnaire1 = Questionnaire(status: .draft)
+		XCTAssertEqual("draft", questionnaire1.status?.rawValue)
+		let item = QuestionnaireItem(type: .display)
 		item.text = "This is an empty questionnaire"
 		questionnaire1.item = [item]
 		do {

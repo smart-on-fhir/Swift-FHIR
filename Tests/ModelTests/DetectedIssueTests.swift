@@ -2,7 +2,7 @@
 //  DetectedIssueTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -36,7 +36,7 @@ class DetectedIssueTests: XCTestCase {
 		
 		XCTAssertEqual(inst.id, "allergy")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -66,7 +66,7 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.implicated?[0].reference, "DiagnosticRequest/di")
 		XCTAssertEqual(inst.implicated?[1].display, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
 		XCTAssertEqual(inst.implicated?[1].reference, "ImagingStudy/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -87,7 +87,7 @@ class DetectedIssueTests: XCTestCase {
 		
 		XCTAssertEqual(inst.id, "lab")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -123,8 +123,8 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.mitigation?[0].author?.display, "Dr. Adam Careful")
 		XCTAssertEqual(inst.mitigation?[0].author?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.mitigation?[0].date?.description, "2014-01-05")
-		XCTAssertEqual(inst.severity, "high")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.severity, DetectedIssueSeverity(rawValue: "high")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

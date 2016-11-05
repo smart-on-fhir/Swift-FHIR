@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,23 +10,24 @@ import Foundation
 
 
 /**
- *  Record of medication being taken by a patient.
- *
- *  A record of a medication that is being consumed by a patient.   A MedicationStatement may indicate that the patient
- *  may be taking the medication now, or has taken the medication in the past or will be taking the medication in the
- *  future.  The source of this information can be the patient, significant other (such as a family member or spouse),
- *  or a clinician.  A common scenario where this information is captured is during the history taking process during a
- *  patient visit or stay.   The medication information may come from e.g. the patient's memory, from a prescription
- *  bottle,  or from a list of medications the patient, clinician or other party maintains The primary difference
- *  between a medication statement and a medication administration is that the medication administration has complete
- *  administration information and is based on actual administration information from the person who administered the
- *  medication.  A medication statement is often, if not always, less specific.  There is no required date/time when the
- *  medication was administered, in fact we only know that a source has reported the patient is taking this medication,
- *  where details such as time, quantity, or rate or even medication product may be incomplete or missing or less
- *  precise.  As stated earlier, the medication statement information may come from the patient's memory, from a
- *  prescription bottle or from a list of medications the patient, clinician or other party maintains.  Medication
- *  administration is more formal and is not missing detailed information.
- */
+Record of medication being taken by a patient.
+
+A record of a medication that is being consumed by a patient.   A MedicationStatement may indicate that the patient may
+be taking the medication now, or has taken the medication in the past or will be taking the medication in the future.
+The source of this information can be the patient, significant other (such as a family member or spouse), or a
+clinician.  A common scenario where this information is captured is during the history taking process during a patient
+visit or stay.   The medication information may come from e.g. the patient's memory, from a prescription bottle,  or
+from a list of medications the patient, clinician or other party maintains
+
+The primary difference between a medication statement and a medication administration is that the medication
+administration has complete administration information and is based on actual administration information from the person
+who administered the medication.  A medication statement is often, if not always, less specific.  There is no required
+date/time when the medication was administered, in fact we only know that a source has reported the patient is taking
+this medication, where details such as time, quantity, or rate or even medication product may be incomplete or missing
+or less precise.  As stated earlier, the medication statement information may come from the patient's memory, from a
+prescription bottle or from a list of medications the patient, clinician or other party maintains.  Medication
+administration is more formal and is not missing detailed information.
+*/
 open class MedicationStatement: DomainResource {
 	override open class var resourceType: String {
 		get { return "MedicationStatement" }
@@ -62,8 +63,8 @@ open class MedicationStatement: DomainResource {
 	/// What medication was taken.
 	public var medicationReference: Reference?
 	
-	/// y | n | unk.
-	public var notTaken: String?
+	/// Indicator of the certainty of whether the medication was taken by the patient.
+	public var notTaken: MedicationStatementNotTaken?
 	
 	/// Further information about the statement.
 	public var note: [Annotation]?
@@ -80,12 +81,13 @@ open class MedicationStatement: DomainResource {
 	/// True if asserting medication was not given.
 	public var reasonNotTaken: [CodeableConcept]?
 	
-	/// active | completed | entered-in-error | intended | stopped | on-hold.
-	public var status: String?
+	/// A code representing the patient or other source's judgment about the state of the medication used that this
+	/// statement is about.  Generally this will be active or completed.
+	public var status: MedicationStatementStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(medication: Any, patient: Reference, status: String) {
+	public convenience init(medication: Any, patient: Reference, status: MedicationStatementStatus) {
 		self.init()
 		if let value = medication as? CodeableConcept {
 			self.medicationCodeableConcept = value
@@ -231,7 +233,12 @@ open class MedicationStatement: DomainResource {
 		if let exist = json["notTaken"] {
 			presentKeys.insert("notTaken")
 			if let val = exist as? String {
-				self.notTaken = val
+				if let enumval = MedicationStatementNotTaken(rawValue: val) {
+					self.notTaken = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "notTaken", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "notTaken", wants: String.self, has: type(of: exist)))
@@ -313,7 +320,12 @@ open class MedicationStatement: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = MedicationStatementStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -364,7 +376,7 @@ open class MedicationStatement: DomainResource {
 			json["medicationReference"] = medicationReference.asJSON(errors: &errors)
 		}
 		if let notTaken = self.notTaken {
-			json["notTaken"] = notTaken.asJSON()
+			json["notTaken"] = notTaken.rawValue
 		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
@@ -382,7 +394,7 @@ open class MedicationStatement: DomainResource {
 			json["reasonNotTaken"] = reasonNotTaken.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

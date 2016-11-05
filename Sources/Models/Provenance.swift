@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,16 +10,15 @@ import Foundation
 
 
 /**
- *  Who, What, When for a set of resources.
- *
- *  Provenance of a resource is a record that describes entities and processes involved in producing and delivering or
- *  otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling
- *  trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves
- *  become important records with their own provenance. Provenance statement indicates clinical significance in terms of
- *  confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document
- *  Completion - has the artifact been legally authenticated), all of which may impact security, privacy, and trust
- *  policies.
- */
+Who, What, When for a set of resources.
+
+Provenance of a resource is a record that describes entities and processes involved in producing and delivering or
+otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling
+trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves become
+important records with their own provenance. Provenance statement indicates clinical significance in terms of confidence
+in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document Completion - has the
+artifact been legally authenticated), all of which may impact security, privacy, and trust policies.
+*/
 open class Provenance: DomainResource {
 	override open class var resourceType: String {
 		get { return "Provenance" }
@@ -228,11 +227,7 @@ open class Provenance: DomainResource {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let policy = self.policy {
-			var arr = [Any]()
-			for val in policy {
-				arr.append(val.asJSON())
-			}
-			json["policy"] = arr
+			json["policy"] = policy.map() { $0.asJSON() }
 		}
 		if let reason = self.reason {
 			json["reason"] = reason.map() { $0.asJSON(errors: &errors) }
@@ -253,11 +248,11 @@ open class Provenance: DomainResource {
 
 
 /**
- *  Actor involved.
- *
- *  An actor taking a role in an activity  for which it can be assigned some degree of responsibility for the activity
- *  taking place.
- */
+Actor involved.
+
+An actor taking a role in an activity  for which it can be assigned some degree of responsibility for the activity
+taking place.
+*/
 open class ProvenanceAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceAgent" }
@@ -369,12 +364,12 @@ open class ProvenanceAgent: BackboneElement {
 
 
 /**
- *  Track delegation between agents.
- *
- *  A relationship between two the agents referenced in this resource. This is defined to allow for explicit description
- *  of the delegation between agents.  For example, this human author used this device, or one person acted on another's
- *  behest.
- */
+Track delegation between agents.
+
+A relationship between two the agents referenced in this resource. This is defined to allow for explicit description of
+the delegation between agents.  For example, this human author used this device, or one person acted on another's
+behest.
+*/
 open class ProvenanceAgentRelatedAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceAgentRelatedAgent" }
@@ -445,8 +440,8 @@ open class ProvenanceAgentRelatedAgent: BackboneElement {
 
 
 /**
- *  An entity used in this activity.
- */
+An entity used in this activity.
+*/
 open class ProvenanceEntity: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceEntity" }
@@ -461,15 +456,15 @@ open class ProvenanceEntity: BackboneElement {
 	/// Identity of entity.
 	public var reference: URL?
 	
-	/// derivation | revision | quotation | source | removal.
-	public var role: String?
+	/// How the entity was used during the activity.
+	public var role: ProvenanceEntityRole?
 	
 	/// The type of resource in this entity.
 	public var type: Coding?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(reference: URL, role: String, type: Coding) {
+	public convenience init(reference: URL, role: ProvenanceEntityRole, type: Coding) {
 		self.init()
 		self.reference = reference
 		self.role = role
@@ -517,7 +512,12 @@ open class ProvenanceEntity: BackboneElement {
 		if let exist = json["role"] {
 			presentKeys.insert("role")
 			if let val = exist as? String {
-				self.role = val
+				if let enumval = ProvenanceEntityRole(rawValue: val) {
+					self.role = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "role", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "role", wants: String.self, has: type(of: exist)))
@@ -559,7 +559,7 @@ open class ProvenanceEntity: BackboneElement {
 			json["reference"] = reference.asJSON()
 		}
 		if let role = self.role {
-			json["role"] = role.asJSON()
+			json["role"] = role.rawValue
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)

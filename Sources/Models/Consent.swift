@@ -2,7 +2,7 @@
 //  Consent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Consent) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Consent) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  A healthcare consumer’s policy choices to permits or denies recipients or roles to perform actions for specific
- *  purposes and periods of time.
- *
- *  A record of a healthcare consumer’s policy choices, which permits or denies identified recipient(s) or recipient
- *  role(s) to perform one or more actions within a given policy context, for specific purposes and periods of time.
- */
+A healthcare consumer’s policy choices to permits or denies recipients or roles to perform actions for specific purposes
+and periods of time.
+
+A record of a healthcare consumer’s policy choices, which permits or denies identified recipient(s) or recipient role(s)
+to perform one or more actions within a given policy context, for specific purposes and periods of time.
+*/
 open class Consent: DomainResource {
 	override open class var resourceType: String {
 		get { return "Consent" }
@@ -63,12 +63,12 @@ open class Consent: DomainResource {
 	/// Source from which this consent is taken.
 	public var sourceReference: Reference?
 	
-	/// draft | proposed | active | rejected | inactive | entered-in-error.
-	public var status: String?
+	/// Indicates the current state of this consent.
+	public var status: ConsentStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, policy: URL, status: String) {
+	public convenience init(patient: Reference, policy: URL, status: ConsentStatus) {
 		self.init()
 		self.patient = patient
 		self.policy = policy
@@ -273,7 +273,12 @@ open class Consent: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ConsentStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -331,7 +336,7 @@ open class Consent: DomainResource {
 			json["sourceReference"] = sourceReference.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json
@@ -340,23 +345,23 @@ open class Consent: DomainResource {
 
 
 /**
- *  Additional rule -  addition or removal of permissions.
- *
- *  An exception to the base policy of this consent. An exception can be an addition or removal of access permissions.
- */
+Additional rule -  addition or removal of permissions.
+
+An exception to the base policy of this consent. An exception can be an addition or removal of access permissions.
+*/
 open class ConsentExcept: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConsentExcept" }
 	}
+	
+	/// e.g. Resource Type, Profile, or CDA etc.
+	public var `class`: [Coding]?
 	
 	/// Actions controlled by this exception.
 	public var action: [CodeableConcept]?
 	
 	/// Who|what controlled by this exception (or group, by role).
 	public var actor: [ConsentExceptActor]?
-	
-	/// e.g. Resource Type, Profile, or CDA etc.
-	public var class_fhir: [Coding]?
 	
 	/// e.g. LOINC or SNOMED CT code, etc in the content.
 	public var code: [Coding]?
@@ -373,12 +378,12 @@ open class ConsentExcept: BackboneElement {
 	/// Security Labels that define affected resources.
 	public var securityLabel: [Coding]?
 	
-	/// deny | permit.
-	public var type: String?
+	/// Action  to take - permit or deny - when the exception conditions are met.
+	public var type: ConsentExceptType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: ConsentExceptType) {
 		self.init()
 		self.type = type
 	}
@@ -386,6 +391,20 @@ open class ConsentExcept: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["class"] {
+			presentKeys.insert("class")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.`class` = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "class"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "class", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["action"] {
 			presentKeys.insert("action")
 			if let val = exist as? [FHIRJSON] {
@@ -412,20 +431,6 @@ open class ConsentExcept: BackboneElement {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "actor", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["class"] {
-			presentKeys.insert("class")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.class_fhir = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "class"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "class", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["code"] {
@@ -501,7 +506,12 @@ open class ConsentExcept: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = ConsentExceptType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -516,14 +526,14 @@ open class ConsentExcept: BackboneElement {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
+		if let `class` = self.`class` {
+			json["class"] = `class`.map() { $0.asJSON(errors: &errors) }
+		}
 		if let action = self.action {
 			json["action"] = action.map() { $0.asJSON(errors: &errors) }
 		}
 		if let actor = self.actor {
 			json["actor"] = actor.map() { $0.asJSON(errors: &errors) }
-		}
-		if let class_fhir = self.class_fhir {
-			json["class"] = class_fhir.map() { $0.asJSON(errors: &errors) }
 		}
 		if let code = self.code {
 			json["code"] = code.map() { $0.asJSON(errors: &errors) }
@@ -541,7 +551,7 @@ open class ConsentExcept: BackboneElement {
 			json["securityLabel"] = securityLabel.map() { $0.asJSON(errors: &errors) }
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -550,11 +560,11 @@ open class ConsentExcept: BackboneElement {
 
 
 /**
- *  Who|what controlled by this exception (or group, by role).
- *
- *  Who or what is controlled by this Exception. Use group to identify a set of actors by some property they share (e.g.
- *  'admitting officers').
- */
+Who|what controlled by this exception (or group, by role).
+
+Who or what is controlled by this Exception. Use group to identify a set of actors by some property they share (e.g.
+'admitting officers').
+*/
 open class ConsentExceptActor: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConsentExceptActor" }
@@ -630,24 +640,24 @@ open class ConsentExceptActor: BackboneElement {
 
 
 /**
- *  Data controlled by this exception.
- *
- *  The resources controlled by this exception, if specific resources are referenced.
- */
+Data controlled by this exception.
+
+The resources controlled by this exception, if specific resources are referenced.
+*/
 open class ConsentExceptData: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConsentExceptData" }
 	}
 	
-	/// instance | related | dependents.
-	public var meaning: String?
+	/// How the resource reference is interpreted when testing consent restrictions.
+	public var meaning: ConsentDataMeaning?
 	
 	/// The actual data reference.
 	public var reference: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(meaning: String, reference: Reference) {
+	public convenience init(meaning: ConsentDataMeaning, reference: Reference) {
 		self.init()
 		self.meaning = meaning
 		self.reference = reference
@@ -659,7 +669,12 @@ open class ConsentExceptData: BackboneElement {
 		if let exist = json["meaning"] {
 			presentKeys.insert("meaning")
 			if let val = exist as? String {
-				self.meaning = val
+				if let enumval = ConsentDataMeaning(rawValue: val) {
+					self.meaning = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "meaning", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "meaning", wants: String.self, has: type(of: exist)))
@@ -692,7 +707,7 @@ open class ConsentExceptData: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let meaning = self.meaning {
-			json["meaning"] = meaning.asJSON()
+			json["meaning"] = meaning.rawValue
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON(errors: &errors)

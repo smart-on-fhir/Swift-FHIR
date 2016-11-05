@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  PaymentReconciliation resource.
- *
- *  This resource provides payment details and claim references supporting a bulk payment.
- */
+PaymentReconciliation resource.
+
+This resource provides payment details and claim references supporting a bulk payment.
+*/
 open class PaymentReconciliation: DomainResource {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliation" }
@@ -61,15 +61,15 @@ open class PaymentReconciliation: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: PaymentReconciliationStatus?
 	
 	/// Total amount of Payment.
 	public var total: Money?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String, total: Money) {
+	public convenience init(status: PaymentReconciliationStatus, total: Money) {
 		self.init()
 		self.status = status
 		self.total = total
@@ -262,7 +262,12 @@ open class PaymentReconciliation: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PaymentReconciliationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -337,7 +342,7 @@ open class PaymentReconciliation: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let total = self.total {
 			json["total"] = total.asJSON(errors: &errors)
@@ -349,10 +354,10 @@ open class PaymentReconciliation: DomainResource {
 
 
 /**
- *  Details.
- *
- *  List of individual settlement amounts and the corresponding transaction.
- */
+Details.
+
+List of individual settlement amounts and the corresponding transaction.
+*/
 open class PaymentReconciliationDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliationDetail" }
@@ -519,10 +524,10 @@ open class PaymentReconciliationDetail: BackboneElement {
 
 
 /**
- *  Note text.
- *
- *  Suite of notes.
- */
+Note text.
+
+Suite of notes.
+*/
 open class PaymentReconciliationNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliationNote" }

@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A manifest that defines a set of documents.
- */
+A manifest that defines a set of documents.
+*/
 open class DocumentManifest: DomainResource {
 	override open class var resourceType: String {
 		get { return "DocumentManifest" }
@@ -44,8 +44,8 @@ open class DocumentManifest: DomainResource {
 	/// The source system/application/software.
 	public var source: URL?
 	
-	/// current | superseded | entered-in-error.
-	public var status: String?
+	/// The status of this document manifest.
+	public var status: DocumentReferenceStatus?
 	
 	/// The subject of the set of documents.
 	public var subject: Reference?
@@ -55,7 +55,7 @@ open class DocumentManifest: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: [DocumentManifestContent], status: String) {
+	public convenience init(content: [DocumentManifestContent], status: DocumentReferenceStatus) {
 		self.init()
 		self.content = content
 		self.status = status
@@ -181,7 +181,12 @@ open class DocumentManifest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = DocumentReferenceStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -252,7 +257,7 @@ open class DocumentManifest: DomainResource {
 			json["source"] = source.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -267,10 +272,10 @@ open class DocumentManifest: DomainResource {
 
 
 /**
- *  The items included.
- *
- *  The list of Documents included in the manifest.
- */
+The items included.
+
+The list of Documents included in the manifest.
+*/
 open class DocumentManifestContent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentManifestContent" }
@@ -352,10 +357,10 @@ open class DocumentManifestContent: BackboneElement {
 
 
 /**
- *  Related things.
- *
- *  Related identifiers or resources associated with the DocumentManifest.
- */
+Related things.
+
+Related identifiers or resources associated with the DocumentManifest.
+*/
 open class DocumentManifestRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentManifestRelated" }

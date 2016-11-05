@@ -2,7 +2,7 @@
 //  EnrollmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  EnrollmentResponse resource.
- *
- *  This resource provides enrollment and plan details from the processing of an Enrollment resource.
- */
+EnrollmentResponse resource.
+
+This resource provides enrollment and plan details from the processing of an Enrollment resource.
+*/
 open class EnrollmentResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "EnrollmentResponse" }
@@ -61,12 +61,12 @@ open class EnrollmentResponse: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: EnrollmentResponseStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: EnrollmentResponseStatus) {
 		self.init()
 		self.status = status
 	}
@@ -258,7 +258,12 @@ open class EnrollmentResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EnrollmentResponseStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -316,7 +321,7 @@ open class EnrollmentResponse: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

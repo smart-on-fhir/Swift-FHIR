@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  A timing schedule that specifies an event that may occur multiple times.
- *
- *  Specifies an event that may occur multiple times. Timing schedules are used to record when things are expected or
- *  requested to occur. The most common usage is in dosage instructions for medications. They are also used when
- *  planning care of various kinds.
- */
+A timing schedule that specifies an event that may occur multiple times.
+
+Specifies an event that may occur multiple times. Timing schedules are used to record when things are expected or
+requested to occur. The most common usage is in dosage instructions for medications. They are also used when planning
+care of various kinds.
+*/
 open class Timing: Element {
 	override open class var resourceType: String {
 		get { return "Timing" }
@@ -80,11 +80,7 @@ open class Timing: Element {
 			json["code"] = code.asJSON(errors: &errors)
 		}
 		if let event = self.event {
-			var arr = [Any]()
-			for val in event {
-				arr.append(val.asJSON())
-			}
-			json["event"] = arr
+			json["event"] = event.map() { $0.asJSON() }
 		}
 		if let repeat_fhir = self.repeat_fhir {
 			json["repeat"] = repeat_fhir.asJSON(errors: &errors)
@@ -96,10 +92,10 @@ open class Timing: Element {
 
 
 /**
- *  When the event is to occur.
- *
- *  A set of rules that describe when the event should occur.
- */
+When the event is to occur.
+
+A set of rules that describe when the event should occur.
+*/
 open class TimingRepeat: Element {
 	override open class var resourceType: String {
 		get { return "TimingRepeat" }

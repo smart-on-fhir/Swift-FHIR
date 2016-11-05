@@ -184,7 +184,7 @@ open class FHIROpenServer: FHIRServer {
 				if nil == best {
 					best = rest
 				}
-				else if "client" == rest.mode {
+				else if .client == rest.mode {
 					best = rest
 					break
 				}

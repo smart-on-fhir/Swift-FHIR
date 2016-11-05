@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -45,9 +45,9 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].text, "Patient dropped off specimen")
 		XCTAssertEqual(inst.parent?[0].reference, "#stool")
 		XCTAssertEqual(inst.receivedTime?.description, "2015-08-18T07:03:00Z")
-		XCTAssertEqual(inst.status, "available")
+		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "429951000124103")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Bacterial isolate specimen")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -79,7 +79,7 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.id, "sst")
 		XCTAssertEqual(inst.request?[0].reference, "DiagnosticRequest/ft4")
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "119364003")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Serum sample")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -112,9 +112,9 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.container?[0].type?.text, "Non-sterile specimen container")
 		XCTAssertEqual(inst.id, "vma-urine")
 		XCTAssertEqual(inst.receivedTime?.description, "2015-08-18T07:03:00Z")
-		XCTAssertEqual(inst.status, "available")
+		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.treatment?[0].description_fhir, "Acidify to pH < 3.0 with 6 N HCl.")
 		XCTAssertEqual(inst.treatment?[0].procedure?.coding?[0].code, "ACID")
 		XCTAssertEqual(inst.treatment?[0].procedure?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0373")
@@ -162,10 +162,10 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].text, "Specimen is grossly lipemic")
 		XCTAssertEqual(inst.receivedTime?.description, "2011-03-04T07:03:00Z")
 		XCTAssertEqual(inst.request?[0].reference, "DiagnosticRequest/example")
-		XCTAssertEqual(inst.status, "available")
+		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "122555007")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Venous blood specimen")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")

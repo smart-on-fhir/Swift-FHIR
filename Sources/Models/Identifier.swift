@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  An identifier intended for computation.
- *
- *  A technical identifier - identifies some entity uniquely and unambiguously.
- */
+An identifier intended for computation.
+
+A technical identifier - identifies some entity uniquely and unambiguously.
+*/
 open class Identifier: Element {
 	override open class var resourceType: String {
 		get { return "Identifier" }
@@ -31,8 +31,8 @@ open class Identifier: Element {
 	/// Description of identifier.
 	public var type: CodeableConcept?
 	
-	/// usual | official | temp | secondary (If known).
-	public var use: String?
+	/// The purpose of this identifier.
+	public var use: IdentifierUse?
 	
 	/// The value that is unique.
 	public var value: String?
@@ -94,7 +94,12 @@ open class Identifier: Element {
 		if let exist = json["use"] {
 			presentKeys.insert("use")
 			if let val = exist as? String {
-				self.use = val
+				if let enumval = IdentifierUse(rawValue: val) {
+					self.use = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
@@ -128,7 +133,7 @@ open class Identifier: Element {
 			json["type"] = type.asJSON(errors: &errors)
 		}
 		if let use = self.use {
-			json["use"] = use.asJSON()
+			json["use"] = use.rawValue
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()

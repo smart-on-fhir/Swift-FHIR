@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  Administration of medication to a patient.
- *
- *  Describes the event of a patient consuming or otherwise being administered a medication.  This may be as simple as
- *  swallowing a tablet or it may be a long running infusion.  Related resources tie this event to the authorizing
- *  prescription, and the specific encounter between patient and health care practitioner.
- */
+Administration of medication to a patient.
+
+Describes the event of a patient consuming or otherwise being administered a medication.  This may be as simple as
+swallowing a tablet or it may be a long running infusion.  Related resources tie this event to the authorizing
+prescription, and the specific encounter between patient and health care practitioner.
+*/
 open class MedicationAdministration: DomainResource {
 	override open class var resourceType: String {
 		get { return "MedicationAdministration" }
@@ -72,15 +72,17 @@ open class MedicationAdministration: DomainResource {
 	/// Condition or Observation that supports why the medication was administered.
 	public var reasonReference: [Reference]?
 	
-	/// in-progress | on-hold | completed | entered-in-error | stopped.
-	public var status: String?
+	/// Will generally be set to show that the administration has been completed.  For some long running administrations
+	/// such as infusions it is possible for an administration to be started but not completed or it may be paused while
+	/// some other process is under way.
+	public var status: MedicationAdministrationStatus?
 	
 	/// Additional information to support administration.
 	public var supportingInformation: [Reference]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(effectiveTime: Any, medication: Any, patient: Reference, status: String) {
+	public convenience init(effectiveTime: Any, medication: Any, patient: Reference, status: MedicationAdministrationStatus) {
 		self.init()
 		if let value = effectiveTime as? DateTime {
 			self.effectiveTimeDateTime = value
@@ -341,7 +343,12 @@ open class MedicationAdministration: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = MedicationAdministrationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -430,7 +437,7 @@ open class MedicationAdministration: DomainResource {
 			json["reasonReference"] = reasonReference.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let supportingInformation = self.supportingInformation {
 			json["supportingInformation"] = supportingInformation.map() { $0.asJSON(errors: &errors) }
@@ -442,10 +449,10 @@ open class MedicationAdministration: DomainResource {
 
 
 /**
- *  Details of how medication was taken.
- *
- *  Describes the medication dosage information details e.g. dose, rate, site, route, etc.
- */
+Details of how medication was taken.
+
+Describes the medication dosage information details e.g. dose, rate, site, route, etc.
+*/
 open class MedicationAdministrationDosage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationAdministrationDosage" }

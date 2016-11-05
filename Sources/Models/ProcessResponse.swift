@@ -2,7 +2,7 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  ProcessResponse resource.
- *
- *  This resource provides processing status, errors and notes from the processing of a resource.
- */
+ProcessResponse resource.
+
+This resource provides processing status, errors and notes from the processing of a resource.
+*/
 open class ProcessResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "ProcessResponse" }
@@ -58,12 +58,12 @@ open class ProcessResponse: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: ProcessResponseStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: ProcessResponseStatus) {
 		self.init()
 		self.status = status
 	}
@@ -246,7 +246,12 @@ open class ProcessResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ProcessResponseStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -301,7 +306,7 @@ open class ProcessResponse: DomainResource {
 			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json
@@ -310,10 +315,10 @@ open class ProcessResponse: DomainResource {
 
 
 /**
- *  Notes.
- *
- *  Suite of processing note or additional requirements is the processing has been held.
- */
+Notes.
+
+Suite of processing note or additional requirements is the processing has been held.
+*/
 open class ProcessResponseNotes: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProcessResponseNotes" }

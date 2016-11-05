@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Definition of an operation or a named query.
- *
- *  A formal computable definition of an operation (on the RESTful interface) or a named query (using the search
- *  interaction).
- */
+Definition of an operation or a named query.
+
+A formal computable definition of an operation (on the RESTful interface) or a named query (using the search
+interaction).
+*/
 open class OperationDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "OperationDefinition" }
@@ -50,8 +50,8 @@ open class OperationDefinition: DomainResource {
 	/// Intended jurisdiction for operation definition (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// operation | query.
-	public var kind: String?
+	/// Whether this is an operation or a named query.
+	public var kind: OperationKind?
 	
 	/// Name for this operation definition (Computer friendly).
 	public var name: String?
@@ -71,8 +71,8 @@ open class OperationDefinition: DomainResource {
 	/// Types this operation applies to.
 	public var resource: [String]?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this operation definition. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Invoke at the system level?.
 	public var system: Bool?
@@ -91,7 +91,7 @@ open class OperationDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, instance: Bool, kind: String, name: String, status: String, system: Bool, type: Bool) {
+	public convenience init(code: String, instance: Bool, kind: OperationKind, name: String, status: PublicationStatus, system: Bool, type: Bool) {
 		self.init()
 		self.code = code
 		self.instance = instance
@@ -219,7 +219,12 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["kind"] {
 			presentKeys.insert("kind")
 			if let val = exist as? String {
-				self.kind = val
+				if let enumval = OperationKind(rawValue: val) {
+					self.kind = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "kind", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -298,7 +303,12 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -400,7 +410,7 @@ open class OperationDefinition: DomainResource {
 			json["jurisdiction"] = jurisdiction.map() { $0.asJSON(errors: &errors) }
 		}
 		if let kind = self.kind {
-			json["kind"] = kind.asJSON()
+			json["kind"] = kind.rawValue
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -418,14 +428,10 @@ open class OperationDefinition: DomainResource {
 			json["purpose"] = purpose.asJSON()
 		}
 		if let resource = self.resource {
-			var arr = [Any]()
-			for val in resource {
-				arr.append(val.asJSON())
-			}
-			json["resource"] = arr
+			json["resource"] = resource.map() { $0.asJSON() }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
@@ -449,10 +455,10 @@ open class OperationDefinition: DomainResource {
 
 
 /**
- *  For generating overloaded methods in code.
- *
- *  Defines an appropriate combination of parameters to use when invoking this operation.
- */
+For generating overloaded methods in code.
+
+Defines an appropriate combination of parameters to use when invoking this operation.
+*/
 open class OperationDefinitionOverload: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OperationDefinitionOverload" }
@@ -495,11 +501,7 @@ open class OperationDefinitionOverload: BackboneElement {
 			json["comment"] = comment.asJSON()
 		}
 		if let parameterName = self.parameterName {
-			var arr = [Any]()
-			for val in parameterName {
-				arr.append(val.asJSON())
-			}
-			json["parameterName"] = arr
+			json["parameterName"] = parameterName.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -508,10 +510,10 @@ open class OperationDefinitionOverload: BackboneElement {
 
 
 /**
- *  Parameters for the operation/query.
- *
- *  The parameters for the operation/query.
- */
+Parameters for the operation/query.
+
+The parameters for the operation/query.
+*/
 open class OperationDefinitionParameter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OperationDefinitionParameter" }
@@ -538,18 +540,18 @@ open class OperationDefinitionParameter: BackboneElement {
 	/// Profile on the type.
 	public var profile: Reference?
 	
-	/// number | date | string | token | reference | composite | quantity | uri.
-	public var searchType: String?
+	/// How the parameter is understood as a search parameter. This is only used if the parameter type is 'string'.
+	public var searchType: SearchParamType?
 	
 	/// What type this parameter has.
 	public var type: String?
 	
-	/// in | out.
-	public var use: String?
+	/// Whether this is an input or an output parameter.
+	public var use: OperationParameterUse?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(max: String, min: Int, name: String, use: String) {
+	public convenience init(max: String, min: Int, name: String, use: OperationParameterUse) {
 		self.init()
 		self.max = max
 		self.min = min
@@ -650,7 +652,12 @@ open class OperationDefinitionParameter: BackboneElement {
 		if let exist = json["searchType"] {
 			presentKeys.insert("searchType")
 			if let val = exist as? String {
-				self.searchType = val
+				if let enumval = SearchParamType(rawValue: val) {
+					self.searchType = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "searchType", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "searchType", wants: String.self, has: type(of: exist)))
@@ -668,7 +675,12 @@ open class OperationDefinitionParameter: BackboneElement {
 		if let exist = json["use"] {
 			presentKeys.insert("use")
 			if let val = exist as? String {
-				self.use = val
+				if let enumval = OperationParameterUse(rawValue: val) {
+					self.use = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
@@ -705,13 +717,13 @@ open class OperationDefinitionParameter: BackboneElement {
 			json["profile"] = profile.asJSON(errors: &errors)
 		}
 		if let searchType = self.searchType {
-			json["searchType"] = searchType.asJSON()
+			json["searchType"] = searchType.rawValue
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
 		if let use = self.use {
-			json["use"] = use.asJSON()
+			json["use"] = use.rawValue
 		}
 		
 		return json
@@ -720,17 +732,18 @@ open class OperationDefinitionParameter: BackboneElement {
 
 
 /**
- *  ValueSet details if this is coded.
- *
- *  Binds to a value set if this parameter is coded (code, Coding, CodeableConcept).
- */
+ValueSet details if this is coded.
+
+Binds to a value set if this parameter is coded (code, Coding, CodeableConcept).
+*/
 open class OperationDefinitionParameterBinding: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OperationDefinitionParameterBinding" }
 	}
 	
-	/// required | extensible | preferred | example.
-	public var strength: String?
+	/// Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the
+	/// provided value set must be adhered to in the instances.
+	public var strength: BindingStrength?
 	
 	/// Source of value set.
 	public var valueSetReference: Reference?
@@ -740,7 +753,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(strength: String, valueSet: Any) {
+	public convenience init(strength: BindingStrength, valueSet: Any) {
 		self.init()
 		self.strength = strength
 		if let value = valueSet as? URL {
@@ -760,7 +773,12 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		if let exist = json["strength"] {
 			presentKeys.insert("strength")
 			if let val = exist as? String {
-				self.strength = val
+				if let enumval = BindingStrength(rawValue: val) {
+					self.strength = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "strength", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "strength", wants: String.self, has: type(of: exist)))
@@ -804,7 +822,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let strength = self.strength {
-			json["strength"] = strength.asJSON()
+			json["strength"] = strength.rawValue
 		}
 		if let valueSetReference = self.valueSetReference {
 			json["valueSetReference"] = valueSetReference.asJSON(errors: &errors)

@@ -5,6 +5,7 @@ Changelog
 ## x.x
 
 - Change initializers: provide convenience initializers; initializers taking JSON may throw
+- Generate enums for many closed ValueSets
 - Much better model validation
 
 

@@ -2,7 +2,7 @@
 //  CodeableConcept.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Concept - reference to a terminology or just  text.
- *
- *  A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.
- */
+Concept - reference to a terminology or just  text.
+
+A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.
+*/
 open class CodeableConcept: Element {
 	override open class var resourceType: String {
 		get { return "CodeableConcept" }

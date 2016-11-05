@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Information about patient's relatives, relevant for patient.
- *
- *  Significant health events and conditions for a person related to the patient relevant in the context of care for the
- *  patient.
- */
+Information about patient's relatives, relevant for patient.
+
+Significant health events and conditions for a person related to the patient relevant in the context of care for the
+patient.
+*/
 open class FamilyMemberHistory: DomainResource {
 	override open class var resourceType: String {
 		get { return "FamilyMemberHistory" }
@@ -62,8 +62,9 @@ open class FamilyMemberHistory: DomainResource {
 	/// Age is estimated?.
 	public var estimatedAge: Bool?
 	
-	/// male | female | other | unknown.
-	public var gender: String?
+	/// Administrative Gender - the gender that the relative is considered to have for administration and record keeping
+	/// purposes.
+	public var gender: AdministrativeGender?
 	
 	/// External Id(s) for this record.
 	public var identifier: [Identifier]?
@@ -80,12 +81,12 @@ open class FamilyMemberHistory: DomainResource {
 	/// Relationship to the subject.
 	public var relationship: CodeableConcept?
 	
-	/// partial | completed | entered-in-error | health-unknown.
-	public var status: String?
+	/// A code specifying the status of the record of the family history of a specific family member.
+	public var status: FamilyHistoryStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, relationship: CodeableConcept, status: String) {
+	public convenience init(patient: Reference, relationship: CodeableConcept, status: FamilyHistoryStatus) {
 		self.init()
 		self.patient = patient
 		self.relationship = relationship
@@ -254,7 +255,12 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["gender"] {
 			presentKeys.insert("gender")
 			if let val = exist as? String {
-				self.gender = val
+				if let enumval = AdministrativeGender(rawValue: val) {
+					self.gender = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "gender", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -334,7 +340,12 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = FamilyHistoryStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -392,7 +403,7 @@ open class FamilyMemberHistory: DomainResource {
 			json["estimatedAge"] = estimatedAge.asJSON()
 		}
 		if let gender = self.gender {
-			json["gender"] = gender.asJSON()
+			json["gender"] = gender.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
@@ -410,7 +421,7 @@ open class FamilyMemberHistory: DomainResource {
 			json["relationship"] = relationship.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json
@@ -419,12 +430,11 @@ open class FamilyMemberHistory: DomainResource {
 
 
 /**
- *  Condition that the related person had.
- *
- *  The significant Conditions (or condition) that the family member had. This is a repeating section to allow a system
- *  to represent more than one condition per resource, though there is nothing stopping multiple resources - one per
- *  condition.
- */
+Condition that the related person had.
+
+The significant Conditions (or condition) that the family member had. This is a repeating section to allow a system to
+represent more than one condition per resource, though there is nothing stopping multiple resources - one per condition.
+*/
 open class FamilyMemberHistoryCondition: BackboneElement {
 	override open class var resourceType: String {
 		get { return "FamilyMemberHistoryCondition" }

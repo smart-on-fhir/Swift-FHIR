@@ -2,7 +2,7 @@
 //  MeasureReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Results of a measure evaluation.
- *
- *  The MeasureReport resource contains the results of evaluating a measure.
- */
+Results of a measure evaluation.
+
+The MeasureReport resource contains the results of evaluating a measure.
+*/
 open class MeasureReport: DomainResource {
 	override open class var resourceType: String {
 		get { return "MeasureReport" }
@@ -40,15 +40,17 @@ open class MeasureReport: DomainResource {
 	/// Reporting Organization.
 	public var reportingOrganization: Reference?
 	
-	/// complete | pending | error.
-	public var status: String?
+	/// The report status. No data will be available until the report status is complete.
+	public var status: MeasureReportStatus?
 	
-	/// individual | patient-list | summary.
-	public var type: String?
+	/// The type of measure report. This may be an individual report, which provides a single patient's score for the
+	/// measure, a patient listing, which returns the list of patients that meet the various criteria in the measure, or
+	/// a summary report, which returns a population count for each criteria in the measure.
+	public var type: MeasureReportType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(measure: Reference, period: Period, status: String, type: String) {
+	public convenience init(measure: Reference, period: Period, status: MeasureReportStatus, type: MeasureReportType) {
 		self.init()
 		self.measure = measure
 		self.period = period
@@ -161,7 +163,12 @@ open class MeasureReport: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = MeasureReportStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -173,7 +180,12 @@ open class MeasureReport: DomainResource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = MeasureReportType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -210,10 +222,10 @@ open class MeasureReport: DomainResource {
 			json["reportingOrganization"] = reportingOrganization.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -222,10 +234,10 @@ open class MeasureReport: DomainResource {
 
 
 /**
- *  Measure results for each group.
- *
- *  The results of the calculation, one for each population group in the measure.
- */
+Measure results for each group.
+
+The results of the calculation, one for each population group in the measure.
+*/
 open class MeasureReportGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureReportGroup" }
@@ -352,10 +364,10 @@ open class MeasureReportGroup: BackboneElement {
 
 
 /**
- *  The populations in the group.
- *
- *  The populations that make up the population group, one for each type of population appropriate for the measure.
- */
+The populations in the group.
+
+The populations that make up the population group, one for each type of population appropriate for the measure.
+*/
 open class MeasureReportGroupPopulation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureReportGroupPopulation" }
@@ -367,12 +379,12 @@ open class MeasureReportGroupPopulation: BackboneElement {
 	/// For patient-list reports, the patients in this population.
 	public var patients: Reference?
 	
-	/// initial-population | numerator | numerator-exclusion | denominator | denominator-exclusion | denominator-exception | measure-population | measure-population-exclusion | measure-score.
-	public var type: String?
+	/// The type of the population.
+	public var type: MeasurePopulationType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: MeasurePopulationType) {
 		self.init()
 		self.type = type
 	}
@@ -406,7 +418,12 @@ open class MeasureReportGroupPopulation: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = MeasurePopulationType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -428,7 +445,7 @@ open class MeasureReportGroupPopulation: BackboneElement {
 			json["patients"] = patients.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -437,11 +454,11 @@ open class MeasureReportGroupPopulation: BackboneElement {
 
 
 /**
- *  Stratification results.
- *
- *  When a measure includes multiple stratifiers, there will be a stratifier group for each stratifier defined by the
- *  measure.
- */
+Stratification results.
+
+When a measure includes multiple stratifiers, there will be a stratifier group for each stratifier defined by the
+measure.
+*/
 open class MeasureReportGroupStratifier: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureReportGroupStratifier" }
@@ -513,11 +530,11 @@ open class MeasureReportGroupStratifier: BackboneElement {
 
 
 /**
- *  Stratum results, one for each unique value in the stratifier.
- *
- *  This element contains the results for a single stratum within the stratifier. For example, when stratifying on
- *  administrative gender, there will be four strata, one for each possible gender value.
- */
+Stratum results, one for each unique value in the stratifier.
+
+This element contains the results for a single stratum within the stratifier. For example, when stratifying on
+administrative gender, there will be four strata, one for each possible gender value.
+*/
 open class MeasureReportGroupStratifierGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureReportGroupStratifierGroup" }
@@ -599,10 +616,10 @@ open class MeasureReportGroupStratifierGroup: BackboneElement {
 
 
 /**
- *  Population results in this stratum.
- *
- *  The populations that make up the stratum, one for each type of population appropriate to the measure.
- */
+Population results in this stratum.
+
+The populations that make up the stratum, one for each type of population appropriate to the measure.
+*/
 open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureReportGroupStratifierGroupPopulation" }
@@ -614,12 +631,12 @@ open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 	/// For patient-list reports, the patients in this population.
 	public var patients: Reference?
 	
-	/// initial-population | numerator | numerator-exclusion | denominator | denominator-exclusion | denominator-exception | measure-population | measure-population-exclusion | measure-score.
-	public var type: String?
+	/// The type of the population.
+	public var type: MeasurePopulationType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: MeasurePopulationType) {
 		self.init()
 		self.type = type
 	}
@@ -653,7 +670,12 @@ open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = MeasurePopulationType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -675,7 +697,7 @@ open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 			json["patients"] = patients.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -684,11 +706,11 @@ open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 
 
 /**
- *  Supplemental data elements for the measure.
- *
- *  Supplemental data elements for the measure provide additional information requested by the measure for each patient
- *  involved in the populations.
- */
+Supplemental data elements for the measure.
+
+Supplemental data elements for the measure provide additional information requested by the measure for each patient
+involved in the populations.
+*/
 open class MeasureReportGroupSupplementalData: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureReportGroupSupplementalData" }
@@ -760,11 +782,11 @@ open class MeasureReportGroupSupplementalData: BackboneElement {
 
 
 /**
- *  Supplemental data results, one for each unique supplemental data value.
- *
- *  This element contains the results for a single value within the supplemental data. For example, when reporting
- *  supplemental data for administrative gender, there will be four groups, one for each possible gender value.
- */
+Supplemental data results, one for each unique supplemental data value.
+
+This element contains the results for a single value within the supplemental data. For example, when reporting
+supplemental data for administrative gender, there will be four groups, one for each possible gender value.
+*/
 open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureReportGroupSupplementalDataGroup" }

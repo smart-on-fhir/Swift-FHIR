@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A request for information to be sent to a receiver.
- *
- *  A request to convey information; e.g. the CDS system proposes that an alert be sent to a responsible provider, the
- *  CDS system proposes that the public health agency be notified about a reportable condition.
- */
+A request for information to be sent to a receiver.
+
+A request to convey information; e.g. the CDS system proposes that an alert be sent to a responsible provider, the CDS
+system proposes that the public health agency be notified about a reportable condition.
+*/
 open class CommunicationRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "CommunicationRequest" }
@@ -23,8 +23,8 @@ open class CommunicationRequest: DomainResource {
 	/// Message category.
 	public var category: CodeableConcept?
 	
-	/// Encounter leading to message.
-	public var encounter: Reference?
+	/// Encounter or episode leading to message.
+	public var context: Reference?
 	
 	/// Unique identifier.
 	public var identifier: [Identifier]?
@@ -59,11 +59,14 @@ open class CommunicationRequest: DomainResource {
 	/// Message sender.
 	public var sender: Reference?
 	
-	/// proposed | planned | requested | received | accepted | in-progress | completed | suspended | rejected | failed.
-	public var status: String?
+	/// The status of the proposal or order.
+	public var status: CommunicationRequestStatus?
 	
 	/// Focus of message.
 	public var subject: Reference?
+	
+	/// Focal resources.
+	public var topic: [Reference]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -82,18 +85,18 @@ open class CommunicationRequest: DomainResource {
 				errors.append(FHIRValidationError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["encounter"] {
-			presentKeys.insert("encounter")
+		if let exist = json["context"] {
+			presentKeys.insert("context")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.encounter = try Reference(json: val, owner: self)
+					self.context = try Reference(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "encounter"))
+					errors.append(error.prefixed(with: "context"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "context", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["identifier"] {
@@ -243,7 +246,12 @@ open class CommunicationRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = CommunicationRequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -263,6 +271,20 @@ open class CommunicationRequest: DomainResource {
 				errors.append(FHIRValidationError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["topic"] {
+			presentKeys.insert("topic")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.topic = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "topic"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "topic", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
 		return errors.isEmpty ? nil : errors
 	}
 	
@@ -272,8 +294,8 @@ open class CommunicationRequest: DomainResource {
 		if let category = self.category {
 			json["category"] = category.asJSON(errors: &errors)
 		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON(errors: &errors)
+		if let context = self.context {
+			json["context"] = context.asJSON(errors: &errors)
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
@@ -309,10 +331,13 @@ open class CommunicationRequest: DomainResource {
 			json["sender"] = sender.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		if let topic = self.topic {
+			json["topic"] = topic.map() { $0.asJSON(errors: &errors) }
 		}
 		
 		return json
@@ -321,10 +346,10 @@ open class CommunicationRequest: DomainResource {
 
 
 /**
- *  Message payload.
- *
- *  Text, attachment(s), or resource(s) to be communicated to the recipient.
- */
+Message payload.
+
+Text, attachment(s), or resource(s) to be communicated to the recipient.
+*/
 open class CommunicationRequestPayload: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CommunicationRequestPayload" }

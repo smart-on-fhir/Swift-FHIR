@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A request for referral or transfer of care.
- *
- *  Used to record and send details about a request for referral service or transfer of a patient to the care of another
- *  provider or provider organization.
- */
+A request for referral or transfer of care.
+
+Used to record and send details about a request for referral service or transfer of a patient to the care of another
+provider or provider organization.
+*/
 open class ReferralRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "ReferralRequest" }
@@ -26,8 +26,8 @@ open class ReferralRequest: DomainResource {
 	/// Request fulfilled by this request.
 	public var basedOn: [Reference]?
 	
-	/// proposal | plan | request.
-	public var category: String?
+	/// Distinguishes the "level" of authorization/demand implicit in this request.
+	public var category: ReferralCategory?
 	
 	/// Originating encounter.
 	public var context: Reference?
@@ -65,8 +65,8 @@ open class ReferralRequest: DomainResource {
 	/// The clinical specialty (discipline) that the referral is requested for.
 	public var specialty: CodeableConcept?
 	
-	/// draft | active | cancelled | completed | entered-in-error.
-	public var status: String?
+	/// The status of the authorization/intention reflected by the referral request record.
+	public var status: ReferralStatus?
 	
 	/// Additonal information to support referral or transfer of care request.
 	public var supportingInformation: [Reference]?
@@ -76,7 +76,7 @@ open class ReferralRequest: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: String, status: String) {
+	public convenience init(category: ReferralCategory, status: ReferralStatus) {
 		self.init()
 		self.category = category
 		self.status = status
@@ -111,7 +111,12 @@ open class ReferralRequest: DomainResource {
 		if let exist = json["category"] {
 			presentKeys.insert("category")
 			if let val = exist as? String {
-				self.category = val
+				if let enumval = ReferralCategory(rawValue: val) {
+					self.category = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "category", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "category", wants: String.self, has: type(of: exist)))
@@ -286,7 +291,12 @@ open class ReferralRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ReferralStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -336,7 +346,7 @@ open class ReferralRequest: DomainResource {
 			json["basedOn"] = basedOn.map() { $0.asJSON(errors: &errors) }
 		}
 		if let category = self.category {
-			json["category"] = category.asJSON()
+			json["category"] = category.rawValue
 		}
 		if let context = self.context {
 			json["context"] = context.asJSON(errors: &errors)
@@ -375,7 +385,7 @@ open class ReferralRequest: DomainResource {
 			json["specialty"] = specialty.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let supportingInformation = self.supportingInformation {
 			json["supportingInformation"] = supportingInformation.map() { $0.asJSON(errors: &errors) }

@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -53,10 +53,10 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.sender?.identifier?.system?.absoluteString, "http://www.jurisdiction.com/provideroffices")
 		XCTAssertEqual(inst.sender?.identifier?.value, "3456")
 		XCTAssertEqual(inst.sent?.description, "2016-06-12T18:01:10-08:00")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, CommunicationStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment which is unsolicited</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.topic?[0].identifier?.system?.absoluteString, "http://happyvalley.com/claim")
 		XCTAssertEqual(inst.topic?[0].identifier?.value, "12345")
 		XCTAssertEqual(inst.topic?[1].identifier?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/claimresponse")
@@ -100,10 +100,10 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.recipient?[0].reference, "#payor")
 		XCTAssertEqual(inst.sender?.reference, "#provider")
 		XCTAssertEqual(inst.sent?.description, "2016-06-12T18:01:10-08:00")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, CommunicationStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment in response to a Request</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -134,10 +134,10 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.recipient?[0].reference, "Practitioner/21")
 		XCTAssertEqual(inst.sender?.reference, "Device/f001")
 		XCTAssertEqual(inst.sent?.description, "2014-12-12T18:01:10-08:00")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, CommunicationStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Patient has very high serum potassium</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

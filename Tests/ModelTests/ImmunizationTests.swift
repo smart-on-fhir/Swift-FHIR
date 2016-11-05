@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -41,8 +41,8 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.id, "notGiven")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertFalse(inst.reported ?? true)
-		XCTAssertEqual(inst.status, "completed")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, MedicationAdministrationStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].code, "01")
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].display, "DTP")
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/sid/cvx")
@@ -93,8 +93,8 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.site?.coding?[0].code, "LA")
 		XCTAssertEqual(inst.site?.coding?[0].display, "left arm")
 		XCTAssertEqual(inst.site?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActSite")
-		XCTAssertEqual(inst.status, "completed")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, MedicationAdministrationStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.vaccinationProtocol?[0].authority?.reference, "Organization/hl7")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].description_fhir, "Vaccination Protocol Sequence 1")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].doseSequence, UInt(1))

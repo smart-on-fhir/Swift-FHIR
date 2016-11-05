@@ -2,7 +2,7 @@
 //  Period.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Period) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Period) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Time range defined by start and end date/time.
- *
- *  A time period defined by a start and end date and optionally time.
- */
+Time range defined by start and end date/time.
+
+A time period defined by a start and end date and optionally time.
+*/
 open class Period: Element {
 	override open class var resourceType: String {
 		get { return "Period" }

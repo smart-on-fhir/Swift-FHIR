@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Describes a set of tests.
- *
- *  TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine
- *  compliance against the FHIR specification.
- */
+Describes a set of tests.
+
+TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine compliance
+against the FHIR specification.
+*/
 open class TestScript: DomainResource {
 	override open class var resourceType: String {
 		get { return "TestScript" }
@@ -74,8 +74,8 @@ open class TestScript: DomainResource {
 	/// A series of required setup operations before tests are executed.
 	public var setup: TestScriptSetup?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this test script. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// A series of required clean up steps.
 	public var teardown: TestScriptTeardown?
@@ -100,7 +100,7 @@ open class TestScript: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, status: String, url: URL) {
+	public convenience init(name: String, status: PublicationStatus, url: URL) {
 		self.init()
 		self.name = name
 		self.status = status
@@ -333,7 +333,12 @@ open class TestScript: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -489,7 +494,7 @@ open class TestScript: DomainResource {
 			json["setup"] = setup.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let teardown = self.teardown {
 			json["teardown"] = teardown.asJSON(errors: &errors)
@@ -519,10 +524,10 @@ open class TestScript: DomainResource {
 
 
 /**
- *  An abstract server representing a destination or receiver in a message exchange.
- *
- *  An abstract server used in operations within this test script in the destination element.
- */
+An abstract server representing a destination or receiver in a message exchange.
+
+An abstract server used in operations within this test script in the destination element.
+*/
 open class TestScriptDestination: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptDestination" }
@@ -593,10 +598,10 @@ open class TestScriptDestination: BackboneElement {
 
 
 /**
- *  Fixture in the test script - by reference (uri).
- *
- *  Fixture in the test script - by reference (uri). All fixtures are required for the test script to execute.
- */
+Fixture in the test script - by reference (uri).
+
+Fixture in the test script - by reference (uri). All fixtures are required for the test script to execute.
+*/
 open class TestScriptFixture: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptFixture" }
@@ -668,10 +673,10 @@ open class TestScriptFixture: BackboneElement {
 
 
 /**
- *  Required capability that is assumed to function correctly on the FHIR server being tested.
- *
- *  The required capability must exist and are assumed to function correctly on the FHIR server being tested.
- */
+Required capability that is assumed to function correctly on the FHIR server being tested.
+
+The required capability must exist and are assumed to function correctly on the FHIR server being tested.
+*/
 open class TestScriptMetadata: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptMetadata" }
@@ -743,10 +748,10 @@ open class TestScriptMetadata: BackboneElement {
 
 
 /**
- *  Capabilities  that are assumed to function correctly on the FHIR server being tested.
- *
- *  Capabilities that must exist and are assumed to function correctly on the FHIR server being tested.
- */
+Capabilities  that are assumed to function correctly on the FHIR server being tested.
+
+Capabilities that must exist and are assumed to function correctly on the FHIR server being tested.
+*/
 open class TestScriptMetadataCapability: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptMetadataCapability" }
@@ -870,18 +875,10 @@ open class TestScriptMetadataCapability: BackboneElement {
 			json["destination"] = destination.asJSON()
 		}
 		if let link = self.link {
-			var arr = [Any]()
-			for val in link {
-				arr.append(val.asJSON())
-			}
-			json["link"] = arr
+			json["link"] = link.map() { $0.asJSON() }
 		}
 		if let origin = self.origin {
-			var arr = [Any]()
-			for val in origin {
-				arr.append(val.asJSON())
-			}
-			json["origin"] = arr
+			json["origin"] = origin.map() { $0.asJSON() }
 		}
 		if let required = self.required {
 			json["required"] = required.asJSON()
@@ -896,10 +893,10 @@ open class TestScriptMetadataCapability: BackboneElement {
 
 
 /**
- *  Links to the FHIR specification.
- *
- *  A link to the FHIR specification that this test is covering.
- */
+Links to the FHIR specification.
+
+A link to the FHIR specification that this test is covering.
+*/
 open class TestScriptMetadataLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptMetadataLink" }
@@ -961,10 +958,10 @@ open class TestScriptMetadataLink: BackboneElement {
 
 
 /**
- *  An abstract server representing a client or sender in a message exchange.
- *
- *  An abstract server used in operations within this test script in the origin element.
- */
+An abstract server representing a client or sender in a message exchange.
+
+An abstract server used in operations within this test script in the origin element.
+*/
 open class TestScriptOrigin: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptOrigin" }
@@ -1035,10 +1032,10 @@ open class TestScriptOrigin: BackboneElement {
 
 
 /**
- *  Assert rule used within the test script.
- *
- *  Assert rule to be used in one or more asserts within the test script.
- */
+Assert rule used within the test script.
+
+Assert rule to be used in one or more asserts within the test script.
+*/
 open class TestScriptRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptRule" }
@@ -1110,10 +1107,10 @@ open class TestScriptRule: BackboneElement {
 
 
 /**
- *  Rule parameter template.
- *
- *  Each rule template can take one or more parameters for rule evaluation.
- */
+Rule parameter template.
+
+Each rule template can take one or more parameters for rule evaluation.
+*/
 open class TestScriptRuleParam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptRuleParam" }
@@ -1175,11 +1172,11 @@ open class TestScriptRuleParam: BackboneElement {
 
 
 /**
- *  Assert ruleset used within the test script.
- *
- *  Contains one or more rules.  Offers a way to group rules so assertions could reference the group of rules and have
- *  them all applied.
- */
+Assert ruleset used within the test script.
+
+Contains one or more rules.  Offers a way to group rules so assertions could reference the group of rules and have them
+all applied.
+*/
 open class TestScriptRuleset: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptRuleset" }
@@ -1255,10 +1252,10 @@ open class TestScriptRuleset: BackboneElement {
 
 
 /**
- *  The referenced rule within the ruleset.
- *
- *  The referenced rule within the external ruleset template.
- */
+The referenced rule within the ruleset.
+
+The referenced rule within the external ruleset template.
+*/
 open class TestScriptRulesetRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptRulesetRule" }
@@ -1325,10 +1322,10 @@ open class TestScriptRulesetRule: BackboneElement {
 
 
 /**
- *  Ruleset rule parameter template.
- *
- *  Each rule template can take one or more parameters for rule evaluation.
- */
+Ruleset rule parameter template.
+
+Each rule template can take one or more parameters for rule evaluation.
+*/
 open class TestScriptRulesetRuleParam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptRulesetRuleParam" }
@@ -1390,8 +1387,8 @@ open class TestScriptRulesetRuleParam: BackboneElement {
 
 
 /**
- *  A series of required setup operations before tests are executed.
- */
+A series of required setup operations before tests are executed.
+*/
 open class TestScriptSetup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetup" }
@@ -1443,10 +1440,10 @@ open class TestScriptSetup: BackboneElement {
 
 
 /**
- *  A setup operation or assert to perform.
- *
- *  Action would contain either an operation or an assertion.
- */
+A setup operation or assert to perform.
+
+Action would contain either an operation or an assertion.
+*/
 open class TestScriptSetupAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupAction" }
@@ -1508,10 +1505,10 @@ open class TestScriptSetupAction: BackboneElement {
 
 
 /**
- *  The assertion to perform.
- *
- *  Evaluates the results of previous operations to determine if the server under test behaves appropriately.
- */
+The assertion to perform.
+
+Evaluates the results of previous operations to determine if the server under test behaves appropriately.
+*/
 open class TestScriptSetupActionAssert: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionAssert" }
@@ -1526,14 +1523,14 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// XPath or JSONPath expression to evaluate against the source fixture.
 	public var compareToSourcePath: String?
 	
-	/// xml | json | ttl | none.
-	public var contentType: String?
+	/// The content-type or mime-type to use for RESTful operation in the 'Content-Type' header.
+	public var contentType: ContentType?
 	
 	/// Tracking/reporting assertion description.
 	public var description_fhir: String?
 	
-	/// response | request.
-	public var direction: String?
+	/// The direction to use for the assertion.
+	public var direction: AssertionDirectionType?
 	
 	/// The fhirpath expression to be evaluated.
 	public var expression: String?
@@ -1550,8 +1547,8 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// Perform validation on navigation links?.
 	public var navigationLinks: Bool?
 	
-	/// equals | notEquals | in | notIn | greaterThan | lessThan | empty | notEmpty | contains | notContains.
-	public var operator_fhir: String?
+	/// The operator type defines the conditional behavior of the assert. If not defined, the default is equals.
+	public var operator_fhir: AssertionOperatorType?
 	
 	/// XPath or JSONPath expression.
 	public var path: String?
@@ -1562,8 +1559,8 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// Resource type.
 	public var resource: String?
 	
-	/// okay | created | noContent | notModified | bad | forbidden | notFound | methodNotAllowed | conflict | gone | preconditionFailed | unprocessable.
-	public var response: String?
+	/// None
+	public var response: AssertionResponseTypes?
 	
 	/// HTTP response code to test.
 	public var responseCode: String?
@@ -1619,7 +1616,12 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		if let exist = json["contentType"] {
 			presentKeys.insert("contentType")
 			if let val = exist as? String {
-				self.contentType = val
+				if let enumval = ContentType(rawValue: val) {
+					self.contentType = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "contentType", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -1637,7 +1639,12 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		if let exist = json["direction"] {
 			presentKeys.insert("direction")
 			if let val = exist as? String {
-				self.direction = val
+				if let enumval = AssertionDirectionType(rawValue: val) {
+					self.direction = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "direction", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "direction", wants: String.self, has: type(of: exist)))
@@ -1691,7 +1698,12 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		if let exist = json["operator"] {
 			presentKeys.insert("operator")
 			if let val = exist as? String {
-				self.operator_fhir = val
+				if let enumval = AssertionOperatorType(rawValue: val) {
+					self.operator_fhir = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "operator", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "operator", wants: String.self, has: type(of: exist)))
@@ -1727,7 +1739,12 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		if let exist = json["response"] {
 			presentKeys.insert("response")
 			if let val = exist as? String {
-				self.response = val
+				if let enumval = AssertionResponseTypes(rawValue: val) {
+					self.response = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "response", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "response", wants: String.self, has: type(of: exist)))
@@ -1822,13 +1839,13 @@ open class TestScriptSetupActionAssert: BackboneElement {
 			json["compareToSourcePath"] = compareToSourcePath.asJSON()
 		}
 		if let contentType = self.contentType {
-			json["contentType"] = contentType.asJSON()
+			json["contentType"] = contentType.rawValue
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let direction = self.direction {
-			json["direction"] = direction.asJSON()
+			json["direction"] = direction.rawValue
 		}
 		if let expression = self.expression {
 			json["expression"] = expression.asJSON()
@@ -1846,7 +1863,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 			json["navigationLinks"] = navigationLinks.asJSON()
 		}
 		if let operator_fhir = self.operator_fhir {
-			json["operator"] = operator_fhir.asJSON()
+			json["operator"] = operator_fhir.rawValue
 		}
 		if let path = self.path {
 			json["path"] = path.asJSON()
@@ -1858,7 +1875,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 			json["resource"] = resource.asJSON()
 		}
 		if let response = self.response {
-			json["response"] = response.asJSON()
+			json["response"] = response.rawValue
 		}
 		if let responseCode = self.responseCode {
 			json["responseCode"] = responseCode.asJSON()
@@ -1888,10 +1905,10 @@ open class TestScriptSetupActionAssert: BackboneElement {
 
 
 /**
- *  The reference to a TestScript.rule.
- *
- *  The TestScript.rule this assert will evaluate.
- */
+The reference to a TestScript.rule.
+
+The TestScript.rule this assert will evaluate.
+*/
 open class TestScriptSetupActionAssertRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionAssertRule" }
@@ -1958,10 +1975,10 @@ open class TestScriptSetupActionAssertRule: BackboneElement {
 
 
 /**
- *  Rule parameter template.
- *
- *  Each rule template can take one or more parameters for rule evaluation.
- */
+Rule parameter template.
+
+Each rule template can take one or more parameters for rule evaluation.
+*/
 open class TestScriptSetupActionAssertRuleParam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionAssertRuleParam" }
@@ -2027,10 +2044,10 @@ open class TestScriptSetupActionAssertRuleParam: BackboneElement {
 
 
 /**
- *  The reference to a TestScript.ruleset.
- *
- *  The TestScript.ruleset this assert will evaluate.
- */
+The reference to a TestScript.ruleset.
+
+The TestScript.ruleset this assert will evaluate.
+*/
 open class TestScriptSetupActionAssertRuleset: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionAssertRuleset" }
@@ -2097,10 +2114,10 @@ open class TestScriptSetupActionAssertRuleset: BackboneElement {
 
 
 /**
- *  The referenced rule within the ruleset.
- *
- *  The referenced rule within the external ruleset template.
- */
+The referenced rule within the ruleset.
+
+The referenced rule within the external ruleset template.
+*/
 open class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionAssertRulesetRule" }
@@ -2167,10 +2184,10 @@ open class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 
 
 /**
- *  Rule parameter template.
- *
- *  Each rule template can take one or more parameters for rule evaluation.
- */
+Rule parameter template.
+
+Each rule template can take one or more parameters for rule evaluation.
+*/
 open class TestScriptSetupActionAssertRulesetRuleParam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionAssertRulesetRuleParam" }
@@ -2236,20 +2253,20 @@ open class TestScriptSetupActionAssertRulesetRuleParam: BackboneElement {
 
 
 /**
- *  The setup operation to perform.
- *
- *  The operation to perform.
- */
+The setup operation to perform.
+
+The operation to perform.
+*/
 open class TestScriptSetupActionOperation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionOperation" }
 	}
 	
-	/// xml | json | ttl | none.
-	public var accept: String?
+	/// The content-type or mime-type to use for RESTful operation in the 'Accept' header.
+	public var accept: ContentType?
 	
-	/// xml | json | ttl | none.
-	public var contentType: String?
+	/// The content-type or mime-type to use for RESTful operation in the 'Content-Type' header.
+	public var contentType: ContentType?
 	
 	/// Tracking/reporting operation description.
 	public var description_fhir: String?
@@ -2299,7 +2316,12 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		if let exist = json["accept"] {
 			presentKeys.insert("accept")
 			if let val = exist as? String {
-				self.accept = val
+				if let enumval = ContentType(rawValue: val) {
+					self.accept = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "accept", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "accept", wants: String.self, has: type(of: exist)))
@@ -2308,7 +2330,12 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		if let exist = json["contentType"] {
 			presentKeys.insert("contentType")
 			if let val = exist as? String {
-				self.contentType = val
+				if let enumval = ContentType(rawValue: val) {
+					self.contentType = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "contentType", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -2457,10 +2484,10 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let accept = self.accept {
-			json["accept"] = accept.asJSON()
+			json["accept"] = accept.rawValue
 		}
 		if let contentType = self.contentType {
-			json["contentType"] = contentType.asJSON()
+			json["contentType"] = contentType.rawValue
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -2511,10 +2538,10 @@ open class TestScriptSetupActionOperation: BackboneElement {
 
 
 /**
- *  Each operation can have one ore more header elements.
- *
- *  Header elements would be used to set HTTP headers.
- */
+Each operation can have one ore more header elements.
+
+Header elements would be used to set HTTP headers.
+*/
 open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionOperationRequestHeader" }
@@ -2580,10 +2607,10 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 
 
 /**
- *  A series of required clean up steps.
- *
- *  A series of operations required to clean up after the all the tests are executed (successfully or otherwise).
- */
+A series of required clean up steps.
+
+A series of operations required to clean up after the all the tests are executed (successfully or otherwise).
+*/
 open class TestScriptTeardown: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTeardown" }
@@ -2635,10 +2662,10 @@ open class TestScriptTeardown: BackboneElement {
 
 
 /**
- *  One or more teardown operations to perform.
- *
- *  The teardown action will only contain an operation.
- */
+One or more teardown operations to perform.
+
+The teardown action will only contain an operation.
+*/
 open class TestScriptTeardownAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTeardownAction" }
@@ -2690,8 +2717,8 @@ open class TestScriptTeardownAction: BackboneElement {
 
 
 /**
- *  A test in this script.
- */
+A test in this script.
+*/
 open class TestScriptTest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTest" }
@@ -2773,10 +2800,10 @@ open class TestScriptTest: BackboneElement {
 
 
 /**
- *  A test operation or assert to perform.
- *
- *  Action would contain either an operation or an assertion.
- */
+A test operation or assert to perform.
+
+Action would contain either an operation or an assertion.
+*/
 open class TestScriptTestAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTestAction" }
@@ -2838,10 +2865,10 @@ open class TestScriptTestAction: BackboneElement {
 
 
 /**
- *  Placeholder for evaluated elements.
- *
- *  Variable is set based either on element value in response body or on header field value in the response headers.
- */
+Placeholder for evaluated elements.
+
+Variable is set based either on element value in response body or on header field value in the response headers.
+*/
 open class TestScriptVariable: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptVariable" }
@@ -2850,11 +2877,17 @@ open class TestScriptVariable: BackboneElement {
 	/// Default, hard-coded, or user-defined value for this variable.
 	public var defaultValue: String?
 	
+	/// Natural language description of the variable.
+	public var description_fhir: String?
+	
 	/// The fhirpath expression against the fixture body.
 	public var expression: String?
 	
 	/// HTTP header field name for source.
 	public var headerField: String?
+	
+	/// Hint help text for default value to enter.
+	public var hint: String?
 	
 	/// Descriptive name for this variable.
 	public var name: String?
@@ -2884,6 +2917,15 @@ open class TestScriptVariable: BackboneElement {
 				errors.append(FHIRValidationError(key: "defaultValue", wants: String.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["description"] {
+			presentKeys.insert("description")
+			if let val = exist as? String {
+				self.description_fhir = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
@@ -2900,6 +2942,15 @@ open class TestScriptVariable: BackboneElement {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "headerField", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["hint"] {
+			presentKeys.insert("hint")
+			if let val = exist as? String {
+				self.hint = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "hint", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["name"] {
@@ -2941,11 +2992,17 @@ open class TestScriptVariable: BackboneElement {
 		if let defaultValue = self.defaultValue {
 			json["defaultValue"] = defaultValue.asJSON()
 		}
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
+		}
 		if let expression = self.expression {
 			json["expression"] = expression.asJSON()
 		}
 		if let headerField = self.headerField {
 			json["headerField"] = headerField.asJSON()
+		}
+		if let hint = self.hint {
+			json["hint"] = hint.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

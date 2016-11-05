@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Medical device request.
- *
- *  Represents a request for a patient to employ a medical device. The device may be an implantable device, or an
- *  external assistive device, such as a walker.
- */
+Medical device request.
+
+Represents a request for a patient to employ a medical device. The device may be an implantable device, or an external
+assistive device, such as a walker.
+*/
 open class DeviceUseRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceUseRequest" }

@@ -2,7 +2,7 @@
 //  TaskTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -44,8 +44,8 @@ class TaskTests: XCTestCase {
 		XCTAssertEqual(inst.requester?.reference, "Patient/Keith")
 		XCTAssertEqual(inst.stage?.coding?[0].code, "actionable")
 		XCTAssertEqual(inst.stage?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/task-stage")
-		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.status, TaskStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

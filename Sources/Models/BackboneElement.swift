@@ -2,7 +2,7 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Base for elements defined inside a resource.
- *
- *  Base definition for all elements that are defined inside a resource - but not those in a data type.
- */
+Base for elements defined inside a resource.
+
+Base definition for all elements that are defined inside a resource - but not those in a data type.
+*/
 open class BackboneElement: Element {
 	override open class var resourceType: String {
 		get { return "BackboneElement" }

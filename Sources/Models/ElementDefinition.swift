@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Definition of an element in a resource or extension.
- *
- *  Captures constraints on each element within the resource, profile, or extension.
- */
+Definition of an element in a resource or extension.
+
+Captures constraints on each element within the resource, profile, or extension.
+*/
 open class ElementDefinition: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinition" }
@@ -586,8 +586,8 @@ open class ElementDefinition: Element {
 	/// Value must have at least these property values.
 	public var patternUri: URL?
 	
-	/// xmlAttr | xmlText | typeAttr | cdaText | xhtml.
-	public var representation: [String]?
+	/// Codes that define how this element is represented in instances, when the deviation varies from the normal case.
+	public var representation: [PropertyRepresentation]?
 	
 	/// Why this resource has been created.
 	public var requirements: String?
@@ -2795,8 +2795,12 @@ open class ElementDefinition: Element {
 		}
 		if let exist = json["representation"] {
 			presentKeys.insert("representation")
-			if let val = exist as? [String] {
-				self.representation = val
+			if let val = exist as? [String] { var i = -1
+				self.representation = val.map() { i += 1
+					if let enumval = PropertyRepresentation(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "representation.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "representation", wants: Array<String>.self, has: type(of: exist)))
@@ -2864,11 +2868,7 @@ open class ElementDefinition: Element {
 		var json = super.asJSON(errors: &errors)
 		
 		if let alias = self.alias {
-			var arr = [Any]()
-			for val in alias {
-				arr.append(val.asJSON())
-			}
-			json["alias"] = arr
+			json["alias"] = alias.map() { $0.asJSON() }
 		}
 		if let base = self.base {
 			json["base"] = base.asJSON(errors: &errors)
@@ -2883,11 +2883,7 @@ open class ElementDefinition: Element {
 			json["comments"] = comments.asJSON()
 		}
 		if let condition = self.condition {
-			var arr = [Any]()
-			for val in condition {
-				arr.append(val.asJSON())
-			}
-			json["condition"] = arr
+			json["condition"] = condition.map() { $0.asJSON() }
 		}
 		if let constraint = self.constraint {
 			json["constraint"] = constraint.map() { $0.asJSON(errors: &errors) }
@@ -3439,11 +3435,7 @@ open class ElementDefinition: Element {
 			json["patternUri"] = patternUri.asJSON()
 		}
 		if let representation = self.representation {
-			var arr = [Any]()
-			for val in representation {
-				arr.append(val.asJSON())
-			}
-			json["representation"] = arr
+			json["representation"] = representation.map() { $0.rawValue }
 		}
 		if let requirements = self.requirements {
 			json["requirements"] = requirements.asJSON()
@@ -3467,13 +3459,13 @@ open class ElementDefinition: Element {
 
 
 /**
- *  Base definition information for tools.
- *
- *  Information about the base definition of the element, provided to make it unnecessary for tools to trace the
- *  deviation of the element through the derived and related profiles. This information is provided when the element
- *  definition is not the original definition of an element - i.g. either in a constraint on another type, or for
- *  elements from a super type in a snap shot.
- */
+Base definition information for tools.
+
+Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation
+of the element through the derived and related profiles. This information is provided when the element definition is not
+the original definition of an element - i.g. either in a constraint on another type, or for elements from a super type
+in a snap shot.
+*/
 open class ElementDefinitionBase: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionBase" }
@@ -3558,10 +3550,10 @@ open class ElementDefinitionBase: Element {
 
 
 /**
- *  ValueSet details if this is coded.
- *
- *  Binds to a value set if this element is coded (code, Coding, CodeableConcept).
- */
+ValueSet details if this is coded.
+
+Binds to a value set if this element is coded (code, Coding, CodeableConcept).
+*/
 open class ElementDefinitionBinding: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionBinding" }
@@ -3570,8 +3562,9 @@ open class ElementDefinitionBinding: Element {
 	/// Human explanation of the value set.
 	public var description_fhir: String?
 	
-	/// required | extensible | preferred | example.
-	public var strength: String?
+	/// Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the
+	/// provided value set must be adhered to in the instances.
+	public var strength: BindingStrength?
 	
 	/// Source of value set.
 	public var valueSetReference: Reference?
@@ -3581,7 +3574,7 @@ open class ElementDefinitionBinding: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(strength: String) {
+	public convenience init(strength: BindingStrength) {
 		self.init()
 		self.strength = strength
 	}
@@ -3601,7 +3594,12 @@ open class ElementDefinitionBinding: Element {
 		if let exist = json["strength"] {
 			presentKeys.insert("strength")
 			if let val = exist as? String {
-				self.strength = val
+				if let enumval = BindingStrength(rawValue: val) {
+					self.strength = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "strength", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "strength", wants: String.self, has: type(of: exist)))
@@ -3643,7 +3641,7 @@ open class ElementDefinitionBinding: Element {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let strength = self.strength {
-			json["strength"] = strength.asJSON()
+			json["strength"] = strength.rawValue
 		}
 		if let valueSetReference = self.valueSetReference {
 			json["valueSetReference"] = valueSetReference.asJSON(errors: &errors)
@@ -3658,11 +3656,11 @@ open class ElementDefinitionBinding: Element {
 
 
 /**
- *  Condition that must evaluate to true.
- *
- *  Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the
- *  context of the instance.
- */
+Condition that must evaluate to true.
+
+Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context
+of the instance.
+*/
 open class ElementDefinitionConstraint: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionConstraint" }
@@ -3680,8 +3678,8 @@ open class ElementDefinitionConstraint: Element {
 	/// Why this constraint is necessary or appropriate.
 	public var requirements: String?
 	
-	/// error | warning.
-	public var severity: String?
+	/// Identifies the impact constraint violation has on the conformance of the instance.
+	public var severity: ConstraintSeverity?
 	
 	/// Reference to original source of constraint.
 	public var source: URL?
@@ -3691,7 +3689,7 @@ open class ElementDefinitionConstraint: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(expression: String, human: String, key: String, severity: String) {
+	public convenience init(expression: String, human: String, key: String, severity: ConstraintSeverity) {
 		self.init()
 		self.expression = expression
 		self.human = human
@@ -3750,7 +3748,12 @@ open class ElementDefinitionConstraint: Element {
 		if let exist = json["severity"] {
 			presentKeys.insert("severity")
 			if let val = exist as? String {
-				self.severity = val
+				if let enumval = ConstraintSeverity(rawValue: val) {
+					self.severity = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "severity", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "severity", wants: String.self, has: type(of: exist)))
@@ -3796,7 +3799,7 @@ open class ElementDefinitionConstraint: Element {
 			json["requirements"] = requirements.asJSON()
 		}
 		if let severity = self.severity {
-			json["severity"] = severity.asJSON()
+			json["severity"] = severity.rawValue
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
@@ -3811,10 +3814,10 @@ open class ElementDefinitionConstraint: Element {
 
 
 /**
- *  Map element to another set of definitions.
- *
- *  Identifies a concept from an external specification that roughly corresponds to this element.
- */
+Map element to another set of definitions.
+
+Identifies a concept from an external specification that roughly corresponds to this element.
+*/
 open class ElementDefinitionMapping: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionMapping" }
@@ -3895,14 +3898,14 @@ open class ElementDefinitionMapping: Element {
 
 
 /**
- *  This element is sliced - slices follow.
- *
- *  Indicates that the element is sliced into a set of alternative definitions (i.e. in a structure definition, there
- *  are multiple different constraints on a single element in the base resource). Slicing can be used in any resource
- *  that has cardinality ..* on the base resource, or any resource with a choice of types. The set of slices is any
- *  elements that come after this in the element sequence that have the same path, until a shorter path occurs (the
- *  shorter path terminates the set).
- */
+This element is sliced - slices follow.
+
+Indicates that the element is sliced into a set of alternative definitions (i.e. in a structure definition, there are
+multiple different constraints on a single element in the base resource). Slicing can be used in any resource that has
+cardinality ..* on the base resource, or any resource with a choice of types. The set of slices is any elements that
+come after this in the element sequence that have the same path, until a shorter path occurs (the shorter path
+terminates the set).
+*/
 open class ElementDefinitionSlicing: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionSlicing" }
@@ -3917,12 +3920,13 @@ open class ElementDefinitionSlicing: Element {
 	/// If elements must be in same order as slices.
 	public var ordered: Bool?
 	
-	/// closed | open | openAtEnd.
-	public var rules: String?
+	/// Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that
+	/// additional slices are only allowed at the end.
+	public var rules: SlicingRules?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(rules: String) {
+	public convenience init(rules: SlicingRules) {
 		self.init()
 		self.rules = rules
 	}
@@ -3960,7 +3964,12 @@ open class ElementDefinitionSlicing: Element {
 		if let exist = json["rules"] {
 			presentKeys.insert("rules")
 			if let val = exist as? String {
-				self.rules = val
+				if let enumval = SlicingRules(rawValue: val) {
+					self.rules = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "rules", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "rules", wants: String.self, has: type(of: exist)))
@@ -3979,17 +3988,13 @@ open class ElementDefinitionSlicing: Element {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let discriminator = self.discriminator {
-			var arr = [Any]()
-			for val in discriminator {
-				arr.append(val.asJSON())
-			}
-			json["discriminator"] = arr
+			json["discriminator"] = discriminator.map() { $0.asJSON() }
 		}
 		if let ordered = self.ordered {
 			json["ordered"] = ordered.asJSON()
 		}
 		if let rules = self.rules {
-			json["rules"] = rules.asJSON()
+			json["rules"] = rules.rawValue
 		}
 		
 		return json
@@ -3998,17 +4003,18 @@ open class ElementDefinitionSlicing: Element {
 
 
 /**
- *  Data type and Profile for this element.
- *
- *  The data type or resource that the value of this element is permitted to be.
- */
+Data type and Profile for this element.
+
+The data type or resource that the value of this element is permitted to be.
+*/
 open class ElementDefinitionType: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionType" }
 	}
 	
-	/// contained | referenced | bundled - how aggregated.
-	public var aggregation: [String]?
+	/// If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained
+	/// resource, or a reference, and if the context is a bundle, is it included in the bundle.
+	public var aggregation: [AggregationMode]?
 	
 	/// Data type or Resource (reference to definition).
 	public var code: URL?
@@ -4019,8 +4025,8 @@ open class ElementDefinitionType: Element {
 	/// Profile (StructureDefinition) to apply to reference target (or IG).
 	public var targetProfile: URL?
 	
-	/// either | independent | specific.
-	public var versioning: String?
+	/// Whether this reference needs to be version specific or version independent, or whetehr either can be used.
+	public var versioning: ReferenceVersionRules?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -4034,8 +4040,12 @@ open class ElementDefinitionType: Element {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		if let exist = json["aggregation"] {
 			presentKeys.insert("aggregation")
-			if let val = exist as? [String] {
-				self.aggregation = val
+			if let val = exist as? [String] { var i = -1
+				self.aggregation = val.map() { i += 1
+					if let enumval = AggregationMode(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "aggregation.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "aggregation", wants: Array<String>.self, has: type(of: exist)))
@@ -4074,7 +4084,12 @@ open class ElementDefinitionType: Element {
 		if let exist = json["versioning"] {
 			presentKeys.insert("versioning")
 			if let val = exist as? String {
-				self.versioning = val
+				if let enumval = ReferenceVersionRules(rawValue: val) {
+					self.versioning = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "versioning", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "versioning", wants: String.self, has: type(of: exist)))
@@ -4087,11 +4102,7 @@ open class ElementDefinitionType: Element {
 		var json = super.asJSON(errors: &errors)
 		
 		if let aggregation = self.aggregation {
-			var arr = [Any]()
-			for val in aggregation {
-				arr.append(val.asJSON())
-			}
-			json["aggregation"] = arr
+			json["aggregation"] = aggregation.map() { $0.rawValue }
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
@@ -4103,7 +4114,7 @@ open class ElementDefinitionType: Element {
 			json["targetProfile"] = targetProfile.asJSON()
 		}
 		if let versioning = self.versioning {
-			json["versioning"] = versioning.asJSON()
+			json["versioning"] = versioning.rawValue
 		}
 		
 		return json

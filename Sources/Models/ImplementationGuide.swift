@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A set of rules about how FHIR is used.
- *
- *  A set of rules or how FHIR is used to solve a particular problem. This resource is used to gather all the parts of
- *  an implementation guide into a logical whole, and to publish a computable definition of all the parts.
- */
+A set of rules about how FHIR is used.
+
+A set of rules or how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an
+implementation guide into a logical whole, and to publish a computable definition of all the parts.
+*/
 open class ImplementationGuide: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImplementationGuide" }
@@ -62,8 +62,8 @@ open class ImplementationGuide: DomainResource {
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this implementation guide. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Logical uri to reference this implementation guide (globally unique).
 	public var url: URL?
@@ -76,7 +76,7 @@ open class ImplementationGuide: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, status: String, url: URL) {
+	public convenience init(name: String, status: PublicationStatus, url: URL) {
 		self.init()
 		self.name = name
 		self.status = status
@@ -248,7 +248,12 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -299,11 +304,7 @@ open class ImplementationGuide: DomainResource {
 		var json = super.asJSON(errors: &errors)
 		
 		if let binary = self.binary {
-			var arr = [Any]()
-			for val in binary {
-				arr.append(val.asJSON())
-			}
-			json["binary"] = arr
+			json["binary"] = binary.map() { $0.asJSON() }
 		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
@@ -345,7 +346,7 @@ open class ImplementationGuide: DomainResource {
 			json["publisher"] = publisher.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -363,25 +364,25 @@ open class ImplementationGuide: DomainResource {
 
 
 /**
- *  Another Implementation guide this depends on.
- *
- *  Another implementation guide that this implementation depends on. Typically, an implementation guide uses value
- *  sets, profiles etc.defined in other implementation guides.
- */
+Another Implementation guide this depends on.
+
+Another implementation guide that this implementation depends on. Typically, an implementation guide uses value sets,
+profiles etc.defined in other implementation guides.
+*/
 open class ImplementationGuideDependency: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuideDependency" }
 	}
 	
-	/// reference | inclusion.
-	public var type: String?
+	/// How the dependency is represented when the guide is published.
+	public var type: GuideDependencyType?
 	
 	/// Where to find dependency.
 	public var uri: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, uri: URL) {
+	public convenience init(type: GuideDependencyType, uri: URL) {
 		self.init()
 		self.type = type
 		self.uri = uri
@@ -393,7 +394,12 @@ open class ImplementationGuideDependency: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = GuideDependencyType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -421,7 +427,7 @@ open class ImplementationGuideDependency: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let uri = self.uri {
 			json["uri"] = uri.asJSON()
@@ -433,10 +439,10 @@ open class ImplementationGuideDependency: BackboneElement {
 
 
 /**
- *  Profiles that apply globally.
- *
- *  A set of profiles that all resources covered by this implementation guide must conform to.
- */
+Profiles that apply globally.
+
+A set of profiles that all resources covered by this implementation guide must conform to.
+*/
 open class ImplementationGuideGlobal: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuideGlobal" }
@@ -507,10 +513,10 @@ open class ImplementationGuideGlobal: BackboneElement {
 
 
 /**
- *  Group of resources as used in .page.package.
- *
- *  A logical group of resources. Logical groups can be used when building pages.
- */
+Group of resources as used in .page.package.
+
+A logical group of resources. Logical groups can be used when building pages.
+*/
 open class ImplementationGuidePackage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuidePackage" }
@@ -596,12 +602,11 @@ open class ImplementationGuidePackage: BackboneElement {
 
 
 /**
- *  Resource in the implementation guide.
- *
- *  A resource that is part of the implementation guide. Conformance resources (value set, structure definition,
- *  capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an
- *  example resource.
- */
+Resource in the implementation guide.
+
+A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability
+statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource.
+*/
 open class ImplementationGuidePackageResource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuidePackageResource" }
@@ -762,10 +767,10 @@ open class ImplementationGuidePackageResource: BackboneElement {
 
 
 /**
- *  Page/Section in the Guide.
- *
- *  A page / section in the implementation guide. The root page is the implementation guide home page.
- */
+Page/Section in the Guide.
+
+A page / section in the implementation guide. The root page is the implementation guide home page.
+*/
 open class ImplementationGuidePage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuidePage" }
@@ -774,8 +779,9 @@ open class ImplementationGuidePage: BackboneElement {
 	/// Format of the page (e.g. html, markdown, etc.).
 	public var format: String?
 	
-	/// page | example | list | include | directory | dictionary | toc | resource.
-	public var kind: String?
+	/// The kind of page that this is. Some pages are autogenerated (list, example), and other kinds are of interest so
+	/// that tools can navigate the user to the page of interest.
+	public var kind: GuidePageKind?
 	
 	/// Name of package to include.
 	public var package: [String]?
@@ -794,7 +800,7 @@ open class ImplementationGuidePage: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(kind: String, source: URL, title: String) {
+	public convenience init(kind: GuidePageKind, source: URL, title: String) {
 		self.init()
 		self.kind = kind
 		self.source = source
@@ -816,7 +822,12 @@ open class ImplementationGuidePage: BackboneElement {
 		if let exist = json["kind"] {
 			presentKeys.insert("kind")
 			if let val = exist as? String {
-				self.kind = val
+				if let enumval = GuidePageKind(rawValue: val) {
+					self.kind = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "kind", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -891,14 +902,10 @@ open class ImplementationGuidePage: BackboneElement {
 			json["format"] = format.asJSON()
 		}
 		if let kind = self.kind {
-			json["kind"] = kind.asJSON()
+			json["kind"] = kind.rawValue
 		}
 		if let package = self.package {
-			var arr = [Any]()
-			for val in package {
-				arr.append(val.asJSON())
-			}
-			json["package"] = arr
+			json["package"] = package.map() { $0.asJSON() }
 		}
 		if let page = self.page {
 			json["page"] = page.map() { $0.asJSON(errors: &errors) }
@@ -910,11 +917,7 @@ open class ImplementationGuidePage: BackboneElement {
 			json["title"] = title.asJSON()
 		}
 		if let type = self.type {
-			var arr = [Any]()
-			for val in type {
-				arr.append(val.asJSON())
-			}
-			json["type"] = arr
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json

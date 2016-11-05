@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Slot) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Slot) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A slot of time on a schedule that may be available for booking appointments.
- */
+A slot of time on a schedule that may be available for booking appointments.
+*/
 open class Slot: DomainResource {
 	override open class var resourceType: String {
 		get { return "Slot" }
@@ -38,7 +38,9 @@ open class Slot: DomainResource {
 	/// A broad categorisation of the service that is to be performed during this appointment.
 	public var serviceCategory: CodeableConcept?
 	
-	/// The type of appointments that can be booked into this slot (ideally this would be an identifiable service - which is at a location, rather than the location itself). If provided then this overrides the value provided on the availability resource.
+	/// The type of appointments that can be booked into this slot (ideally this would be an identifiable service -
+	/// which is at a location, rather than the location itself). If provided then this overrides the value provided on
+	/// the availability resource.
 	public var serviceType: [CodeableConcept]?
 	
 	/// The specialty of a practitioner that would be required to perform the service requested in this appointment.
@@ -47,12 +49,12 @@ open class Slot: DomainResource {
 	/// Date/Time that the slot is to begin.
 	public var start: Instant?
 	
-	/// busy | free | busy-unavailable | busy-tentative | entered-in-error.
-	public var status: String?
+	/// None
+	public var status: SlotStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(end: Instant, schedule: Reference, start: Instant, status: String) {
+	public convenience init(end: Instant, schedule: Reference, start: Instant, status: SlotStatus) {
 		self.init()
 		self.end = end
 		self.schedule = schedule
@@ -195,7 +197,12 @@ open class Slot: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = SlotStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -241,7 +248,7 @@ open class Slot: DomainResource {
 			json["start"] = start.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

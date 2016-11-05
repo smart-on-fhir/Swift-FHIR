@@ -2,7 +2,7 @@
 //  ActivityDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -34,14 +34,14 @@ class ActivityDefinitionTests: XCTestCase {
 	func runActivityDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ActivityDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-example.json")
 		
-		XCTAssertEqual(inst.category, "referral")
+		XCTAssertEqual(inst.category, ActivityDefinitionCategory(rawValue: "referral")!)
 		XCTAssertEqual(inst.code?.coding?[0].code, "306206005")
 		XCTAssertEqual(inst.description_fhir, "refer to primary care mental-health integrated care program for evaluation and treatment of mental health conditions now")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.participantType?[0], "practitioner")
-		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.participantType?[0], PlanActionParticipantType(rawValue: "practitioner")!)
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Referral definition</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}

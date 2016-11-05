@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  The details of a healthcare service available at a location.
- */
+The details of a healthcare service available at a location.
+*/
 open class HealthcareService: DomainResource {
 	override open class var resourceType: String {
 		get { return "HealthcareService" }
@@ -432,11 +432,7 @@ open class HealthcareService: DomainResource {
 			json["photo"] = photo.asJSON(errors: &errors)
 		}
 		if let programName = self.programName {
-			var arr = [Any]()
-			for val in programName {
-				arr.append(val.asJSON())
-			}
-			json["programName"] = arr
+			json["programName"] = programName.map() { $0.asJSON() }
 		}
 		if let providedBy = self.providedBy {
 			json["providedBy"] = providedBy.asJSON(errors: &errors)
@@ -472,10 +468,10 @@ open class HealthcareService: DomainResource {
 
 
 /**
- *  Times the Service Site is available.
- *
- *  A collection of times that the Service Site is available.
- */
+Times the Service Site is available.
+
+A collection of times that the Service Site is available.
+*/
 open class HealthcareServiceAvailableTime: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceAvailableTime" }
@@ -490,8 +486,8 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 	/// Opening time of day (ignored if allDay = true).
 	public var availableStartTime: FHIRTime?
 	
-	/// mon | tue | wed | thu | fri | sat | sun.
-	public var daysOfWeek: [String]?
+	/// Indicates which days of the week are available between the start and end Times.
+	public var daysOfWeek: [DaysOfWeek]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -525,8 +521,12 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 		}
 		if let exist = json["daysOfWeek"] {
 			presentKeys.insert("daysOfWeek")
-			if let val = exist as? [String] {
-				self.daysOfWeek = val
+			if let val = exist as? [String] { var i = -1
+				self.daysOfWeek = val.map() { i += 1
+					if let enumval = DaysOfWeek(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "daysOfWeek.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
 			}
 			else {
 				errors.append(FHIRValidationError(key: "daysOfWeek", wants: Array<String>.self, has: type(of: exist)))
@@ -548,11 +548,7 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 			json["availableStartTime"] = availableStartTime.asJSON()
 		}
 		if let daysOfWeek = self.daysOfWeek {
-			var arr = [Any]()
-			for val in daysOfWeek {
-				arr.append(val.asJSON())
-			}
-			json["daysOfWeek"] = arr
+			json["daysOfWeek"] = daysOfWeek.map() { $0.rawValue }
 		}
 		
 		return json
@@ -561,10 +557,10 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 
 
 /**
- *  Not available during this time due to provided reason.
- *
- *  The HealthcareService is not available during this period of time due to the provided reason.
- */
+Not available during this time due to provided reason.
+
+The HealthcareService is not available during this period of time due to the provided reason.
+*/
 open class HealthcareServiceNotAvailable: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceNotAvailable" }

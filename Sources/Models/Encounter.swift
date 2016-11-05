@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,24 +10,24 @@ import Foundation
 
 
 /**
- *  An interaction during which services are provided to the patient.
- *
- *  An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or
- *  assessing the health status of a patient.
- */
+An interaction during which services are provided to the patient.
+
+An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or
+assessing the health status of a patient.
+*/
 open class Encounter: DomainResource {
 	override open class var resourceType: String {
 		get { return "Encounter" }
 	}
+	
+	/// inpatient | outpatient | ambulatory | emergency +.
+	public var `class`: Coding?
 	
 	/// The set of accounts that may be used for billing for this Encounter.
 	public var account: [Reference]?
 	
 	/// The appointment that scheduled this encounter.
 	public var appointment: Reference?
-	
-	/// inpatient | outpatient | ambulatory | emergency +.
-	public var class_fhir: Coding?
 	
 	/// Episode(s) of care that this encounter should be recorded against.
 	public var episodeOfCare: [Reference]?
@@ -71,8 +71,8 @@ open class Encounter: DomainResource {
 	/// The custodian organization of this Encounter record.
 	public var serviceProvider: Reference?
 	
-	/// planned | arrived | in-progress | onleave | finished | cancelled | entered-in-error.
-	public var status: String?
+	/// None
+	public var status: EncounterStatus?
 	
 	/// List of past encounter statuses.
 	public var statusHistory: [EncounterStatusHistory]?
@@ -82,7 +82,7 @@ open class Encounter: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: EncounterStatus) {
 		self.init()
 		self.status = status
 	}
@@ -90,6 +90,20 @@ open class Encounter: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["class"] {
+			presentKeys.insert("class")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.`class` = try Coding(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "class"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["account"] {
 			presentKeys.insert("account")
 			if let val = exist as? [FHIRJSON] {
@@ -116,20 +130,6 @@ open class Encounter: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "appointment", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["class"] {
-			presentKeys.insert("class")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.class_fhir = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "class"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["episodeOfCare"] {
@@ -331,7 +331,12 @@ open class Encounter: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EncounterStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -374,14 +379,14 @@ open class Encounter: DomainResource {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
+		if let `class` = self.`class` {
+			json["class"] = `class`.asJSON(errors: &errors)
+		}
 		if let account = self.account {
 			json["account"] = account.map() { $0.asJSON(errors: &errors) }
 		}
 		if let appointment = self.appointment {
 			json["appointment"] = appointment.asJSON(errors: &errors)
-		}
-		if let class_fhir = self.class_fhir {
-			json["class"] = class_fhir.asJSON(errors: &errors)
 		}
 		if let episodeOfCare = self.episodeOfCare {
 			json["episodeOfCare"] = episodeOfCare.map() { $0.asJSON(errors: &errors) }
@@ -426,7 +431,7 @@ open class Encounter: DomainResource {
 			json["serviceProvider"] = serviceProvider.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let statusHistory = self.statusHistory {
 			json["statusHistory"] = statusHistory.map() { $0.asJSON(errors: &errors) }
@@ -441,8 +446,8 @@ open class Encounter: DomainResource {
 
 
 /**
- *  Details about the admission to a healthcare service.
- */
+Details about the admission to a healthcare service.
+*/
 open class EncounterHospitalization: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EncounterHospitalization" }
@@ -460,7 +465,8 @@ open class EncounterHospitalization: BackboneElement {
 	/// Diet preferences reported by the patient.
 	public var dietPreference: [CodeableConcept]?
 	
-	/// The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete.
+	/// The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are
+	/// complete.
 	public var dischargeDiagnosis: [Reference]?
 	
 	/// Category or kind of location after discharge.
@@ -472,7 +478,8 @@ open class EncounterHospitalization: BackboneElement {
 	/// Pre-admission identifier.
 	public var preAdmissionIdentifier: Identifier?
 	
-	/// The type of hospital re-admission that has occurred (if any). If the value is absent, then this is not identified as a readmission.
+	/// The type of hospital re-admission that has occurred (if any). If the value is absent, then this is not
+	/// identified as a readmission.
 	public var reAdmission: CodeableConcept?
 	
 	/// Wheelchair, translator, stretcher, etc..
@@ -684,10 +691,10 @@ open class EncounterHospitalization: BackboneElement {
 
 
 /**
- *  List of locations where the patient has been.
- *
- *  List of locations where  the patient has been during this encounter.
- */
+List of locations where the patient has been.
+
+List of locations where  the patient has been during this encounter.
+*/
 open class EncounterLocation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EncounterLocation" }
@@ -699,8 +706,9 @@ open class EncounterLocation: BackboneElement {
 	/// Time period during which the patient was present at the location.
 	public var period: Period?
 	
-	/// planned | active | reserved | completed.
-	public var status: String?
+	/// The status of the participants' presence at the specified location during the period specified. If the
+	/// participant is is no longer at the location, then the period will have an end date/time.
+	public var status: EncounterLocationStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -746,7 +754,12 @@ open class EncounterLocation: BackboneElement {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EncounterLocationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -765,7 +778,7 @@ open class EncounterLocation: BackboneElement {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json
@@ -774,10 +787,10 @@ open class EncounterLocation: BackboneElement {
 
 
 /**
- *  List of participants involved in the encounter.
- *
- *  The list of people responsible for providing the service.
- */
+List of participants involved in the encounter.
+
+The list of people responsible for providing the service.
+*/
 open class EncounterParticipant: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EncounterParticipant" }
@@ -859,11 +872,11 @@ open class EncounterParticipant: BackboneElement {
 
 
 /**
- *  List of past encounter statuses.
- *
- *  The status history permits the encounter resource to contain the status history without needing to read through the
- *  historical versions of the resource, or even have the server store them.
- */
+List of past encounter statuses.
+
+The status history permits the encounter resource to contain the status history without needing to read through the
+historical versions of the resource, or even have the server store them.
+*/
 open class EncounterStatusHistory: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EncounterStatusHistory" }
@@ -872,12 +885,12 @@ open class EncounterStatusHistory: BackboneElement {
 	/// The time that the episode was in the specified status.
 	public var period: Period?
 	
-	/// planned | arrived | in-progress | onleave | finished | cancelled | entered-in-error.
-	public var status: String?
+	/// None
+	public var status: EncounterStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(period: Period, status: String) {
+	public convenience init(period: Period, status: EncounterStatus) {
 		self.init()
 		self.period = period
 		self.status = status
@@ -906,7 +919,12 @@ open class EncounterStatusHistory: BackboneElement {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EncounterStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -925,7 +943,7 @@ open class EncounterStatusHistory: BackboneElement {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

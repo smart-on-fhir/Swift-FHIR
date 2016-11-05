@@ -3,7 +3,7 @@
 	"resourceType": "Questionnaire",
 	"id": "questionnaire-superfluous-wrong",
 	"versino": "1.0",
-	"status": "published",
+	"status": "punished",
 	"item": [
 		{
 			"type": "display",

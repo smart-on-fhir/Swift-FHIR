@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Details of a Technology mediated contact point (phone, fax, email, etc.).
- *
- *  Details for all kinds of technology mediated contact points for a person or organization, including telephone,
- *  email, etc.
- */
+Details of a Technology mediated contact point (phone, fax, email, etc.).
+
+Details for all kinds of technology mediated contact points for a person or organization, including telephone, email,
+etc.
+*/
 open class ContactPoint: Element {
 	override open class var resourceType: String {
 		get { return "ContactPoint" }
@@ -26,11 +26,11 @@ open class ContactPoint: Element {
 	/// Specify preferred order of use (1 = highest).
 	public var rank: UInt?
 	
-	/// phone | fax | email | pager | other.
-	public var system: String?
+	/// Telecommunications form for contact point - what communications system is required to make use of the contact.
+	public var system: ContactPointSystem?
 	
-	/// home | work | temp | old | mobile - purpose of this contact point.
-	public var use: String?
+	/// Identifies the purpose for the contact point.
+	public var use: ContactPointUse?
 	
 	/// The actual contact point details.
 	public var value: String?
@@ -64,7 +64,12 @@ open class ContactPoint: Element {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = val
+				if let enumval = ContactPointSystem(rawValue: val) {
+					self.system = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "system", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -73,7 +78,12 @@ open class ContactPoint: Element {
 		if let exist = json["use"] {
 			presentKeys.insert("use")
 			if let val = exist as? String {
-				self.use = val
+				if let enumval = ContactPointUse(rawValue: val) {
+					self.use = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
@@ -101,10 +111,10 @@ open class ContactPoint: Element {
 			json["rank"] = rank.asJSON()
 		}
 		if let system = self.system {
-			json["system"] = system.asJSON()
+			json["system"] = system.rawValue
 		}
 		if let use = self.use {
-			json["use"] = use.asJSON()
+			json["use"] = use.rawValue
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()

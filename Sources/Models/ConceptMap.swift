@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A map from one set of concepts to one or more other concepts.
- *
- *  A statement of relationships from one set of concepts to one or more other concepts - either code systems or data
- *  elements, or classes in class models.
- */
+A map from one set of concepts to one or more other concepts.
+
+A statement of relationships from one set of concepts to one or more other concepts - either code systems or data
+elements, or classes in class models.
+*/
 open class ConceptMap: DomainResource {
 	override open class var resourceType: String {
 		get { return "ConceptMap" }
@@ -59,8 +59,8 @@ open class ConceptMap: DomainResource {
 	/// Identifies the source of the concepts which are being mapped.
 	public var sourceUri: URL?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this concept map. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Provides context to the mappings.
 	public var targetReference: Reference?
@@ -82,7 +82,7 @@ open class ConceptMap: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(source: Any, status: String, target: Any) {
+	public convenience init(source: Any, status: PublicationStatus, target: Any) {
 		self.init()
 		if let value = source as? URL {
 			self.sourceUri = value
@@ -253,7 +253,12 @@ open class ConceptMap: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -380,7 +385,7 @@ open class ConceptMap: DomainResource {
 			json["sourceUri"] = sourceUri.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let targetReference = self.targetReference {
 			json["targetReference"] = targetReference.asJSON(errors: &errors)
@@ -407,10 +412,10 @@ open class ConceptMap: DomainResource {
 
 
 /**
- *  Same source and target systems.
- *
- *  A group of mappings that all have the same source and target system.
- */
+Same source and target systems.
+
+A group of mappings that all have the same source and target system.
+*/
 open class ConceptMapGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapGroup" }
@@ -526,10 +531,10 @@ open class ConceptMapGroup: BackboneElement {
 
 
 /**
- *  Mappings for a concept from the source set.
- *
- *  Mappings for an individual concept in the source to one or more concepts in the target.
- */
+Mappings for a concept from the source set.
+
+Mappings for an individual concept in the source to one or more concepts in the target.
+*/
 open class ConceptMapGroupElement: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapGroupElement" }
@@ -586,10 +591,10 @@ open class ConceptMapGroupElement: BackboneElement {
 
 
 /**
- *  Concept in target system for element.
- *
- *  A concept from the target value set that this concept maps to.
- */
+Concept in target system for element.
+
+A concept from the target value set that this concept maps to.
+*/
 open class ConceptMapGroupElementTarget: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapGroupElementTarget" }
@@ -604,8 +609,9 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 	/// Other elements required for this mapping (from context).
 	public var dependsOn: [ConceptMapGroupElementTargetDependsOn]?
 	
-	/// relatedto | equivalent | equal | wider | subsumes | narrower | specializes | inexact | unmatched | disjoint.
-	public var equivalence: String?
+	/// The equivalence between the source and target concepts (counting for the dependencies and products). The
+	/// equivalence is read from target to source (e.g. the target is 'wider' than the source).
+	public var equivalence: ConceptMapEquivalence?
 	
 	/// Other concepts that this mapping also produces.
 	public var product: [ConceptMapGroupElementTargetDependsOn]?
@@ -648,7 +654,12 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		if let exist = json["equivalence"] {
 			presentKeys.insert("equivalence")
 			if let val = exist as? String {
-				self.equivalence = val
+				if let enumval = ConceptMapEquivalence(rawValue: val) {
+					self.equivalence = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "equivalence", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "equivalence", wants: String.self, has: type(of: exist)))
@@ -684,7 +695,7 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 			json["dependsOn"] = dependsOn.map() { $0.asJSON(errors: &errors) }
 		}
 		if let equivalence = self.equivalence {
-			json["equivalence"] = equivalence.asJSON()
+			json["equivalence"] = equivalence.rawValue
 		}
 		if let product = self.product {
 			json["product"] = product.map() { $0.asJSON(errors: &errors) }
@@ -696,11 +707,11 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 
 
 /**
- *  Other elements required for this mapping (from context).
- *
- *  A set of additional dependencies for this mapping to hold. This mapping is only applicable if the specified element
- *  can be resolved, and it has the specified value.
- */
+Other elements required for this mapping (from context).
+
+A set of additional dependencies for this mapping to hold. This mapping is only applicable if the specified element can
+be resolved, and it has the specified value.
+*/
 open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapGroupElementTargetDependsOn" }

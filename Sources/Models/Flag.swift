@@ -2,7 +2,7 @@
 //  Flag.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Flag) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Flag) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Key information to flag to healthcare providers.
- *
- *  Prospective warnings of potential issues when providing care to the patient.
- */
+Key information to flag to healthcare providers.
+
+Prospective warnings of potential issues when providing care to the patient.
+*/
 open class Flag: DomainResource {
 	override open class var resourceType: String {
 		get { return "Flag" }
@@ -37,15 +37,15 @@ open class Flag: DomainResource {
 	/// Time period when flag is active.
 	public var period: Period?
 	
-	/// active | inactive | entered-in-error.
-	public var status: String?
+	/// Supports basic workflow.
+	public var status: FlagStatus?
 	
 	/// Who/What is flag about?.
 	public var subject: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, status: String, subject: Reference) {
+	public convenience init(code: CodeableConcept, status: FlagStatus, subject: Reference) {
 		self.init()
 		self.code = code
 		self.status = status
@@ -145,7 +145,12 @@ open class Flag: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = FlagStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -196,7 +201,7 @@ open class Flag: DomainResource {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)

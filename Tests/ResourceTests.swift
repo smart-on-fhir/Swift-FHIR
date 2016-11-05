@@ -62,7 +62,7 @@ class ResourceTests: XCTestCase {
 		
 		// normal `create`
 		let patient = Patient()
-		patient.gender = "female"
+		patient.gender = .female
 		patient.create(server) { error in
 			XCTAssertNil(error)
 			XCTAssertNotNil(patient.id)
@@ -117,7 +117,7 @@ class ResourceTests: XCTestCase {
 		
 		// normal `createAndReturn`
 		let patient = Patient()
-		patient.gender = "female"
+		patient.gender = .female
 		patient.createAndReturn(server) { error in
 			XCTAssertNil(error)
 			XCTAssertNotNil(patient.id)

@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A series of measurements taken by a device.
- *
- *  A series of measurements taken by a device, with upper and lower limits. There may be more than one dimension in the
- *  data.
- */
+A series of measurements taken by a device.
+
+A series of measurements taken by a device, with upper and lower limits. There may be more than one dimension in the
+data.
+*/
 open class SampledData: Element {
 	override open class var resourceType: String {
 		get { return "SampledData" }

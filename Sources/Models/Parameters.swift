@@ -2,7 +2,7 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Operation Request or Response.
- *
- *  This special resource type is used to represent an operation request and response (operations.html). It has no other
- *  use, and there is no RESTful endpoint associated with it.
- */
+Operation Request or Response.
+
+This special resource type is used to represent an operation request and response (operations.html). It has no other
+use, and there is no RESTful endpoint associated with it.
+*/
 open class Parameters: Resource {
 	override open class var resourceType: String {
 		get { return "Parameters" }
@@ -56,10 +56,10 @@ open class Parameters: Resource {
 
 
 /**
- *  Operation Parameter.
- *
- *  A parameter passed to or received from the operation.
- */
+Operation Parameter.
+
+A parameter passed to or received from the operation.
+*/
 open class ParametersParameter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ParametersParameter" }

@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Potential outcomes for a subject with likelihood.
- *
- *  An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome.
- */
+Potential outcomes for a subject with likelihood.
+
+An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome.
+*/
 open class RiskAssessment: DomainResource {
 	override open class var resourceType: String {
 		get { return "RiskAssessment" }
@@ -67,15 +67,15 @@ open class RiskAssessment: DomainResource {
 	/// Why the assessment was necessary?.
 	public var reasonReference: Reference?
 	
-	/// registered | preliminary | final | amended +.
-	public var status: String?
+	/// The status of the RiskAssessment, using the same statuses as an Observation.
+	public var status: ObservationStatus?
 	
 	/// Who/what does assessment apply to?.
 	public var subject: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: ObservationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -300,7 +300,12 @@ open class RiskAssessment: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = ObservationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -378,7 +383,7 @@ open class RiskAssessment: DomainResource {
 			json["reasonReference"] = reasonReference.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -390,10 +395,10 @@ open class RiskAssessment: DomainResource {
 
 
 /**
- *  Outcome predicted.
- *
- *  Describes the expected outcome for the subject.
- */
+Outcome predicted.
+
+Describes the expected outcome for the subject.
+*/
 open class RiskAssessmentPrediction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "RiskAssessmentPrediction" }

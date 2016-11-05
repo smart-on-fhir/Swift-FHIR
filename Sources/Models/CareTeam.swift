@@ -2,7 +2,7 @@
 //  CareTeam.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,21 +10,24 @@ import Foundation
 
 
 /**
- *  Planned participants in the coordination and delivery of care for a patient or group.
- *
- *  The Care Team includes all the people and organizations who plan to participate in the coordination and delivery of
- *  care for a patient.
- */
+Planned participants in the coordination and delivery of care for a patient or group.
+
+The Care Team includes all the people and organizations who plan to participate in the coordination and delivery of care
+for a patient.
+*/
 open class CareTeam: DomainResource {
 	override open class var resourceType: String {
 		get { return "CareTeam" }
 	}
 	
+	/// Type of team.
+	public var category: [CodeableConcept]?
+	
 	/// External Ids for this team.
 	public var identifier: [Identifier]?
 	
 	/// Organization responsible for the care team.
-	public var managingOrganization: Reference?
+	public var managingOrganization: [Reference]?
 	
 	/// Name of the team, such as crisis assessment team.
 	public var name: String?
@@ -41,12 +44,23 @@ open class CareTeam: DomainResource {
 	/// Who care team is for.
 	public var subject: Reference?
 	
-	/// Type of team.
-	public var type: [CodeableConcept]?
-	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["category"] {
+			presentKeys.insert("category")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.category = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "category"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "category", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["identifier"] {
 			presentKeys.insert("identifier")
 			if let val = exist as? [FHIRJSON] {
@@ -63,16 +77,16 @@ open class CareTeam: DomainResource {
 		}
 		if let exist = json["managingOrganization"] {
 			presentKeys.insert("managingOrganization")
-			if let val = exist as? FHIRJSON {
+			if let val = exist as? [FHIRJSON] {
 				do {
-					self.managingOrganization = try Reference(json: val, owner: self)
+					self.managingOrganization = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "managingOrganization"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "managingOrganization", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["name"] {
@@ -140,31 +154,20 @@ open class CareTeam: DomainResource {
 				errors.append(FHIRValidationError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.type = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
 		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
+		if let category = self.category {
+			json["category"] = category.map() { $0.asJSON(errors: &errors) }
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let managingOrganization = self.managingOrganization {
-			json["managingOrganization"] = managingOrganization.asJSON(errors: &errors)
+			json["managingOrganization"] = managingOrganization.map() { $0.asJSON(errors: &errors) }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -181,9 +184,6 @@ open class CareTeam: DomainResource {
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
-		if let type = self.type {
-			json["type"] = type.map() { $0.asJSON(errors: &errors) }
-		}
 		
 		return json
 	}
@@ -191,10 +191,10 @@ open class CareTeam: DomainResource {
 
 
 /**
- *  Members of the team.
- *
- *  Identifies all people and organizations who are expected to be involved in the care team.
- */
+Members of the team.
+
+Identifies all people and organizations who are expected to be involved in the care team.
+*/
 open class CareTeamParticipant: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CareTeamParticipant" }

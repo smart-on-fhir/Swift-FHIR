@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Information about a biological sequence.
- *
- *  Raw data describing a biological sequence.
- */
+Information about a biological sequence.
+
+Raw data describing a biological sequence.
+*/
 open class Sequence: DomainResource {
 	override open class var resourceType: String {
 		get { return "Sequence" }
@@ -329,11 +329,11 @@ open class Sequence: DomainResource {
 
 
 /**
- *  Sequence quality.
- *
- *  An experimental feature attribute that defines the quality of the feature in a quantitative way, such as a phred
- *  quality score ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
- */
+Sequence quality.
+
+An experimental feature attribute that defines the quality of the feature in a quantitative way, such as a phred quality
+score ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
+*/
 open class SequenceQuality: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceQuality" }
@@ -565,10 +565,10 @@ open class SequenceQuality: BackboneElement {
 
 
 /**
- *  Reference sequence.
- *
- *  A reference sequence is a sequence that is used to represent an allele or variant.
- */
+Reference sequence.
+
+A reference sequence is a sequence that is used to represent an allele or variant.
+*/
 open class SequenceReferenceSeq: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceReferenceSeq" }
@@ -747,10 +747,10 @@ open class SequenceReferenceSeq: BackboneElement {
 
 
 /**
- *  External repository.
- *
- *  Configurations of the external repository.
- */
+External repository.
+
+Configurations of the external repository.
+*/
 open class SequenceRepository: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceRepository" }
@@ -832,8 +832,8 @@ open class SequenceRepository: BackboneElement {
 
 
 /**
- *  Structural variant.
- */
+Structural variant.
+*/
 open class SequenceStructureVariant: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceStructureVariant" }
@@ -940,8 +940,8 @@ open class SequenceStructureVariant: BackboneElement {
 
 
 /**
- *  Structural variant inner.
- */
+Structural variant inner.
+*/
 open class SequenceStructureVariantInner: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceStructureVariantInner" }
@@ -993,8 +993,8 @@ open class SequenceStructureVariantInner: BackboneElement {
 
 
 /**
- *  Structural variant outer.
- */
+Structural variant outer.
+*/
 open class SequenceStructureVariantOuter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceStructureVariantOuter" }
@@ -1046,12 +1046,12 @@ open class SequenceStructureVariantOuter: BackboneElement {
 
 
 /**
- *  Sequence variant.
- *
- *  A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance
- *  of A, or there is a chain of immediate mutation processes linking A' to some instance of A
- *  ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).
- */
+Sequence variant.
+
+A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A,
+or there is a chain of immediate mutation processes linking A' to some instance of A
+([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).
+*/
 open class SequenceVariant: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceVariant" }

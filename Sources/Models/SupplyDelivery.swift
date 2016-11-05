@@ -2,7 +2,7 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Delivery of Supply.
- *
- *  Record of delivery of what is supplied.
- */
+Delivery of Supply.
+
+Record of delivery of what is supplied.
+*/
 open class SupplyDelivery: DomainResource {
 	override open class var resourceType: String {
 		get { return "SupplyDelivery" }
@@ -34,8 +34,8 @@ open class SupplyDelivery: DomainResource {
 	/// Who collected the Supply.
 	public var receiver: [Reference]?
 	
-	/// in-progress | completed | abandoned.
-	public var status: String?
+	/// A code specifying the state of the dispense event.
+	public var status: SupplyDeliveryStatus?
 	
 	/// Medication, Substance, or Device supplied.
 	public var suppliedItemCodeableConcept: CodeableConcept?
@@ -131,7 +131,12 @@ open class SupplyDelivery: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = SupplyDeliveryStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -238,7 +243,7 @@ open class SupplyDelivery: DomainResource {
 			json["receiver"] = receiver.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let suppliedItemCodeableConcept = self.suppliedItemCodeableConcept {
 			json["suppliedItemCodeableConcept"] = suppliedItemCodeableConcept.asJSON(errors: &errors)

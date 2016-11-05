@@ -2,7 +2,7 @@
 //  ServiceDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ServiceDefinition) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ServiceDefinition) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  A description of decision support service functionality.
- *
- *  The ServiceDefinition describes a unit of decision support functionality that is made available as a service, such
- *  as immunization modules or drug-drug interaction checking.
- */
+A description of decision support service functionality.
+
+The ServiceDefinition describes a unit of decision support functionality that is made available as a service, such as
+immunization modules or drug-drug interaction checking.
+*/
 open class ServiceDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "ServiceDefinition" }
@@ -71,8 +71,8 @@ open class ServiceDefinition: DomainResource {
 	/// Related resources for the module.
 	public var relatedArtifact: [RelatedArtifact]?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this service definition. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Name for this service definition (Human friendly).
 	public var title: String?
@@ -97,7 +97,7 @@ open class ServiceDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -301,7 +301,12 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -446,7 +451,7 @@ open class ServiceDefinition: DomainResource {
 			json["relatedArtifact"] = relatedArtifact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()

@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Group) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Group) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  Group of multiple entities.
- *
- *  Represents a defined collection of entities that may be discussed or acted upon collectively but which are not
- *  expected to act collectively and are not formally or legally recognized; i.e. a collection of entities that isn't an
- *  Organization.
- */
+Group of multiple entities.
+
+Represents a defined collection of entities that may be discussed or acted upon collectively but which are not expected
+to act collectively and are not formally or legally recognized; i.e. a collection of entities that isn't an
+Organization.
+*/
 open class Group: DomainResource {
 	override open class var resourceType: String {
 		get { return "Group" }
@@ -45,12 +45,12 @@ open class Group: DomainResource {
 	/// Number of members.
 	public var quantity: UInt?
 	
-	/// person | animal | practitioner | device | medication | substance.
-	public var type: String?
+	/// Identifies the broad classification of the kind of resources the group includes.
+	public var type: GroupType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actual: Bool, type: String) {
+	public convenience init(actual: Bool, type: GroupType) {
 		self.init()
 		self.actual = actual
 		self.type = type
@@ -157,7 +157,12 @@ open class Group: DomainResource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = GroupType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -197,7 +202,7 @@ open class Group: DomainResource {
 			json["quantity"] = quantity.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		
 		return json
@@ -206,10 +211,10 @@ open class Group: DomainResource {
 
 
 /**
- *  Trait of group members.
- *
- *  Identifies the traits shared by members of the group.
- */
+Trait of group members.
+
+Identifies the traits shared by members of the group.
+*/
 open class GroupCharacteristic: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GroupCharacteristic" }
@@ -395,10 +400,10 @@ open class GroupCharacteristic: BackboneElement {
 
 
 /**
- *  Who or what is in group.
- *
- *  Identifies the resource instances that are members of the group.
- */
+Who or what is in group.
+
+Identifies the resource instances that are members of the group.
+*/
 open class GroupMember: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GroupMember" }

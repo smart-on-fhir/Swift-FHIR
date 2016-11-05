@@ -2,7 +2,7 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  The formal response to a guidance request.
- *
- *  A guidance response is the formal response to a guidance request, including any output parameters returned by the
- *  evaluation, as well as the description of any proposed actions to be taken.
- */
+The formal response to a guidance request.
+
+A guidance response is the formal response to a guidance request, including any output parameters returned by the
+evaluation, as well as the description of any proposed actions to be taken.
+*/
 open class GuidanceResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "GuidanceResponse" }
@@ -59,15 +59,20 @@ open class GuidanceResponse: DomainResource {
 	/// The id of the request associated with this response, if any.
 	public var requestId: String?
 	
-	/// success | data-requested | data-required | in-progress | failure.
-	public var status: String?
+	/// The status of the response. If the evaluation is completed successfully, the status will indicate success.
+	/// However, in order to complete the evaluation, the engine may require more information. In this case, the status
+	/// will be data-required, and the response will contain a description of the additional required information. If
+	/// the evaluation completed successfully, but the engine determines that a potentially more accurate response could
+	/// be provided if more data was available, the status will be data-requested, and the response will contain a
+	/// description of the additional requested information.
+	public var status: GuidanceResponseStatus?
 	
 	/// Patient the request was performed for.
 	public var subject: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(module: Reference, status: String) {
+	public convenience init(module: Reference, status: GuidanceResponseStatus) {
 		self.init()
 		self.module = module
 		self.status = status
@@ -254,7 +259,12 @@ open class GuidanceResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = GuidanceResponseStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -323,7 +333,7 @@ open class GuidanceResponse: DomainResource {
 			json["requestId"] = requestId.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)

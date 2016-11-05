@@ -211,7 +211,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 				// inspect OperationOutcome if there was an error
 				if status >= 400 {
 					if let erritem = self.outcome?.issue?.first {
-						let errstr = "[\(erritem.severity ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
+						let errstr = "[\(erritem.severity?.rawValue ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
 						self.error = FHIRError.requestError(status, errstr)
 					}
 					else if let errstr = json?["error"] as? String {

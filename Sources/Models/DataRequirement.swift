@@ -2,7 +2,7 @@
 //  DataRequirement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Describes a required data item.
- *
- *  Describes a required data item for evaluation in terms of the type of data, and optional code- or date-based filters
- *  of the data.
- */
+Describes a required data item.
+
+Describes a required data item for evaluation in terms of the type of data, and optional code- or date-based filters of
+the data.
+*/
 open class DataRequirement: Element {
 	override open class var resourceType: String {
 		get { return "DataRequirement" }
@@ -121,11 +121,7 @@ open class DataRequirement: Element {
 			json["dateFilter"] = dateFilter.map() { $0.asJSON(errors: &errors) }
 		}
 		if let mustSupport = self.mustSupport {
-			var arr = [Any]()
-			for val in mustSupport {
-				arr.append(val.asJSON())
-			}
-			json["mustSupport"] = arr
+			json["mustSupport"] = mustSupport.map() { $0.asJSON() }
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.map() { $0.asJSON(errors: &errors) }
@@ -140,11 +136,11 @@ open class DataRequirement: Element {
 
 
 /**
- *  Code filters for the data.
- *
- *  Code filters specify additional constraints on the data, specifying the value set of interest for a particular
- *  element of the data.
- */
+Code filters for the data.
+
+Code filters specify additional constraints on the data, specifying the value set of interest for a particular element
+of the data.
+*/
 open class DataRequirementCodeFilter: Element {
 	override open class var resourceType: String {
 		get { return "DataRequirementCodeFilter" }
@@ -260,11 +256,7 @@ open class DataRequirementCodeFilter: Element {
 			json["path"] = path.asJSON()
 		}
 		if let valueCode = self.valueCode {
-			var arr = [Any]()
-			for val in valueCode {
-				arr.append(val.asJSON())
-			}
-			json["valueCode"] = arr
+			json["valueCode"] = valueCode.map() { $0.asJSON() }
 		}
 		if let valueCodeableConcept = self.valueCodeableConcept {
 			json["valueCodeableConcept"] = valueCodeableConcept.map() { $0.asJSON(errors: &errors) }
@@ -285,10 +277,10 @@ open class DataRequirementCodeFilter: Element {
 
 
 /**
- *  Date filters for the data.
- *
- *  Date filters specify additional constraints on the data in terms of the applicable date range for specific elements.
- */
+Date filters for the data.
+
+Date filters specify additional constraints on the data in terms of the applicable date range for specific elements.
+*/
 open class DataRequirementDateFilter: Element {
 	override open class var resourceType: String {
 		get { return "DataRequirementDateFilter" }

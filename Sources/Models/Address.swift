@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Address) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Address) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
- *  An address expressed using postal conventions (as opposed to GPS or other location definition formats).
- *
- *  An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This data
- *  type may be used to convey addresses for use in delivering mail as well as for visiting locations and which might
- *  not be valid for mail delivery.  There are a variety of postal address formats defined around the world.
- */
+An address expressed using postal conventions (as opposed to GPS or other location definition formats).
+
+An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This data type
+may be used to convey addresses for use in delivering mail as well as for visiting locations and which might not be
+valid for mail delivery.  There are a variety of postal address formats defined around the world.
+*/
 open class Address: Element {
 	override open class var resourceType: String {
 		get { return "Address" }
@@ -45,11 +45,12 @@ open class Address: Element {
 	/// Text representation of the address.
 	public var text: String?
 	
-	/// postal | physical | both.
-	public var type: String?
+	/// Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of
+	/// addresses). Most addresses are both.
+	public var type: AddressType?
 	
-	/// home | work | temp | old - purpose of this address.
-	public var use: String?
+	/// The purpose of this address.
+	public var use: AddressUse?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -134,7 +135,12 @@ open class Address: Element {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = AddressType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -143,7 +149,12 @@ open class Address: Element {
 		if let exist = json["use"] {
 			presentKeys.insert("use")
 			if let val = exist as? String {
-				self.use = val
+				if let enumval = AddressUse(rawValue: val) {
+					self.use = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
@@ -165,11 +176,7 @@ open class Address: Element {
 			json["district"] = district.asJSON()
 		}
 		if let line = self.line {
-			var arr = [Any]()
-			for val in line {
-				arr.append(val.asJSON())
-			}
-			json["line"] = arr
+			json["line"] = line.map() { $0.asJSON() }
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
@@ -184,10 +191,10 @@ open class Address: Element {
 			json["text"] = text.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let use = self.use {
-			json["use"] = use.asJSON()
+			json["use"] = use.rawValue
 		}
 		
 		return json

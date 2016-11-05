@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,13 +10,13 @@ import Foundation
 
 
 /**
- *  A set of images produced in single study (one or more series of references images).
- *
- *  Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which
- *  includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a
- *  common context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study may have multiple
- *  series of different modalities.
- */
+A set of images produced in single study (one or more series of references images).
+
+Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which
+includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a common
+context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study may have multiple series of
+different modalities.
+*/
 open class ImagingStudy: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImagingStudy" }
@@ -390,10 +390,10 @@ open class ImagingStudy: DomainResource {
 
 
 /**
- *  Study access service endpoint.
- *
- *  Methods of accessing  (e.g., retrieving, viewing) the study.
- */
+Study access service endpoint.
+
+Methods of accessing  (e.g., retrieving, viewing) the study.
+*/
 open class ImagingStudyBaseLocation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudyBaseLocation" }
@@ -464,10 +464,10 @@ open class ImagingStudyBaseLocation: BackboneElement {
 
 
 /**
- *  Each study has one or more series of instances.
- *
- *  Each study has one or more series of images or other content.
- */
+Each study has one or more series of instances.
+
+Each study has one or more series of images or other content.
+*/
 open class ImagingStudySeries: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudySeries" }
@@ -697,10 +697,10 @@ open class ImagingStudySeries: BackboneElement {
 
 
 /**
- *  Series access endpoint.
- *
- *  Methods of accessing (e.g. retrieving) the series.
- */
+Series access endpoint.
+
+Methods of accessing (e.g. retrieving) the series.
+*/
 open class ImagingStudySeriesBaseLocation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudySeriesBaseLocation" }
@@ -771,10 +771,10 @@ open class ImagingStudySeriesBaseLocation: BackboneElement {
 
 
 /**
- *  A single SOP instance from the series.
- *
- *  A single SOP Instance within the series, e.g. an image, or presentation state.
- */
+A single SOP instance from the series.
+
+A single SOP Instance within the series, e.g. an image, or presentation state.
+*/
 open class ImagingStudySeriesInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudySeriesInstance" }

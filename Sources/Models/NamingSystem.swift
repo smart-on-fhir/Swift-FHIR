@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  System of unique identification.
- *
- *  A curated namespace that issues unique symbols within that namespace for the identification of concepts, people,
- *  devices, etc.  Represents a "System" used within the Identifier and Coding data types.
- */
+System of unique identification.
+
+A curated namespace that issues unique symbols within that namespace for the identification of concepts, people,
+devices, etc.  Represents a "System" used within the Identifier and Coding data types.
+*/
 open class NamingSystem: DomainResource {
 	override open class var resourceType: String {
 		get { return "NamingSystem" }
@@ -32,8 +32,8 @@ open class NamingSystem: DomainResource {
 	/// Intended jurisdiction for naming system (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// codesystem | identifier | root.
-	public var kind: String?
+	/// Indicates the purpose for the naming system - what kinds of things does it make unique?
+	public var kind: NamingSystemType?
 	
 	/// Name for this naming system (Computer friendly).
 	public var name: String?
@@ -47,8 +47,8 @@ open class NamingSystem: DomainResource {
 	/// Who maintains system namespace?.
 	public var responsible: String?
 	
-	/// draft | active | retired.
-	public var status: String?
+	/// The status of this naming system. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// e.g. driver,  provider,  patient, bank etc..
 	public var type: CodeableConcept?
@@ -64,7 +64,7 @@ open class NamingSystem: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime, kind: String, name: String, status: String, uniqueId: [NamingSystemUniqueId]) {
+	public convenience init(date: DateTime, kind: NamingSystemType, name: String, status: PublicationStatus, uniqueId: [NamingSystemUniqueId]) {
 		self.init()
 		self.date = date
 		self.kind = kind
@@ -128,7 +128,12 @@ open class NamingSystem: DomainResource {
 		if let exist = json["kind"] {
 			presentKeys.insert("kind")
 			if let val = exist as? String {
-				self.kind = val
+				if let enumval = NamingSystemType(rawValue: val) {
+					self.kind = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "kind", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -184,7 +189,12 @@ open class NamingSystem: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = PublicationStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -266,7 +276,7 @@ open class NamingSystem: DomainResource {
 			json["jurisdiction"] = jurisdiction.map() { $0.asJSON(errors: &errors) }
 		}
 		if let kind = self.kind {
-			json["kind"] = kind.asJSON()
+			json["kind"] = kind.rawValue
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -281,7 +291,7 @@ open class NamingSystem: DomainResource {
 			json["responsible"] = responsible.asJSON()
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
@@ -302,10 +312,10 @@ open class NamingSystem: DomainResource {
 
 
 /**
- *  Unique identifiers used for system.
- *
- *  Indicates how the system may be identified when referenced in electronic exchange.
- */
+Unique identifiers used for system.
+
+Indicates how the system may be identified when referenced in electronic exchange.
+*/
 open class NamingSystemUniqueId: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NamingSystemUniqueId" }
@@ -320,15 +330,15 @@ open class NamingSystemUniqueId: BackboneElement {
 	/// Is this the id that should be used for this type.
 	public var preferred: Bool?
 	
-	/// oid | uuid | uri | other.
-	public var type: String?
+	/// Identifies the unique identifier scheme used for this particular identifier.
+	public var type: NamingSystemIdentifierType?
 	
 	/// The unique identifier.
 	public var value: String?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, value: String) {
+	public convenience init(type: NamingSystemIdentifierType, value: String) {
 		self.init()
 		self.type = type
 		self.value = value
@@ -372,7 +382,12 @@ open class NamingSystemUniqueId: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = NamingSystemIdentifierType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -409,7 +424,7 @@ open class NamingSystemUniqueId: BackboneElement {
 			json["preferred"] = preferred.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()

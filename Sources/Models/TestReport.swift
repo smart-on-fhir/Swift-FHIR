@@ -2,7 +2,7 @@
 //  TestReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/TestReport) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/TestReport) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Describes a set of tests.
- *
- *  TestReport is a resource that includes summary information on the results of executing a TestScript.
- */
+Describes a set of tests.
+
+TestReport is a resource that includes summary information on the results of executing a TestScript.
+*/
 open class TestReport: DomainResource {
 	override open class var resourceType: String {
 		get { return "TestReport" }
@@ -37,8 +37,8 @@ open class TestReport: DomainResource {
 	/// The results of the series of required setup operations before the tests were executed.
 	public var setup: TestReportSetup?
 	
-	/// complete | pending | error.
-	public var status: String?
+	/// The status of the TestReport.
+	public var status: TestReportStatus?
 	
 	/// The results of running the series of required clean up steps.
 	public var teardown: TestReportTeardown?
@@ -54,7 +54,7 @@ open class TestReport: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String, testScript: Reference) {
+	public convenience init(status: TestReportStatus, testScript: Reference) {
 		self.init()
 		self.status = status
 		self.testScript = testScript
@@ -135,7 +135,12 @@ open class TestReport: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = TestReportStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -223,7 +228,7 @@ open class TestReport: DomainResource {
 			json["setup"] = setup.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let teardown = self.teardown {
 			json["teardown"] = teardown.asJSON(errors: &errors)
@@ -244,8 +249,8 @@ open class TestReport: DomainResource {
 
 
 /**
- *  A participant in the test execution, either the execution engine, a client, or a server.
- */
+A participant in the test execution, either the execution engine, a client, or a server.
+*/
 open class TestReportParticipant: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportParticipant" }
@@ -254,15 +259,15 @@ open class TestReportParticipant: BackboneElement {
 	/// The display name of the participant.
 	public var display: String?
 	
-	/// test-engine | client | server.
-	public var type: String?
+	/// The type of participant.
+	public var type: TestReportParticipantType?
 	
 	/// The uri of the participant. An absolute URL is preferred.
 	public var uri: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, uri: URL) {
+	public convenience init(type: TestReportParticipantType, uri: URL) {
 		self.init()
 		self.type = type
 		self.uri = uri
@@ -283,7 +288,12 @@ open class TestReportParticipant: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = TestReportParticipantType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -314,7 +324,7 @@ open class TestReportParticipant: BackboneElement {
 			json["display"] = display.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let uri = self.uri {
 			json["uri"] = uri.asJSON()
@@ -326,8 +336,8 @@ open class TestReportParticipant: BackboneElement {
 
 
 /**
- *  The results of the series of required setup operations before the tests were executed.
- */
+The results of the series of required setup operations before the tests were executed.
+*/
 open class TestReportSetup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportSetup" }
@@ -379,10 +389,10 @@ open class TestReportSetup: BackboneElement {
 
 
 /**
- *  A setup operation or assert that was executed.
- *
- *  Action would contain either an operation or an assertion.
- */
+A setup operation or assert that was executed.
+
+Action would contain either an operation or an assertion.
+*/
 open class TestReportSetupAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportSetupAction" }
@@ -444,10 +454,10 @@ open class TestReportSetupAction: BackboneElement {
 
 
 /**
- *  The assertion to perform.
- *
- *  The results of the assertion performed on the previous operations.
- */
+The assertion to perform.
+
+The results of the assertion performed on the previous operations.
+*/
 open class TestReportSetupActionAssert: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportSetupActionAssert" }
@@ -459,12 +469,12 @@ open class TestReportSetupActionAssert: BackboneElement {
 	/// A message associated with the result.
 	public var message: String?
 	
-	/// pass | skip | fail | warning | error.
-	public var result: String?
+	/// The result of this assertion.
+	public var result: TestReportResultCodes?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(result: String) {
+	public convenience init(result: TestReportResultCodes) {
 		self.init()
 		self.result = result
 	}
@@ -493,7 +503,12 @@ open class TestReportSetupActionAssert: BackboneElement {
 		if let exist = json["result"] {
 			presentKeys.insert("result")
 			if let val = exist as? String {
-				self.result = val
+				if let enumval = TestReportResultCodes(rawValue: val) {
+					self.result = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "result", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "result", wants: String.self, has: type(of: exist)))
@@ -515,7 +530,7 @@ open class TestReportSetupActionAssert: BackboneElement {
 			json["message"] = message.asJSON()
 		}
 		if let result = self.result {
-			json["result"] = result.asJSON()
+			json["result"] = result.rawValue
 		}
 		
 		return json
@@ -524,10 +539,10 @@ open class TestReportSetupActionAssert: BackboneElement {
 
 
 /**
- *  The operation to perform.
- *
- *  The operation performed.
- */
+The operation to perform.
+
+The operation performed.
+*/
 open class TestReportSetupActionOperation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportSetupActionOperation" }
@@ -539,12 +554,12 @@ open class TestReportSetupActionOperation: BackboneElement {
 	/// A message associated with the result.
 	public var message: String?
 	
-	/// pass | skip | fail | warning | error.
-	public var result: String?
+	/// The result of this operation.
+	public var result: TestReportResultCodes?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(result: String) {
+	public convenience init(result: TestReportResultCodes) {
 		self.init()
 		self.result = result
 	}
@@ -573,7 +588,12 @@ open class TestReportSetupActionOperation: BackboneElement {
 		if let exist = json["result"] {
 			presentKeys.insert("result")
 			if let val = exist as? String {
-				self.result = val
+				if let enumval = TestReportResultCodes(rawValue: val) {
+					self.result = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "result", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "result", wants: String.self, has: type(of: exist)))
@@ -595,7 +615,7 @@ open class TestReportSetupActionOperation: BackboneElement {
 			json["message"] = message.asJSON()
 		}
 		if let result = self.result {
-			json["result"] = result.asJSON()
+			json["result"] = result.rawValue
 		}
 		
 		return json
@@ -604,11 +624,11 @@ open class TestReportSetupActionOperation: BackboneElement {
 
 
 /**
- *  The results of running the series of required clean up steps.
- *
- *  The results of the series of operations required to clean up after the all the tests were executed (successfully or
- *  otherwise).
- */
+The results of running the series of required clean up steps.
+
+The results of the series of operations required to clean up after the all the tests were executed (successfully or
+otherwise).
+*/
 open class TestReportTeardown: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportTeardown" }
@@ -660,10 +680,10 @@ open class TestReportTeardown: BackboneElement {
 
 
 /**
- *  One or more teardown operations performed.
- *
- *  The teardown action will only contain an operation.
- */
+One or more teardown operations performed.
+
+The teardown action will only contain an operation.
+*/
 open class TestReportTeardownAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportTeardownAction" }
@@ -715,8 +735,8 @@ open class TestReportTeardownAction: BackboneElement {
 
 
 /**
- *  A test executed from the test script.
- */
+A test executed from the test script.
+*/
 open class TestReportTest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportTest" }
@@ -798,10 +818,10 @@ open class TestReportTest: BackboneElement {
 
 
 /**
- *  A test operation or assert that was performed.
- *
- *  Action would contain either an operation or an assertion.
- */
+A test operation or assert that was performed.
+
+Action would contain either an operation or an assertion.
+*/
 open class TestReportTestAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestReportTestAction" }

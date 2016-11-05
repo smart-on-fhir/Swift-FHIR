@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -34,15 +34,15 @@ class CompositionTests: XCTestCase {
 	func runComposition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Composition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "composition-example.json")
 		
-		XCTAssertEqual(inst.attester?[0].mode?[0], "legal")
+		XCTAssertEqual(inst.`class`?.coding?[0].code, "LP173421-1")
+		XCTAssertEqual(inst.`class`?.coding?[0].display, "Report")
+		XCTAssertEqual(inst.`class`?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.attester?[0].mode?[0], CompositionAttestationMode(rawValue: "legal")!)
 		XCTAssertEqual(inst.attester?[0].party?.display, "Harold Hippocrates, MD")
 		XCTAssertEqual(inst.attester?[0].party?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.attester?[0].time?.description, "2012-01-04T09:10:14Z")
 		XCTAssertEqual(inst.author?[0].display, "Harold Hippocrates, MD")
 		XCTAssertEqual(inst.author?[0].reference, "Practitioner/xcda-author")
-		XCTAssertEqual(inst.class_fhir?.coding?[0].code, "LP173421-1")
-		XCTAssertEqual(inst.class_fhir?.coding?[0].display, "Report")
-		XCTAssertEqual(inst.class_fhir?.coding?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.confidentiality, "N")
 		XCTAssertEqual(inst.custodian?.display, "Good Health Clinic")
 		XCTAssertEqual(inst.custodian?.reference, "Organization/2.16.840.1.113883.19.5")
@@ -63,11 +63,11 @@ class CompositionTests: XCTestCase {
 		XCTAssertEqual(inst.section?[0].entry?[0].reference, "Condition/stroke")
 		XCTAssertEqual(inst.section?[0].entry?[1].reference, "Condition/example")
 		XCTAssertEqual(inst.section?[0].entry?[2].reference, "Condition/example2")
-		XCTAssertEqual(inst.section?[0].mode, "snapshot")
+		XCTAssertEqual(inst.section?[0].mode, ListMode(rawValue: "snapshot")!)
 		XCTAssertEqual(inst.section?[0].orderedBy?.coding?[0].code, "event-date")
 		XCTAssertEqual(inst.section?[0].orderedBy?.coding?[0].display, "Sorted by Event Date")
 		XCTAssertEqual(inst.section?[0].orderedBy?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/list-order")
-		XCTAssertEqual(inst.section?[0].text?.status, "generated")
+		XCTAssertEqual(inst.section?[0].text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.section?[0].title, "History of present illness")
 		XCTAssertEqual(inst.section?[1].code?.coding?[0].code, "10157-6")
 		XCTAssertEqual(inst.section?[1].code?.coding?[0].display, "History of family member diseases Narrative")
@@ -75,13 +75,13 @@ class CompositionTests: XCTestCase {
 		XCTAssertEqual(inst.section?[1].emptyReason?.coding?[0].code, "withheld")
 		XCTAssertEqual(inst.section?[1].emptyReason?.coding?[0].display, "Information Withheld")
 		XCTAssertEqual(inst.section?[1].emptyReason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/list-empty-reason")
-		XCTAssertEqual(inst.section?[1].mode, "snapshot")
-		XCTAssertEqual(inst.section?[1].text?.status, "generated")
+		XCTAssertEqual(inst.section?[1].mode, ListMode(rawValue: "snapshot")!)
+		XCTAssertEqual(inst.section?[1].text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.section?[1].title, "History of family member diseases")
-		XCTAssertEqual(inst.status, "final")
+		XCTAssertEqual(inst.status, CompositionStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.display, "Henry Levin the 7th")
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
-		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Consultation Note")
 		XCTAssertEqual(inst.type?.coding?[0].code, "11488-4")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Consult note")

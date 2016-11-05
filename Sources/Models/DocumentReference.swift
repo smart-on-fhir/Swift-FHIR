@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,23 +10,23 @@ import Foundation
 
 
 /**
- *  A reference to a document.
- *
- *  A reference to a document .
- */
+A reference to a document.
+
+A reference to a document .
+*/
 open class DocumentReference: DomainResource {
 	override open class var resourceType: String {
 		get { return "DocumentReference" }
 	}
+	
+	/// Categorization of document.
+	public var `class`: CodeableConcept?
 	
 	/// Who/what authenticated the document.
 	public var authenticator: Reference?
 	
 	/// Who and/or what authored the document.
 	public var author: [Reference]?
-	
-	/// Categorization of document.
-	public var class_fhir: CodeableConcept?
 	
 	/// Document referenced.
 	public var content: [DocumentReferenceContent]?
@@ -61,8 +61,8 @@ open class DocumentReference: DomainResource {
 	/// Document security-tags.
 	public var securityLabel: [CodeableConcept]?
 	
-	/// current | superseded | entered-in-error.
-	public var status: String?
+	/// The status of this document reference.
+	public var status: DocumentReferenceStatus?
 	
 	/// Who/what is the subject of the document.
 	public var subject: Reference?
@@ -72,7 +72,7 @@ open class DocumentReference: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: [DocumentReferenceContent], indexed: Instant, status: String, type: CodeableConcept) {
+	public convenience init(content: [DocumentReferenceContent], indexed: Instant, status: DocumentReferenceStatus, type: CodeableConcept) {
 		self.init()
 		self.content = content
 		self.indexed = indexed
@@ -83,6 +83,20 @@ open class DocumentReference: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["class"] {
+			presentKeys.insert("class")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.`class` = try CodeableConcept(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "class"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["authenticator"] {
 			presentKeys.insert("authenticator")
 			if let val = exist as? FHIRJSON {
@@ -109,20 +123,6 @@ open class DocumentReference: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "author", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["class"] {
-			presentKeys.insert("class")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.class_fhir = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "class"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["content"] {
@@ -273,7 +273,12 @@ open class DocumentReference: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = DocumentReferenceStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -319,14 +324,14 @@ open class DocumentReference: DomainResource {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
+		if let `class` = self.`class` {
+			json["class"] = `class`.asJSON(errors: &errors)
+		}
 		if let authenticator = self.authenticator {
 			json["authenticator"] = authenticator.asJSON(errors: &errors)
 		}
 		if let author = self.author {
 			json["author"] = author.map() { $0.asJSON(errors: &errors) }
-		}
-		if let class_fhir = self.class_fhir {
-			json["class"] = class_fhir.asJSON(errors: &errors)
 		}
 		if let content = self.content {
 			json["content"] = content.map() { $0.asJSON(errors: &errors) }
@@ -362,7 +367,7 @@ open class DocumentReference: DomainResource {
 			json["securityLabel"] = securityLabel.map() { $0.asJSON(errors: &errors) }
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -377,10 +382,10 @@ open class DocumentReference: DomainResource {
 
 
 /**
- *  Document referenced.
- *
- *  The document and format referenced. There may be multiple content element repetitions, each with a different format.
- */
+Document referenced.
+
+The document and format referenced. There may be multiple content element repetitions, each with a different format.
+*/
 open class DocumentReferenceContent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentReferenceContent" }
@@ -452,10 +457,10 @@ open class DocumentReferenceContent: BackboneElement {
 
 
 /**
- *  Clinical context of document.
- *
- *  The clinical context in which the document was prepared.
- */
+Clinical context of document.
+
+The clinical context in which the document was prepared.
+*/
 open class DocumentReferenceContext: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentReferenceContext" }
@@ -617,10 +622,10 @@ open class DocumentReferenceContext: BackboneElement {
 
 
 /**
- *  Related identifiers or resources.
- *
- *  Related identifiers or resources associated with the DocumentReference.
- */
+Related identifiers or resources.
+
+Related identifiers or resources associated with the DocumentReference.
+*/
 open class DocumentReferenceContextRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentReferenceContextRelated" }
@@ -682,24 +687,24 @@ open class DocumentReferenceContextRelated: BackboneElement {
 
 
 /**
- *  Relationships to other documents.
- *
- *  Relationships that this document has with other document references that already exist.
- */
+Relationships to other documents.
+
+Relationships that this document has with other document references that already exist.
+*/
 open class DocumentReferenceRelatesTo: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentReferenceRelatesTo" }
 	}
 	
-	/// replaces | transforms | signs | appends.
-	public var code: String?
+	/// The type of relationship that this document has with anther document.
+	public var code: DocumentRelationshipType?
 	
 	/// Target of the relationship.
 	public var target: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, target: Reference) {
+	public convenience init(code: DocumentRelationshipType, target: Reference) {
 		self.init()
 		self.code = code
 		self.target = target
@@ -711,7 +716,12 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				if let enumval = DocumentRelationshipType(rawValue: val) {
+					self.code = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "code", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -744,7 +754,7 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.rawValue
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON(errors: &errors)

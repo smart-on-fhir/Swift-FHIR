@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Media) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Media) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,9 +10,9 @@ import Foundation
 
 
 /**
- *  A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by
- *  direct reference.
- */
+A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by
+direct reference.
+*/
 open class Media: DomainResource {
 	override open class var resourceType: String {
 		get { return "Media" }
@@ -45,8 +45,8 @@ open class Media: DomainResource {
 	/// The type of acquisition equipment/process.
 	public var subtype: CodeableConcept?
 	
-	/// photo | video | audio.
-	public var type: String?
+	/// Whether the media is a photo (still image), an audio recording, or a video recording.
+	public var type: DigitalMediaType?
 	
 	/// Imaging view, e.g. Lateral or Antero-posterior.
 	public var view: CodeableConcept?
@@ -56,7 +56,7 @@ open class Media: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Attachment, type: String) {
+	public convenience init(content: Attachment, type: DigitalMediaType) {
 		self.init()
 		self.content = content
 		self.type = type
@@ -177,7 +177,12 @@ open class Media: DomainResource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				if let enumval = DigitalMediaType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -243,7 +248,7 @@ open class Media: DomainResource {
 			json["subtype"] = subtype.asJSON(errors: &errors)
 		}
 		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["type"] = type.rawValue
 		}
 		if let view = self.view {
 			json["view"] = view.asJSON(errors: &errors)

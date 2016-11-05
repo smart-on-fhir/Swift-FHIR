@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-11-03.
+//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-11-04.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 
 /**
- *  Eligibility request.
- *
- *  This resource provides the insurance eligibility details from the insurer regarding a specified coverage and
- *  optionally some class of service.
- */
+Eligibility request.
+
+This resource provides the insurance eligibility details from the insurer regarding a specified coverage and optionally
+some class of service.
+*/
 open class EligibilityRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "EligibilityRequest" }
@@ -71,12 +71,12 @@ open class EligibilityRequest: DomainResource {
 	/// Estimated date or dates of Service.
 	public var servicedPeriod: Period?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	/// The status of the resource instance.
+	public var status: EligibilityRequestStatus?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: EligibilityRequestStatus) {
 		self.init()
 		self.status = status
 	}
@@ -310,7 +310,12 @@ open class EligibilityRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = EligibilityRequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -377,7 +382,7 @@ open class EligibilityRequest: DomainResource {
 			json["servicedPeriod"] = servicedPeriod.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		
 		return json

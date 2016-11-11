@@ -132,7 +132,7 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 		}
 		
 		// was there an error?
-		if let error = error as? NSError, NSURLErrorDomain == error.domain {
+		if let error = error, NSURLErrorDomain == error._domain {
 			self.error = FHIRError.requestError(status, error.humanized)
 		}
 		else if let error = error as? FHIRError {
@@ -150,8 +150,8 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 	public required init(error: Error) {
 		self.status = 0
 		self.headers = [String: String]()
-		if NSURLErrorDomain == (error as NSError).domain {
-			self.error = FHIRError.requestError(status, (error as NSError).humanized)
+		if NSURLErrorDomain == error._domain {
+			self.error = FHIRError.requestError(status, error.humanized)
 		}
 		else if let error = error as? FHIRError {
 			self.error = error
@@ -278,14 +278,19 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 
 // MARK: -
 
-extension NSError {
+extension Error {
 	
 	/**
-	Return a human-readable, localized string for error codes of the NSURLErrorDomain (!!).
+	Return a human-readable, localized string for error codes of the NSURLErrorDomain. Will simply return `localizedDescription` for if the
+	receiver is not of that domain.
+	
+	The list of errors that are "humanized" is not necessarily exhaustive. All strings are returned `fhir_localized`.
 	*/
 	public var humanized: String {
-		assert(NSURLErrorDomain == domain, "Can only use this function with errors in the NSURLErrorDomain")
-		switch code {
+		guard NSURLErrorDomain == _domain else {
+			return localizedDescription
+		}
+		switch _code {
 		case NSURLErrorBadURL:                return "The URL was malformed".fhir_localized
 		case NSURLErrorTimedOut:              return "The connection timed out".fhir_localized
 		case NSURLErrorUnsupportedURL:        return "The URL scheme is not supported".fhir_localized

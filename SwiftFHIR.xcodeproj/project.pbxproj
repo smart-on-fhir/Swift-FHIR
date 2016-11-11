@@ -441,6 +441,7 @@
 		EE545F3B1A66805600E17B0C /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */; };
 		EE684CCF19A7CEF000B5A2C0 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */; };
 		EE6DA8631A5D4B3A00E00708 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */; };
+		EE8250411DD631610097A737 /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F9721C58FC51003AEA7E /* ResourceTests.swift */; };
 		EE8901231B7E07D700F1EDBF /* Element+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */; };
 		EE8901241B7E07D700F1EDBF /* Element+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */; };
 		EE9B31F41ACAD93400980AA9 /* Resource+REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */; };
@@ -839,13 +840,9 @@
 			isa = PBXGroup;
 			children = (
 				EE684C2C19A789BA00B5A2C0 /* Info.plist */,
-				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
-				EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */,
-				EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */,
-				EE01F9721C58FC51003AEA7E /* ResourceTests.swift */,
-				EE39069E1CD3E4F6008FECEA /* RequestTests.swift */,
-				EE1F49DE1C0D1BB40095BF0F /* TestResources */,
+				EE8250401DD62E0B0097A737 /* ClientTests */,
 				EEEB096E19AD248700C324FC /* ModelTests */,
+				EE1F49DE1C0D1BB40095BF0F /* TestResources */,
 				EEEE31191BB278E3008866E2 /* AppKit.framework */,
 			);
 			path = Tests;
@@ -989,6 +986,18 @@
 			);
 			name = Models;
 			path = Sources/Models;
+			sourceTree = "<group>";
+		};
+		EE8250401DD62E0B0097A737 /* ClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
+				EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */,
+				EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */,
+				EE01F9721C58FC51003AEA7E /* ResourceTests.swift */,
+				EE39069E1CD3E4F6008FECEA /* RequestTests.swift */,
+			);
+			path = ClientTests;
 			sourceTree = "<group>";
 		};
 		EE9B31F61ACAD94800980AA9 /* Client */ = {
@@ -1734,6 +1743,7 @@
 				EE02F7E91ACF259B00179969 /* RiskAssessmentTests.swift in Sources */,
 				EE02F7D51ACF259B00179969 /* PractitionerTests.swift in Sources */,
 				EE02F7EB1ACF259B00179969 /* ScheduleTests.swift in Sources */,
+				EE8250411DD631610097A737 /* ResourceTests.swift in Sources */,
 				EE02F7991ACF259B00179969 /* FamilyMemberHistoryTests.swift in Sources */,
 				EE02F7AB1ACF259B00179969 /* ImmunizationTests.swift in Sources */,
 				EE02F76F1ACF259B00179969 /* ContractTests.swift in Sources */,

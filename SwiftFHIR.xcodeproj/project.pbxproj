@@ -525,6 +525,7 @@
 		EE723FF21DC14AD300C398BA /* RelatedArtifact.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6D1DC148C200C398BA /* RelatedArtifact.swift */; };
 		EE723FF31DC14AD300C398BA /* ServiceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6E1DC148C200C398BA /* ServiceDefinition.swift */; };
 		EE723FF41DC14AD300C398BA /* TestReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6F1DC148C200C398BA /* TestReport.swift */; };
+		EE82503F1DD61DE20097A737 /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F9721C58FC51003AEA7E /* ResourceTests.swift */; };
 		EE8901231B7E07D700F1EDBF /* Element+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */; };
 		EE8901241B7E07D700F1EDBF /* Element+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */; };
 		EE9ABA2B1D803D8400BA8B54 /* Patient+SMART.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9ABA2A1D803D8400BA8B54 /* Patient+SMART.swift */; };
@@ -971,12 +972,7 @@
 			isa = PBXGroup;
 			children = (
 				EE684C2C19A789BA00B5A2C0 /* Info.plist */,
-				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
-				EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */,
-				EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */,
-				EE01F9721C58FC51003AEA7E /* ResourceTests.swift */,
-				EE39069E1CD3E4F6008FECEA /* RequestTests.swift */,
-				EEA97F921DCA19C300C3F016 /* ValidationTests.swift */,
+				EE8250321DD61DBD0097A737 /* ClientTests */,
 				EEEB096E19AD248700C324FC /* ModelTests */,
 				EE1F49DE1C0D1BB40095BF0F /* TestResources */,
 			);
@@ -1150,6 +1146,19 @@
 			);
 			name = Models;
 			path = Sources/Models;
+			sourceTree = "<group>";
+		};
+		EE8250321DD61DBD0097A737 /* ClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
+				EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */,
+				EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */,
+				EE01F9721C58FC51003AEA7E /* ResourceTests.swift */,
+				EE39069E1CD3E4F6008FECEA /* RequestTests.swift */,
+				EEA97F921DCA19C300C3F016 /* ValidationTests.swift */,
+			);
+			path = ClientTests;
 			sourceTree = "<group>";
 		};
 		EE9B31F61ACAD94800980AA9 /* Client */ = {
@@ -2013,6 +2022,7 @@
 				EE02F7591ACF259B00179969 /* BundleTests.swift in Sources */,
 				EEA97F971DCA1C3C00C3F016 /* RequestGroupTests.swift in Sources */,
 				EE02F7731ACF259B00179969 /* CoverageTests.swift in Sources */,
+				EE82503F1DD61DE20097A737 /* ResourceTests.swift in Sources */,
 				EE1F49D61C0D14F60095BF0F /* ReferenceTests.swift in Sources */,
 				EE02F7BB1ACF259B00179969 /* MessageHeaderTests.swift in Sources */,
 				EE31DC521D64AC3600B04BEA /* ActivityDefinitionTests.swift in Sources */,

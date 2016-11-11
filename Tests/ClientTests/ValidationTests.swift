@@ -99,7 +99,7 @@ class ValidationTests: XCTestCase {
 			XCTAssertNil(error)
 		}
 		
-		let element3 = QuestionnaireItemOption(value: FHIRDate(string: "2016-03-30"))
+		let element3 = QuestionnaireItemOption(value: FHIRDate(string: "2016-03-30")!)
 		XCTAssertEqual(2016, element3.valueDate?.year)
 		do {
 			let js = try element3.asJSON()

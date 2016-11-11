@@ -117,8 +117,8 @@ public extension Resource {
 				catch let error {
 					fhir_warn("Error applying response headers after `read` call: \(error)")
 				}
-				if nil == resource.id {
-					resource.id = (path as NSString).lastPathComponent
+				if nil == resource.id, let lpc = URL(string: path) {
+					resource.id = lpc.lastPathComponent
 				}
 				callback(resource, nil)
 			}

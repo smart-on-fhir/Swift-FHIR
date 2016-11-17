@@ -14,7 +14,7 @@
     <a title="FHIRServerResponse Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftFHIR Docs</a> (76% documented)</p>
+        <p><a href="../index.html">SwiftFHIR Docs</a> (98% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -33,7 +33,7 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="../Classes/Account.html">Account</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Address.html">Address</a>
@@ -499,36 +499,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Extension.html">Extension</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROpenServer.html">FHIROpenServer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROperation.html">FHIROperation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONResponse.html">FHIRServerJSONResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1101,7 +1071,7 @@
                 <a href="../Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Account.html">Account</a>
+                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
             </ul>
           </li>
@@ -1118,7 +1088,10 @@
                 <a href="../Enums/FHIROperationContext.html">FHIROperationContext</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/FHIRRequestType.html">FHIRRequestType</a>
+                <a href="../Enums/FHIRRequestHeaderField.html">FHIRRequestHeaderField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FHIRRequestMethod.html">FHIRRequestMethod</a>
               </li>
             </ul>
           </li>
@@ -1126,28 +1099,37 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/UInt.html">UInt</a>
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Error.html">Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FHIRAbstractBase.html">FHIRAbstractBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Foundation.html">Foundation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Int.html">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSBundle.html">NSBundle</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/NSDecimalNumber.html">NSDecimalNumber</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSURL.html">NSURL</a>
+                <a href="../Extensions/Scanner.html">Scanner</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Bool.html">Bool</a>
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -1155,40 +1137,10 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
             </ul>
           </li>
@@ -1210,19 +1162,22 @@
                 <a href="../Structs/Base64Binary.html">Base64Binary</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Date.html">Date</a>
+                <a href="../Structs/DateTime.html">DateTime</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/DateTime.html">DateTime</a>
+                <a href="../Structs/FHIRDate.html">FHIRDate</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/FHIRJSONError.html">FHIRJSONError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Instant.html">Instant</a>
+                <a href="../Structs/FHIRRequestHeaders.html">FHIRRequestHeaders</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Time.html">Time</a>
+                <a href="../Structs/FHIRTime.html">FHIRTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instant.html">Instant</a>
               </li>
             </ul>
           </li>
@@ -1282,7 +1237,7 @@ property carries the only useful information.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">status</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">status</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -1292,9 +1247,9 @@ property carries the only useful information.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vP9SwiftFHIR18FHIRServerResponse7headersGVSs10DictionarySSSS_"></a>
+                    <a name="/s:vP9SwiftFHIR18FHIRServerResponse7headersGVs10DictionarySSSS_"></a>
                     <a name="//apple_ref/swift/Property/headers" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vP9SwiftFHIR18FHIRServerResponse7headersGVSs10DictionarySSSS_">headers</a>
+                    <a class="token" href="#/s:vP9SwiftFHIR18FHIRServerResponse7headersGVs10DictionarySSSS_">headers</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1309,7 +1264,7 @@ property carries the only useful information.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -1319,9 +1274,9 @@ property carries the only useful information.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vP9SwiftFHIR18FHIRServerResponse4bodyGSqCSo6NSData_"></a>
+                    <a name="/s:vP9SwiftFHIR18FHIRServerResponse4bodyGSqV10Foundation4Data_"></a>
                     <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vP9SwiftFHIR18FHIRServerResponse4bodyGSqCSo6NSData_">body</a>
+                    <a class="token" href="#/s:vP9SwiftFHIR18FHIRServerResponse4bodyGSqV10Foundation4Data_">body</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1336,7 +1291,7 @@ property carries the only useful information.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">NSData</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1363,7 +1318,7 @@ property carries the only useful information.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">outcome</span><span class="p">:</span> <span class="kt">OperationOutcome</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">outcome</span><span class="p">:</span> <span class="kt"><a href="../Classes/OperationOutcome.html">OperationOutcome</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1390,7 +1345,7 @@ property carries the only useful information.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">FHIRError</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/FHIRError.html">FHIRError</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1400,9 +1355,9 @@ property carries the only useful information.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP9SwiftFHIR18FHIRServerResponsecuRq_S0__FMq_FT8responseCSo13NSURLResponse4dataGSqCSo6NSData_8urlErrorGSqCSo7NSError__q_"></a>
-                    <a name="//apple_ref/swift/Method/init(response:data:urlError:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponsecuRq_S0__FMq_FT8responseCSo13NSURLResponse4dataGSqCSo6NSData_8urlErrorGSqCSo7NSError__q_">init(response:data:urlError:)</a>
+                    <a name="/s:FP9SwiftFHIR18FHIRServerResponsecFT8responseCSo11URLResponse4dataGSqV10Foundation4Data_5errorGSqPs5Error___x"></a>
+                    <a name="//apple_ref/swift/Method/init(response:data:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponsecFT8responseCSo11URLResponse4dataGSqV10Foundation4Data_5errorGSqPs5Error___x">init(response:data:error:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1410,14 +1365,14 @@ property carries the only useful information.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse, NSData and an NSError.</p>
+                        <p>Instantiate a FHIRServerResponse from an URLResponse, Data and an Error.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">response</span><span class="p">:</span> <span class="kt">NSURLResponse</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">NSData</span><span class="p">?,</span> <span class="nv">urlError</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">response</span><span class="p">:</span> <span class="kt">URLResponse</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span></code></pre>
 
                         </div>
                       </div>
@@ -1427,9 +1382,9 @@ property carries the only useful information.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP9SwiftFHIR18FHIRServerResponsecuRq_S0__FMq_FT5errorPSs9ErrorType__q_"></a>
+                    <a name="/s:FP9SwiftFHIR18FHIRServerResponsecFT5errorPs5Error__x"></a>
                     <a name="//apple_ref/swift/Method/init(error:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponsecuRq_S0__FMq_FT5errorPSs9ErrorType__q_">init(error:)</a>
+                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponsecFT5errorPs5Error__x">init(error:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1437,14 +1392,14 @@ property carries the only useful information.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Instantiate a response that only represents an error, possibly because it wasn&rsquo;t even sent.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FHIRServerResponse</span></code></pre>
+                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1465,9 +1420,9 @@ property carries the only useful information.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP9SwiftFHIR18FHIRServerResponse16responseResourceu__Rq_S0_dqd__CS_8Resource_Fq_FMqd__GSqqd___"></a>
-                    <a name="//apple_ref/swift/Method/responseResource(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponse16responseResourceu__Rq_S0_dqd__CS_8Resource_Fq_FMqd__GSqqd___">responseResource(_:)</a>
+                    <a name="/s:FP9SwiftFHIR18FHIRServerResponse16responseResourceuRd__CS_8ResourcerFT6ofTypeMqd___GSqqd___"></a>
+                    <a name="//apple_ref/swift/Method/responseResource(ofType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponse16responseResourceuRd__CS_8ResourcerFT6ofTypeMqd___GSqqd___">responseResource(ofType:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1475,16 +1430,41 @@ property carries the only useful information.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Extract the resource of the given type from the response, if possible.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FHIRServerResponse</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="n">responseResource</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Classes/Resource.html">Resource</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">ofType</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ofType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of resource to extract</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resource that was found in the response if it is of the desired type, nil otherwise</p>
+
                       </div>
                     </section>
                   </div>
@@ -1492,9 +1472,75 @@ property carries the only useful information.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP9SwiftFHIR18FHIRServerResponse15applyToResourceuRq_S0__Fq_FCS_8ResourceT_"></a>
-                    <a name="//apple_ref/swift/Method/applyToResource(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponse15applyToResourceuRq_S0__Fq_FCS_8ResourceT_">applyToResource(_:)</a>
+                    <a name="/s:FP9SwiftFHIR18FHIRServerResponse12applyHeadersFzT2toCS_8Resource_T_"></a>
+                    <a name="//apple_ref/swift/Method/applyHeaders(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponse12applyHeadersFzT2toCS_8Resource_T_">applyHeaders(to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The response should inspect response headers and update resource data like <code>id</code> and <code>meta</code> accordingly.</p>
+
+<p>This method must not be called if the response has a non-nil error.</p>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    The method should only throw on severe cases, like if Location headers were returned that don&rsquo;t match the resource type
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>The base implementation inspects response headers (<q>Location</q>, <q>Last-Modified</q> and <q>ETag</q>) and updates the resource&rsquo;s <code>id</code> and <code>meta</code>
+accordingly.</p>
+
+<p>This method must not be called if the response has a non-nil error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">applyHeaders</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Classes/Resource.html">Resource</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The resource to apply response data to</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP9SwiftFHIR18FHIRServerResponse9applyBodyFzT2toCS_8Resource_T_"></a>
+                    <a name="//apple_ref/swift/Method/applyBody(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP9SwiftFHIR18FHIRServerResponse9applyBodyFzT2toCS_8Resource_T_">applyBody(to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1502,16 +1548,46 @@ property carries the only useful information.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The response should apply response body data to the given resource. It should throw <code>FHIRError.ResponseNoResourceReceived</code> if there was
+no response data.</p>
+
+<p>This method must not be called if the response has a non-nil error.</p>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    The method should throw if resource data was returned that doesn&rsquo;t match the given resource&rsquo;s type, but also if there
+            was no response data at all (<code>FHIRError.ResponseNoResourceReceived</code> in that case)
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FHIRServerResponse</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">applyBody</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Classes/Resource.html">Resource</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The resource to apply response data to</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -1519,24 +1595,66 @@ property carries the only useful information.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP9SwiftFHIR18FHIRServerResponse12noneReceiveduRq_S0__FMq_FT_q_"></a>
+                    <a name="/s:ZFP9SwiftFHIR18FHIRServerResponse12noneReceivedFT_x"></a>
                     <a name="//apple_ref/swift/Method/noneReceived()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP9SwiftFHIR18FHIRServerResponse12noneReceiveduRq_S0__FMq_FT_q_">noneReceived()</a>
+                    <a class="token" href="#/s:ZFP9SwiftFHIR18FHIRServerResponse12noneReceivedFT_x">noneReceived()</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Represent a response that was not received.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Initializes with a no-response error.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FHIRServerResponse</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">noneReceived</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE9SwiftFHIRPS_18FHIRServerResponse16debugDescriptionSS"></a>
+                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE9SwiftFHIRPS_18FHIRServerResponse16debugDescriptionSS">debugDescription</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Nicely format status code, response headers and response body (if any).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -1548,8 +1666,8 @@ property carries the only useful information.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

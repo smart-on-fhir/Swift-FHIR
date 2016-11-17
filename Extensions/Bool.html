@@ -14,7 +14,7 @@
     <a title="Bool Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftFHIR Docs</a> (76% documented)</p>
+        <p><a href="../index.html">SwiftFHIR Docs</a> (98% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -33,7 +33,7 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="../Classes/Account.html">Account</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Address.html">Address</a>
@@ -499,36 +499,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Extension.html">Extension</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROpenServer.html">FHIROpenServer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROperation.html">FHIROperation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONResponse.html">FHIRServerJSONResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1101,7 +1071,7 @@
                 <a href="../Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Account.html">Account</a>
+                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
             </ul>
           </li>
@@ -1118,7 +1088,10 @@
                 <a href="../Enums/FHIROperationContext.html">FHIROperationContext</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/FHIRRequestType.html">FHIRRequestType</a>
+                <a href="../Enums/FHIRRequestHeaderField.html">FHIRRequestHeaderField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FHIRRequestMethod.html">FHIRRequestMethod</a>
               </li>
             </ul>
           </li>
@@ -1126,28 +1099,37 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/UInt.html">UInt</a>
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Error.html">Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FHIRAbstractBase.html">FHIRAbstractBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Foundation.html">Foundation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Int.html">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSBundle.html">NSBundle</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/NSDecimalNumber.html">NSDecimalNumber</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSURL.html">NSURL</a>
+                <a href="../Extensions/Scanner.html">Scanner</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Bool.html">Bool</a>
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -1155,40 +1137,10 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
             </ul>
           </li>
@@ -1210,19 +1162,22 @@
                 <a href="../Structs/Base64Binary.html">Base64Binary</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Date.html">Date</a>
+                <a href="../Structs/DateTime.html">DateTime</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/DateTime.html">DateTime</a>
+                <a href="../Structs/FHIRDate.html">FHIRDate</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/FHIRJSONError.html">FHIRJSONError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Instant.html">Instant</a>
+                <a href="../Structs/FHIRRequestHeaders.html">FHIRRequestHeaders</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Time.html">Time</a>
+                <a href="../Structs/FHIRTime.html">FHIRTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instant.html">Instant</a>
               </li>
             </ul>
           </li>
@@ -1263,9 +1218,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE9SwiftFHIRSb6asJSONFSbFT_Sb"></a>
+                    <a name="/s:FE9SwiftFHIRSb6asJSONFT_Sb"></a>
                     <a name="//apple_ref/swift/Method/asJSON()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE9SwiftFHIRSb6asJSONFSbFT_Sb">asJSON()</a>
+                    <a class="token" href="#/s:FE9SwiftFHIRSb6asJSONFT_Sb">asJSON()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1292,8 +1247,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

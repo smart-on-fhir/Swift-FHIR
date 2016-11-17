@@ -14,7 +14,7 @@
     <a title="FHIRError Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftFHIR Docs</a> (76% documented)</p>
+        <p><a href="../index.html">SwiftFHIR Docs</a> (98% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -33,7 +33,7 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="../Classes/Account.html">Account</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Address.html">Address</a>
@@ -499,36 +499,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Extension.html">Extension</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROpenServer.html">FHIROpenServer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROperation.html">FHIROperation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONResponse.html">FHIRServerJSONResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1101,7 +1071,7 @@
                 <a href="../Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Account.html">Account</a>
+                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
             </ul>
           </li>
@@ -1118,7 +1088,10 @@
                 <a href="../Enums/FHIROperationContext.html">FHIROperationContext</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/FHIRRequestType.html">FHIRRequestType</a>
+                <a href="../Enums/FHIRRequestHeaderField.html">FHIRRequestHeaderField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FHIRRequestMethod.html">FHIRRequestMethod</a>
               </li>
             </ul>
           </li>
@@ -1126,28 +1099,37 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/UInt.html">UInt</a>
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Error.html">Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FHIRAbstractBase.html">FHIRAbstractBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Foundation.html">Foundation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Int.html">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSBundle.html">NSBundle</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/NSDecimalNumber.html">NSDecimalNumber</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSURL.html">NSURL</a>
+                <a href="../Extensions/Scanner.html">Scanner</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Bool.html">Bool</a>
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -1155,40 +1137,10 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
             </ul>
           </li>
@@ -1210,19 +1162,22 @@
                 <a href="../Structs/Base64Binary.html">Base64Binary</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Date.html">Date</a>
+                <a href="../Structs/DateTime.html">DateTime</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/DateTime.html">DateTime</a>
+                <a href="../Structs/FHIRDate.html">FHIRDate</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/FHIRJSONError.html">FHIRJSONError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Instant.html">Instant</a>
+                <a href="../Structs/FHIRRequestHeaders.html">FHIRRequestHeaders</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Time.html">Time</a>
+                <a href="../Structs/FHIRTime.html">FHIRTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instant.html">Instant</a>
               </li>
             </ul>
           </li>
@@ -1251,7 +1206,7 @@
             <h1>FHIRError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
@@ -1264,9 +1219,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError5ErrorFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/Error" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError5ErrorFMS0_FSSS0_">Error</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError5errorFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError5errorFMS0_FSSS0_">error</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1281,7 +1236,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1295,9 +1250,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError23ResourceLocationUnknownFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/ResourceLocationUnknown" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError23ResourceLocationUnknownFMS0_S0_">ResourceLocationUnknown</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError23resourceLocationUnknownFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/resourceLocationUnknown" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError23resourceLocationUnknownFMS0_S0_">resourceLocationUnknown</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1312,7 +1267,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1326,9 +1281,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError21ResourceWithoutServerFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/ResourceWithoutServer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError21ResourceWithoutServerFMS0_S0_">ResourceWithoutServer</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError21resourceWithoutServerFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/resourceWithoutServer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError21resourceWithoutServerFMS0_S0_">resourceWithoutServer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1343,7 +1298,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1357,9 +1312,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError17ResourceWithoutIdFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/ResourceWithoutId" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError17ResourceWithoutIdFMS0_S0_">ResourceWithoutId</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError17resourceWithoutIdFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/resourceWithoutId" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError17resourceWithoutIdFMS0_S0_">resourceWithoutId</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1374,7 +1329,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1388,9 +1343,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError20ResourceAlreadyHasIdFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/ResourceAlreadyHasId" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError20ResourceAlreadyHasIdFMS0_S0_">ResourceAlreadyHasId</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError20resourceAlreadyHasIdFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/resourceAlreadyHasId" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError20resourceAlreadyHasIdFMS0_S0_">resourceAlreadyHasId</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1405,7 +1360,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1419,9 +1374,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError27ResourceFailedToInstantiateFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/ResourceFailedToInstantiate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError27ResourceFailedToInstantiateFMS0_FSSS0_">ResourceFailedToInstantiate</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError27resourceFailedToInstantiateFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/resourceFailedToInstantiate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError27resourceFailedToInstantiateFMS0_FSSS0_">resourceFailedToInstantiate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1436,7 +1391,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1450,9 +1405,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError27ResourceCannotContainItselfFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/ResourceCannotContainItself" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError27ResourceCannotContainItselfFMS0_S0_">ResourceCannotContainItself</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError27resourceCannotContainItselfFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/resourceCannotContainItself" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError27resourceCannotContainItselfFMS0_S0_">resourceCannotContainItself</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1467,7 +1422,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1481,9 +1436,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError24RequestCannotPrepareBodyFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/RequestCannotPrepareBody" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError24RequestCannotPrepareBodyFMS0_S0_">RequestCannotPrepareBody</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError24requestCannotPrepareBodyFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/requestCannotPrepareBody" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError24requestCannotPrepareBodyFMS0_S0_">requestCannotPrepareBody</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1498,7 +1453,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1512,9 +1467,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError14RequestNotSentFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/RequestNotSent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError14RequestNotSentFMS0_FSSS0_">RequestNotSent</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError14requestNotSentFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/requestNotSent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError14requestNotSentFMS0_FSSS0_">requestNotSent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1529,7 +1484,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1543,9 +1498,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError25NoRequestHandlerAvailableFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/NoRequestHandlerAvailable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError25NoRequestHandlerAvailableFMS0_FSSS0_">NoRequestHandlerAvailable</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError12requestErrorFMS0_FTSiSS_S0_"></a>
+                    <a name="//apple_ref/swift/Element/requestError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError12requestErrorFMS0_FTSiSS_S0_">requestError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1560,7 +1515,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1574,9 +1529,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError18NoResponseReceivedFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/NoResponseReceived" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError18NoResponseReceivedFMS0_S0_">NoResponseReceived</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError25noRequestHandlerAvailableFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/noRequestHandlerAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError25noRequestHandlerAvailableFMS0_FSSS0_">noRequestHandlerAvailable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1591,7 +1546,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1605,9 +1560,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError12RequestErrorFMS0_FTSiSS_S0_"></a>
-                    <a name="//apple_ref/swift/Element/RequestError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError12RequestErrorFMS0_FTSiSS_S0_">RequestError</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError18noResponseReceivedFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/noResponseReceived" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError18noResponseReceivedFMS0_S0_">noResponseReceived</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1622,7 +1577,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1636,9 +1591,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError27OperationConfigurationErrorFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/OperationConfigurationError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError27OperationConfigurationErrorFMS0_FSSS0_">OperationConfigurationError</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError42responseLocationHeaderResourceTypeMismatchFMS0_FTSSSS_S0_"></a>
+                    <a name="//apple_ref/swift/Element/responseLocationHeaderResourceTypeMismatch" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError42responseLocationHeaderResourceTypeMismatchFMS0_FTSSSS_S0_">responseLocationHeaderResourceTypeMismatch</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1653,7 +1608,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1667,9 +1622,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError30OperationInputParameterMissingFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/OperationInputParameterMissing" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError30OperationInputParameterMissingFMS0_FSSS0_">OperationInputParameterMissing</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError26responseNoResourceReceivedFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/responseNoResourceReceived" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError26responseNoResourceReceivedFMS0_S0_">responseNoResourceReceived</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1684,7 +1639,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1698,9 +1653,40 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError21OperationNotSupportedFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/OperationNotSupported" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError21OperationNotSupportedFMS0_FSSS0_">OperationNotSupported</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError28responseResourceTypeMismatchFMS0_FTSSSS_S0_"></a>
+                    <a name="//apple_ref/swift/Element/responseResourceTypeMismatch" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError28responseResourceTypeMismatchFMS0_FTSSSS_S0_">responseResourceTypeMismatch</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The resource type received (1st String) does not match the expected type (2nd String).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">responseResourceTypeMismatch</span><span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO9SwiftFHIR9FHIRError27operationConfigurationErrorFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/operationConfigurationError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError27operationConfigurationErrorFMS0_FSSS0_">operationConfigurationError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1715,7 +1701,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1729,9 +1715,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError28SearchResourceTypeNotDefinedFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/SearchResourceTypeNotDefined" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError28SearchResourceTypeNotDefinedFMS0_S0_">SearchResourceTypeNotDefined</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError30operationInputParameterMissingFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/operationInputParameterMissing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError30operationInputParameterMissingFMS0_FSSS0_">operationInputParameterMissing</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1746,7 +1732,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1760,9 +1746,71 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9SwiftFHIR9FHIRError16JSONParsingErrorFMS0_FTSSSS_S0_"></a>
-                    <a name="//apple_ref/swift/Element/JSONParsingError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError16JSONParsingErrorFMS0_FTSSSS_S0_">JSONParsingError</a>
+                    <a name="/s:FO9SwiftFHIR9FHIRError21operationNotSupportedFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/operationNotSupported" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError21operationNotSupportedFMS0_FSSS0_">operationNotSupported</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO9SwiftFHIR9FHIRError28searchResourceTypeNotDefinedFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/searchResourceTypeNotDefined" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError28searchResourceTypeNotDefinedFMS0_S0_">searchResourceTypeNotDefined</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO9SwiftFHIR9FHIRError16jsonParsingErrorFMS0_FTSSSS_S0_"></a>
+                    <a name="//apple_ref/swift/Element/jsonParsingError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO9SwiftFHIR9FHIRError16jsonParsingErrorFMS0_FTSSSS_S0_">jsonParsingError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1777,7 +1825,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">JSONParsingError</span><span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">jsonParsingError</span><span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1791,9 +1839,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vO9SwiftFHIR9FHIRError11descriptionSS"></a>
+                    <a name="/s:vPs23CustomStringConvertible11descriptionSS"></a>
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vO9SwiftFHIR9FHIRError11descriptionSS">description</a>
+                    <a class="token" href="#/s:vPs23CustomStringConvertible11descriptionSS">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1801,14 +1849,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>JSON parsing failed for reason in 1st argument, full JSON string is 2nd argument.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FHIRError</span><span class="p">:</span> <span class="kt">ErrorType</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -1820,8 +1868,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

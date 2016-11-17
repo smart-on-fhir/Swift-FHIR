@@ -13,7 +13,7 @@
     <a title="SwiftFHIR  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftFHIR Docs</a> (76% documented)</p>
+        <p><a href="index.html">SwiftFHIR Docs</a> (98% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -32,7 +32,7 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="Classes/Account.html">Account</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Address.html">Address</a>
@@ -498,36 +498,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Extension.html">Extension</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIROpenServer.html">FHIROpenServer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIROperation.html">FHIROperation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRSearch.html">FHIRSearch</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRServerJSONResponse.html">FHIRServerJSONResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1100,7 +1070,7 @@
                 <a href="Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Account.html">Account</a>
+                <a href="Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
             </ul>
           </li>
@@ -1117,7 +1087,10 @@
                 <a href="Enums/FHIROperationContext.html">FHIROperationContext</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/FHIRRequestType.html">FHIRRequestType</a>
+                <a href="Enums/FHIRRequestHeaderField.html">FHIRRequestHeaderField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/FHIRRequestMethod.html">FHIRRequestMethod</a>
               </li>
             </ul>
           </li>
@@ -1125,28 +1098,37 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/UInt.html">UInt</a>
+                <a href="Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Error.html">Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/FHIRAbstractBase.html">FHIRAbstractBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Foundation.html">Foundation</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Int.html">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/NSBundle.html">NSBundle</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Extensions/NSDecimalNumber.html">NSDecimalNumber</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/NSURL.html">NSURL</a>
+                <a href="Extensions/Scanner.html">Scanner</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/Bool.html">Bool</a>
+                <a href="Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -1154,40 +1136,10 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
+                <a href="Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
+                <a href="Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
             </ul>
           </li>
@@ -1209,19 +1161,22 @@
                 <a href="Structs/Base64Binary.html">Base64Binary</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Date.html">Date</a>
+                <a href="Structs/DateTime.html">DateTime</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/DateTime.html">DateTime</a>
+                <a href="Structs/FHIRDate.html">FHIRDate</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/FHIRJSONError.html">FHIRJSONError</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Instant.html">Instant</a>
+                <a href="Structs/FHIRRequestHeaders.html">FHIRRequestHeaders</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Time.html">Time</a>
+                <a href="Structs/FHIRTime.html">FHIRTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Instant.html">Instant</a>
               </li>
             </ul>
           </li>
@@ -1248,12 +1203,13 @@
         <section>
           <section class="section">
             
-            <a href='#fhir_swift_classes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='fhir_swift_classes'>FHIR Swift Classes</h1>
+            <a href='#fhir-swift-classes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='fhir-swift-classes'>FHIR Swift Classes</h1>
 
 <p>These are <a href="https://developer.apple.com/swift/">Swift</a> classes representing data models of <a href="http://www.hl7.org/fhir">🔥 FHIR</a> resource profiles, compatible with <strong>iOS 7</strong> and <strong>OS X 10.9</strong> and later.
-Building <em>Swift 2</em> frameworks requires Xcode 7 or later, using frameworks on iOS requires <strong>iOS 8</strong>.</p>
+Building <em>Swift 3</em> frameworks requires Xcode 8 or later, using frameworks on iOS requires <strong>iOS 8</strong>.</p>
 
-<p>This work is <a href="LICENSE.txt">Apache licensed</a>.</p>
+<p>This work is <a href="LICENSE.txt">Apache licensed</a>.
+FHIR® is the registered trademark of <a href="http://hl7.org/">HL7</a> and is used with the permission of HL7.</p>
 <a href='#versioning' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='versioning'>Versioning</h3>
 
 <p>Due to the complications of combining two volatile technologies, here&rsquo;s an overview of which version numbers use which <strong>Swift</strong> and <strong>FHIR versions</strong>.
@@ -1269,20 +1225,50 @@ See the <code>develop</code> branch or specific <code>feature/x</code> branches 
 </tr>
 </thead><tbody>
 <tr>
+<td><strong>2.9</strong></td>
+<td>3.0</td>
+<td><code>1.6.0.9663</code></td>
+<td>STU 3 Ballot, Sep 2016</td>
+</tr>
+<tr>
+<td><strong>2.8</strong></td>
+<td>3.0</td>
+<td><code>1.0.2.7202</code></td>
+<td>DSTU 2 (<em>+ technical errata</em>)</td>
+</tr>
+<tr>
+<td><strong>2.4</strong></td>
+<td>2.2</td>
+<td><code>1.6.0.9663</code></td>
+<td>STU 3 Ballot, Sept 2016</td>
+</tr>
+<tr>
+<td><strong>2.3</strong></td>
+<td>2.3</td>
+<td><code>1.0.2.7202</code></td>
+<td>DSTU 2 (<em>+ technical errata</em>)</td>
+</tr>
+<tr>
+<td><strong>2.2.3</strong></td>
+<td>2.2</td>
+<td><code>1.0.2.7202</code></td>
+<td>DSTU 2 (<em>+ technical errata</em>)</td>
+</tr>
+<tr>
 <td><strong>2.2</strong></td>
-<td>2.0/2.1</td>
+<td>2.0-2.2</td>
 <td><code>1.0.2.7202</code></td>
 <td>DSTU 2 (<em>+ technical errata</em>)</td>
 </tr>
 <tr>
 <td><strong>2.1</strong></td>
-<td>2.0/2.1</td>
+<td>2.0-2.2</td>
 <td><code>1.0.1.7108</code></td>
 <td>DSTU 2</td>
 </tr>
 <tr>
 <td><strong>2.0</strong></td>
-<td>2.0/2.1</td>
+<td>2.0-2.2</td>
 <td><code>0.5.0.5149</code></td>
 <td>DSTU 2 Ballot, May 2015</td>
 </tr>
@@ -1305,7 +1291,7 @@ See the <code>develop</code> branch or specific <code>feature/x</code> branches 
 <td>DSTU 1</td>
 </tr>
 </tbody></table>
-<a href='#smart_on_fhir' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='smart_on_fhir'>SMART on FHIR</h2>
+<a href='#smart-on-fhir' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='smart-on-fhir'>SMART on FHIR</h2>
 
 <p>The <a href="https://github.com/smart-on-fhir/Swift-SMART">Swift-SMART</a> framework utilizes these classes.
 It also adds an implementation of the <em>FHIRServer</em> protocol to make for a complete FHIR client framework.</p>
@@ -1318,9 +1304,10 @@ It also adds an implementation of the <em>FHIRServer</em> protocol to make for a
 <a href='#progress' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='progress'>Progress</h2>
 
 <p>Here&rsquo;s a rough list of what still needs to be done.</p>
-<pre class="highlight plaintext"><code>[ ] Add convenience methods to working with resources in code
+<pre class="highlight plaintext"><code>[ ] Update/modernize FHIRSearch
+[ ] Add convenience methods to working with resources in code
+[ ] Create enums for `code` type properties
 [ ] Nice support for simple PATCH operations
-[?] Serialization validator
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Search: report search parameters that the server ignored
@@ -1341,7 +1328,7 @@ It also adds an implementation of the <em>FHIRServer</em> protocol to make for a
 <li>Use a FHIR server protocol for REST interactions with a server</li>
 <li>Deserialize from JSON</li>
 <li>Serialize to JSON</li>
-<li>Resolve contained/relative/absolute resource references</li>
+<li>Resolve contained/bundled/relative/absolute resource references</li>
 <li>Contain resources</li>
 <li>Construct searches with NoSQL-like statements (cf. <a href="https://github.com/FHIR/fhir.js">fhir.js</a>)</li>
 <li>Perform operations</li>
@@ -1352,13 +1339,13 @@ It also adds an implementation of the <em>FHIRServer</em> protocol to make for a
 <li>Tests serialization from deserialized instances</li>
 </ul></li>
 </ul>
-<a href='#naming_convention' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='naming_convention'>Naming Convention</h2>
+<a href='#naming-convention' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='naming-convention'>Naming Convention</h2>
 
 <p>Standard Swift naming conventions apply.
 Tabs are used for indentation and spaces for alignment – the best of both worlds.
 Classes representing FHIR profiles do not have a prefix.
 Custom classes and protocols start with <code>FHIR</code> to not make them clash with profile classes and make them easily distinguishable.</p>
-<a href='#fhir_profile_data_models' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fhir_profile_data_models'>FHIR Profile Data Models</h2>
+<a href='#fhir-profile-data-models' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fhir-profile-data-models'>FHIR Profile Data Models</h2>
 
 <p>Classes are generated from FHIR profiles with our <a href="https://github.com/smart-on-fhir/fhir-parser">Python FHIR parser</a>.</p>
 <a href='#verbousness' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='verbousness'>Verbousness</h3>
@@ -1370,7 +1357,7 @@ Therefore the generator needs to be a bit more verbose and create class-level se
 <p>Some data models have properties with a cardinality of a minimum of 1.
 While these can be enforced to never be nil in Swift by <strong>not</strong> making them <em>Optionals</em>, they are still optional to enable uniform initializers that only take a JSON dictionary.
 For classes representing models with non-optional properties, a convenience initializer is supplied to reflect the need to set those properties without enforcing it.</p>
-<a href='#contained_resources' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='contained_resources'>Contained Resources</h3>
+<a href='#contained-resources' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='contained-resources'>Contained Resources</h3>
 
 <p>FHIR makes use of <a href="http://hl7.org/fhir/references.html#contained">contained resources</a>.
 An extension on the <code>Reference</code> class is included that adds method to handle reference resolving.</p>
@@ -1402,7 +1389,7 @@ To contain a resource and receive a <code>Reference</code> instance, call <code>
 <p>Search can be restricted to <a href="https://www.hl7.org/fhir/compartments.html">compartments</a>, these however are not yet supported in the SMART server nor in these classes.</p>
 <pre class="highlight plaintext"><code>[ ] Patient/23/procedure?date=&gt;2010-01-01&amp;date=&lt;2011-12-31
 </code></pre>
-<a href='#referenced_not_yet_implemented' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='referenced_not_yet_implemented'>Referenced (not yet implemented)</h4>
+<a href='#referenced-not-yet-implemented' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='referenced-not-yet-implemented'>Referenced (not yet implemented)</h4>
 
 <p>If search is restricted to a reference property, this applies:</p>
 
@@ -1416,8 +1403,8 @@ To contain a resource and receive a <code>Reference</code> instance, call <code>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

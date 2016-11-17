@@ -14,7 +14,7 @@
     <a title="Base64Binary Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftFHIR Docs</a> (76% documented)</p>
+        <p><a href="../index.html">SwiftFHIR Docs</a> (98% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -33,7 +33,7 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="../Classes/Account.html">Account</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Address.html">Address</a>
@@ -499,36 +499,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Extension.html">Extension</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROpenServer.html">FHIROpenServer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIROperation.html">FHIROperation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerJSONResponse.html">FHIRServerJSONResponse</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1101,7 +1071,7 @@
                 <a href="../Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Account.html">Account</a>
+                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
             </ul>
           </li>
@@ -1118,7 +1088,10 @@
                 <a href="../Enums/FHIROperationContext.html">FHIROperationContext</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/FHIRRequestType.html">FHIRRequestType</a>
+                <a href="../Enums/FHIRRequestHeaderField.html">FHIRRequestHeaderField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FHIRRequestMethod.html">FHIRRequestMethod</a>
               </li>
             </ul>
           </li>
@@ -1126,28 +1099,37 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/UInt.html">UInt</a>
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Error.html">Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FHIRAbstractBase.html">FHIRAbstractBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Foundation.html">Foundation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Int.html">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSBundle.html">NSBundle</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/NSDecimalNumber.html">NSDecimalNumber</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSURL.html">NSURL</a>
+                <a href="../Extensions/Scanner.html">Scanner</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Bool.html">Bool</a>
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -1155,40 +1137,10 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileSS4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
             </ul>
           </li>
@@ -1210,19 +1162,22 @@
                 <a href="../Structs/Base64Binary.html">Base64Binary</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Date.html">Date</a>
+                <a href="../Structs/DateTime.html">DateTime</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/DateTime.html">DateTime</a>
+                <a href="../Structs/FHIRDate.html">FHIRDate</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/FHIRJSONError.html">FHIRJSONError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Instant.html">Instant</a>
+                <a href="../Structs/FHIRRequestHeaders.html">FHIRRequestHeaders</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Time.html">Time</a>
+                <a href="../Structs/FHIRTime.html">FHIRTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instant.html">Instant</a>
               </li>
             </ul>
           </li>
@@ -1251,7 +1206,7 @@
             <h1>Base64Binary</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">ExpressibleByStringLiteral</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
 
                 </div>
               </div>
@@ -1264,9 +1219,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9SwiftFHIR12Base64BinarycFMS0_FT5valueSS_S0_"></a>
+                    <a name="/s:FV9SwiftFHIR12Base64BinarycFT5valueSS_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9SwiftFHIR12Base64BinarycFMS0_FT5valueSS_S0_">init(value:)</a>
+                    <a class="token" href="#/s:FV9SwiftFHIR12Base64BinarycFT5valueSS_S0_">init(value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1281,7 +1236,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">ExpressibleByStringLiteral</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
 
                         </div>
                       </div>
@@ -1292,19 +1247,19 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/String%20Literal%20Convertible"></a>
-                <a name="//apple_ref/swift/Section/String Literal Convertible" class="dashAnchor"></a>
-                <a href="#/String%20Literal%20Convertible">
-                  <h3 class="section-name">String Literal Convertible</h3>
+                <a name="/ExpressibleByStringLiteral"></a>
+                <a name="//apple_ref/swift/Section/ExpressibleByStringLiteral" class="dashAnchor"></a>
+                <a href="#/ExpressibleByStringLiteral">
+                  <h3 class="section-name">ExpressibleByStringLiteral</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9SwiftFHIR12Base64BinarycFMS0_FT13stringLiteralSS_S0_"></a>
+                    <a name="/s:FPs26ExpressibleByStringLiteralcFT13stringLiteralwx17StringLiteralType_x"></a>
                     <a name="//apple_ref/swift/Method/init(stringLiteral:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9SwiftFHIR12Base64BinarycFMS0_FT13stringLiteralSS_S0_">init(stringLiteral:)</a>
+                    <a class="token" href="#/s:FPs26ExpressibleByStringLiteralcFT13stringLiteralwx17StringLiteralType_x">init(stringLiteral:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1312,14 +1267,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">stringLiteral</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">StringLiteralType</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1329,9 +1283,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9SwiftFHIR12Base64BinarycFMS0_FT20unicodeScalarLiteralVSs9Character_S0_"></a>
+                    <a name="/s:FPs33ExpressibleByUnicodeScalarLiteralcFT20unicodeScalarLiteralwx24UnicodeScalarLiteralType_x"></a>
                     <a name="//apple_ref/swift/Method/init(unicodeScalarLiteral:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9SwiftFHIR12Base64BinarycFMS0_FT20unicodeScalarLiteralVSs9Character_S0_">init(unicodeScalarLiteral:)</a>
+                    <a class="token" href="#/s:FPs33ExpressibleByUnicodeScalarLiteralcFT20unicodeScalarLiteralwx24UnicodeScalarLiteralType_x">init(unicodeScalarLiteral:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1339,14 +1293,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">unicodeScalarLiteral</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UnicodeScalarLiteralType</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1356,9 +1309,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9SwiftFHIR12Base64BinarycFMS0_FT30extendedGraphemeClusterLiteralSS_S0_"></a>
+                    <a name="/s:FPs43ExpressibleByExtendedGraphemeClusterLiteralcFT30extendedGraphemeClusterLiteralwx34ExtendedGraphemeClusterLiteralType_x"></a>
                     <a name="//apple_ref/swift/Method/init(extendedGraphemeClusterLiteral:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9SwiftFHIR12Base64BinarycFMS0_FT30extendedGraphemeClusterLiteralSS_S0_">init(extendedGraphemeClusterLiteral:)</a>
+                    <a class="token" href="#/s:FPs43ExpressibleByExtendedGraphemeClusterLiteralcFT30extendedGraphemeClusterLiteralwx34ExtendedGraphemeClusterLiteralType_x">init(extendedGraphemeClusterLiteral:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1366,68 +1319,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFV9SwiftFHIR12Base64Binary41convertFromExtendedGraphemeClusterLiteralFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Method/convertFromExtendedGraphemeClusterLiteral(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFV9SwiftFHIR12Base64Binary41convertFromExtendedGraphemeClusterLiteralFMS0_FSSS0_">convertFromExtendedGraphemeClusterLiteral(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFV9SwiftFHIR12Base64Binary24convertFromStringLiteralFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Method/convertFromStringLiteral(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFV9SwiftFHIR12Base64Binary24convertFromStringLiteralFMS0_FSSS0_">convertFromStringLiteral(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">extendedGraphemeClusterLiteral</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">ExtendedGraphemeClusterLiteralType</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1438,19 +1336,19 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Printable"></a>
-                <a name="//apple_ref/swift/Section/Printable" class="dashAnchor"></a>
-                <a href="#/Printable">
-                  <h3 class="section-name">Printable</h3>
+                <a name="/Printable,%20Equatable%20and%20Comparable"></a>
+                <a name="//apple_ref/swift/Section/Printable, Equatable and Comparable" class="dashAnchor"></a>
+                <a href="#/Printable,%20Equatable%20and%20Comparable">
+                  <h3 class="section-name">Printable, Equatable and Comparable</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9SwiftFHIR12Base64Binary11descriptionSS"></a>
+                    <a name="/s:vPs23CustomStringConvertible11descriptionSS"></a>
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9SwiftFHIR12Base64Binary11descriptionSS">description</a>
+                    <a class="token" href="#/s:vPs23CustomStringConvertible11descriptionSS">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1458,16 +1356,133 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFPs10Comparableoi1lFTxx_Sb"></a>
+                    <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFPs10Comparableoi1lFTxx_Sb">&lt;(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span><span class="p">(</span><span class="nv">lh</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">,</span> <span class="nv">rh</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFPs9Equatableoi2eeFTxx_Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFPs9Equatableoi2eeFTxx_Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -1479,9 +1494,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9SwiftFHIR12Base64BinarycFMS0_FT6stringSS_S0_"></a>
+                    <a name="/s:FV9SwiftFHIR12Base64BinarycFT6stringSS_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(string:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9SwiftFHIR12Base64BinarycFMS0_FT6stringSS_S0_">init(string:)</a>
+                    <a class="token" href="#/s:FV9SwiftFHIR12Base64BinarycFT6stringSS_S0_">init(string:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1496,7 +1511,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">ExpressibleByStringLiteral</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
 
                         </div>
                       </div>
@@ -1506,9 +1521,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9SwiftFHIR12Base64Binary6asJSONFS0_FT_SS"></a>
+                    <a name="/s:FV9SwiftFHIR12Base64Binary6asJSONFT_SS"></a>
                     <a name="//apple_ref/swift/Method/asJSON()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9SwiftFHIR12Base64Binary6asJSONFS0_FT_SS">asJSON()</a>
+                    <a class="token" href="#/s:FV9SwiftFHIR12Base64Binary6asJSONFT_SS">asJSON()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1523,7 +1538,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">StringLiteralConvertible</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Base64Binary</span><span class="p">:</span> <span class="kt">ExpressibleByStringLiteral</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
 
                         </div>
                       </div>
@@ -1535,8 +1550,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

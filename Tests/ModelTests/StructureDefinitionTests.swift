@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -36,7 +36,7 @@ class StructureDefinitionTests: XCTestCase {
 		
 		XCTAssertFalse(inst.abstract ?? true)
 		XCTAssertEqual(inst.baseDefinition?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Extension")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/special/committees/FHIR")
 		XCTAssertEqual(inst.context?[0], "ElementDefinition")
 		XCTAssertEqual(inst.contextType, ExtensionContext(rawValue: "datatype")!)
@@ -102,7 +102,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.differential?.element?[9].id, "Extension:anadditionalexamplevalue.url")
 		XCTAssertEqual(inst.differential?.element?[9].path, "Extension.url")
 		XCTAssertEqual(inst.differential?.element?[9].type?[0].code?.absoluteString, "uri")
-		XCTAssertEqual(inst.fhirVersion, "1.7.0")
+		XCTAssertEqual(inst.fhirVersion, "1.8.0")
 		XCTAssertEqual(inst.id, "structuredefinition-example")
 		XCTAssertEqual(inst.kind, StructureDefinitionKind(rawValue: "complex-type")!)
 		XCTAssertEqual(inst.mapping?[0].identity, "rim")
@@ -155,7 +155,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[2].path, "Extension.extension")
 		XCTAssertEqual(inst.snapshot?.element?[2].short, "Extension")
 		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.discriminator?[0], "url")
-		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.id, "84")
+		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.id, "83")
 		XCTAssertFalse(inst.snapshot?.element?[2].slicing?.ordered ?? true)
 		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.rules, SlicingRules(rawValue: "open")!)
 		XCTAssertEqual(inst.snapshot?.element?[2].type?[0].code?.absoluteString, "Extension")

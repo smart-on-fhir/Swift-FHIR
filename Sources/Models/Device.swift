@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Device) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Device) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -70,13 +70,6 @@ open class Device: DomainResource {
 	
 	/// Version number (i.e. software).
 	public var version: String?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept) {
-		self.init()
-		self.type = type
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -237,9 +230,6 @@ open class Device: DomainResource {
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let exist = json["udiCarrier"] {
 			presentKeys.insert("udiCarrier")

@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -44,6 +44,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].option?[1].valueCoding?.code, "M")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].text, "Sex")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].type, QuestionnaireItemType(rawValue: "choice")!)
+		XCTAssertEqual(inst.item?[0].item?[0].linkId, "group")
 		XCTAssertEqual(inst.item?[0].item?[0].type, QuestionnaireItemType(rawValue: "group")!)
 		XCTAssertEqual(inst.item?[0].item?[1].item?[0].linkId, "birthWeight")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[0].text, "Birth weight (kg)")

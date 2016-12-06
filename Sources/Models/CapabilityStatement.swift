@@ -2,7 +2,7 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -50,7 +50,10 @@ open class CapabilityStatement: DomainResource {
 	/// If this describes a specific instance.
 	public var implementation: CapabilityStatementImplementation?
 	
-	/// Canonical URL of service implemented/used by software.
+	/// Implementation Guide supported.
+	public var implementationGuide: [URL]?
+	
+	/// Canonical URL of another capability statement this implements.
 	public var instantiates: [URL]?
 	
 	/// Intended jurisdiction for capability statement (if applicable).
@@ -65,6 +68,9 @@ open class CapabilityStatement: DomainResource {
 	
 	/// Name for this capability statement (Computer friendly).
 	public var name: String?
+	
+	/// Patch formats supported.
+	public var patchFormat: [String]?
 	
 	/// Profiles for use cases supported.
 	public var profile: [Reference]?
@@ -233,6 +239,15 @@ open class CapabilityStatement: DomainResource {
 				errors.append(FHIRValidationError(key: "implementation", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["implementationGuide"] {
+			presentKeys.insert("implementationGuide")
+			if let val = exist as? [String] {
+				self.implementationGuide = URL.instantiate(fromArray: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "implementationGuide", wants: Array<String>.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["instantiates"] {
 			presentKeys.insert("instantiates")
 			if let val = exist as? [String] {
@@ -294,6 +309,15 @@ open class CapabilityStatement: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["patchFormat"] {
+			presentKeys.insert("patchFormat")
+			if let val = exist as? [String] {
+				self.patchFormat = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "patchFormat", wants: Array<String>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["profile"] {
@@ -450,6 +474,9 @@ open class CapabilityStatement: DomainResource {
 		if let implementation = self.implementation {
 			json["implementation"] = implementation.asJSON(errors: &errors)
 		}
+		if let implementationGuide = self.implementationGuide {
+			json["implementationGuide"] = implementationGuide.map() { $0.asJSON() }
+		}
 		if let instantiates = self.instantiates {
 			json["instantiates"] = instantiates.map() { $0.asJSON() }
 		}
@@ -464,6 +491,9 @@ open class CapabilityStatement: DomainResource {
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		if let patchFormat = self.patchFormat {
+			json["patchFormat"] = patchFormat.map() { $0.asJSON() }
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.map() { $0.asJSON(errors: &errors) }
@@ -1664,7 +1694,7 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 	}
 	
 	/// Coded identifier of the operation, supported by the system resource.
-	/// Only use: ['read', 'vread', 'update', 'delete', 'history-instance', 'history-type', 'create', 'search-type']
+	/// Only use: ['read', 'vread', 'update', 'patch', 'delete', 'history-instance', 'history-type', 'create', 'search-type']
 	public var code: FHIRRestfulInteractions?
 	
 	/// Anything special about operation behavior.
@@ -1735,23 +1765,14 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		get { return "CapabilityStatementRestResourceSearchParam" }
 	}
 	
-	/// Chained names supported.
-	public var chain: [String]?
-	
 	/// Source of definition for parameter.
 	public var definition: URL?
 	
 	/// Server-specific usage.
 	public var documentation: String?
 	
-	/// A modifier supported for the search parameter.
-	public var modifier: [SearchModifierCode]?
-	
 	/// Name of search parameter.
 	public var name: String?
-	
-	/// Types of resource (if a resource reference).
-	public var target: [String]?
 	
 	/// The type of value a search parameter refers to, and how the content is interpreted.
 	public var type: SearchParamType?
@@ -1767,15 +1788,6 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["chain"] {
-			presentKeys.insert("chain")
-			if let val = exist as? [String] {
-				self.chain = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "chain", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["definition"] {
 			presentKeys.insert("definition")
 			if let val = exist as? String {
@@ -1794,19 +1806,6 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["modifier"] {
-			presentKeys.insert("modifier")
-			if let val = exist as? [String] { var i = -1
-				self.modifier = val.map() { i += 1
-					if let enumval = SearchModifierCode(rawValue: $0) { return enumval }
-					errors.append(FHIRValidationError(key: "modifier.\(i)", problem: "the value “\(val)” is not valid"))
-					return nil
-				}.filter() { nil != $0 }.map() { $0! }
-			}
-			else {
-				errors.append(FHIRValidationError(key: "modifier", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
@@ -1818,15 +1817,6 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		}
 		else {
 			errors.append(FHIRValidationError(missing: "name"))
-		}
-		if let exist = json["target"] {
-			presentKeys.insert("target")
-			if let val = exist as? [String] {
-				self.target = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "target", wants: Array<String>.self, has: type(of: exist)))
-			}
 		}
 		if let exist = json["type"] {
 			presentKeys.insert("type")
@@ -1851,23 +1841,14 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
-		if let chain = self.chain {
-			json["chain"] = chain.map() { $0.asJSON() }
-		}
 		if let definition = self.definition {
 			json["definition"] = definition.asJSON()
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
 		}
-		if let modifier = self.modifier {
-			json["modifier"] = modifier.map() { $0.rawValue }
-		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
-		}
-		if let target = self.target {
-			json["target"] = target.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue

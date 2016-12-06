@@ -2,7 +2,7 @@
 //  BodySiteTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -99,7 +99,7 @@ class BodySiteTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealth.org/bodysite/identifiers")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.image?[0].contentType, "application/dicom")
-//		XCTAssertEqual(inst.image?[0].url?.absoluteString, "http://10.1.2.3:1000/wado?requestType=WADO&amp;wado_details…")
+		//XCTAssertEqual(inst.image?[0].url?.absoluteString, "http://10.1.2.3:1000/wado?requestType=WADO&amp;wado_details…")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].code, "78961009")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].display, "Splenic structure (body structure)")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")

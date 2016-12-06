@@ -2,7 +2,7 @@
 //  LibraryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -34,8 +34,8 @@ class LibraryTests: XCTestCase {
 	func runLibrary1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Library {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "library-cms146-example.json")
 		
-		XCTAssertEqual(inst.content?.contentType, "text/cql")
-		XCTAssertEqual(inst.content?.url?.absoluteString, "http://cqlrepository.org/CMS146.cql")
+		XCTAssertEqual(inst.content?[0].contentType, "text/cql")
+		XCTAssertEqual(inst.content?[0].url?.absoluteString, "http://cqlrepository.org/CMS146.cql")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].path, "code")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].valueSetString, "Other Female Reproductive Conditions")
 		XCTAssertEqual(inst.dataRequirement?[0].type, "Condition")
@@ -71,7 +71,7 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.dataRequirement?[7].codeFilter?[0].valueCode?[0], "active")
 		XCTAssertEqual(inst.dataRequirement?[7].codeFilter?[1].path, "medication.code")
 		XCTAssertEqual(inst.dataRequirement?[7].codeFilter?[1].valueSetString, "2.16.840.1.113883.3.464.1003.196.12.1001")
-		XCTAssertEqual(inst.dataRequirement?[7].type, "MedicationOrder")
+		XCTAssertEqual(inst.dataRequirement?[7].type, "MedicationRequest")
 		XCTAssertEqual(inst.dataRequirement?[8].codeFilter?[0].path, "status")
 		XCTAssertEqual(inst.dataRequirement?[8].codeFilter?[0].valueCode?[0], "completed")
 		XCTAssertEqual(inst.dataRequirement?[8].codeFilter?[1].path, "medication.code")
@@ -108,8 +108,8 @@ class LibraryTests: XCTestCase {
 	func runLibrary2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Library {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "library-example.json")
 		
-		XCTAssertEqual(inst.content?.contentType, "text/cql")
-		XCTAssertEqual(inst.content?.url?.absoluteString, "http://cqlrepository.org/ChlamydiaScreening_Common.cql")
+		XCTAssertEqual(inst.content?[0].contentType, "text/cql")
+		XCTAssertEqual(inst.content?[0].url?.absoluteString, "http://cqlrepository.org/ChlamydiaScreening_Common.cql")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].path, "code")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].valueSetString, "Other Female Reproductive Conditions")
 		XCTAssertEqual(inst.dataRequirement?[0].type, "Condition")

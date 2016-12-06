@@ -2,7 +2,7 @@
 //  MedicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -60,9 +60,6 @@ open class MedicationRequest: DomainResource {
 	/// Who prescription is for.
 	public var patient: Reference?
 	
-	/// Who ordered the initial medication(s).
-	public var prescriber: Reference?
-	
 	/// An order/prescription that this supersedes.
 	public var priorPrescription: Reference?
 	
@@ -71,6 +68,9 @@ open class MedicationRequest: DomainResource {
 	
 	/// Condition or Observation that supports why the prescription is being written.
 	public var reasonReference: [Reference]?
+	
+	/// Who ordered the initial medication(s).
+	public var requester: Reference?
 	
 	/// Identifier of composite.
 	public var requisition: Identifier?
@@ -287,20 +287,6 @@ open class MedicationRequest: DomainResource {
 		else {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
-		if let exist = json["prescriber"] {
-			presentKeys.insert("prescriber")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.prescriber = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "prescriber"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "prescriber", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["priorPrescription"] {
 			presentKeys.insert("priorPrescription")
 			if let val = exist as? FHIRJSON {
@@ -341,6 +327,20 @@ open class MedicationRequest: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "reasonReference", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["requester"] {
+			presentKeys.insert("requester")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.requester = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "requester"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "requester", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["requisition"] {
@@ -466,9 +466,6 @@ open class MedicationRequest: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
-		if let prescriber = self.prescriber {
-			json["prescriber"] = prescriber.asJSON(errors: &errors)
-		}
 		if let priorPrescription = self.priorPrescription {
 			json["priorPrescription"] = priorPrescription.asJSON(errors: &errors)
 		}
@@ -477,6 +474,9 @@ open class MedicationRequest: DomainResource {
 		}
 		if let reasonReference = self.reasonReference {
 			json["reasonReference"] = reasonReference.map() { $0.asJSON(errors: &errors) }
+		}
+		if let requester = self.requester {
+			json["requester"] = requester.asJSON(errors: &errors)
 		}
 		if let requisition = self.requisition {
 			json["requisition"] = requisition.asJSON(errors: &errors)

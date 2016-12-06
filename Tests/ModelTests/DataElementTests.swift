@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -79,7 +79,8 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.element?[0].alias?[0], "Protime, PT")
 		XCTAssertEqual(inst.element?[0].comments, "Used to screen the integrity of the extrinsic and common pathways of coagulation and to monitor warfarin anticoagulation. ")
 		XCTAssertEqual(inst.element?[0].definition, "The PT test evaluates the extrinsic and common pathways of the coagulation cascade.")
-		XCTAssertEqual(inst.element?[0].exampleDecimal, NSDecimalNumber(string: "10.0"))
+		XCTAssertEqual(inst.element?[0].example?[0].label, "Simple")
+		XCTAssertEqual(inst.element?[0].example?[0].valueDecimal, NSDecimalNumber(string: "10.0"))
 		XCTAssertEqual(inst.element?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/elementdefinition-allowedUnits")
 		XCTAssertEqual(inst.element?[0].extension_fhir?[0].valueCodeableConcept?.coding?[0].code, "s")
 		XCTAssertEqual(inst.element?[0].extension_fhir?[0].valueCodeableConcept?.coding?[0].display, "second")

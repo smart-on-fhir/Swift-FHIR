@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -16,6 +16,8 @@ extension FHIRAbstractBase {
 		switch className {
 			case "Account":
 				return try Account(json: json, owner: owner)
+			case "AccountGuarantor":
+				return try AccountGuarantor(json: json, owner: owner)
 			case "ActivityDefinition":
 				return try ActivityDefinition(json: json, owner: owner)
 			case "ActivityDefinitionDynamicValue":
@@ -116,24 +118,22 @@ extension FHIRAbstractBase {
 				return try Claim(json: json, owner: owner)
 			case "ClaimAccident":
 				return try ClaimAccident(json: json, owner: owner)
-			case "ClaimCoverage":
-				return try ClaimCoverage(json: json, owner: owner)
+			case "ClaimCareTeam":
+				return try ClaimCareTeam(json: json, owner: owner)
 			case "ClaimDiagnosis":
 				return try ClaimDiagnosis(json: json, owner: owner)
 			case "ClaimInformation":
 				return try ClaimInformation(json: json, owner: owner)
+			case "ClaimInsurance":
+				return try ClaimInsurance(json: json, owner: owner)
 			case "ClaimItem":
 				return try ClaimItem(json: json, owner: owner)
-			case "ClaimItemCareTeam":
-				return try ClaimItemCareTeam(json: json, owner: owner)
 			case "ClaimItemDetail":
 				return try ClaimItemDetail(json: json, owner: owner)
 			case "ClaimItemDetailSubDetail":
 				return try ClaimItemDetailSubDetail(json: json, owner: owner)
 			case "ClaimItemProsthesis":
 				return try ClaimItemProsthesis(json: json, owner: owner)
-			case "ClaimMissingTeeth":
-				return try ClaimMissingTeeth(json: json, owner: owner)
 			case "ClaimPayee":
 				return try ClaimPayee(json: json, owner: owner)
 			case "ClaimProcedure":
@@ -146,10 +146,10 @@ extension FHIRAbstractBase {
 				return try ClaimResponseAddItem(json: json, owner: owner)
 			case "ClaimResponseAddItemDetail":
 				return try ClaimResponseAddItemDetail(json: json, owner: owner)
-			case "ClaimResponseCoverage":
-				return try ClaimResponseCoverage(json: json, owner: owner)
 			case "ClaimResponseError":
 				return try ClaimResponseError(json: json, owner: owner)
+			case "ClaimResponseInsurance":
+				return try ClaimResponseInsurance(json: json, owner: owner)
 			case "ClaimResponseItem":
 				return try ClaimResponseItem(json: json, owner: owner)
 			case "ClaimResponseItemAdjudication":
@@ -258,6 +258,8 @@ extension FHIRAbstractBase {
 				return try Count(json: json, owner: owner)
 			case "Coverage":
 				return try Coverage(json: json, owner: owner)
+			case "CoverageGroup":
+				return try CoverageGroup(json: json, owner: owner)
 			case "DataElement":
 				return try DataElement(json: json, owner: owner)
 			case "DataElementMapping":
@@ -326,6 +328,8 @@ extension FHIRAbstractBase {
 				return try ElementDefinitionBinding(json: json, owner: owner)
 			case "ElementDefinitionConstraint":
 				return try ElementDefinitionConstraint(json: json, owner: owner)
+			case "ElementDefinitionExample":
+				return try ElementDefinitionExample(json: json, owner: owner)
 			case "ElementDefinitionMapping":
 				return try ElementDefinitionMapping(json: json, owner: owner)
 			case "ElementDefinitionSlicing":
@@ -336,12 +340,14 @@ extension FHIRAbstractBase {
 				return try EligibilityRequest(json: json, owner: owner)
 			case "EligibilityResponse":
 				return try EligibilityResponse(json: json, owner: owner)
-			case "EligibilityResponseBenefitBalance":
-				return try EligibilityResponseBenefitBalance(json: json, owner: owner)
-			case "EligibilityResponseBenefitBalanceFinancial":
-				return try EligibilityResponseBenefitBalanceFinancial(json: json, owner: owner)
 			case "EligibilityResponseError":
 				return try EligibilityResponseError(json: json, owner: owner)
+			case "EligibilityResponseInsurance":
+				return try EligibilityResponseInsurance(json: json, owner: owner)
+			case "EligibilityResponseInsuranceBenefitBalance":
+				return try EligibilityResponseInsuranceBenefitBalance(json: json, owner: owner)
+			case "EligibilityResponseInsuranceBenefitBalanceFinancial":
+				return try EligibilityResponseInsuranceBenefitBalanceFinancial(json: json, owner: owner)
 			case "Encounter":
 				return try Encounter(json: json, owner: owner)
 			case "EncounterHospitalization":
@@ -390,26 +396,24 @@ extension FHIRAbstractBase {
 				return try ExplanationOfBenefitBenefitBalance(json: json, owner: owner)
 			case "ExplanationOfBenefitBenefitBalanceFinancial":
 				return try ExplanationOfBenefitBenefitBalanceFinancial(json: json, owner: owner)
-			case "ExplanationOfBenefitCoverage":
-				return try ExplanationOfBenefitCoverage(json: json, owner: owner)
+			case "ExplanationOfBenefitCareTeam":
+				return try ExplanationOfBenefitCareTeam(json: json, owner: owner)
 			case "ExplanationOfBenefitDiagnosis":
 				return try ExplanationOfBenefitDiagnosis(json: json, owner: owner)
 			case "ExplanationOfBenefitInformation":
 				return try ExplanationOfBenefitInformation(json: json, owner: owner)
+			case "ExplanationOfBenefitInsurance":
+				return try ExplanationOfBenefitInsurance(json: json, owner: owner)
 			case "ExplanationOfBenefitItem":
 				return try ExplanationOfBenefitItem(json: json, owner: owner)
 			case "ExplanationOfBenefitItemAdjudication":
 				return try ExplanationOfBenefitItemAdjudication(json: json, owner: owner)
-			case "ExplanationOfBenefitItemCareTeam":
-				return try ExplanationOfBenefitItemCareTeam(json: json, owner: owner)
 			case "ExplanationOfBenefitItemDetail":
 				return try ExplanationOfBenefitItemDetail(json: json, owner: owner)
 			case "ExplanationOfBenefitItemDetailSubDetail":
 				return try ExplanationOfBenefitItemDetailSubDetail(json: json, owner: owner)
 			case "ExplanationOfBenefitItemProsthesis":
 				return try ExplanationOfBenefitItemProsthesis(json: json, owner: owner)
-			case "ExplanationOfBenefitMissingTeeth":
-				return try ExplanationOfBenefitMissingTeeth(json: json, owner: owner)
 			case "ExplanationOfBenefitNote":
 				return try ExplanationOfBenefitNote(json: json, owner: owner)
 			case "ExplanationOfBenefitPayee":
@@ -570,6 +574,12 @@ extension FHIRAbstractBase {
 				return try MedicationRequestSubstitution(json: json, owner: owner)
 			case "MedicationStatement":
 				return try MedicationStatement(json: json, owner: owner)
+			case "MessageDefinition":
+				return try MessageDefinition(json: json, owner: owner)
+			case "MessageDefinitionAllowedResponse":
+				return try MessageDefinitionAllowedResponse(json: json, owner: owner)
+			case "MessageDefinitionFocus":
+				return try MessageDefinitionFocus(json: json, owner: owner)
 			case "MessageHeader":
 				return try MessageHeader(json: json, owner: owner)
 			case "MessageHeaderDestination":
@@ -694,14 +704,12 @@ extension FHIRAbstractBase {
 				return try ProcessRequestItem(json: json, owner: owner)
 			case "ProcessResponse":
 				return try ProcessResponse(json: json, owner: owner)
-			case "ProcessResponseNotes":
-				return try ProcessResponseNotes(json: json, owner: owner)
+			case "ProcessResponseNote":
+				return try ProcessResponseNote(json: json, owner: owner)
 			case "Provenance":
 				return try Provenance(json: json, owner: owner)
 			case "ProvenanceAgent":
 				return try ProvenanceAgent(json: json, owner: owner)
-			case "ProvenanceAgentRelatedAgent":
-				return try ProvenanceAgentRelatedAgent(json: json, owner: owner)
 			case "ProvenanceEntity":
 				return try ProvenanceEntity(json: json, owner: owner)
 			case "Quantity":
@@ -736,8 +744,16 @@ extension FHIRAbstractBase {
 				return try RequestGroup(json: json, owner: owner)
 			case "RequestGroupAction":
 				return try RequestGroupAction(json: json, owner: owner)
+			case "RequestGroupActionCondition":
+				return try RequestGroupActionCondition(json: json, owner: owner)
 			case "RequestGroupActionRelatedAction":
 				return try RequestGroupActionRelatedAction(json: json, owner: owner)
+			case "ResearchStudy":
+				return try ResearchStudy(json: json, owner: owner)
+			case "ResearchStudyArm":
+				return try ResearchStudyArm(json: json, owner: owner)
+			case "ResearchSubject":
+				return try ResearchSubject(json: json, owner: owner)
 			case "Resource":
 				return try Resource(json: json, owner: owner)
 			case "RiskAssessment":
@@ -750,6 +766,8 @@ extension FHIRAbstractBase {
 				return try Schedule(json: json, owner: owner)
 			case "SearchParameter":
 				return try SearchParameter(json: json, owner: owner)
+			case "SearchParameterComponent":
+				return try SearchParameterComponent(json: json, owner: owner)
 			case "Sequence":
 				return try Sequence(json: json, owner: owner)
 			case "SequenceQuality":
@@ -824,12 +842,14 @@ extension FHIRAbstractBase {
 				return try SupplyRequestWhen(json: json, owner: owner)
 			case "Task":
 				return try Task(json: json, owner: owner)
-			case "TaskFulfillment":
-				return try TaskFulfillment(json: json, owner: owner)
 			case "TaskInput":
 				return try TaskInput(json: json, owner: owner)
 			case "TaskOutput":
 				return try TaskOutput(json: json, owner: owner)
+			case "TaskRequester":
+				return try TaskRequester(json: json, owner: owner)
+			case "TaskRestriction":
+				return try TaskRestriction(json: json, owner: owner)
 			case "TestReport":
 				return try TestReport(json: json, owner: owner)
 			case "TestReportParticipant":

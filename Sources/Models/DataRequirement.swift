@@ -2,7 +2,7 @@
 //  DataRequirement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -30,7 +30,7 @@ open class DataRequirement: Element {
 	public var mustSupport: [String]?
 	
 	/// The profile of the required data.
-	public var profile: [Reference]?
+	public var profile: [URL]?
 	
 	/// The type of the required data.
 	public var type: String?
@@ -84,16 +84,11 @@ open class DataRequirement: Element {
 		}
 		if let exist = json["profile"] {
 			presentKeys.insert("profile")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.profile = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "profile"))
-				}
+			if let val = exist as? [String] {
+				self.profile = URL.instantiate(fromArray: val)
 			}
 			else {
-				errors.append(FHIRValidationError(key: "profile", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "profile", wants: Array<String>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["type"] {
@@ -124,7 +119,7 @@ open class DataRequirement: Element {
 			json["mustSupport"] = mustSupport.map() { $0.asJSON() }
 		}
 		if let profile = self.profile {
-			json["profile"] = profile.map() { $0.asJSON(errors: &errors) }
+			json["profile"] = profile.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

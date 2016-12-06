@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -36,7 +36,7 @@ open class AuditEvent: DomainResource {
 	public var outcomeDesc: String?
 	
 	/// The purposeOfUse of the event.
-	public var purposeOfEvent: [Coding]?
+	public var purposeOfEvent: [CodeableConcept]?
 	
 	/// Time when the event occurred on source.
 	public var recorded: Instant?
@@ -130,7 +130,7 @@ open class AuditEvent: DomainResource {
 			presentKeys.insert("purposeOfEvent")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.purposeOfEvent = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+					self.purposeOfEvent = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "purposeOfEvent"))
@@ -271,7 +271,7 @@ open class AuditEventAgent: BackboneElement {
 	public var policy: [URL]?
 	
 	/// Reason given for this user.
-	public var purposeOfUse: [Coding]?
+	public var purposeOfUse: [CodeableConcept]?
 	
 	/// Direct reference to resource.
 	public var reference: Reference?
@@ -368,7 +368,7 @@ open class AuditEventAgent: BackboneElement {
 			presentKeys.insert("purposeOfUse")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.purposeOfUse = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+					self.purposeOfUse = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "purposeOfUse"))

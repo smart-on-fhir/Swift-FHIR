@@ -2,7 +2,7 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -829,8 +829,17 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	/// How to handle the list mode for this element.
 	public var listMode: StructureMapListMode?
 	
+	/// Specified maximum cardinality (number or *).
+	public var max: String?
+	
+	/// Specified minimum cardinality.
+	public var min: Int?
+	
 	/// Whether this rule applies if the source isn't found.
 	public var required: Bool?
+	
+	/// Type for this source.
+	public var type: String?
 	
 	/// Named context for field, if a field is specified.
 	public var variable: String?
@@ -917,6 +926,24 @@ open class StructureMapGroupRuleSource: BackboneElement {
 				errors.append(FHIRValidationError(key: "listMode", wants: String.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["max"] {
+			presentKeys.insert("max")
+			if let val = exist as? String {
+				self.max = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "max", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["min"] {
+			presentKeys.insert("min")
+			if let val = exist as? Int {
+				self.min = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "min", wants: Int.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["required"] {
 			presentKeys.insert("required")
 			if let val = exist as? Bool {
@@ -928,6 +955,15 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		}
 		else {
 			errors.append(FHIRValidationError(missing: "required"))
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				self.type = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
 		}
 		if let exist = json["variable"] {
 			presentKeys.insert("variable")
@@ -962,8 +998,17 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let listMode = self.listMode {
 			json["listMode"] = listMode.rawValue
 		}
+		if let max = self.max {
+			json["max"] = max.asJSON()
+		}
+		if let min = self.min {
+			json["min"] = min.asJSON()
+		}
 		if let required = self.required {
 			json["required"] = required.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		if let variable = self.variable {
 			json["variable"] = variable.asJSON()

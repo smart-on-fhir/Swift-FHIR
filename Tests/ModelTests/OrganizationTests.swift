@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -177,7 +177,7 @@ class OrganizationTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].address?.line?[0], "Walvisbaai 3")
 		XCTAssertEqual(inst.contact?[0].address?.line?[1], "Gebouw 2")
 		XCTAssertEqual(inst.contact?[0].address?.postalCode, "2333ZA")
-		XCTAssertEqual(inst.contact?[0].name?.family?[0], "Brand")
+		XCTAssertEqual(inst.contact?[0].name?.family, "Brand")
 		XCTAssertEqual(inst.contact?[0].name?.given?[0], "Ronald")
 		XCTAssertEqual(inst.contact?[0].name?.prefix?[0], "Prof.Dr.")
 		XCTAssertEqual(inst.contact?[0].name?.text, "Professor Brand")

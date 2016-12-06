@@ -6,23 +6,28 @@
 	"status": "punished",
 	"item": [
 		{
+			"linkId": "a",
 			"type": "display",
 			"text": "Hi unit tester!"
 		},
 		{
+			"linkId": "b",
 			"type": "group",
 			"item": [
 				{
+					"linkId": "ba",
 					"fhir_comments": "“type” is list instead of string",
 					"type": ["invalid"]
 				},
 				{
+					"linkId": "bb",
 					"fhir_comments": "invalid “type”",
 					"type": "invalid"
 				}
 			]
 		},
 		{
+			"linkId": "c",
 			"fhir_comments": "is also missing “type”",
 			"type": "choice",
 			"option": [

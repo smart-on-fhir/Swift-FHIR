@@ -2,7 +2,7 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -249,6 +249,26 @@ public enum AllergyIntoleranceCertainty: String {
 
 
 /**
+The clinical status of the allergy or intolerance.
+
+URL: http://hl7.org/fhir/allergy-clinical-status
+ValueSet: http://hl7.org/fhir/ValueSet/allergy-clinical-status
+*/
+public enum AllergyIntoleranceClinicalStatus: String {
+	
+	/// An active record of a risk of a reaction to the identified substance.
+	case active = "active"
+	
+	/// An inactivated record of a risk of a reaction to the identified substance.
+	case inactive = "inactive"
+	
+	/// A reaction to the identified substance has been clinically reassessed by testing or re-exposure and considered
+	/// to be resolved.
+	case resolved = "resolved"
+}
+
+
+/**
 Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
 
 URL: http://hl7.org/fhir/allergy-intolerance-criticality
@@ -290,37 +310,6 @@ public enum AllergyIntoleranceSeverity: String {
 
 
 /**
-Assertion about certainty associated with a propensity, or potential risk, of a reaction to the identified substance.
-
-URL: http://hl7.org/fhir/allergy-intolerance-status
-ValueSet: http://hl7.org/fhir/ValueSet/allergy-intolerance-status
-*/
-public enum AllergyIntoleranceStatus: String {
-	
-	/// An active record of a risk of a reaction to the identified substance.
-	case active = "active"
-	
-	/// A high level of certainty about the propensity for a reaction to the identified substance, which may include
-	/// clinical evidence by testing or rechallenge.
-	case activeConfirmed = "active-confirmed"
-	
-	/// An inactivated record of a risk of a reaction to the identified substance
-	case inactive = "inactive"
-	
-	/// A reaction to the identified substance has been clinically reassessed by testing or re-exposure and considered
-	/// to be resolved
-	case resolved = "resolved"
-	
-	/// A propensity for a reaction to the identified substance has been disproven with a high level of clinical
-	/// certainty, which may include testing or rechallenge, and is refuted.
-	case refuted = "refuted"
-	
-	/// The statement was entered in error and is not valid.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
 The risk of an adverse reaction (allergy or intolerance) for this patient upon xposure to the substance (including
 pharmaceutical products).
 
@@ -354,6 +343,30 @@ public enum AllergyIntoleranceType: String {
 	/// individually specific (i.e. are not a reaction that is expected to occur with most or all patients given similar
 	/// circumstances).
 	case intolerance = "intolerance"
+}
+
+
+/**
+Assertion about certainty associated with a propensity, or potential risk, of a reaction to the identified substance.
+
+URL: http://hl7.org/fhir/allergy-verification-status
+ValueSet: http://hl7.org/fhir/ValueSet/allergy-verification-status
+*/
+public enum AllergyIntoleranceVerificationStatus: String {
+	
+	/// A low level of certainty about the propensity for a reaction to the identified substance.
+	case unconfirmed = "unconfirmed"
+	
+	/// A high level of certainty about the propensity for a reaction to the identified substance, which may include
+	/// clinical evidence by testing or rechallenge.
+	case confirmed = "confirmed"
+	
+	/// A propensity for a reaction to the identified substance has been disproven with a high level of clinical
+	/// certainty, which may include testing or rechallenge, and is refuted.
+	case refuted = "refuted"
+	
+	/// The statement was entered in error and is not valid.
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -583,7 +596,7 @@ public enum BundleType: String {
 	/// The bundle is a list of resources returned as a result of a search/query interaction, operation, or message.
 	case searchset = "searchset"
 	
-	/// The bundle is a set of resources collected into a single document for ease of distribution.
+	/// The bundle is a set of resources collected into a single package for ease of distribution.
 	case collection = "collection"
 }
 
@@ -711,50 +724,6 @@ public enum ChoiceListOrientation: String {
 
 
 /**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/claimresponse-status
-ValueSet: http://hl7.org/fhir/ValueSet/claimresponse-status
-*/
-public enum ClaimResponseStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/claim-status
-ValueSet: http://hl7.org/fhir/ValueSet/claim-status
-*/
-public enum ClaimStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
 Identifies whether a useContext represents a context or classification for the element
 
 URL: http://hl7.org/fhir/classification-or-context
@@ -825,8 +794,9 @@ public enum CodeSystemHierarchyMeaning: String {
 	/// defined, or where various parts of the heirarchy have different meanings)
 	case groupedBy = "grouped-by"
 	
-	/// A hierarchy where the child concepts are "a kind of" the parent (typically an IS-A relationship.)
-	case subsumes = "subsumes"
+	/// A hierarchy where the child concepts have an IS-A relationship with the parents - that is, all the properties of
+	/// the parent are also true for it's child concepts
+	case isA = "is-a"
 	
 	/// Child elements list the individual parts of a composite whole (e.g. bodysite)
 	case partOf = "part-of"
@@ -925,6 +895,31 @@ public enum CompartmentType: String {
 	
 	/// The compartment definition is for the device compartment
 	case device = "Device"
+}
+
+
+/**
+The composite scoring method of the measure
+
+URL: http://hl7.org/fhir/composite-measure-scoring
+ValueSet: http://hl7.org/fhir/ValueSet/composite-measure-scoring
+*/
+public enum CompositeMeasureScoring: String {
+	
+	/// Opportunity scoring combines the scores from component measures by combining the numerators and denominators for
+	/// each component
+	case opportunity = "opportunity"
+	
+	/// All-or-nothing scoring includes an individual in the numerator of the composite measure if they are in the
+	/// numerators of all of the component measures in which they are in the denominator
+	case allOrNothing = "all-or-nothing"
+	
+	/// Linear scoring gives an individual a score based on the number of numerators in which they appear
+	case linear = "linear"
+	
+	/// Weighted scoring gives an individual a score based on a weigthed factor for each component numerator in which
+	/// they appear
+	case weighted = "weighted"
 }
 
 
@@ -1240,9 +1235,13 @@ public enum ContactPointSystem: String {
 	/// The value is a pager number. These may be local pager numbers that are only usable on a particular pager system.
 	case pager = "pager"
 	
-	/// A contact that is not a phone, fax, or email address. The format of the value SHOULD be a URL. This is intended
-	/// for various personal contacts including blogs, Twitter, Facebook, etc. Do not use for email addresses. If this
-	/// is not a URL, then it will require human interpretation.
+	/// A contact that is not a phone, fax, pager or email address and is expressed as a URL.  This is intended for
+	/// various personal contacts including blogs, Skype, Twitter, Facebook, etc. Do not use for email addresses.
+	case url = "url"
+	
+	/// A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail
+	/// address.  This SHOULD NOT be used for contacts that are expressible as a URL (e.g. Skype, Twitter, Facebook,
+	/// etc.)  Extensions may be used to distinguish "other" contact types.
 	case other = "other"
 }
 
@@ -1335,28 +1334,6 @@ public enum CopyNumberEvent: String {
 	
 	/// loss of function
 	case lof = "lof"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/coverage-status
-ValueSet: http://hl7.org/fhir/ValueSet/coverage-status
-*/
-public enum CoverageStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
 }
 
 
@@ -1688,14 +1665,17 @@ ValueSet: http://hl7.org/fhir/ValueSet/definition-status
 */
 public enum DefinitionStatus: String {
 	
-	/// draft
+	/// The definition is in the design stage and is not yet considered to be "ready for use"
 	case draft = "draft"
 	
-	/// active
+	/// The definition is considered ready for use
 	case active = "active"
 	
-	/// withdrawn
+	/// The definition should no longer be used
 	case withdrawn = "withdrawn"
+	
+	/// The authoring system does not know which of the status values currently applies for this definition.
+	case unknown = "unknown"
 }
 
 
@@ -1970,50 +1950,6 @@ public enum DocumentRelationshipType: String {
 
 
 /**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/eligibilityrequest-status
-ValueSet: http://hl7.org/fhir/ValueSet/eligibilityrequest-status
-*/
-public enum EligibilityRequestStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/eligibilityresponse-status
-ValueSet: http://hl7.org/fhir/ValueSet/eligibilityresponse-status
-*/
-public enum EligibilityResponseStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
 The status of the location.
 
 URL: http://hl7.org/fhir/encounter-location-status
@@ -2071,7 +2007,7 @@ public enum EncounterStatus: String {
 
 
 /**
-The status of the encounter.
+The status of the endpoint
 
 URL: http://hl7.org/fhir/endpoint-status
 ValueSet: http://hl7.org/fhir/ValueSet/endpoint-status
@@ -2096,50 +2032,6 @@ public enum EndpointStatus: String {
 	
 	/// This endpoint is not intended for production usage.
 	case test = "test"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/enrollmentrequest-status
-ValueSet: http://hl7.org/fhir/ValueSet/enrollmentrequest-status
-*/
-public enum EnrollmentRequestStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/enrollmentresponse-status
-ValueSet: http://hl7.org/fhir/ValueSet/enrollmentresponse-status
-*/
-public enum EnrollmentResponseStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
 }
 
 
@@ -2223,6 +2115,31 @@ public enum EventStatus: String {
 	/// This electronic record should never have existed, though it is possible that real-world decisions were based on
 	/// it.  (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
 	case enteredInError = "entered-in-error"
+	
+	/// The authoring system does not know which of the status values currently applies for this event
+	case unknown = "unknown"
+}
+
+
+/**
+Real world event that the relating to the schedule.
+
+URL: http://hl7.org/fhir/event-timing
+ValueSet: http://hl7.org/fhir/ValueSet/event-timing
+*/
+public enum EventTiming: String {
+	
+	/// event occurs during the morning
+	case MORN = "MORN"
+	
+	/// event occurs during the afternoon
+	case AFT = "AFT"
+	
+	/// event occurs during the evening
+	case EVE = "EVE"
+	
+	/// event occurs during the night
+	case NIGHT = "NIGHT"
 }
 
 
@@ -2317,6 +2234,9 @@ public enum FHIRRestfulInteractions: String {
 	/// Update an existing resource by its id (or create it if it is new).
 	case update = "update"
 	
+	/// Update an existing resource by posting a set of changes to it.
+	case patch = "patch"
+	
 	/// Delete a resource.
 	case delete = "delete"
 	
@@ -2326,7 +2246,7 @@ public enum FHIRRestfulInteractions: String {
 	/// Retrieve the change history for a particular resource.
 	case historyInstance = "history-instance"
 	
-	/// Retrieve the change history for a all resources of a particular type.
+	/// Retrieve the change history for all resources of a particular type.
 	case historyType = "history-type"
 	
 	/// Retrieve the change history for all resources on a system.
@@ -2396,6 +2316,10 @@ public enum FilterOperator: String {
 	/// including the provided concept itself (i.e. include child codes)
 	case isA = "is-a"
 	
+	/// Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value,
+	/// excluding the provided concept itself (i.e. include child codes)
+	case descendentOf = "descendent-of"
+	
 	/// The specified property of the code does not have an is-a relationship with the provided value.
 	case isNotA = "is-not-a"
 	
@@ -2413,6 +2337,10 @@ public enum FilterOperator: String {
 	/// Includes all concept ids that have a transitive is-a relationship from the concept Id provided as the value,
 	/// including the provided concept itself (e.g. include parent codes)
 	case generalizes = "generalizes"
+	
+	/// The specified property of the code has at least one value (if the specified value is true; if the specified
+	/// value is false, then matches when the specified property of the code has no values)
+	case exists = "exists"
 }
 
 
@@ -2638,6 +2566,85 @@ public enum GuidePageKind: String {
 
 
 /**
+An HL7 administrative unit that owns artifacts in the FHIR specification
+
+URL: http://hl7.org/fhir/hl7-work-group
+ValueSet: http://hl7.org/fhir/ValueSet/hl7-work-group
+*/
+public enum HL7Workgroup: String {
+	
+	/// Community Based Collaborative Care (http://www.hl7.org/Special/committees/cbcc/index.cfm)
+	case cbcc = "cbcc"
+	
+	/// Clinical Decision Support (http://www.hl7.org/Special/committees/dss/index.cfm)
+	case cds = "cds"
+	
+	/// Clinical Quality Information (http://www.hl7.org/Special/committees/cqi/index.cfm)
+	case cqi = "cqi"
+	
+	/// Clinical Genomics (http://www.hl7.org/Special/committees/clingenomics/index.cfm)
+	case cg = "cg"
+	
+	/// Health Care Devices (http://www.hl7.org/Special/committees/healthcaredevices/index.cfm)
+	case dev = "dev"
+	
+	/// Electronic Health Records (http://www.hl7.org/special/committees/ehr/index.cfm)
+	case ehr = "ehr"
+	
+	/// FHIR Infrastructure (http://www.hl7.org/Special/committees/fiwg/index.cfm)
+	case fhir = "fhir"
+	
+	/// Financial Management (http://www.hl7.org/Special/committees/fm/index.cfm)
+	case fm = "fm"
+	
+	/// Health Standards Integration (http://www.hl7.org/Special/committees/hsi/index.cfm)
+	case hsi = "hsi"
+	
+	/// Imaging Integration (http://www.hl7.org/Special/committees/imagemgt/index.cfm)
+	case ii = "ii"
+	
+	/// Infrastructure And Messaging (http://www.hl7.org/special/committees/inm/index.cfm)
+	case inm = "inm"
+	
+	/// Implementable Technology Specifications (http://www.hl7.org/special/committees/xml/index.cfm)
+	case its = "its"
+	
+	/// Orders and Observations (http://www.hl7.org/Special/committees/orders/index.cfm)
+	case oo = "oo"
+	
+	/// Patient Administration (http://www.hl7.org/Special/committees/pafm/index.cfm)
+	case pa = "pa"
+	
+	/// Patient Care (http://www.hl7.org/Special/committees/patientcare/index.cfm)
+	case pc = "pc"
+	
+	/// Public Health and Emergency Response (http://www.hl7.org/Special/committees/pher/index.cfm)
+	case pher = "pher"
+	
+	/// Pharmacy (http://www.hl7.org/Special/committees/medication/index.cfm)
+	case phx = "phx"
+	
+	/// Regulated Clinical Research Information Management (http://www.hl7.org/Special/committees/rcrim/index.cfm)
+	case rcrim = "rcrim"
+	
+	/// Structured Documents (http://www.hl7.org/Special/committees/structure/index.cfm)
+	case sd = "sd"
+	
+	/// Security (http://www.hl7.org/Special/committees/secure/index.cfm)
+	case sec = "sec"
+	
+	/// US Realm Taskforce (http://wiki.hl7.org/index.php?title=US_Realm_Task_Force)
+	case us = "us"
+	
+	/// Vocabulary (http://www.hl7.org/Special/committees/Vocab/index.cfm)
+	case vocab = "vocab"
+	
+	/// Application Implementation and Design (http://www.hl7.org/Special/committees/java/index.cfm)
+	case aid = "aid"
+}
+
+
+/**
 HTTP verbs (in the HTTP command line).
 
 URL: http://hl7.org/fhir/http-verb
@@ -2656,6 +2663,28 @@ public enum HTTPVerb: String {
 	
 	/// HTTP DELETE
 	case DELETE = "DELETE"
+}
+
+
+/**
+A code that represents the preferred display order of the components of a human name
+
+URL: http://hl7.org/fhir/name-assembly-order
+ValueSet: http://hl7.org/fhir/ValueSet/name-assembly-order
+*/
+public enum HumanNameAssemblyOrder: String {
+	
+	/// NL1
+	case NL1 = "NL1"
+	
+	/// NL2
+	case NL2 = "NL2"
+	
+	/// NL3
+	case NL3 = "NL3"
+	
+	/// NL4
+	case NL4 = "NL4"
 }
 
 
@@ -3289,18 +3318,28 @@ public enum MeasureScoring: String {
 
 
 /**
-The type of measure
+The type of measure (includes codes from 2.16.840.1.113883.1.11.20368)
 
 URL: http://hl7.org/fhir/measure-type
 ValueSet: http://hl7.org/fhir/ValueSet/measure-type
 */
 public enum MeasureType: String {
 	
-	/// The measure is a process measure
+	/// A measure which focuses on a process which leads to a certain outcome, meaning that a scientific basis exists
+	/// for believing that the process, when executed well, will increase the probability of achieving a desired outcome
 	case process = "process"
 	
-	/// The measure is an outcome measure
+	/// A measure that indicates the result of the performance (or non-performance) of a function or process
 	case outcome = "outcome"
+	
+	/// A measure that focuses on a health care provider's capacity, systems, and processes to provide high-quality care
+	case structure = "structure"
+	
+	/// A measure that focuses on patient-reported information
+	case patientReportedOutcome = "patient-reported-outcome"
+	
+	/// A measure that combines multiple component measures in to a single quality measure
+	case composite = "composite"
 }
 
 
@@ -3411,7 +3450,8 @@ public enum MedicationRequestStatus: String {
 
 
 /**
-A coded concept identifying where the medication included in the is expected to be consumed or administered
+A coded concept identifying where the medication included in the medicationstatement is expected to be consumed or
+administered
 
 URL: http://hl7.org/fhir/medication-statement-category
 ValueSet: http://hl7.org/fhir/ValueSet/medication-statement-category
@@ -3511,7 +3551,7 @@ public enum MessageEvent: String {
 	/// though some administrative resources have status or period elements for this use.
 	case adminNotify = "admin-notify"
 	
-	/// communicationRequest
+	/// Notification to convey information.
 	case communicationRequest = "communication-request"
 	
 	/// Provide a diagnostic report, or update a previously provided diagnostic report.
@@ -3693,10 +3733,10 @@ public enum NameUse: String {
 	/// This name is no longer in use (or was never correct, but retained for records)
 	case old = "old"
 	
-	/// A name used prior to marriage. Marriage naming customs vary greatly around the world. This name use is for use
-	/// by applications that collect and store "maiden" names. Though the concept of maiden name is often gender
-	/// specific, the use of this term is not gender specific. The use of this term does not imply any particular
-	/// history for a person's name, nor should the maiden name be determined algorithmically.
+	/// A name used prior to changing name because of marriage. This name use is for use by applications that collect
+	/// and store names that were used prior to a marriage. Marriage naming customs vary greatly around the world, and
+	/// are constantly changing. This term is not gender specific. The use of this term does not imply any particular
+	/// history for a person's name
 	case maiden = "maiden"
 }
 
@@ -4085,28 +4125,6 @@ public enum OperationParameterUse: String {
 
 
 /**
-The statistical operation parameter -"params" -  codes
-
-URL: http://hl7.org/fhir/observation-paramcode
-ValueSet: http://hl7.org/fhir/ValueSet/observation-paramcode
-*/
-public enum ParamCode: String {
-	
-	/// The [mean](https://en.wikipedia.org/wiki/Arithmetic_mean)of N measurements over the stated period
-	case average = "average"
-	
-	/// The [maximum](https://en.wikipedia.org/wiki/Maximal_element) value of N measurements over the stated period
-	case max = "max"
-	
-	/// The [minimum](https://en.wikipedia.org/wiki/Minimal_element) value of N measurements over the stated period
-	case min = "min"
-	
-	/// The [number] of measurements over the stated period
-	case count = "count"
-}
-
-
-/**
 Is the Participant required to attend the appointment.
 
 URL: http://hl7.org/fhir/participantrequired
@@ -4173,50 +4191,6 @@ public enum PayeeResourceType: String {
 
 
 /**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/paymentnotice-status
-ValueSet: http://hl7.org/fhir/ValueSet/paymentnotice-status
-*/
-public enum PaymentNoticeStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/paymentreconciliation-status
-ValueSet: http://hl7.org/fhir/ValueSet/paymentreconciliation-status
-*/
-public enum PaymentReconciliationStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
 Defines behavior for an action or a group for how many times that item may be repeated
 
 URL: http://hl7.org/fhir/action-cardinality-behavior
@@ -4229,6 +4203,25 @@ public enum PlanActionCardinalityBehavior: String {
 	
 	/// The action may be selected multiple times
 	case multiple = "multiple"
+}
+
+
+/**
+Defines the kinds of conditions that can appear on actions
+
+URL: http://hl7.org/fhir/action-condition-kind
+ValueSet: http://hl7.org/fhir/ValueSet/action-condition-kind
+*/
+public enum PlanActionConditionKind: String {
+	
+	/// The condition describes whether or not a given action is applicable
+	case applicability = "applicability"
+	
+	/// The condition is a starting condition for the action
+	case start = "start"
+	
+	/// The condition is a stop, or exit condition for the action
+	case stop = "stop"
 }
 
 
@@ -4536,50 +4529,6 @@ public enum ProcedureStatus: String {
 
 
 /**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/processrequest-status
-ValueSet: http://hl7.org/fhir/ValueSet/processrequest-status
-*/
-public enum ProcessRequestStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/processresponse-status
-ValueSet: http://hl7.org/fhir/ValueSet/processresponse-status
-*/
-public enum ProcessResponseStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
 How a property is represented on the wire.
 
 URL: http://hl7.org/fhir/property-representation
@@ -4700,6 +4649,25 @@ public enum QualityOfEvidenceRating: String {
 	
 	/// Very low quality evidence
 	case veryLow = "very-low"
+}
+
+
+/**
+Type for quality report
+
+URL: http://hl7.org/fhir/quality-type
+ValueSet: http://hl7.org/fhir/ValueSet/quality-type
+*/
+public enum QualityType: String {
+	
+	/// INDEL Comparison
+	case INDEL = "INDEL"
+	
+	/// SNP Comparison
+	case SNP = "SNP"
+	
+	/// UNKNOWN Comparison
+	case UNKNOWN = "UNKNOWN"
 }
 
 
@@ -5025,6 +4993,74 @@ public enum RelatedArtifactType: String {
 
 
 /**
+Type for access of external uri
+
+URL: http://hl7.org/fhir/repository-type
+ValueSet: http://hl7.org/fhir/ValueSet/repository-type
+*/
+public enum RepositoryType: String {
+	
+	/// When url is clicked, the resource can be seen directly (by webpage or by download link format)
+	case directlink = "directlink"
+	
+	/// When the api method (e.g. [base_url]/[parameter]) related with the url website is executed, the resource can be
+	/// seen directly (usually in json or xml format)
+	case openapi = "openapi"
+	
+	/// When logged into the website, the resource can be seen.
+	case login = "login"
+	
+	/// When logged in and follow the API in the website related with url, the resource can be seen.
+	case oauth = "oauth"
+	
+	/// Some other complicated or particular way to get resource from url.
+	case other = "other"
+}
+
+
+/**
+Codes indicating the degree of authority/intentionality associated with a request
+
+URL: http://hl7.org/fhir/request-intent
+ValueSet: http://hl7.org/fhir/ValueSet/request-intent
+*/
+public enum RequestIntent: String {
+	
+	/// The request is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and
+	/// without providing an authorization to act
+	case proposal = "proposal"
+	
+	/// The request represents an intension to ensure something occurs without providing an authorization for others to
+	/// act
+	case plan = "plan"
+	
+	/// The request represents a request/demand and authorization for action
+	case order = "order"
+	
+	/// The request represents an original authorization for action
+	case originalOrder = "original-order"
+	
+	/// The request represents an automatically generated supplemental authorization for action based on a parent
+	/// authorization together with initial results of the action taken against that parent authorization
+	case reflexOrder = "reflex-order"
+	
+	/// The request represents the view of an authorization instantiated by a fulfilling system representing the details
+	/// of the fulfiller's intention to act upon a submitted order
+	case fillerOrder = "filler-order"
+	
+	/// An order created in fulfillment of a broader order that represents the authorization for a single activity
+	/// occurrence.  E.g. The administration of a single dose of a drug.
+	case instanceOrder = "instance-order"
+	
+	/// The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or
+	/// other constraints among a set of requests.
+	/// 
+	/// Refer to [[[RequestGroup]]] for additional information on how this status is used
+	case option = "option"
+}
+
+
+/**
 The clinical priority of an order.
 
 URL: http://hl7.org/fhir/request-priority
@@ -5069,6 +5105,98 @@ public enum RequestStage: String {
 	
 	/// Represents a separate order created by a fulfiller as result of fulfilment of an order.
 	case reflexOrder = "reflex-order"
+}
+
+
+/**
+Codes identifying the stage lifecycle stage of a request
+
+URL: http://hl7.org/fhir/request-status
+ValueSet: http://hl7.org/fhir/ValueSet/request-status
+*/
+public enum RequestStatus: String {
+	
+	/// The request has been created but is not yet complete or ready for action
+	case draft = "draft"
+	
+	/// The request is ready to be acted upon
+	case active = "active"
+	
+	/// The authorization/request to act has been temporarily withdrawn but is expected to resume in the future
+	case suspended = "suspended"
+	
+	/// The authorization/request to act has been terminated prior to the full completion of the intended actions.  No
+	/// further activity should occur.
+	case cancelled = "cancelled"
+	
+	/// Activity against the request has been sufficiently completed to the satisfaction of the requester
+	case completed = "completed"
+	
+	/// This electronic record should never have existed, though it is possible that real-world decisions were based on
+	/// it.  (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
+	case enteredInError = "entered-in-error"
+	
+	/// The authoring system does not know which of the status values currently applies for this request
+	case unknown = "unknown"
+}
+
+
+/**
+Codes that convey the current status of the research study
+
+URL: http://hl7.org/fhir/research-study-status
+ValueSet: http://hl7.org/fhir/ValueSet/research-study-status
+*/
+public enum ResearchStudyStatus: String {
+	
+	/// The study is undergoing design but the process of selecting study subjects and capturing data has not yet begun.
+	case draft = "draft"
+	
+	/// The study is currently being executed
+	case inProgress = "in-progress"
+	
+	/// Execution of the study has been temporarily paused
+	case suspended = "suspended"
+	
+	/// The study was terminated prior to the final determination of results
+	case stopped = "stopped"
+	
+	/// The information sought by the study has been gathered and compiled and no further work is being performed
+	case completed = "completed"
+	
+	/// This study never actually existed.  The record is retained for tracking purposes in the event decisions may have
+	/// been made based on this erroneous information.
+	case enteredInError = "entered-in-error"
+}
+
+
+/**
+Indicates the progression of a study subject through a study
+
+URL: http://hl7.org/fhir/research-subject-status
+ValueSet: http://hl7.org/fhir/ValueSet/research-subject-status
+*/
+public enum ResearchSubjectStatus: String {
+	
+	/// The subject has been identified as a potential participant in the study but has not yet agreed to participate
+	case candidate = "candidate"
+	
+	/// The subject has agreed to participate in the study but has not yet begun performing any action within the study
+	case enrolled = "enrolled"
+	
+	/// The subject is currently being monitored and/or subject to treatment as part of the study
+	case active = "active"
+	
+	/// The subject has temporarily discontinued monitoring/treatment as part of the study
+	case suspended = "suspended"
+	
+	/// The subject has permanently ended participation in the study prior to completion of the intended
+	/// monitoring/treatment
+	case withdrawn = "withdrawn"
+	
+	/// All intended monitoring/treatment of the subject has been completed and their engagement with the study is now
+	/// ended
+	case completed = "completed"
 }
 
 
@@ -5198,6 +5326,43 @@ public enum RestfulSecurityService: String {
 	
 	/// SSL where client must have a certificate registered with the server.
 	case certificates = "Certificates"
+}
+
+
+/**
+What Search Comparator Codes are supported in search
+
+URL: http://hl7.org/fhir/search-comparator
+ValueSet: http://hl7.org/fhir/ValueSet/search-comparator
+*/
+public enum SearchComparator: String {
+	
+	/// the value for the parameter in the resource is equal to the provided value
+	case eq = "eq"
+	
+	/// the value for the parameter in the resource is not equal to the provided value
+	case ne = "ne"
+	
+	/// the value for the parameter in the resource is greater than the provided value
+	case gt = "gt"
+	
+	/// the value for the parameter in the resource is less than the provided value
+	case lt = "lt"
+	
+	/// the value for the parameter in the resource is greater or equal to the provided value
+	case ge = "ge"
+	
+	/// the value for the parameter in the resource is less or equal to the provided value
+	case le = "le"
+	
+	/// the value for the parameter in the resource starts after the provided value
+	case sa = "sa"
+	
+	/// the value for the parameter in the resource ends before the provided value
+	case eb = "eb"
+	
+	/// the value for the parameter in the resource is approximately the same to the provided value.
+	case ap = "ap"
 }
 
 
@@ -5824,25 +5989,6 @@ public enum TaskPerformerType: String {
 
 
 /**
-The task's priority
-
-URL: http://hl7.org/fhir/task-priority
-ValueSet: http://hl7.org/fhir/ValueSet/task-priority
-*/
-public enum TaskPriority: String {
-	
-	/// This task has low priority.
-	case low = "low"
-	
-	/// This task has normal priority.
-	case normal = "normal"
-	
-	/// This task has high priority.
-	case high = "high"
-}
-
-
-/**
 The current status of the task.
 
 URL: http://hl7.org/fhir/task-status
@@ -5853,7 +5999,7 @@ public enum TaskStatus: String {
 	/// The task is not yet ready to be acted upon.
 	case draft = "draft"
 	
-	/// The task is ready to be acted upon
+	/// The task is ready to be acted upon and action is sought
 	case requested = "requested"
 	
 	/// A potential performer has claimed ownership of the task and is evaluating whether to perform it
@@ -5870,6 +6016,9 @@ public enum TaskStatus: String {
 	/// requested/received/accepted/rejected when request assignment and acceptance is a given.
 	case ready = "ready"
 	
+	/// the task was not completed (more or less) as requested
+	case cancelled = "cancelled"
+	
 	/// Task has been started but is not yet complete.
 	case inProgress = "in-progress"
 	
@@ -5881,6 +6030,9 @@ public enum TaskStatus: String {
 	
 	/// The task has been completed (more or less) as requested.
 	case completed = "completed"
+	
+	/// The task should never have existed and is retained only because of the possibility it may have used
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -6135,54 +6287,6 @@ public enum VisionEyes: String {
 	
 	/// Left Eye
 	case left = "left"
-}
-
-
-/**
-A code specifying the state of the resource instance.
-
-URL: http://hl7.org/fhir/vision-status
-ValueSet: http://hl7.org/fhir/ValueSet/vision-status
-*/
-public enum VisionStatus: String {
-	
-	/// The resource instance is currently in-force.
-	case active = "active"
-	
-	/// The resource instance is withdrawn, rescinded or reversed.
-	case cancelled = "cancelled"
-	
-	/// A new resource instance the contents of which is not complete.
-	case draft = "draft"
-	
-	/// The resource instance was entered in error.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
-The kind of relationship between two XDS documents.
-
-URL: http://hl7.org/fhir/xds-relationship-type
-ValueSet: http://hl7.org/fhir/ValueSet/xds-relationship-type
-*/
-public enum XDSRelationshipType: String {
-	
-	/// A separate XDS document that references a prior document, and may extend or alter the observations in the prior
-	/// document.
-	case APND = "APND"
-	
-	/// A new version of an existing document.
-	case RPLC = "RPLC"
-	
-	/// A transformed document is derived by a machine translation from some other format.
-	case XFRM = "XFRM"
-	
-	/// Both a XFRM and a RPLC relationship.
-	case XFRM_RPLC = "XFRM_RPLC"
-	
-	/// This document signs the target document.
-	case signs = "signs"
 }
 
 

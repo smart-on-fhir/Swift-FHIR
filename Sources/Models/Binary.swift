@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Binary) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Binary) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -24,6 +24,9 @@ open class Binary: Resource {
 	
 	/// MimeType of the binary content.
 	public var contentType: String?
+	
+	/// Access Control Management.
+	public var securityContext: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -60,6 +63,20 @@ open class Binary: Resource {
 		else {
 			errors.append(FHIRValidationError(missing: "contentType"))
 		}
+		if let exist = json["securityContext"] {
+			presentKeys.insert("securityContext")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.securityContext = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "securityContext"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "securityContext", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
 		return errors.isEmpty ? nil : errors
 	}
 	
@@ -71,6 +88,9 @@ open class Binary: Resource {
 		}
 		if let contentType = self.contentType {
 			json["contentType"] = contentType.asJSON()
+		}
+		if let securityContext = self.securityContext {
+			json["securityContext"] = securityContext.asJSON(errors: &errors)
 		}
 		
 		return json

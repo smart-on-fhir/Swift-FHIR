@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -48,7 +48,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[1].value, "129IDH4OP733")
-		XCTAssertEqual(inst.name?[0].family?[0], "van den broek")
+		XCTAssertEqual(inst.name?[0].family, "van den broek")
 		XCTAssertEqual(inst.name?[0].given?[0], "Eric")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MD")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -104,7 +104,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[1].value, "174BIP3JH438")
-		XCTAssertEqual(inst.name?[0].family?[0], "Voigt")
+		XCTAssertEqual(inst.name?[0].family, "Voigt")
 		XCTAssertEqual(inst.name?[0].given?[0], "Pieter")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MD")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -163,7 +163,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[1].value, "243HID3RT938")
-		XCTAssertEqual(inst.name?[0].family?[0], "Versteegh")
+		XCTAssertEqual(inst.name?[0].family, "Versteegh")
 		XCTAssertEqual(inst.name?[0].given?[0], "Marc")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MD")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -223,7 +223,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[1].value, "523ASA1LK927")
-		XCTAssertEqual(inst.name?[0].family?[0], "Briet")
+		XCTAssertEqual(inst.name?[0].family, "Briet")
 		XCTAssertEqual(inst.name?[0].given?[0], "Ronald")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MD")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -282,7 +282,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[1].value, "191REW8WE916")
-		XCTAssertEqual(inst.name?[0].family?[0], "Anne")
+		XCTAssertEqual(inst.name?[0].family, "Anne")
 		XCTAssertEqual(inst.name?[0].given?[0], "Langeveld")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MD")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -339,7 +339,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[1].value, "134IDY41W988")
-		XCTAssertEqual(inst.name?[0].family?[0], "van den Berk")
+		XCTAssertEqual(inst.name?[0].family, "van den Berk")
 		XCTAssertEqual(inst.name?[0].given?[0], "Rob")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MD")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -395,7 +395,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[1].value, "567IUI51C154")
-		XCTAssertEqual(inst.name?[0].family?[0], "Heps")
+		XCTAssertEqual(inst.name?[0].family, "Heps")
 		XCTAssertEqual(inst.name?[0].given?[0], "Simone")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MD")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -451,7 +451,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].type?.text, "UZI-nummer")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "12345678901")
-		XCTAssertEqual(inst.name?[0].family?[0], "Bronsig")
+		XCTAssertEqual(inst.name?[0].family, "Bronsig")
 		XCTAssertEqual(inst.name?[0].given?[0], "Arend")
 		XCTAssertEqual(inst.name?[0].prefix?[0], "Dr.")
 		XCTAssertEqual(inst.name?[0].text, "Dokter Bronsig")
@@ -507,7 +507,7 @@ class PractitionerTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].type?.text, "BIG-nummer")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[1].value, "12345678902")
-		XCTAssertEqual(inst.name?[0].family?[0], "Maas")
+		XCTAssertEqual(inst.name?[0].family, "Maas")
 		XCTAssertEqual(inst.name?[0].given?[0], "Luigi")
 		XCTAssertEqual(inst.name?[0].prefix?[0], "Dr.")
 		XCTAssertEqual(inst.name?[0].text, "Luigi Maas")

@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -21,6 +21,9 @@ open class Bundle: Resource {
 	
 	/// Entry in the bundle - will have a resource, or information.
 	public var entry: [BundleEntry]?
+	
+	/// Persistent identifier for the bundle.
+	public var identifier: Identifier?
 	
 	/// Links related to this Bundle.
 	public var link: [BundleLink]?
@@ -56,6 +59,20 @@ open class Bundle: Resource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "entry", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["identifier"] {
+			presentKeys.insert("identifier")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.identifier = try Identifier(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "identifier"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["link"] {
@@ -120,6 +137,9 @@ open class Bundle: Resource {
 		
 		if let entry = self.entry {
 			json["entry"] = entry.map() { $0.asJSON(errors: &errors) }
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON(errors: &errors)
 		}
 		if let link = self.link {
 			json["link"] = link.map() { $0.asJSON(errors: &errors) }
@@ -599,7 +619,7 @@ open class BundleLink: BackboneElement {
 		get { return "BundleLink" }
 	}
 	
-	/// http://www.iana.org/assignments/link-relations/link-relations.xhtml.
+	/// See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1.
 	public var relation: String?
 	
 	/// Reference details for the link.

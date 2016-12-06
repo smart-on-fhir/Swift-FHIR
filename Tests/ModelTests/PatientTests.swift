@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -50,7 +50,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.link?[0].type, LinkType(rawValue: "seealso")!)
 		XCTAssertEqual(inst.managingOrganization?.display, "ACME Healthcare, Inc")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.name?[0].family?[0], "Donald")
+		XCTAssertEqual(inst.name?[0].family, "Donald")
 		XCTAssertEqual(inst.name?[0].given?[0], "Duck")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
 		XCTAssertEqual(inst.photo?[0].contentType, "image/gif")
@@ -86,7 +86,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.animal?.species?.coding?[0].display, "Dog")
 		XCTAssertEqual(inst.animal?.species?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/animal-species")
 		XCTAssertEqual(inst.birthDate?.description, "2010-03-23")
-		XCTAssertEqual(inst.contact?[0].name?.family?[0], "Chalmers")
+		XCTAssertEqual(inst.contact?[0].name?.family, "Chalmers")
 		XCTAssertEqual(inst.contact?[0].name?.given?[0], "Peter")
 		XCTAssertEqual(inst.contact?[0].name?.given?[1], "James")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].code, "owner")
@@ -135,7 +135,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.link?[0].type, LinkType(rawValue: "seealso")!)
 		XCTAssertEqual(inst.managingOrganization?.display, "ACME Healthcare, Inc")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.name?[0].family?[0], "Donald")
+		XCTAssertEqual(inst.name?[0].family, "Donald")
 		XCTAssertEqual(inst.name?[0].given?[0], "Duck")
 		XCTAssertEqual(inst.name?[0].given?[1], "D")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -171,7 +171,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "123457")
 		XCTAssertEqual(inst.managingOrganization?.display, "ACME Healthcare, Inc")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.name?[0].family?[0], "Notsowell")
+		XCTAssertEqual(inst.name?[0].family, "Notsowell")
 		XCTAssertEqual(inst.name?[0].given?[0], "Simon")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -205,7 +205,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "123458")
 		XCTAssertEqual(inst.managingOrganization?.display, "ACME Healthcare, Inc")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.name?[0].family?[0], "Notsowell")
+		XCTAssertEqual(inst.name?[0].family, "Notsowell")
 		XCTAssertEqual(inst.name?[0].given?[0], "Sandy")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -242,7 +242,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://nema.org/examples/patients")
 		XCTAssertEqual(inst.identifier?[0].value, "MINT1234")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.name?[0].family?[0], "MINT_TEST")
+		XCTAssertEqual(inst.name?[0].family, "MINT_TEST")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -274,7 +274,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.communication?[0].language?.coding?[0].system?.absoluteString, "urn:ietf:bcp:47")
 		XCTAssertEqual(inst.communication?[0].language?.text, "Nederlands")
 		XCTAssertTrue(inst.communication?[0].preferred ?? false)
-		XCTAssertEqual(inst.contact?[0].name?.family?[0], "Abels")
+		XCTAssertEqual(inst.contact?[0].name?.family, "Abels")
 		XCTAssertEqual(inst.contact?[0].name?.given?[0], "Sarah")
 		XCTAssertEqual(inst.contact?[0].name?.use, NameUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].code, "partner")
@@ -297,7 +297,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.maritalStatus?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/MaritalStatus")
 		XCTAssertEqual(inst.maritalStatus?.text, "Getrouwd")
 		XCTAssertTrue(inst.multipleBirthBoolean ?? false)
-		XCTAssertEqual(inst.name?[0].family?[0], "van de Heuvel")
+		XCTAssertEqual(inst.name?[0].family, "van de Heuvel")
 		XCTAssertEqual(inst.name?[0].given?[0], "Pieter")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MSc")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "usual")!)
@@ -366,7 +366,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.maritalStatus?.coding?[1].code, "M")
 		XCTAssertEqual(inst.maritalStatus?.coding?[1].system?.absoluteString, "http://hl7.org/fhir/v3/MaritalStatus")
 		XCTAssertFalse(inst.multipleBirthBoolean ?? true)
-		XCTAssertEqual(inst.name?[0].family?[0], "Bor")
+		XCTAssertEqual(inst.name?[0].family, "Bor")
 		XCTAssertEqual(inst.name?[0].given?[0], "Roelof Olaf")
 		XCTAssertEqual(inst.name?[0].prefix?[0], "Drs.")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "PDEng.")
@@ -403,7 +403,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.id, "ihe-pcd")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "Internal Identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "AB60001")
-		XCTAssertEqual(inst.name?[0].family?[0], "BROOKS")
+		XCTAssertEqual(inst.name?[0].family, "BROOKS")
 		XCTAssertEqual(inst.name?[0].given?[0], "ALBERT")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Albert Brooks, Id: AB60001</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

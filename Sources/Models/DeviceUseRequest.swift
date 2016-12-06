@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -80,8 +80,8 @@ open class DeviceUseRequest: DomainResource {
 	/// proposal | plan | original-order | encoded | reflex-order.
 	public var stage: CodeableConcept?
 	
-	/// draft | active | suspended | completed | entered-in-error | cancelled.
-	public var status: String?
+	/// The status of the request.
+	public var status: RequestStatus?
 	
 	/// Focus of request.
 	public var subject: Reference?
@@ -385,7 +385,12 @@ open class DeviceUseRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				if let enumval = RequestStatus(rawValue: val) {
+					self.status = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
+				}
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -494,7 +499,7 @@ open class DeviceUseRequest: DomainResource {
 			json["stage"] = stage.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.asJSON()
+			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)

@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -82,27 +82,9 @@ open class ConceptMap: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(source: Any, status: PublicationStatus, target: Any) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
-		if let value = source as? URL {
-			self.sourceUri = value
-		}
-		else if let value = source as? Reference {
-			self.sourceReference = value
-		}
-		else {
-			fhir_warn("Type “\(type(of: source))” for property “\(source)” is invalid, ignoring")
-		}
 		self.status = status
-		if let value = target as? URL {
-			self.targetUri = value
-		}
-		else if let value = target as? Reference {
-			self.targetReference = value
-		}
-		else {
-			fhir_warn("Type “\(type(of: target))” for property “\(target)” is invalid, ignoring")
-		}
 	}
 	
 	
@@ -330,14 +312,6 @@ open class ConceptMap: DomainResource {
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
 			}
-		}
-		
-		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.sourceUri && nil == self.sourceReference {
-			errors.append(FHIRValidationError(missing: "source[x]"))
-		}
-		if nil == self.targetUri && nil == self.targetReference {
-			errors.append(FHIRValidationError(missing: "target[x]"))
 		}
 		return errors.isEmpty ? nil : errors
 	}

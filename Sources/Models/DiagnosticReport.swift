@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -79,22 +79,10 @@ open class DiagnosticReport: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, effective: Any, issued: Instant, performer: [Reference], status: DiagnosticReportStatus, subject: Reference) {
+	public convenience init(code: CodeableConcept, status: DiagnosticReportStatus) {
 		self.init()
 		self.code = code
-		if let value = effective as? DateTime {
-			self.effectiveDateTime = value
-		}
-		else if let value = effective as? Period {
-			self.effectivePeriod = value
-		}
-		else {
-			fhir_warn("Type “\(type(of: effective))” for property “\(effective)” is invalid, ignoring")
-		}
-		self.issued = issued
-		self.performer = performer
 		self.status = status
-		self.subject = subject
 	}
 	
 	
@@ -242,9 +230,6 @@ open class DiagnosticReport: DomainResource {
 				errors.append(FHIRValidationError(key: "issued", wants: String.self, has: type(of: exist)))
 			}
 		}
-		else {
-			errors.append(FHIRValidationError(missing: "issued"))
-		}
 		if let exist = json["performer"] {
 			presentKeys.insert("performer")
 			if let val = exist as? [FHIRJSON] {
@@ -258,9 +243,6 @@ open class DiagnosticReport: DomainResource {
 			else {
 				errors.append(FHIRValidationError(key: "performer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "performer"))
 		}
 		if let exist = json["presentedForm"] {
 			presentKeys.insert("presentedForm")
@@ -348,14 +330,6 @@ open class DiagnosticReport: DomainResource {
 			else {
 				errors.append(FHIRValidationError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "subject"))
-		}
-		
-		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.effectiveDateTime && nil == self.effectivePeriod {
-			errors.append(FHIRValidationError(missing: "effective[x]"))
 		}
 		return errors.isEmpty ? nil : errors
 	}

@@ -2,7 +2,7 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -38,7 +38,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "Gemcitabine 1250 mg/m² IV over 30 minutes on days 1 and 8")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].activityDefinition?.reference, "#2222")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].textEquivalent, "CARBOplatin AUC 5 IV over 30 minutes on Day 1")
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.system?.absoluteString, "http://nccn.org/ordertemplates/KDN5")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.system?.absoluteString, "http://example.org/ordertemplates/KDN5")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.value, "cycle-definition-1")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "21-day cycle for 6 cycles")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.count, 6)
@@ -56,13 +56,13 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.copyright, "All rights reserved.")
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "KDN5")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://nccn.org/ordertemplates")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/ordertemplates")
 		XCTAssertEqual(inst.identifier?[0].value, "KDN5")
 		XCTAssertEqual(inst.lastReviewDate?.description, "2016-07-27")
 		XCTAssertEqual(inst.publisher, "National Comprehensive Cancer Network, Inc.")
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "NCCN Guidelines for Kidney Cancer. V.2.2016")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "derived-from")!)
-		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://www.nccn.org/professionals/physician_gls/PDF/kidney.pdf")
+		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://www.example.org/professionals/physician_gls/PDF/kidney.pdf")
 		XCTAssertEqual(inst.relatedArtifact?[1].citation, "Oudard S, et al. J Urol. 2007;177(5):1698-702")
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "citation")!)
 		XCTAssertEqual(inst.relatedArtifact?[1].url?.absoluteString, "http://www.ncbi.nlm.nih.gov/pubmed/17437788")
@@ -71,12 +71,12 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.title, "Gemcitabine/CARBOplatin")
 		XCTAssertEqual(inst.type?.text, "Chemotherapy Order Template")
 		XCTAssertEqual(inst.useContext?[0].code?.code, "treamentSetting-or-diseaseStatus")
-		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://nccn.org/fhir/CodeSystem/indications")
+		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://example.org/fhir/CodeSystem/indications")
 		XCTAssertEqual(inst.useContext?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/usagecontext-group")
 		XCTAssertEqual(inst.useContext?[0].extension_fhir?[0].valueString, "A")
 		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.text, "Metastatic")
 		XCTAssertEqual(inst.useContext?[1].code?.code, "disease-or-histology")
-		XCTAssertEqual(inst.useContext?[1].code?.system?.absoluteString, "http://nccn.org/fhir/CodeSystem/indications")
+		XCTAssertEqual(inst.useContext?[1].code?.system?.absoluteString, "http://example.org/fhir/CodeSystem/indications")
 		XCTAssertEqual(inst.useContext?[1].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/usagecontext-group")
 		XCTAssertEqual(inst.useContext?[1].extension_fhir?[0].valueString, "A")
 		XCTAssertEqual(inst.useContext?[1].valueCodeableConcept?.text, "Collecting Duct/Medullary Subtypes")
@@ -86,12 +86,12 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.useContext?[2].extension_fhir?[0].valueString, "A")
 		XCTAssertEqual(inst.useContext?[2].valueCodeableConcept?.text, "Kidney Cancer")
 		XCTAssertEqual(inst.useContext?[3].code?.code, "treatmentSetting-or-diseaseStatus")
-		XCTAssertEqual(inst.useContext?[3].code?.system?.absoluteString, "http://nccn.org/fhir/CodeSystem/indications")
+		XCTAssertEqual(inst.useContext?[3].code?.system?.absoluteString, "http://example.org/fhir/CodeSystem/indications")
 		XCTAssertEqual(inst.useContext?[3].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/usagecontext-group")
 		XCTAssertEqual(inst.useContext?[3].extension_fhir?[0].valueString, "B")
 		XCTAssertEqual(inst.useContext?[3].valueCodeableConcept?.text, "Relapsed")
 		XCTAssertEqual(inst.useContext?[4].code?.code, "disease-or-histology")
-		XCTAssertEqual(inst.useContext?[4].code?.system?.absoluteString, "http://nccn.org/fhir/CodeSystem/indications")
+		XCTAssertEqual(inst.useContext?[4].code?.system?.absoluteString, "http://example.org/fhir/CodeSystem/indications")
 		XCTAssertEqual(inst.useContext?[4].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/usagecontext-group")
 		XCTAssertEqual(inst.useContext?[4].extension_fhir?[0].valueString, "B")
 		XCTAssertEqual(inst.useContext?[4].valueCodeableConcept?.text, "Collecting Duct/Medullary Subtypes")
@@ -260,7 +260,8 @@ class PlanDefinitionTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-protocol-example.json")
 		
 		XCTAssertEqual(inst.actionDefinition?[0].activityDefinition?.reference, "#procedure")
-		XCTAssertEqual(inst.actionDefinition?[0].condition?.expression, "Observation of Obesity or BMI Measured in Past 2 Years")
+		XCTAssertEqual(inst.actionDefinition?[0].condition?[0].expression, "Observation of Obesity or BMI Measured in Past 2 Years")
+		XCTAssertEqual(inst.actionDefinition?[0].condition?[0].kind, PlanActionConditionKind(rawValue: "applicability")!)
 		XCTAssertEqual(inst.actionDefinition?[0].label, "Measure BMI")
 		XCTAssertEqual(inst.actionDefinition?[0].title, "Measure, Weight, Height, Waist, Circumference; Calculate BMI")
 		XCTAssertEqual(inst.contained?[0].id, "procedure")

@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -125,7 +125,7 @@ class DeviceTests: XCTestCase {
 	func runDevice4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-software.json")
 		
-		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].value, "http://acme.com")
 		XCTAssertEqual(inst.id, "software")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/ehr/client-ids")

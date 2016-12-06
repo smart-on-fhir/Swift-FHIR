@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -43,6 +43,9 @@ open class HealthcareService: DomainResource {
 	
 	/// Describes the eligibility conditions for the service.
 	public var eligibilityNote: String?
+	
+	/// Technical endpoints providing access to services operated for the location.
+	public var endpoint: [Reference]?
 	
 	/// Extra details about the service that can't be placed in the other fields.
 	public var extraDetails: String?
@@ -191,6 +194,20 @@ open class HealthcareService: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "eligibilityNote", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["endpoint"] {
+			presentKeys.insert("endpoint")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.endpoint = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "endpoint"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "endpoint", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["extraDetails"] {
@@ -415,6 +432,9 @@ open class HealthcareService: DomainResource {
 		}
 		if let eligibilityNote = self.eligibilityNote {
 			json["eligibilityNote"] = eligibilityNote.asJSON()
+		}
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.map() { $0.asJSON(errors: &errors) }
 		}
 		if let extraDetails = self.extraDetails {
 			json["extraDetails"] = extraDetails.asJSON()

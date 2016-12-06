@@ -2,7 +2,7 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -22,6 +22,9 @@ open class ActivityDefinition: DomainResource {
 	
 	/// When activity definition approved by publisher.
 	public var approvalDate: FHIRDate?
+	
+	/// What part of body to perform on.
+	public var bodySite: [CodeableConcept]?
 	
 	/// High-level categorization of the type of activity.
 	public var category: ActivityDefinitionCategory?
@@ -142,6 +145,20 @@ open class ActivityDefinition: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "approvalDate", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["bodySite"] {
+			presentKeys.insert("bodySite")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.bodySite = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "bodySite"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "bodySite", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["category"] {
@@ -570,6 +587,9 @@ open class ActivityDefinition: DomainResource {
 		
 		if let approvalDate = self.approvalDate {
 			json["approvalDate"] = approvalDate.asJSON()
+		}
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.map() { $0.asJSON(errors: &errors) }
 		}
 		if let category = self.category {
 			json["category"] = category.rawValue

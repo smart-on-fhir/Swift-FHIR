@@ -2,7 +2,7 @@
 //  DeviceUseRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ class DeviceUseRequestTests: XCTestCase {
 		XCTAssertEqual(inst.deviceReference?.reference, "Device/example")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.stage?.coding?[0].code, "original-order")
-		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.status, RequestStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be filled out at a later time</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

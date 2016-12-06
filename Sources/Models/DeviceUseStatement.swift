@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -21,10 +21,7 @@ open class DeviceUseStatement: DomainResource {
 	}
 	
 	/// Target body site.
-	public var bodySiteCodeableConcept: CodeableConcept?
-	
-	/// Target body site.
-	public var bodySiteReference: Reference?
+	public var bodySite: CodeableConcept?
 	
 	/// Reference to device used.
 	public var device: Reference?
@@ -67,32 +64,18 @@ open class DeviceUseStatement: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["bodySiteCodeableConcept"] {
-			presentKeys.insert("bodySiteCodeableConcept")
+		if let exist = json["bodySite"] {
+			presentKeys.insert("bodySite")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.bodySiteCodeableConcept = try CodeableConcept(json: val, owner: self)
+					self.bodySite = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "bodySiteCodeableConcept"))
+					errors.append(error.prefixed(with: "bodySite"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "bodySiteCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["bodySiteReference"] {
-			presentKeys.insert("bodySiteReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.bodySiteReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "bodySiteReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "bodySiteReference", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "bodySite", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["device"] {
@@ -232,11 +215,8 @@ open class DeviceUseStatement: DomainResource {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
-		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
-			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON(errors: &errors)
-		}
-		if let bodySiteReference = self.bodySiteReference {
-			json["bodySiteReference"] = bodySiteReference.asJSON(errors: &errors)
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON(errors: &errors)
 		}
 		if let device = self.device {
 			json["device"] = device.asJSON(errors: &errors)

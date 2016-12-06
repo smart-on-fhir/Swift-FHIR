@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -268,52 +268,55 @@ open class QuestionnaireItem: BackboneElement {
 	/// Concept that represents this item within in a questionnaire.
 	public var concept: [Coding]?
 	
+	/// ElementDefinition - details for the item.
+	public var definition: URL?
+	
 	/// Only allow data when:.
 	public var enableWhen: [QuestionnaireItemEnableWhen]?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialAttachment: Attachment?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialBoolean: Bool?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialCoding: Coding?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialDate: FHIRDate?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialDateTime: DateTime?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialDecimal: NSDecimalNumber?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialInstant: Instant?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialInteger: Int?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialQuantity: Quantity?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialReference: Reference?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialString: String?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialTime: FHIRTime?
 	
-	/// Initial presumed answer for question.
+	/// Default value when item is first rendered.
 	public var initialUri: URL?
 	
 	/// Nested questionnaire items.
 	public var item: [QuestionnaireItem]?
 	
-	/// To link questionnaire with questionnaire response.
+	/// Unique id for item in questionnaire.
 	public var linkId: String?
 	
 	/// No more than this many characters.
@@ -346,9 +349,9 @@ open class QuestionnaireItem: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: QuestionnaireItemType) {
+	public convenience init(linkId: String) {
 		self.init()
-		self.type = type
+		self.linkId = linkId
 	}
 	
 	
@@ -366,6 +369,15 @@ open class QuestionnaireItem: BackboneElement {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "concept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["definition"] {
+			presentKeys.insert("definition")
+			if let val = exist as? String {
+				self.definition = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["enableWhen"] {
@@ -542,6 +554,9 @@ open class QuestionnaireItem: BackboneElement {
 				errors.append(FHIRValidationError(key: "linkId", wants: String.self, has: type(of: exist)))
 			}
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "linkId"))
+		}
 		if let exist = json["maxLength"] {
 			presentKeys.insert("maxLength")
 			if let val = exist as? Int {
@@ -638,9 +653,6 @@ open class QuestionnaireItem: BackboneElement {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
 			}
 		}
-		else {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
 		return errors.isEmpty ? nil : errors
 	}
 	
@@ -649,6 +661,9 @@ open class QuestionnaireItem: BackboneElement {
 		
 		if let concept = self.concept {
 			json["concept"] = concept.map() { $0.asJSON(errors: &errors) }
+		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
 		}
 		if let enableWhen = self.enableWhen {
 			json["enableWhen"] = enableWhen.map() { $0.asJSON(errors: &errors) }

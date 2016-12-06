@@ -2,7 +2,7 @@
 //  Measure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -24,6 +24,10 @@ open class Measure: DomainResource {
 	
 	/// Clinical recommendation.
 	public var clinicalRecommendationStatement: String?
+	
+	/// If this is a composite measure, the scoring method used to combine the component measures to determine the
+	/// composite score.
+	public var compositeScoring: CompositeMeasureScoring?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
@@ -153,6 +157,20 @@ open class Measure: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "clinicalRecommendationStatement", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["compositeScoring"] {
+			presentKeys.insert("compositeScoring")
+			if let val = exist as? String {
+				if let enumval = CompositeMeasureScoring(rawValue: val) {
+					self.compositeScoring = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "compositeScoring", problem: "the value “\(val)” is not valid"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "compositeScoring", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["contact"] {
@@ -544,6 +562,9 @@ open class Measure: DomainResource {
 		}
 		if let clinicalRecommendationStatement = self.clinicalRecommendationStatement {
 			json["clinicalRecommendationStatement"] = clinicalRecommendationStatement.asJSON()
+		}
+		if let compositeScoring = self.compositeScoring {
+			json["compositeScoring"] = compositeScoring.rawValue
 		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }

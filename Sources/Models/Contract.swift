@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -60,6 +60,9 @@ open class Contract: DomainResource {
 	
 	/// Contract Signer.
 	public var signer: [ContractSigner]?
+	
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	/// Contract Subtype.
 	public var subType: [CodeableConcept]?
@@ -273,6 +276,15 @@ open class Contract: DomainResource {
 				errors.append(FHIRValidationError(key: "signer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["status"] {
+			presentKeys.insert("status")
+			if let val = exist as? String {
+				self.status = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["subType"] {
 			presentKeys.insert("subType")
 			if let val = exist as? [FHIRJSON] {
@@ -404,6 +416,9 @@ open class Contract: DomainResource {
 		}
 		if let signer = self.signer {
 			json["signer"] = signer.map() { $0.asJSON(errors: &errors) }
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		if let subType = self.subType {
 			json["subType"] = subType.map() { $0.asJSON(errors: &errors) }

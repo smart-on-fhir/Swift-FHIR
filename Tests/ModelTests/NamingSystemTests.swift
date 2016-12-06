@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -35,7 +35,7 @@ class NamingSystemTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-id.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "HL7 Australia FHIR Team")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7-australia.wikispaces.com/FHIR+Australia")
 		XCTAssertEqual(inst.date?.description, "2015-08-31")
 		XCTAssertEqual(inst.description_fhir, "Australian HI Identifier as established by relevant regulations etc")
@@ -108,7 +108,7 @@ class NamingSystemTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2014-12-13")
 		XCTAssertEqual(inst.id, "example")

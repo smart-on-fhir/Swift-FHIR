@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -40,7 +40,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.phr.com/patient/12345/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "115")
 		XCTAssertEqual(inst.include?[0], "ExplanationOfBenefit")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -69,7 +69,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "113")
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -97,7 +97,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "112")
 		XCTAssertEqual(inst.include?[0], "PaymentReconciliation")
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -127,7 +127,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.period?.end?.description, "2014-08-20")
 		XCTAssertEqual(inst.period?.start?.description, "2014-08-10")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -155,7 +155,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "111")
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.request?.reference, "http://benefitco.com/oralhealthclaim/12345")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -185,7 +185,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.reference, "ABC12345G")
 		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/claim/12345")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ReProcess ProcessRequest resource.</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -214,7 +214,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertFalse(inst.nullify ?? true)
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/claim/12345")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Reversal ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -243,7 +243,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.request?.reference, "http://happyvalley.com/claim/12345")
 		XCTAssertEqual(inst.response?.reference, "http://BenefitsInc.com/fhir/claimresponse/3500")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Status ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -270,7 +270,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "110")
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.status, ProcessRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

@@ -2,7 +2,7 @@
 //  CapabilityStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -88,15 +88,10 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchInclude?[0], "Organization")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-identifier")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].documentation, "Only supports search by institution MRN")
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].modifier?[0], SearchModifierCode(rawValue: "missing")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].name, "identifier")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].type, SearchParamType(rawValue: "token")!)
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].chain?[0], "name")
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].chain?[1], "identifier")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-careprovider")
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].modifier?[0], SearchModifierCode(rawValue: "missing")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].name, "careprovider")
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].target?[0], "Organization")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].type, SearchParamType(rawValue: "reference")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchRevInclude?[0], "Person")
 		XCTAssertEqual(inst.rest?[0].resource?[0].type, "Patient")
@@ -134,7 +129,7 @@ class CapabilityStatementTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-phr-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, UnknownContentCode(rawValue: "no")!)
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2013-06-18")
 		XCTAssertEqual(inst.description_fhir, "Prototype Capability Statement for September 2013 Connectathon")

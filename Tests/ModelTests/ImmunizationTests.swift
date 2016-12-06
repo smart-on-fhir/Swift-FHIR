@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -40,7 +40,7 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.explanation?.reasonNotGiven?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.id, "notGiven")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertFalse(inst.reported ?? true)
+		XCTAssertTrue(inst.primarySource ?? false)
 		XCTAssertEqual(inst.status, MedicationAdministrationStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].code, "01")
@@ -82,10 +82,10 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].text, "Notes on adminstration of vaccine")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.performer?.reference, "Practitioner/example")
+		XCTAssertTrue(inst.primarySource ?? false)
 		XCTAssertEqual(inst.reaction?[0].date?.description, "2013-01-10")
 		XCTAssertEqual(inst.reaction?[0].detail?.reference, "Observation/example")
 		XCTAssertTrue(inst.reaction?[0].reported ?? false)
-		XCTAssertFalse(inst.reported ?? true)
 		XCTAssertEqual(inst.requester?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.route?.coding?[0].code, "IM")
 		XCTAssertEqual(inst.route?.coding?[0].display, "Injection, intramuscular")

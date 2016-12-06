@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -37,6 +37,9 @@ open class Account: DomainResource {
 	
 	/// Explanation of purpose/use.
 	public var description_fhir: String?
+	
+	/// Responsible for the account.
+	public var guarantor: [AccountGuarantor]?
 	
 	/// Account number.
 	public var identifier: [Identifier]?
@@ -136,6 +139,20 @@ open class Account: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["guarantor"] {
+			presentKeys.insert("guarantor")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.guarantor = try AccountGuarantor.instantiate(fromArray: val, owner: self) as? [AccountGuarantor]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "guarantor"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "guarantor", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["identifier"] {
@@ -241,6 +258,9 @@ open class Account: DomainResource {
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
+		if let guarantor = self.guarantor {
+			json["guarantor"] = guarantor.map() { $0.asJSON(errors: &errors) }
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
@@ -258,6 +278,96 @@ open class Account: DomainResource {
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		
+		return json
+	}
+}
+
+
+/**
+Responsible for the account.
+
+Parties financially responsible for the account.
+*/
+open class AccountGuarantor: BackboneElement {
+	override open class var resourceType: String {
+		get { return "AccountGuarantor" }
+	}
+	
+	/// Credit or other hold applied.
+	public var onHold: Bool?
+	
+	/// Responsible entity.
+	public var party: Reference?
+	
+	/// Guarrantee account during.
+	public var period: Period?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(party: Reference) {
+		self.init()
+		self.party = party
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["onHold"] {
+			presentKeys.insert("onHold")
+			if let val = exist as? Bool {
+				self.onHold = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "onHold", wants: Bool.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["party"] {
+			presentKeys.insert("party")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.party = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "party"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "party", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "party"))
+		}
+		if let exist = json["period"] {
+			presentKeys.insert("period")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.period = try Period(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "period"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
+		
+		if let onHold = self.onHold {
+			json["onHold"] = onHold.asJSON()
+		}
+		if let party = self.party {
+			json["party"] = party.asJSON(errors: &errors)
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON(errors: &errors)
 		}
 		
 		return json

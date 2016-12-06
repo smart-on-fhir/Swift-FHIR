@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -65,6 +65,46 @@ class ListTests: XCTestCase {
 	
 	@discardableResult
 	func runList2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-double-cousin-relationship-pedigree.json")
+		
+		XCTAssertEqual(inst.code?.coding?[0].code, "80738-8")
+		XCTAssertEqual(inst.code?.coding?[0].display, "TPMT gene mutations found [Identifier] in Blood or Tissue by Sequencing Nominal")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.code?.text, "TPMT gene mutations found [Identifier] in Blood or Tissue by Sequencing Nominal")
+		XCTAssertEqual(inst.contained?[0].id, "1")
+		XCTAssertEqual(inst.contained?[1].id, "2")
+		XCTAssertEqual(inst.contained?[2].id, "3")
+		XCTAssertEqual(inst.contained?[3].id, "4")
+		XCTAssertEqual(inst.contained?[4].id, "5")
+		XCTAssertEqual(inst.contained?[5].id, "6")
+		XCTAssertEqual(inst.entry?[0].item?.reference, "#1")
+		XCTAssertEqual(inst.entry?[1].item?.reference, "#2")
+		XCTAssertEqual(inst.entry?[2].item?.reference, "#3")
+		XCTAssertEqual(inst.entry?[3].item?.reference, "#4")
+		XCTAssertEqual(inst.entry?[4].item?.reference, "#5")
+		XCTAssertEqual(inst.entry?[5].item?.reference, "#6")
+		XCTAssertEqual(inst.id, "example-double-cousin-relationship")
+		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
+		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
+		XCTAssertEqual(inst.subject?.display, "Pam Taylor")
+		XCTAssertEqual(inst.subject?.reference, "Patient/147051")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testList3() {
+		do {
+			let instance = try runList3()
+			try runList3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runList3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-empty.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "182836005")
@@ -85,10 +125,10 @@ class ListTests: XCTestCase {
 		return inst
 	}
 	
-	func testList3() {
+	func testList4() {
 		do {
-			let instance = try runList3()
-			try runList3(instance.asJSON())
+			let instance = try runList4()
+			try runList4(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -96,7 +136,7 @@ class ListTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runList3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+	func runList4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-f201-roel.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "8670-2")
@@ -117,10 +157,10 @@ class ListTests: XCTestCase {
 		return inst
 	}
 	
-	func testList4() {
+	func testList5() {
 		do {
-			let instance = try runList4()
-			try runList4(instance.asJSON())
+			let instance = try runList5()
+			try runList5(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -128,22 +168,22 @@ class ListTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runList4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+	func runList5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-genetics-profile-annie.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "8670-2")
 		XCTAssertEqual(inst.code?.coding?[0].display, "History of family member diseases")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.contained?[0].id, "image")
-		XCTAssertEqual(inst.contained?[1].id, "2")
-		XCTAssertEqual(inst.contained?[2].id, "3")
-		XCTAssertEqual(inst.contained?[3].id, "4")
-		XCTAssertEqual(inst.contained?[4].id, "5")
-		XCTAssertEqual(inst.contained?[5].id, "6")
-		XCTAssertEqual(inst.contained?[6].id, "7")
-		XCTAssertEqual(inst.contained?[7].id, "8")
-		XCTAssertEqual(inst.contained?[8].id, "9")
-		XCTAssertEqual(inst.contained?[9].id, "10")
+		XCTAssertEqual(inst.contained?[1].id, "1")
+		XCTAssertEqual(inst.contained?[2].id, "2")
+		XCTAssertEqual(inst.contained?[3].id, "3")
+		XCTAssertEqual(inst.contained?[4].id, "4")
+		XCTAssertEqual(inst.contained?[5].id, "5")
+		XCTAssertEqual(inst.contained?[6].id, "6")
+		XCTAssertEqual(inst.contained?[7].id, "7")
+		XCTAssertEqual(inst.contained?[8].id, "8")
+		XCTAssertEqual(inst.contained?[9].id, "9")
 		XCTAssertEqual(inst.entry?[0].item?.reference, "#image")
 		XCTAssertEqual(inst.entry?[1].item?.reference, "#2")
 		XCTAssertEqual(inst.entry?[2].item?.reference, "#3")
@@ -164,10 +204,10 @@ class ListTests: XCTestCase {
 		return inst
 	}
 	
-	func testList5() {
+	func testList6() {
 		do {
-			let instance = try runList5()
-			try runList5(instance.asJSON())
+			let instance = try runList6()
+			try runList6(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -175,7 +215,7 @@ class ListTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runList5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+	func runList6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-genetics-profile.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "8670-2")
@@ -202,16 +242,15 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To do</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
 	
-	func testList6() {
+	func testList7() {
 		do {
-			let instance = try runList6()
-			try runList6(instance.asJSON())
+			let instance = try runList7()
+			try runList7(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -219,7 +258,7 @@ class ListTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runList6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+	func runList7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-medlist.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "182836005")
@@ -245,10 +284,10 @@ class ListTests: XCTestCase {
 		return inst
 	}
 	
-	func testList7() {
+	func testList8() {
 		do {
-			let instance = try runList7()
-			try runList7(instance.asJSON())
+			let instance = try runList8()
+			try runList8(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -256,7 +295,7 @@ class ListTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runList7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+	func runList8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-simple-empty.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "346638")
@@ -271,10 +310,10 @@ class ListTests: XCTestCase {
 		return inst
 	}
 	
-	func testList8() {
+	func testList9() {
 		do {
-			let instance = try runList8()
-			try runList8(instance.asJSON())
+			let instance = try runList9()
+			try runList9(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -282,7 +321,7 @@ class ListTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runList8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+	func runList9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-11-25T22:17:00+11:00")

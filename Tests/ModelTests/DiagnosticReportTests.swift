@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -253,8 +253,8 @@ class DiagnosticReportTests: XCTestCase {
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "HM")
 		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0074")
-		XCTAssertEqual(inst.code?.coding?[0].code, "57698-3")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Lipid panel with direct LDL - Serum or Plasma")
+		XCTAssertEqual(inst.code?.coding?[0].code, "24331-1")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Lipid 1996 panel - Serum or Plasma")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.code?.text, "Lipid Panel")
 		XCTAssertEqual(inst.contained?[0].id, "cholesterol")
@@ -318,6 +318,44 @@ class DiagnosticReportTests: XCTestCase {
 	
 	@discardableResult
 	func runDiagnosticReport8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-pgx.json")
+		
+		XCTAssertEqual(inst.code?.coding?[0].code, "PGxReport")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Pharmacogenetics Report")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "https://system/PGxReport")
+		XCTAssertEqual(inst.code?.text, "Pharmacogenetics Report")
+		XCTAssertEqual(inst.effectiveDateTime?.description, "2016-10-15T12:34:56+11:00")
+		XCTAssertEqual(inst.id, "example-pgx")
+		XCTAssertEqual(inst.issued?.description, "2016-10-20T14:00:05+11:00")
+		XCTAssertEqual(inst.performer?[0].reference, "Organization/4829")
+		XCTAssertEqual(inst.presentedForm?[0].contentType, "PDF")
+		XCTAssertEqual(inst.presentedForm?[0].creation?.description, "2016-10-20T20:00:00+11:00")
+		XCTAssertEqual(inst.presentedForm?[0].data, Base64Binary(value: "cGRmSW5CYXNlNjRCaW5hcnk="))
+		XCTAssertEqual(inst.presentedForm?[0].hash, Base64Binary(value: "571ef9c5655840f324e679072ed62b1b95eef8a0"))
+		XCTAssertEqual(inst.presentedForm?[0].language, "en-us")
+		XCTAssertEqual(inst.presentedForm?[0].title, "Pharmacogenetics Report")
+		XCTAssertEqual(inst.request?[0].reference, "DiagnosticRequest/example-pgx")
+		XCTAssertEqual(inst.result?[0].reference, "Observation/example-phenotype")
+		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.subject?.display, "Bob Smith")
+		XCTAssertEqual(inst.subject?.reference, "Patient/899962")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testDiagnosticReport9() {
+		do {
+			let instance = try runDiagnosticReport9()
+			try runDiagnosticReport9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runDiagnosticReport9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-ultrasound.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "394914008")
@@ -344,10 +382,10 @@ class DiagnosticReportTests: XCTestCase {
 		return inst
 	}
 	
-	func testDiagnosticReport9() {
+	func testDiagnosticReport10() {
 		do {
-			let instance = try runDiagnosticReport9()
-			try runDiagnosticReport9(instance.asJSON())
+			let instance = try runDiagnosticReport10()
+			try runDiagnosticReport10(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
@@ -355,7 +393,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "HM")
@@ -399,50 +437,6 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.result?[9].reference, "#r10")
 		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testDiagnosticReport10() {
-		do {
-			let instance = try runDiagnosticReport10()
-			try runDiagnosticReport10(instance.asJSON())
-		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
-		}
-	}
-	
-	@discardableResult
-	func runDiagnosticReport10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-genetics-example-2-familyhistory.json")
-		
-		XCTAssertEqual(inst.category?.coding?[0].code, "15220000")
-		XCTAssertEqual(inst.category?.coding?[0].display, "Laboratory test")
-		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.category?.coding?[1].code, "LAB")
-		XCTAssertEqual(inst.category?.coding?[1].system?.absoluteString, "http://hl7.org/fhir/v2/0074")
-		XCTAssertEqual(inst.code?.coding?[0].code, "55233-1")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Genetic analysis master panel")
-		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
-		XCTAssertEqual(inst.contained?[0].id, "f1-genetics")
-		XCTAssertEqual(inst.effectiveDateTime?.description, "2015-05-26T15:30:10+01:00")
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/DiagnosticReport-geneticsFamilyMemberHistory")
-		XCTAssertEqual(inst.extension_fhir?[0].valueReference?.reference, "#f1-genetics")
-		XCTAssertEqual(inst.id, "dg2")
-		XCTAssertEqual(inst.issued?.description, "2014-05-16T10:28:00+01:00")
-		XCTAssertEqual(inst.performer?[0].display, "Molecular Diagnostic Laboratory")
-		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/genetics-example2")
-		XCTAssertEqual(inst.result?[0].display, "Genetic analysis for BRAC -1")
-		XCTAssertEqual(inst.result?[0].reference, "Observation/ob-genetics-3-1")
-		XCTAssertEqual(inst.result?[1].display, "Genetic analysis for BRAC -2")
-		XCTAssertEqual(inst.result?[1].reference, "Observation/ob-genetics-3-2")
-		XCTAssertEqual(inst.specimen?[0].display, "Molecular Specimen ID: MLD45-Z4-1234")
-		XCTAssertEqual(inst.specimen?[0].reference, "Specimen/genetics-example2")
-		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
-		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers(MRN: 12345)")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

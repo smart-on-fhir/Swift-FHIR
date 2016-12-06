@@ -122,7 +122,7 @@ class ResourceTests: XCTestCase {
 			XCTAssertNil(error)
 			XCTAssertNotNil(patient.id)
 			XCTAssertNotNil(patient.name)
-			XCTAssertEqual("POST", patient.name?[0].family?[0])		// server adds this on POST and receiver must update itself
+			XCTAssertEqual("POST", patient.name?[0].family)		// server adds this on POST and receiver must update itself
 			XCTAssertEqual("1337", patient.meta?.versionId)
 			XCTAssertEqual(2016, patient.meta?.lastUpdated?.date.year)
 		}
@@ -151,7 +151,7 @@ class ResourceTests: XCTestCase {
 			XCTAssertNotNil(patient.id)
 			XCTAssertNotEqual(id, patient.id)
 			XCTAssertNotNil(patient.name)
-			XCTAssertEqual("POST", patient.name?[0].family?[0])		// server adds this on POST and receiver must update itself
+			XCTAssertEqual("POST", patient.name?[0].family)		// server adds this on POST and receiver must update itself
 			XCTAssertEqual("1338", patient.meta?.versionId)
 			XCTAssertEqual(2016, patient.meta?.lastUpdated?.date.year)
 		}
@@ -164,7 +164,7 @@ class ResourceTests: XCTestCase {
 			XCTAssertNil(error)
 			XCTAssertNotNil(patient.id)
 			XCTAssertNotNil(patient.name)
-			XCTAssertEqual("GET", patient.name?[0].family?[0])		// server adds this on GET after POST and receiver must update itself
+			XCTAssertEqual("GET", patient.name?[0].family)		// server adds this on GET after POST and receiver must update itself
 			XCTAssertEqual("1339", patient.meta?.versionId)
 			XCTAssertEqual(2015, patient.meta?.lastUpdated?.date.year)
 		}
@@ -208,7 +208,7 @@ class LocalPatientServer: FHIROpenServer {
 			if prefer.hasSuffix("representation") != negatePreferHeader {
 				let pat = try! Patient(json: try! handler.resource!.asJSON())			// to not manipulate handler.resource
 				pat.meta?.versionId = "\(version+1)"
-				pat.name = [try! HumanName(json: ["family": ["POST"]])]
+				pat.name = [try! HumanName(json: ["family": "POST"])]
 				
 				let req = FHIRServerJSONRequestHandler(.POST)
 				req.resource = pat
@@ -227,7 +227,7 @@ class LocalPatientServer: FHIROpenServer {
 				let headers = ["ETag": "W/\"\(version)\"", "Last-Modified": "Friday, 06-May-15 17:49:37 GMT"]
 				let http = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "1.1", headerFields: headers)
 				
-				last.name = [try! HumanName(json: ["family": ["GET"]])]
+				last.name = [try! HumanName(json: ["family": "GET"])]
 				last.meta = nil
 				handler.resource = last
 				try! handler.prepareData()

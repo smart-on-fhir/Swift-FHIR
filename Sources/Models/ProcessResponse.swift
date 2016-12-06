@@ -2,7 +2,7 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -19,6 +19,9 @@ open class ProcessResponse: DomainResource {
 		get { return "ProcessResponse" }
 	}
 	
+	/// Request for additional information.
+	public var communicationRequest: [Reference]?
+	
 	/// Creation date.
 	public var created: DateTime?
 	
@@ -26,25 +29,22 @@ open class ProcessResponse: DomainResource {
 	public var disposition: String?
 	
 	/// Error code.
-	public var error: [Coding]?
+	public var error: [CodeableConcept]?
 	
 	/// Printed Form Identifier.
-	public var form: Coding?
+	public var form: CodeableConcept?
 	
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
 	/// Notes.
-	public var notes: [ProcessResponseNotes]?
+	public var note: [ProcessResponseNote]?
 	
 	/// Authoring Organization.
 	public var organization: Reference?
 	
-	/// Original version.
-	public var originalRuleset: Coding?
-	
 	/// Processing outcome.
-	public var outcome: Coding?
+	public var outcome: CodeableConcept?
 	
 	/// Request reference.
 	public var request: Reference?
@@ -55,22 +55,26 @@ open class ProcessResponse: DomainResource {
 	/// Responsible Practitioner.
 	public var requestProvider: Reference?
 	
-	/// Resource version.
-	public var ruleset: Coding?
-	
-	/// The status of the resource instance.
-	public var status: ProcessResponseStatus?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: ProcessResponseStatus) {
-		self.init()
-		self.status = status
-	}
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["communicationRequest"] {
+			presentKeys.insert("communicationRequest")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.communicationRequest = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "communicationRequest"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "communicationRequest", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
@@ -93,7 +97,7 @@ open class ProcessResponse: DomainResource {
 			presentKeys.insert("error")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.error = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+					self.error = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "error"))
@@ -107,7 +111,7 @@ open class ProcessResponse: DomainResource {
 			presentKeys.insert("form")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.form = try Coding(json: val, owner: self)
+					self.form = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "form"))
@@ -131,18 +135,18 @@ open class ProcessResponse: DomainResource {
 				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["notes"] {
-			presentKeys.insert("notes")
+		if let exist = json["note"] {
+			presentKeys.insert("note")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.notes = try ProcessResponseNotes.instantiate(fromArray: val, owner: self) as? [ProcessResponseNotes]
+					self.note = try ProcessResponseNote.instantiate(fromArray: val, owner: self) as? [ProcessResponseNote]
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "notes"))
+					errors.append(error.prefixed(with: "note"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "notes", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["organization"] {
@@ -159,25 +163,11 @@ open class ProcessResponse: DomainResource {
 				errors.append(FHIRValidationError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["originalRuleset"] {
-			presentKeys.insert("originalRuleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.originalRuleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "originalRuleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["outcome"] {
 			presentKeys.insert("outcome")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.outcome = try Coding(json: val, owner: self)
+					self.outcome = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "outcome"))
@@ -229,36 +219,14 @@ open class ProcessResponse: DomainResource {
 				errors.append(FHIRValidationError(key: "requestProvider", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["ruleset"] {
-			presentKeys.insert("ruleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.ruleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "ruleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				if let enumval = ProcessResponseStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
+				self.status = val
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "status"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -266,6 +234,9 @@ open class ProcessResponse: DomainResource {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
+		if let communicationRequest = self.communicationRequest {
+			json["communicationRequest"] = communicationRequest.map() { $0.asJSON(errors: &errors) }
+		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
@@ -281,14 +252,11 @@ open class ProcessResponse: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
-		if let notes = self.notes {
-			json["notes"] = notes.map() { $0.asJSON(errors: &errors) }
+		if let note = self.note {
+			json["note"] = note.map() { $0.asJSON(errors: &errors) }
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON(errors: &errors)
-		}
-		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
 		}
 		if let outcome = self.outcome {
 			json["outcome"] = outcome.asJSON(errors: &errors)
@@ -302,11 +270,8 @@ open class ProcessResponse: DomainResource {
 		if let requestProvider = self.requestProvider {
 			json["requestProvider"] = requestProvider.asJSON(errors: &errors)
 		}
-		if let ruleset = self.ruleset {
-			json["ruleset"] = ruleset.asJSON(errors: &errors)
-		}
 		if let status = self.status {
-			json["status"] = status.rawValue
+			json["status"] = status.asJSON()
 		}
 		
 		return json
@@ -319,16 +284,16 @@ Notes.
 
 Suite of processing note or additional requirements is the processing has been held.
 */
-open class ProcessResponseNotes: BackboneElement {
+open class ProcessResponseNote: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ProcessResponseNotes" }
+		get { return "ProcessResponseNote" }
 	}
 	
 	/// Notes text.
 	public var text: String?
 	
 	/// display | print | printoper.
-	public var type: Coding?
+	public var type: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -346,7 +311,7 @@ open class ProcessResponseNotes: BackboneElement {
 			presentKeys.insert("type")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.type = try Coding(json: val, owner: self)
+					self.type = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "type"))

@@ -2,7 +2,7 @@
 //  DosageInstruction.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/DosageInstruction) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DosageInstruction) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -62,10 +62,7 @@ open class DosageInstruction: Element {
 	public var sequence: Int?
 	
 	/// Body site to administer to.
-	public var siteCodeableConcept: CodeableConcept?
-	
-	/// Body site to administer to.
-	public var siteReference: Reference?
+	public var site: CodeableConcept?
 	
 	/// Free text dosage instructions e.g. SIG.
 	public var text: String?
@@ -262,32 +259,18 @@ open class DosageInstruction: Element {
 				errors.append(FHIRValidationError(key: "sequence", wants: Int.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["siteCodeableConcept"] {
-			presentKeys.insert("siteCodeableConcept")
+		if let exist = json["site"] {
+			presentKeys.insert("site")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.siteCodeableConcept = try CodeableConcept(json: val, owner: self)
+					self.site = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "siteCodeableConcept"))
+					errors.append(error.prefixed(with: "site"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["siteReference"] {
-			presentKeys.insert("siteReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.siteReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "siteReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "siteReference", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "site", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["text"] {
@@ -361,11 +344,8 @@ open class DosageInstruction: Element {
 		if let sequence = self.sequence {
 			json["sequence"] = sequence.asJSON()
 		}
-		if let siteCodeableConcept = self.siteCodeableConcept {
-			json["siteCodeableConcept"] = siteCodeableConcept.asJSON(errors: &errors)
-		}
-		if let siteReference = self.siteReference {
-			json["siteReference"] = siteReference.asJSON(errors: &errors)
+		if let site = self.site {
+			json["site"] = site.asJSON(errors: &errors)
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()

@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -116,6 +116,9 @@ open class TimingRepeat: Element {
 	/// Maximum number of times to repeat.
 	public var countMax: Int?
 	
+	/// If one or more days of week is provided, then the action happens only on the specified day(s).
+	public var dayOfWeek: [DaysOfWeek]?
+	
 	/// How long when it happens.
 	public var duration: NSDecimalNumber?
 	
@@ -142,6 +145,9 @@ open class TimingRepeat: Element {
 	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM).
 	public var periodUnit: String?
+	
+	/// Time of day for action.
+	public var timeOfDay: [FHIRTime]?
 	
 	/// Regular life events the event is tied to.
 	public var when: String?
@@ -207,6 +213,19 @@ open class TimingRepeat: Element {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "countMax", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["dayOfWeek"] {
+			presentKeys.insert("dayOfWeek")
+			if let val = exist as? [String] { var i = -1
+				self.dayOfWeek = val.map() { i += 1
+					if let enumval = DaysOfWeek(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "dayOfWeek.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
+			}
+			else {
+				errors.append(FHIRValidationError(key: "dayOfWeek", wants: Array<String>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["duration"] {
@@ -290,6 +309,15 @@ open class TimingRepeat: Element {
 				errors.append(FHIRValidationError(key: "periodUnit", wants: String.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["timeOfDay"] {
+			presentKeys.insert("timeOfDay")
+			if let val = exist as? [String] {
+				self.timeOfDay = FHIRTime.instantiate(fromArray: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "timeOfDay", wants: Array<String>.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["when"] {
 			presentKeys.insert("when")
 			if let val = exist as? String {
@@ -320,6 +348,9 @@ open class TimingRepeat: Element {
 		if let countMax = self.countMax {
 			json["countMax"] = countMax.asJSON()
 		}
+		if let dayOfWeek = self.dayOfWeek {
+			json["dayOfWeek"] = dayOfWeek.map() { $0.rawValue }
+		}
 		if let duration = self.duration {
 			json["duration"] = duration.asJSON()
 		}
@@ -346,6 +377,9 @@ open class TimingRepeat: Element {
 		}
 		if let periodUnit = self.periodUnit {
 			json["periodUnit"] = periodUnit.asJSON()
+		}
+		if let timeOfDay = self.timeOfDay {
+			json["timeOfDay"] = timeOfDay.map() { $0.asJSON() }
 		}
 		if let when = self.when {
 			json["when"] = when.asJSON()

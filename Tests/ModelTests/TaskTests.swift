@@ -2,7 +2,7 @@
 //  TaskTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -34,16 +34,15 @@ class TaskTests: XCTestCase {
 	func runTask1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Task {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "task-example.json")
 		
+		XCTAssertEqual(inst.authoredOn?.description, "2016-03-10T22:39:32-04:00")
 		XCTAssertEqual(inst.code?.text, "Refill Request")
-		XCTAssertEqual(inst.created?.description, "2016-03-10T22:39:32-04:00")
-		XCTAssertEqual(inst.focus?.reference, "MedicationRequest/medrx001")
+		XCTAssertEqual(inst.focus?.reference, "MedicationRequest/medrx002")
 		XCTAssertEqual(inst.for_fhir?.reference, "Patient/f001")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "order")!)
 		XCTAssertEqual(inst.lastModified?.description, "2016-03-10T22:39:32-04:00")
-		XCTAssertEqual(inst.owner?.reference, "Practitioner/MyDoc")
-		XCTAssertEqual(inst.requester?.reference, "Patient/Keith")
-		XCTAssertEqual(inst.stage?.coding?[0].code, "actionable")
-		XCTAssertEqual(inst.stage?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/task-stage")
+		XCTAssertEqual(inst.owner?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.requester?.agent?.reference, "Patient/example")
 		XCTAssertEqual(inst.status, TaskStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

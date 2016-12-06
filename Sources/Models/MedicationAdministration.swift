@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -28,10 +28,10 @@ open class MedicationAdministration: DomainResource {
 	public var dosage: MedicationAdministrationDosage?
 	
 	/// Start and end time of administration.
-	public var effectiveTimeDateTime: DateTime?
+	public var effectiveDateTime: DateTime?
 	
 	/// Start and end time of administration.
-	public var effectiveTimePeriod: Period?
+	public var effectivePeriod: Period?
 	
 	/// Encounter administered as part of.
 	public var encounter: Reference?
@@ -82,16 +82,16 @@ open class MedicationAdministration: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(effectiveTime: Any, medication: Any, patient: Reference, status: MedicationAdministrationStatus) {
+	public convenience init(effective: Any, medication: Any, patient: Reference, status: MedicationAdministrationStatus) {
 		self.init()
-		if let value = effectiveTime as? DateTime {
-			self.effectiveTimeDateTime = value
+		if let value = effective as? DateTime {
+			self.effectiveDateTime = value
 		}
-		else if let value = effectiveTime as? Period {
-			self.effectiveTimePeriod = value
+		else if let value = effective as? Period {
+			self.effectivePeriod = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: effectiveTime))” for property “\(effectiveTime)” is invalid, ignoring")
+			fhir_warn("Type “\(type(of: effective))” for property “\(effective)” is invalid, ignoring")
 		}
 		if let value = medication as? CodeableConcept {
 			self.medicationCodeableConcept = value
@@ -137,27 +137,27 @@ open class MedicationAdministration: DomainResource {
 				errors.append(FHIRValidationError(key: "dosage", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["effectiveTimeDateTime"] {
-			presentKeys.insert("effectiveTimeDateTime")
+		if let exist = json["effectiveDateTime"] {
+			presentKeys.insert("effectiveDateTime")
 			if let val = exist as? String {
-				self.effectiveTimeDateTime = DateTime(string: val)
+				self.effectiveDateTime = DateTime(string: val)
 			}
 			else {
-				errors.append(FHIRValidationError(key: "effectiveTimeDateTime", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "effectiveDateTime", wants: String.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["effectiveTimePeriod"] {
-			presentKeys.insert("effectiveTimePeriod")
+		if let exist = json["effectivePeriod"] {
+			presentKeys.insert("effectivePeriod")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.effectiveTimePeriod = try Period(json: val, owner: self)
+					self.effectivePeriod = try Period(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "effectiveTimePeriod"))
+					errors.append(error.prefixed(with: "effectivePeriod"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "effectiveTimePeriod", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "effectivePeriod", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["encounter"] {
@@ -373,8 +373,8 @@ open class MedicationAdministration: DomainResource {
 		}
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.effectiveTimeDateTime && nil == self.effectiveTimePeriod {
-			errors.append(FHIRValidationError(missing: "effectiveTime[x]"))
+		if nil == self.effectiveDateTime && nil == self.effectivePeriod {
+			errors.append(FHIRValidationError(missing: "effective[x]"))
 		}
 		if nil == self.medicationCodeableConcept && nil == self.medicationReference {
 			errors.append(FHIRValidationError(missing: "medication[x]"))
@@ -391,11 +391,11 @@ open class MedicationAdministration: DomainResource {
 		if let dosage = self.dosage {
 			json["dosage"] = dosage.asJSON(errors: &errors)
 		}
-		if let effectiveTimeDateTime = self.effectiveTimeDateTime {
-			json["effectiveTimeDateTime"] = effectiveTimeDateTime.asJSON()
+		if let effectiveDateTime = self.effectiveDateTime {
+			json["effectiveDateTime"] = effectiveDateTime.asJSON()
 		}
-		if let effectiveTimePeriod = self.effectiveTimePeriod {
-			json["effectiveTimePeriod"] = effectiveTimePeriod.asJSON(errors: &errors)
+		if let effectivePeriod = self.effectivePeriod {
+			json["effectivePeriod"] = effectivePeriod.asJSON(errors: &errors)
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON(errors: &errors)
@@ -474,10 +474,7 @@ open class MedicationAdministrationDosage: BackboneElement {
 	public var route: CodeableConcept?
 	
 	/// Body site administered to.
-	public var siteCodeableConcept: CodeableConcept?
-	
-	/// Body site administered to.
-	public var siteReference: Reference?
+	public var site: CodeableConcept?
 	
 	/// Free text dosage instructions e.g. SIG.
 	public var text: String?
@@ -555,32 +552,18 @@ open class MedicationAdministrationDosage: BackboneElement {
 				errors.append(FHIRValidationError(key: "route", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["siteCodeableConcept"] {
-			presentKeys.insert("siteCodeableConcept")
+		if let exist = json["site"] {
+			presentKeys.insert("site")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.siteCodeableConcept = try CodeableConcept(json: val, owner: self)
+					self.site = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "siteCodeableConcept"))
+					errors.append(error.prefixed(with: "site"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["siteReference"] {
-			presentKeys.insert("siteReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.siteReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "siteReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "siteReference", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "site", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["text"] {
@@ -613,11 +596,8 @@ open class MedicationAdministrationDosage: BackboneElement {
 		if let route = self.route {
 			json["route"] = route.asJSON(errors: &errors)
 		}
-		if let siteCodeableConcept = self.siteCodeableConcept {
-			json["siteCodeableConcept"] = siteCodeableConcept.asJSON(errors: &errors)
-		}
-		if let siteReference = self.siteReference {
-			json["siteReference"] = siteReference.asJSON(errors: &errors)
+		if let site = self.site {
+			json["site"] = site.asJSON(errors: &errors)
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()

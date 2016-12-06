@@ -2,7 +2,7 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -507,7 +507,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var code: [CodeableConcept]?
 	
 	/// Whether or not the action is applicable.
-	public var condition: PlanDefinitionActionDefinitionCondition?
+	public var condition: [PlanDefinitionActionDefinitionCondition]?
 	
 	/// Short description of the action.
 	public var description_fhir: String?
@@ -521,8 +521,14 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	/// Defines the grouping behavior for the action and its children.
 	public var groupingBehavior: PlanActionGroupingBehavior?
 	
+	/// Input data requirements.
+	public var input: [DataRequirement]?
+	
 	/// User-visible label for the action (e.g. 1. or A.).
 	public var label: String?
+	
+	/// Output data definition.
+	public var output: [DataRequirement]?
 	
 	/// The type of participant in the action.
 	public var participantType: [PlanActionParticipantType]?
@@ -644,16 +650,16 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		}
 		if let exist = json["condition"] {
 			presentKeys.insert("condition")
-			if let val = exist as? FHIRJSON {
+			if let val = exist as? [FHIRJSON] {
 				do {
-					self.condition = try PlanDefinitionActionDefinitionCondition(json: val, owner: self)
+					self.condition = try PlanDefinitionActionDefinitionCondition.instantiate(fromArray: val, owner: self) as? [PlanDefinitionActionDefinitionCondition]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "condition"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "condition", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "condition", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["description"] {
@@ -707,6 +713,20 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 				errors.append(FHIRValidationError(key: "groupingBehavior", wants: String.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["input"] {
+			presentKeys.insert("input")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.input = try DataRequirement.instantiate(fromArray: val, owner: self) as? [DataRequirement]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "input"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "input", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["label"] {
 			presentKeys.insert("label")
 			if let val = exist as? String {
@@ -714,6 +734,20 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "label", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["output"] {
+			presentKeys.insert("output")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.output = try DataRequirement.instantiate(fromArray: val, owner: self) as? [DataRequirement]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "output"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "output", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["participantType"] {
@@ -932,7 +966,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 			json["code"] = code.map() { $0.asJSON(errors: &errors) }
 		}
 		if let condition = self.condition {
-			json["condition"] = condition.asJSON(errors: &errors)
+			json["condition"] = condition.map() { $0.asJSON(errors: &errors) }
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -946,8 +980,14 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let groupingBehavior = self.groupingBehavior {
 			json["groupingBehavior"] = groupingBehavior.rawValue
 		}
+		if let input = self.input {
+			json["input"] = input.map() { $0.asJSON(errors: &errors) }
+		}
 		if let label = self.label {
 			json["label"] = label.asJSON()
+		}
+		if let output = self.output {
+			json["output"] = output.map() { $0.asJSON(errors: &errors) }
 		}
 		if let participantType = self.participantType {
 			json["participantType"] = participantType.map() { $0.rawValue }
@@ -1003,7 +1043,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 /**
 Whether or not the action is applicable.
 
-An expression specifying whether or not the action is applicable in a given context.
+An expression that describes applicability criteria, or start/stop conditions for the action.
 */
 open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 	override open class var resourceType: String {
@@ -1016,8 +1056,18 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 	/// Boolean-valued expression.
 	public var expression: String?
 	
+	/// The kind of condition.
+	public var kind: PlanActionConditionKind?
+	
 	/// Language of the expression.
 	public var language: String?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(kind: PlanActionConditionKind) {
+		self.init()
+		self.kind = kind
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1040,6 +1090,23 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["kind"] {
+			presentKeys.insert("kind")
+			if let val = exist as? String {
+				if let enumval = PlanActionConditionKind(rawValue: val) {
+					self.kind = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "kind", problem: "the value “\(val)” is not valid"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "kind", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
+		}
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
@@ -1060,6 +1127,9 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 		}
 		if let expression = self.expression {
 			json["expression"] = expression.asJSON()
+		}
+		if let kind = self.kind {
+			json["kind"] = kind.rawValue
 		}
 		if let language = self.language {
 			json["language"] = language.asJSON()

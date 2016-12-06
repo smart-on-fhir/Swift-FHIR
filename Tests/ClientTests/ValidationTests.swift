@@ -27,11 +27,12 @@ class ValidationTests: XCTestCase {
 		}
 		catch let error as FHIRValidationError {
 			let lines = error.description.components(separatedBy: CharacterSet.newlines)
+			print(lines.joined(separator: "\n"))
 			XCTAssertEqual(5, lines.count)
 			XCTAssertTrue(lines[0].hasPrefix("Questionnaire.resourceType: "), lines[0])
-			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.1.item.0.type: "), lines[1])
-			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.2.option.1.value[x]: "), lines[2])
-			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.type: "), lines[3])
+			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.1.item.0.linkId: "), lines[1])
+			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.2.linkId: "), lines[2])
+			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.option.1.value[x]: "), lines[3])
 			XCTAssertTrue(lines[4].hasPrefix("Questionnaire.status: "), lines[4])
 		}
 		catch let error {
@@ -63,7 +64,8 @@ class ValidationTests: XCTestCase {
 	func testSerializationResource() {
 		let questionnaire1 = Questionnaire(status: .draft)
 		XCTAssertEqual("draft", questionnaire1.status?.rawValue)
-		let item = QuestionnaireItem(type: .display)
+		let item = QuestionnaireItem(linkId: "abc")
+		item.type = .display
 		item.text = "This is an empty questionnaire"
 		questionnaire1.item = [item]
 		do {

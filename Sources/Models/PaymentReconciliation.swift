@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -29,7 +29,7 @@ open class PaymentReconciliation: DomainResource {
 	public var disposition: String?
 	
 	/// Printed Form Identifier.
-	public var form: Coding?
+	public var form: CodeableConcept?
 	
 	/// Business Identifier.
 	public var identifier: [Identifier]?
@@ -40,11 +40,8 @@ open class PaymentReconciliation: DomainResource {
 	/// Insurer.
 	public var organization: Reference?
 	
-	/// Original version.
-	public var originalRuleset: Coding?
-	
 	/// complete | error | partial.
-	public var outcome: String?
+	public var outcome: CodeableConcept?
 	
 	/// Period covered.
 	public var period: Period?
@@ -58,22 +55,11 @@ open class PaymentReconciliation: DomainResource {
 	/// Responsible practitioner.
 	public var requestProvider: Reference?
 	
-	/// Resource version.
-	public var ruleset: Coding?
-	
-	/// The status of the resource instance.
-	public var status: PaymentReconciliationStatus?
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	/// Total amount of Payment.
 	public var total: Money?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: PaymentReconciliationStatus, total: Money) {
-		self.init()
-		self.status = status
-		self.total = total
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -114,7 +100,7 @@ open class PaymentReconciliation: DomainResource {
 			presentKeys.insert("form")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.form = try Coding(json: val, owner: self)
+					self.form = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "form"))
@@ -166,27 +152,18 @@ open class PaymentReconciliation: DomainResource {
 				errors.append(FHIRValidationError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["originalRuleset"] {
-			presentKeys.insert("originalRuleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.originalRuleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "originalRuleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["outcome"] {
 			presentKeys.insert("outcome")
-			if let val = exist as? String {
-				self.outcome = val
+			if let val = exist as? FHIRJSON {
+				do {
+					self.outcome = try CodeableConcept(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "outcome"))
+				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "outcome", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "outcome", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["period"] {
@@ -245,36 +222,14 @@ open class PaymentReconciliation: DomainResource {
 				errors.append(FHIRValidationError(key: "requestProvider", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["ruleset"] {
-			presentKeys.insert("ruleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.ruleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "ruleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				if let enumval = PaymentReconciliationStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
+				self.status = val
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let exist = json["total"] {
 			presentKeys.insert("total")
@@ -289,9 +244,6 @@ open class PaymentReconciliation: DomainResource {
 			else {
 				errors.append(FHIRValidationError(key: "total", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "total"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -320,11 +272,8 @@ open class PaymentReconciliation: DomainResource {
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON(errors: &errors)
 		}
-		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
-		}
 		if let outcome = self.outcome {
-			json["outcome"] = outcome.asJSON()
+			json["outcome"] = outcome.asJSON(errors: &errors)
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
@@ -338,11 +287,8 @@ open class PaymentReconciliation: DomainResource {
 		if let requestProvider = self.requestProvider {
 			json["requestProvider"] = requestProvider.asJSON(errors: &errors)
 		}
-		if let ruleset = self.ruleset {
-			json["ruleset"] = ruleset.asJSON(errors: &errors)
-		}
 		if let status = self.status {
-			json["status"] = status.rawValue
+			json["status"] = status.asJSON()
 		}
 		if let total = self.total {
 			json["total"] = total.asJSON(errors: &errors)
@@ -382,11 +328,11 @@ open class PaymentReconciliationDetail: BackboneElement {
 	public var submitter: Reference?
 	
 	/// Type code.
-	public var type: Coding?
+	public var type: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: Coding) {
+	public convenience init(type: CodeableConcept) {
 		self.init()
 		self.type = type
 	}
@@ -477,7 +423,7 @@ open class PaymentReconciliationDetail: BackboneElement {
 			presentKeys.insert("type")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.type = try Coding(json: val, owner: self)
+					self.type = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "type"))
@@ -537,7 +483,7 @@ open class PaymentReconciliationNote: BackboneElement {
 	public var text: String?
 	
 	/// display | print | printoper.
-	public var type: Coding?
+	public var type: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -555,7 +501,7 @@ open class PaymentReconciliationNote: BackboneElement {
 			presentKeys.insert("type")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.type = try Coding(json: val, owner: self)
+					self.type = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "type"))

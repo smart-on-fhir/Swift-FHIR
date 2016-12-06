@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -21,10 +21,16 @@ open class AllergyIntolerance: DomainResource {
 	}
 	
 	/// Date record was believed accurate.
-	public var attestedDate: DateTime?
+	public var assertedDate: DateTime?
+	
+	/// Source of the information about the allergy.
+	public var asserter: Reference?
 	
 	/// Category of the identified substance.
 	public var category: [AllergyIntoleranceCategory]?
+	
+	/// The clinical status of the allergy or intolerance.
+	public var clinicalStatus: AllergyIntoleranceClinicalStatus?
 	
 	/// Allergy or intolerance code.
 	public var code: CodeableConcept?
@@ -41,8 +47,20 @@ open class AllergyIntolerance: DomainResource {
 	/// Additional text not captured in other fields.
 	public var note: [Annotation]?
 	
-	/// Date(/time) when allergy or intolerance was identified.
-	public var onset: DateTime?
+	/// When allergy or intolerance was identified.
+	public var onsetAge: Age?
+	
+	/// When allergy or intolerance was identified.
+	public var onsetDateTime: DateTime?
+	
+	/// When allergy or intolerance was identified.
+	public var onsetPeriod: Period?
+	
+	/// When allergy or intolerance was identified.
+	public var onsetRange: Range?
+	
+	/// When allergy or intolerance was identified.
+	public var onsetString: String?
 	
 	/// Who the sensitivity is for.
 	public var patient: Reference?
@@ -53,33 +71,45 @@ open class AllergyIntolerance: DomainResource {
 	/// Who recorded the sensitivity.
 	public var recorder: Reference?
 	
-	/// Source of the information about the allergy.
-	public var reporter: Reference?
-	
-	/// Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified
-	/// substance (including pharmaceutical product).
-	public var status: AllergyIntoleranceStatus?
-	
 	/// Identification of the underlying physiological mechanism for the reaction risk.
 	public var type: AllergyIntoleranceType?
 	
+	/// Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified
+	/// substance (including pharmaceutical product).
+	public var verificationStatus: AllergyIntoleranceVerificationStatus?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference) {
+	public convenience init(patient: Reference, verificationStatus: AllergyIntoleranceVerificationStatus) {
 		self.init()
 		self.patient = patient
+		self.verificationStatus = verificationStatus
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["attestedDate"] {
-			presentKeys.insert("attestedDate")
+		if let exist = json["assertedDate"] {
+			presentKeys.insert("assertedDate")
 			if let val = exist as? String {
-				self.attestedDate = DateTime(string: val)
+				self.assertedDate = DateTime(string: val)
 			}
 			else {
-				errors.append(FHIRValidationError(key: "attestedDate", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "assertedDate", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["asserter"] {
+			presentKeys.insert("asserter")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.asserter = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "asserter"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "asserter", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["category"] {
@@ -93,6 +123,20 @@ open class AllergyIntolerance: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "category", wants: Array<String>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["clinicalStatus"] {
+			presentKeys.insert("clinicalStatus")
+			if let val = exist as? String {
+				if let enumval = AllergyIntoleranceClinicalStatus(rawValue: val) {
+					self.clinicalStatus = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "clinicalStatus", problem: "the value “\(val)” is not valid"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "clinicalStatus", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["code"] {
@@ -160,13 +204,64 @@ open class AllergyIntolerance: DomainResource {
 				errors.append(FHIRValidationError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["onset"] {
-			presentKeys.insert("onset")
-			if let val = exist as? String {
-				self.onset = DateTime(string: val)
+		if let exist = json["onsetAge"] {
+			presentKeys.insert("onsetAge")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.onsetAge = try Age(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "onsetAge"))
+				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "onset", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "onsetAge", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["onsetDateTime"] {
+			presentKeys.insert("onsetDateTime")
+			if let val = exist as? String {
+				self.onsetDateTime = DateTime(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "onsetDateTime", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["onsetPeriod"] {
+			presentKeys.insert("onsetPeriod")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.onsetPeriod = try Period(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "onsetPeriod"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "onsetPeriod", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["onsetRange"] {
+			presentKeys.insert("onsetRange")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.onsetRange = try Range(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "onsetRange"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "onsetRange", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["onsetString"] {
+			presentKeys.insert("onsetString")
+			if let val = exist as? String {
+				self.onsetString = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "onsetString", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["patient"] {
@@ -214,34 +309,6 @@ open class AllergyIntolerance: DomainResource {
 				errors.append(FHIRValidationError(key: "recorder", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["reporter"] {
-			presentKeys.insert("reporter")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.reporter = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "reporter"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "reporter", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = AllergyIntoleranceStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
@@ -256,17 +323,40 @@ open class AllergyIntolerance: DomainResource {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["verificationStatus"] {
+			presentKeys.insert("verificationStatus")
+			if let val = exist as? String {
+				if let enumval = AllergyIntoleranceVerificationStatus(rawValue: val) {
+					self.verificationStatus = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "verificationStatus", problem: "the value “\(val)” is not valid"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "verificationStatus", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "verificationStatus"))
+		}
 		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
-		if let attestedDate = self.attestedDate {
-			json["attestedDate"] = attestedDate.asJSON()
+		if let assertedDate = self.assertedDate {
+			json["assertedDate"] = assertedDate.asJSON()
+		}
+		if let asserter = self.asserter {
+			json["asserter"] = asserter.asJSON(errors: &errors)
 		}
 		if let category = self.category {
 			json["category"] = category.map() { $0.rawValue }
+		}
+		if let clinicalStatus = self.clinicalStatus {
+			json["clinicalStatus"] = clinicalStatus.rawValue
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
@@ -283,8 +373,20 @@ open class AllergyIntolerance: DomainResource {
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
 		}
-		if let onset = self.onset {
-			json["onset"] = onset.asJSON()
+		if let onsetAge = self.onsetAge {
+			json["onsetAge"] = onsetAge.asJSON(errors: &errors)
+		}
+		if let onsetDateTime = self.onsetDateTime {
+			json["onsetDateTime"] = onsetDateTime.asJSON()
+		}
+		if let onsetPeriod = self.onsetPeriod {
+			json["onsetPeriod"] = onsetPeriod.asJSON(errors: &errors)
+		}
+		if let onsetRange = self.onsetRange {
+			json["onsetRange"] = onsetRange.asJSON(errors: &errors)
+		}
+		if let onsetString = self.onsetString {
+			json["onsetString"] = onsetString.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
@@ -295,14 +397,11 @@ open class AllergyIntolerance: DomainResource {
 		if let recorder = self.recorder {
 			json["recorder"] = recorder.asJSON(errors: &errors)
 		}
-		if let reporter = self.reporter {
-			json["reporter"] = reporter.asJSON(errors: &errors)
-		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		if let verificationStatus = self.verificationStatus {
+			json["verificationStatus"] = verificationStatus.rawValue
 		}
 		
 		return json

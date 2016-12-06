@@ -2,7 +2,7 @@
 //  EnrollmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -39,10 +39,11 @@ class EnrollmentResponseTests: XCTestCase {
 		XCTAssertEqual(inst.id, "ER2500")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst.identifier?[0].value, "781234")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome, "complete")
-		XCTAssertEqual(inst.requestReference?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
-		XCTAssertEqual(inst.status, EnrollmentResponseStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.organization?.reference, "Organization/2")
+		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
+		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
+		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EnrollmentResponse</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

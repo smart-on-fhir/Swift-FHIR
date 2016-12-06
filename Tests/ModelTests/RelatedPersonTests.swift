@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -39,7 +39,7 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "BSN")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
-		XCTAssertEqual(inst.name?[0].family?[0], "Abels")
+		XCTAssertEqual(inst.name?[0].family, "Abels")
 		XCTAssertEqual(inst.name?[0].given?[0], "Sarah")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
@@ -109,7 +109,7 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.address?[0].use, AddressUse(rawValue: "home")!)
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "male")!)
 		XCTAssertEqual(inst.id, "peter")
-		XCTAssertEqual(inst.name?[0].family?[0], "Chalmers")
+		XCTAssertEqual(inst.name?[0].family, "Chalmers")
 		XCTAssertEqual(inst.name?[0].given?[0], "Peter")
 		XCTAssertEqual(inst.name?[0].given?[1], "James")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
@@ -152,8 +152,7 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].type?.text, "INSEE")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[0].value, "272117510400399")
-		XCTAssertEqual(inst.name?[0].family?[0], "du")
-		XCTAssertEqual(inst.name?[0].family?[1], "Marché")
+		XCTAssertEqual(inst.name?[0].family, "du Marché")
 		XCTAssertEqual(inst.name?[0].given?[0], "Bénédicte")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")

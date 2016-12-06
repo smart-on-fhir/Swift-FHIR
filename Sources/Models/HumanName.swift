@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -20,7 +20,7 @@ open class HumanName: Element {
 	}
 	
 	/// Family name (often called 'Surname').
-	public var family: [String]?
+	public var family: String?
 	
 	/// Given names (not always 'first'). Includes middle names.
 	public var given: [String]?
@@ -45,11 +45,11 @@ open class HumanName: Element {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		if let exist = json["family"] {
 			presentKeys.insert("family")
-			if let val = exist as? [String] {
+			if let val = exist as? String {
 				self.family = val
 			}
 			else {
-				errors.append(FHIRValidationError(key: "family", wants: Array<String>.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "family", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["given"] {
@@ -123,7 +123,7 @@ open class HumanName: Element {
 		var json = super.asJSON(errors: &errors)
 		
 		if let family = self.family {
-			json["family"] = family.map() { $0.asJSON() }
+			json["family"] = family.asJSON()
 		}
 		if let given = self.given {
 			json["given"] = given.map() { $0.asJSON() }

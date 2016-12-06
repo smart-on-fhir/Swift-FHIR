@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -372,9 +372,9 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].userId?.value, "SomeIdiot@nowhere.com")
 		XCTAssertEqual(inst.agent?[1].network?.address, "marketing.land")
 		XCTAssertEqual(inst.agent?[1].network?.type, "1")
-		XCTAssertEqual(inst.agent?[1].purposeOfUse?[0].code, "HMARKT")
-		XCTAssertEqual(inst.agent?[1].purposeOfUse?[0].display, "healthcare marketing")
-		XCTAssertEqual(inst.agent?[1].purposeOfUse?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
+		XCTAssertEqual(inst.agent?[1].purposeOfUse?[0].coding?[0].code, "HMARKT")
+		XCTAssertEqual(inst.agent?[1].purposeOfUse?[0].coding?[0].display, "healthcare marketing")
+		XCTAssertEqual(inst.agent?[1].purposeOfUse?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.agent?[1].reference?.reference, "Practitioner/example")
 		XCTAssertFalse(inst.agent?[1].requestor ?? true)
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110152")
@@ -413,9 +413,9 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example-disclosure")
 		XCTAssertEqual(inst.outcome, "0")
 		XCTAssertEqual(inst.outcomeDesc, "Successful  Disclosure")
-		XCTAssertEqual(inst.purposeOfEvent?[0].code, "HMARKT")
-		XCTAssertEqual(inst.purposeOfEvent?[0].display, "healthcare marketing")
-		XCTAssertEqual(inst.purposeOfEvent?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
+		XCTAssertEqual(inst.purposeOfEvent?[0].coding?[0].code, "HMARKT")
+		XCTAssertEqual(inst.purposeOfEvent?[0].coding?[0].display, "healthcare marketing")
+		XCTAssertEqual(inst.purposeOfEvent?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.recorded?.description, "2013-09-22T00:08:00Z")
 		XCTAssertEqual(inst.source?.identifier?.value, "Watchers Accounting of Disclosures Application")
 		XCTAssertEqual(inst.source?.site, "Watcher")

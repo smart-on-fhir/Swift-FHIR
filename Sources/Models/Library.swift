@@ -2,7 +2,7 @@
 //  Library.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Library) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Library) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -28,7 +28,7 @@ open class Library: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// The content of the library.
-	public var content: Attachment?
+	public var content: [Attachment]?
 	
 	/// A content contributor.
 	public var contributor: [Contributor]?
@@ -101,9 +101,8 @@ open class Library: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Attachment, status: PublicationStatus, type: CodeableConcept) {
+	public convenience init(status: PublicationStatus, type: CodeableConcept) {
 		self.init()
-		self.content = content
 		self.status = status
 		self.type = type
 	}
@@ -136,20 +135,17 @@ open class Library: DomainResource {
 		}
 		if let exist = json["content"] {
 			presentKeys.insert("content")
-			if let val = exist as? FHIRJSON {
+			if let val = exist as? [FHIRJSON] {
 				do {
-					self.content = try Attachment(json: val, owner: self)
+					self.content = try Attachment.instantiate(fromArray: val, owner: self) as? [Attachment]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "content"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "content", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "content", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "content"))
 		}
 		if let exist = json["contributor"] {
 			presentKeys.insert("contributor")
@@ -432,7 +428,7 @@ open class Library: DomainResource {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let content = self.content {
-			json["content"] = content.asJSON(errors: &errors)
+			json["content"] = content.map() { $0.asJSON(errors: &errors) }
 		}
 		if let contributor = self.contributor {
 			json["contributor"] = contributor.map() { $0.asJSON(errors: &errors) }

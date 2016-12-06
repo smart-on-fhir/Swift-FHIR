@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
 Eligibility request.
 
-This resource provides the insurance eligibility details from the insurer regarding a specified coverage and optionally
-some class of service.
+This resource provides the details  from the insurer to identify a specified coverage and optionally some class of
+service.
 */
 open class EligibilityRequest: DomainResource {
 	override open class var resourceType: String {
@@ -21,10 +21,10 @@ open class EligibilityRequest: DomainResource {
 	}
 	
 	/// Benefit Category.
-	public var benefitCategory: Coding?
+	public var benefitCategory: CodeableConcept?
 	
 	/// Benefit SubCategory.
-	public var benefitSubCategory: Coding?
+	public var benefitSubCategory: CodeableConcept?
 	
 	/// Business agreement.
 	public var businessArrangement: String?
@@ -50,20 +50,14 @@ open class EligibilityRequest: DomainResource {
 	/// Responsible organization.
 	public var organization: Reference?
 	
-	/// Original version.
-	public var originalRuleset: Coding?
-	
 	/// The subject of the Products and Services.
 	public var patient: Reference?
 	
 	/// Desired processing priority.
-	public var priority: Coding?
+	public var priority: CodeableConcept?
 	
 	/// Responsible practitioner.
 	public var provider: Reference?
-	
-	/// Resource version.
-	public var ruleset: Coding?
 	
 	/// Estimated date or dates of Service.
 	public var servicedDate: FHIRDate?
@@ -71,15 +65,8 @@ open class EligibilityRequest: DomainResource {
 	/// Estimated date or dates of Service.
 	public var servicedPeriod: Period?
 	
-	/// The status of the resource instance.
-	public var status: EligibilityRequestStatus?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: EligibilityRequestStatus) {
-		self.init()
-		self.status = status
-	}
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -88,7 +75,7 @@ open class EligibilityRequest: DomainResource {
 			presentKeys.insert("benefitCategory")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.benefitCategory = try Coding(json: val, owner: self)
+					self.benefitCategory = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "benefitCategory"))
@@ -102,7 +89,7 @@ open class EligibilityRequest: DomainResource {
 			presentKeys.insert("benefitSubCategory")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.benefitSubCategory = try Coding(json: val, owner: self)
+					self.benefitSubCategory = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "benefitSubCategory"))
@@ -214,20 +201,6 @@ open class EligibilityRequest: DomainResource {
 				errors.append(FHIRValidationError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["originalRuleset"] {
-			presentKeys.insert("originalRuleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.originalRuleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "originalRuleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["patient"] {
 			presentKeys.insert("patient")
 			if let val = exist as? FHIRJSON {
@@ -246,7 +219,7 @@ open class EligibilityRequest: DomainResource {
 			presentKeys.insert("priority")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.priority = try Coding(json: val, owner: self)
+					self.priority = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "priority"))
@@ -268,20 +241,6 @@ open class EligibilityRequest: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["ruleset"] {
-			presentKeys.insert("ruleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.ruleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "ruleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["servicedDate"] {
@@ -310,19 +269,11 @@ open class EligibilityRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				if let enumval = EligibilityRequestStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
+				self.status = val
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "status"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -360,9 +311,6 @@ open class EligibilityRequest: DomainResource {
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON(errors: &errors)
 		}
-		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
-		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
@@ -372,9 +320,6 @@ open class EligibilityRequest: DomainResource {
 		if let provider = self.provider {
 			json["provider"] = provider.asJSON(errors: &errors)
 		}
-		if let ruleset = self.ruleset {
-			json["ruleset"] = ruleset.asJSON(errors: &errors)
-		}
 		if let servicedDate = self.servicedDate {
 			json["servicedDate"] = servicedDate.asJSON()
 		}
@@ -382,7 +327,7 @@ open class EligibilityRequest: DomainResource {
 			json["servicedPeriod"] = servicedPeriod.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.rawValue
+			json["status"] = status.asJSON()
 		}
 		
 		return json

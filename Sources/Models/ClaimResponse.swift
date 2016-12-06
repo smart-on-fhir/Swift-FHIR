@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -22,8 +22,8 @@ open class ClaimResponse: DomainResource {
 	/// Insurer added line items.
 	public var addItem: [ClaimResponseAddItem]?
 	
-	/// Insurance or medical plan.
-	public var coverage: [ClaimResponseCoverage]?
+	/// Request for additional information.
+	public var communicationRequest: [Reference]?
 	
 	/// Creation date.
 	public var created: DateTime?
@@ -35,10 +35,16 @@ open class ClaimResponse: DomainResource {
 	public var error: [ClaimResponseError]?
 	
 	/// Printed Form Identifier.
-	public var form: Coding?
+	public var form: CodeableConcept?
 	
 	/// Response  number.
 	public var identifier: [Identifier]?
+	
+	/// Insurance or medical plan.
+	public var insurance: [ClaimResponseInsurance]?
+	
+	/// Insurer.
+	public var insurer: Reference?
 	
 	/// Line items.
 	public var item: [ClaimResponseItem]?
@@ -46,17 +52,11 @@ open class ClaimResponse: DomainResource {
 	/// Processing notes.
 	public var note: [ClaimResponseNote]?
 	
-	/// Insurer.
-	public var organization: Reference?
-	
-	/// Original version.
-	public var originalRuleset: Coding?
-	
 	/// complete | error | partial.
-	public var outcome: Coding?
+	public var outcome: CodeableConcept?
 	
 	/// Party to be paid any benefits payable.
-	public var payeeType: Coding?
+	public var payeeType: CodeableConcept?
 	
 	/// Payment details, if paid.
 	public var payment: ClaimResponsePayment?
@@ -73,11 +73,8 @@ open class ClaimResponse: DomainResource {
 	/// Funds reserved status.
 	public var reserved: Coding?
 	
-	/// Resource version.
-	public var ruleset: Coding?
-	
-	/// The status of the resource instance.
-	public var status: ClaimResponseStatus?
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	/// Total benefit payable for the Claim.
 	public var totalBenefit: Money?
@@ -87,13 +84,6 @@ open class ClaimResponse: DomainResource {
 	
 	/// Unallocated deductible.
 	public var unallocDeductable: Money?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: ClaimResponseStatus) {
-		self.init()
-		self.status = status
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -112,18 +102,18 @@ open class ClaimResponse: DomainResource {
 				errors.append(FHIRValidationError(key: "addItem", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["coverage"] {
-			presentKeys.insert("coverage")
+		if let exist = json["communicationRequest"] {
+			presentKeys.insert("communicationRequest")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.coverage = try ClaimResponseCoverage.instantiate(fromArray: val, owner: self) as? [ClaimResponseCoverage]
+					self.communicationRequest = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "coverage"))
+					errors.append(error.prefixed(with: "communicationRequest"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "coverage", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "communicationRequest", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["created"] {
@@ -162,7 +152,7 @@ open class ClaimResponse: DomainResource {
 			presentKeys.insert("form")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.form = try Coding(json: val, owner: self)
+					self.form = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "form"))
@@ -184,6 +174,34 @@ open class ClaimResponse: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["insurance"] {
+			presentKeys.insert("insurance")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.insurance = try ClaimResponseInsurance.instantiate(fromArray: val, owner: self) as? [ClaimResponseInsurance]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "insurance"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "insurance", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["insurer"] {
+			presentKeys.insert("insurer")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.insurer = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "insurer"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "insurer", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["item"] {
@@ -214,39 +232,11 @@ open class ClaimResponse: DomainResource {
 				errors.append(FHIRValidationError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["organization"] {
-			presentKeys.insert("organization")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.organization = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "organization"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["originalRuleset"] {
-			presentKeys.insert("originalRuleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.originalRuleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "originalRuleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["outcome"] {
 			presentKeys.insert("outcome")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.outcome = try Coding(json: val, owner: self)
+					self.outcome = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "outcome"))
@@ -260,7 +250,7 @@ open class ClaimResponse: DomainResource {
 			presentKeys.insert("payeeType")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.payeeType = try Coding(json: val, owner: self)
+					self.payeeType = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "payeeType"))
@@ -340,36 +330,14 @@ open class ClaimResponse: DomainResource {
 				errors.append(FHIRValidationError(key: "reserved", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["ruleset"] {
-			presentKeys.insert("ruleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.ruleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "ruleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				if let enumval = ClaimResponseStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
+				self.status = val
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let exist = json["totalBenefit"] {
 			presentKeys.insert("totalBenefit")
@@ -422,8 +390,8 @@ open class ClaimResponse: DomainResource {
 		if let addItem = self.addItem {
 			json["addItem"] = addItem.map() { $0.asJSON(errors: &errors) }
 		}
-		if let coverage = self.coverage {
-			json["coverage"] = coverage.map() { $0.asJSON(errors: &errors) }
+		if let communicationRequest = self.communicationRequest {
+			json["communicationRequest"] = communicationRequest.map() { $0.asJSON(errors: &errors) }
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
@@ -440,17 +408,17 @@ open class ClaimResponse: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
+		if let insurance = self.insurance {
+			json["insurance"] = insurance.map() { $0.asJSON(errors: &errors) }
+		}
+		if let insurer = self.insurer {
+			json["insurer"] = insurer.asJSON(errors: &errors)
+		}
 		if let item = self.item {
 			json["item"] = item.map() { $0.asJSON(errors: &errors) }
 		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
-		}
-		if let organization = self.organization {
-			json["organization"] = organization.asJSON(errors: &errors)
-		}
-		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
 		}
 		if let outcome = self.outcome {
 			json["outcome"] = outcome.asJSON(errors: &errors)
@@ -473,11 +441,8 @@ open class ClaimResponse: DomainResource {
 		if let reserved = self.reserved {
 			json["reserved"] = reserved.asJSON(errors: &errors)
 		}
-		if let ruleset = self.ruleset {
-			json["ruleset"] = ruleset.asJSON(errors: &errors)
-		}
 		if let status = self.status {
-			json["status"] = status.rawValue
+			json["status"] = status.asJSON()
 		}
 		if let totalBenefit = self.totalBenefit {
 			json["totalBenefit"] = totalBenefit.asJSON(errors: &errors)
@@ -508,7 +473,7 @@ open class ClaimResponseAddItem: BackboneElement {
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
 	/// Type of service or product.
-	public var category: Coding?
+	public var category: CodeableConcept?
 	
 	/// Added items details.
 	public var detail: [ClaimResponseAddItemDetail]?
@@ -517,19 +482,19 @@ open class ClaimResponseAddItem: BackboneElement {
 	public var fee: Money?
 	
 	/// Service/Product billing modifiers.
-	public var modifier: [Coding]?
+	public var modifier: [CodeableConcept]?
 	
 	/// List of note numbers which apply.
 	public var noteNumber: [UInt]?
 	
 	/// Revenue or cost center code.
-	public var revenue: Coding?
+	public var revenue: CodeableConcept?
 	
 	/// Service instances.
 	public var sequenceLinkId: [UInt]?
 	
 	/// Group, Service or Product.
-	public var service: Coding?
+	public var service: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -552,7 +517,7 @@ open class ClaimResponseAddItem: BackboneElement {
 			presentKeys.insert("category")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.category = try Coding(json: val, owner: self)
+					self.category = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "category"))
@@ -594,7 +559,7 @@ open class ClaimResponseAddItem: BackboneElement {
 			presentKeys.insert("modifier")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.modifier = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+					self.modifier = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "modifier"))
@@ -617,7 +582,7 @@ open class ClaimResponseAddItem: BackboneElement {
 			presentKeys.insert("revenue")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.revenue = try Coding(json: val, owner: self)
+					self.revenue = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "revenue"))
@@ -640,7 +605,7 @@ open class ClaimResponseAddItem: BackboneElement {
 			presentKeys.insert("service")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.service = try Coding(json: val, owner: self)
+					self.service = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "service"))
@@ -703,22 +668,22 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
 	/// Type of service or product.
-	public var category: Coding?
+	public var category: CodeableConcept?
 	
 	/// Professional fee or Product charge.
 	public var fee: Money?
 	
 	/// Service/Product billing modifiers.
-	public var modifier: [Coding]?
+	public var modifier: [CodeableConcept]?
 	
 	/// List of note numbers which apply.
 	public var noteNumber: [UInt]?
 	
 	/// Revenue or cost center code.
-	public var revenue: Coding?
+	public var revenue: CodeableConcept?
 	
 	/// Service or Product.
-	public var service: Coding?
+	public var service: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -741,7 +706,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 			presentKeys.insert("category")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.category = try Coding(json: val, owner: self)
+					self.category = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "category"))
@@ -769,7 +734,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 			presentKeys.insert("modifier")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.modifier = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+					self.modifier = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "modifier"))
@@ -792,7 +757,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 			presentKeys.insert("revenue")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.revenue = try Coding(json: val, owner: self)
+					self.revenue = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "revenue"))
@@ -806,7 +771,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 			presentKeys.insert("service")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.service = try Coding(json: val, owner: self)
+					self.service = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "service"))
@@ -850,13 +815,113 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 
 
 /**
+Processing errors.
+
+Mutually exclusive with Services Provided (Item).
+*/
+open class ClaimResponseError: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ClaimResponseError" }
+	}
+	
+	/// Error code detailing processing issues.
+	public var code: CodeableConcept?
+	
+	/// Detail sequence number.
+	public var detailSequenceLinkId: UInt?
+	
+	/// Item sequence number.
+	public var sequenceLinkId: UInt?
+	
+	/// Subdetail sequence number.
+	public var subdetailSequenceLinkId: UInt?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(code: CodeableConcept) {
+		self.init()
+		self.code = code
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["code"] {
+			presentKeys.insert("code")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.code = try CodeableConcept(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "code"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
+		if let exist = json["detailSequenceLinkId"] {
+			presentKeys.insert("detailSequenceLinkId")
+			if let val = exist as? UInt {
+				self.detailSequenceLinkId = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "detailSequenceLinkId", wants: UInt.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["sequenceLinkId"] {
+			presentKeys.insert("sequenceLinkId")
+			if let val = exist as? UInt {
+				self.sequenceLinkId = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "sequenceLinkId", wants: UInt.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["subdetailSequenceLinkId"] {
+			presentKeys.insert("subdetailSequenceLinkId")
+			if let val = exist as? UInt {
+				self.subdetailSequenceLinkId = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "subdetailSequenceLinkId", wants: UInt.self, has: type(of: exist)))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
+		
+		if let code = self.code {
+			json["code"] = code.asJSON(errors: &errors)
+		}
+		if let detailSequenceLinkId = self.detailSequenceLinkId {
+			json["detailSequenceLinkId"] = detailSequenceLinkId.asJSON()
+		}
+		if let sequenceLinkId = self.sequenceLinkId {
+			json["sequenceLinkId"] = sequenceLinkId.asJSON()
+		}
+		if let subdetailSequenceLinkId = self.subdetailSequenceLinkId {
+			json["subdetailSequenceLinkId"] = subdetailSequenceLinkId.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
 Insurance or medical plan.
 
 Financial instrument by which payment information for health care.
 */
-open class ClaimResponseCoverage: BackboneElement {
+open class ClaimResponseInsurance: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ClaimResponseCoverage" }
+		get { return "ClaimResponseInsurance" }
 	}
 	
 	/// Business agreement.
@@ -993,106 +1058,6 @@ open class ClaimResponseCoverage: BackboneElement {
 
 
 /**
-Processing errors.
-
-Mutually exclusive with Services Provided (Item).
-*/
-open class ClaimResponseError: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ClaimResponseError" }
-	}
-	
-	/// Error code detailing processing issues.
-	public var code: Coding?
-	
-	/// Detail sequence number.
-	public var detailSequenceLinkId: UInt?
-	
-	/// Item sequence number.
-	public var sequenceLinkId: UInt?
-	
-	/// Subdetail sequence number.
-	public var subdetailSequenceLinkId: UInt?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
-		self.init()
-		self.code = code
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.code = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "code"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "code"))
-		}
-		if let exist = json["detailSequenceLinkId"] {
-			presentKeys.insert("detailSequenceLinkId")
-			if let val = exist as? UInt {
-				self.detailSequenceLinkId = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "detailSequenceLinkId", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["sequenceLinkId"] {
-			presentKeys.insert("sequenceLinkId")
-			if let val = exist as? UInt {
-				self.sequenceLinkId = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "sequenceLinkId", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["subdetailSequenceLinkId"] {
-			presentKeys.insert("subdetailSequenceLinkId")
-			if let val = exist as? UInt {
-				self.subdetailSequenceLinkId = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "subdetailSequenceLinkId", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
-		
-		if let code = self.code {
-			json["code"] = code.asJSON(errors: &errors)
-		}
-		if let detailSequenceLinkId = self.detailSequenceLinkId {
-			json["detailSequenceLinkId"] = detailSequenceLinkId.asJSON()
-		}
-		if let sequenceLinkId = self.sequenceLinkId {
-			json["sequenceLinkId"] = sequenceLinkId.asJSON()
-		}
-		if let subdetailSequenceLinkId = self.subdetailSequenceLinkId {
-			json["subdetailSequenceLinkId"] = subdetailSequenceLinkId.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
 Line items.
 
 The first tier service adjudications for submitted services.
@@ -1211,17 +1176,17 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 	public var amount: Money?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc..
-	public var category: Coding?
+	public var category: CodeableConcept?
 	
 	/// Adjudication reason.
-	public var reason: Coding?
+	public var reason: CodeableConcept?
 	
 	/// Non-monetary value.
 	public var value: NSDecimalNumber?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: Coding) {
+	public convenience init(category: CodeableConcept) {
 		self.init()
 		self.category = category
 	}
@@ -1247,7 +1212,7 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 			presentKeys.insert("category")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.category = try Coding(json: val, owner: self)
+					self.category = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "category"))
@@ -1264,7 +1229,7 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 			presentKeys.insert("reason")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.reason = try Coding(json: val, owner: self)
+					self.reason = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "reason"))
@@ -1508,7 +1473,7 @@ open class ClaimResponseNote: BackboneElement {
 	}
 	
 	/// Language.
-	public var language: Coding?
+	public var language: CodeableConcept?
 	
 	/// Note Number for this note.
 	public var number: UInt?
@@ -1517,7 +1482,7 @@ open class ClaimResponseNote: BackboneElement {
 	public var text: String?
 	
 	/// display | print | printoper.
-	public var type: Coding?
+	public var type: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1526,7 +1491,7 @@ open class ClaimResponseNote: BackboneElement {
 			presentKeys.insert("language")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.language = try Coding(json: val, owner: self)
+					self.language = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "language"))
@@ -1558,7 +1523,7 @@ open class ClaimResponseNote: BackboneElement {
 			presentKeys.insert("type")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.type = try Coding(json: val, owner: self)
+					self.type = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "type"))
@@ -1606,7 +1571,7 @@ open class ClaimResponsePayment: BackboneElement {
 	public var adjustment: Money?
 	
 	/// Reason for Payment adjustment.
-	public var adjustmentReason: Coding?
+	public var adjustmentReason: CodeableConcept?
 	
 	/// Payment amount.
 	public var amount: Money?
@@ -1618,7 +1583,7 @@ open class ClaimResponsePayment: BackboneElement {
 	public var identifier: Identifier?
 	
 	/// Partial or Complete.
-	public var type: Coding?
+	public var type: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1641,7 +1606,7 @@ open class ClaimResponsePayment: BackboneElement {
 			presentKeys.insert("adjustmentReason")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.adjustmentReason = try Coding(json: val, owner: self)
+					self.adjustmentReason = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "adjustmentReason"))
@@ -1692,7 +1657,7 @@ open class ClaimResponsePayment: BackboneElement {
 			presentKeys.insert("type")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.type = try Coding(json: val, owner: self)
+					self.type = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "type"))

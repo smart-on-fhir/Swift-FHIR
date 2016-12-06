@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -19,20 +19,29 @@ open class SearchParameter: DomainResource {
 		get { return "SearchParameter" }
 	}
 	
-	/// The resource type this search parameter applies to.
-	public var base: String?
+	/// The resource type(s) this search parameter applies to.
+	public var base: [String]?
+	
+	/// Chained names supported.
+	public var chain: [String]?
 	
 	/// Code used in URL.
 	public var code: String?
 	
+	/// Comparators supported for the search parameter.
+	public var comparator: [SearchComparator]?
+	
 	/// For Composite resources to define the parts.
-	public var component: [Reference]?
+	public var component: [SearchParameterComponent]?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
+	
+	/// Original Definition for the search parameter.
+	public var derivedFrom: URL?
 	
 	/// Natural language description of the search parameter.
 	public var description_fhir: String?
@@ -45,6 +54,9 @@ open class SearchParameter: DomainResource {
 	
 	/// Intended jurisdiction for search parameter (if applicable).
 	public var jurisdiction: [CodeableConcept]?
+	
+	/// A modifier supported for the search parameter.
+	public var modifier: [SearchModifierCode]?
 	
 	/// Name for this search parameter (Computer friendly).
 	public var name: String?
@@ -81,7 +93,7 @@ open class SearchParameter: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(base: String, code: String, description_fhir: String, name: String, status: PublicationStatus, type: SearchParamType, url: URL) {
+	public convenience init(base: [String], code: String, description_fhir: String, name: String, status: PublicationStatus, type: SearchParamType, url: URL) {
 		self.init()
 		self.base = base
 		self.code = code
@@ -97,15 +109,24 @@ open class SearchParameter: DomainResource {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		if let exist = json["base"] {
 			presentKeys.insert("base")
-			if let val = exist as? String {
+			if let val = exist as? [String] {
 				self.base = val
 			}
 			else {
-				errors.append(FHIRValidationError(key: "base", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "base", wants: Array<String>.self, has: type(of: exist)))
 			}
 		}
 		else {
 			errors.append(FHIRValidationError(missing: "base"))
+		}
+		if let exist = json["chain"] {
+			presentKeys.insert("chain")
+			if let val = exist as? [String] {
+				self.chain = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "chain", wants: Array<String>.self, has: type(of: exist)))
+			}
 		}
 		if let exist = json["code"] {
 			presentKeys.insert("code")
@@ -119,11 +140,24 @@ open class SearchParameter: DomainResource {
 		else {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
+		if let exist = json["comparator"] {
+			presentKeys.insert("comparator")
+			if let val = exist as? [String] { var i = -1
+				self.comparator = val.map() { i += 1
+					if let enumval = SearchComparator(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "comparator.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
+			}
+			else {
+				errors.append(FHIRValidationError(key: "comparator", wants: Array<String>.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["component"] {
 			presentKeys.insert("component")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.component = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+					self.component = try SearchParameterComponent.instantiate(fromArray: val, owner: self) as? [SearchParameterComponent]
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "component"))
@@ -154,6 +188,15 @@ open class SearchParameter: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["derivedFrom"] {
+			presentKeys.insert("derivedFrom")
+			if let val = exist as? String {
+				self.derivedFrom = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "derivedFrom", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["description"] {
@@ -198,6 +241,19 @@ open class SearchParameter: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["modifier"] {
+			presentKeys.insert("modifier")
+			if let val = exist as? [String] { var i = -1
+				self.modifier = val.map() { i += 1
+					if let enumval = SearchModifierCode(rawValue: $0) { return enumval }
+					errors.append(FHIRValidationError(key: "modifier.\(i)", problem: "the value “\(val)” is not valid"))
+					return nil
+				}.filter() { nil != $0 }.map() { $0! }
+			}
+			else {
+				errors.append(FHIRValidationError(key: "modifier", wants: Array<String>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["name"] {
@@ -338,10 +394,16 @@ open class SearchParameter: DomainResource {
 		var json = super.asJSON(errors: &errors)
 		
 		if let base = self.base {
-			json["base"] = base.asJSON()
+			json["base"] = base.map() { $0.asJSON() }
+		}
+		if let chain = self.chain {
+			json["chain"] = chain.map() { $0.asJSON() }
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		if let comparator = self.comparator {
+			json["comparator"] = comparator.map() { $0.rawValue }
 		}
 		if let component = self.component {
 			json["component"] = component.map() { $0.asJSON(errors: &errors) }
@@ -351,6 +413,9 @@ open class SearchParameter: DomainResource {
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
+		}
+		if let derivedFrom = self.derivedFrom {
+			json["derivedFrom"] = derivedFrom.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -363,6 +428,9 @@ open class SearchParameter: DomainResource {
 		}
 		if let jurisdiction = self.jurisdiction {
 			json["jurisdiction"] = jurisdiction.map() { $0.asJSON(errors: &errors) }
+		}
+		if let modifier = self.modifier {
+			json["modifier"] = modifier.map() { $0.rawValue }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -396,6 +464,80 @@ open class SearchParameter: DomainResource {
 		}
 		if let xpathUsage = self.xpathUsage {
 			json["xpathUsage"] = xpathUsage.rawValue
+		}
+		
+		return json
+	}
+}
+
+
+/**
+For Composite resources to define the parts.
+
+Used to define the parts of a composite search parameter.
+*/
+open class SearchParameterComponent: BackboneElement {
+	override open class var resourceType: String {
+		get { return "SearchParameterComponent" }
+	}
+	
+	/// Defines how the part works.
+	public var definition: Reference?
+	
+	/// Subexpression relative to main expression.
+	public var expression: String?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(definition: Reference, expression: String) {
+		self.init()
+		self.definition = definition
+		self.expression = expression
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["definition"] {
+			presentKeys.insert("definition")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.definition = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "definition"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "definition", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "definition"))
+		}
+		if let exist = json["expression"] {
+			presentKeys.insert("expression")
+			if let val = exist as? String {
+				self.expression = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "expression"))
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
+		
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON(errors: &errors)
+		}
+		if let expression = self.expression {
+			json["expression"] = expression.asJSON()
 		}
 		
 		return json

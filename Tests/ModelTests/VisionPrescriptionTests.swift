@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -46,10 +46,10 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.dispense?[0].duration?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.dispense?[0].duration?.unit, "month")
 		XCTAssertEqual(inst.dispense?[0].duration?.value, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dispense?[0].eye, VisionEyes(rawValue: "right")!)
+		XCTAssertEqual(inst.dispense?[0].eye?.coding?[0].code, "right")
 		XCTAssertEqual(inst.dispense?[0].power, NSDecimalNumber(string: "-2.75"))
-		XCTAssertEqual(inst.dispense?[0].product?.code, "contact")
-		XCTAssertEqual(inst.dispense?[0].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
+		XCTAssertEqual(inst.dispense?[0].product?.coding?[0].code, "contact")
+		XCTAssertEqual(inst.dispense?[0].product?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense?[1].add, NSDecimalNumber(string: "1.75"))
 		XCTAssertEqual(inst.dispense?[1].axis, 160)
 		XCTAssertEqual(inst.dispense?[1].backCurve, NSDecimalNumber(string: "8.7"))
@@ -61,16 +61,16 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.dispense?[1].duration?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.dispense?[1].duration?.unit, "month")
 		XCTAssertEqual(inst.dispense?[1].duration?.value, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dispense?[1].eye, VisionEyes(rawValue: "left")!)
+		XCTAssertEqual(inst.dispense?[1].eye?.coding?[0].code, "left")
 		XCTAssertEqual(inst.dispense?[1].power, NSDecimalNumber(string: "-2.75"))
-		XCTAssertEqual(inst.dispense?[1].product?.code, "contact")
-		XCTAssertEqual(inst.dispense?[1].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
+		XCTAssertEqual(inst.dispense?[1].product?.coding?[0].code, "contact")
+		XCTAssertEqual(inst.dispense?[1].product?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.id, "33124")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.happysight.com/prescription")
 		XCTAssertEqual(inst.identifier?[0].value, "15014")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.prescriber?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, VisionStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sample Contract Lens prescription</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -93,27 +93,27 @@ class VisionPrescriptionTests: XCTestCase {
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
 		XCTAssertEqual(inst.dispense?[0].add, NSDecimalNumber(string: "2.0"))
-		XCTAssertEqual(inst.dispense?[0].base, VisionBase(rawValue: "down")!)
-		XCTAssertEqual(inst.dispense?[0].eye, VisionEyes(rawValue: "right")!)
+		XCTAssertEqual(inst.dispense?[0].base?.coding?[0].code, "down")
+		XCTAssertEqual(inst.dispense?[0].eye?.coding?[0].code, "right")
 		XCTAssertEqual(inst.dispense?[0].prism, NSDecimalNumber(string: "0.5"))
-		XCTAssertEqual(inst.dispense?[0].product?.code, "lens")
-		XCTAssertEqual(inst.dispense?[0].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
+		XCTAssertEqual(inst.dispense?[0].product?.coding?[0].code, "lens")
+		XCTAssertEqual(inst.dispense?[0].product?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense?[0].sphere, NSDecimalNumber(string: "-2.0"))
 		XCTAssertEqual(inst.dispense?[1].add, NSDecimalNumber(string: "2.0"))
 		XCTAssertEqual(inst.dispense?[1].axis, 180)
-		XCTAssertEqual(inst.dispense?[1].base, VisionBase(rawValue: "up")!)
+		XCTAssertEqual(inst.dispense?[1].base?.coding?[0].code, "up")
 		XCTAssertEqual(inst.dispense?[1].cylinder, NSDecimalNumber(string: "-0.5"))
-		XCTAssertEqual(inst.dispense?[1].eye, VisionEyes(rawValue: "left")!)
+		XCTAssertEqual(inst.dispense?[1].eye?.coding?[0].code, "left")
 		XCTAssertEqual(inst.dispense?[1].prism, NSDecimalNumber(string: "0.5"))
-		XCTAssertEqual(inst.dispense?[1].product?.code, "lens")
-		XCTAssertEqual(inst.dispense?[1].product?.system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
+		XCTAssertEqual(inst.dispense?[1].product?.coding?[0].code, "lens")
+		XCTAssertEqual(inst.dispense?[1].product?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense?[1].sphere, NSDecimalNumber(string: "-1.0"))
 		XCTAssertEqual(inst.id, "33123")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.happysight.com/prescription")
 		XCTAssertEqual(inst.identifier?[0].value, "15013")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.prescriber?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.status, VisionStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

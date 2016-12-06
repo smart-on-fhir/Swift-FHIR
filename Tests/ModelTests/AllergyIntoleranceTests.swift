@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -34,8 +34,10 @@ class AllergyIntoleranceTests: XCTestCase {
 	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AllergyIntolerance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "allergyintolerance-example.json")
 		
-		XCTAssertEqual(inst.attestedDate?.description, "2014-10-09T14:58:00+11:00")
+		XCTAssertEqual(inst.assertedDate?.description, "2014-10-09T14:58:00+11:00")
+		XCTAssertEqual(inst.asserter?.reference, "Patient/example")
 		XCTAssertEqual(inst.category?[0], AllergyIntoleranceCategory(rawValue: "food")!)
+		XCTAssertEqual(inst.clinicalStatus, AllergyIntoleranceClinicalStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.code?.coding?[0].code, "227493005")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Cashew nuts")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -45,7 +47,7 @@ class AllergyIntoleranceTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "49476534")
 		XCTAssertEqual(inst.lastOccurrence?.description, "2012-06")
 		XCTAssertEqual(inst.note?[0].text, "The criticality is high becasue of the observed anaphylactic reaction when challenged with cashew extract.")
-		XCTAssertEqual(inst.onset?.description, "2004")
+		XCTAssertEqual(inst.onsetDateTime?.description, "2004")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.reaction?[0].certainty, AllergyIntoleranceCertainty(rawValue: "confirmed")!)
 		XCTAssertEqual(inst.reaction?[0].description_fhir, "Challenge Protocol. Severe reaction to subcutaneous cashew extract. Epinephrine administered")
@@ -68,10 +70,9 @@ class AllergyIntoleranceTests: XCTestCase {
 		XCTAssertEqual(inst.reaction?[1].onset?.description, "2004")
 		XCTAssertEqual(inst.reaction?[1].severity, AllergyIntoleranceSeverity(rawValue: "moderate")!)
 		XCTAssertEqual(inst.recorder?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.reporter?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, AllergyIntoleranceStatus(rawValue: "active-confirmed")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, AllergyIntoleranceType(rawValue: "allergy")!)
+		XCTAssertEqual(inst.verificationStatus, AllergyIntoleranceVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}

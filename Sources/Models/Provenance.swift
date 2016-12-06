@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -258,54 +258,78 @@ open class ProvenanceAgent: BackboneElement {
 		get { return "ProvenanceAgent" }
 	}
 	
-	/// Individual, device or organization playing role.
-	public var actor: Reference?
+	/// On behalf of.
+	public var onBehalfOfReference: Reference?
 	
-	/// Track delegation between agents.
-	public var relatedAgent: [ProvenanceAgentRelatedAgent]?
+	/// On behalf of.
+	public var onBehalfOfUri: URL?
+	
+	/// Type of relationship between agents.
+	public var relatedAgentType: CodeableConcept?
 	
 	/// What the agents involvement was.
 	public var role: Coding?
 	
-	/// Authorization-system identifier for the agent.
-	public var userId: Identifier?
+	/// Who participated.
+	public var whoReference: Reference?
+	
+	/// Who participated.
+	public var whoUri: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(role: Coding) {
+	public convenience init(role: Coding, who: Any) {
 		self.init()
 		self.role = role
+		if let value = who as? URL {
+			self.whoUri = value
+		}
+		else if let value = who as? Reference {
+			self.whoReference = value
+		}
+		else {
+			fhir_warn("Type “\(type(of: who))” for property “\(who)” is invalid, ignoring")
+		}
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["actor"] {
-			presentKeys.insert("actor")
+		if let exist = json["onBehalfOfReference"] {
+			presentKeys.insert("onBehalfOfReference")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.actor = try Reference(json: val, owner: self)
+					self.onBehalfOfReference = try Reference(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "actor"))
+					errors.append(error.prefixed(with: "onBehalfOfReference"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "onBehalfOfReference", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["relatedAgent"] {
-			presentKeys.insert("relatedAgent")
-			if let val = exist as? [FHIRJSON] {
+		if let exist = json["onBehalfOfUri"] {
+			presentKeys.insert("onBehalfOfUri")
+			if let val = exist as? String {
+				self.onBehalfOfUri = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "onBehalfOfUri", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["relatedAgentType"] {
+			presentKeys.insert("relatedAgentType")
+			if let val = exist as? FHIRJSON {
 				do {
-					self.relatedAgent = try ProvenanceAgentRelatedAgent.instantiate(fromArray: val, owner: self) as? [ProvenanceAgentRelatedAgent]
+					self.relatedAgentType = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "relatedAgent"))
+					errors.append(error.prefixed(with: "relatedAgentType"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "relatedAgent", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "relatedAgentType", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["role"] {
@@ -325,19 +349,33 @@ open class ProvenanceAgent: BackboneElement {
 		else {
 			errors.append(FHIRValidationError(missing: "role"))
 		}
-		if let exist = json["userId"] {
-			presentKeys.insert("userId")
+		if let exist = json["whoReference"] {
+			presentKeys.insert("whoReference")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.userId = try Identifier(json: val, owner: self)
+					self.whoReference = try Reference(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "userId"))
+					errors.append(error.prefixed(with: "whoReference"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "userId", wants: FHIRJSON.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "whoReference", wants: FHIRJSON.self, has: type(of: exist)))
 			}
+		}
+		if let exist = json["whoUri"] {
+			presentKeys.insert("whoUri")
+			if let val = exist as? String {
+				self.whoUri = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "whoUri", wants: String.self, has: type(of: exist)))
+			}
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.whoUri && nil == self.whoReference {
+			errors.append(FHIRValidationError(missing: "who[x]"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -345,93 +383,23 @@ open class ProvenanceAgent: BackboneElement {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
-		if let actor = self.actor {
-			json["actor"] = actor.asJSON(errors: &errors)
+		if let onBehalfOfReference = self.onBehalfOfReference {
+			json["onBehalfOfReference"] = onBehalfOfReference.asJSON(errors: &errors)
 		}
-		if let relatedAgent = self.relatedAgent {
-			json["relatedAgent"] = relatedAgent.map() { $0.asJSON(errors: &errors) }
+		if let onBehalfOfUri = self.onBehalfOfUri {
+			json["onBehalfOfUri"] = onBehalfOfUri.asJSON()
+		}
+		if let relatedAgentType = self.relatedAgentType {
+			json["relatedAgentType"] = relatedAgentType.asJSON(errors: &errors)
 		}
 		if let role = self.role {
 			json["role"] = role.asJSON(errors: &errors)
 		}
-		if let userId = self.userId {
-			json["userId"] = userId.asJSON(errors: &errors)
+		if let whoReference = self.whoReference {
+			json["whoReference"] = whoReference.asJSON(errors: &errors)
 		}
-		
-		return json
-	}
-}
-
-
-/**
-Track delegation between agents.
-
-A relationship between two the agents referenced in this resource. This is defined to allow for explicit description of
-the delegation between agents.  For example, this human author used this device, or one person acted on another's
-behest.
-*/
-open class ProvenanceAgentRelatedAgent: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ProvenanceAgentRelatedAgent" }
-	}
-	
-	/// Reference to other agent in this resource by identifier.
-	public var target: URL?
-	
-	/// Type of relationship between agents.
-	public var type: CodeableConcept?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: URL, type: CodeableConcept) {
-		self.init()
-		self.target = target
-		self.type = type
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["target"] {
-			presentKeys.insert("target")
-			if let val = exist as? String {
-				self.target = URL(string: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "target", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "target"))
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.type = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
-		
-		if let target = self.target {
-			json["target"] = target.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON(errors: &errors)
+		if let whoUri = self.whoUri {
+			json["whoUri"] = whoUri.asJSON()
 		}
 		
 		return json
@@ -450,25 +418,18 @@ open class ProvenanceEntity: BackboneElement {
 	/// Entity is attributed to this agent.
 	public var agent: [ProvenanceAgent]?
 	
-	/// Human description of entity.
-	public var display: String?
-	
 	/// Identity of entity.
-	public var reference: URL?
+	public var reference: Reference?
 	
 	/// How the entity was used during the activity.
 	public var role: ProvenanceEntityRole?
 	
-	/// The type of resource in this entity.
-	public var type: Coding?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(reference: URL, role: ProvenanceEntityRole, type: Coding) {
+	public convenience init(reference: Reference, role: ProvenanceEntityRole) {
 		self.init()
 		self.reference = reference
 		self.role = role
-		self.type = type
 	}
 	
 	
@@ -488,22 +449,18 @@ open class ProvenanceEntity: BackboneElement {
 				errors.append(FHIRValidationError(key: "agent", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["display"] {
-			presentKeys.insert("display")
-			if let val = exist as? String {
-				self.display = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["reference"] {
 			presentKeys.insert("reference")
-			if let val = exist as? String {
-				self.reference = URL(string: val)
+			if let val = exist as? FHIRJSON {
+				do {
+					self.reference = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "reference"))
+				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "reference", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "reference", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		else {
@@ -526,23 +483,6 @@ open class ProvenanceEntity: BackboneElement {
 		else {
 			errors.append(FHIRValidationError(missing: "role"))
 		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.type = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
 		return errors.isEmpty ? nil : errors
 	}
 	
@@ -552,17 +492,11 @@ open class ProvenanceEntity: BackboneElement {
 		if let agent = self.agent {
 			json["agent"] = agent.map() { $0.asJSON(errors: &errors) }
 		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
 		if let reference = self.reference {
-			json["reference"] = reference.asJSON()
+			json["reference"] = reference.asJSON(errors: &errors)
 		}
 		if let role = self.role {
 			json["role"] = role.rawValue
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON(errors: &errors)
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -53,11 +53,11 @@ open class GuidanceResponse: DomainResource {
 	/// Reason for the response.
 	public var reasonReference: Reference?
 	
-	/// Proposed actions, if any.
-	public var requestGroup: Reference?
-	
 	/// The id of the request associated with this response, if any.
 	public var requestId: String?
+	
+	/// Proposed actions, if any.
+	public var result: Reference?
 	
 	/// The status of the response. If the evaluation is completed successfully, the status will indicate success.
 	/// However, in order to complete the evaluation, the engine may require more information. In this case, the status
@@ -233,20 +233,6 @@ open class GuidanceResponse: DomainResource {
 				errors.append(FHIRValidationError(key: "reasonReference", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["requestGroup"] {
-			presentKeys.insert("requestGroup")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.requestGroup = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "requestGroup"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "requestGroup", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["requestId"] {
 			presentKeys.insert("requestId")
 			if let val = exist as? String {
@@ -254,6 +240,20 @@ open class GuidanceResponse: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "requestId", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["result"] {
+			presentKeys.insert("result")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.result = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "result"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "result", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["status"] {
@@ -326,11 +326,11 @@ open class GuidanceResponse: DomainResource {
 		if let reasonReference = self.reasonReference {
 			json["reasonReference"] = reasonReference.asJSON(errors: &errors)
 		}
-		if let requestGroup = self.requestGroup {
-			json["requestGroup"] = requestGroup.asJSON(errors: &errors)
-		}
 		if let requestId = self.requestId {
 			json["requestId"] = requestId.asJSON()
+		}
+		if let result = self.result {
+			json["result"] = result.asJSON(errors: &errors)
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue

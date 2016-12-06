@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -56,11 +56,14 @@ open class Immunization: DomainResource {
 	/// Who administered vaccine.
 	public var performer: Reference?
 	
+	/// Indicates context the data was recorded in.
+	public var primarySource: Bool?
+	
 	/// Details of a reaction that follows immunization.
 	public var reaction: [ImmunizationReaction]?
 	
-	/// Indicates a self-reported record.
-	public var reported: Bool?
+	/// Indicates the source of a secondarily reported record.
+	public var reportOrigin: CodeableConcept?
 	
 	/// Who ordered vaccination.
 	public var requester: Reference?
@@ -86,10 +89,10 @@ open class Immunization: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, reported: Bool, status: MedicationAdministrationStatus, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
+	public convenience init(patient: Reference, primarySource: Bool, status: MedicationAdministrationStatus, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
 		self.init()
 		self.patient = patient
-		self.reported = reported
+		self.primarySource = primarySource
 		self.status = status
 		self.vaccineCode = vaccineCode
 		self.wasNotGiven = wasNotGiven
@@ -254,6 +257,18 @@ open class Immunization: DomainResource {
 				errors.append(FHIRValidationError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["primarySource"] {
+			presentKeys.insert("primarySource")
+			if let val = exist as? Bool {
+				self.primarySource = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "primarySource", wants: Bool.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "primarySource"))
+		}
 		if let exist = json["reaction"] {
 			presentKeys.insert("reaction")
 			if let val = exist as? [FHIRJSON] {
@@ -268,17 +283,19 @@ open class Immunization: DomainResource {
 				errors.append(FHIRValidationError(key: "reaction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["reported"] {
-			presentKeys.insert("reported")
-			if let val = exist as? Bool {
-				self.reported = val
+		if let exist = json["reportOrigin"] {
+			presentKeys.insert("reportOrigin")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.reportOrigin = try CodeableConcept(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "reportOrigin"))
+				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "reported", wants: Bool.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "reportOrigin", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "reported"))
 		}
 		if let exist = json["requester"] {
 			presentKeys.insert("requester")
@@ -424,11 +441,14 @@ open class Immunization: DomainResource {
 		if let performer = self.performer {
 			json["performer"] = performer.asJSON(errors: &errors)
 		}
+		if let primarySource = self.primarySource {
+			json["primarySource"] = primarySource.asJSON()
+		}
 		if let reaction = self.reaction {
 			json["reaction"] = reaction.map() { $0.asJSON(errors: &errors) }
 		}
-		if let reported = self.reported {
-			json["reported"] = reported.asJSON()
+		if let reportOrigin = self.reportOrigin {
+			json["reportOrigin"] = reportOrigin.asJSON(errors: &errors)
 		}
 		if let requester = self.requester {
 			json["requester"] = requester.asJSON(errors: &errors)

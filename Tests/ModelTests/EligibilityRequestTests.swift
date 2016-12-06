@@ -2,7 +2,7 @@
 //  EligibilityRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -42,8 +42,8 @@ class EligibilityRequestTests: XCTestCase {
 		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.patient?.reference, "Patient/pat1")
-		XCTAssertEqual(inst.priority?.code, "normal")
-		XCTAssertEqual(inst.status, EligibilityRequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.priority?.coding?[0].code, "normal")
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

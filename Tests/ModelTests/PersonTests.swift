@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -85,7 +85,7 @@ class PersonTests: XCTestCase {
 		XCTAssertEqual(inst.link?[0].target?.reference, "RelatedPerson/peter")
 		XCTAssertEqual(inst.link?[1].target?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.link?[1].target?.reference, "Patient/example")
-		XCTAssertEqual(inst.name?[0].family?[0], "Chalmers")
+		XCTAssertEqual(inst.name?[0].family, "Chalmers")
 		XCTAssertEqual(inst.name?[0].given?[0], "Peter")
 		XCTAssertEqual(inst.name?[0].given?[1], "James")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)

@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -19,13 +19,14 @@ open class Sequence: DomainResource {
 		get { return "Sequence" }
 	}
 	
-	/// Numbering used for sequence (0-based or 1-based).
+	/// Base number of coordinate system (0 for 0-based numbering or coordinates, inclusive start, exclusive end, 1 for
+	/// 1-based numbering, inclusive start, inclusive end).
 	public var coordinateSystem: Int?
 	
 	/// The method for sequencing.
 	public var device: Reference?
 	
-	/// Unique ID for this particular sequence.
+	/// Unique ID for this particular sequence. This is a FHIR-defined id.
 	public var identifier: [Identifier]?
 	
 	/// Observed sequence.
@@ -34,13 +35,16 @@ open class Sequence: DomainResource {
 	/// Who and/or what this is about.
 	public var patient: Reference?
 	
+	/// Who should be responsible for test result.
+	public var performer: Reference?
+	
 	/// Pointer to next atomic sequence.
 	public var pointer: [Reference]?
 	
 	/// Sequence quality.
 	public var quality: [SequenceQuality]?
 	
-	/// Quantity of the sequence.
+	/// The number of copies of the seqeunce of interest.  (RNASeq).
 	public var quantity: Quantity?
 	
 	/// Average number of reads representing a given nucleotide in the reconstructed sequence.
@@ -49,7 +53,7 @@ open class Sequence: DomainResource {
 	/// Reference sequence.
 	public var referenceSeq: SequenceReferenceSeq?
 	
-	/// External repository.
+	/// External repository which contains detailed report related with observedSeq in this resource.
 	public var repository: [SequenceRepository]?
 	
 	/// Specimen used for sequencing.
@@ -66,10 +70,9 @@ open class Sequence: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coordinateSystem: Int, type: String) {
+	public convenience init(coordinateSystem: Int) {
 		self.init()
 		self.coordinateSystem = coordinateSystem
-		self.type = type
 	}
 	
 	
@@ -136,6 +139,20 @@ open class Sequence: DomainResource {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["performer"] {
+			presentKeys.insert("performer")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.performer = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "performer"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["pointer"] {
@@ -254,9 +271,6 @@ open class Sequence: DomainResource {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
 			}
 		}
-		else {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
 		if let exist = json["variant"] {
 			presentKeys.insert("variant")
 			if let val = exist as? [FHIRJSON] {
@@ -291,6 +305,9 @@ open class Sequence: DomainResource {
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
+		}
+		if let performer = self.performer {
+			json["performer"] = performer.asJSON(errors: &errors)
 		}
 		if let pointer = self.pointer {
 			json["pointer"] = pointer.map() { $0.asJSON(errors: &errors) }
@@ -339,7 +356,7 @@ open class SequenceQuality: BackboneElement {
 		get { return "SequenceQuality" }
 	}
 	
-	/// End position (exclusive) of the sequence.
+	/// End position of the sequence.
 	public var end: Int?
 	
 	/// F-score.
@@ -369,7 +386,7 @@ open class SequenceQuality: BackboneElement {
 	/// Standard sequence for comparison.
 	public var standardSequence: CodeableConcept?
 	
-	/// Start position (inclusive) of the sequence.
+	/// Start position of the sequence.
 	public var start: Int?
 	
 	/// False negatives.
@@ -377,6 +394,16 @@ open class SequenceQuality: BackboneElement {
 	
 	/// True positives from the perspective of the truth data.
 	public var truthTP: NSDecimalNumber?
+	
+	/// INDEL / SNP / Undefined variant.
+	public var type: QualityType?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: QualityType) {
+		self.init()
+		self.type = type
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -513,6 +540,23 @@ open class SequenceQuality: BackboneElement {
 				errors.append(FHIRValidationError(key: "truthTP", wants: NSNumber.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				if let enumval = QualityType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		return errors.isEmpty ? nil : errors
 	}
 	
@@ -558,6 +602,9 @@ open class SequenceQuality: BackboneElement {
 		if let truthTP = self.truthTP {
 			json["truthTP"] = truthTP.asJSON()
 		}
+		if let type = self.type {
+			json["type"] = type.rawValue
+		}
 		
 		return json
 	}
@@ -567,7 +614,7 @@ open class SequenceQuality: BackboneElement {
 /**
 Reference sequence.
 
-A reference sequence is a sequence that is used to represent an allele or variant.
+A sequence that is used as a reference to describe variants that are present in a sequence analyzed.
 */
 open class SequenceReferenceSeq: BackboneElement {
 	override open class var resourceType: String {
@@ -583,27 +630,25 @@ open class SequenceReferenceSeq: BackboneElement {
 	/// Reference identifier.
 	public var referenceSeqId: CodeableConcept?
 	
-	/// A Pointer to another Sequence entity as refence sequence.
+	/// A Pointer to another Sequence entity as reference sequence.
 	public var referenceSeqPointer: Reference?
 	
 	/// A Reference Sequence string.
 	public var referenceSeqString: String?
 	
-	/// Strand of DNA.
+	/// Directionality of DNA ( +1/-1).
 	public var strand: Int?
 	
-	/// End position (exclusive) of the window on the reference sequence.
+	/// End position of the window on the reference sequence.
 	public var windowEnd: Int?
 	
-	/// Start position (inclusive) of the window on the  reference sequence.
+	/// Start position of the window on the  reference sequence.
 	public var windowStart: Int?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(referenceSeqId: CodeableConcept, strand: Int, windowEnd: Int, windowStart: Int) {
+	public convenience init(windowEnd: Int, windowStart: Int) {
 		self.init()
-		self.referenceSeqId = referenceSeqId
-		self.strand = strand
 		self.windowEnd = windowEnd
 		self.windowStart = windowStart
 	}
@@ -648,9 +693,6 @@ open class SequenceReferenceSeq: BackboneElement {
 				errors.append(FHIRValidationError(key: "referenceSeqId", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		else {
-			errors.append(FHIRValidationError(missing: "referenceSeqId"))
-		}
 		if let exist = json["referenceSeqPointer"] {
 			presentKeys.insert("referenceSeqPointer")
 			if let val = exist as? FHIRJSON {
@@ -682,9 +724,6 @@ open class SequenceReferenceSeq: BackboneElement {
 			else {
 				errors.append(FHIRValidationError(key: "strand", wants: Int.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "strand"))
 		}
 		if let exist = json["windowEnd"] {
 			presentKeys.insert("windowEnd")
@@ -747,30 +786,53 @@ open class SequenceReferenceSeq: BackboneElement {
 
 
 /**
-External repository.
+External repository which contains detailed report related with observedSeq in this resource.
 
-Configurations of the external repository.
+Configurations of the external repository. The repository shall store target's observedSeq or records related with
+target's observedSeq.
 */
 open class SequenceRepository: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SequenceRepository" }
 	}
 	
+	/// Id of the dataset that used to call for dataset in repository.
+	public var datasetId: String?
+	
 	/// Name of the repository.
 	public var name: String?
 	
 	/// Id of the read.
-	public var readId: String?
+	public var readsetId: String?
+	
+	/// Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource.
+	public var type: RepositoryType?
 	
 	/// URI of the repository.
 	public var url: URL?
 	
-	/// Id of the variant.
-	public var variantId: String?
+	/// Id of the variantset that used to call for variantset in repository.
+	public var variantsetId: String?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: RepositoryType) {
+		self.init()
+		self.type = type
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["datasetId"] {
+			presentKeys.insert("datasetId")
+			if let val = exist as? String {
+				self.datasetId = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "datasetId", wants: String.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
@@ -780,14 +842,31 @@ open class SequenceRepository: BackboneElement {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["readId"] {
-			presentKeys.insert("readId")
+		if let exist = json["readsetId"] {
+			presentKeys.insert("readsetId")
 			if let val = exist as? String {
-				self.readId = val
+				self.readsetId = val
 			}
 			else {
-				errors.append(FHIRValidationError(key: "readId", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "readsetId", wants: String.self, has: type(of: exist)))
 			}
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				if let enumval = RepositoryType(rawValue: val) {
+					self.type = enumval
+				}
+				else {
+					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let exist = json["url"] {
 			presentKeys.insert("url")
@@ -798,13 +877,13 @@ open class SequenceRepository: BackboneElement {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["variantId"] {
-			presentKeys.insert("variantId")
+		if let exist = json["variantsetId"] {
+			presentKeys.insert("variantsetId")
 			if let val = exist as? String {
-				self.variantId = val
+				self.variantsetId = val
 			}
 			else {
-				errors.append(FHIRValidationError(key: "variantId", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "variantsetId", wants: String.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -813,17 +892,23 @@ open class SequenceRepository: BackboneElement {
 	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
 		var json = super.asJSON(errors: &errors)
 		
+		if let datasetId = self.datasetId {
+			json["datasetId"] = datasetId.asJSON()
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
-		if let readId = self.readId {
-			json["readId"] = readId.asJSON()
+		if let readsetId = self.readsetId {
+			json["readsetId"] = readsetId.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.rawValue
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
-		if let variantId = self.variantId {
-			json["variantId"] = variantId.asJSON()
+		if let variantsetId = self.variantsetId {
+			json["variantsetId"] = variantsetId.asJSON()
 		}
 		
 		return json
@@ -947,10 +1032,10 @@ open class SequenceStructureVariantInner: BackboneElement {
 		get { return "SequenceStructureVariantInner" }
 	}
 	
-	/// Structural Variant Inner Start-End.
+	/// Structural Variant Inner End.
 	public var end: Int?
 	
-	/// Structural Variant Inner Start-End.
+	/// Structural Variant Inner Start.
 	public var start: Int?
 	
 	
@@ -1000,10 +1085,10 @@ open class SequenceStructureVariantOuter: BackboneElement {
 		get { return "SequenceStructureVariantOuter" }
 	}
 	
-	/// Structural Variant Outer Start-End.
+	/// Structural Variant Outer End.
 	public var end: Int?
 	
-	/// Structural Variant Outer Start-End.
+	/// Structural Variant Outer Start.
 	public var start: Int?
 	
 	
@@ -1048,9 +1133,10 @@ open class SequenceStructureVariantOuter: BackboneElement {
 /**
 Sequence variant.
 
-A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A,
-or there is a chain of immediate mutation processes linking A' to some instance of A
-([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).
+The definition of variant here originates from Sequence ontology
+([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element can represent amino
+acid or nucleic sequence change(including insertion,deletion,SNP,etc.)  It can represent some complex mutation or
+segment variation with the assist of CIGAR string.
 */
 open class SequenceVariant: BackboneElement {
 	override open class var resourceType: String {
@@ -1060,7 +1146,7 @@ open class SequenceVariant: BackboneElement {
 	/// Extended CIGAR string for aligning the sequence with reference bases.
 	public var cigar: String?
 	
-	/// End position (exclusive) of the variant on the reference sequence.
+	/// End position of the variant on the reference sequence.
 	public var end: Int?
 	
 	/// Allele that was observed.
@@ -1069,7 +1155,7 @@ open class SequenceVariant: BackboneElement {
 	/// Allele of reference sequence.
 	public var referenceAllele: String?
 	
-	/// Start position (inclusive) of the variant on the  reference sequence.
+	/// Start position of the variant on the  reference sequence.
 	public var start: Int?
 	
 	/// Pointer to observed variant information.

@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -244,7 +244,7 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[1].value, "2329")
 		XCTAssertEqual(inst.telecom?[2].system, ContactPointSystem(rawValue: "email")!)
 		XCTAssertEqual(inst.telecom?[2].value, "second wing admissions")
-		XCTAssertEqual(inst.telecom?[3].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.telecom?[3].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.telecom?[3].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.telecom?[3].value, "http://sampleorg.com/southwing")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Burgers UMC, South Wing, second floor</div>")

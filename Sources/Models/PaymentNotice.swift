@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -29,11 +29,8 @@ open class PaymentNotice: DomainResource {
 	/// Responsible organization.
 	public var organization: Reference?
 	
-	/// Original version.
-	public var originalRuleset: Coding?
-	
 	/// Status of the payment.
-	public var paymentStatus: Coding?
+	public var paymentStatus: CodeableConcept?
 	
 	/// Responsible practitioner.
 	public var provider: Reference?
@@ -44,25 +41,14 @@ open class PaymentNotice: DomainResource {
 	/// Response reference.
 	public var response: Reference?
 	
-	/// Resource version.
-	public var ruleset: Coding?
-	
-	/// The status of the resource instance.
-	public var status: PaymentNoticeStatus?
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	/// Payment or clearing date.
 	public var statusDate: FHIRDate?
 	
 	/// Insurer or Regulatory body.
 	public var target: Reference?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(paymentStatus: Coding, status: PaymentNoticeStatus) {
-		self.init()
-		self.paymentStatus = paymentStatus
-		self.status = status
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -104,25 +90,11 @@ open class PaymentNotice: DomainResource {
 				errors.append(FHIRValidationError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["originalRuleset"] {
-			presentKeys.insert("originalRuleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.originalRuleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "originalRuleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["paymentStatus"] {
 			presentKeys.insert("paymentStatus")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.paymentStatus = try Coding(json: val, owner: self)
+					self.paymentStatus = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "paymentStatus"))
@@ -131,9 +103,6 @@ open class PaymentNotice: DomainResource {
 			else {
 				errors.append(FHIRValidationError(key: "paymentStatus", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "paymentStatus"))
 		}
 		if let exist = json["provider"] {
 			presentKeys.insert("provider")
@@ -177,36 +146,14 @@ open class PaymentNotice: DomainResource {
 				errors.append(FHIRValidationError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["ruleset"] {
-			presentKeys.insert("ruleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.ruleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "ruleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				if let enumval = PaymentNoticeStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
+				self.status = val
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let exist = json["statusDate"] {
 			presentKeys.insert("statusDate")
@@ -246,9 +193,6 @@ open class PaymentNotice: DomainResource {
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON(errors: &errors)
 		}
-		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
-		}
 		if let paymentStatus = self.paymentStatus {
 			json["paymentStatus"] = paymentStatus.asJSON(errors: &errors)
 		}
@@ -261,11 +205,8 @@ open class PaymentNotice: DomainResource {
 		if let response = self.response {
 			json["response"] = response.asJSON(errors: &errors)
 		}
-		if let ruleset = self.ruleset {
-			json["ruleset"] = ruleset.asJSON(errors: &errors)
-		}
 		if let status = self.status {
-			json["status"] = status.rawValue
+			json["status"] = status.asJSON()
 		}
 		if let statusDate = self.statusDate {
 			json["statusDate"] = statusDate.asJSON()

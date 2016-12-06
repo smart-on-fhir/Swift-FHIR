@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -43,15 +43,8 @@ open class VisionPrescription: DomainResource {
 	/// Reason or indication for writing the prescription.
 	public var reasonReference: Reference?
 	
-	/// The status of the resource instance.
-	public var status: VisionStatus?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: VisionStatus) {
-		self.init()
-		self.status = status
-	}
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -166,19 +159,11 @@ open class VisionPrescription: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				if let enumval = VisionStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
+				self.status = val
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "status"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -211,7 +196,7 @@ open class VisionPrescription: DomainResource {
 			json["reasonReference"] = reasonReference.asJSON(errors: &errors)
 		}
 		if let status = self.status {
-			json["status"] = status.rawValue
+			json["status"] = status.asJSON()
 		}
 		
 		return json
@@ -238,8 +223,8 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// Contact lens back curvature.
 	public var backCurve: NSDecimalNumber?
 	
-	/// The relative base, or reference lens edge, for the prism.
-	public var base: VisionBase?
+	/// up | down | in | out.
+	public var base: CodeableConcept?
 	
 	/// Brand required.
 	public var brand: String?
@@ -256,11 +241,11 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// Lens wear duration.
 	public var duration: Quantity?
 	
-	/// The eye for which the lens applies.
-	public var eye: VisionEyes?
+	/// right | left.
+	public var eye: CodeableConcept?
 	
 	/// Notes for coatings.
-	public var notes: String?
+	public var note: String?
 	
 	/// Contact lens power.
 	public var power: NSDecimalNumber?
@@ -269,17 +254,10 @@ open class VisionPrescriptionDispense: BackboneElement {
 	public var prism: NSDecimalNumber?
 	
 	/// Product to be supplied.
-	public var product: Coding?
+	public var product: CodeableConcept?
 	
 	/// Lens sphere.
 	public var sphere: NSDecimalNumber?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(product: Coding) {
-		self.init()
-		self.product = product
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -313,16 +291,16 @@ open class VisionPrescriptionDispense: BackboneElement {
 		}
 		if let exist = json["base"] {
 			presentKeys.insert("base")
-			if let val = exist as? String {
-				if let enumval = VisionBase(rawValue: val) {
-					self.base = enumval
+			if let val = exist as? FHIRJSON {
+				do {
+					self.base = try CodeableConcept(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRValidationError(key: "base", problem: "the value “\(val)” is not valid"))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "base"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "base", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "base", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["brand"] {
@@ -377,25 +355,25 @@ open class VisionPrescriptionDispense: BackboneElement {
 		}
 		if let exist = json["eye"] {
 			presentKeys.insert("eye")
-			if let val = exist as? String {
-				if let enumval = VisionEyes(rawValue: val) {
-					self.eye = enumval
+			if let val = exist as? FHIRJSON {
+				do {
+					self.eye = try CodeableConcept(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRValidationError(key: "eye", problem: "the value “\(val)” is not valid"))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "eye"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "eye", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "eye", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["notes"] {
-			presentKeys.insert("notes")
+		if let exist = json["note"] {
+			presentKeys.insert("note")
 			if let val = exist as? String {
-				self.notes = val
+				self.note = val
 			}
 			else {
-				errors.append(FHIRValidationError(key: "notes", wants: String.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "note", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["power"] {
@@ -420,7 +398,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 			presentKeys.insert("product")
 			if let val = exist as? FHIRJSON {
 				do {
-					self.product = try Coding(json: val, owner: self)
+					self.product = try CodeableConcept(json: val, owner: self)
 				}
 				catch let error as FHIRValidationError {
 					errors.append(error.prefixed(with: "product"))
@@ -429,9 +407,6 @@ open class VisionPrescriptionDispense: BackboneElement {
 			else {
 				errors.append(FHIRValidationError(key: "product", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "product"))
 		}
 		if let exist = json["sphere"] {
 			presentKeys.insert("sphere")
@@ -458,7 +433,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 			json["backCurve"] = backCurve.asJSON()
 		}
 		if let base = self.base {
-			json["base"] = base.rawValue
+			json["base"] = base.asJSON(errors: &errors)
 		}
 		if let brand = self.brand {
 			json["brand"] = brand.asJSON()
@@ -476,10 +451,10 @@ open class VisionPrescriptionDispense: BackboneElement {
 			json["duration"] = duration.asJSON(errors: &errors)
 		}
 		if let eye = self.eye {
-			json["eye"] = eye.rawValue
+			json["eye"] = eye.asJSON(errors: &errors)
 		}
-		if let notes = self.notes {
-			json["notes"] = notes.asJSON()
+		if let note = self.note {
+			json["note"] = note.asJSON()
 		}
 		if let power = self.power {
 			json["power"] = power.asJSON()

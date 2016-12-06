@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -43,6 +43,7 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].answer?[0].valueCoding?.code, "f")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].linkId, "sex")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].text, "Sex")
+		XCTAssertEqual(inst.item?[0].item?[0].linkId, "group")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[0].answer?[0].valueDecimal, NSDecimalNumber(string: "3.25"))
 		XCTAssertEqual(inst.item?[0].item?[1].item?[0].linkId, "birthWeight")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[0].text, "Birth weight (kg)")
@@ -59,9 +60,9 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].answer?[0].valueCoding?.code, "INJECTION")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].linkId, "vitaminKgiven")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].text, "Vitamin K given")
-		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].item?[0].answer?[0].valueDate?.description, "1972-12-04")
-		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].item?[0].text, "Date given")
+		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].answer?[0].valueDate?.description, "1972-12-04")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].linkId, "hepBgivenDate")
+		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].text, "Date given")
 		XCTAssertTrue(inst.item?[0].item?[1].item?[3].answer?[0].valueBoolean ?? false)
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].linkId, "hepBgiven")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].text, "Hep B given y / n")
@@ -196,13 +197,19 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.id, "3141")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].answer?[0].valueCoding?.code, "1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")
+		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].linkId, "1.1.1.1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[1].answer?[0].valueCoding?.code, "1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[1].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")
+		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[1].linkId, "1.1.1.2")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[2].answer?[0].valueCoding?.code, "0")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[2].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")
+		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[2].linkId, "1.1.1.3")
+		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].linkId, "1.1.1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].valueCoding?.code, "1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].valueCoding?.display, "Yes")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")
+		XCTAssertEqual(inst.item?[0].item?[0].linkId, "1.1")
+		XCTAssertEqual(inst.item?[0].linkId, "1")
 		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "#patsub")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

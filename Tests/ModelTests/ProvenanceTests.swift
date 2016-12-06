@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -37,11 +37,9 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.activity?.code, "AU")
 		XCTAssertEqual(inst.activity?.display, "authenticated")
 		XCTAssertEqual(inst.activity?.system?.absoluteString, "http://hl7.org/fhir/v3/DocumentCompletion")
-		XCTAssertEqual(inst.agent?[0].actor?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.agent?[0].role?.code, "verifier")
 		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
-		XCTAssertEqual(inst.agent?[0].userId?.system?.absoluteString, "http://acme.com/fhir/users/sso")
-		XCTAssertEqual(inst.agent?[0].userId?.value, "hhd")
+		XCTAssertEqual(inst.agent?[0].whoUri?.absoluteString, "mailto://hhd@ssa.gov")
 		XCTAssertEqual(inst.id, "signature")
 		XCTAssertEqual(inst.reason?[0].code, "TREAT")
 		XCTAssertEqual(inst.reason?[0].display, "treatment")
@@ -75,23 +73,18 @@ class ProvenanceTests: XCTestCase {
 	func runProvenance2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Provenance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example.json")
 		
-		XCTAssertEqual(inst.agent?[0].actor?.reference, "Practitioner/xcda-author")
-		XCTAssertEqual(inst.agent?[0].relatedAgent?[0].target?.absoluteString, "#a1")
-		XCTAssertEqual(inst.agent?[0].relatedAgent?[0].type?.text, "used")
+		XCTAssertEqual(inst.agent?[0].onBehalfOfUri?.absoluteString, "#a1")
+		XCTAssertEqual(inst.agent?[0].relatedAgentType?.text, "used")
 		XCTAssertEqual(inst.agent?[0].role?.code, "author")
 		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
-		XCTAssertEqual(inst.agent?[0].userId?.system?.absoluteString, "http://acme.com/fhir/users/sso")
-		XCTAssertEqual(inst.agent?[0].userId?.value, "hhd")
-		XCTAssertEqual(inst.agent?[1].actor?.reference, "Device/software")
+		XCTAssertEqual(inst.agent?[0].whoReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.agent?[1].id, "a1")
 		XCTAssertEqual(inst.agent?[1].role?.code, "DEV")
 		XCTAssertEqual(inst.agent?[1].role?.system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
-		XCTAssertEqual(inst.entity?[0].display, "CDA Document in XDS repository")
-		XCTAssertEqual(inst.entity?[0].reference?.absoluteString, "DocumentReference/90f55916-9d15-4b8f-87a9-2d7ade8670c8")
+		XCTAssertEqual(inst.agent?[1].whoReference?.reference, "Device/software")
+		XCTAssertEqual(inst.entity?[0].reference?.display, "CDA Document in XDS repository")
+		XCTAssertEqual(inst.entity?[0].reference?.reference, "DocumentReference/90f55916-9d15-4b8f-87a9-2d7ade8670c8")
 		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
-		XCTAssertEqual(inst.entity?[0].type?.code, "57133-1")
-		XCTAssertEqual(inst.entity?[0].type?.display, "Referral note")
-		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.location?.reference, "Location/1")
 		XCTAssertEqual(inst.period?.start?.description, "2015-06-27")
@@ -101,7 +94,7 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.reason?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.recorded?.description, "2015-06-27T08:39:24+10:00")
 		XCTAssertEqual(inst.target?[0].reference, "Procedure/example/_history/1")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from XDS managed CDA Referral received 26-June</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

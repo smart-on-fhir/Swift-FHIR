@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -378,10 +378,13 @@ open class ValueSetCompose: BackboneElement {
 	/// Explicitly exclude codes from a code system or other value sets.
 	public var exclude: [ValueSetComposeInclude]?
 	
+	/// Whether inactive codes are in the value set.
+	public var inactive: Bool?
+	
 	/// Include one or more codes from a code system or other value set(s).
 	public var include: [ValueSetComposeInclude]?
 	
-	/// Fixed date for all referenced code systems and value sets.
+	/// Fixed date for version-less references (transitive).
 	public var lockedDate: FHIRDate?
 	
 	
@@ -406,6 +409,15 @@ open class ValueSetCompose: BackboneElement {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "exclude", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["inactive"] {
+			presentKeys.insert("inactive")
+			if let val = exist as? Bool {
+				self.inactive = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "inactive", wants: Bool.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["include"] {
@@ -442,6 +454,9 @@ open class ValueSetCompose: BackboneElement {
 		
 		if let exclude = self.exclude {
 			json["exclude"] = exclude.map() { $0.asJSON(errors: &errors) }
+		}
+		if let inactive = self.inactive {
+			json["inactive"] = inactive.asJSON()
 		}
 		if let include = self.include {
 			json["include"] = include.map() { $0.asJSON(errors: &errors) }
@@ -993,6 +1008,9 @@ open class ValueSetExpansionContains: BackboneElement {
 	/// User display for the concept.
 	public var display: String?
 	
+	/// If concept is inactive in the code system.
+	public var inactive: Bool?
+	
 	/// System value for the code.
 	public var system: URL?
 	
@@ -1057,6 +1075,15 @@ open class ValueSetExpansionContains: BackboneElement {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
 			}
 		}
+		if let exist = json["inactive"] {
+			presentKeys.insert("inactive")
+			if let val = exist as? Bool {
+				self.inactive = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "inactive", wants: Bool.self, has: type(of: exist)))
+			}
+		}
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
@@ -1095,6 +1122,9 @@ open class ValueSetExpansionContains: BackboneElement {
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()
+		}
+		if let inactive = self.inactive {
+			json["inactive"] = inactive.asJSON()
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FAEF3E63-2F39-43BE-A3D7-495762D6EC42</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SwiftFHIR</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>23AAFBD591BA505FBAABBB27621941E6A9803CE6</key>
+		<string>github.com:smart-on-fhir/SMART-on-FHIR-Cocoa.git</string>
+		<key>5B5104A8D16BBC38C1DB2659E91256F2FB86B0B7</key>
+		<string>github.com:p2/SoF-MedList.git</string>
+		<key>CF35077FD7A44320981FE5EE63723881BC15523F</key>
+		<string>github.com:smart-on-fhir/Swift-FHIR.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SwiftFHIR.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>23AAFBD591BA505FBAABBB27621941E6A9803CE6</key>
+		<string>../../..</string>
+		<key>5B5104A8D16BBC38C1DB2659E91256F2FB86B0B7</key>
+		<string>../../..</string>
+		<key>CF35077FD7A44320981FE5EE63723881BC15523F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:smart-on-fhir/Swift-FHIR.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CF35077FD7A44320981FE5EE63723881BC15523F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5B5104A8D16BBC38C1DB2659E91256F2FB86B0B7</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>23AAFBD591BA505FBAABBB27621941E6A9803CE6</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CF35077FD7A44320981FE5EE63723881BC15523F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Swift-FHIR</string>
+		</dict>
+	</array>
+</dict>
+</plist>

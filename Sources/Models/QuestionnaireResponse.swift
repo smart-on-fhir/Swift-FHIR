@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ open class QuestionnaireResponse: DomainResource {
 	/// Date this version was authored.
 	public var authored: DateTime?
 	
-	/// Request fulfilled by this Questionnaire.
+	/// Request fulfilled by this QuestionnaireResponse.
 	public var basedOn: [Reference]?
 	
 	/// Encounter or Episode during which questionnaire was completed.
@@ -273,10 +273,13 @@ open class QuestionnaireResponseItem: BackboneElement {
 	/// The response(s) to the question.
 	public var answer: [QuestionnaireResponseItemAnswer]?
 	
+	/// ElementDefinition - details for the item.
+	public var definition: URL?
+	
 	/// Nested questionnaire response items.
 	public var item: [QuestionnaireResponseItem]?
 	
-	/// Corresponding item within Questionnaire.
+	/// Pointer to specific item from Questionnaire.
 	public var linkId: String?
 	
 	/// The subject this group's answers are about.
@@ -284,6 +287,13 @@ open class QuestionnaireResponseItem: BackboneElement {
 	
 	/// Name for group or question text.
 	public var text: String?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(linkId: String) {
+		self.init()
+		self.linkId = linkId
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -300,6 +310,15 @@ open class QuestionnaireResponseItem: BackboneElement {
 			}
 			else {
 				errors.append(FHIRValidationError(key: "answer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["definition"] {
+			presentKeys.insert("definition")
+			if let val = exist as? String {
+				self.definition = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["item"] {
@@ -324,6 +343,9 @@ open class QuestionnaireResponseItem: BackboneElement {
 			else {
 				errors.append(FHIRValidationError(key: "linkId", wants: String.self, has: type(of: exist)))
 			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "linkId"))
 		}
 		if let exist = json["subject"] {
 			presentKeys.insert("subject")
@@ -356,6 +378,9 @@ open class QuestionnaireResponseItem: BackboneElement {
 		
 		if let answer = self.answer {
 			json["answer"] = answer.map() { $0.asJSON(errors: &errors) }
+		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
 		}
 		if let item = self.item {
 			json["item"] = item.map() { $0.asJSON(errors: &errors) }

@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -45,9 +45,6 @@ open class ProcessRequest: DomainResource {
 	/// Responsible organization.
 	public var organization: Reference?
 	
-	/// Original version.
-	public var originalRuleset: Coding?
-	
 	/// Period.
 	public var period: Period?
 	
@@ -63,22 +60,11 @@ open class ProcessRequest: DomainResource {
 	/// Response reference.
 	public var response: Reference?
 	
-	/// Resource version.
-	public var ruleset: Coding?
-	
-	/// The status of the resource instance.
-	public var status: ProcessRequestStatus?
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	/// Target of the request.
 	public var target: Reference?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: ActionList, status: ProcessRequestStatus) {
-		self.init()
-		self.action = action
-		self.status = status
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -96,9 +82,6 @@ open class ProcessRequest: DomainResource {
 			else {
 				errors.append(FHIRValidationError(key: "action", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "action"))
 		}
 		if let exist = json["created"] {
 			presentKeys.insert("created")
@@ -178,20 +161,6 @@ open class ProcessRequest: DomainResource {
 				errors.append(FHIRValidationError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["originalRuleset"] {
-			presentKeys.insert("originalRuleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.originalRuleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "originalRuleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["period"] {
 			presentKeys.insert("period")
 			if let val = exist as? FHIRJSON {
@@ -257,36 +226,14 @@ open class ProcessRequest: DomainResource {
 				errors.append(FHIRValidationError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["ruleset"] {
-			presentKeys.insert("ruleset")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.ruleset = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "ruleset"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				if let enumval = ProcessRequestStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
+				self.status = val
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
 			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let exist = json["target"] {
 			presentKeys.insert("target")
@@ -332,9 +279,6 @@ open class ProcessRequest: DomainResource {
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON(errors: &errors)
 		}
-		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
-		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
@@ -350,11 +294,8 @@ open class ProcessRequest: DomainResource {
 		if let response = self.response {
 			json["response"] = response.asJSON(errors: &errors)
 		}
-		if let ruleset = self.ruleset {
-			json["ruleset"] = ruleset.asJSON(errors: &errors)
-		}
 		if let status = self.status {
-			json["status"] = status.rawValue
+			json["status"] = status.asJSON()
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON(errors: &errors)

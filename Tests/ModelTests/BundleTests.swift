@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -137,6 +137,8 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[7].fullUrl?.absoluteString, "urn:uuid:47600e0f-b6b5-4308-84b5-5dec157f7637")
 		XCTAssertEqual(inst.entry?[7].resource?.meta?.lastUpdated?.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.id, "father")
+		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?.value, "urn:uuid:0c3151bd-1cbf-4d64-b04d-cd9187a4c6e0")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2013-05-28T22:12:21Z")
 		XCTAssertEqual(inst.signature?.contentType, "image/jpg")
 		XCTAssertEqual(inst.signature?.type?[0].code, "1.2.840.10065.1.12.1.1")

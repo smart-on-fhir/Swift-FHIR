@@ -71,8 +71,8 @@ extension HumanName {
 		if let given = given {
 			parts.append(contentsOf: given.filter() { $0.characters.count > 0 })
 		}
-		if let family = family {
-			parts.append(contentsOf: family.filter() { $0.characters.count > 0 })
+		if let family = family, family.characters.count > 0 {
+			parts.append(family)
 		}
 		if let suffix = suffix {
 			parts.append(contentsOf: suffix.filter() { $0.characters.count > 0 })

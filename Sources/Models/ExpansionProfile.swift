@@ -2,7 +2,7 @@
 //  ExpansionProfile.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ open class ExpansionProfile: DomainResource {
 	/// Specify the language for the display element of codes in the value set expansion.
 	public var displayLanguage: String?
 	
-	/// Include or exclude nested codes in the value set expansion.
+	/// Nested codes in the expansion or not.
 	public var excludeNested: Bool?
 	
 	/// Include or exclude codes which cannot be rendered in user interfaces in the value set expansion.

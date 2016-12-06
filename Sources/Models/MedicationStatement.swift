@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -69,13 +69,10 @@ open class MedicationStatement: DomainResource {
 	/// Further information about the statement.
 	public var note: [Annotation]?
 	
-	/// Who is/was taking  the medication.
-	public var patient: Reference?
-	
 	/// Reason for why the medication is being/was taken.
-	public var reasonForUseCode: [CodeableConcept]?
+	public var reasonForUseCodeableConcept: [CodeableConcept]?
 	
-	/// Condition that supports why the medication is being/was taken.
+	/// Condition or observation that supports why the medication is being/was taken.
 	public var reasonForUseReference: [Reference]?
 	
 	/// True if asserting medication was not given.
@@ -85,9 +82,12 @@ open class MedicationStatement: DomainResource {
 	/// statement is about.  Generally this will be active or completed.
 	public var status: MedicationStatementStatus?
 	
+	/// Who is/was taking  the medication.
+	public var subject: Reference?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(medication: Any, patient: Reference, status: MedicationStatementStatus) {
+	public convenience init(medication: Any, status: MedicationStatementStatus, subject: Reference) {
 		self.init()
 		if let value = medication as? CodeableConcept {
 			self.medicationCodeableConcept = value
@@ -98,8 +98,8 @@ open class MedicationStatement: DomainResource {
 		else {
 			fhir_warn("Type “\(type(of: medication))” for property “\(medication)” is invalid, ignoring")
 		}
-		self.patient = patient
 		self.status = status
+		self.subject = subject
 	}
 	
 	
@@ -258,35 +258,18 @@ open class MedicationStatement: DomainResource {
 				errors.append(FHIRValidationError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
-		if let exist = json["patient"] {
-			presentKeys.insert("patient")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.patient = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "patient"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "patient"))
-		}
-		if let exist = json["reasonForUseCode"] {
-			presentKeys.insert("reasonForUseCode")
+		if let exist = json["reasonForUseCodeableConcept"] {
+			presentKeys.insert("reasonForUseCodeableConcept")
 			if let val = exist as? [FHIRJSON] {
 				do {
-					self.reasonForUseCode = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.reasonForUseCodeableConcept = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "reasonForUseCode"))
+					errors.append(error.prefixed(with: "reasonForUseCodeableConcept"))
 				}
 			}
 			else {
-				errors.append(FHIRValidationError(key: "reasonForUseCode", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				errors.append(FHIRValidationError(key: "reasonForUseCodeableConcept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		if let exist = json["reasonForUseReference"] {
@@ -333,6 +316,23 @@ open class MedicationStatement: DomainResource {
 		}
 		else {
 			errors.append(FHIRValidationError(missing: "status"))
+		}
+		if let exist = json["subject"] {
+			presentKeys.insert("subject")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.subject = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "subject"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
@@ -381,11 +381,8 @@ open class MedicationStatement: DomainResource {
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
 		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON(errors: &errors)
-		}
-		if let reasonForUseCode = self.reasonForUseCode {
-			json["reasonForUseCode"] = reasonForUseCode.map() { $0.asJSON(errors: &errors) }
+		if let reasonForUseCodeableConcept = self.reasonForUseCodeableConcept {
+			json["reasonForUseCodeableConcept"] = reasonForUseCodeableConcept.map() { $0.asJSON(errors: &errors) }
 		}
 		if let reasonForUseReference = self.reasonForUseReference {
 			json["reasonForUseReference"] = reasonForUseReference.map() { $0.asJSON(errors: &errors) }
@@ -395,6 +392,9 @@ open class MedicationStatement: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON(errors: &errors)
 		}
 		
 		return json

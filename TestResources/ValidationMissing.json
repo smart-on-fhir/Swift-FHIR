@@ -3,23 +3,26 @@
 	"id": "questionnaire-missing",
 	"item": [
 		{
+			"linkId": "a",
 			"type": "display",
 			"text": "Hi unit tester!"
 		},
 		{
+			"linkId": "b",
 			"type": "group",
 			"item": [
 				{
-					"fhir_comments": "is missing “type”"
+					"fhir_comments": "is missing “linkId”"
 				},
 				{
+					"linkId": "bb",
 					"fhir_comments": "invalid “type”",
 					"type": "date"
 				}
 			]
 		},
 		{
-			"fhir_comments": "is also missing “type”",
+			"fhir_comments": "is also missing “linkId”",
 			"option": [
 				{
 					"valueString": "I’m here!"	

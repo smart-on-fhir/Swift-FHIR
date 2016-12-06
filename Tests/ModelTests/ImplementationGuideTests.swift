@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10127 on 2016-11-04.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
 //  2016, SMART Health IT.
 //
 
@@ -36,10 +36,10 @@ class ImplementationGuideTests: XCTestCase {
 		
 		XCTAssertEqual(inst.binary?[0].absoluteString, "http://h7.org/fhir/fhir.css")
 		XCTAssertEqual(inst.contact?[0].name, "ONC")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://www.healthit.gov")
 		XCTAssertEqual(inst.contact?[1].name, "HL7")
-		XCTAssertEqual(inst.contact?[1].telecom?[0].system, ContactPointSystem(rawValue: "other")!)
+		XCTAssertEqual(inst.contact?[1].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[1].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.copyright, "Published by ONC under the standard FHIR license (CC0)")
 		XCTAssertEqual(inst.date?.description, "2015-01-01")

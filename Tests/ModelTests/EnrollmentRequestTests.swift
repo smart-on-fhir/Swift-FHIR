@@ -25,8 +25,8 @@ class EnrollmentRequestTests: XCTestCase {
 			let instance = try runEnrollmentRequest1()
 			try runEnrollmentRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test EnrollmentRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test EnrollmentRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

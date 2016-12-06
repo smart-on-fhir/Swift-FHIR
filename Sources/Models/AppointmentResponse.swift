@@ -24,7 +24,7 @@ open class AppointmentResponse: DomainResource {
 	public var appointment: Reference?
 	
 	/// Additional comments.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Time from appointment, or requested new end time.
 	public var end: Instant?
@@ -89,7 +89,7 @@ open class AppointmentResponse: DomainResource {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -98,7 +98,7 @@ open class AppointmentResponse: DomainResource {
 		if let exist = json["end"] {
 			presentKeys.insert("end")
 			if let val = exist as? String {
-				self.end = Instant(string: val)
+				self.end = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "end", wants: String.self, has: type(of: exist)))
@@ -152,7 +152,7 @@ open class AppointmentResponse: DomainResource {
 		if let exist = json["start"] {
 			presentKeys.insert("start")
 			if let val = exist as? String {
-				self.start = Instant(string: val)
+				self.start = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "start", wants: String.self, has: type(of: exist)))
@@ -170,6 +170,9 @@ open class AppointmentResponse: DomainResource {
 		if let appointment = self.appointment {
 			json["appointment"] = appointment.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "appointment"))
+		}
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
 		}
@@ -181,6 +184,9 @@ open class AppointmentResponse: DomainResource {
 		}
 		if let participantStatus = self.participantStatus {
 			json["participantStatus"] = participantStatus.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "participantStatus"))
 		}
 		if let participantType = self.participantType {
 			json["participantType"] = participantType.map() { $0.asJSON(errors: &errors) }

@@ -25,8 +25,8 @@ class EligibilityRequestTests: XCTestCase {
 			let instance = try runEligibilityRequest1()
 			try runEligibilityRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test EligibilityRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test EligibilityRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

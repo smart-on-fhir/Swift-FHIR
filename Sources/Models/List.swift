@@ -58,7 +58,7 @@ open class List: DomainResource {
 	public var subject: Reference?
 	
 	/// Descriptive name for the list.
-	public var title: String?
+	public var title: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -88,7 +88,7 @@ open class List: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -243,7 +243,7 @@ open class List: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -276,6 +276,9 @@ open class List: DomainResource {
 		if let mode = self.mode {
 			json["mode"] = mode.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
 		}
@@ -287,6 +290,9 @@ open class List: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -335,7 +341,7 @@ open class ListEntry: BackboneElement {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -398,6 +404,9 @@ open class ListEntry: BackboneElement {
 		}
 		if let item = self.item {
 			json["item"] = item.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "item"))
 		}
 		
 		return json

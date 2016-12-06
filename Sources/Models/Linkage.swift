@@ -78,6 +78,9 @@ open class Linkage: DomainResource {
 		if let item = self.item {
 			json["item"] = item.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "item"))
+		}
 		
 		return json
 	}
@@ -156,8 +159,14 @@ open class LinkageItem: BackboneElement {
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "resource"))
+		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json

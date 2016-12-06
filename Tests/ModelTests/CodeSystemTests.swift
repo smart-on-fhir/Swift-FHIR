@@ -25,8 +25,8 @@ class CodeSystemTests: XCTestCase {
 			let instance = try runCodeSystem1()
 			try runCodeSystem1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -79,8 +79,8 @@ class CodeSystemTests: XCTestCase {
 			let instance = try runCodeSystem2()
 			try runCodeSystem2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

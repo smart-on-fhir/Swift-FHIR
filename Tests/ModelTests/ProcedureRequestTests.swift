@@ -25,8 +25,8 @@ class ProcedureRequestTests: XCTestCase {
 			let instance = try runProcedureRequest1()
 			try runProcedureRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

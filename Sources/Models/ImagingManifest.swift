@@ -32,7 +32,7 @@ open class ImagingManifest: DomainResource {
 	public var authoringTime: DateTime?
 	
 	/// Description text.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Patient of the selected objects.
 	public var patient: Reference?
@@ -44,7 +44,7 @@ open class ImagingManifest: DomainResource {
 	public var title: CodeableConcept?
 	
 	/// SOP Instance UID.
-	public var uid: String?
+	public var uid: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -75,7 +75,7 @@ open class ImagingManifest: DomainResource {
 		if let exist = json["authoringTime"] {
 			presentKeys.insert("authoringTime")
 			if let val = exist as? String {
-				self.authoringTime = DateTime(string: val)
+				self.authoringTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "authoringTime", wants: String.self, has: type(of: exist)))
@@ -84,7 +84,7 @@ open class ImagingManifest: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -144,7 +144,7 @@ open class ImagingManifest: DomainResource {
 		if let exist = json["uid"] {
 			presentKeys.insert("uid")
 			if let val = exist as? String {
-				self.uid = val
+				self.uid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -168,11 +168,20 @@ open class ImagingManifest: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let study = self.study {
 			json["study"] = study.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "study"))
+		}
 		if let title = self.title {
 			json["title"] = title.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "title"))
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
@@ -203,11 +212,11 @@ open class ImagingManifestStudy: BackboneElement {
 	public var series: [ImagingManifestStudySeries]?
 	
 	/// Study instance UID.
-	public var uid: String?
+	public var uid: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(series: [ImagingManifestStudySeries], uid: String) {
+	public convenience init(series: [ImagingManifestStudySeries], uid: FHIRString) {
 		self.init()
 		self.series = series
 		self.uid = uid
@@ -264,7 +273,7 @@ open class ImagingManifestStudy: BackboneElement {
 		if let exist = json["uid"] {
 			presentKeys.insert("uid")
 			if let val = exist as? String {
-				self.uid = val
+				self.uid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -288,8 +297,14 @@ open class ImagingManifestStudy: BackboneElement {
 		if let series = self.series {
 			json["series"] = series.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "series"))
+		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "uid"))
 		}
 		
 		return json
@@ -344,7 +359,7 @@ open class ImagingManifestStudyBaseLocation: BackboneElement {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -362,8 +377,14 @@ open class ImagingManifestStudyBaseLocation: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		
 		return json
@@ -388,11 +409,11 @@ open class ImagingManifestStudySeries: BackboneElement {
 	public var instance: [ImagingManifestStudySeriesInstance]?
 	
 	/// Series instance UID.
-	public var uid: String?
+	public var uid: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(instance: [ImagingManifestStudySeriesInstance], uid: String) {
+	public convenience init(instance: [ImagingManifestStudySeriesInstance], uid: FHIRString) {
 		self.init()
 		self.instance = instance
 		self.uid = uid
@@ -435,7 +456,7 @@ open class ImagingManifestStudySeries: BackboneElement {
 		if let exist = json["uid"] {
 			presentKeys.insert("uid")
 			if let val = exist as? String {
-				self.uid = val
+				self.uid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -456,8 +477,14 @@ open class ImagingManifestStudySeries: BackboneElement {
 		if let instance = self.instance {
 			json["instance"] = instance.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "instance"))
+		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "uid"))
 		}
 		
 		return json
@@ -512,7 +539,7 @@ open class ImagingManifestStudySeriesBaseLocation: BackboneElement {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -530,8 +557,14 @@ open class ImagingManifestStudySeriesBaseLocation: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		
 		return json
@@ -550,14 +583,14 @@ open class ImagingManifestStudySeriesInstance: BackboneElement {
 	}
 	
 	/// SOP class UID of instance.
-	public var sopClass: String?
+	public var sopClass: FHIRString?
 	
 	/// Selected instance UID.
-	public var uid: String?
+	public var uid: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sopClass: String, uid: String) {
+	public convenience init(sopClass: FHIRString, uid: FHIRString) {
 		self.init()
 		self.sopClass = sopClass
 		self.uid = uid
@@ -569,7 +602,7 @@ open class ImagingManifestStudySeriesInstance: BackboneElement {
 		if let exist = json["sopClass"] {
 			presentKeys.insert("sopClass")
 			if let val = exist as? String {
-				self.sopClass = val
+				self.sopClass = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "sopClass", wants: String.self, has: type(of: exist)))
@@ -581,7 +614,7 @@ open class ImagingManifestStudySeriesInstance: BackboneElement {
 		if let exist = json["uid"] {
 			presentKeys.insert("uid")
 			if let val = exist as? String {
-				self.uid = val
+				self.uid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -599,8 +632,14 @@ open class ImagingManifestStudySeriesInstance: BackboneElement {
 		if let sopClass = self.sopClass {
 			json["sopClass"] = sopClass.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "sopClass"))
+		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "uid"))
 		}
 		
 		return json

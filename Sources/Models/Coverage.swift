@@ -26,7 +26,7 @@ open class Coverage: DomainResource {
 	public var contract: [Reference]?
 	
 	/// Dependent number.
-	public var dependent: String?
+	public var dependent: FHIRString?
 	
 	/// Additional coverage classifications.
 	public var group: CoverageGroup?
@@ -35,7 +35,7 @@ open class Coverage: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Insurer network.
-	public var network: String?
+	public var network: FHIRString?
 	
 	/// Relative order of the coverage.
 	public var order: UInt?
@@ -53,16 +53,16 @@ open class Coverage: DomainResource {
 	public var relationship: CodeableConcept?
 	
 	/// The plan instance or sequence counter.
-	public var sequence: String?
+	public var sequence: FHIRString?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	/// Subscriber to the policy.
 	public var subscriber: Reference?
 	
 	/// ID assigned to the Subscriber.
-	public var subscriberId: String?
+	public var subscriberId: FHIRString?
 	
 	/// Type of coverage.
 	public var type: CodeableConcept?
@@ -101,7 +101,7 @@ open class Coverage: DomainResource {
 		if let exist = json["dependent"] {
 			presentKeys.insert("dependent")
 			if let val = exist as? String {
-				self.dependent = val
+				self.dependent = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "dependent", wants: String.self, has: type(of: exist)))
@@ -138,7 +138,7 @@ open class Coverage: DomainResource {
 		if let exist = json["network"] {
 			presentKeys.insert("network")
 			if let val = exist as? String {
-				self.network = val
+				self.network = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "network", wants: String.self, has: type(of: exist)))
@@ -212,7 +212,7 @@ open class Coverage: DomainResource {
 		if let exist = json["sequence"] {
 			presentKeys.insert("sequence")
 			if let val = exist as? String {
-				self.sequence = val
+				self.sequence = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "sequence", wants: String.self, has: type(of: exist)))
@@ -221,7 +221,7 @@ open class Coverage: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -244,7 +244,7 @@ open class Coverage: DomainResource {
 		if let exist = json["subscriberId"] {
 			presentKeys.insert("subscriberId")
 			if let val = exist as? String {
-				self.subscriberId = val
+				self.subscriberId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "subscriberId", wants: String.self, has: type(of: exist)))
@@ -336,40 +336,40 @@ open class CoverageGroup: BackboneElement {
 	}
 	
 	/// An identifier for the class.
-	public var `class`: String?
+	public var `class`: FHIRString?
 	
 	/// Display text for the class.
-	public var classDisplay: String?
+	public var classDisplay: FHIRString?
 	
 	/// An identifier for the group.
-	public var group: String?
+	public var group: FHIRString?
 	
 	/// Display text for an identifier for the group.
-	public var groupDisplay: String?
+	public var groupDisplay: FHIRString?
 	
 	/// An identifier for the plan.
-	public var plan: String?
+	public var plan: FHIRString?
 	
 	/// Display text for the plan.
-	public var planDisplay: String?
+	public var planDisplay: FHIRString?
 	
 	/// An identifier for the subsection of the class.
-	public var subClass: String?
+	public var subClass: FHIRString?
 	
 	/// Display text for the subsection of the subclass.
-	public var subClassDisplay: String?
+	public var subClassDisplay: FHIRString?
 	
 	/// An identifier for the subsection of the group.
-	public var subGroup: String?
+	public var subGroup: FHIRString?
 	
 	/// Display text for the subsection of the group.
-	public var subGroupDisplay: String?
+	public var subGroupDisplay: FHIRString?
 	
 	/// An identifier for the subsection of the plan.
-	public var subPlan: String?
+	public var subPlan: FHIRString?
 	
 	/// Display text for the subsection of the plan.
-	public var subPlanDisplay: String?
+	public var subPlanDisplay: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -377,7 +377,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["class"] {
 			presentKeys.insert("class")
 			if let val = exist as? String {
-				self.`class` = val
+				self.`class` = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "class", wants: String.self, has: type(of: exist)))
@@ -386,7 +386,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["classDisplay"] {
 			presentKeys.insert("classDisplay")
 			if let val = exist as? String {
-				self.classDisplay = val
+				self.classDisplay = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "classDisplay", wants: String.self, has: type(of: exist)))
@@ -395,7 +395,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["group"] {
 			presentKeys.insert("group")
 			if let val = exist as? String {
-				self.group = val
+				self.group = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "group", wants: String.self, has: type(of: exist)))
@@ -404,7 +404,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["groupDisplay"] {
 			presentKeys.insert("groupDisplay")
 			if let val = exist as? String {
-				self.groupDisplay = val
+				self.groupDisplay = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "groupDisplay", wants: String.self, has: type(of: exist)))
@@ -413,7 +413,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["plan"] {
 			presentKeys.insert("plan")
 			if let val = exist as? String {
-				self.plan = val
+				self.plan = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "plan", wants: String.self, has: type(of: exist)))
@@ -422,7 +422,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["planDisplay"] {
 			presentKeys.insert("planDisplay")
 			if let val = exist as? String {
-				self.planDisplay = val
+				self.planDisplay = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "planDisplay", wants: String.self, has: type(of: exist)))
@@ -431,7 +431,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["subClass"] {
 			presentKeys.insert("subClass")
 			if let val = exist as? String {
-				self.subClass = val
+				self.subClass = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "subClass", wants: String.self, has: type(of: exist)))
@@ -440,7 +440,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["subClassDisplay"] {
 			presentKeys.insert("subClassDisplay")
 			if let val = exist as? String {
-				self.subClassDisplay = val
+				self.subClassDisplay = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "subClassDisplay", wants: String.self, has: type(of: exist)))
@@ -449,7 +449,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["subGroup"] {
 			presentKeys.insert("subGroup")
 			if let val = exist as? String {
-				self.subGroup = val
+				self.subGroup = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "subGroup", wants: String.self, has: type(of: exist)))
@@ -458,7 +458,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["subGroupDisplay"] {
 			presentKeys.insert("subGroupDisplay")
 			if let val = exist as? String {
-				self.subGroupDisplay = val
+				self.subGroupDisplay = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "subGroupDisplay", wants: String.self, has: type(of: exist)))
@@ -467,7 +467,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["subPlan"] {
 			presentKeys.insert("subPlan")
 			if let val = exist as? String {
-				self.subPlan = val
+				self.subPlan = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "subPlan", wants: String.self, has: type(of: exist)))
@@ -476,7 +476,7 @@ open class CoverageGroup: BackboneElement {
 		if let exist = json["subPlanDisplay"] {
 			presentKeys.insert("subPlanDisplay")
 			if let val = exist as? String {
-				self.subPlanDisplay = val
+				self.subPlanDisplay = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "subPlanDisplay", wants: String.self, has: type(of: exist)))

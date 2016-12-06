@@ -20,13 +20,13 @@ open class SearchParameter: DomainResource {
 	}
 	
 	/// The resource type(s) this search parameter applies to.
-	public var base: [String]?
+	public var base: [FHIRString]?
 	
 	/// Chained names supported.
-	public var chain: [String]?
+	public var chain: [FHIRString]?
 	
 	/// Code used in URL.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Comparators supported for the search parameter.
 	public var comparator: [SearchComparator]?
@@ -44,13 +44,13 @@ open class SearchParameter: DomainResource {
 	public var derivedFrom: URL?
 	
 	/// Natural language description of the search parameter.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
 	/// FluentPath expression that extracts the values.
-	public var expression: String?
+	public var expression: FHIRString?
 	
 	/// Intended jurisdiction for search parameter (if applicable).
 	public var jurisdiction: [CodeableConcept]?
@@ -59,19 +59,19 @@ open class SearchParameter: DomainResource {
 	public var modifier: [SearchModifierCode]?
 	
 	/// Name for this search parameter (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this search parameter is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// The status of this search parameter. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
 	/// Types of resource (if a resource reference).
-	public var target: [String]?
+	public var target: [FHIRString]?
 	
 	/// The type of value a search parameter refers to, and how the content is interpreted.
 	public var type: SearchParamType?
@@ -83,17 +83,17 @@ open class SearchParameter: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the search parameter.
-	public var version: String?
+	public var version: FHIRString?
 	
 	/// XPath that extracts the values.
-	public var xpath: String?
+	public var xpath: FHIRString?
 	
 	/// How the search parameter relates to the set of elements returned by evaluating the xpath query.
 	public var xpathUsage: XPathUsageType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(base: [String], code: String, description_fhir: String, name: String, status: PublicationStatus, type: SearchParamType, url: URL) {
+	public convenience init(base: [FHIRString], code: FHIRString, description_fhir: FHIRString, name: FHIRString, status: PublicationStatus, type: SearchParamType, url: URL) {
 		self.init()
 		self.base = base
 		self.code = code
@@ -110,7 +110,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["base"] {
 			presentKeys.insert("base")
 			if let val = exist as? [String] {
-				self.base = val
+				self.base = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "base", wants: Array<String>.self, has: type(of: exist)))
@@ -122,7 +122,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["chain"] {
 			presentKeys.insert("chain")
 			if let val = exist as? [String] {
-				self.chain = val
+				self.chain = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "chain", wants: Array<String>.self, has: type(of: exist)))
@@ -131,7 +131,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -184,7 +184,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -193,7 +193,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["derivedFrom"] {
 			presentKeys.insert("derivedFrom")
 			if let val = exist as? String {
-				self.derivedFrom = URL(string: val)
+				self.derivedFrom = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "derivedFrom", wants: String.self, has: type(of: exist)))
@@ -202,7 +202,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -223,7 +223,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
-				self.expression = val
+				self.expression = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
@@ -259,7 +259,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -271,7 +271,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -280,7 +280,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -306,7 +306,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["target"] {
 			presentKeys.insert("target")
 			if let val = exist as? [String] {
-				self.target = val
+				self.target = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "target", wants: Array<String>.self, has: type(of: exist)))
@@ -332,7 +332,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -358,7 +358,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -367,7 +367,7 @@ open class SearchParameter: DomainResource {
 		if let exist = json["xpath"] {
 			presentKeys.insert("xpath")
 			if let val = exist as? String {
-				self.xpath = val
+				self.xpath = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "xpath", wants: String.self, has: type(of: exist)))
@@ -396,11 +396,17 @@ open class SearchParameter: DomainResource {
 		if let base = self.base {
 			json["base"] = base.map() { $0.asJSON() }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "base"))
+		}
 		if let chain = self.chain {
 			json["chain"] = chain.map() { $0.asJSON() }
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let comparator = self.comparator {
 			json["comparator"] = comparator.map() { $0.rawValue }
@@ -420,6 +426,9 @@ open class SearchParameter: DomainResource {
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "description_fhir"))
+		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
 		}
@@ -435,6 +444,9 @@ open class SearchParameter: DomainResource {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
@@ -444,14 +456,23 @@ open class SearchParameter: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let target = self.target {
 			json["target"] = target.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		if let useContext = self.useContext {
 			json["useContext"] = useContext.map() { $0.asJSON(errors: &errors) }
@@ -485,11 +506,11 @@ open class SearchParameterComponent: BackboneElement {
 	public var definition: Reference?
 	
 	/// Subexpression relative to main expression.
-	public var expression: String?
+	public var expression: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: Reference, expression: String) {
+	public convenience init(definition: Reference, expression: FHIRString) {
 		self.init()
 		self.definition = definition
 		self.expression = expression
@@ -518,7 +539,7 @@ open class SearchParameterComponent: BackboneElement {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
-				self.expression = val
+				self.expression = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
@@ -536,8 +557,14 @@ open class SearchParameterComponent: BackboneElement {
 		if let definition = self.definition {
 			json["definition"] = definition.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "definition"))
+		}
 		if let expression = self.expression {
 			json["expression"] = expression.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "expression"))
 		}
 		
 		return json

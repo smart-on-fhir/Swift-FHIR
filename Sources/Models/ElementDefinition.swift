@@ -20,7 +20,7 @@ open class ElementDefinition: Element {
 	}
 	
 	/// Other names.
-	public var alias: [String]?
+	public var alias: [FHIRString]?
 	
 	/// Base definition information for tools.
 	public var base: ElementDefinitionBase?
@@ -32,10 +32,10 @@ open class ElementDefinition: Element {
 	public var code: [Coding]?
 	
 	/// Comments about the use of this element.
-	public var comments: String?
+	public var comments: FHIRString?
 	
 	/// Reference to invariant about presence.
-	public var condition: [String]?
+	public var condition: [FHIRString]?
 	
 	/// Condition that must evaluate to true.
 	public var constraint: [ElementDefinitionConstraint]?
@@ -62,7 +62,7 @@ open class ElementDefinition: Element {
 	public var defaultValueBoolean: Bool?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueCode: String?
+	public var defaultValueCode: FHIRString?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueCodeableConcept: CodeableConcept?
@@ -95,7 +95,7 @@ open class ElementDefinition: Element {
 	public var defaultValueHumanName: HumanName?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueId: String?
+	public var defaultValueId: FHIRString?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueIdentifier: Identifier?
@@ -107,7 +107,7 @@ open class ElementDefinition: Element {
 	public var defaultValueInteger: Int?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueMarkdown: String?
+	public var defaultValueMarkdown: FHIRString?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueMeta: Meta?
@@ -116,7 +116,7 @@ open class ElementDefinition: Element {
 	public var defaultValueMoney: Money?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueOid: String?
+	public var defaultValueOid: FHIRString?
 	
 	/// Specified value if missing from instance.
 	public var defaultValuePeriod: Period?
@@ -143,7 +143,7 @@ open class ElementDefinition: Element {
 	public var defaultValueSignature: Signature?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueString: String?
+	public var defaultValueString: FHIRString?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueTime: FHIRTime?
@@ -158,7 +158,7 @@ open class ElementDefinition: Element {
 	public var defaultValueUri: URL?
 	
 	/// Full formal definition as narrative text.
-	public var definition: String?
+	public var definition: FHIRString?
 	
 	/// Example value (as defined for type).
 	public var example: [ElementDefinitionExample]?
@@ -182,7 +182,7 @@ open class ElementDefinition: Element {
 	public var fixedBoolean: Bool?
 	
 	/// Value must be exactly this.
-	public var fixedCode: String?
+	public var fixedCode: FHIRString?
 	
 	/// Value must be exactly this.
 	public var fixedCodeableConcept: CodeableConcept?
@@ -215,7 +215,7 @@ open class ElementDefinition: Element {
 	public var fixedHumanName: HumanName?
 	
 	/// Value must be exactly this.
-	public var fixedId: String?
+	public var fixedId: FHIRString?
 	
 	/// Value must be exactly this.
 	public var fixedIdentifier: Identifier?
@@ -227,7 +227,7 @@ open class ElementDefinition: Element {
 	public var fixedInteger: Int?
 	
 	/// Value must be exactly this.
-	public var fixedMarkdown: String?
+	public var fixedMarkdown: FHIRString?
 	
 	/// Value must be exactly this.
 	public var fixedMeta: Meta?
@@ -236,7 +236,7 @@ open class ElementDefinition: Element {
 	public var fixedMoney: Money?
 	
 	/// Value must be exactly this.
-	public var fixedOid: String?
+	public var fixedOid: FHIRString?
 	
 	/// Value must be exactly this.
 	public var fixedPeriod: Period?
@@ -263,7 +263,7 @@ open class ElementDefinition: Element {
 	public var fixedSignature: Signature?
 	
 	/// Value must be exactly this.
-	public var fixedString: String?
+	public var fixedString: FHIRString?
 	
 	/// Value must be exactly this.
 	public var fixedTime: FHIRTime?
@@ -284,13 +284,13 @@ open class ElementDefinition: Element {
 	public var isSummary: Bool?
 	
 	/// Name for element to display with or prompt for element.
-	public var label: String?
+	public var label: FHIRString?
 	
 	/// Map element to another set of definitions.
 	public var mapping: [ElementDefinitionMapping]?
 	
 	/// Maximum Cardinality (a number or *).
-	public var max: String?
+	public var max: FHIRString?
 	
 	/// Max length for strings.
 	public var maxLength: Int?
@@ -323,7 +323,7 @@ open class ElementDefinition: Element {
 	public var maxValueUnsignedInt: UInt?
 	
 	/// Implicit meaning when this element is missing.
-	public var meaningWhenMissing: String?
+	public var meaningWhenMissing: FHIRString?
 	
 	/// Minimum Cardinality.
 	public var min: Int?
@@ -359,7 +359,7 @@ open class ElementDefinition: Element {
 	public var mustSupport: Bool?
 	
 	/// Path of the element in the heirarchy of elements.
-	public var path: String?
+	public var path: FHIRString?
 	
 	/// Value must have at least these property values.
 	public var patternAddress: Address?
@@ -380,7 +380,7 @@ open class ElementDefinition: Element {
 	public var patternBoolean: Bool?
 	
 	/// Value must have at least these property values.
-	public var patternCode: String?
+	public var patternCode: FHIRString?
 	
 	/// Value must have at least these property values.
 	public var patternCodeableConcept: CodeableConcept?
@@ -413,7 +413,7 @@ open class ElementDefinition: Element {
 	public var patternHumanName: HumanName?
 	
 	/// Value must have at least these property values.
-	public var patternId: String?
+	public var patternId: FHIRString?
 	
 	/// Value must have at least these property values.
 	public var patternIdentifier: Identifier?
@@ -425,7 +425,7 @@ open class ElementDefinition: Element {
 	public var patternInteger: Int?
 	
 	/// Value must have at least these property values.
-	public var patternMarkdown: String?
+	public var patternMarkdown: FHIRString?
 	
 	/// Value must have at least these property values.
 	public var patternMeta: Meta?
@@ -434,7 +434,7 @@ open class ElementDefinition: Element {
 	public var patternMoney: Money?
 	
 	/// Value must have at least these property values.
-	public var patternOid: String?
+	public var patternOid: FHIRString?
 	
 	/// Value must have at least these property values.
 	public var patternPeriod: Period?
@@ -461,7 +461,7 @@ open class ElementDefinition: Element {
 	public var patternSignature: Signature?
 	
 	/// Value must have at least these property values.
-	public var patternString: String?
+	public var patternString: FHIRString?
 	
 	/// Value must have at least these property values.
 	public var patternTime: FHIRTime?
@@ -479,13 +479,13 @@ open class ElementDefinition: Element {
 	public var representation: [PropertyRepresentation]?
 	
 	/// Why this resource has been created.
-	public var requirements: String?
+	public var requirements: FHIRString?
 	
 	/// Concise definition for xml presentation.
-	public var short: String?
+	public var short: FHIRString?
 	
 	/// Name for this particular element (in a set of slices).
-	public var sliceName: String?
+	public var sliceName: FHIRString?
 	
 	/// This element is sliced - slices follow.
 	public var slicing: ElementDefinitionSlicing?
@@ -495,7 +495,7 @@ open class ElementDefinition: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(path: String) {
+	public convenience init(path: FHIRString) {
 		self.init()
 		self.path = path
 	}
@@ -506,7 +506,7 @@ open class ElementDefinition: Element {
 		if let exist = json["alias"] {
 			presentKeys.insert("alias")
 			if let val = exist as? [String] {
-				self.alias = val
+				self.alias = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "alias", wants: Array<String>.self, has: type(of: exist)))
@@ -557,7 +557,7 @@ open class ElementDefinition: Element {
 		if let exist = json["comments"] {
 			presentKeys.insert("comments")
 			if let val = exist as? String {
-				self.comments = val
+				self.comments = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -566,7 +566,7 @@ open class ElementDefinition: Element {
 		if let exist = json["condition"] {
 			presentKeys.insert("condition")
 			if let val = exist as? [String] {
-				self.condition = val
+				self.condition = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "condition", wants: Array<String>.self, has: type(of: exist)))
@@ -589,7 +589,7 @@ open class ElementDefinition: Element {
 		if let exist = json["contentReference"] {
 			presentKeys.insert("contentReference")
 			if let val = exist as? String {
-				self.contentReference = URL(string: val)
+				self.contentReference = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentReference", wants: String.self, has: type(of: exist)))
@@ -654,7 +654,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueBase64Binary"] {
 			presentKeys.insert("defaultValueBase64Binary")
 			if let val = exist as? String {
-				self.defaultValueBase64Binary = Base64Binary(string: val)
+				self.defaultValueBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueBase64Binary", wants: String.self, has: type(of: exist)))
@@ -672,7 +672,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueCode"] {
 			presentKeys.insert("defaultValueCode")
 			if let val = exist as? String {
-				self.defaultValueCode = val
+				self.defaultValueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueCode", wants: String.self, has: type(of: exist)))
@@ -737,7 +737,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueDate"] {
 			presentKeys.insert("defaultValueDate")
 			if let val = exist as? String {
-				self.defaultValueDate = FHIRDate(string: val)
+				self.defaultValueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueDate", wants: String.self, has: type(of: exist)))
@@ -746,7 +746,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueDateTime"] {
 			presentKeys.insert("defaultValueDateTime")
 			if let val = exist as? String {
-				self.defaultValueDateTime = DateTime(string: val)
+				self.defaultValueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueDateTime", wants: String.self, has: type(of: exist)))
@@ -806,7 +806,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueId"] {
 			presentKeys.insert("defaultValueId")
 			if let val = exist as? String {
-				self.defaultValueId = val
+				self.defaultValueId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueId", wants: String.self, has: type(of: exist)))
@@ -829,7 +829,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueInstant"] {
 			presentKeys.insert("defaultValueInstant")
 			if let val = exist as? String {
-				self.defaultValueInstant = Instant(string: val)
+				self.defaultValueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueInstant", wants: String.self, has: type(of: exist)))
@@ -847,7 +847,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueMarkdown"] {
 			presentKeys.insert("defaultValueMarkdown")
 			if let val = exist as? String {
-				self.defaultValueMarkdown = val
+				self.defaultValueMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueMarkdown", wants: String.self, has: type(of: exist)))
@@ -884,7 +884,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueOid"] {
 			presentKeys.insert("defaultValueOid")
 			if let val = exist as? String {
-				self.defaultValueOid = val
+				self.defaultValueOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueOid", wants: String.self, has: type(of: exist)))
@@ -1000,7 +1000,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueString"] {
 			presentKeys.insert("defaultValueString")
 			if let val = exist as? String {
-				self.defaultValueString = val
+				self.defaultValueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueString", wants: String.self, has: type(of: exist)))
@@ -1009,7 +1009,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueTime"] {
 			presentKeys.insert("defaultValueTime")
 			if let val = exist as? String {
-				self.defaultValueTime = FHIRTime(string: val)
+				self.defaultValueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueTime", wants: String.self, has: type(of: exist)))
@@ -1041,7 +1041,7 @@ open class ElementDefinition: Element {
 		if let exist = json["defaultValueUri"] {
 			presentKeys.insert("defaultValueUri")
 			if let val = exist as? String {
-				self.defaultValueUri = URL(string: val)
+				self.defaultValueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "defaultValueUri", wants: String.self, has: type(of: exist)))
@@ -1050,7 +1050,7 @@ open class ElementDefinition: Element {
 		if let exist = json["definition"] {
 			presentKeys.insert("definition")
 			if let val = exist as? String {
-				self.definition = val
+				self.definition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
@@ -1129,7 +1129,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedBase64Binary"] {
 			presentKeys.insert("fixedBase64Binary")
 			if let val = exist as? String {
-				self.fixedBase64Binary = Base64Binary(string: val)
+				self.fixedBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedBase64Binary", wants: String.self, has: type(of: exist)))
@@ -1147,7 +1147,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedCode"] {
 			presentKeys.insert("fixedCode")
 			if let val = exist as? String {
-				self.fixedCode = val
+				self.fixedCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedCode", wants: String.self, has: type(of: exist)))
@@ -1212,7 +1212,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedDate"] {
 			presentKeys.insert("fixedDate")
 			if let val = exist as? String {
-				self.fixedDate = FHIRDate(string: val)
+				self.fixedDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedDate", wants: String.self, has: type(of: exist)))
@@ -1221,7 +1221,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedDateTime"] {
 			presentKeys.insert("fixedDateTime")
 			if let val = exist as? String {
-				self.fixedDateTime = DateTime(string: val)
+				self.fixedDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedDateTime", wants: String.self, has: type(of: exist)))
@@ -1281,7 +1281,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedId"] {
 			presentKeys.insert("fixedId")
 			if let val = exist as? String {
-				self.fixedId = val
+				self.fixedId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedId", wants: String.self, has: type(of: exist)))
@@ -1304,7 +1304,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedInstant"] {
 			presentKeys.insert("fixedInstant")
 			if let val = exist as? String {
-				self.fixedInstant = Instant(string: val)
+				self.fixedInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedInstant", wants: String.self, has: type(of: exist)))
@@ -1322,7 +1322,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedMarkdown"] {
 			presentKeys.insert("fixedMarkdown")
 			if let val = exist as? String {
-				self.fixedMarkdown = val
+				self.fixedMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedMarkdown", wants: String.self, has: type(of: exist)))
@@ -1359,7 +1359,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedOid"] {
 			presentKeys.insert("fixedOid")
 			if let val = exist as? String {
-				self.fixedOid = val
+				self.fixedOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedOid", wants: String.self, has: type(of: exist)))
@@ -1475,7 +1475,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedString"] {
 			presentKeys.insert("fixedString")
 			if let val = exist as? String {
-				self.fixedString = val
+				self.fixedString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedString", wants: String.self, has: type(of: exist)))
@@ -1484,7 +1484,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedTime"] {
 			presentKeys.insert("fixedTime")
 			if let val = exist as? String {
-				self.fixedTime = FHIRTime(string: val)
+				self.fixedTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedTime", wants: String.self, has: type(of: exist)))
@@ -1516,7 +1516,7 @@ open class ElementDefinition: Element {
 		if let exist = json["fixedUri"] {
 			presentKeys.insert("fixedUri")
 			if let val = exist as? String {
-				self.fixedUri = URL(string: val)
+				self.fixedUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fixedUri", wants: String.self, has: type(of: exist)))
@@ -1543,7 +1543,7 @@ open class ElementDefinition: Element {
 		if let exist = json["label"] {
 			presentKeys.insert("label")
 			if let val = exist as? String {
-				self.label = val
+				self.label = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "label", wants: String.self, has: type(of: exist)))
@@ -1566,7 +1566,7 @@ open class ElementDefinition: Element {
 		if let exist = json["max"] {
 			presentKeys.insert("max")
 			if let val = exist as? String {
-				self.max = val
+				self.max = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "max", wants: String.self, has: type(of: exist)))
@@ -1584,7 +1584,7 @@ open class ElementDefinition: Element {
 		if let exist = json["maxValueDate"] {
 			presentKeys.insert("maxValueDate")
 			if let val = exist as? String {
-				self.maxValueDate = FHIRDate(string: val)
+				self.maxValueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "maxValueDate", wants: String.self, has: type(of: exist)))
@@ -1593,7 +1593,7 @@ open class ElementDefinition: Element {
 		if let exist = json["maxValueDateTime"] {
 			presentKeys.insert("maxValueDateTime")
 			if let val = exist as? String {
-				self.maxValueDateTime = DateTime(string: val)
+				self.maxValueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "maxValueDateTime", wants: String.self, has: type(of: exist)))
@@ -1611,7 +1611,7 @@ open class ElementDefinition: Element {
 		if let exist = json["maxValueInstant"] {
 			presentKeys.insert("maxValueInstant")
 			if let val = exist as? String {
-				self.maxValueInstant = Instant(string: val)
+				self.maxValueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "maxValueInstant", wants: String.self, has: type(of: exist)))
@@ -1652,7 +1652,7 @@ open class ElementDefinition: Element {
 		if let exist = json["maxValueTime"] {
 			presentKeys.insert("maxValueTime")
 			if let val = exist as? String {
-				self.maxValueTime = FHIRTime(string: val)
+				self.maxValueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "maxValueTime", wants: String.self, has: type(of: exist)))
@@ -1670,7 +1670,7 @@ open class ElementDefinition: Element {
 		if let exist = json["meaningWhenMissing"] {
 			presentKeys.insert("meaningWhenMissing")
 			if let val = exist as? String {
-				self.meaningWhenMissing = val
+				self.meaningWhenMissing = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "meaningWhenMissing", wants: String.self, has: type(of: exist)))
@@ -1688,7 +1688,7 @@ open class ElementDefinition: Element {
 		if let exist = json["minValueDate"] {
 			presentKeys.insert("minValueDate")
 			if let val = exist as? String {
-				self.minValueDate = FHIRDate(string: val)
+				self.minValueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "minValueDate", wants: String.self, has: type(of: exist)))
@@ -1697,7 +1697,7 @@ open class ElementDefinition: Element {
 		if let exist = json["minValueDateTime"] {
 			presentKeys.insert("minValueDateTime")
 			if let val = exist as? String {
-				self.minValueDateTime = DateTime(string: val)
+				self.minValueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "minValueDateTime", wants: String.self, has: type(of: exist)))
@@ -1715,7 +1715,7 @@ open class ElementDefinition: Element {
 		if let exist = json["minValueInstant"] {
 			presentKeys.insert("minValueInstant")
 			if let val = exist as? String {
-				self.minValueInstant = Instant(string: val)
+				self.minValueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "minValueInstant", wants: String.self, has: type(of: exist)))
@@ -1756,7 +1756,7 @@ open class ElementDefinition: Element {
 		if let exist = json["minValueTime"] {
 			presentKeys.insert("minValueTime")
 			if let val = exist as? String {
-				self.minValueTime = FHIRTime(string: val)
+				self.minValueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "minValueTime", wants: String.self, has: type(of: exist)))
@@ -1783,7 +1783,7 @@ open class ElementDefinition: Element {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))
@@ -1851,7 +1851,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternBase64Binary"] {
 			presentKeys.insert("patternBase64Binary")
 			if let val = exist as? String {
-				self.patternBase64Binary = Base64Binary(string: val)
+				self.patternBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternBase64Binary", wants: String.self, has: type(of: exist)))
@@ -1869,7 +1869,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternCode"] {
 			presentKeys.insert("patternCode")
 			if let val = exist as? String {
-				self.patternCode = val
+				self.patternCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternCode", wants: String.self, has: type(of: exist)))
@@ -1934,7 +1934,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternDate"] {
 			presentKeys.insert("patternDate")
 			if let val = exist as? String {
-				self.patternDate = FHIRDate(string: val)
+				self.patternDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternDate", wants: String.self, has: type(of: exist)))
@@ -1943,7 +1943,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternDateTime"] {
 			presentKeys.insert("patternDateTime")
 			if let val = exist as? String {
-				self.patternDateTime = DateTime(string: val)
+				self.patternDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternDateTime", wants: String.self, has: type(of: exist)))
@@ -2003,7 +2003,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternId"] {
 			presentKeys.insert("patternId")
 			if let val = exist as? String {
-				self.patternId = val
+				self.patternId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternId", wants: String.self, has: type(of: exist)))
@@ -2026,7 +2026,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternInstant"] {
 			presentKeys.insert("patternInstant")
 			if let val = exist as? String {
-				self.patternInstant = Instant(string: val)
+				self.patternInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternInstant", wants: String.self, has: type(of: exist)))
@@ -2044,7 +2044,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternMarkdown"] {
 			presentKeys.insert("patternMarkdown")
 			if let val = exist as? String {
-				self.patternMarkdown = val
+				self.patternMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternMarkdown", wants: String.self, has: type(of: exist)))
@@ -2081,7 +2081,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternOid"] {
 			presentKeys.insert("patternOid")
 			if let val = exist as? String {
-				self.patternOid = val
+				self.patternOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternOid", wants: String.self, has: type(of: exist)))
@@ -2197,7 +2197,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternString"] {
 			presentKeys.insert("patternString")
 			if let val = exist as? String {
-				self.patternString = val
+				self.patternString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternString", wants: String.self, has: type(of: exist)))
@@ -2206,7 +2206,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternTime"] {
 			presentKeys.insert("patternTime")
 			if let val = exist as? String {
-				self.patternTime = FHIRTime(string: val)
+				self.patternTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternTime", wants: String.self, has: type(of: exist)))
@@ -2238,7 +2238,7 @@ open class ElementDefinition: Element {
 		if let exist = json["patternUri"] {
 			presentKeys.insert("patternUri")
 			if let val = exist as? String {
-				self.patternUri = URL(string: val)
+				self.patternUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patternUri", wants: String.self, has: type(of: exist)))
@@ -2260,7 +2260,7 @@ open class ElementDefinition: Element {
 		if let exist = json["requirements"] {
 			presentKeys.insert("requirements")
 			if let val = exist as? String {
-				self.requirements = val
+				self.requirements = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -2269,7 +2269,7 @@ open class ElementDefinition: Element {
 		if let exist = json["short"] {
 			presentKeys.insert("short")
 			if let val = exist as? String {
-				self.short = val
+				self.short = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "short", wants: String.self, has: type(of: exist)))
@@ -2278,7 +2278,7 @@ open class ElementDefinition: Element {
 		if let exist = json["sliceName"] {
 			presentKeys.insert("sliceName")
 			if let val = exist as? String {
-				self.sliceName = val
+				self.sliceName = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "sliceName", wants: String.self, has: type(of: exist)))
@@ -2660,6 +2660,9 @@ open class ElementDefinition: Element {
 		if let path = self.path {
 			json["path"] = path.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "path"))
+		}
 		if let patternAddress = self.patternAddress {
 			json["patternAddress"] = patternAddress.asJSON(errors: &errors)
 		}
@@ -2812,17 +2815,17 @@ open class ElementDefinitionBase: Element {
 	}
 	
 	/// Max cardinality of the base element.
-	public var max: String?
+	public var max: FHIRString?
 	
 	/// Min cardinality of the base element.
 	public var min: Int?
 	
 	/// Path that identifies the base element.
-	public var path: String?
+	public var path: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(max: String, min: Int, path: String) {
+	public convenience init(max: FHIRString, min: Int, path: FHIRString) {
 		self.init()
 		self.max = max
 		self.min = min
@@ -2835,7 +2838,7 @@ open class ElementDefinitionBase: Element {
 		if let exist = json["max"] {
 			presentKeys.insert("max")
 			if let val = exist as? String {
-				self.max = val
+				self.max = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "max", wants: String.self, has: type(of: exist)))
@@ -2859,7 +2862,7 @@ open class ElementDefinitionBase: Element {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))
@@ -2877,11 +2880,20 @@ open class ElementDefinitionBase: Element {
 		if let max = self.max {
 			json["max"] = max.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "max"))
+		}
 		if let min = self.min {
 			json["min"] = min.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "min"))
+		}
 		if let path = self.path {
 			json["path"] = path.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "path"))
 		}
 		
 		return json
@@ -2900,7 +2912,7 @@ open class ElementDefinitionBinding: Element {
 	}
 	
 	/// Human explanation of the value set.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the
 	/// provided value set must be adhered to in the instances.
@@ -2925,7 +2937,7 @@ open class ElementDefinitionBinding: Element {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -2965,7 +2977,7 @@ open class ElementDefinitionBinding: Element {
 		if let exist = json["valueSetUri"] {
 			presentKeys.insert("valueSetUri")
 			if let val = exist as? String {
-				self.valueSetUri = URL(string: val)
+				self.valueSetUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueSetUri", wants: String.self, has: type(of: exist)))
@@ -2982,6 +2994,9 @@ open class ElementDefinitionBinding: Element {
 		}
 		if let strength = self.strength {
 			json["strength"] = strength.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "strength"))
 		}
 		if let valueSetReference = self.valueSetReference {
 			json["valueSetReference"] = valueSetReference.asJSON(errors: &errors)
@@ -3007,16 +3022,16 @@ open class ElementDefinitionConstraint: Element {
 	}
 	
 	/// FluentPath expression of constraint.
-	public var expression: String?
+	public var expression: FHIRString?
 	
 	/// Human description of constraint.
-	public var human: String?
+	public var human: FHIRString?
 	
 	/// Target of 'condition' reference above.
-	public var key: String?
+	public var key: FHIRString?
 	
 	/// Why this constraint is necessary or appropriate.
-	public var requirements: String?
+	public var requirements: FHIRString?
 	
 	/// Identifies the impact constraint violation has on the conformance of the instance.
 	public var severity: ConstraintSeverity?
@@ -3025,11 +3040,11 @@ open class ElementDefinitionConstraint: Element {
 	public var source: URL?
 	
 	/// XPath expression of constraint.
-	public var xpath: String?
+	public var xpath: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(expression: String, human: String, key: String, severity: ConstraintSeverity) {
+	public convenience init(expression: FHIRString, human: FHIRString, key: FHIRString, severity: ConstraintSeverity) {
 		self.init()
 		self.expression = expression
 		self.human = human
@@ -3043,7 +3058,7 @@ open class ElementDefinitionConstraint: Element {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
-				self.expression = val
+				self.expression = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
@@ -3055,7 +3070,7 @@ open class ElementDefinitionConstraint: Element {
 		if let exist = json["human"] {
 			presentKeys.insert("human")
 			if let val = exist as? String {
-				self.human = val
+				self.human = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "human", wants: String.self, has: type(of: exist)))
@@ -3067,7 +3082,7 @@ open class ElementDefinitionConstraint: Element {
 		if let exist = json["key"] {
 			presentKeys.insert("key")
 			if let val = exist as? String {
-				self.key = val
+				self.key = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "key", wants: String.self, has: type(of: exist)))
@@ -3079,7 +3094,7 @@ open class ElementDefinitionConstraint: Element {
 		if let exist = json["requirements"] {
 			presentKeys.insert("requirements")
 			if let val = exist as? String {
-				self.requirements = val
+				self.requirements = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -3105,7 +3120,7 @@ open class ElementDefinitionConstraint: Element {
 		if let exist = json["source"] {
 			presentKeys.insert("source")
 			if let val = exist as? String {
-				self.source = URL(string: val)
+				self.source = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "source", wants: String.self, has: type(of: exist)))
@@ -3114,7 +3129,7 @@ open class ElementDefinitionConstraint: Element {
 		if let exist = json["xpath"] {
 			presentKeys.insert("xpath")
 			if let val = exist as? String {
-				self.xpath = val
+				self.xpath = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "xpath", wants: String.self, has: type(of: exist)))
@@ -3129,17 +3144,29 @@ open class ElementDefinitionConstraint: Element {
 		if let expression = self.expression {
 			json["expression"] = expression.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "expression"))
+		}
 		if let human = self.human {
 			json["human"] = human.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "human"))
+		}
 		if let key = self.key {
 			json["key"] = key.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "key"))
 		}
 		if let requirements = self.requirements {
 			json["requirements"] = requirements.asJSON()
 		}
 		if let severity = self.severity {
 			json["severity"] = severity.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "severity"))
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
@@ -3164,7 +3191,7 @@ open class ElementDefinitionExample: Element {
 	}
 	
 	/// Describes the purpose of this example.
-	public var label: String?
+	public var label: FHIRString?
 	
 	/// Value of Example (one of allowed types).
 	public var valueAddress: Address?
@@ -3185,7 +3212,7 @@ open class ElementDefinitionExample: Element {
 	public var valueBoolean: Bool?
 	
 	/// Value of Example (one of allowed types).
-	public var valueCode: String?
+	public var valueCode: FHIRString?
 	
 	/// Value of Example (one of allowed types).
 	public var valueCodeableConcept: CodeableConcept?
@@ -3218,7 +3245,7 @@ open class ElementDefinitionExample: Element {
 	public var valueHumanName: HumanName?
 	
 	/// Value of Example (one of allowed types).
-	public var valueId: String?
+	public var valueId: FHIRString?
 	
 	/// Value of Example (one of allowed types).
 	public var valueIdentifier: Identifier?
@@ -3230,7 +3257,7 @@ open class ElementDefinitionExample: Element {
 	public var valueInteger: Int?
 	
 	/// Value of Example (one of allowed types).
-	public var valueMarkdown: String?
+	public var valueMarkdown: FHIRString?
 	
 	/// Value of Example (one of allowed types).
 	public var valueMeta: Meta?
@@ -3239,7 +3266,7 @@ open class ElementDefinitionExample: Element {
 	public var valueMoney: Money?
 	
 	/// Value of Example (one of allowed types).
-	public var valueOid: String?
+	public var valueOid: FHIRString?
 	
 	/// Value of Example (one of allowed types).
 	public var valuePeriod: Period?
@@ -3266,7 +3293,7 @@ open class ElementDefinitionExample: Element {
 	public var valueSignature: Signature?
 	
 	/// Value of Example (one of allowed types).
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Value of Example (one of allowed types).
 	public var valueTime: FHIRTime?
@@ -3282,7 +3309,7 @@ open class ElementDefinitionExample: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(label: String, value: Any) {
+	public convenience init(label: FHIRString, value: Any) {
 		self.init()
 		self.label = label
 		if let value = value as? Base64Binary {
@@ -3291,7 +3318,7 @@ open class ElementDefinitionExample: Element {
 		else if let value = value as? Bool {
 			self.valueBoolean = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueCode = value
 		}
 		else if let value = value as? FHIRDate {
@@ -3303,7 +3330,7 @@ open class ElementDefinitionExample: Element {
 		else if let value = value as? NSDecimalNumber {
 			self.valueDecimal = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueId = value
 		}
 		else if let value = value as? Instant {
@@ -3312,16 +3339,16 @@ open class ElementDefinitionExample: Element {
 		else if let value = value as? Int {
 			self.valueInteger = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueMarkdown = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueOid = value
 		}
 		else if let value = value as? UInt {
 			self.valuePositiveInt = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueString = value
 		}
 		else if let value = value as? FHIRTime {
@@ -3410,7 +3437,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["label"] {
 			presentKeys.insert("label")
 			if let val = exist as? String {
-				self.label = val
+				self.label = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "label", wants: String.self, has: type(of: exist)))
@@ -3478,7 +3505,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueBase64Binary"] {
 			presentKeys.insert("valueBase64Binary")
 			if let val = exist as? String {
-				self.valueBase64Binary = Base64Binary(string: val)
+				self.valueBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueBase64Binary", wants: String.self, has: type(of: exist)))
@@ -3496,7 +3523,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? String {
-				self.valueCode = val
+				self.valueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -3561,7 +3588,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueDate"] {
 			presentKeys.insert("valueDate")
 			if let val = exist as? String {
-				self.valueDate = FHIRDate(string: val)
+				self.valueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
@@ -3570,7 +3597,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -3630,7 +3657,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueId"] {
 			presentKeys.insert("valueId")
 			if let val = exist as? String {
-				self.valueId = val
+				self.valueId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -3653,7 +3680,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueInstant"] {
 			presentKeys.insert("valueInstant")
 			if let val = exist as? String {
-				self.valueInstant = Instant(string: val)
+				self.valueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
@@ -3671,7 +3698,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueMarkdown"] {
 			presentKeys.insert("valueMarkdown")
 			if let val = exist as? String {
-				self.valueMarkdown = val
+				self.valueMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
@@ -3708,7 +3735,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueOid"] {
 			presentKeys.insert("valueOid")
 			if let val = exist as? String {
-				self.valueOid = val
+				self.valueOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueOid", wants: String.self, has: type(of: exist)))
@@ -3824,7 +3851,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -3833,7 +3860,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -3865,7 +3892,7 @@ open class ElementDefinitionExample: Element {
 		if let exist = json["valueUri"] {
 			presentKeys.insert("valueUri")
 			if let val = exist as? String {
-				self.valueUri = URL(string: val)
+				self.valueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
@@ -3884,6 +3911,9 @@ open class ElementDefinitionExample: Element {
 		
 		if let label = self.label {
 			json["label"] = label.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "label"))
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON(errors: &errors)
@@ -4000,6 +4030,11 @@ open class ElementDefinitionExample: Element {
 			json["valueUri"] = valueUri.asJSON()
 		}
 		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
+			errors.append(FHIRValidationError(missing: "value[x]"))
+		}
+		
 		return json
 	}
 }
@@ -4016,17 +4051,17 @@ open class ElementDefinitionMapping: Element {
 	}
 	
 	/// Reference to mapping declaration.
-	public var identity: String?
+	public var identity: FHIRString?
 	
 	/// Computable language of mapping.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// Details of the mapping.
-	public var map: String?
+	public var map: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String, map: String) {
+	public convenience init(identity: FHIRString, map: FHIRString) {
 		self.init()
 		self.identity = identity
 		self.map = map
@@ -4038,7 +4073,7 @@ open class ElementDefinitionMapping: Element {
 		if let exist = json["identity"] {
 			presentKeys.insert("identity")
 			if let val = exist as? String {
-				self.identity = val
+				self.identity = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "identity", wants: String.self, has: type(of: exist)))
@@ -4050,7 +4085,7 @@ open class ElementDefinitionMapping: Element {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -4059,7 +4094,7 @@ open class ElementDefinitionMapping: Element {
 		if let exist = json["map"] {
 			presentKeys.insert("map")
 			if let val = exist as? String {
-				self.map = val
+				self.map = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "map", wants: String.self, has: type(of: exist)))
@@ -4077,11 +4112,17 @@ open class ElementDefinitionMapping: Element {
 		if let identity = self.identity {
 			json["identity"] = identity.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identity"))
+		}
 		if let language = self.language {
 			json["language"] = language.asJSON()
 		}
 		if let map = self.map {
 			json["map"] = map.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "map"))
 		}
 		
 		return json
@@ -4104,10 +4145,10 @@ open class ElementDefinitionSlicing: Element {
 	}
 	
 	/// Text description of how slicing works (or not).
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Element values that are used to distinguish the slices.
-	public var discriminator: [String]?
+	public var discriminator: [FHIRString]?
 	
 	/// If elements must be in same order as slices.
 	public var ordered: Bool?
@@ -4129,7 +4170,7 @@ open class ElementDefinitionSlicing: Element {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -4138,7 +4179,7 @@ open class ElementDefinitionSlicing: Element {
 		if let exist = json["discriminator"] {
 			presentKeys.insert("discriminator")
 			if let val = exist as? [String] {
-				self.discriminator = val
+				self.discriminator = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "discriminator", wants: Array<String>.self, has: type(of: exist)))
@@ -4187,6 +4228,9 @@ open class ElementDefinitionSlicing: Element {
 		}
 		if let rules = self.rules {
 			json["rules"] = rules.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "rules"))
 		}
 		
 		return json
@@ -4246,7 +4290,7 @@ open class ElementDefinitionType: Element {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = URL(string: val)
+				self.code = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -4258,7 +4302,7 @@ open class ElementDefinitionType: Element {
 		if let exist = json["profile"] {
 			presentKeys.insert("profile")
 			if let val = exist as? String {
-				self.profile = URL(string: val)
+				self.profile = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "profile", wants: String.self, has: type(of: exist)))
@@ -4267,7 +4311,7 @@ open class ElementDefinitionType: Element {
 		if let exist = json["targetProfile"] {
 			presentKeys.insert("targetProfile")
 			if let val = exist as? String {
-				self.targetProfile = URL(string: val)
+				self.targetProfile = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "targetProfile", wants: String.self, has: type(of: exist)))
@@ -4298,6 +4342,9 @@ open class ElementDefinitionType: Element {
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON()

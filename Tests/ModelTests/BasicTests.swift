@@ -25,8 +25,8 @@ class BasicTests: XCTestCase {
 			let instance = try runBasic1()
 			try runBasic1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -46,8 +46,8 @@ class BasicTests: XCTestCase {
 			let instance = try runBasic2()
 			try runBasic2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -88,8 +88,8 @@ class BasicTests: XCTestCase {
 			let instance = try runBasic3()
 			try runBasic3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

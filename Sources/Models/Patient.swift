@@ -121,7 +121,7 @@ open class Patient: DomainResource {
 		if let exist = json["birthDate"] {
 			presentKeys.insert("birthDate")
 			if let val = exist as? String {
-				self.birthDate = FHIRDate(string: val)
+				self.birthDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "birthDate", wants: String.self, has: type(of: exist)))
@@ -167,7 +167,7 @@ open class Patient: DomainResource {
 		if let exist = json["deceasedDateTime"] {
 			presentKeys.insert("deceasedDateTime")
 			if let val = exist as? String {
-				self.deceasedDateTime = DateTime(string: val)
+				self.deceasedDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "deceasedDateTime", wants: String.self, has: type(of: exist)))
@@ -475,6 +475,9 @@ open class PatientAnimal: BackboneElement {
 		if let species = self.species {
 			json["species"] = species.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "species"))
+		}
 		
 		return json
 	}
@@ -541,6 +544,9 @@ open class PatientCommunication: BackboneElement {
 		
 		if let language = self.language {
 			json["language"] = language.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "language"))
 		}
 		if let preferred = self.preferred {
 			json["preferred"] = preferred.asJSON()
@@ -785,8 +791,14 @@ open class PatientLink: BackboneElement {
 		if let other = self.other {
 			json["other"] = other.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "other"))
+		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json

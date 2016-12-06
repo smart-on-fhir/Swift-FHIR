@@ -25,8 +25,8 @@ class CommunicationRequestTests: XCTestCase {
 			let instance = try runCommunicationRequest1()
 			try runCommunicationRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -57,8 +57,8 @@ class CommunicationRequestTests: XCTestCase {
 			let instance = try runCommunicationRequest2()
 			try runCommunicationRequest2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

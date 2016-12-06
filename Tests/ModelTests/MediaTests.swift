@@ -25,8 +25,8 @@ class MediaTests: XCTestCase {
 			let instance = try runMedia1()
 			try runMedia1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -71,8 +71,8 @@ class MediaTests: XCTestCase {
 			let instance = try runMedia2()
 			try runMedia2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -99,8 +99,8 @@ class MediaTests: XCTestCase {
 			let instance = try runMedia3()
 			try runMedia3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

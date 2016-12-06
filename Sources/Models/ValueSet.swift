@@ -26,13 +26,13 @@ open class ValueSet: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the value set.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Used when the value set is "expanded".
 	public var expansion: ValueSetExpansion?
@@ -53,19 +53,19 @@ open class ValueSet: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this value set (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this value set is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// The status of this value set. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
 	/// Name for this value set (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this value set (globally unique).
 	public var url: URL?
@@ -74,7 +74,7 @@ open class ValueSet: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the value set.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -117,7 +117,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -126,7 +126,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -135,7 +135,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -213,7 +213,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -222,7 +222,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -231,7 +231,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -257,7 +257,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -266,7 +266,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -289,7 +289,7 @@ open class ValueSet: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -345,6 +345,9 @@ open class ValueSet: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -440,7 +443,7 @@ open class ValueSetCompose: BackboneElement {
 		if let exist = json["lockedDate"] {
 			presentKeys.insert("lockedDate")
 			if let val = exist as? String {
-				self.lockedDate = FHIRDate(string: val)
+				self.lockedDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lockedDate", wants: String.self, has: type(of: exist)))
@@ -460,6 +463,9 @@ open class ValueSetCompose: BackboneElement {
 		}
 		if let include = self.include {
 			json["include"] = include.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "include"))
 		}
 		if let lockedDate = self.lockedDate {
 			json["lockedDate"] = lockedDate.asJSON()
@@ -491,7 +497,7 @@ open class ValueSetComposeInclude: BackboneElement {
 	public var valueSet: [URL]?
 	
 	/// Specific version of the code system referred to.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -527,7 +533,7 @@ open class ValueSetComposeInclude: BackboneElement {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -545,7 +551,7 @@ open class ValueSetComposeInclude: BackboneElement {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -589,17 +595,17 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 	}
 	
 	/// Code or expression from system.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Additional representations for this concept.
 	public var designation: [ValueSetComposeIncludeConceptDesignation]?
 	
 	/// Text to display for this code for this value set.
-	public var display: String?
+	public var display: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
+	public convenience init(code: FHIRString) {
 		self.init()
 		self.code = code
 	}
@@ -610,7 +616,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -636,7 +642,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		if let exist = json["display"] {
 			presentKeys.insert("display")
 			if let val = exist as? String {
-				self.display = val
+				self.display = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
@@ -650,6 +656,9 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let designation = self.designation {
 			json["designation"] = designation.map() { $0.asJSON(errors: &errors) }
@@ -675,17 +684,17 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 	}
 	
 	/// Human language of the designation.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// Details how this designation would be used.
 	public var use: Coding?
 	
 	/// The text value for this designation.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(value: String) {
+	public convenience init(value: FHIRString) {
 		self.init()
 		self.value = value
 	}
@@ -696,7 +705,7 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -719,7 +728,7 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -743,6 +752,9 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 		if let value = self.value {
 			json["value"] = value.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
+		}
 		
 		return json
 	}
@@ -764,14 +776,14 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 	public var op: FilterOperator?
 	
 	/// A property defined by the code system.
-	public var property: String?
+	public var property: FHIRString?
 	
 	/// Code from the system, or regex criteria.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(op: FilterOperator, property: String, value: String) {
+	public convenience init(op: FilterOperator, property: FHIRString, value: FHIRString) {
 		self.init()
 		self.op = op
 		self.property = property
@@ -801,7 +813,7 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		if let exist = json["property"] {
 			presentKeys.insert("property")
 			if let val = exist as? String {
-				self.property = val
+				self.property = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "property", wants: String.self, has: type(of: exist)))
@@ -813,7 +825,7 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -831,11 +843,20 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		if let op = self.op {
 			json["op"] = op.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "op"))
+		}
 		if let property = self.property {
 			json["property"] = property.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "property"))
+		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
 		return json
@@ -900,7 +921,7 @@ open class ValueSetExpansion: BackboneElement {
 		if let exist = json["identifier"] {
 			presentKeys.insert("identifier")
 			if let val = exist as? String {
-				self.identifier = URL(string: val)
+				self.identifier = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "identifier", wants: String.self, has: type(of: exist)))
@@ -935,7 +956,7 @@ open class ValueSetExpansion: BackboneElement {
 		if let exist = json["timestamp"] {
 			presentKeys.insert("timestamp")
 			if let val = exist as? String {
-				self.timestamp = DateTime(string: val)
+				self.timestamp = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "timestamp", wants: String.self, has: type(of: exist)))
@@ -965,6 +986,9 @@ open class ValueSetExpansion: BackboneElement {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
+		}
 		if let offset = self.offset {
 			json["offset"] = offset.asJSON()
 		}
@@ -973,6 +997,9 @@ open class ValueSetExpansion: BackboneElement {
 		}
 		if let timestamp = self.timestamp {
 			json["timestamp"] = timestamp.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "timestamp"))
 		}
 		if let total = self.total {
 			json["total"] = total.asJSON()
@@ -997,7 +1024,7 @@ open class ValueSetExpansionContains: BackboneElement {
 	public var abstract: Bool?
 	
 	/// Code - if blank, this is not a selectable code.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Codes contained under this entry.
 	public var contains: [ValueSetExpansionContains]?
@@ -1006,7 +1033,7 @@ open class ValueSetExpansionContains: BackboneElement {
 	public var designation: [ValueSetComposeIncludeConceptDesignation]?
 	
 	/// User display for the concept.
-	public var display: String?
+	public var display: FHIRString?
 	
 	/// If concept is inactive in the code system.
 	public var inactive: Bool?
@@ -1015,7 +1042,7 @@ open class ValueSetExpansionContains: BackboneElement {
 	public var system: URL?
 	
 	/// Version in which this code/display is defined.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1032,7 +1059,7 @@ open class ValueSetExpansionContains: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -1069,7 +1096,7 @@ open class ValueSetExpansionContains: BackboneElement {
 		if let exist = json["display"] {
 			presentKeys.insert("display")
 			if let val = exist as? String {
-				self.display = val
+				self.display = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
@@ -1087,7 +1114,7 @@ open class ValueSetExpansionContains: BackboneElement {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -1096,7 +1123,7 @@ open class ValueSetExpansionContains: BackboneElement {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -1150,13 +1177,13 @@ open class ValueSetExpansionParameter: BackboneElement {
 	}
 	
 	/// Name as assigned by the server.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Value of the named parameter.
 	public var valueBoolean: Bool?
 	
 	/// Value of the named parameter.
-	public var valueCode: String?
+	public var valueCode: FHIRString?
 	
 	/// Value of the named parameter.
 	public var valueDecimal: NSDecimalNumber?
@@ -1165,14 +1192,14 @@ open class ValueSetExpansionParameter: BackboneElement {
 	public var valueInteger: Int?
 	
 	/// Value of the named parameter.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Value of the named parameter.
 	public var valueUri: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String) {
+	public convenience init(name: FHIRString) {
 		self.init()
 		self.name = name
 	}
@@ -1183,7 +1210,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1204,7 +1231,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? String {
-				self.valueCode = val
+				self.valueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -1231,7 +1258,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -1240,7 +1267,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		if let exist = json["valueUri"] {
 			presentKeys.insert("valueUri")
 			if let val = exist as? String {
-				self.valueUri = URL(string: val)
+				self.valueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
@@ -1254,6 +1281,9 @@ open class ValueSetExpansionParameter: BackboneElement {
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let valueBoolean = self.valueBoolean {
 			json["valueBoolean"] = valueBoolean.asJSON()

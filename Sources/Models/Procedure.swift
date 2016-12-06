@@ -290,7 +290,7 @@ open class Procedure: DomainResource {
 		if let exist = json["performedDateTime"] {
 			presentKeys.insert("performedDateTime")
 			if let val = exist as? String {
-				self.performedDateTime = DateTime(string: val)
+				self.performedDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "performedDateTime", wants: String.self, has: type(of: exist)))
@@ -471,6 +471,9 @@ open class Procedure: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let complication = self.complication {
 			json["complication"] = complication.map() { $0.asJSON(errors: &errors) }
 		}
@@ -528,8 +531,14 @@ open class Procedure: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let usedCode = self.usedCode {
 			json["usedCode"] = usedCode.map() { $0.asJSON(errors: &errors) }
@@ -612,6 +621,9 @@ open class ProcedureFocalDevice: BackboneElement {
 		}
 		if let manipulated = self.manipulated {
 			json["manipulated"] = manipulated.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "manipulated"))
 		}
 		
 		return json

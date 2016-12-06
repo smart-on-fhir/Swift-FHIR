@@ -23,7 +23,7 @@ open class DataElement: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
@@ -44,10 +44,10 @@ open class DataElement: DomainResource {
 	public var mapping: [DataElementMapping]?
 	
 	/// Name for this data element (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// The status of this data element. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -56,7 +56,7 @@ open class DataElement: DomainResource {
 	public var stringency: DataElementStringency?
 	
 	/// Name for this data element (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this data element (globally unique).
 	public var url: URL?
@@ -65,7 +65,7 @@ open class DataElement: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the data element.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -95,7 +95,7 @@ open class DataElement: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -104,7 +104,7 @@ open class DataElement: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -181,7 +181,7 @@ open class DataElement: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -190,7 +190,7 @@ open class DataElement: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -230,7 +230,7 @@ open class DataElement: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -239,7 +239,7 @@ open class DataElement: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -262,7 +262,7 @@ open class DataElement: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -286,6 +286,9 @@ open class DataElement: DomainResource {
 		if let element = self.element {
 			json["element"] = element.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "element"))
+		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
 		}
@@ -306,6 +309,9 @@ open class DataElement: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let stringency = self.stringency {
 			json["stringency"] = stringency.rawValue
@@ -340,20 +346,20 @@ open class DataElementMapping: BackboneElement {
 	}
 	
 	/// Versions, Issues, Scope limitations etc..
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Internal id when this mapping is used.
-	public var identity: String?
+	public var identity: FHIRString?
 	
 	/// Names what this mapping refers to.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Identifies what this mapping refers to.
 	public var uri: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String) {
+	public convenience init(identity: FHIRString) {
 		self.init()
 		self.identity = identity
 	}
@@ -364,7 +370,7 @@ open class DataElementMapping: BackboneElement {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -373,7 +379,7 @@ open class DataElementMapping: BackboneElement {
 		if let exist = json["identity"] {
 			presentKeys.insert("identity")
 			if let val = exist as? String {
-				self.identity = val
+				self.identity = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "identity", wants: String.self, has: type(of: exist)))
@@ -385,7 +391,7 @@ open class DataElementMapping: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -394,7 +400,7 @@ open class DataElementMapping: BackboneElement {
 		if let exist = json["uri"] {
 			presentKeys.insert("uri")
 			if let val = exist as? String {
-				self.uri = URL(string: val)
+				self.uri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uri", wants: String.self, has: type(of: exist)))
@@ -411,6 +417,9 @@ open class DataElementMapping: BackboneElement {
 		}
 		if let identity = self.identity {
 			json["identity"] = identity.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "identity"))
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

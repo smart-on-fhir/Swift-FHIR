@@ -25,8 +25,8 @@ class ImagingManifestTests: XCTestCase {
 			let instance = try runImagingManifest1()
 			try runImagingManifest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImagingManifest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ImagingManifest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

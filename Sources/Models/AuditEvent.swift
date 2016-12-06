@@ -30,10 +30,10 @@ open class AuditEvent: DomainResource {
 	public var entity: [AuditEventEntity]?
 	
 	/// Whether the event succeeded or failed.
-	public var outcome: String?
+	public var outcome: FHIRString?
 	
 	/// Description of the event outcome.
-	public var outcomeDesc: String?
+	public var outcomeDesc: FHIRString?
 	
 	/// The purposeOfUse of the event.
 	public var purposeOfEvent: [CodeableConcept]?
@@ -111,7 +111,7 @@ open class AuditEvent: DomainResource {
 		if let exist = json["outcome"] {
 			presentKeys.insert("outcome")
 			if let val = exist as? String {
-				self.outcome = val
+				self.outcome = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "outcome", wants: String.self, has: type(of: exist)))
@@ -120,7 +120,7 @@ open class AuditEvent: DomainResource {
 		if let exist = json["outcomeDesc"] {
 			presentKeys.insert("outcomeDesc")
 			if let val = exist as? String {
-				self.outcomeDesc = val
+				self.outcomeDesc = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "outcomeDesc", wants: String.self, has: type(of: exist)))
@@ -143,7 +143,7 @@ open class AuditEvent: DomainResource {
 		if let exist = json["recorded"] {
 			presentKeys.insert("recorded")
 			if let val = exist as? String {
-				self.recorded = Instant(string: val)
+				self.recorded = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "recorded", wants: String.self, has: type(of: exist)))
@@ -212,6 +212,9 @@ open class AuditEvent: DomainResource {
 		if let agent = self.agent {
 			json["agent"] = agent.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "agent"))
+		}
 		if let entity = self.entity {
 			json["entity"] = entity.map() { $0.asJSON(errors: &errors) }
 		}
@@ -227,14 +230,23 @@ open class AuditEvent: DomainResource {
 		if let recorded = self.recorded {
 			json["recorded"] = recorded.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "recorded"))
+		}
 		if let source = self.source {
 			json["source"] = source.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "source"))
 		}
 		if let subtype = self.subtype {
 			json["subtype"] = subtype.map() { $0.asJSON(errors: &errors) }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -253,7 +265,7 @@ open class AuditEventAgent: BackboneElement {
 	}
 	
 	/// Alternative User id e.g. authentication.
-	public var altId: String?
+	public var altId: FHIRString?
 	
 	/// Where.
 	public var location: Reference?
@@ -262,7 +274,7 @@ open class AuditEventAgent: BackboneElement {
 	public var media: Coding?
 	
 	/// Human-meaningful name for the agent.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Logical network location for application activity.
 	public var network: AuditEventAgentNetwork?
@@ -298,7 +310,7 @@ open class AuditEventAgent: BackboneElement {
 		if let exist = json["altId"] {
 			presentKeys.insert("altId")
 			if let val = exist as? String {
-				self.altId = val
+				self.altId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "altId", wants: String.self, has: type(of: exist)))
@@ -335,7 +347,7 @@ open class AuditEventAgent: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -465,6 +477,9 @@ open class AuditEventAgent: BackboneElement {
 		if let requestor = self.requestor {
 			json["requestor"] = requestor.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "requestor"))
+		}
 		if let role = self.role {
 			json["role"] = role.map() { $0.asJSON(errors: &errors) }
 		}
@@ -488,10 +503,10 @@ open class AuditEventAgentNetwork: BackboneElement {
 	}
 	
 	/// Identifier for the network access point of the user device.
-	public var address: String?
+	public var address: FHIRString?
 	
 	/// The type of network access point.
-	public var type: String?
+	public var type: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -499,7 +514,7 @@ open class AuditEventAgentNetwork: BackboneElement {
 		if let exist = json["address"] {
 			presentKeys.insert("address")
 			if let val = exist as? String {
-				self.address = val
+				self.address = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "address", wants: String.self, has: type(of: exist)))
@@ -508,7 +523,7 @@ open class AuditEventAgentNetwork: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -543,7 +558,7 @@ open class AuditEventEntity: BackboneElement {
 	}
 	
 	/// Descriptive text.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Additional Information about the entity.
 	public var detail: [AuditEventEntityDetail]?
@@ -555,7 +570,7 @@ open class AuditEventEntity: BackboneElement {
 	public var lifecycle: Coding?
 	
 	/// Descriptor for entity.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Query parameters.
 	public var query: Base64Binary?
@@ -578,7 +593,7 @@ open class AuditEventEntity: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -629,7 +644,7 @@ open class AuditEventEntity: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -638,7 +653,7 @@ open class AuditEventEntity: BackboneElement {
 		if let exist = json["query"] {
 			presentKeys.insert("query")
 			if let val = exist as? String {
-				self.query = Base64Binary(string: val)
+				self.query = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "query", wants: String.self, has: type(of: exist)))
@@ -751,14 +766,14 @@ open class AuditEventEntityDetail: BackboneElement {
 	}
 	
 	/// Name of the property.
-	public var type: String?
+	public var type: FHIRString?
 	
 	/// Property value.
 	public var value: Base64Binary?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, value: Base64Binary) {
+	public convenience init(type: FHIRString, value: Base64Binary) {
 		self.init()
 		self.type = type
 		self.value = value
@@ -770,7 +785,7 @@ open class AuditEventEntityDetail: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -782,7 +797,7 @@ open class AuditEventEntityDetail: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = Base64Binary(string: val)
+				self.value = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -800,8 +815,14 @@ open class AuditEventEntityDetail: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
 		return json
@@ -823,7 +844,7 @@ open class AuditEventSource: BackboneElement {
 	public var identifier: Identifier?
 	
 	/// Logical source location within the enterprise.
-	public var site: String?
+	public var site: FHIRString?
 	
 	/// The type of source where event originated.
 	public var type: [Coding]?
@@ -858,7 +879,7 @@ open class AuditEventSource: BackboneElement {
 		if let exist = json["site"] {
 			presentKeys.insert("site")
 			if let val = exist as? String {
-				self.site = val
+				self.site = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "site", wants: String.self, has: type(of: exist)))
@@ -886,6 +907,9 @@ open class AuditEventSource: BackboneElement {
 		
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
 		}
 		if let site = self.site {
 			json["site"] = site.asJSON()

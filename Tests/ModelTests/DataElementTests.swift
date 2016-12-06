@@ -25,8 +25,8 @@ class DataElementTests: XCTestCase {
 			let instance = try runDataElement1()
 			try runDataElement1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -67,8 +67,8 @@ class DataElementTests: XCTestCase {
 			let instance = try runDataElement2()
 			try runDataElement2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

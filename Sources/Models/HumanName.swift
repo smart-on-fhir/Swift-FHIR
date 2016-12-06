@@ -20,22 +20,22 @@ open class HumanName: Element {
 	}
 	
 	/// Family name (often called 'Surname').
-	public var family: String?
+	public var family: FHIRString?
 	
 	/// Given names (not always 'first'). Includes middle names.
-	public var given: [String]?
+	public var given: [FHIRString]?
 	
 	/// Time period when name was/is in use.
 	public var period: Period?
 	
 	/// Parts that come before the name.
-	public var prefix: [String]?
+	public var prefix: [FHIRString]?
 	
 	/// Parts that come after the name.
-	public var suffix: [String]?
+	public var suffix: [FHIRString]?
 	
 	/// Text representation of the full name.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// Identifies the purpose for this name.
 	public var use: NameUse?
@@ -46,7 +46,7 @@ open class HumanName: Element {
 		if let exist = json["family"] {
 			presentKeys.insert("family")
 			if let val = exist as? String {
-				self.family = val
+				self.family = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "family", wants: String.self, has: type(of: exist)))
@@ -55,7 +55,7 @@ open class HumanName: Element {
 		if let exist = json["given"] {
 			presentKeys.insert("given")
 			if let val = exist as? [String] {
-				self.given = val
+				self.given = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "given", wants: Array<String>.self, has: type(of: exist)))
@@ -78,7 +78,7 @@ open class HumanName: Element {
 		if let exist = json["prefix"] {
 			presentKeys.insert("prefix")
 			if let val = exist as? [String] {
-				self.prefix = val
+				self.prefix = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "prefix", wants: Array<String>.self, has: type(of: exist)))
@@ -87,7 +87,7 @@ open class HumanName: Element {
 		if let exist = json["suffix"] {
 			presentKeys.insert("suffix")
 			if let val = exist as? [String] {
-				self.suffix = val
+				self.suffix = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "suffix", wants: Array<String>.self, has: type(of: exist)))
@@ -96,7 +96,7 @@ open class HumanName: Element {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))

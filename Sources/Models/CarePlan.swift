@@ -42,7 +42,7 @@ open class CarePlan: DomainResource {
 	public var definition: Reference?
 	
 	/// Summary of nature of plan.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Desired outcome of plan.
 	public var goal: [Reference]?
@@ -184,7 +184,7 @@ open class CarePlan: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -221,7 +221,7 @@ open class CarePlan: DomainResource {
 		if let exist = json["modified"] {
 			presentKeys.insert("modified")
 			if let val = exist as? String {
-				self.modified = DateTime(string: val)
+				self.modified = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "modified", wants: String.self, has: type(of: exist)))
@@ -368,8 +368,14 @@ open class CarePlan: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let support = self.support {
 			json["support"] = support.map() { $0.asJSON(errors: &errors) }
@@ -530,7 +536,7 @@ open class CarePlanActivityDetail: BackboneElement {
 	public var definition: Reference?
 	
 	/// Extra info describing activity to perform.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Goals this activity relates to.
 	public var goal: [Reference]?
@@ -563,7 +569,7 @@ open class CarePlanActivityDetail: BackboneElement {
 	public var scheduledPeriod: Period?
 	
 	/// When activity is to occur.
-	public var scheduledString: String?
+	public var scheduledString: FHIRString?
 	
 	/// When activity is to occur.
 	public var scheduledTiming: Timing?
@@ -643,7 +649,7 @@ open class CarePlanActivityDetail: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -787,7 +793,7 @@ open class CarePlanActivityDetail: BackboneElement {
 		if let exist = json["scheduledString"] {
 			presentKeys.insert("scheduledString")
 			if let val = exist as? String {
-				self.scheduledString = val
+				self.scheduledString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "scheduledString", wants: String.self, has: type(of: exist)))
@@ -898,6 +904,9 @@ open class CarePlanActivityDetail: BackboneElement {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let statusReason = self.statusReason {
 			json["statusReason"] = statusReason.asJSON(errors: &errors)
 		}
@@ -975,6 +984,9 @@ open class CarePlanRelatedPlan: BackboneElement {
 		}
 		if let plan = self.plan {
 			json["plan"] = plan.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "plan"))
 		}
 		
 		return json

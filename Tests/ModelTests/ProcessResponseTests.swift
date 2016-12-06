@@ -25,8 +25,8 @@ class ProcessResponseTests: XCTestCase {
 			let instance = try runProcessResponse1()
 			try runProcessResponse1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

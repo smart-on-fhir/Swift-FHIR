@@ -25,8 +25,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent1()
 			try runConsent1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -65,8 +65,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent2()
 			try runConsent2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -104,8 +104,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent3()
 			try runConsent3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -137,8 +137,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent4()
 			try runConsent4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -174,8 +174,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent5()
 			try runConsent5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -211,8 +211,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent6()
 			try runConsent6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -242,8 +242,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent7()
 			try runConsent7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -273,8 +273,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent8()
 			try runConsent8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -306,8 +306,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent9()
 			try runConsent9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -423,8 +423,8 @@ class ConsentTests: XCTestCase {
 			let instance = try runConsent10()
 			try runConsent10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Consent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

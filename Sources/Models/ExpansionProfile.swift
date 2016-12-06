@@ -29,13 +29,13 @@ open class ExpansionProfile: DomainResource {
 	public var date: DateTime?
 	
 	/// Natural language description of the expansion profile.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// When the expansion profile imposes designation contraints.
 	public var designation: ExpansionProfileDesignation?
 	
 	/// Specify the language for the display element of codes in the value set expansion.
-	public var displayLanguage: String?
+	public var displayLanguage: FHIRString?
 	
 	/// Nested codes in the expansion or not.
 	public var excludeNested: Bool?
@@ -71,10 +71,10 @@ open class ExpansionProfile: DomainResource {
 	public var limitedExpansion: Bool?
 	
 	/// Name for this expansion profile (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// The status of this expansion profile. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -86,7 +86,7 @@ open class ExpansionProfile: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the expansion profile.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -124,7 +124,7 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -133,7 +133,7 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -156,7 +156,7 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["displayLanguage"] {
 			presentKeys.insert("displayLanguage")
 			if let val = exist as? String {
-				self.displayLanguage = val
+				self.displayLanguage = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "displayLanguage", wants: String.self, has: type(of: exist)))
@@ -284,7 +284,7 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -293,7 +293,7 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -319,7 +319,7 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -342,7 +342,7 @@ open class ExpansionProfile: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -413,6 +413,9 @@ open class ExpansionProfile: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -549,7 +552,7 @@ open class ExpansionProfileDesignationExcludeDesignation: BackboneElement {
 	}
 	
 	/// Human language of the designation to be excluded.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// Designation use.
 	public var use: Coding?
@@ -560,7 +563,7 @@ open class ExpansionProfileDesignationExcludeDesignation: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -652,7 +655,7 @@ open class ExpansionProfileDesignationIncludeDesignation: BackboneElement {
 	}
 	
 	/// Human language of the designation to be included.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// Designation use.
 	public var use: Coding?
@@ -663,7 +666,7 @@ open class ExpansionProfileDesignationIncludeDesignation: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -715,7 +718,7 @@ open class ExpansionProfileExcludedSystem: BackboneElement {
 	public var system: URL?
 	
 	/// Specific version of the code system referred to.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -730,7 +733,7 @@ open class ExpansionProfileExcludedSystem: BackboneElement {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -742,7 +745,7 @@ open class ExpansionProfileExcludedSystem: BackboneElement {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -756,6 +759,9 @@ open class ExpansionProfileExcludedSystem: BackboneElement {
 		
 		if let system = self.system {
 			json["system"] = system.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "system"))
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -784,11 +790,11 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 	public var system: URL?
 	
 	/// Specific version of the code system referred to.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: SystemVersionProcessingMode, system: URL, version: String) {
+	public convenience init(mode: SystemVersionProcessingMode, system: URL, version: FHIRString) {
 		self.init()
 		self.mode = mode
 		self.system = system
@@ -818,7 +824,7 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -830,7 +836,7 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -848,11 +854,20 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 		if let mode = self.mode {
 			json["mode"] = mode.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "system"))
+		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "version"))
 		}
 		
 		return json

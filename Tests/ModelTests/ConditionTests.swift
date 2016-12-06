@@ -25,8 +25,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition1()
 			try runCondition1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -70,8 +70,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition2()
 			try runCondition2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -117,8 +117,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition3()
 			try runCondition3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -161,8 +161,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition4()
 			try runCondition4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -208,8 +208,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition5()
 			try runCondition5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -250,8 +250,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition6()
 			try runCondition6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -295,8 +295,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition7()
 			try runCondition7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -342,8 +342,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition8()
 			try runCondition8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -371,8 +371,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition9()
 			try runCondition9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -403,8 +403,8 @@ class ConditionTests: XCTestCase {
 			let instance = try runCondition10()
 			try runCondition10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

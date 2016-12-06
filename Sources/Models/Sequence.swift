@@ -30,7 +30,7 @@ open class Sequence: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Observed sequence.
-	public var observedSeq: String?
+	public var observedSeq: FHIRString?
 	
 	/// Who and/or what this is about.
 	public var patient: Reference?
@@ -63,7 +63,7 @@ open class Sequence: DomainResource {
 	public var structureVariant: [SequenceStructureVariant]?
 	
 	/// AA | DNA | RNA.
-	public var type: String?
+	public var type: FHIRString?
 	
 	/// Sequence variant.
 	public var variant: [SequenceVariant]?
@@ -121,7 +121,7 @@ open class Sequence: DomainResource {
 		if let exist = json["observedSeq"] {
 			presentKeys.insert("observedSeq")
 			if let val = exist as? String {
-				self.observedSeq = val
+				self.observedSeq = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "observedSeq", wants: String.self, has: type(of: exist)))
@@ -265,7 +265,7 @@ open class Sequence: DomainResource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -293,6 +293,9 @@ open class Sequence: DomainResource {
 		
 		if let coordinateSystem = self.coordinateSystem {
 			json["coordinateSystem"] = coordinateSystem.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "coordinateSystem"))
 		}
 		if let device = self.device {
 			json["device"] = device.asJSON(errors: &errors)
@@ -605,6 +608,9 @@ open class SequenceQuality: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -625,7 +631,7 @@ open class SequenceReferenceSeq: BackboneElement {
 	public var chromosome: CodeableConcept?
 	
 	/// The Genome Build used for reference, following GRCh build versions e.g. 'GRCh 37'.
-	public var genomeBuild: String?
+	public var genomeBuild: FHIRString?
 	
 	/// Reference identifier.
 	public var referenceSeqId: CodeableConcept?
@@ -634,7 +640,7 @@ open class SequenceReferenceSeq: BackboneElement {
 	public var referenceSeqPointer: Reference?
 	
 	/// A Reference Sequence string.
-	public var referenceSeqString: String?
+	public var referenceSeqString: FHIRString?
 	
 	/// Directionality of DNA ( +1/-1).
 	public var strand: Int?
@@ -673,7 +679,7 @@ open class SequenceReferenceSeq: BackboneElement {
 		if let exist = json["genomeBuild"] {
 			presentKeys.insert("genomeBuild")
 			if let val = exist as? String {
-				self.genomeBuild = val
+				self.genomeBuild = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "genomeBuild", wants: String.self, has: type(of: exist)))
@@ -710,7 +716,7 @@ open class SequenceReferenceSeq: BackboneElement {
 		if let exist = json["referenceSeqString"] {
 			presentKeys.insert("referenceSeqString")
 			if let val = exist as? String {
-				self.referenceSeqString = val
+				self.referenceSeqString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "referenceSeqString", wants: String.self, has: type(of: exist)))
@@ -776,8 +782,14 @@ open class SequenceReferenceSeq: BackboneElement {
 		if let windowEnd = self.windowEnd {
 			json["windowEnd"] = windowEnd.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "windowEnd"))
+		}
 		if let windowStart = self.windowStart {
 			json["windowStart"] = windowStart.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "windowStart"))
 		}
 		
 		return json
@@ -797,13 +809,13 @@ open class SequenceRepository: BackboneElement {
 	}
 	
 	/// Id of the dataset that used to call for dataset in repository.
-	public var datasetId: String?
+	public var datasetId: FHIRString?
 	
 	/// Name of the repository.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Id of the read.
-	public var readsetId: String?
+	public var readsetId: FHIRString?
 	
 	/// Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource.
 	public var type: RepositoryType?
@@ -812,7 +824,7 @@ open class SequenceRepository: BackboneElement {
 	public var url: URL?
 	
 	/// Id of the variantset that used to call for variantset in repository.
-	public var variantsetId: String?
+	public var variantsetId: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -827,7 +839,7 @@ open class SequenceRepository: BackboneElement {
 		if let exist = json["datasetId"] {
 			presentKeys.insert("datasetId")
 			if let val = exist as? String {
-				self.datasetId = val
+				self.datasetId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "datasetId", wants: String.self, has: type(of: exist)))
@@ -836,7 +848,7 @@ open class SequenceRepository: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -845,7 +857,7 @@ open class SequenceRepository: BackboneElement {
 		if let exist = json["readsetId"] {
 			presentKeys.insert("readsetId")
 			if let val = exist as? String {
-				self.readsetId = val
+				self.readsetId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "readsetId", wants: String.self, has: type(of: exist)))
@@ -871,7 +883,7 @@ open class SequenceRepository: BackboneElement {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -880,7 +892,7 @@ open class SequenceRepository: BackboneElement {
 		if let exist = json["variantsetId"] {
 			presentKeys.insert("variantsetId")
 			if let val = exist as? String {
-				self.variantsetId = val
+				self.variantsetId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "variantsetId", wants: String.self, has: type(of: exist)))
@@ -903,6 +915,9 @@ open class SequenceRepository: BackboneElement {
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -934,7 +949,7 @@ open class SequenceStructureVariant: BackboneElement {
 	public var outer: SequenceStructureVariantOuter?
 	
 	/// Precision of boundaries.
-	public var precisionOfBoundaries: String?
+	public var precisionOfBoundaries: FHIRString?
 	
 	/// Structural Variant reported aCGH ratio.
 	public var reportedaCGHRatio: NSDecimalNumber?
@@ -982,7 +997,7 @@ open class SequenceStructureVariant: BackboneElement {
 		if let exist = json["precisionOfBoundaries"] {
 			presentKeys.insert("precisionOfBoundaries")
 			if let val = exist as? String {
-				self.precisionOfBoundaries = val
+				self.precisionOfBoundaries = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "precisionOfBoundaries", wants: String.self, has: type(of: exist)))
@@ -1144,16 +1159,16 @@ open class SequenceVariant: BackboneElement {
 	}
 	
 	/// Extended CIGAR string for aligning the sequence with reference bases.
-	public var cigar: String?
+	public var cigar: FHIRString?
 	
 	/// End position of the variant on the reference sequence.
 	public var end: Int?
 	
 	/// Allele that was observed.
-	public var observedAllele: String?
+	public var observedAllele: FHIRString?
 	
 	/// Allele of reference sequence.
-	public var referenceAllele: String?
+	public var referenceAllele: FHIRString?
 	
 	/// Start position of the variant on the  reference sequence.
 	public var start: Int?
@@ -1167,7 +1182,7 @@ open class SequenceVariant: BackboneElement {
 		if let exist = json["cigar"] {
 			presentKeys.insert("cigar")
 			if let val = exist as? String {
-				self.cigar = val
+				self.cigar = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "cigar", wants: String.self, has: type(of: exist)))
@@ -1185,7 +1200,7 @@ open class SequenceVariant: BackboneElement {
 		if let exist = json["observedAllele"] {
 			presentKeys.insert("observedAllele")
 			if let val = exist as? String {
-				self.observedAllele = val
+				self.observedAllele = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "observedAllele", wants: String.self, has: type(of: exist)))
@@ -1194,7 +1209,7 @@ open class SequenceVariant: BackboneElement {
 		if let exist = json["referenceAllele"] {
 			presentKeys.insert("referenceAllele")
 			if let val = exist as? String {
-				self.referenceAllele = val
+				self.referenceAllele = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "referenceAllele", wants: String.self, has: type(of: exist)))

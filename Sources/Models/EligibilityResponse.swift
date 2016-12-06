@@ -23,7 +23,7 @@ open class EligibilityResponse: DomainResource {
 	public var created: DateTime?
 	
 	/// Disposition Message.
-	public var disposition: String?
+	public var disposition: FHIRString?
 	
 	/// Processing errors.
 	public var error: [EligibilityResponseError]?
@@ -56,7 +56,7 @@ open class EligibilityResponse: DomainResource {
 	public var requestProvider: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -64,7 +64,7 @@ open class EligibilityResponse: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -73,7 +73,7 @@ open class EligibilityResponse: DomainResource {
 		if let exist = json["disposition"] {
 			presentKeys.insert("disposition")
 			if let val = exist as? String {
-				self.disposition = val
+				self.disposition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -217,7 +217,7 @@ open class EligibilityResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -322,6 +322,9 @@ open class EligibilityResponseError: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		
 		return json
@@ -429,7 +432,7 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 	public var category: CodeableConcept?
 	
 	/// Description of the benefit.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Excluded from the plan.
 	public var excluded: Bool?
@@ -438,7 +441,7 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 	public var financial: [EligibilityResponseInsuranceBenefitBalanceFinancial]?
 	
 	/// Short name for the benefit.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// In or out of network.
 	public var network: CodeableConcept?
@@ -482,7 +485,7 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -514,7 +517,7 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -585,6 +588,9 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 		if let category = self.category {
 			json["category"] = category.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "category"))
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
@@ -629,7 +635,7 @@ open class EligibilityResponseInsuranceBenefitBalanceFinancial: BackboneElement 
 	public var benefitMoney: Money?
 	
 	/// Benefits allowed.
-	public var benefitString: String?
+	public var benefitString: FHIRString?
 	
 	/// Benefits allowed.
 	public var benefitUnsignedInt: UInt?
@@ -670,7 +676,7 @@ open class EligibilityResponseInsuranceBenefitBalanceFinancial: BackboneElement 
 		if let exist = json["benefitString"] {
 			presentKeys.insert("benefitString")
 			if let val = exist as? String {
-				self.benefitString = val
+				self.benefitString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "benefitString", wants: String.self, has: type(of: exist)))
@@ -748,6 +754,9 @@ open class EligibilityResponseInsuranceBenefitBalanceFinancial: BackboneElement 
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json

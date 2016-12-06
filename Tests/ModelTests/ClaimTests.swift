@@ -25,8 +25,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim1()
 			try runClaim1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -83,8 +83,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim2()
 			try runClaim2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -180,8 +180,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim3()
 			try runClaim3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -234,8 +234,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim4()
 			try runClaim4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -289,8 +289,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim5()
 			try runClaim5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -344,8 +344,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim6()
 			try runClaim6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -485,8 +485,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim7()
 			try runClaim7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -536,8 +536,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim8()
 			try runClaim8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -587,8 +587,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim9()
 			try runClaim9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -668,8 +668,8 @@ class ClaimTests: XCTestCase {
 			let instance = try runClaim10()
 			try runClaim10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

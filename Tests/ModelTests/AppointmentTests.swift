@@ -25,8 +25,8 @@ class AppointmentTests: XCTestCase {
 			let instance = try runAppointment1()
 			try runAppointment1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -81,8 +81,8 @@ class AppointmentTests: XCTestCase {
 			let instance = try runAppointment2()
 			try runAppointment2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -134,8 +134,8 @@ class AppointmentTests: XCTestCase {
 			let instance = try runAppointment3()
 			try runAppointment3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

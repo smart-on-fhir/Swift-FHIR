@@ -30,7 +30,7 @@ open class DetectedIssue: DomainResource {
 	public var date: DateTime?
 	
 	/// Description and context.
-	public var detail: String?
+	public var detail: FHIRString?
 	
 	/// Unique id for the detected issue.
 	public var identifier: Identifier?
@@ -85,7 +85,7 @@ open class DetectedIssue: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -94,7 +94,7 @@ open class DetectedIssue: DomainResource {
 		if let exist = json["detail"] {
 			presentKeys.insert("detail")
 			if let val = exist as? String {
-				self.detail = val
+				self.detail = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "detail", wants: String.self, has: type(of: exist)))
@@ -159,7 +159,7 @@ open class DetectedIssue: DomainResource {
 		if let exist = json["reference"] {
 			presentKeys.insert("reference")
 			if let val = exist as? String {
-				self.reference = URL(string: val)
+				self.reference = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "reference", wants: String.self, has: type(of: exist)))
@@ -286,7 +286,7 @@ open class DetectedIssueMitigation: BackboneElement {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -300,6 +300,9 @@ open class DetectedIssueMitigation: BackboneElement {
 		
 		if let action = self.action {
 			json["action"] = action.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "action"))
 		}
 		if let author = self.author {
 			json["author"] = author.asJSON(errors: &errors)

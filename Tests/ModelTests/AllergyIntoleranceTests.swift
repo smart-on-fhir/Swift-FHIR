@@ -25,8 +25,8 @@ class AllergyIntoleranceTests: XCTestCase {
 			let instance = try runAllergyIntolerance1()
 			try runAllergyIntolerance1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AllergyIntolerance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AllergyIntolerance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

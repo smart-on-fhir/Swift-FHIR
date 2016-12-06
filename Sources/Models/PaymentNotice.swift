@@ -42,7 +42,7 @@ open class PaymentNotice: DomainResource {
 	public var response: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	/// Payment or clearing date.
 	public var statusDate: FHIRDate?
@@ -56,7 +56,7 @@ open class PaymentNotice: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -149,7 +149,7 @@ open class PaymentNotice: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -158,7 +158,7 @@ open class PaymentNotice: DomainResource {
 		if let exist = json["statusDate"] {
 			presentKeys.insert("statusDate")
 			if let val = exist as? String {
-				self.statusDate = FHIRDate(string: val)
+				self.statusDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "statusDate", wants: String.self, has: type(of: exist)))

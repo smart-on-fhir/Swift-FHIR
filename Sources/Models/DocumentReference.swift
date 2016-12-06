@@ -41,7 +41,7 @@ open class DocumentReference: DomainResource {
 	public var custodian: Reference?
 	
 	/// Human-readable description (title).
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// preliminary | final | appended | amended | entered-in-error.
 	public var docStatus: CodeableConcept?
@@ -159,7 +159,7 @@ open class DocumentReference: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -182,7 +182,7 @@ open class DocumentReference: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -219,7 +219,7 @@ open class DocumentReference: DomainResource {
 		if let exist = json["indexed"] {
 			presentKeys.insert("indexed")
 			if let val = exist as? String {
-				self.indexed = Instant(string: val)
+				self.indexed = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "indexed", wants: String.self, has: type(of: exist)))
@@ -336,6 +336,9 @@ open class DocumentReference: DomainResource {
 		if let content = self.content {
 			json["content"] = content.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "content"))
+		}
 		if let context = self.context {
 			json["context"] = context.asJSON(errors: &errors)
 		}
@@ -357,6 +360,9 @@ open class DocumentReference: DomainResource {
 		if let indexed = self.indexed {
 			json["indexed"] = indexed.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "indexed"))
+		}
 		if let masterIdentifier = self.masterIdentifier {
 			json["masterIdentifier"] = masterIdentifier.asJSON(errors: &errors)
 		}
@@ -369,11 +375,17 @@ open class DocumentReference: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -446,6 +458,9 @@ open class DocumentReferenceContent: BackboneElement {
 		
 		if let attachment = self.attachment {
 			json["attachment"] = attachment.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "attachment"))
 		}
 		if let format = self.format {
 			json["format"] = format.map() { $0.asJSON(errors: &errors) }
@@ -756,8 +771,14 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let target = self.target {
 			json["target"] = target.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "target"))
 		}
 		
 		return json

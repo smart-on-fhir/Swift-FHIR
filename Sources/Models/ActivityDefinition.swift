@@ -39,13 +39,13 @@ open class ActivityDefinition: DomainResource {
 	public var contributor: [Contributor]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the activity definition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Detailed dosage instructions.
 	public var dosageInstruction: [DosageInstruction]?
@@ -75,7 +75,7 @@ open class ActivityDefinition: DomainResource {
 	public var location: Reference?
 	
 	/// Name for this activity definition (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// The type of participant in the action.
 	public var participantType: [PlanActionParticipantType]?
@@ -87,10 +87,10 @@ open class ActivityDefinition: DomainResource {
 	public var productReference: Reference?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this activity definition is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// How much is administered/consumed/supplied.
 	public var quantity: Quantity?
@@ -108,7 +108,7 @@ open class ActivityDefinition: DomainResource {
 	public var timingTiming: Timing?
 	
 	/// Name for this activity definition (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Descriptional topics for the asset.
 	public var topic: [CodeableConcept]?
@@ -120,13 +120,13 @@ open class ActivityDefinition: DomainResource {
 	public var url: URL?
 	
 	/// Describes the clinical usage of the asset.
-	public var usage: String?
+	public var usage: FHIRString?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the activity definition.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -141,7 +141,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["approvalDate"] {
 			presentKeys.insert("approvalDate")
 			if let val = exist as? String {
-				self.approvalDate = FHIRDate(string: val)
+				self.approvalDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "approvalDate", wants: String.self, has: type(of: exist)))
@@ -220,7 +220,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -229,7 +229,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -238,7 +238,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -326,7 +326,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["lastReviewDate"] {
 			presentKeys.insert("lastReviewDate")
 			if let val = exist as? String {
-				self.lastReviewDate = FHIRDate(string: val)
+				self.lastReviewDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastReviewDate", wants: String.self, has: type(of: exist)))
@@ -363,7 +363,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -413,7 +413,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -422,7 +422,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -504,7 +504,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -541,7 +541,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -550,7 +550,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["usage"] {
 			presentKeys.insert("usage")
 			if let val = exist as? String {
-				self.usage = val
+				self.usage = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "usage", wants: String.self, has: type(of: exist)))
@@ -573,7 +573,7 @@ open class ActivityDefinition: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -666,6 +666,9 @@ open class ActivityDefinition: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let timingCodeableConcept = self.timingCodeableConcept {
 			json["timingCodeableConcept"] = timingCodeableConcept.asJSON(errors: &errors)
 		}
@@ -712,16 +715,16 @@ open class ActivityDefinitionDynamicValue: BackboneElement {
 	}
 	
 	/// Natural language description of the dynamic value.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// An expression that provides the dynamic value for the customization.
-	public var expression: String?
+	public var expression: FHIRString?
 	
 	/// Language of the expression.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// The path to the element to be set dynamically.
-	public var path: String?
+	public var path: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -729,7 +732,7 @@ open class ActivityDefinitionDynamicValue: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -738,7 +741,7 @@ open class ActivityDefinitionDynamicValue: BackboneElement {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
-				self.expression = val
+				self.expression = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
@@ -747,7 +750,7 @@ open class ActivityDefinitionDynamicValue: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -756,7 +759,7 @@ open class ActivityDefinitionDynamicValue: BackboneElement {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))

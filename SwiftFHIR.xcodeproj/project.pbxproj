@@ -386,6 +386,8 @@
 		EE109CDD1DF6AE4F00DB1774 /* ResearchStudyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CD81DF6AE4F00DB1774 /* ResearchStudyTests.swift */; };
 		EE109CDE1DF6AE4F00DB1774 /* ResearchSubjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CD91DF6AE4F00DB1774 /* ResearchSubjectTests.swift */; };
 		EE109CDF1DF6AE4F00DB1774 /* ResearchSubjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CD91DF6AE4F00DB1774 /* ResearchSubjectTests.swift */; };
+		EE109CE51DF709A500DB1774 /* FHIRString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CE41DF709A500DB1774 /* FHIRString.swift */; };
+		EE109CE61DF709A500DB1774 /* FHIRString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CE41DF709A500DB1774 /* FHIRString.swift */; };
 		EE1310B71C1B435300D9DAE7 /* BackboneElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310AF1C1B435300D9DAE7 /* BackboneElement.swift */; };
 		EE1310B81C1B435300D9DAE7 /* DateAndTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310B01C1B435300D9DAE7 /* DateAndTime.swift */; };
 		EE1310B91C1B435300D9DAE7 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310B11C1B435300D9DAE7 /* Element.swift */; };
@@ -801,6 +803,7 @@
 		EE109CD71DF6AE4F00DB1774 /* MessageDefinitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDefinitionTests.swift; sourceTree = "<group>"; };
 		EE109CD81DF6AE4F00DB1774 /* ResearchStudyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResearchStudyTests.swift; sourceTree = "<group>"; };
 		EE109CD91DF6AE4F00DB1774 /* ResearchSubjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResearchSubjectTests.swift; sourceTree = "<group>"; };
+		EE109CE41DF709A500DB1774 /* FHIRString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRString.swift; sourceTree = "<group>"; };
 		EE1310AF1C1B435300D9DAE7 /* BackboneElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackboneElement.swift; sourceTree = "<group>"; };
 		EE1310B01C1B435300D9DAE7 /* DateAndTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTime.swift; sourceTree = "<group>"; };
 		EE1310B11C1B435300D9DAE7 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
@@ -1071,6 +1074,7 @@
 				EE1310D01C1B602B00D9DAE7 /* FHIRError.swift */,
 				EE1310CA1C1B5ACC00D9DAE7 /* FHIRServer.swift */,
 				EE1310CB1C1B5ACC00D9DAE7 /* FHIRServerResponse.swift */,
+				EE109CE41DF709A500DB1774 /* FHIRString.swift */,
 				EE1310B51C1B435300D9DAE7 /* FHIRTypes.swift */,
 				EE07585F1DCB5E4300E33FAF /* FHIRValidationError.swift */,
 				EE02F5C41ACF252000179969 /* Flag.swift */,
@@ -1668,6 +1672,7 @@
 				EE02F62B1ACF252000179969 /* Composition.swift in Sources */,
 				EE02F6B91ACF252000179969 /* ProcessRequest.swift in Sources */,
 				EE02F63F1ACF252000179969 /* Device.swift in Sources */,
+				EE109CE51DF709A500DB1774 /* FHIRString.swift in Sources */,
 				EE02F61F1ACF252000179969 /* ClaimResponse.swift in Sources */,
 				EE6C88D31CB39A6A00ADFF94 /* Library.swift in Sources */,
 				EE02F6291ACF252000179969 /* CommunicationRequest.swift in Sources */,
@@ -1972,6 +1977,7 @@
 				EE02F6BA1ACF252000179969 /* ProcessRequest.swift in Sources */,
 				EE02F6401ACF252000179969 /* Device.swift in Sources */,
 				EE65DB741CB39FFD00E25C72 /* Library.swift in Sources */,
+				EE109CE61DF709A500DB1774 /* FHIRString.swift in Sources */,
 				EE02F6201ACF252000179969 /* ClaimResponse.swift in Sources */,
 				EE02F62A1ACF252000179969 /* CommunicationRequest.swift in Sources */,
 				EE02F6941ACF252000179969 /* Money.swift in Sources */,

@@ -42,7 +42,7 @@ open class Immunization: DomainResource {
 	public var location: Reference?
 	
 	/// Vaccine lot number.
-	public var lotNumber: String?
+	public var lotNumber: FHIRString?
 	
 	/// Vaccine manufacturer.
 	public var manufacturer: Reference?
@@ -104,7 +104,7 @@ open class Immunization: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -141,7 +141,7 @@ open class Immunization: DomainResource {
 		if let exist = json["expirationDate"] {
 			presentKeys.insert("expirationDate")
 			if let val = exist as? String {
-				self.expirationDate = FHIRDate(string: val)
+				self.expirationDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expirationDate", wants: String.self, has: type(of: exist)))
@@ -192,7 +192,7 @@ open class Immunization: DomainResource {
 		if let exist = json["lotNumber"] {
 			presentKeys.insert("lotNumber")
 			if let val = exist as? String {
-				self.lotNumber = val
+				self.lotNumber = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lotNumber", wants: String.self, has: type(of: exist)))
@@ -438,11 +438,17 @@ open class Immunization: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let performer = self.performer {
 			json["performer"] = performer.asJSON(errors: &errors)
 		}
 		if let primarySource = self.primarySource {
 			json["primarySource"] = primarySource.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "primarySource"))
 		}
 		if let reaction = self.reaction {
 			json["reaction"] = reaction.map() { $0.asJSON(errors: &errors) }
@@ -462,14 +468,23 @@ open class Immunization: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let vaccinationProtocol = self.vaccinationProtocol {
 			json["vaccinationProtocol"] = vaccinationProtocol.map() { $0.asJSON(errors: &errors) }
 		}
 		if let vaccineCode = self.vaccineCode {
 			json["vaccineCode"] = vaccineCode.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "vaccineCode"))
+		}
 		if let wasNotGiven = self.wasNotGiven {
 			json["wasNotGiven"] = wasNotGiven.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "wasNotGiven"))
 		}
 		
 		return json
@@ -567,7 +582,7 @@ open class ImmunizationReaction: BackboneElement {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -631,7 +646,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 	public var authority: Reference?
 	
 	/// Details of vaccine protocol.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Dose number within series.
 	public var doseSequence: UInt?
@@ -643,7 +658,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 	public var doseStatusReason: CodeableConcept?
 	
 	/// Name of vaccine series.
-	public var series: String?
+	public var series: FHIRString?
 	
 	/// Recommended number of doses for immunity.
 	public var seriesDoses: UInt?
@@ -679,7 +694,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -728,7 +743,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		if let exist = json["series"] {
 			presentKeys.insert("series")
 			if let val = exist as? String {
-				self.series = val
+				self.series = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "series", wants: String.self, has: type(of: exist)))
@@ -778,6 +793,9 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		if let doseStatus = self.doseStatus {
 			json["doseStatus"] = doseStatus.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "doseStatus"))
+		}
 		if let doseStatusReason = self.doseStatusReason {
 			json["doseStatusReason"] = doseStatusReason.asJSON(errors: &errors)
 		}
@@ -789,6 +807,9 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		}
 		if let targetDisease = self.targetDisease {
 			json["targetDisease"] = targetDisease.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "targetDisease"))
 		}
 		
 		return json

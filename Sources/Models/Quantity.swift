@@ -21,7 +21,7 @@ open class Quantity: Element {
 	}
 	
 	/// Coded form of the unit.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// How the value should be understood and represented - whether the actual value is greater or less than the stated
 	/// value due to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
@@ -31,7 +31,7 @@ open class Quantity: Element {
 	public var system: URL?
 	
 	/// Unit representation.
-	public var unit: String?
+	public var unit: FHIRString?
 	
 	/// Numerical value (with implicit precision).
 	public var value: NSDecimalNumber?
@@ -42,7 +42,7 @@ open class Quantity: Element {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -65,7 +65,7 @@ open class Quantity: Element {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -74,7 +74,7 @@ open class Quantity: Element {
 		if let exist = json["unit"] {
 			presentKeys.insert("unit")
 			if let val = exist as? String {
-				self.unit = val
+				self.unit = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "unit", wants: String.self, has: type(of: exist)))

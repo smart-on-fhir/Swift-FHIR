@@ -25,8 +25,8 @@ class VisionPrescriptionTests: XCTestCase {
 			let instance = try runVisionPrescription1()
 			try runVisionPrescription1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -82,8 +82,8 @@ class VisionPrescriptionTests: XCTestCase {
 			let instance = try runVisionPrescription2()
 			try runVisionPrescription2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

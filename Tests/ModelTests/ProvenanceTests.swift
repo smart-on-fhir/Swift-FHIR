@@ -25,8 +25,8 @@ class ProvenanceTests: XCTestCase {
 			let instance = try runProvenance1()
 			try runProvenance1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -64,8 +64,8 @@ class ProvenanceTests: XCTestCase {
 			let instance = try runProvenance2()
 			try runProvenance2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

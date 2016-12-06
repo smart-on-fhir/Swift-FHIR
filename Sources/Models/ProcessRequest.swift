@@ -28,13 +28,13 @@ open class ProcessRequest: DomainResource {
 	public var created: DateTime?
 	
 	/// Resource type(s) to exclude.
-	public var exclude: [String]?
+	public var exclude: [FHIRString]?
 	
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
 	/// Resource type(s) to include.
-	public var include: [String]?
+	public var include: [FHIRString]?
 	
 	/// Items to re-adjudicate.
 	public var item: [ProcessRequestItem]?
@@ -52,7 +52,7 @@ open class ProcessRequest: DomainResource {
 	public var provider: Reference?
 	
 	/// Reference number/string.
-	public var reference: String?
+	public var reference: FHIRString?
 	
 	/// Request reference.
 	public var request: Reference?
@@ -61,7 +61,7 @@ open class ProcessRequest: DomainResource {
 	public var response: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	/// Target of the request.
 	public var target: Reference?
@@ -86,7 +86,7 @@ open class ProcessRequest: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -95,7 +95,7 @@ open class ProcessRequest: DomainResource {
 		if let exist = json["exclude"] {
 			presentKeys.insert("exclude")
 			if let val = exist as? [String] {
-				self.exclude = val
+				self.exclude = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "exclude", wants: Array<String>.self, has: type(of: exist)))
@@ -118,7 +118,7 @@ open class ProcessRequest: DomainResource {
 		if let exist = json["include"] {
 			presentKeys.insert("include")
 			if let val = exist as? [String] {
-				self.include = val
+				self.include = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "include", wants: Array<String>.self, has: type(of: exist)))
@@ -192,7 +192,7 @@ open class ProcessRequest: DomainResource {
 		if let exist = json["reference"] {
 			presentKeys.insert("reference")
 			if let val = exist as? String {
-				self.reference = val
+				self.reference = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "reference", wants: String.self, has: type(of: exist)))
@@ -229,7 +229,7 @@ open class ProcessRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -349,6 +349,9 @@ open class ProcessRequestItem: BackboneElement {
 		
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 		
 		return json

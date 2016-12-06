@@ -25,8 +25,8 @@ class CompositionTests: XCTestCase {
 			let instance = try runComposition1()
 			try runComposition1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Composition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Composition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

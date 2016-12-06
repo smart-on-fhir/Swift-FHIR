@@ -433,6 +433,9 @@ open class Encounter: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let statusHistory = self.statusHistory {
 			json["statusHistory"] = statusHistory.map() { $0.asJSON(errors: &errors) }
 		}
@@ -774,6 +777,9 @@ open class EncounterLocation: BackboneElement {
 		if let location = self.location {
 			json["location"] = location.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "location"))
+		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
@@ -942,8 +948,14 @@ open class EncounterStatusHistory: BackboneElement {
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "period"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json

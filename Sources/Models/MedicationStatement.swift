@@ -34,7 +34,7 @@ open class MedicationStatement: DomainResource {
 	}
 	
 	/// Type of medication usage.
-	public var category: String?
+	public var category: FHIRString?
 	
 	/// When the statement was asserted?.
 	public var dateAsserted: DateTime?
@@ -108,7 +108,7 @@ open class MedicationStatement: DomainResource {
 		if let exist = json["category"] {
 			presentKeys.insert("category")
 			if let val = exist as? String {
-				self.category = val
+				self.category = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "category", wants: String.self, has: type(of: exist)))
@@ -117,7 +117,7 @@ open class MedicationStatement: DomainResource {
 		if let exist = json["dateAsserted"] {
 			presentKeys.insert("dateAsserted")
 			if let val = exist as? String {
-				self.dateAsserted = DateTime(string: val)
+				self.dateAsserted = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "dateAsserted", wants: String.self, has: type(of: exist)))
@@ -154,7 +154,7 @@ open class MedicationStatement: DomainResource {
 		if let exist = json["effectiveDateTime"] {
 			presentKeys.insert("effectiveDateTime")
 			if let val = exist as? String {
-				self.effectiveDateTime = DateTime(string: val)
+				self.effectiveDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "effectiveDateTime", wants: String.self, has: type(of: exist)))
@@ -393,8 +393,19 @@ open class MedicationStatement: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.medicationCodeableConcept && nil == self.medicationReference {
+			errors.append(FHIRValidationError(missing: "medication[x]"))
 		}
 		
 		return json

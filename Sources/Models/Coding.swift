@@ -18,10 +18,10 @@ open class Coding: Element {
 	}
 	
 	/// Symbol in syntax defined by the system.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Representation defined by the system.
-	public var display: String?
+	public var display: FHIRString?
 	
 	/// Identity of the terminology system.
 	public var system: URL?
@@ -30,7 +30,7 @@ open class Coding: Element {
 	public var userSelected: Bool?
 	
 	/// Version of the system - if relevant.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -38,7 +38,7 @@ open class Coding: Element {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -47,7 +47,7 @@ open class Coding: Element {
 		if let exist = json["display"] {
 			presentKeys.insert("display")
 			if let val = exist as? String {
-				self.display = val
+				self.display = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
@@ -56,7 +56,7 @@ open class Coding: Element {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -74,7 +74,7 @@ open class Coding: Element {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))

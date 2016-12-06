@@ -38,7 +38,7 @@ open class EnrollmentRequest: DomainResource {
 	public var provider: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	/// The subject of the Products and Services.
 	public var subject: Reference?
@@ -63,7 +63,7 @@ open class EnrollmentRequest: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -128,7 +128,7 @@ open class EnrollmentRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))

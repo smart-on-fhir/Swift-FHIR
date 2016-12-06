@@ -29,7 +29,7 @@ open class CompartmentDefinition: DomainResource {
 	public var date: DateTime?
 	
 	/// Natural language description of the compartment definition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -38,13 +38,13 @@ open class CompartmentDefinition: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this compartment definition (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this compartment definition is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// How resource is related to the compartment.
 	public var resource: [CompartmentDefinitionResource]?
@@ -56,7 +56,7 @@ open class CompartmentDefinition: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// Name for this compartment definition (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this compartment definition (globally unique).
 	public var url: URL?
@@ -66,7 +66,7 @@ open class CompartmentDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CompartmentType, name: String, search: Bool, status: PublicationStatus, url: URL) {
+	public convenience init(code: CompartmentType, name: FHIRString, search: Bool, status: PublicationStatus, url: URL) {
 		self.init()
 		self.code = code
 		self.name = name
@@ -112,7 +112,7 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -121,7 +121,7 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -153,7 +153,7 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -165,7 +165,7 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -174,7 +174,7 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -226,7 +226,7 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -235,7 +235,7 @@ open class CompartmentDefinition: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -267,6 +267,9 @@ open class CompartmentDefinition: DomainResource {
 		if let code = self.code {
 			json["code"] = code.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
 		}
@@ -285,6 +288,9 @@ open class CompartmentDefinition: DomainResource {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
@@ -297,14 +303,23 @@ open class CompartmentDefinition: DomainResource {
 		if let search = self.search {
 			json["search"] = search.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "search"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		if let useContext = self.useContext {
 			json["useContext"] = useContext.map() { $0.asJSON(errors: &errors) }
@@ -326,17 +341,17 @@ open class CompartmentDefinitionResource: BackboneElement {
 	}
 	
 	/// Name of resource type.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Additional doco about the resource and compartment.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Search Parameter Name, or chained params.
-	public var param: [String]?
+	public var param: [FHIRString]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
+	public convenience init(code: FHIRString) {
 		self.init()
 		self.code = code
 	}
@@ -347,7 +362,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -359,7 +374,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -368,7 +383,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 		if let exist = json["param"] {
 			presentKeys.insert("param")
 			if let val = exist as? [String] {
-				self.param = val
+				self.param = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "param", wants: Array<String>.self, has: type(of: exist)))
@@ -382,6 +397,9 @@ open class CompartmentDefinitionResource: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()

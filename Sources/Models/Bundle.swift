@@ -153,6 +153,9 @@ open class Bundle: Resource {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -194,7 +197,7 @@ open class BundleEntry: BackboneElement {
 		if let exist = json["fullUrl"] {
 			presentKeys.insert("fullUrl")
 			if let val = exist as? String {
-				self.fullUrl = URL(string: val)
+				self.fullUrl = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fullUrl", wants: String.self, has: type(of: exist)))
@@ -311,16 +314,16 @@ open class BundleEntryRequest: BackboneElement {
 	}
 	
 	/// For managing update contention.
-	public var ifMatch: String?
+	public var ifMatch: FHIRString?
 	
 	/// For managing update contention.
 	public var ifModifiedSince: Instant?
 	
 	/// For conditional creates.
-	public var ifNoneExist: String?
+	public var ifNoneExist: FHIRString?
 	
 	/// For managing cache currency.
-	public var ifNoneMatch: String?
+	public var ifNoneMatch: FHIRString?
 	
 	/// The HTTP verb for this entry in either a change history, or a transaction/ transaction response.
 	public var method: HTTPVerb?
@@ -342,7 +345,7 @@ open class BundleEntryRequest: BackboneElement {
 		if let exist = json["ifMatch"] {
 			presentKeys.insert("ifMatch")
 			if let val = exist as? String {
-				self.ifMatch = val
+				self.ifMatch = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "ifMatch", wants: String.self, has: type(of: exist)))
@@ -351,7 +354,7 @@ open class BundleEntryRequest: BackboneElement {
 		if let exist = json["ifModifiedSince"] {
 			presentKeys.insert("ifModifiedSince")
 			if let val = exist as? String {
-				self.ifModifiedSince = Instant(string: val)
+				self.ifModifiedSince = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "ifModifiedSince", wants: String.self, has: type(of: exist)))
@@ -360,7 +363,7 @@ open class BundleEntryRequest: BackboneElement {
 		if let exist = json["ifNoneExist"] {
 			presentKeys.insert("ifNoneExist")
 			if let val = exist as? String {
-				self.ifNoneExist = val
+				self.ifNoneExist = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "ifNoneExist", wants: String.self, has: type(of: exist)))
@@ -369,7 +372,7 @@ open class BundleEntryRequest: BackboneElement {
 		if let exist = json["ifNoneMatch"] {
 			presentKeys.insert("ifNoneMatch")
 			if let val = exist as? String {
-				self.ifNoneMatch = val
+				self.ifNoneMatch = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "ifNoneMatch", wants: String.self, has: type(of: exist)))
@@ -395,7 +398,7 @@ open class BundleEntryRequest: BackboneElement {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -425,8 +428,14 @@ open class BundleEntryRequest: BackboneElement {
 		if let method = self.method {
 			json["method"] = method.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "method"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		
 		return json
@@ -445,7 +454,7 @@ open class BundleEntryResponse: BackboneElement {
 	}
 	
 	/// The etag for the resource (if relevant).
-	public var etag: String?
+	public var etag: FHIRString?
 	
 	/// Server's date time modified.
 	public var lastModified: Instant?
@@ -457,11 +466,11 @@ open class BundleEntryResponse: BackboneElement {
 	public var outcome: Resource?
 	
 	/// Status response code (text optional).
-	public var status: String?
+	public var status: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(status: FHIRString) {
 		self.init()
 		self.status = status
 	}
@@ -472,7 +481,7 @@ open class BundleEntryResponse: BackboneElement {
 		if let exist = json["etag"] {
 			presentKeys.insert("etag")
 			if let val = exist as? String {
-				self.etag = val
+				self.etag = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "etag", wants: String.self, has: type(of: exist)))
@@ -481,7 +490,7 @@ open class BundleEntryResponse: BackboneElement {
 		if let exist = json["lastModified"] {
 			presentKeys.insert("lastModified")
 			if let val = exist as? String {
-				self.lastModified = Instant(string: val)
+				self.lastModified = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastModified", wants: String.self, has: type(of: exist)))
@@ -490,7 +499,7 @@ open class BundleEntryResponse: BackboneElement {
 		if let exist = json["location"] {
 			presentKeys.insert("location")
 			if let val = exist as? String {
-				self.location = URL(string: val)
+				self.location = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "location", wants: String.self, has: type(of: exist)))
@@ -513,7 +522,7 @@ open class BundleEntryResponse: BackboneElement {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -542,6 +551,9 @@ open class BundleEntryResponse: BackboneElement {
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json
@@ -620,14 +632,14 @@ open class BundleLink: BackboneElement {
 	}
 	
 	/// See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1.
-	public var relation: String?
+	public var relation: FHIRString?
 	
 	/// Reference details for the link.
 	public var url: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(relation: String, url: URL) {
+	public convenience init(relation: FHIRString, url: URL) {
 		self.init()
 		self.relation = relation
 		self.url = url
@@ -639,7 +651,7 @@ open class BundleLink: BackboneElement {
 		if let exist = json["relation"] {
 			presentKeys.insert("relation")
 			if let val = exist as? String {
-				self.relation = val
+				self.relation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "relation", wants: String.self, has: type(of: exist)))
@@ -651,7 +663,7 @@ open class BundleLink: BackboneElement {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -669,8 +681,14 @@ open class BundleLink: BackboneElement {
 		if let relation = self.relation {
 			json["relation"] = relation.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "relation"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		
 		return json

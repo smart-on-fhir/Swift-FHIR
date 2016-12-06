@@ -25,8 +25,8 @@ class StructureDefinitionTests: XCTestCase {
 			let instance = try runStructureDefinition1()
 			try runStructureDefinition1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -257,8 +257,8 @@ class StructureDefinitionTests: XCTestCase {
 			let instance = try runStructureDefinition2()
 			try runStructureDefinition2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

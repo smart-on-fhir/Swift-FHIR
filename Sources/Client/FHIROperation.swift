@@ -87,7 +87,7 @@ open class FHIROperation: CustomStringConvertible {
 			guard definition.type ?? false else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in type context")
 			}
-			guard let resources = definition.resource, let typ = type, resources.contains(typ.resourceType) else {
+			guard let resources = definition.resource, let typ = type, resources.contains(FHIRString(typ.resourceType)) else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed against \(type ?? nil) type")
 			}
 		case .instance:
@@ -116,8 +116,8 @@ open class FHIROperation: CustomStringConvertible {
 				if .in == param.use {
 					
 					// have the parameter, validate it
-					if nil != inParams?[param.name!] {
-						leftover.removeValue(forKey: param.name!)
+					if nil != inParams?[param.name!.string] {
+						leftover.removeValue(forKey: param.name!.string)
 						
 						// TODO: actually validate!
 					}
@@ -125,7 +125,7 @@ open class FHIROperation: CustomStringConvertible {
 					// check if mandatory parameter is missing
 					else if let min = param.min {
 						if min > 0 {
-							throw FHIRError.operationInputParameterMissing(param.name ?? "unknown")
+							throw FHIRError.operationInputParameterMissing(param.name?.string ?? "unknown")
 						}
 					}
 				}

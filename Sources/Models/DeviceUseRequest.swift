@@ -112,7 +112,7 @@ open class DeviceUseRequest: DomainResource {
 		if let exist = json["authored"] {
 			presentKeys.insert("authored")
 			if let val = exist as? String {
-				self.authored = DateTime(string: val)
+				self.authored = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "authored", wants: String.self, has: type(of: exist)))
@@ -219,7 +219,7 @@ open class DeviceUseRequest: DomainResource {
 		if let exist = json["occurrenceDateTime"] {
 			presentKeys.insert("occurrenceDateTime")
 			if let val = exist as? String {
-				self.occurrenceDateTime = DateTime(string: val)
+				self.occurrenceDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "occurrenceDateTime", wants: String.self, has: type(of: exist)))
@@ -498,14 +498,25 @@ open class DeviceUseRequest: DomainResource {
 		if let stage = self.stage {
 			json["stage"] = stage.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "stage"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
+		}
 		if let supportingInfo = self.supportingInfo {
 			json["supportingInfo"] = supportingInfo.map() { $0.asJSON(errors: &errors) }
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.deviceReference && nil == self.deviceCodeableConcept {
+			errors.append(FHIRValidationError(missing: "device[x]"))
 		}
 		
 		return json

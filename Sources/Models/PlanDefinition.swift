@@ -34,13 +34,13 @@ open class PlanDefinition: DomainResource {
 	public var contributor: [Contributor]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the plan definition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// The effective date range for the plan definition.
 	public var effectivePeriod: Period?
@@ -61,13 +61,13 @@ open class PlanDefinition: DomainResource {
 	public var library: [Reference]?
 	
 	/// Name for this plan definition (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this plan definition is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// Related artifacts for the asset.
 	public var relatedArtifact: [RelatedArtifact]?
@@ -76,7 +76,7 @@ open class PlanDefinition: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// Name for this plan definition (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Descriptional topics for the asset.
 	public var topic: [CodeableConcept]?
@@ -88,13 +88,13 @@ open class PlanDefinition: DomainResource {
 	public var url: URL?
 	
 	/// Describes the clinical usage of the asset.
-	public var usage: String?
+	public var usage: FHIRString?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the plan definition.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -123,7 +123,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["approvalDate"] {
 			presentKeys.insert("approvalDate")
 			if let val = exist as? String {
-				self.approvalDate = FHIRDate(string: val)
+				self.approvalDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "approvalDate", wants: String.self, has: type(of: exist)))
@@ -160,7 +160,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -169,7 +169,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -178,7 +178,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -238,7 +238,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["lastReviewDate"] {
 			presentKeys.insert("lastReviewDate")
 			if let val = exist as? String {
-				self.lastReviewDate = FHIRDate(string: val)
+				self.lastReviewDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastReviewDate", wants: String.self, has: type(of: exist)))
@@ -261,7 +261,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -270,7 +270,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -279,7 +279,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -319,7 +319,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -356,7 +356,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -365,7 +365,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["usage"] {
 			presentKeys.insert("usage")
 			if let val = exist as? String {
-				self.usage = val
+				self.usage = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "usage", wants: String.self, has: type(of: exist)))
@@ -388,7 +388,7 @@ open class PlanDefinition: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -454,6 +454,9 @@ open class PlanDefinition: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
 		}
@@ -510,7 +513,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var condition: [PlanDefinitionActionDefinitionCondition]?
 	
 	/// Short description of the action.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Supporting documentation for the intended performer of the action.
 	public var documentation: [RelatedArtifact]?
@@ -525,7 +528,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var input: [DataRequirement]?
 	
 	/// User-visible label for the action (e.g. 1. or A.).
-	public var label: String?
+	public var label: FHIRString?
 	
 	/// Output data definition.
 	public var output: [DataRequirement]?
@@ -546,7 +549,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var selectionBehavior: PlanActionSelectionBehavior?
 	
 	/// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system.
-	public var textEquivalent: String?
+	public var textEquivalent: FHIRString?
 	
 	/// When the action should take place.
 	public var timingDateTime: DateTime?
@@ -564,7 +567,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var timingTiming: Timing?
 	
 	/// User-visible title.
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Transform to apply the template.
 	public var transform: Reference?
@@ -665,7 +668,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -730,7 +733,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["label"] {
 			presentKeys.insert("label")
 			if let val = exist as? String {
-				self.label = val
+				self.label = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "label", wants: String.self, has: type(of: exist)))
@@ -822,7 +825,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["textEquivalent"] {
 			presentKeys.insert("textEquivalent")
 			if let val = exist as? String {
-				self.textEquivalent = val
+				self.textEquivalent = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "textEquivalent", wants: String.self, has: type(of: exist)))
@@ -831,7 +834,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["timingDateTime"] {
 			presentKeys.insert("timingDateTime")
 			if let val = exist as? String {
-				self.timingDateTime = DateTime(string: val)
+				self.timingDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "timingDateTime", wants: String.self, has: type(of: exist)))
@@ -896,7 +899,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -1051,16 +1054,16 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 	}
 	
 	/// Natural language description of the condition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Boolean-valued expression.
-	public var expression: String?
+	public var expression: FHIRString?
 	
 	/// The kind of condition.
 	public var kind: PlanActionConditionKind?
 	
 	/// Language of the expression.
-	public var language: String?
+	public var language: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1075,7 +1078,7 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -1084,7 +1087,7 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
-				self.expression = val
+				self.expression = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
@@ -1110,7 +1113,7 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -1130,6 +1133,9 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
 		}
 		if let language = self.language {
 			json["language"] = language.asJSON()
@@ -1153,16 +1159,16 @@ open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 	}
 	
 	/// Natural language description of the dynamic value.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// An expression that provides the dynamic value for the customization.
-	public var expression: String?
+	public var expression: FHIRString?
 	
 	/// Language of the expression.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// The path to the element to be set dynamically.
-	public var path: String?
+	public var path: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1170,7 +1176,7 @@ open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -1179,7 +1185,7 @@ open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
-				self.expression = val
+				self.expression = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
@@ -1188,7 +1194,7 @@ open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -1197,7 +1203,7 @@ open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))
@@ -1331,6 +1337,9 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		if let actionIdentifier = self.actionIdentifier {
 			json["actionIdentifier"] = actionIdentifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "actionIdentifier"))
+		}
 		if let offsetDuration = self.offsetDuration {
 			json["offsetDuration"] = offsetDuration.asJSON(errors: &errors)
 		}
@@ -1339,6 +1348,9 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "relationship"))
 		}
 		
 		return json

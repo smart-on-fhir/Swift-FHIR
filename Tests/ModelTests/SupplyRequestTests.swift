@@ -25,8 +25,8 @@ class SupplyRequestTests: XCTestCase {
 			let instance = try runSupplyRequest1()
 			try runSupplyRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test SupplyRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test SupplyRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

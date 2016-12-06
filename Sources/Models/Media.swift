@@ -22,7 +22,7 @@ open class Media: DomainResource {
 	public var content: Attachment?
 	
 	/// Name of the device/manufacturer.
-	public var deviceName: String?
+	public var deviceName: FHIRString?
 	
 	/// Length in seconds (audio / video).
 	public var duration: UInt?
@@ -85,7 +85,7 @@ open class Media: DomainResource {
 		if let exist = json["deviceName"] {
 			presentKeys.insert("deviceName")
 			if let val = exist as? String {
-				self.deviceName = val
+				self.deviceName = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "deviceName", wants: String.self, has: type(of: exist)))
@@ -223,6 +223,9 @@ open class Media: DomainResource {
 		if let content = self.content {
 			json["content"] = content.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "content"))
+		}
 		if let deviceName = self.deviceName {
 			json["deviceName"] = deviceName.asJSON()
 		}
@@ -249,6 +252,9 @@ open class Media: DomainResource {
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let view = self.view {
 			json["view"] = view.asJSON(errors: &errors)

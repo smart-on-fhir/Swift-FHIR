@@ -34,10 +34,10 @@ extension FHIRServerResponse {
 						throw FHIRError.responseLocationHeaderResourceTypeMismatch(location, type(of: resource).resourceType)
 					}
 					
-					resource.id = components[1]
+					resource.id = FHIRString(components[1])
 					if components.count > 3 && "_history" == components[2] {
 						resource.meta = resource.meta ?? Meta()
-						resource.meta!.versionId = components[3]
+						resource.meta!.versionId = FHIRString(components[3])
 					}
 				}
 				else {
@@ -67,7 +67,7 @@ extension FHIRServerResponse {
 				etag = etag[etag.startIndex..<etag.index(etag.endIndex, offsetBy: -1)]
 			}
 			resource.meta = resource.meta ?? Meta()
-			resource.meta!.versionId = etag
+			resource.meta!.versionId = FHIRString(etag)
 		}
 	}
 	

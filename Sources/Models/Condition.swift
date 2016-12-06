@@ -37,7 +37,7 @@ open class Condition: DomainResource {
 	public var abatementRange: Range?
 	
 	/// If/when in resolution/remission.
-	public var abatementString: String?
+	public var abatementString: FHIRString?
 	
 	/// Date record was believed accurate.
 	public var assertedDate: FHIRDate?
@@ -52,7 +52,7 @@ open class Condition: DomainResource {
 	public var category: [CodeableConcept]?
 	
 	/// active | recurrence | inactive | remission | resolved.
-	public var clinicalStatus: String?
+	public var clinicalStatus: FHIRString?
 	
 	/// Identification of the condition, problem or diagnosis.
 	public var code: CodeableConcept?
@@ -82,7 +82,7 @@ open class Condition: DomainResource {
 	public var onsetRange: Range?
 	
 	/// Estimated or actual date,  date-time, or age.
-	public var onsetString: String?
+	public var onsetString: FHIRString?
 	
 	/// Subjective severity of condition.
 	public var severity: CodeableConcept?
@@ -133,7 +133,7 @@ open class Condition: DomainResource {
 		if let exist = json["abatementDateTime"] {
 			presentKeys.insert("abatementDateTime")
 			if let val = exist as? String {
-				self.abatementDateTime = DateTime(string: val)
+				self.abatementDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "abatementDateTime", wants: String.self, has: type(of: exist)))
@@ -170,7 +170,7 @@ open class Condition: DomainResource {
 		if let exist = json["abatementString"] {
 			presentKeys.insert("abatementString")
 			if let val = exist as? String {
-				self.abatementString = val
+				self.abatementString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "abatementString", wants: String.self, has: type(of: exist)))
@@ -179,7 +179,7 @@ open class Condition: DomainResource {
 		if let exist = json["assertedDate"] {
 			presentKeys.insert("assertedDate")
 			if let val = exist as? String {
-				self.assertedDate = FHIRDate(string: val)
+				self.assertedDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "assertedDate", wants: String.self, has: type(of: exist)))
@@ -230,7 +230,7 @@ open class Condition: DomainResource {
 		if let exist = json["clinicalStatus"] {
 			presentKeys.insert("clinicalStatus")
 			if let val = exist as? String {
-				self.clinicalStatus = val
+				self.clinicalStatus = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "clinicalStatus", wants: String.self, has: type(of: exist)))
@@ -326,7 +326,7 @@ open class Condition: DomainResource {
 		if let exist = json["onsetDateTime"] {
 			presentKeys.insert("onsetDateTime")
 			if let val = exist as? String {
-				self.onsetDateTime = DateTime(string: val)
+				self.onsetDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onsetDateTime", wants: String.self, has: type(of: exist)))
@@ -363,7 +363,7 @@ open class Condition: DomainResource {
 		if let exist = json["onsetString"] {
 			presentKeys.insert("onsetString")
 			if let val = exist as? String {
-				self.onsetString = val
+				self.onsetString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onsetString", wants: String.self, has: type(of: exist)))
@@ -470,6 +470,9 @@ open class Condition: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let context = self.context {
 			json["context"] = context.asJSON(errors: &errors)
 		}
@@ -505,6 +508,9 @@ open class Condition: DomainResource {
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let verificationStatus = self.verificationStatus {
 			json["verificationStatus"] = verificationStatus.rawValue

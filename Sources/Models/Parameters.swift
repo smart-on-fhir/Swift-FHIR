@@ -66,7 +66,7 @@ open class ParametersParameter: BackboneElement {
 	}
 	
 	/// Name from the definition.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Named part of a multi-part parameter.
 	public var part: [ParametersParameter]?
@@ -93,7 +93,7 @@ open class ParametersParameter: BackboneElement {
 	public var valueBoolean: Bool?
 	
 	/// If parameter is a data type.
-	public var valueCode: String?
+	public var valueCode: FHIRString?
 	
 	/// If parameter is a data type.
 	public var valueCodeableConcept: CodeableConcept?
@@ -126,7 +126,7 @@ open class ParametersParameter: BackboneElement {
 	public var valueHumanName: HumanName?
 	
 	/// If parameter is a data type.
-	public var valueId: String?
+	public var valueId: FHIRString?
 	
 	/// If parameter is a data type.
 	public var valueIdentifier: Identifier?
@@ -138,7 +138,7 @@ open class ParametersParameter: BackboneElement {
 	public var valueInteger: Int?
 	
 	/// If parameter is a data type.
-	public var valueMarkdown: String?
+	public var valueMarkdown: FHIRString?
 	
 	/// If parameter is a data type.
 	public var valueMeta: Meta?
@@ -147,7 +147,7 @@ open class ParametersParameter: BackboneElement {
 	public var valueMoney: Money?
 	
 	/// If parameter is a data type.
-	public var valueOid: String?
+	public var valueOid: FHIRString?
 	
 	/// If parameter is a data type.
 	public var valuePeriod: Period?
@@ -174,7 +174,7 @@ open class ParametersParameter: BackboneElement {
 	public var valueSignature: Signature?
 	
 	/// If parameter is a data type.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// If parameter is a data type.
 	public var valueTime: FHIRTime?
@@ -190,7 +190,7 @@ open class ParametersParameter: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String) {
+	public convenience init(name: FHIRString) {
 		self.init()
 		self.name = name
 	}
@@ -201,7 +201,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -297,7 +297,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueBase64Binary"] {
 			presentKeys.insert("valueBase64Binary")
 			if let val = exist as? String {
-				self.valueBase64Binary = Base64Binary(string: val)
+				self.valueBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueBase64Binary", wants: String.self, has: type(of: exist)))
@@ -315,7 +315,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? String {
-				self.valueCode = val
+				self.valueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -380,7 +380,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueDate"] {
 			presentKeys.insert("valueDate")
 			if let val = exist as? String {
-				self.valueDate = FHIRDate(string: val)
+				self.valueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
@@ -389,7 +389,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -449,7 +449,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueId"] {
 			presentKeys.insert("valueId")
 			if let val = exist as? String {
-				self.valueId = val
+				self.valueId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -472,7 +472,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueInstant"] {
 			presentKeys.insert("valueInstant")
 			if let val = exist as? String {
-				self.valueInstant = Instant(string: val)
+				self.valueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
@@ -490,7 +490,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueMarkdown"] {
 			presentKeys.insert("valueMarkdown")
 			if let val = exist as? String {
-				self.valueMarkdown = val
+				self.valueMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
@@ -527,7 +527,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueOid"] {
 			presentKeys.insert("valueOid")
 			if let val = exist as? String {
-				self.valueOid = val
+				self.valueOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueOid", wants: String.self, has: type(of: exist)))
@@ -643,7 +643,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -652,7 +652,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -684,7 +684,7 @@ open class ParametersParameter: BackboneElement {
 		if let exist = json["valueUri"] {
 			presentKeys.insert("valueUri")
 			if let val = exist as? String {
-				self.valueUri = URL(string: val)
+				self.valueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
@@ -698,6 +698,9 @@ open class ParametersParameter: BackboneElement {
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let part = self.part {
 			json["part"] = part.map() { $0.asJSON(errors: &errors) }

@@ -25,8 +25,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence1()
 			try runSequence1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -67,8 +67,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence2()
 			try runSequence2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -109,8 +109,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence3()
 			try runSequence3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -161,8 +161,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence4()
 			try runSequence4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -195,8 +195,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence5()
 			try runSequence5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -229,8 +229,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence6()
 			try runSequence6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -262,8 +262,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence7()
 			try runSequence7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -295,8 +295,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence8()
 			try runSequence8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -331,8 +331,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence9()
 			try runSequence9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -364,8 +364,8 @@ class SequenceTests: XCTestCase {
 			let instance = try runSequence10()
 			try runSequence10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Sequence successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

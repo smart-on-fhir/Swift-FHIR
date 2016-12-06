@@ -33,7 +33,7 @@ open class Meta: Element {
 	public var tag: [Coding]?
 	
 	/// Version specific identifier.
-	public var versionId: String?
+	public var versionId: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -41,7 +41,7 @@ open class Meta: Element {
 		if let exist = json["lastUpdated"] {
 			presentKeys.insert("lastUpdated")
 			if let val = exist as? String {
-				self.lastUpdated = Instant(string: val)
+				self.lastUpdated = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastUpdated", wants: String.self, has: type(of: exist)))
@@ -87,7 +87,7 @@ open class Meta: Element {
 		if let exist = json["versionId"] {
 			presentKeys.insert("versionId")
 			if let val = exist as? String {
-				self.versionId = val
+				self.versionId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "versionId", wants: String.self, has: type(of: exist)))

@@ -61,21 +61,21 @@ extension HumanName {
 	/// **unless** the receiver's `text` is set, in which case the text is returned.
 	public var human: String? {
 		if let text = text {
-			return text
+			return text.string
 		}
 		
 		var parts = [String]()
 		if let prefix = prefix {
-			parts.append(contentsOf: prefix.filter() { $0.characters.count > 0 })
+			parts.append(contentsOf: prefix.filter() { $0.string.characters.count > 0 }.map() { $0.string })
 		}
 		if let given = given {
-			parts.append(contentsOf: given.filter() { $0.characters.count > 0 })
+			parts.append(contentsOf: given.filter() { $0.string.characters.count > 0 }.map() { $0.string })
 		}
-		if let family = family, family.characters.count > 0 {
+		if let family = family?.string, family.characters.count > 0 {
 			parts.append(family)
 		}
 		if let suffix = suffix {
-			parts.append(contentsOf: suffix.filter() { $0.characters.count > 0 })
+			parts.append(contentsOf: suffix.filter() { $0.string.characters.count > 0 }.map() { $0.string })
 		}
 		guard parts.count > 0 else {
 			return nil

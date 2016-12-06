@@ -25,8 +25,8 @@ class CapabilityStatementTests: XCTestCase {
 			let instance = try runCapabilityStatement1()
 			try runCapabilityStatement1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CapabilityStatement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CapabilityStatement successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -119,8 +119,8 @@ class CapabilityStatementTests: XCTestCase {
 			let instance = try runCapabilityStatement2()
 			try runCapabilityStatement2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CapabilityStatement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CapabilityStatement successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

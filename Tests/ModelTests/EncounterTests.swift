@@ -25,8 +25,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter1()
 			try runEncounter1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -80,8 +80,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter2()
 			try runEncounter2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -135,8 +135,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter3()
 			try runEncounter3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -191,8 +191,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter4()
 			try runEncounter4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -228,8 +228,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter5()
 			try runEncounter5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -275,8 +275,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter6()
 			try runEncounter6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -340,8 +340,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter7()
 			try runEncounter7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -378,8 +378,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter8()
 			try runEncounter8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -410,8 +410,8 @@ class EncounterTests: XCTestCase {
 			let instance = try runEncounter9()
 			try runEncounter9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

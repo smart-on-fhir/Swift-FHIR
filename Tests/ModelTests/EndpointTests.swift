@@ -25,8 +25,8 @@ class EndpointTests: XCTestCase {
 			let instance = try runEndpoint1()
 			try runEndpoint1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Endpoint successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Endpoint successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

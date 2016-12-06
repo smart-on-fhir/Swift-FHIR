@@ -60,7 +60,7 @@ open class AllergyIntolerance: DomainResource {
 	public var onsetRange: Range?
 	
 	/// When allergy or intolerance was identified.
-	public var onsetString: String?
+	public var onsetString: FHIRString?
 	
 	/// Who the sensitivity is for.
 	public var patient: Reference?
@@ -92,7 +92,7 @@ open class AllergyIntolerance: DomainResource {
 		if let exist = json["assertedDate"] {
 			presentKeys.insert("assertedDate")
 			if let val = exist as? String {
-				self.assertedDate = DateTime(string: val)
+				self.assertedDate = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "assertedDate", wants: String.self, has: type(of: exist)))
@@ -184,7 +184,7 @@ open class AllergyIntolerance: DomainResource {
 		if let exist = json["lastOccurrence"] {
 			presentKeys.insert("lastOccurrence")
 			if let val = exist as? String {
-				self.lastOccurrence = DateTime(string: val)
+				self.lastOccurrence = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastOccurrence", wants: String.self, has: type(of: exist)))
@@ -221,7 +221,7 @@ open class AllergyIntolerance: DomainResource {
 		if let exist = json["onsetDateTime"] {
 			presentKeys.insert("onsetDateTime")
 			if let val = exist as? String {
-				self.onsetDateTime = DateTime(string: val)
+				self.onsetDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onsetDateTime", wants: String.self, has: type(of: exist)))
@@ -258,7 +258,7 @@ open class AllergyIntolerance: DomainResource {
 		if let exist = json["onsetString"] {
 			presentKeys.insert("onsetString")
 			if let val = exist as? String {
-				self.onsetString = val
+				self.onsetString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onsetString", wants: String.self, has: type(of: exist)))
@@ -391,6 +391,9 @@ open class AllergyIntolerance: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let reaction = self.reaction {
 			json["reaction"] = reaction.map() { $0.asJSON(errors: &errors) }
 		}
@@ -402,6 +405,9 @@ open class AllergyIntolerance: DomainResource {
 		}
 		if let verificationStatus = self.verificationStatus {
 			json["verificationStatus"] = verificationStatus.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "verificationStatus"))
 		}
 		
 		return json
@@ -424,7 +430,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	public var certainty: AllergyIntoleranceCertainty?
 	
 	/// Description of the event as a whole.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// How the subject was exposed to the substance.
 	public var exposureRoute: CodeableConcept?
@@ -472,7 +478,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -526,7 +532,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		if let exist = json["onset"] {
 			presentKeys.insert("onset")
 			if let val = exist as? String {
-				self.onset = DateTime(string: val)
+				self.onset = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onset", wants: String.self, has: type(of: exist)))
@@ -577,6 +583,9 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		}
 		if let manifestation = self.manifestation {
 			json["manifestation"] = manifestation.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "manifestation"))
 		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }

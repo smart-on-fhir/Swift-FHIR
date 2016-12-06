@@ -26,7 +26,7 @@ open class MetadataResource: DomainResource {
 	public var date: DateTime?
 	
 	/// Natural language description of the metadata resource.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -35,16 +35,16 @@ open class MetadataResource: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this metadata resource (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// The status of this metadata resource. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
 	/// Name for this metadata resource (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this metadata resource (globally unique).
 	public var url: URL?
@@ -53,7 +53,7 @@ open class MetadataResource: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the metadata resource.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -82,7 +82,7 @@ open class MetadataResource: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -91,7 +91,7 @@ open class MetadataResource: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -123,7 +123,7 @@ open class MetadataResource: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -132,7 +132,7 @@ open class MetadataResource: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -158,7 +158,7 @@ open class MetadataResource: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -167,7 +167,7 @@ open class MetadataResource: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -190,7 +190,7 @@ open class MetadataResource: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -225,6 +225,9 @@ open class MetadataResource: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()

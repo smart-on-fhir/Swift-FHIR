@@ -23,7 +23,7 @@ open class Measure: DomainResource {
 	public var approvalDate: FHIRDate?
 	
 	/// Clinical recommendation.
-	public var clinicalRecommendationStatement: String?
+	public var clinicalRecommendationStatement: FHIRString?
 	
 	/// If this is a composite measure, the scoring method used to combine the component measures to determine the
 	/// composite score.
@@ -36,19 +36,19 @@ open class Measure: DomainResource {
 	public var contributor: [Contributor]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// A natural language definition of the measure.
-	public var definition: String?
+	public var definition: FHIRString?
 	
 	/// Natural language description of the measure.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Disclaimer for the measure.
-	public var disclaimer: String?
+	public var disclaimer: FHIRString?
 	
 	/// The effective date range for the measure.
 	public var effectivePeriod: Period?
@@ -60,13 +60,13 @@ open class Measure: DomainResource {
 	public var group: [MeasureGroup]?
 	
 	/// The guidance for the measure.
-	public var guidance: String?
+	public var guidance: FHIRString?
 	
 	/// Additional identifier for the measure.
 	public var identifier: [Identifier]?
 	
 	/// Improvement notation for the measure, e.g. higher score indicates better quality.
-	public var improvementNotation: String?
+	public var improvementNotation: FHIRString?
 	
 	/// Intended jurisdiction for measure (if applicable).
 	public var jurisdiction: [CodeableConcept]?
@@ -78,31 +78,31 @@ open class Measure: DomainResource {
 	public var library: [Reference]?
 	
 	/// Name for this measure (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this measure is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// How is rate aggregation performed for this measure.
-	public var rateAggregation: String?
+	public var rateAggregation: FHIRString?
 	
 	/// Why does this measure exist.
-	public var rationale: String?
+	public var rationale: FHIRString?
 	
 	/// Related artifacts for the measure.
 	public var relatedArtifact: [RelatedArtifact]?
 	
 	/// How is risk adjustment applied for this measure.
-	public var riskAdjustment: String?
+	public var riskAdjustment: FHIRString?
 	
 	/// The measure scoring type, e.g. proportion, CV.
 	public var scoring: MeasureScoring?
 	
 	/// The measure set, e.g. Preventive Care and Screening.
-	public var set: String?
+	public var set: FHIRString?
 	
 	/// The status of this measure. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -111,7 +111,7 @@ open class Measure: DomainResource {
 	public var supplementalData: [MeasureSupplementalData]?
 	
 	/// Name for this measure (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Descriptional topics for the measure.
 	public var topic: [CodeableConcept]?
@@ -123,13 +123,13 @@ open class Measure: DomainResource {
 	public var url: URL?
 	
 	/// Describes the clinical usage of the measure.
-	public var usage: String?
+	public var usage: FHIRString?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the measure.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -144,7 +144,7 @@ open class Measure: DomainResource {
 		if let exist = json["approvalDate"] {
 			presentKeys.insert("approvalDate")
 			if let val = exist as? String {
-				self.approvalDate = FHIRDate(string: val)
+				self.approvalDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "approvalDate", wants: String.self, has: type(of: exist)))
@@ -153,7 +153,7 @@ open class Measure: DomainResource {
 		if let exist = json["clinicalRecommendationStatement"] {
 			presentKeys.insert("clinicalRecommendationStatement")
 			if let val = exist as? String {
-				self.clinicalRecommendationStatement = val
+				self.clinicalRecommendationStatement = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "clinicalRecommendationStatement", wants: String.self, has: type(of: exist)))
@@ -204,7 +204,7 @@ open class Measure: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -213,7 +213,7 @@ open class Measure: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -222,7 +222,7 @@ open class Measure: DomainResource {
 		if let exist = json["definition"] {
 			presentKeys.insert("definition")
 			if let val = exist as? String {
-				self.definition = val
+				self.definition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
@@ -231,7 +231,7 @@ open class Measure: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -240,7 +240,7 @@ open class Measure: DomainResource {
 		if let exist = json["disclaimer"] {
 			presentKeys.insert("disclaimer")
 			if let val = exist as? String {
-				self.disclaimer = val
+				self.disclaimer = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "disclaimer", wants: String.self, has: type(of: exist)))
@@ -286,7 +286,7 @@ open class Measure: DomainResource {
 		if let exist = json["guidance"] {
 			presentKeys.insert("guidance")
 			if let val = exist as? String {
-				self.guidance = val
+				self.guidance = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "guidance", wants: String.self, has: type(of: exist)))
@@ -309,7 +309,7 @@ open class Measure: DomainResource {
 		if let exist = json["improvementNotation"] {
 			presentKeys.insert("improvementNotation")
 			if let val = exist as? String {
-				self.improvementNotation = val
+				self.improvementNotation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "improvementNotation", wants: String.self, has: type(of: exist)))
@@ -332,7 +332,7 @@ open class Measure: DomainResource {
 		if let exist = json["lastReviewDate"] {
 			presentKeys.insert("lastReviewDate")
 			if let val = exist as? String {
-				self.lastReviewDate = FHIRDate(string: val)
+				self.lastReviewDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastReviewDate", wants: String.self, has: type(of: exist)))
@@ -355,7 +355,7 @@ open class Measure: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -364,7 +364,7 @@ open class Measure: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -373,7 +373,7 @@ open class Measure: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -382,7 +382,7 @@ open class Measure: DomainResource {
 		if let exist = json["rateAggregation"] {
 			presentKeys.insert("rateAggregation")
 			if let val = exist as? String {
-				self.rateAggregation = val
+				self.rateAggregation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "rateAggregation", wants: String.self, has: type(of: exist)))
@@ -391,7 +391,7 @@ open class Measure: DomainResource {
 		if let exist = json["rationale"] {
 			presentKeys.insert("rationale")
 			if let val = exist as? String {
-				self.rationale = val
+				self.rationale = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "rationale", wants: String.self, has: type(of: exist)))
@@ -414,7 +414,7 @@ open class Measure: DomainResource {
 		if let exist = json["riskAdjustment"] {
 			presentKeys.insert("riskAdjustment")
 			if let val = exist as? String {
-				self.riskAdjustment = val
+				self.riskAdjustment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "riskAdjustment", wants: String.self, has: type(of: exist)))
@@ -437,7 +437,7 @@ open class Measure: DomainResource {
 		if let exist = json["set"] {
 			presentKeys.insert("set")
 			if let val = exist as? String {
-				self.set = val
+				self.set = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "set", wants: String.self, has: type(of: exist)))
@@ -477,7 +477,7 @@ open class Measure: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -513,7 +513,7 @@ open class Measure: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -522,7 +522,7 @@ open class Measure: DomainResource {
 		if let exist = json["usage"] {
 			presentKeys.insert("usage")
 			if let val = exist as? String {
-				self.usage = val
+				self.usage = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "usage", wants: String.self, has: type(of: exist)))
@@ -545,7 +545,7 @@ open class Measure: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -644,6 +644,9 @@ open class Measure: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let supplementalData = self.supplementalData {
 			json["supplementalData"] = supplementalData.map() { $0.asJSON(errors: &errors) }
 		}
@@ -685,13 +688,13 @@ open class MeasureGroup: BackboneElement {
 	}
 	
 	/// Summary description.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Unique identifier.
 	public var identifier: Identifier?
 	
 	/// Short name.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Population criteria.
 	public var population: [MeasureGroupPopulation]?
@@ -712,7 +715,7 @@ open class MeasureGroup: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -738,7 +741,7 @@ open class MeasureGroup: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -784,6 +787,9 @@ open class MeasureGroup: BackboneElement {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
@@ -810,23 +816,23 @@ open class MeasureGroupPopulation: BackboneElement {
 	}
 	
 	/// The name of a valid referenced CQL expression (may be namespaced) that defines this population criteria.
-	public var criteria: String?
+	public var criteria: FHIRString?
 	
 	/// The human readable description of this population criteria.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Unique identifier.
 	public var identifier: Identifier?
 	
 	/// Short name.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// The type of population criteria.
 	public var type: MeasurePopulationType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(criteria: String, identifier: Identifier, type: MeasurePopulationType) {
+	public convenience init(criteria: FHIRString, identifier: Identifier, type: MeasurePopulationType) {
 		self.init()
 		self.criteria = criteria
 		self.identifier = identifier
@@ -839,7 +845,7 @@ open class MeasureGroupPopulation: BackboneElement {
 		if let exist = json["criteria"] {
 			presentKeys.insert("criteria")
 			if let val = exist as? String {
-				self.criteria = val
+				self.criteria = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "criteria", wants: String.self, has: type(of: exist)))
@@ -851,7 +857,7 @@ open class MeasureGroupPopulation: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -877,7 +883,7 @@ open class MeasureGroupPopulation: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -909,17 +915,26 @@ open class MeasureGroupPopulation: BackboneElement {
 		if let criteria = self.criteria {
 			json["criteria"] = criteria.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "criteria"))
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -939,13 +954,13 @@ open class MeasureGroupStratifier: BackboneElement {
 	}
 	
 	/// Stratifier criteria.
-	public var criteria: String?
+	public var criteria: FHIRString?
 	
 	/// The identifier for the stratifier used to coordinate the reported data back to this stratifier.
 	public var identifier: Identifier?
 	
 	/// Path to the stratifier.
-	public var path: String?
+	public var path: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -960,7 +975,7 @@ open class MeasureGroupStratifier: BackboneElement {
 		if let exist = json["criteria"] {
 			presentKeys.insert("criteria")
 			if let val = exist as? String {
-				self.criteria = val
+				self.criteria = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "criteria", wants: String.self, has: type(of: exist)))
@@ -986,7 +1001,7 @@ open class MeasureGroupStratifier: BackboneElement {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))
@@ -1003,6 +1018,9 @@ open class MeasureGroupStratifier: BackboneElement {
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
 		}
 		if let path = self.path {
 			json["path"] = path.asJSON()
@@ -1025,13 +1043,13 @@ open class MeasureSupplementalData: BackboneElement {
 	}
 	
 	/// Supplemental data criteria.
-	public var criteria: String?
+	public var criteria: FHIRString?
 	
 	/// Identifier, unique within the measure.
 	public var identifier: Identifier?
 	
 	/// Path to the supplemental data element.
-	public var path: String?
+	public var path: FHIRString?
 	
 	/// An indicator of the intended usage for the supplemental data element. Supplemental data indicates the data is
 	/// additional information requested to augment the measure information. Risk adjustment factor indicates the data
@@ -1052,7 +1070,7 @@ open class MeasureSupplementalData: BackboneElement {
 		if let exist = json["criteria"] {
 			presentKeys.insert("criteria")
 			if let val = exist as? String {
-				self.criteria = val
+				self.criteria = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "criteria", wants: String.self, has: type(of: exist)))
@@ -1078,7 +1096,7 @@ open class MeasureSupplementalData: BackboneElement {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))
@@ -1108,6 +1126,9 @@ open class MeasureSupplementalData: BackboneElement {
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
 		}
 		if let path = self.path {
 			json["path"] = path.asJSON()

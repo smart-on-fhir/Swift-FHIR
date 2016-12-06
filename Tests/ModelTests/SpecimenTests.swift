@@ -25,8 +25,8 @@ class SpecimenTests: XCTestCase {
 			let instance = try runSpecimen1()
 			try runSpecimen1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -60,8 +60,8 @@ class SpecimenTests: XCTestCase {
 			let instance = try runSpecimen2()
 			try runSpecimen2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -92,8 +92,8 @@ class SpecimenTests: XCTestCase {
 			let instance = try runSpecimen3()
 			try runSpecimen3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -130,8 +130,8 @@ class SpecimenTests: XCTestCase {
 			let instance = try runSpecimen4()
 			try runSpecimen4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

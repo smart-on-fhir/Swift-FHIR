@@ -25,8 +25,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure1()
 			try runProcedure1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -62,8 +62,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure2()
 			try runProcedure2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -105,8 +105,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure3()
 			try runProcedure3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -148,8 +148,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure4()
 			try runProcedure4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -191,8 +191,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure5()
 			try runProcedure5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -234,8 +234,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure6()
 			try runProcedure6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -274,8 +274,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure7()
 			try runProcedure7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -309,8 +309,8 @@ class ProcedureTests: XCTestCase {
 			let instance = try runProcedure8()
 			try runProcedure8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

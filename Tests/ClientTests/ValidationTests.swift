@@ -83,14 +83,14 @@ class ValidationTests: XCTestCase {
 		let element1 = QuestionnaireItemOption(value: ["a": "Hello"])
 		XCTAssertNil(element1.valueString)
 		do {
-			let js = try element1.asJSON()
-			XCTAssertEqual(0, js.count)
+			let _ = try element1.asJSON()
+			XCTAssertTrue(false, "Should have thrown when serializing to JSON because of missing value[x]")
 		}
 		catch let error {
-			XCTAssertNil(error)
+			XCTAssertNotNil(error)
 		}
 		
-		let element2 = QuestionnaireItemOption(value: "This is a great option")
+		let element2 = QuestionnaireItemOption(value: FHIRString("This is a great option"))
 		XCTAssertEqual("This is a great option", element2.valueString)
 		do {
 			let js = try element2.asJSON()

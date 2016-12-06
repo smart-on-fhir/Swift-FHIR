@@ -24,7 +24,7 @@ open class Substance: DomainResource {
 	public var code: CodeableConcept?
 	
 	/// Textual description of the substance, comments.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Unique identifier.
 	public var identifier: [Identifier]?
@@ -79,7 +79,7 @@ open class Substance: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -138,6 +138,9 @@ open class Substance: DomainResource {
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -257,6 +260,11 @@ open class SubstanceIngredient: BackboneElement {
 			json["substanceReference"] = substanceReference.asJSON(errors: &errors)
 		}
 		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.substanceCodeableConcept && nil == self.substanceReference {
+			errors.append(FHIRValidationError(missing: "substance[x]"))
+		}
+		
 		return json
 	}
 }
@@ -287,7 +295,7 @@ open class SubstanceInstance: BackboneElement {
 		if let exist = json["expiry"] {
 			presentKeys.insert("expiry")
 			if let val = exist as? String {
-				self.expiry = DateTime(string: val)
+				self.expiry = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expiry", wants: String.self, has: type(of: exist)))

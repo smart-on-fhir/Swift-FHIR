@@ -95,7 +95,7 @@ open class DeviceComponent: DomainResource {
 		if let exist = json["lastSystemChange"] {
 			presentKeys.insert("lastSystemChange")
 			if let val = exist as? String {
-				self.lastSystemChange = Instant(string: val)
+				self.lastSystemChange = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastSystemChange", wants: String.self, has: type(of: exist)))
@@ -214,11 +214,17 @@ open class DeviceComponent: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
+		}
 		if let languageCode = self.languageCode {
 			json["languageCode"] = languageCode.asJSON(errors: &errors)
 		}
 		if let lastSystemChange = self.lastSystemChange {
 			json["lastSystemChange"] = lastSystemChange.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "lastSystemChange"))
 		}
 		if let measurementPrinciple = self.measurementPrinciple {
 			json["measurementPrinciple"] = measurementPrinciple.rawValue
@@ -241,6 +247,9 @@ open class DeviceComponent: DomainResource {
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -261,7 +270,7 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 	public var componentId: Identifier?
 	
 	/// A printable string defining the component.
-	public var productionSpec: String?
+	public var productionSpec: FHIRString?
 	
 	/// Specification type.
 	public var specType: CodeableConcept?
@@ -286,7 +295,7 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 		if let exist = json["productionSpec"] {
 			presentKeys.insert("productionSpec")
 			if let val = exist as? String {
-				self.productionSpec = val
+				self.productionSpec = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "productionSpec", wants: String.self, has: type(of: exist)))

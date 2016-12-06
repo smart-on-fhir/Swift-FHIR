@@ -25,8 +25,8 @@ class ConceptMapTests: XCTestCase {
 			let instance = try runConceptMap1()
 			try runConceptMap1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -97,8 +97,8 @@ class ConceptMapTests: XCTestCase {
 			let instance = try runConceptMap2()
 			try runConceptMap2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

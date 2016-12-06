@@ -25,8 +25,8 @@ class ServiceDefinitionTests: XCTestCase {
 			let instance = try runServiceDefinition1()
 			try runServiceDefinition1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ServiceDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ServiceDefinition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

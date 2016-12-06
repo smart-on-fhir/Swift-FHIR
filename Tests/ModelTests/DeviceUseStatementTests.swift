@@ -25,8 +25,8 @@ class DeviceUseStatementTests: XCTestCase {
 			let instance = try runDeviceUseStatement1()
 			try runDeviceUseStatement1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceUseStatement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceUseStatement successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

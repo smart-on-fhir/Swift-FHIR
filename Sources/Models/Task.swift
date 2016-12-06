@@ -39,7 +39,7 @@ open class Task: DomainResource {
 	public var definitionUri: URL?
 	
 	/// Human-readable explanation of task.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Start and end time of execution.
 	public var executionPeriod: Period?
@@ -116,7 +116,7 @@ open class Task: DomainResource {
 		if let exist = json["authoredOn"] {
 			presentKeys.insert("authoredOn")
 			if let val = exist as? String {
-				self.authoredOn = DateTime(string: val)
+				self.authoredOn = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "authoredOn", wants: String.self, has: type(of: exist)))
@@ -195,7 +195,7 @@ open class Task: DomainResource {
 		if let exist = json["definitionUri"] {
 			presentKeys.insert("definitionUri")
 			if let val = exist as? String {
-				self.definitionUri = URL(string: val)
+				self.definitionUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "definitionUri", wants: String.self, has: type(of: exist)))
@@ -204,7 +204,7 @@ open class Task: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -314,7 +314,7 @@ open class Task: DomainResource {
 		if let exist = json["lastModified"] {
 			presentKeys.insert("lastModified")
 			if let val = exist as? String {
-				self.lastModified = DateTime(string: val)
+				self.lastModified = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastModified", wants: String.self, has: type(of: exist)))
@@ -542,6 +542,9 @@ open class Task: DomainResource {
 		if let intent = self.intent {
 			json["intent"] = intent.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "intent"))
+		}
 		if let lastModified = self.lastModified {
 			json["lastModified"] = lastModified.asJSON()
 		}
@@ -577,6 +580,9 @@ open class Task: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let statusReason = self.statusReason {
 			json["statusReason"] = statusReason.asJSON(errors: &errors)
@@ -619,7 +625,7 @@ open class TaskInput: BackboneElement {
 	public var valueBoolean: Bool?
 	
 	/// Content to use in performing the task.
-	public var valueCode: String?
+	public var valueCode: FHIRString?
 	
 	/// Content to use in performing the task.
 	public var valueCodeableConcept: CodeableConcept?
@@ -652,7 +658,7 @@ open class TaskInput: BackboneElement {
 	public var valueHumanName: HumanName?
 	
 	/// Content to use in performing the task.
-	public var valueId: String?
+	public var valueId: FHIRString?
 	
 	/// Content to use in performing the task.
 	public var valueIdentifier: Identifier?
@@ -664,7 +670,7 @@ open class TaskInput: BackboneElement {
 	public var valueInteger: Int?
 	
 	/// Content to use in performing the task.
-	public var valueMarkdown: String?
+	public var valueMarkdown: FHIRString?
 	
 	/// Content to use in performing the task.
 	public var valueMeta: Meta?
@@ -673,7 +679,7 @@ open class TaskInput: BackboneElement {
 	public var valueMoney: Money?
 	
 	/// Content to use in performing the task.
-	public var valueOid: String?
+	public var valueOid: FHIRString?
 	
 	/// Content to use in performing the task.
 	public var valuePeriod: Period?
@@ -700,7 +706,7 @@ open class TaskInput: BackboneElement {
 	public var valueSignature: Signature?
 	
 	/// Content to use in performing the task.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Content to use in performing the task.
 	public var valueTime: FHIRTime?
@@ -725,7 +731,7 @@ open class TaskInput: BackboneElement {
 		else if let value = value as? Bool {
 			self.valueBoolean = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueCode = value
 		}
 		else if let value = value as? FHIRDate {
@@ -737,7 +743,7 @@ open class TaskInput: BackboneElement {
 		else if let value = value as? NSDecimalNumber {
 			self.valueDecimal = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueId = value
 		}
 		else if let value = value as? Instant {
@@ -746,16 +752,16 @@ open class TaskInput: BackboneElement {
 		else if let value = value as? Int {
 			self.valueInteger = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueMarkdown = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueOid = value
 		}
 		else if let value = value as? UInt {
 			self.valuePositiveInt = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueString = value
 		}
 		else if let value = value as? FHIRTime {
@@ -917,7 +923,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueBase64Binary"] {
 			presentKeys.insert("valueBase64Binary")
 			if let val = exist as? String {
-				self.valueBase64Binary = Base64Binary(string: val)
+				self.valueBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueBase64Binary", wants: String.self, has: type(of: exist)))
@@ -935,7 +941,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? String {
-				self.valueCode = val
+				self.valueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -1000,7 +1006,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueDate"] {
 			presentKeys.insert("valueDate")
 			if let val = exist as? String {
-				self.valueDate = FHIRDate(string: val)
+				self.valueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
@@ -1009,7 +1015,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -1069,7 +1075,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueId"] {
 			presentKeys.insert("valueId")
 			if let val = exist as? String {
-				self.valueId = val
+				self.valueId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -1092,7 +1098,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueInstant"] {
 			presentKeys.insert("valueInstant")
 			if let val = exist as? String {
-				self.valueInstant = Instant(string: val)
+				self.valueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
@@ -1110,7 +1116,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueMarkdown"] {
 			presentKeys.insert("valueMarkdown")
 			if let val = exist as? String {
-				self.valueMarkdown = val
+				self.valueMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
@@ -1147,7 +1153,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueOid"] {
 			presentKeys.insert("valueOid")
 			if let val = exist as? String {
-				self.valueOid = val
+				self.valueOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueOid", wants: String.self, has: type(of: exist)))
@@ -1263,7 +1269,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -1272,7 +1278,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -1304,7 +1310,7 @@ open class TaskInput: BackboneElement {
 		if let exist = json["valueUri"] {
 			presentKeys.insert("valueUri")
 			if let val = exist as? String {
-				self.valueUri = URL(string: val)
+				self.valueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
@@ -1323,6 +1329,9 @@ open class TaskInput: BackboneElement {
 		
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON(errors: &errors)
@@ -1437,6 +1446,11 @@ open class TaskInput: BackboneElement {
 		}
 		if let valueUri = self.valueUri {
 			json["valueUri"] = valueUri.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
+			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 		
 		return json
@@ -1476,7 +1490,7 @@ open class TaskOutput: BackboneElement {
 	public var valueBoolean: Bool?
 	
 	/// Result of output.
-	public var valueCode: String?
+	public var valueCode: FHIRString?
 	
 	/// Result of output.
 	public var valueCodeableConcept: CodeableConcept?
@@ -1509,7 +1523,7 @@ open class TaskOutput: BackboneElement {
 	public var valueHumanName: HumanName?
 	
 	/// Result of output.
-	public var valueId: String?
+	public var valueId: FHIRString?
 	
 	/// Result of output.
 	public var valueIdentifier: Identifier?
@@ -1521,7 +1535,7 @@ open class TaskOutput: BackboneElement {
 	public var valueInteger: Int?
 	
 	/// Result of output.
-	public var valueMarkdown: String?
+	public var valueMarkdown: FHIRString?
 	
 	/// Result of output.
 	public var valueMeta: Meta?
@@ -1530,7 +1544,7 @@ open class TaskOutput: BackboneElement {
 	public var valueMoney: Money?
 	
 	/// Result of output.
-	public var valueOid: String?
+	public var valueOid: FHIRString?
 	
 	/// Result of output.
 	public var valuePeriod: Period?
@@ -1557,7 +1571,7 @@ open class TaskOutput: BackboneElement {
 	public var valueSignature: Signature?
 	
 	/// Result of output.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Result of output.
 	public var valueTime: FHIRTime?
@@ -1582,7 +1596,7 @@ open class TaskOutput: BackboneElement {
 		else if let value = value as? Bool {
 			self.valueBoolean = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueCode = value
 		}
 		else if let value = value as? FHIRDate {
@@ -1594,7 +1608,7 @@ open class TaskOutput: BackboneElement {
 		else if let value = value as? NSDecimalNumber {
 			self.valueDecimal = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueId = value
 		}
 		else if let value = value as? Instant {
@@ -1603,16 +1617,16 @@ open class TaskOutput: BackboneElement {
 		else if let value = value as? Int {
 			self.valueInteger = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueMarkdown = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueOid = value
 		}
 		else if let value = value as? UInt {
 			self.valuePositiveInt = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueString = value
 		}
 		else if let value = value as? FHIRTime {
@@ -1774,7 +1788,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueBase64Binary"] {
 			presentKeys.insert("valueBase64Binary")
 			if let val = exist as? String {
-				self.valueBase64Binary = Base64Binary(string: val)
+				self.valueBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueBase64Binary", wants: String.self, has: type(of: exist)))
@@ -1792,7 +1806,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? String {
-				self.valueCode = val
+				self.valueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -1857,7 +1871,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueDate"] {
 			presentKeys.insert("valueDate")
 			if let val = exist as? String {
-				self.valueDate = FHIRDate(string: val)
+				self.valueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
@@ -1866,7 +1880,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -1926,7 +1940,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueId"] {
 			presentKeys.insert("valueId")
 			if let val = exist as? String {
-				self.valueId = val
+				self.valueId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -1949,7 +1963,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueInstant"] {
 			presentKeys.insert("valueInstant")
 			if let val = exist as? String {
-				self.valueInstant = Instant(string: val)
+				self.valueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
@@ -1967,7 +1981,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueMarkdown"] {
 			presentKeys.insert("valueMarkdown")
 			if let val = exist as? String {
-				self.valueMarkdown = val
+				self.valueMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
@@ -2004,7 +2018,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueOid"] {
 			presentKeys.insert("valueOid")
 			if let val = exist as? String {
-				self.valueOid = val
+				self.valueOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueOid", wants: String.self, has: type(of: exist)))
@@ -2120,7 +2134,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -2129,7 +2143,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -2161,7 +2175,7 @@ open class TaskOutput: BackboneElement {
 		if let exist = json["valueUri"] {
 			presentKeys.insert("valueUri")
 			if let val = exist as? String {
-				self.valueUri = URL(string: val)
+				self.valueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
@@ -2180,6 +2194,9 @@ open class TaskOutput: BackboneElement {
 		
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON(errors: &errors)
@@ -2294,6 +2311,11 @@ open class TaskOutput: BackboneElement {
 		}
 		if let valueUri = self.valueUri {
 			json["valueUri"] = valueUri.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
+			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 		
 		return json
@@ -2366,6 +2388,9 @@ open class TaskRequester: BackboneElement {
 		
 		if let agent = self.agent {
 			json["agent"] = agent.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "agent"))
 		}
 		if let onBehalfOf = self.onBehalfOf {
 			json["onBehalfOf"] = onBehalfOf.asJSON(errors: &errors)

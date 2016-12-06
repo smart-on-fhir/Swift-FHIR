@@ -25,8 +25,8 @@ class ReferralRequestTests: XCTestCase {
 			let instance = try runReferralRequest1()
 			try runReferralRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ReferralRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ReferralRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

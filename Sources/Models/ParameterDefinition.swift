@@ -21,29 +21,29 @@ open class ParameterDefinition: Element {
 	}
 	
 	/// A brief description of the parameter.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Maximum cardinality (a number of *).
-	public var max: String?
+	public var max: FHIRString?
 	
 	/// Minimum cardinality.
 	public var min: Int?
 	
 	/// Parameter name.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// The profile of the parameter, any.
 	public var profile: Reference?
 	
 	/// Type for the parameter.
-	public var type: String?
+	public var type: FHIRString?
 	
 	/// Whether the parameter is input or output for the module.
 	public var use: OperationParameterUse?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, use: OperationParameterUse) {
+	public convenience init(type: FHIRString, use: OperationParameterUse) {
 		self.init()
 		self.type = type
 		self.use = use
@@ -55,7 +55,7 @@ open class ParameterDefinition: Element {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -64,7 +64,7 @@ open class ParameterDefinition: Element {
 		if let exist = json["max"] {
 			presentKeys.insert("max")
 			if let val = exist as? String {
-				self.max = val
+				self.max = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "max", wants: String.self, has: type(of: exist)))
@@ -82,7 +82,7 @@ open class ParameterDefinition: Element {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -105,7 +105,7 @@ open class ParameterDefinition: Element {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -155,8 +155,14 @@ open class ParameterDefinition: Element {
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let use = self.use {
 			json["use"] = use.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "use"))
 		}
 		
 		return json

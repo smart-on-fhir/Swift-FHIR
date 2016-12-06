@@ -25,8 +25,8 @@ class SearchParameterTests: XCTestCase {
 			let instance = try runSearchParameter1()
 			try runSearchParameter1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -60,8 +60,8 @@ class SearchParameterTests: XCTestCase {
 			let instance = try runSearchParameter2()
 			try runSearchParameter2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -100,8 +100,8 @@ class SearchParameterTests: XCTestCase {
 			let instance = try runSearchParameter3()
 			try runSearchParameter3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

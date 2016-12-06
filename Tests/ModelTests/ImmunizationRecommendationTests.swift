@@ -25,8 +25,8 @@ class ImmunizationRecommendationTests: XCTestCase {
 			let instance = try runImmunizationRecommendation1()
 			try runImmunizationRecommendation1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImmunizationRecommendation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ImmunizationRecommendation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

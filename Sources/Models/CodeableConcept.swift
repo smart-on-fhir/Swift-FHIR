@@ -23,7 +23,7 @@ open class CodeableConcept: Element {
 	public var coding: [Coding]?
 	
 	/// Plain text representation of the concept.
-	public var text: String?
+	public var text: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -45,7 +45,7 @@ open class CodeableConcept: Element {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))

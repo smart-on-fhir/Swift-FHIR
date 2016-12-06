@@ -27,7 +27,7 @@ open class EligibilityRequest: DomainResource {
 	public var benefitSubCategory: CodeableConcept?
 	
 	/// Business agreement.
-	public var businessArrangement: String?
+	public var businessArrangement: FHIRString?
 	
 	/// Insurance or medical plan.
 	public var coverage: Reference?
@@ -66,7 +66,7 @@ open class EligibilityRequest: DomainResource {
 	public var servicedPeriod: Period?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -102,7 +102,7 @@ open class EligibilityRequest: DomainResource {
 		if let exist = json["businessArrangement"] {
 			presentKeys.insert("businessArrangement")
 			if let val = exist as? String {
-				self.businessArrangement = val
+				self.businessArrangement = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
@@ -125,7 +125,7 @@ open class EligibilityRequest: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -246,7 +246,7 @@ open class EligibilityRequest: DomainResource {
 		if let exist = json["servicedDate"] {
 			presentKeys.insert("servicedDate")
 			if let val = exist as? String {
-				self.servicedDate = FHIRDate(string: val)
+				self.servicedDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "servicedDate", wants: String.self, has: type(of: exist)))
@@ -269,7 +269,7 @@ open class EligibilityRequest: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))

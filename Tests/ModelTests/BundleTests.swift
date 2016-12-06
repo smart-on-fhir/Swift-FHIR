@@ -25,8 +25,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle1()
 			try runBundle1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -58,8 +58,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle2()
 			try runBundle2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -109,8 +109,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle3()
 			try runBundle3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -156,8 +156,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle4()
 			try runBundle4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -197,8 +197,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle5()
 			try runBundle5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -248,8 +248,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle6()
 			try runBundle6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -299,8 +299,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle7()
 			try runBundle7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -350,8 +350,8 @@ class BundleTests: XCTestCase {
 			let instance = try runBundle8()
 			try runBundle8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

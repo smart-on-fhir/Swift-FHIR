@@ -354,7 +354,7 @@ open class MedicationDispense: DomainResource {
 		if let exist = json["whenHandedOver"] {
 			presentKeys.insert("whenHandedOver")
 			if let val = exist as? String {
-				self.whenHandedOver = DateTime(string: val)
+				self.whenHandedOver = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "whenHandedOver", wants: String.self, has: type(of: exist)))
@@ -363,7 +363,7 @@ open class MedicationDispense: DomainResource {
 		if let exist = json["whenPrepared"] {
 			presentKeys.insert("whenPrepared")
 			if let val = exist as? String {
-				self.whenPrepared = DateTime(string: val)
+				self.whenPrepared = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "whenPrepared", wants: String.self, has: type(of: exist)))
@@ -439,6 +439,11 @@ open class MedicationDispense: DomainResource {
 		}
 		if let whenPrepared = self.whenPrepared {
 			json["whenPrepared"] = whenPrepared.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.medicationCodeableConcept && nil == self.medicationReference {
+			errors.append(FHIRValidationError(missing: "medication[x]"))
 		}
 		
 		return json
@@ -536,6 +541,9 @@ open class MedicationDispenseSubstitution: BackboneElement {
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json

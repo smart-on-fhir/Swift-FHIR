@@ -41,7 +41,7 @@ open class Extension: Element {
 	public var valueBoolean: Bool?
 	
 	/// Value of extension.
-	public var valueCode: String?
+	public var valueCode: FHIRString?
 	
 	/// Value of extension.
 	public var valueCodeableConcept: CodeableConcept?
@@ -74,7 +74,7 @@ open class Extension: Element {
 	public var valueHumanName: HumanName?
 	
 	/// Value of extension.
-	public var valueId: String?
+	public var valueId: FHIRString?
 	
 	/// Value of extension.
 	public var valueIdentifier: Identifier?
@@ -86,7 +86,7 @@ open class Extension: Element {
 	public var valueInteger: Int?
 	
 	/// Value of extension.
-	public var valueMarkdown: String?
+	public var valueMarkdown: FHIRString?
 	
 	/// Value of extension.
 	public var valueMeta: Meta?
@@ -95,7 +95,7 @@ open class Extension: Element {
 	public var valueMoney: Money?
 	
 	/// Value of extension.
-	public var valueOid: String?
+	public var valueOid: FHIRString?
 	
 	/// Value of extension.
 	public var valuePeriod: Period?
@@ -122,7 +122,7 @@ open class Extension: Element {
 	public var valueSignature: Signature?
 	
 	/// Value of extension.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Value of extension.
 	public var valueTime: FHIRTime?
@@ -149,7 +149,7 @@ open class Extension: Element {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -217,7 +217,7 @@ open class Extension: Element {
 		if let exist = json["valueBase64Binary"] {
 			presentKeys.insert("valueBase64Binary")
 			if let val = exist as? String {
-				self.valueBase64Binary = Base64Binary(string: val)
+				self.valueBase64Binary = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueBase64Binary", wants: String.self, has: type(of: exist)))
@@ -235,7 +235,7 @@ open class Extension: Element {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? String {
-				self.valueCode = val
+				self.valueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -300,7 +300,7 @@ open class Extension: Element {
 		if let exist = json["valueDate"] {
 			presentKeys.insert("valueDate")
 			if let val = exist as? String {
-				self.valueDate = FHIRDate(string: val)
+				self.valueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
@@ -309,7 +309,7 @@ open class Extension: Element {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -369,7 +369,7 @@ open class Extension: Element {
 		if let exist = json["valueId"] {
 			presentKeys.insert("valueId")
 			if let val = exist as? String {
-				self.valueId = val
+				self.valueId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -392,7 +392,7 @@ open class Extension: Element {
 		if let exist = json["valueInstant"] {
 			presentKeys.insert("valueInstant")
 			if let val = exist as? String {
-				self.valueInstant = Instant(string: val)
+				self.valueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
@@ -410,7 +410,7 @@ open class Extension: Element {
 		if let exist = json["valueMarkdown"] {
 			presentKeys.insert("valueMarkdown")
 			if let val = exist as? String {
-				self.valueMarkdown = val
+				self.valueMarkdown = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
@@ -447,7 +447,7 @@ open class Extension: Element {
 		if let exist = json["valueOid"] {
 			presentKeys.insert("valueOid")
 			if let val = exist as? String {
-				self.valueOid = val
+				self.valueOid = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueOid", wants: String.self, has: type(of: exist)))
@@ -563,7 +563,7 @@ open class Extension: Element {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -572,7 +572,7 @@ open class Extension: Element {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -604,7 +604,7 @@ open class Extension: Element {
 		if let exist = json["valueUri"] {
 			presentKeys.insert("valueUri")
 			if let val = exist as? String {
-				self.valueUri = URL(string: val)
+				self.valueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
@@ -618,6 +618,9 @@ open class Extension: Element {
 		
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON(errors: &errors)

@@ -92,11 +92,11 @@ extension Reference {
 		}
 		else if let ref = reference {
 			var server: FHIRServer? = nil
-			var path = ref
+			var path = ref.string
 			
 			// absolute URL
-			if let _ = ref.range(of: "://") {
-				if let url = URL(string: ref) {
+			if let _ = ref.string.range(of: "://") {
+				if let url = URL(string: ref.string) {
 					let base = url.deletingLastPathComponent().deletingLastPathComponent()
 					path = (url.absoluteString.replacingOccurrences(of: base.absoluteString, with: ""))
 					server = FHIRBaseServer(baseURL: base, auth: nil)		// TODO: what if it's protected?
@@ -114,7 +114,7 @@ extension Reference {
 			if let server = server {
 				T.readFrom(path, server: server) { resource, error in
 					if let res = resource {
-						self.owningResource?.didResolveReference(ref, resolved: res)
+						self.owningResource?.didResolveReference(ref.string, resolved: res)
 						callback(res as? T)		// `readFrom()` will always instantiate its own type, so this should never turn into nil
 					}
 					else {
@@ -137,10 +137,10 @@ extension Reference {
 	
 	/** Strips the leading hash "#" symbol, if it's there, in order to perform a contained resource lookup. */
 	func processedReferenceIdentifier() -> String? {
-		if nil != reference && "#" == reference![reference!.startIndex] {
-			return reference![reference!.index(reference!.startIndex, offsetBy: 1)..<reference!.endIndex]
+		if let ref = reference?.string, "#" == ref[ref.startIndex] {
+			return ref[ref.index(ref.startIndex, offsetBy: 1)..<ref.endIndex]
 		}
-		return reference
+		return reference?.string
 	}
 }
 

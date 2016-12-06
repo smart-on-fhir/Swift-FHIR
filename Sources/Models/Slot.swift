@@ -21,7 +21,7 @@ open class Slot: DomainResource {
 	public var appointmentType: CodeableConcept?
 	
 	/// Comments on the slot to describe any extended information. Such as custom constraints on the slot.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Date/Time that the slot is to conclude.
 	public var end: Instant?
@@ -82,7 +82,7 @@ open class Slot: DomainResource {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -91,7 +91,7 @@ open class Slot: DomainResource {
 		if let exist = json["end"] {
 			presentKeys.insert("end")
 			if let val = exist as? String {
-				self.end = Instant(string: val)
+				self.end = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "end", wants: String.self, has: type(of: exist)))
@@ -185,7 +185,7 @@ open class Slot: DomainResource {
 		if let exist = json["start"] {
 			presentKeys.insert("start")
 			if let val = exist as? String {
-				self.start = Instant(string: val)
+				self.start = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "start", wants: String.self, has: type(of: exist)))
@@ -226,6 +226,9 @@ open class Slot: DomainResource {
 		if let end = self.end {
 			json["end"] = end.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "end"))
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
@@ -234,6 +237,9 @@ open class Slot: DomainResource {
 		}
 		if let schedule = self.schedule {
 			json["schedule"] = schedule.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "schedule"))
 		}
 		if let serviceCategory = self.serviceCategory {
 			json["serviceCategory"] = serviceCategory.asJSON(errors: &errors)
@@ -247,8 +253,14 @@ open class Slot: DomainResource {
 		if let start = self.start {
 			json["start"] = start.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "start"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json

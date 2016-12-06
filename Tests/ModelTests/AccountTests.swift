@@ -25,8 +25,8 @@ class AccountTests: XCTestCase {
 			let instance = try runAccount1()
 			try runAccount1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Account successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Account successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

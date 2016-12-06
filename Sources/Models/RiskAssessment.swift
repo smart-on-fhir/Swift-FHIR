@@ -41,7 +41,7 @@ open class RiskAssessment: DomainResource {
 	public var method: CodeableConcept?
 	
 	/// How to reduce risk.
-	public var mitigation: String?
+	public var mitigation: FHIRString?
 	
 	/// Comments on the risk assessment.
 	public var note: Annotation?
@@ -184,7 +184,7 @@ open class RiskAssessment: DomainResource {
 		if let exist = json["mitigation"] {
 			presentKeys.insert("mitigation")
 			if let val = exist as? String {
-				self.mitigation = val
+				self.mitigation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mitigation", wants: String.self, has: type(of: exist)))
@@ -207,7 +207,7 @@ open class RiskAssessment: DomainResource {
 		if let exist = json["occurrenceDateTime"] {
 			presentKeys.insert("occurrenceDateTime")
 			if let val = exist as? String {
-				self.occurrenceDateTime = DateTime(string: val)
+				self.occurrenceDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "occurrenceDateTime", wants: String.self, has: type(of: exist)))
@@ -385,6 +385,9 @@ open class RiskAssessment: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
@@ -417,7 +420,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 	public var probabilityRange: Range?
 	
 	/// Explanation of prediction.
-	public var rationale: String?
+	public var rationale: FHIRString?
 	
 	/// Relative likelihood.
 	public var relativeRisk: NSDecimalNumber?
@@ -495,7 +498,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 		if let exist = json["rationale"] {
 			presentKeys.insert("rationale")
 			if let val = exist as? String {
-				self.rationale = val
+				self.rationale = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "rationale", wants: String.self, has: type(of: exist)))
@@ -546,6 +549,9 @@ open class RiskAssessmentPrediction: BackboneElement {
 		
 		if let outcome = self.outcome {
 			json["outcome"] = outcome.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "outcome"))
 		}
 		if let probabilityCodeableConcept = self.probabilityCodeableConcept {
 			json["probabilityCodeableConcept"] = probabilityCodeableConcept.asJSON(errors: &errors)

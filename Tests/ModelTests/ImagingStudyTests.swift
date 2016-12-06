@@ -25,8 +25,8 @@ class ImagingStudyTests: XCTestCase {
 			let instance = try runImagingStudy1()
 			try runImagingStudy1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImagingStudy successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ImagingStudy successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

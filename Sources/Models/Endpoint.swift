@@ -30,7 +30,7 @@ open class Endpoint: DomainResource {
 	public var contact: [ContactPoint]?
 	
 	/// Usage depends on the channel type.
-	public var header: [String]?
+	public var header: [FHIRString]?
 	
 	/// Identifies this endpoint across multiple systems.
 	public var identifier: [Identifier]?
@@ -39,11 +39,11 @@ open class Endpoint: DomainResource {
 	public var managingOrganization: Reference?
 	
 	/// A name that this endpoint can be identified by.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Mimetype to send. If not specified, the content could be anything (including no payload, if the connectionType
 	/// defined this).
-	public var payloadMimeType: [String]?
+	public var payloadMimeType: [FHIRString]?
 	
 	/// The type of content that may be used at this endpoint (e.g. XDS Discharge summaries).
 	public var payloadType: [CodeableConcept]?
@@ -52,7 +52,7 @@ open class Endpoint: DomainResource {
 	public var period: Period?
 	
 	/// PKI Public keys to support secure communications.
-	public var publicKey: String?
+	public var publicKey: FHIRString?
 	
 	/// active | suspended | error | off | test.
 	public var status: EndpointStatus?
@@ -73,7 +73,7 @@ open class Endpoint: DomainResource {
 		if let exist = json["address"] {
 			presentKeys.insert("address")
 			if let val = exist as? String {
-				self.address = URL(string: val)
+				self.address = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "address", wants: String.self, has: type(of: exist)))
@@ -116,7 +116,7 @@ open class Endpoint: DomainResource {
 		if let exist = json["header"] {
 			presentKeys.insert("header")
 			if let val = exist as? [String] {
-				self.header = val
+				self.header = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "header", wants: Array<String>.self, has: type(of: exist)))
@@ -153,7 +153,7 @@ open class Endpoint: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -162,7 +162,7 @@ open class Endpoint: DomainResource {
 		if let exist = json["payloadMimeType"] {
 			presentKeys.insert("payloadMimeType")
 			if let val = exist as? [String] {
-				self.payloadMimeType = val
+				self.payloadMimeType = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "payloadMimeType", wants: Array<String>.self, has: type(of: exist)))
@@ -202,7 +202,7 @@ open class Endpoint: DomainResource {
 		if let exist = json["publicKey"] {
 			presentKeys.insert("publicKey")
 			if let val = exist as? String {
-				self.publicKey = val
+				self.publicKey = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publicKey", wants: String.self, has: type(of: exist)))
@@ -234,8 +234,14 @@ open class Endpoint: DomainResource {
 		if let address = self.address {
 			json["address"] = address.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "address"))
+		}
 		if let connectionType = self.connectionType {
 			json["connectionType"] = connectionType.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "connectionType"))
 		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
@@ -258,6 +264,9 @@ open class Endpoint: DomainResource {
 		if let payloadType = self.payloadType {
 			json["payloadType"] = payloadType.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "payloadType"))
+		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
@@ -266,6 +275,9 @@ open class Endpoint: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json

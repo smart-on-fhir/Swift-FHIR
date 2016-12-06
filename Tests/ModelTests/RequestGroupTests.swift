@@ -25,8 +25,8 @@ class RequestGroupTests: XCTestCase {
 			let instance = try runRequestGroup1()
 			try runRequestGroup1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RequestGroup successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RequestGroup successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

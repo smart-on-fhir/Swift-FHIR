@@ -109,7 +109,7 @@ open class Consent: DomainResource {
 		if let exist = json["dateTime"] {
 			presentKeys.insert("dateTime")
 			if let val = exist as? String {
-				self.dateTime = DateTime(string: val)
+				self.dateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "dateTime", wants: String.self, has: type(of: exist)))
@@ -191,7 +191,7 @@ open class Consent: DomainResource {
 		if let exist = json["policy"] {
 			presentKeys.insert("policy")
 			if let val = exist as? String {
-				self.policy = URL(string: val)
+				self.policy = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "policy", wants: String.self, has: type(of: exist)))
@@ -314,11 +314,17 @@ open class Consent: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let policy = self.policy {
 			json["policy"] = policy.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "policy"))
 		}
 		if let purpose = self.purpose {
 			json["purpose"] = purpose.map() { $0.asJSON(errors: &errors) }
@@ -337,6 +343,9 @@ open class Consent: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json
@@ -553,6 +562,9 @@ open class ConsentExcept: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -630,8 +642,14 @@ open class ConsentExceptActor: BackboneElement {
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "reference"))
+		}
 		if let role = self.role {
 			json["role"] = role.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "role"))
 		}
 		
 		return json
@@ -709,8 +727,14 @@ open class ConsentExceptData: BackboneElement {
 		if let meaning = self.meaning {
 			json["meaning"] = meaning.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "meaning"))
+		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "reference"))
 		}
 		
 		return json

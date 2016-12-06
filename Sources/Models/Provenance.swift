@@ -165,7 +165,7 @@ open class Provenance: DomainResource {
 		if let exist = json["recorded"] {
 			presentKeys.insert("recorded")
 			if let val = exist as? String {
-				self.recorded = Instant(string: val)
+				self.recorded = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "recorded", wants: String.self, has: type(of: exist)))
@@ -217,6 +217,9 @@ open class Provenance: DomainResource {
 		if let agent = self.agent {
 			json["agent"] = agent.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "agent"))
+		}
 		if let entity = self.entity {
 			json["entity"] = entity.map() { $0.asJSON(errors: &errors) }
 		}
@@ -235,11 +238,17 @@ open class Provenance: DomainResource {
 		if let recorded = self.recorded {
 			json["recorded"] = recorded.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "recorded"))
+		}
 		if let signature = self.signature {
 			json["signature"] = signature.map() { $0.asJSON(errors: &errors) }
 		}
 		if let target = self.target {
 			json["target"] = target.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "target"))
 		}
 		
 		return json
@@ -312,7 +321,7 @@ open class ProvenanceAgent: BackboneElement {
 		if let exist = json["onBehalfOfUri"] {
 			presentKeys.insert("onBehalfOfUri")
 			if let val = exist as? String {
-				self.onBehalfOfUri = URL(string: val)
+				self.onBehalfOfUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onBehalfOfUri", wants: String.self, has: type(of: exist)))
@@ -366,7 +375,7 @@ open class ProvenanceAgent: BackboneElement {
 		if let exist = json["whoUri"] {
 			presentKeys.insert("whoUri")
 			if let val = exist as? String {
-				self.whoUri = URL(string: val)
+				self.whoUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "whoUri", wants: String.self, has: type(of: exist)))
@@ -395,11 +404,19 @@ open class ProvenanceAgent: BackboneElement {
 		if let role = self.role {
 			json["role"] = role.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "role"))
+		}
 		if let whoReference = self.whoReference {
 			json["whoReference"] = whoReference.asJSON(errors: &errors)
 		}
 		if let whoUri = self.whoUri {
 			json["whoUri"] = whoUri.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.whoUri && nil == self.whoReference {
+			errors.append(FHIRValidationError(missing: "who[x]"))
 		}
 		
 		return json
@@ -495,8 +512,14 @@ open class ProvenanceEntity: BackboneElement {
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "reference"))
+		}
 		if let role = self.role {
 			json["role"] = role.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "role"))
 		}
 		
 		return json

@@ -100,8 +100,14 @@ open class ImmunizationRecommendation: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let recommendation = self.recommendation {
 			json["recommendation"] = recommendation.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "recommendation"))
 		}
 		
 		return json
@@ -156,7 +162,7 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -273,6 +279,9 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "date"))
+		}
 		if let dateCriterion = self.dateCriterion {
 			json["dateCriterion"] = dateCriterion.map() { $0.asJSON(errors: &errors) }
 		}
@@ -281,6 +290,9 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		}
 		if let forecastStatus = self.forecastStatus {
 			json["forecastStatus"] = forecastStatus.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "forecastStatus"))
 		}
 		if let protocol_fhir = self.protocol_fhir {
 			json["protocol"] = protocol_fhir.asJSON(errors: &errors)
@@ -293,6 +305,9 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		}
 		if let vaccineCode = self.vaccineCode {
 			json["vaccineCode"] = vaccineCode.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "vaccineCode"))
 		}
 		
 		return json
@@ -347,7 +362,7 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = DateTime(string: val)
+				self.value = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -365,8 +380,14 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
 		return json
@@ -388,13 +409,13 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 	public var authority: Reference?
 	
 	/// Protocol details.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Dose number within sequence.
 	public var doseSequence: UInt?
 	
 	/// Name of vaccination series.
-	public var series: String?
+	public var series: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -416,7 +437,7 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -434,7 +455,7 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 		if let exist = json["series"] {
 			presentKeys.insert("series")
 			if let val = exist as? String {
-				self.series = val
+				self.series = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "series", wants: String.self, has: type(of: exist)))

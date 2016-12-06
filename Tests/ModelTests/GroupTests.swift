@@ -25,8 +25,8 @@ class GroupTests: XCTestCase {
 			let instance = try runGroup1()
 			try runGroup1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -56,8 +56,8 @@ class GroupTests: XCTestCase {
 			let instance = try runGroup2()
 			try runGroup2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

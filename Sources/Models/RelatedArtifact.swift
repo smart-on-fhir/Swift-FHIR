@@ -20,10 +20,10 @@ open class RelatedArtifact: Element {
 	}
 	
 	/// Bibliographic citation for the artifact.
-	public var citation: String?
+	public var citation: FHIRString?
 	
 	/// Brief description of the related artifact.
-	public var display: String?
+	public var display: FHIRString?
 	
 	/// The related document.
 	public var document: Attachment?
@@ -50,7 +50,7 @@ open class RelatedArtifact: Element {
 		if let exist = json["citation"] {
 			presentKeys.insert("citation")
 			if let val = exist as? String {
-				self.citation = val
+				self.citation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "citation", wants: String.self, has: type(of: exist)))
@@ -59,7 +59,7 @@ open class RelatedArtifact: Element {
 		if let exist = json["display"] {
 			presentKeys.insert("display")
 			if let val = exist as? String {
-				self.display = val
+				self.display = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
@@ -113,7 +113,7 @@ open class RelatedArtifact: Element {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -139,6 +139,9 @@ open class RelatedArtifact: Element {
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()

@@ -24,7 +24,7 @@ open class BodySite: DomainResource {
 	public var code: CodeableConcept?
 	
 	/// The Description of anatomical location.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Bodysite identifier.
 	public var identifier: [Identifier]?
@@ -65,7 +65,7 @@ open class BodySite: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -153,6 +153,9 @@ open class BodySite: DomainResource {
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		
 		return json

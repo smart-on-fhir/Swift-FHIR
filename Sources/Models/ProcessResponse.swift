@@ -26,7 +26,7 @@ open class ProcessResponse: DomainResource {
 	public var created: DateTime?
 	
 	/// Disposition Message.
-	public var disposition: String?
+	public var disposition: FHIRString?
 	
 	/// Error code.
 	public var error: [CodeableConcept]?
@@ -56,7 +56,7 @@ open class ProcessResponse: DomainResource {
 	public var requestProvider: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -78,7 +78,7 @@ open class ProcessResponse: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -87,7 +87,7 @@ open class ProcessResponse: DomainResource {
 		if let exist = json["disposition"] {
 			presentKeys.insert("disposition")
 			if let val = exist as? String {
-				self.disposition = val
+				self.disposition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -222,7 +222,7 @@ open class ProcessResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -290,7 +290,7 @@ open class ProcessResponseNote: BackboneElement {
 	}
 	
 	/// Notes text.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// display | print | printoper.
 	public var type: CodeableConcept?
@@ -301,7 +301,7 @@ open class ProcessResponseNote: BackboneElement {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))

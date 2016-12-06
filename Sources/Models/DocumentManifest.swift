@@ -27,7 +27,7 @@ open class DocumentManifest: DomainResource {
 	public var created: DateTime?
 	
 	/// Human-readable description (title).
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Other identifiers for the manifest.
 	public var identifier: [Identifier]?
@@ -98,7 +98,7 @@ open class DocumentManifest: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -107,7 +107,7 @@ open class DocumentManifest: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -172,7 +172,7 @@ open class DocumentManifest: DomainResource {
 		if let exist = json["source"] {
 			presentKeys.insert("source")
 			if let val = exist as? String {
-				self.source = URL(string: val)
+				self.source = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "source", wants: String.self, has: type(of: exist)))
@@ -235,6 +235,9 @@ open class DocumentManifest: DomainResource {
 		if let content = self.content {
 			json["content"] = content.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "content"))
+		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
@@ -258,6 +261,9 @@ open class DocumentManifest: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -349,6 +355,11 @@ open class DocumentManifestContent: BackboneElement {
 		}
 		if let pReference = self.pReference {
 			json["pReference"] = pReference.asJSON(errors: &errors)
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.pAttachment && nil == self.pReference {
+			errors.append(FHIRValidationError(missing: "p[x]"))
 		}
 		
 		return json

@@ -36,7 +36,7 @@ open class Account: DomainResource {
 	public var currency: Coding?
 	
 	/// Explanation of purpose/use.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Responsible for the account.
 	public var guarantor: [AccountGuarantor]?
@@ -45,7 +45,7 @@ open class Account: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Human-readable label.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Who is responsible?.
 	public var owner: Reference?
@@ -135,7 +135,7 @@ open class Account: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -172,7 +172,7 @@ open class Account: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -365,6 +365,9 @@ open class AccountGuarantor: BackboneElement {
 		}
 		if let party = self.party {
 			json["party"] = party.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "party"))
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)

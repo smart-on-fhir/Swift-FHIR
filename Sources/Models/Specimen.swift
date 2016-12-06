@@ -152,7 +152,7 @@ open class Specimen: DomainResource {
 		if let exist = json["receivedTime"] {
 			presentKeys.insert("receivedTime")
 			if let val = exist as? String {
-				self.receivedTime = DateTime(string: val)
+				self.receivedTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "receivedTime", wants: String.self, has: type(of: exist)))
@@ -267,6 +267,9 @@ open class Specimen: DomainResource {
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
+		}
 		if let treatment = self.treatment {
 			json["treatment"] = treatment.map() { $0.asJSON(errors: &errors) }
 		}
@@ -327,7 +330,7 @@ open class SpecimenCollection: BackboneElement {
 		if let exist = json["collectedDateTime"] {
 			presentKeys.insert("collectedDateTime")
 			if let val = exist as? String {
-				self.collectedDateTime = DateTime(string: val)
+				self.collectedDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "collectedDateTime", wants: String.self, has: type(of: exist)))
@@ -440,7 +443,7 @@ open class SpecimenContainer: BackboneElement {
 	public var capacity: Quantity?
 	
 	/// Textual description of the container.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Id for the container.
 	public var identifier: [Identifier]?
@@ -499,7 +502,7 @@ open class SpecimenContainer: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -594,7 +597,7 @@ open class SpecimenTreatment: BackboneElement {
 	public var additive: [Reference]?
 	
 	/// Textual description of procedure.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Indicates the treatment or processing step  applied to the specimen.
 	public var procedure: CodeableConcept?
@@ -625,7 +628,7 @@ open class SpecimenTreatment: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -648,7 +651,7 @@ open class SpecimenTreatment: BackboneElement {
 		if let exist = json["timeDateTime"] {
 			presentKeys.insert("timeDateTime")
 			if let val = exist as? String {
-				self.timeDateTime = DateTime(string: val)
+				self.timeDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "timeDateTime", wants: String.self, has: type(of: exist)))

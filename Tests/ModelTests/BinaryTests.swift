@@ -25,8 +25,8 @@ class BinaryTests: XCTestCase {
 			let instance = try runBinary1()
 			try runBinary1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Binary successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Binary successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

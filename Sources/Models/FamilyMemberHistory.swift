@@ -27,7 +27,7 @@ open class FamilyMemberHistory: DomainResource {
 	public var ageRange: Range?
 	
 	/// (approximate) age.
-	public var ageString: String?
+	public var ageString: FHIRString?
 	
 	/// (approximate) date of birth.
 	public var bornDate: FHIRDate?
@@ -36,7 +36,7 @@ open class FamilyMemberHistory: DomainResource {
 	public var bornPeriod: Period?
 	
 	/// (approximate) date of birth.
-	public var bornString: String?
+	public var bornString: FHIRString?
 	
 	/// Condition that the related person had.
 	public var condition: [FamilyMemberHistoryCondition]?
@@ -57,7 +57,7 @@ open class FamilyMemberHistory: DomainResource {
 	public var deceasedRange: Range?
 	
 	/// Dead? How old/when?.
-	public var deceasedString: String?
+	public var deceasedString: FHIRString?
 	
 	/// Age is estimated?.
 	public var estimatedAge: Bool?
@@ -70,7 +70,7 @@ open class FamilyMemberHistory: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// The family member described.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// General note about related person.
 	public var note: Annotation?
@@ -127,7 +127,7 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["ageString"] {
 			presentKeys.insert("ageString")
 			if let val = exist as? String {
-				self.ageString = val
+				self.ageString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "ageString", wants: String.self, has: type(of: exist)))
@@ -136,7 +136,7 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["bornDate"] {
 			presentKeys.insert("bornDate")
 			if let val = exist as? String {
-				self.bornDate = FHIRDate(string: val)
+				self.bornDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "bornDate", wants: String.self, has: type(of: exist)))
@@ -159,7 +159,7 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["bornString"] {
 			presentKeys.insert("bornString")
 			if let val = exist as? String {
-				self.bornString = val
+				self.bornString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "bornString", wants: String.self, has: type(of: exist)))
@@ -182,7 +182,7 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -214,7 +214,7 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["deceasedDate"] {
 			presentKeys.insert("deceasedDate")
 			if let val = exist as? String {
-				self.deceasedDate = FHIRDate(string: val)
+				self.deceasedDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "deceasedDate", wants: String.self, has: type(of: exist)))
@@ -237,7 +237,7 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["deceasedString"] {
 			presentKeys.insert("deceasedString")
 			if let val = exist as? String {
-				self.deceasedString = val
+				self.deceasedString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "deceasedString", wants: String.self, has: type(of: exist)))
@@ -283,7 +283,7 @@ open class FamilyMemberHistory: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -417,11 +417,20 @@ open class FamilyMemberHistory: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "relationship"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json
@@ -456,7 +465,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 	public var onsetRange: Range?
 	
 	/// When condition first manifested.
-	public var onsetString: String?
+	public var onsetString: FHIRString?
 	
 	/// deceased | permanent disability | etc..
 	public var outcome: CodeableConcept?
@@ -547,7 +556,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		if let exist = json["onsetString"] {
 			presentKeys.insert("onsetString")
 			if let val = exist as? String {
-				self.onsetString = val
+				self.onsetString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onsetString", wants: String.self, has: type(of: exist)))
@@ -575,6 +584,9 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let note = self.note {
 			json["note"] = note.asJSON(errors: &errors)

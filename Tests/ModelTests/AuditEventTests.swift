@@ -25,8 +25,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent1()
 			try runAuditEvent1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -73,8 +73,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent2()
 			try runAuditEvent2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -121,8 +121,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent3()
 			try runAuditEvent3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -186,8 +186,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent4()
 			try runAuditEvent4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -243,8 +243,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent5()
 			try runAuditEvent5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -296,8 +296,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent6()
 			try runAuditEvent6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -349,8 +349,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent7()
 			try runAuditEvent7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -438,8 +438,8 @@ class AuditEventTests: XCTestCase {
 			let instance = try runAuditEvent8()
 			try runAuditEvent8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

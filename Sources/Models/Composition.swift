@@ -32,7 +32,7 @@ open class Composition: DomainResource {
 	public var author: [Reference]?
 	
 	/// As defined by affinity domain.
-	public var confidentiality: String?
+	public var confidentiality: FHIRString?
 	
 	/// Organization which maintains the composition.
 	public var custodian: Reference?
@@ -60,14 +60,14 @@ open class Composition: DomainResource {
 	public var subject: Reference?
 	
 	/// Human Readable name/title.
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Kind of composition (LOINC if possible).
 	public var type: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(author: [Reference], date: DateTime, status: CompositionStatus, subject: Reference, title: String, type: CodeableConcept) {
+	public convenience init(author: [Reference], date: DateTime, status: CompositionStatus, subject: Reference, title: FHIRString, type: CodeableConcept) {
 		self.init()
 		self.author = author
 		self.date = date
@@ -128,7 +128,7 @@ open class Composition: DomainResource {
 		if let exist = json["confidentiality"] {
 			presentKeys.insert("confidentiality")
 			if let val = exist as? String {
-				self.confidentiality = val
+				self.confidentiality = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "confidentiality", wants: String.self, has: type(of: exist)))
@@ -151,7 +151,7 @@ open class Composition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -253,7 +253,7 @@ open class Composition: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -294,6 +294,9 @@ open class Composition: DomainResource {
 		if let author = self.author {
 			json["author"] = author.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "author"))
+		}
 		if let confidentiality = self.confidentiality {
 			json["confidentiality"] = confidentiality.asJSON()
 		}
@@ -302,6 +305,9 @@ open class Composition: DomainResource {
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "date"))
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON(errors: &errors)
@@ -318,14 +324,26 @@ open class Composition: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "title"))
+		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -395,7 +413,7 @@ open class CompositionAttester: BackboneElement {
 		if let exist = json["time"] {
 			presentKeys.insert("time")
 			if let val = exist as? String {
-				self.time = DateTime(string: val)
+				self.time = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "time", wants: String.self, has: type(of: exist)))
@@ -409,6 +427,9 @@ open class CompositionAttester: BackboneElement {
 		
 		if let mode = self.mode {
 			json["mode"] = mode.map() { $0.rawValue }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
 		}
 		if let party = self.party {
 			json["party"] = party.asJSON(errors: &errors)
@@ -541,7 +562,7 @@ open class CompositionSection: BackboneElement {
 	public var text: Narrative?
 	
 	/// Label for section (e.g. for ToC).
-	public var title: String?
+	public var title: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -647,7 +668,7 @@ open class CompositionSection: BackboneElement {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))

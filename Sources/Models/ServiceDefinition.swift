@@ -30,7 +30,7 @@ open class ServiceDefinition: DomainResource {
 	public var contributor: [Contributor]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Data requirements for the module.
 	public var dataRequirement: [DataRequirement]?
@@ -39,7 +39,7 @@ open class ServiceDefinition: DomainResource {
 	public var date: DateTime?
 	
 	/// Natural language description of the service definition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// The effective date range for the service definition.
 	public var effectivePeriod: Period?
@@ -57,16 +57,16 @@ open class ServiceDefinition: DomainResource {
 	public var lastReviewDate: FHIRDate?
 	
 	/// Name for this service definition (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Operation to invoke.
 	public var operationDefinition: Reference?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this service definition is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// Related resources for the module.
 	public var relatedArtifact: [RelatedArtifact]?
@@ -75,7 +75,7 @@ open class ServiceDefinition: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// Name for this service definition (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Descriptional topics for the module.
 	public var topic: [CodeableConcept]?
@@ -87,13 +87,13 @@ open class ServiceDefinition: DomainResource {
 	public var url: URL?
 	
 	/// Describes the clinical usage of the module.
-	public var usage: String?
+	public var usage: FHIRString?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the service definition.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -108,7 +108,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["approvalDate"] {
 			presentKeys.insert("approvalDate")
 			if let val = exist as? String {
-				self.approvalDate = FHIRDate(string: val)
+				self.approvalDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "approvalDate", wants: String.self, has: type(of: exist)))
@@ -145,7 +145,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -168,7 +168,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -177,7 +177,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -237,7 +237,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["lastReviewDate"] {
 			presentKeys.insert("lastReviewDate")
 			if let val = exist as? String {
-				self.lastReviewDate = FHIRDate(string: val)
+				self.lastReviewDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lastReviewDate", wants: String.self, has: type(of: exist)))
@@ -246,7 +246,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -269,7 +269,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -278,7 +278,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -318,7 +318,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -355,7 +355,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -364,7 +364,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["usage"] {
 			presentKeys.insert("usage")
 			if let val = exist as? String {
-				self.usage = val
+				self.usage = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "usage", wants: String.self, has: type(of: exist)))
@@ -387,7 +387,7 @@ open class ServiceDefinition: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -452,6 +452,9 @@ open class ServiceDefinition: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()

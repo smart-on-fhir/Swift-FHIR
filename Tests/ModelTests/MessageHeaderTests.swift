@@ -25,8 +25,8 @@ class MessageHeaderTests: XCTestCase {
 			let instance = try runMessageHeader1()
 			try runMessageHeader1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test MessageHeader successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test MessageHeader successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

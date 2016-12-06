@@ -25,8 +25,8 @@ class StructureMapTests: XCTestCase {
 			let instance = try runStructureMap1()
 			try runStructureMap1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test StructureMap successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test StructureMap successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

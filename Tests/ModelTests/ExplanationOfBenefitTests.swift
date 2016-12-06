@@ -25,8 +25,8 @@ class ExplanationOfBenefitTests: XCTestCase {
 			let instance = try runExplanationOfBenefit1()
 			try runExplanationOfBenefit1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

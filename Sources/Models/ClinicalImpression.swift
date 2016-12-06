@@ -39,7 +39,7 @@ open class ClinicalImpression: DomainResource {
 	public var date: DateTime?
 	
 	/// Why/how the assessment was performed.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Time of assessment.
 	public var effectiveDateTime: DateTime?
@@ -81,7 +81,7 @@ open class ClinicalImpression: DomainResource {
 	public var subject: Reference?
 	
 	/// Summary of the assessment.
-	public var summary: String?
+	public var summary: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -153,7 +153,7 @@ open class ClinicalImpression: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -162,7 +162,7 @@ open class ClinicalImpression: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -171,7 +171,7 @@ open class ClinicalImpression: DomainResource {
 		if let exist = json["effectiveDateTime"] {
 			presentKeys.insert("effectiveDateTime")
 			if let val = exist as? String {
-				self.effectiveDateTime = DateTime(string: val)
+				self.effectiveDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "effectiveDateTime", wants: String.self, has: type(of: exist)))
@@ -349,7 +349,7 @@ open class ClinicalImpression: DomainResource {
 		if let exist = json["summary"] {
 			presentKeys.insert("summary")
 			if let val = exist as? String {
-				self.summary = val
+				self.summary = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "summary", wants: String.self, has: type(of: exist)))
@@ -415,8 +415,14 @@ open class ClinicalImpression: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let summary = self.summary {
 			json["summary"] = summary.asJSON()
@@ -438,7 +444,7 @@ open class ClinicalImpressionFinding: BackboneElement {
 	}
 	
 	/// Which investigations support finding.
-	public var basis: String?
+	public var basis: FHIRString?
 	
 	/// What was found.
 	public var itemCodeableConcept: CodeableConcept?
@@ -467,7 +473,7 @@ open class ClinicalImpressionFinding: BackboneElement {
 		if let exist = json["basis"] {
 			presentKeys.insert("basis")
 			if let val = exist as? String {
-				self.basis = val
+				self.basis = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "basis", wants: String.self, has: type(of: exist)))
@@ -520,6 +526,11 @@ open class ClinicalImpressionFinding: BackboneElement {
 		}
 		if let itemReference = self.itemReference {
 			json["itemReference"] = itemReference.asJSON(errors: &errors)
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.itemCodeableConcept && nil == self.itemReference {
+			errors.append(FHIRValidationError(missing: "item[x]"))
 		}
 		
 		return json
@@ -594,6 +605,9 @@ open class ClinicalImpressionInvestigation: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let item = self.item {
 			json["item"] = item.map() { $0.asJSON(errors: &errors) }

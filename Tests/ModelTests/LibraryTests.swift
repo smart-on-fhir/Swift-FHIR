@@ -25,8 +25,8 @@ class LibraryTests: XCTestCase {
 			let instance = try runLibrary1()
 			try runLibrary1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Library successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Library successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -99,8 +99,8 @@ class LibraryTests: XCTestCase {
 			let instance = try runLibrary2()
 			try runLibrary2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Library successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Library successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

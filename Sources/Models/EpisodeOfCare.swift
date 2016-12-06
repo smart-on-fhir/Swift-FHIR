@@ -266,6 +266,9 @@ open class EpisodeOfCare: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
@@ -274,6 +277,9 @@ open class EpisodeOfCare: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let statusHistory = self.statusHistory {
 			json["statusHistory"] = statusHistory.map() { $0.asJSON(errors: &errors) }
@@ -361,8 +367,14 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "period"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json

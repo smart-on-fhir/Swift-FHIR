@@ -29,7 +29,7 @@ open class Observation: DomainResource {
 	public var code: CodeableConcept?
 	
 	/// Comments about result.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Component results.
 	public var component: [ObservationComponent]?
@@ -104,7 +104,7 @@ open class Observation: DomainResource {
 	public var valueSampledData: SampledData?
 	
 	/// Actual result.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Actual result.
 	public var valueTime: FHIRTime?
@@ -168,7 +168,7 @@ open class Observation: DomainResource {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -219,7 +219,7 @@ open class Observation: DomainResource {
 		if let exist = json["effectiveDateTime"] {
 			presentKeys.insert("effectiveDateTime")
 			if let val = exist as? String {
-				self.effectiveDateTime = DateTime(string: val)
+				self.effectiveDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "effectiveDateTime", wants: String.self, has: type(of: exist)))
@@ -284,7 +284,7 @@ open class Observation: DomainResource {
 		if let exist = json["issued"] {
 			presentKeys.insert("issued")
 			if let val = exist as? String {
-				self.issued = Instant(string: val)
+				self.issued = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "issued", wants: String.self, has: type(of: exist)))
@@ -422,7 +422,7 @@ open class Observation: DomainResource {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -501,7 +501,7 @@ open class Observation: DomainResource {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -510,7 +510,7 @@ open class Observation: DomainResource {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -530,6 +530,9 @@ open class Observation: DomainResource {
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
@@ -578,6 +581,9 @@ open class Observation: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -667,7 +673,7 @@ open class ObservationComponent: BackboneElement {
 	public var valueSampledData: SampledData?
 	
 	/// Actual component result.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Actual component result.
 	public var valueTime: FHIRTime?
@@ -772,7 +778,7 @@ open class ObservationComponent: BackboneElement {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -851,7 +857,7 @@ open class ObservationComponent: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -860,7 +866,7 @@ open class ObservationComponent: BackboneElement {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -874,6 +880,9 @@ open class ObservationComponent: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let dataAbsentReason = self.dataAbsentReason {
 			json["dataAbsentReason"] = dataAbsentReason.asJSON(errors: &errors)
@@ -943,7 +952,7 @@ open class ObservationReferenceRange: BackboneElement {
 	public var meaning: [CodeableConcept]?
 	
 	/// Text based reference range in an observation.
-	public var text: String?
+	public var text: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1007,7 +1016,7 @@ open class ObservationReferenceRange: BackboneElement {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
@@ -1106,6 +1115,9 @@ open class ObservationRelated: BackboneElement {
 		
 		if let target = self.target {
 			json["target"] = target.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "target"))
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue

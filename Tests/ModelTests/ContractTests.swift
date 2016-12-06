@@ -25,8 +25,8 @@ class ContractTests: XCTestCase {
 			let instance = try runContract1()
 			try runContract1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Contract successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Contract successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

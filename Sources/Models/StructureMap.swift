@@ -21,13 +21,13 @@ open class StructureMap: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the structure map.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -45,13 +45,13 @@ open class StructureMap: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this structure map (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this structure map is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// The status of this structure map. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -60,7 +60,7 @@ open class StructureMap: DomainResource {
 	public var structure: [StructureMapStructure]?
 	
 	/// Name for this structure map (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this structure map (globally unique).
 	public var url: URL?
@@ -69,11 +69,11 @@ open class StructureMap: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the structure map.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(group: [StructureMapGroup], name: String, status: PublicationStatus, url: URL) {
+	public convenience init(group: [StructureMapGroup], name: FHIRString, status: PublicationStatus, url: URL) {
 		self.init()
 		self.group = group
 		self.name = name
@@ -101,7 +101,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -110,7 +110,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -119,7 +119,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -191,7 +191,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -203,7 +203,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -212,7 +212,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -252,7 +252,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -261,7 +261,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -287,7 +287,7 @@ open class StructureMap: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -317,6 +317,9 @@ open class StructureMap: DomainResource {
 		if let group = self.group {
 			json["group"] = group.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "group"))
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
@@ -329,6 +332,9 @@ open class StructureMap: DomainResource {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
@@ -338,6 +344,9 @@ open class StructureMap: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let structure = self.structure {
 			json["structure"] = structure.map() { $0.asJSON(errors: &errors) }
 		}
@@ -346,6 +355,9 @@ open class StructureMap: DomainResource {
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		if let useContext = self.useContext {
 			json["useContext"] = useContext.map() { $0.asJSON(errors: &errors) }
@@ -368,23 +380,23 @@ open class StructureMapGroup: BackboneElement {
 	}
 	
 	/// Documentation for this group.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Another group that this group adds rules to.
-	public var extends: String?
+	public var extends: FHIRString?
 	
 	/// Named instance provided when invoking the map.
 	public var input: [StructureMapGroupInput]?
 	
 	/// Descriptive name for a user.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Transform Rule from source to target.
 	public var rule: [StructureMapGroupRule]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(input: [StructureMapGroupInput], name: String, rule: [StructureMapGroupRule]) {
+	public convenience init(input: [StructureMapGroupInput], name: FHIRString, rule: [StructureMapGroupRule]) {
 		self.init()
 		self.input = input
 		self.name = name
@@ -397,7 +409,7 @@ open class StructureMapGroup: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -406,7 +418,7 @@ open class StructureMapGroup: BackboneElement {
 		if let exist = json["extends"] {
 			presentKeys.insert("extends")
 			if let val = exist as? String {
-				self.extends = val
+				self.extends = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "extends", wants: String.self, has: type(of: exist)))
@@ -432,7 +444,7 @@ open class StructureMapGroup: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -473,11 +485,20 @@ open class StructureMapGroup: BackboneElement {
 		if let input = self.input {
 			json["input"] = input.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "input"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let rule = self.rule {
 			json["rule"] = rule.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "rule"))
 		}
 		
 		return json
@@ -496,20 +517,20 @@ open class StructureMapGroupInput: BackboneElement {
 	}
 	
 	/// Documentation for this instance of data.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Mode for this instance of data.
 	public var mode: StructureMapInputMode?
 	
 	/// Name for this instance of data.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Type for this instance of data.
-	public var type: String?
+	public var type: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: StructureMapInputMode, name: String) {
+	public convenience init(mode: StructureMapInputMode, name: FHIRString) {
 		self.init()
 		self.mode = mode
 		self.name = name
@@ -521,7 +542,7 @@ open class StructureMapGroupInput: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -547,7 +568,7 @@ open class StructureMapGroupInput: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -559,7 +580,7 @@ open class StructureMapGroupInput: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -577,8 +598,14 @@ open class StructureMapGroupInput: BackboneElement {
 		if let mode = self.mode {
 			json["mode"] = mode.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -601,10 +628,10 @@ open class StructureMapGroupRule: BackboneElement {
 	public var dependent: [StructureMapGroupRuleDependent]?
 	
 	/// Documentation for this instance of data.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Name of the rule for internal references.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Rules contained in this rule.
 	public var rule: [StructureMapGroupRule]?
@@ -617,7 +644,7 @@ open class StructureMapGroupRule: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, source: [StructureMapGroupRuleSource]) {
+	public convenience init(name: FHIRString, source: [StructureMapGroupRuleSource]) {
 		self.init()
 		self.name = name
 		self.source = source
@@ -643,7 +670,7 @@ open class StructureMapGroupRule: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -652,7 +679,7 @@ open class StructureMapGroupRule: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -721,11 +748,17 @@ open class StructureMapGroupRule: BackboneElement {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let rule = self.rule {
 			json["rule"] = rule.map() { $0.asJSON(errors: &errors) }
 		}
 		if let source = self.source {
 			json["source"] = source.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "source"))
 		}
 		if let target = self.target {
 			json["target"] = target.map() { $0.asJSON(errors: &errors) }
@@ -745,14 +778,14 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 	}
 	
 	/// Name of a rule or group to apply.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Names of variables to pass to the rule or group.
-	public var variable: [String]?
+	public var variable: [FHIRString]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, variable: [String]) {
+	public convenience init(name: FHIRString, variable: [FHIRString]) {
 		self.init()
 		self.name = name
 		self.variable = variable
@@ -764,7 +797,7 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -776,7 +809,7 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 		if let exist = json["variable"] {
 			presentKeys.insert("variable")
 			if let val = exist as? [String] {
-				self.variable = val
+				self.variable = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "variable", wants: Array<String>.self, has: type(of: exist)))
@@ -794,8 +827,14 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let variable = self.variable {
 			json["variable"] = variable.map() { $0.asJSON() }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "variable"))
 		}
 		
 		return json
@@ -812,25 +851,25 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	}
 	
 	/// FluentPath expression  - must be true or the mapping engine throws an error instead of completing.
-	public var check: String?
+	public var check: FHIRString?
 	
 	/// FluentPath expression  - must be true or the rule does not apply.
-	public var condition: String?
+	public var condition: FHIRString?
 	
 	/// Type or variable this rule applies to.
-	public var context: String?
+	public var context: FHIRString?
 	
 	/// How to interpret the context.
 	public var contextType: StructureMapContextType?
 	
 	/// Optional field for this source.
-	public var element: String?
+	public var element: FHIRString?
 	
 	/// How to handle the list mode for this element.
 	public var listMode: StructureMapListMode?
 	
 	/// Specified maximum cardinality (number or *).
-	public var max: String?
+	public var max: FHIRString?
 	
 	/// Specified minimum cardinality.
 	public var min: Int?
@@ -839,14 +878,14 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var required: Bool?
 	
 	/// Type for this source.
-	public var type: String?
+	public var type: FHIRString?
 	
 	/// Named context for field, if a field is specified.
-	public var variable: String?
+	public var variable: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(context: String, contextType: StructureMapContextType, required: Bool) {
+	public convenience init(context: FHIRString, contextType: StructureMapContextType, required: Bool) {
 		self.init()
 		self.context = context
 		self.contextType = contextType
@@ -859,7 +898,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["check"] {
 			presentKeys.insert("check")
 			if let val = exist as? String {
-				self.check = val
+				self.check = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "check", wants: String.self, has: type(of: exist)))
@@ -868,7 +907,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["condition"] {
 			presentKeys.insert("condition")
 			if let val = exist as? String {
-				self.condition = val
+				self.condition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "condition", wants: String.self, has: type(of: exist)))
@@ -877,7 +916,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["context"] {
 			presentKeys.insert("context")
 			if let val = exist as? String {
-				self.context = val
+				self.context = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "context", wants: String.self, has: type(of: exist)))
@@ -906,7 +945,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["element"] {
 			presentKeys.insert("element")
 			if let val = exist as? String {
-				self.element = val
+				self.element = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "element", wants: String.self, has: type(of: exist)))
@@ -929,7 +968,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["max"] {
 			presentKeys.insert("max")
 			if let val = exist as? String {
-				self.max = val
+				self.max = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "max", wants: String.self, has: type(of: exist)))
@@ -959,7 +998,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -968,7 +1007,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let exist = json["variable"] {
 			presentKeys.insert("variable")
 			if let val = exist as? String {
-				self.variable = val
+				self.variable = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "variable", wants: String.self, has: type(of: exist)))
@@ -989,8 +1028,14 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if let context = self.context {
 			json["context"] = context.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "context"))
+		}
 		if let contextType = self.contextType {
 			json["contextType"] = contextType.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "contextType"))
 		}
 		if let element = self.element {
 			json["element"] = element.asJSON()
@@ -1006,6 +1051,9 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		}
 		if let required = self.required {
 			json["required"] = required.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "required"))
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -1028,19 +1076,19 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 	}
 	
 	/// Type or variable this rule applies to.
-	public var context: String?
+	public var context: FHIRString?
 	
 	/// How to interpret the context.
 	public var contextType: StructureMapContextType?
 	
 	/// Field to create in the context.
-	public var element: String?
+	public var element: FHIRString?
 	
 	/// If field is a list, how to manage the list.
 	public var listMode: [StructureMapListMode]?
 	
 	/// Internal rule reference for shared list items.
-	public var listRuleId: String?
+	public var listRuleId: FHIRString?
 	
 	/// Parameters to the transform.
 	public var parameter: [StructureMapGroupRuleTargetParameter]?
@@ -1049,7 +1097,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 	public var transform: StructureMapTransform?
 	
 	/// Named context for field, if desired, and a field is specified.
-	public var variable: String?
+	public var variable: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1057,7 +1105,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		if let exist = json["context"] {
 			presentKeys.insert("context")
 			if let val = exist as? String {
-				self.context = val
+				self.context = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "context", wants: String.self, has: type(of: exist)))
@@ -1080,7 +1128,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		if let exist = json["element"] {
 			presentKeys.insert("element")
 			if let val = exist as? String {
-				self.element = val
+				self.element = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "element", wants: String.self, has: type(of: exist)))
@@ -1102,7 +1150,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		if let exist = json["listRuleId"] {
 			presentKeys.insert("listRuleId")
 			if let val = exist as? String {
-				self.listRuleId = val
+				self.listRuleId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "listRuleId", wants: String.self, has: type(of: exist)))
@@ -1139,7 +1187,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		if let exist = json["variable"] {
 			presentKeys.insert("variable")
 			if let val = exist as? String {
-				self.variable = val
+				self.variable = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "variable", wants: String.self, has: type(of: exist)))
@@ -1196,22 +1244,22 @@ open class StructureMapGroupRuleTargetParameter: BackboneElement {
 	public var valueDecimal: NSDecimalNumber?
 	
 	/// Parameter value - variable or literal.
-	public var valueId: String?
+	public var valueId: FHIRString?
 	
 	/// Parameter value - variable or literal.
 	public var valueInteger: Int?
 	
 	/// Parameter value - variable or literal.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(value: Any) {
 		self.init()
-		if let value = value as? String {
+		if let value = value as? FHIRString {
 			self.valueId = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueString = value
 		}
 		else if let value = value as? Bool {
@@ -1252,7 +1300,7 @@ open class StructureMapGroupRuleTargetParameter: BackboneElement {
 		if let exist = json["valueId"] {
 			presentKeys.insert("valueId")
 			if let val = exist as? String {
-				self.valueId = val
+				self.valueId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -1270,7 +1318,7 @@ open class StructureMapGroupRuleTargetParameter: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -1303,6 +1351,11 @@ open class StructureMapGroupRuleTargetParameter: BackboneElement {
 			json["valueString"] = valueString.asJSON()
 		}
 		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueId && nil == self.valueString && nil == self.valueBoolean && nil == self.valueInteger && nil == self.valueDecimal {
+			errors.append(FHIRValidationError(missing: "value[x]"))
+		}
+		
 		return json
 	}
 }
@@ -1320,7 +1373,7 @@ open class StructureMapStructure: BackboneElement {
 	}
 	
 	/// Documentation on use of structure.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// How the referenced structure is used in this mapping.
 	public var mode: StructureMapModelMode?
@@ -1342,7 +1395,7 @@ open class StructureMapStructure: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -1368,7 +1421,7 @@ open class StructureMapStructure: BackboneElement {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -1389,8 +1442,14 @@ open class StructureMapStructure: BackboneElement {
 		if let mode = self.mode {
 			json["mode"] = mode.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		
 		return json

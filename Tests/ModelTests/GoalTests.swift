@@ -25,8 +25,8 @@ class GoalTests: XCTestCase {
 			let instance = try runGoal1()
 			try runGoal1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Goal successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Goal successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

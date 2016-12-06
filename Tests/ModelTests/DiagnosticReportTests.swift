@@ -25,8 +25,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport1()
 			try runDiagnosticReport1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -58,8 +58,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport2()
 			try runDiagnosticReport2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -104,8 +104,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport3()
 			try runDiagnosticReport3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -145,8 +145,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport4()
 			try runDiagnosticReport4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -188,8 +188,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport5()
 			try runDiagnosticReport5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -242,8 +242,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport6()
 			try runDiagnosticReport6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -284,8 +284,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport7()
 			try runDiagnosticReport7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -311,8 +311,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport8()
 			try runDiagnosticReport8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -349,8 +349,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport9()
 			try runDiagnosticReport9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -387,8 +387,8 @@ class DiagnosticReportTests: XCTestCase {
 			let instance = try runDiagnosticReport10()
 			try runDiagnosticReport10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

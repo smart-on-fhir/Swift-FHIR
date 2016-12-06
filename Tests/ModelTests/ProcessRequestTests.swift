@@ -25,8 +25,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest1()
 			try runProcessRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -52,8 +52,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest2()
 			try runProcessRequest2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -81,8 +81,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest3()
 			try runProcessRequest3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -109,8 +109,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest4()
 			try runProcessRequest4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -139,8 +139,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest5()
 			try runProcessRequest5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -167,8 +167,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest6()
 			try runProcessRequest6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -197,8 +197,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest7()
 			try runProcessRequest7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -226,8 +226,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest8()
 			try runProcessRequest8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -255,8 +255,8 @@ class ProcessRequestTests: XCTestCase {
 			let instance = try runProcessRequest9()
 			try runProcessRequest9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

@@ -25,8 +25,8 @@ class OperationDefinitionTests: XCTestCase {
 			let instance = try runOperationDefinition1()
 			try runOperationDefinition1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationDefinition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

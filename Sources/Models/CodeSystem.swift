@@ -36,7 +36,7 @@ open class CodeSystem: DomainResource {
 	public var content: CodeSystemContentMode?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Total concepts in the code system.
 	public var count: UInt?
@@ -45,7 +45,7 @@ open class CodeSystem: DomainResource {
 	public var date: DateTime?
 	
 	/// Natural language description of the code system.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -63,22 +63,22 @@ open class CodeSystem: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this code system (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Additional information supplied about each concept.
 	public var property: [CodeSystemProperty]?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this code system is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// The status of this code system. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
 	/// Name for this code system (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this code system (globally unique) (Coding.system).
 	public var url: URL?
@@ -90,7 +90,7 @@ open class CodeSystem: DomainResource {
 	public var valueSet: URL?
 	
 	/// Business version of the code system (Coding.version).
-	public var version: String?
+	public var version: FHIRString?
 	
 	/// If definitions are not stable.
 	public var versionNeeded: Bool?
@@ -172,7 +172,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -190,7 +190,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -199,7 +199,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -273,7 +273,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -296,7 +296,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -305,7 +305,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -331,7 +331,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -340,7 +340,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -363,7 +363,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["valueSet"] {
 			presentKeys.insert("valueSet")
 			if let val = exist as? String {
-				self.valueSet = URL(string: val)
+				self.valueSet = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueSet", wants: String.self, has: type(of: exist)))
@@ -372,7 +372,7 @@ open class CodeSystem: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -407,6 +407,9 @@ open class CodeSystem: DomainResource {
 		}
 		if let content = self.content {
 			json["content"] = content.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "content"))
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -450,6 +453,9 @@ open class CodeSystem: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
 		}
@@ -486,26 +492,26 @@ open class CodeSystemConcept: BackboneElement {
 	}
 	
 	/// Code that identifies concept.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Child Concepts (is-a/contains/categorizes).
 	public var concept: [CodeSystemConcept]?
 	
 	/// Formal definition.
-	public var definition: String?
+	public var definition: FHIRString?
 	
 	/// Additional representations for the concept.
 	public var designation: [CodeSystemConceptDesignation]?
 	
 	/// Text to display to the user.
-	public var display: String?
+	public var display: FHIRString?
 	
 	/// Property value for the concept.
 	public var property: [CodeSystemConceptProperty]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
+	public convenience init(code: FHIRString) {
 		self.init()
 		self.code = code
 	}
@@ -516,7 +522,7 @@ open class CodeSystemConcept: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -542,7 +548,7 @@ open class CodeSystemConcept: BackboneElement {
 		if let exist = json["definition"] {
 			presentKeys.insert("definition")
 			if let val = exist as? String {
-				self.definition = val
+				self.definition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
@@ -565,7 +571,7 @@ open class CodeSystemConcept: BackboneElement {
 		if let exist = json["display"] {
 			presentKeys.insert("display")
 			if let val = exist as? String {
-				self.display = val
+				self.display = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
@@ -593,6 +599,9 @@ open class CodeSystemConcept: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let concept = self.concept {
 			json["concept"] = concept.map() { $0.asJSON(errors: &errors) }
@@ -627,17 +636,17 @@ open class CodeSystemConceptDesignation: BackboneElement {
 	}
 	
 	/// Human language of the designation.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// Details how this designation would be used.
 	public var use: Coding?
 	
 	/// The text value for this designation.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(value: String) {
+	public convenience init(value: FHIRString) {
 		self.init()
 		self.value = value
 	}
@@ -648,7 +657,7 @@ open class CodeSystemConceptDesignation: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -671,7 +680,7 @@ open class CodeSystemConceptDesignation: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -695,6 +704,9 @@ open class CodeSystemConceptDesignation: BackboneElement {
 		if let value = self.value {
 			json["value"] = value.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
+		}
 		
 		return json
 	}
@@ -712,13 +724,13 @@ open class CodeSystemConceptProperty: BackboneElement {
 	}
 	
 	/// Reference to CodeSystem.property.code.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Value of the property for this concept.
 	public var valueBoolean: Bool?
 	
 	/// Value of the property for this concept.
-	public var valueCode: String?
+	public var valueCode: FHIRString?
 	
 	/// Value of the property for this concept.
 	public var valueCoding: Coding?
@@ -730,20 +742,20 @@ open class CodeSystemConceptProperty: BackboneElement {
 	public var valueInteger: Int?
 	
 	/// Value of the property for this concept.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, value: Any) {
+	public convenience init(code: FHIRString, value: Any) {
 		self.init()
 		self.code = code
-		if let value = value as? String {
+		if let value = value as? FHIRString {
 			self.valueCode = value
 		}
 		else if let value = value as? Coding {
 			self.valueCoding = value
 		}
-		else if let value = value as? String {
+		else if let value = value as? FHIRString {
 			self.valueString = value
 		}
 		else if let value = value as? Int {
@@ -766,7 +778,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -787,7 +799,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? String {
-				self.valueCode = val
+				self.valueCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -810,7 +822,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -828,7 +840,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -847,6 +859,9 @@ open class CodeSystemConceptProperty: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let valueBoolean = self.valueBoolean {
 			json["valueBoolean"] = valueBoolean.asJSON()
@@ -867,6 +882,11 @@ open class CodeSystemConceptProperty: BackboneElement {
 			json["valueString"] = valueString.asJSON()
 		}
 		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueCode && nil == self.valueCoding && nil == self.valueString && nil == self.valueInteger && nil == self.valueBoolean && nil == self.valueDateTime {
+			errors.append(FHIRValidationError(missing: "value[x]"))
+		}
+		
 		return json
 	}
 }
@@ -883,20 +903,20 @@ open class CodeSystemFilter: BackboneElement {
 	}
 	
 	/// Code that identifies the filter.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// How or why the filter is used.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// A list of operators that can be used with the filter.
 	public var operator_fhir: [FilterOperator]?
 	
 	/// What to use for the value.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, operator_fhir: [FilterOperator], value: String) {
+	public convenience init(code: FHIRString, operator_fhir: [FilterOperator], value: FHIRString) {
 		self.init()
 		self.code = code
 		self.operator_fhir = operator_fhir
@@ -909,7 +929,7 @@ open class CodeSystemFilter: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -921,7 +941,7 @@ open class CodeSystemFilter: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -946,7 +966,7 @@ open class CodeSystemFilter: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -964,14 +984,23 @@ open class CodeSystemFilter: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let operator_fhir = self.operator_fhir {
 			json["operator"] = operator_fhir.map() { $0.rawValue }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "operator_fhir"))
+		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
 		return json
@@ -990,10 +1019,10 @@ open class CodeSystemProperty: BackboneElement {
 	}
 	
 	/// Identifies the property on the concepts, and when referred to in operations.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Why the property is defined, and/or what it conveys.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// The type of the property value. Properties of type "code" contain a code defined by the code system (e.g. a
 	/// reference to anotherr defined concept).
@@ -1004,7 +1033,7 @@ open class CodeSystemProperty: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, type: PropertyType) {
+	public convenience init(code: FHIRString, type: PropertyType) {
 		self.init()
 		self.code = code
 		self.type = type
@@ -1016,7 +1045,7 @@ open class CodeSystemProperty: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -1028,7 +1057,7 @@ open class CodeSystemProperty: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -1054,7 +1083,7 @@ open class CodeSystemProperty: BackboneElement {
 		if let exist = json["uri"] {
 			presentKeys.insert("uri")
 			if let val = exist as? String {
-				self.uri = URL(string: val)
+				self.uri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uri", wants: String.self, has: type(of: exist)))
@@ -1069,11 +1098,17 @@ open class CodeSystemProperty: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let uri = self.uri {
 			json["uri"] = uri.asJSON()

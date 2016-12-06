@@ -23,14 +23,14 @@ open class Binary: Resource {
 	public var content: Base64Binary?
 	
 	/// MimeType of the binary content.
-	public var contentType: String?
+	public var contentType: FHIRString?
 	
 	/// Access Control Management.
 	public var securityContext: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Base64Binary, contentType: String) {
+	public convenience init(content: Base64Binary, contentType: FHIRString) {
 		self.init()
 		self.content = content
 		self.contentType = contentType
@@ -42,7 +42,7 @@ open class Binary: Resource {
 		if let exist = json["content"] {
 			presentKeys.insert("content")
 			if let val = exist as? String {
-				self.content = Base64Binary(string: val)
+				self.content = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "content", wants: String.self, has: type(of: exist)))
@@ -54,7 +54,7 @@ open class Binary: Resource {
 		if let exist = json["contentType"] {
 			presentKeys.insert("contentType")
 			if let val = exist as? String {
-				self.contentType = val
+				self.contentType = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -86,8 +86,14 @@ open class Binary: Resource {
 		if let content = self.content {
 			json["content"] = content.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "content"))
+		}
 		if let contentType = self.contentType {
 			json["contentType"] = contentType.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "contentType"))
 		}
 		if let securityContext = self.securityContext {
 			json["securityContext"] = securityContext.asJSON(errors: &errors)

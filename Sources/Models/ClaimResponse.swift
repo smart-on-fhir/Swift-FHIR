@@ -29,7 +29,7 @@ open class ClaimResponse: DomainResource {
 	public var created: DateTime?
 	
 	/// Disposition Message.
-	public var disposition: String?
+	public var disposition: FHIRString?
 	
 	/// Processing errors.
 	public var error: [ClaimResponseError]?
@@ -74,7 +74,7 @@ open class ClaimResponse: DomainResource {
 	public var reserved: Coding?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	/// Total benefit payable for the Claim.
 	public var totalBenefit: Money?
@@ -119,7 +119,7 @@ open class ClaimResponse: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -128,7 +128,7 @@ open class ClaimResponse: DomainResource {
 		if let exist = json["disposition"] {
 			presentKeys.insert("disposition")
 			if let val = exist as? String {
-				self.disposition = val
+				self.disposition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -333,7 +333,7 @@ open class ClaimResponse: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -899,6 +899,9 @@ open class ClaimResponseError: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let detailSequenceLinkId = self.detailSequenceLinkId {
 			json["detailSequenceLinkId"] = detailSequenceLinkId.asJSON()
 		}
@@ -925,7 +928,7 @@ open class ClaimResponseInsurance: BackboneElement {
 	}
 	
 	/// Business agreement.
-	public var businessArrangement: String?
+	public var businessArrangement: FHIRString?
 	
 	/// Adjudication results.
 	public var claimResponse: Reference?
@@ -937,7 +940,7 @@ open class ClaimResponseInsurance: BackboneElement {
 	public var focal: Bool?
 	
 	/// Pre-Authorization/Determination Reference.
-	public var preAuthRef: [String]?
+	public var preAuthRef: [FHIRString]?
 	
 	/// Service instance identifier.
 	public var sequence: UInt?
@@ -957,7 +960,7 @@ open class ClaimResponseInsurance: BackboneElement {
 		if let exist = json["businessArrangement"] {
 			presentKeys.insert("businessArrangement")
 			if let val = exist as? String {
-				self.businessArrangement = val
+				self.businessArrangement = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
@@ -1009,7 +1012,7 @@ open class ClaimResponseInsurance: BackboneElement {
 		if let exist = json["preAuthRef"] {
 			presentKeys.insert("preAuthRef")
 			if let val = exist as? [String] {
-				self.preAuthRef = val
+				self.preAuthRef = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "preAuthRef", wants: Array<String>.self, has: type(of: exist)))
@@ -1042,14 +1045,23 @@ open class ClaimResponseInsurance: BackboneElement {
 		if let coverage = self.coverage {
 			json["coverage"] = coverage.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "coverage"))
+		}
 		if let focal = self.focal {
 			json["focal"] = focal.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "focal"))
 		}
 		if let preAuthRef = self.preAuthRef {
 			json["preAuthRef"] = preAuthRef.map() { $0.asJSON() }
 		}
 		if let sequence = self.sequence {
 			json["sequence"] = sequence.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "sequence"))
 		}
 		
 		return json
@@ -1156,6 +1168,9 @@ open class ClaimResponseItem: BackboneElement {
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
+		}
 		
 		return json
 	}
@@ -1259,6 +1274,9 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "category"))
 		}
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON(errors: &errors)
@@ -1368,6 +1386,9 @@ open class ClaimResponseItemDetail: BackboneElement {
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
+		}
 		if let subDetail = self.subDetail {
 			json["subDetail"] = subDetail.map() { $0.asJSON(errors: &errors) }
 		}
@@ -1456,6 +1477,9 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
+		}
 		
 		return json
 	}
@@ -1479,7 +1503,7 @@ open class ClaimResponseNote: BackboneElement {
 	public var number: UInt?
 	
 	/// Note explanatory text.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// display | print | printoper.
 	public var type: CodeableConcept?
@@ -1513,7 +1537,7 @@ open class ClaimResponseNote: BackboneElement {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
@@ -1633,7 +1657,7 @@ open class ClaimResponsePayment: BackboneElement {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = FHIRDate(string: val)
+				self.date = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))

@@ -23,10 +23,10 @@ open class ResearchSubject: DomainResource {
 	}
 	
 	/// What path was followed.
-	public var actualArm: String?
+	public var actualArm: FHIRString?
 	
 	/// What path should be followed.
-	public var assignedArm: String?
+	public var assignedArm: FHIRString?
 	
 	/// Agreement to participate in study.
 	public var consent: Reference?
@@ -61,7 +61,7 @@ open class ResearchSubject: DomainResource {
 		if let exist = json["actualArm"] {
 			presentKeys.insert("actualArm")
 			if let val = exist as? String {
-				self.actualArm = val
+				self.actualArm = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "actualArm", wants: String.self, has: type(of: exist)))
@@ -70,7 +70,7 @@ open class ResearchSubject: DomainResource {
 		if let exist = json["assignedArm"] {
 			presentKeys.insert("assignedArm")
 			if let val = exist as? String {
-				self.assignedArm = val
+				self.assignedArm = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "assignedArm", wants: String.self, has: type(of: exist)))
@@ -190,14 +190,23 @@ open class ResearchSubject: DomainResource {
 		if let individual = self.individual {
 			json["individual"] = individual.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "individual"))
+		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let study = self.study {
 			json["study"] = study.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "study"))
 		}
 		
 		return json

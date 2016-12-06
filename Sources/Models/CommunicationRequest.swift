@@ -186,7 +186,7 @@ open class CommunicationRequest: DomainResource {
 		if let exist = json["requestedOn"] {
 			presentKeys.insert("requestedOn")
 			if let val = exist as? String {
-				self.requestedOn = DateTime(string: val)
+				self.requestedOn = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "requestedOn", wants: String.self, has: type(of: exist)))
@@ -209,7 +209,7 @@ open class CommunicationRequest: DomainResource {
 		if let exist = json["scheduledDateTime"] {
 			presentKeys.insert("scheduledDateTime")
 			if let val = exist as? String {
-				self.scheduledDateTime = DateTime(string: val)
+				self.scheduledDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "scheduledDateTime", wants: String.self, has: type(of: exist)))
@@ -362,13 +362,13 @@ open class CommunicationRequestPayload: BackboneElement {
 	public var contentReference: Reference?
 	
 	/// Message part content.
-	public var contentString: String?
+	public var contentString: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(content: Any) {
 		self.init()
-		if let value = content as? String {
+		if let value = content as? FHIRString {
 			self.contentString = value
 		}
 		else if let value = content as? Attachment {
@@ -416,7 +416,7 @@ open class CommunicationRequestPayload: BackboneElement {
 		if let exist = json["contentString"] {
 			presentKeys.insert("contentString")
 			if let val = exist as? String {
-				self.contentString = val
+				self.contentString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentString", wants: String.self, has: type(of: exist)))
@@ -441,6 +441,11 @@ open class CommunicationRequestPayload: BackboneElement {
 		}
 		if let contentString = self.contentString {
 			json["contentString"] = contentString.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.contentString && nil == self.contentAttachment && nil == self.contentReference {
+			errors.append(FHIRValidationError(missing: "content[x]"))
 		}
 		
 		return json

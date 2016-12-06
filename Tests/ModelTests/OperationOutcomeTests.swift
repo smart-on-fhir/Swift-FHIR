@@ -25,8 +25,8 @@ class OperationOutcomeTests: XCTestCase {
 			let instance = try runOperationOutcome1()
 			try runOperationOutcome1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -48,8 +48,8 @@ class OperationOutcomeTests: XCTestCase {
 			let instance = try runOperationOutcome2()
 			try runOperationOutcome2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -74,8 +74,8 @@ class OperationOutcomeTests: XCTestCase {
 			let instance = try runOperationOutcome3()
 			try runOperationOutcome3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -97,8 +97,8 @@ class OperationOutcomeTests: XCTestCase {
 			let instance = try runOperationOutcome4()
 			try runOperationOutcome4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -121,8 +121,8 @@ class OperationOutcomeTests: XCTestCase {
 			let instance = try runOperationOutcome5()
 			try runOperationOutcome5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -145,8 +145,8 @@ class OperationOutcomeTests: XCTestCase {
 			let instance = try runOperationOutcome6()
 			try runOperationOutcome6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

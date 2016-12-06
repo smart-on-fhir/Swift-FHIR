@@ -29,16 +29,16 @@ open class Subscription: DomainResource {
 	public var contact: [ContactPoint]?
 	
 	/// Rule for server push criteria.
-	public var criteria: String?
+	public var criteria: FHIRString?
 	
 	/// When to automatically delete the subscription.
 	public var end: Instant?
 	
 	/// Latest error note.
-	public var error: String?
+	public var error: FHIRString?
 	
 	/// Description of why this subscription was created.
-	public var reason: String?
+	public var reason: FHIRString?
 	
 	/// The status of the subscription, which marks the server state for managing the subscription.
 	public var status: SubscriptionStatus?
@@ -48,7 +48,7 @@ open class Subscription: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(channel: SubscriptionChannel, criteria: String, reason: String, status: SubscriptionStatus) {
+	public convenience init(channel: SubscriptionChannel, criteria: FHIRString, reason: FHIRString, status: SubscriptionStatus) {
 		self.init()
 		self.channel = channel
 		self.criteria = criteria
@@ -93,7 +93,7 @@ open class Subscription: DomainResource {
 		if let exist = json["criteria"] {
 			presentKeys.insert("criteria")
 			if let val = exist as? String {
-				self.criteria = val
+				self.criteria = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "criteria", wants: String.self, has: type(of: exist)))
@@ -105,7 +105,7 @@ open class Subscription: DomainResource {
 		if let exist = json["end"] {
 			presentKeys.insert("end")
 			if let val = exist as? String {
-				self.end = Instant(string: val)
+				self.end = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "end", wants: String.self, has: type(of: exist)))
@@ -114,7 +114,7 @@ open class Subscription: DomainResource {
 		if let exist = json["error"] {
 			presentKeys.insert("error")
 			if let val = exist as? String {
-				self.error = val
+				self.error = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "error", wants: String.self, has: type(of: exist)))
@@ -123,7 +123,7 @@ open class Subscription: DomainResource {
 		if let exist = json["reason"] {
 			presentKeys.insert("reason")
 			if let val = exist as? String {
-				self.reason = val
+				self.reason = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "reason", wants: String.self, has: type(of: exist)))
@@ -172,11 +172,17 @@ open class Subscription: DomainResource {
 		if let channel = self.channel {
 			json["channel"] = channel.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "channel"))
+		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
 		}
 		if let criteria = self.criteria {
 			json["criteria"] = criteria.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "criteria"))
 		}
 		if let end = self.end {
 			json["end"] = end.asJSON()
@@ -187,8 +193,14 @@ open class Subscription: DomainResource {
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "reason"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let tag = self.tag {
 			json["tag"] = tag.map() { $0.asJSON(errors: &errors) }
@@ -213,10 +225,10 @@ open class SubscriptionChannel: BackboneElement {
 	public var endpoint: URL?
 	
 	/// Usage depends on the channel type.
-	public var header: String?
+	public var header: FHIRString?
 	
 	/// Mimetype to send, or omit for no payload.
-	public var payload: String?
+	public var payload: FHIRString?
 	
 	/// The type of channel to send notifications on.
 	public var type: SubscriptionChannelType?
@@ -234,7 +246,7 @@ open class SubscriptionChannel: BackboneElement {
 		if let exist = json["endpoint"] {
 			presentKeys.insert("endpoint")
 			if let val = exist as? String {
-				self.endpoint = URL(string: val)
+				self.endpoint = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -243,7 +255,7 @@ open class SubscriptionChannel: BackboneElement {
 		if let exist = json["header"] {
 			presentKeys.insert("header")
 			if let val = exist as? String {
-				self.header = val
+				self.header = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "header", wants: String.self, has: type(of: exist)))
@@ -252,7 +264,7 @@ open class SubscriptionChannel: BackboneElement {
 		if let exist = json["payload"] {
 			presentKeys.insert("payload")
 			if let val = exist as? String {
-				self.payload = val
+				self.payload = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "payload", wants: String.self, has: type(of: exist)))
@@ -292,6 +304,9 @@ open class SubscriptionChannel: BackboneElement {
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json

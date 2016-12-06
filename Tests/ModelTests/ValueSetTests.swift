@@ -25,8 +25,8 @@ class ValueSetTests: XCTestCase {
 			let instance = try runValueSet1()
 			try runValueSet1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -105,8 +105,8 @@ class ValueSetTests: XCTestCase {
 			let instance = try runValueSet2()
 			try runValueSet2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -147,8 +147,8 @@ class ValueSetTests: XCTestCase {
 			let instance = try runValueSet3()
 			try runValueSet3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -186,8 +186,8 @@ class ValueSetTests: XCTestCase {
 			let instance = try runValueSet4()
 			try runValueSet4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -232,8 +232,8 @@ class ValueSetTests: XCTestCase {
 			let instance = try runValueSet5()
 			try runValueSet5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

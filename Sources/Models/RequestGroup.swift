@@ -123,7 +123,7 @@ open class RequestGroup: DomainResource {
 		if let exist = json["occurrenceDateTime"] {
 			presentKeys.insert("occurrenceDateTime")
 			if let val = exist as? String {
-				self.occurrenceDateTime = DateTime(string: val)
+				self.occurrenceDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "occurrenceDateTime", wants: String.self, has: type(of: exist)))
@@ -236,7 +236,7 @@ open class RequestGroupAction: BackboneElement {
 	public var condition: [RequestGroupActionCondition]?
 	
 	/// Short description of the action.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Supporting documentation for the intended performer of the action.
 	public var documentation: [RelatedArtifact]?
@@ -245,7 +245,7 @@ open class RequestGroupAction: BackboneElement {
 	public var groupingBehavior: PlanActionGroupingBehavior?
 	
 	/// User-visible label for the action (e.g. 1. or A.).
-	public var label: String?
+	public var label: FHIRString?
 	
 	/// Participant.
 	public var participant: [Reference]?
@@ -266,7 +266,7 @@ open class RequestGroupAction: BackboneElement {
 	public var selectionBehavior: PlanActionSelectionBehavior?
 	
 	/// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system.
-	public var textEquivalent: String?
+	public var textEquivalent: FHIRString?
 	
 	/// When the action should take place.
 	public var timingDateTime: DateTime?
@@ -284,7 +284,7 @@ open class RequestGroupAction: BackboneElement {
 	public var timingTiming: Timing?
 	
 	/// User-visible title.
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// create | update | remove | fire-event.
 	public var type: Coding?
@@ -365,7 +365,7 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -402,7 +402,7 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["label"] {
 			presentKeys.insert("label")
 			if let val = exist as? String {
-				self.label = val
+				self.label = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "label", wants: String.self, has: type(of: exist)))
@@ -495,7 +495,7 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["textEquivalent"] {
 			presentKeys.insert("textEquivalent")
 			if let val = exist as? String {
-				self.textEquivalent = val
+				self.textEquivalent = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "textEquivalent", wants: String.self, has: type(of: exist)))
@@ -504,7 +504,7 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["timingDateTime"] {
 			presentKeys.insert("timingDateTime")
 			if let val = exist as? String {
-				self.timingDateTime = DateTime(string: val)
+				self.timingDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "timingDateTime", wants: String.self, has: type(of: exist)))
@@ -569,7 +569,7 @@ open class RequestGroupAction: BackboneElement {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -681,16 +681,16 @@ open class RequestGroupActionCondition: BackboneElement {
 	}
 	
 	/// Natural language description of the condition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Boolean-valued expression.
-	public var expression: String?
+	public var expression: FHIRString?
 	
 	/// The kind of condition.
 	public var kind: PlanActionConditionKind?
 	
 	/// Language of the expression.
-	public var language: String?
+	public var language: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -705,7 +705,7 @@ open class RequestGroupActionCondition: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -714,7 +714,7 @@ open class RequestGroupActionCondition: BackboneElement {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? String {
-				self.expression = val
+				self.expression = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: String.self, has: type(of: exist)))
@@ -740,7 +740,7 @@ open class RequestGroupActionCondition: BackboneElement {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -760,6 +760,9 @@ open class RequestGroupActionCondition: BackboneElement {
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
 		}
 		if let language = self.language {
 			json["language"] = language.asJSON()
@@ -874,6 +877,9 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 		if let actionIdentifier = self.actionIdentifier {
 			json["actionIdentifier"] = actionIdentifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "actionIdentifier"))
+		}
 		if let offsetDuration = self.offsetDuration {
 			json["offsetDuration"] = offsetDuration.asJSON(errors: &errors)
 		}
@@ -882,6 +888,9 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "relationship"))
 		}
 		
 		return json

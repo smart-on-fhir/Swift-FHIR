@@ -40,7 +40,7 @@ open class Group: DomainResource {
 	public var member: [GroupMember]?
 	
 	/// Label for Group.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Number of members.
 	public var quantity: UInt?
@@ -139,7 +139,7 @@ open class Group: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -183,6 +183,9 @@ open class Group: DomainResource {
 		if let actual = self.actual {
 			json["actual"] = actual.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "actual"))
+		}
 		if let characteristic = self.characteristic {
 			json["characteristic"] = characteristic.map() { $0.asJSON(errors: &errors) }
 		}
@@ -203,6 +206,9 @@ open class Group: DomainResource {
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -375,8 +381,14 @@ open class GroupCharacteristic: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let exclude = self.exclude {
 			json["exclude"] = exclude.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "exclude"))
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
@@ -392,6 +404,11 @@ open class GroupCharacteristic: BackboneElement {
 		}
 		if let valueRange = self.valueRange {
 			json["valueRange"] = valueRange.asJSON(errors: &errors)
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueCodeableConcept && nil == self.valueBoolean && nil == self.valueQuantity && nil == self.valueRange {
+			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 		
 		return json
@@ -476,6 +493,9 @@ open class GroupMember: BackboneElement {
 		
 		if let entity = self.entity {
 			json["entity"] = entity.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "entity"))
 		}
 		if let inactive = self.inactive {
 			json["inactive"] = inactive.asJSON()

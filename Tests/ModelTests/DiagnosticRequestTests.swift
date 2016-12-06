@@ -25,8 +25,8 @@ class DiagnosticRequestTests: XCTestCase {
 			let instance = try runDiagnosticRequest1()
 			try runDiagnosticRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -55,8 +55,8 @@ class DiagnosticRequestTests: XCTestCase {
 			let instance = try runDiagnosticRequest2()
 			try runDiagnosticRequest2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -83,8 +83,8 @@ class DiagnosticRequestTests: XCTestCase {
 			let instance = try runDiagnosticRequest3()
 			try runDiagnosticRequest3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -124,8 +124,8 @@ class DiagnosticRequestTests: XCTestCase {
 			let instance = try runDiagnosticRequest4()
 			try runDiagnosticRequest4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -152,8 +152,8 @@ class DiagnosticRequestTests: XCTestCase {
 			let instance = try runDiagnosticRequest5()
 			try runDiagnosticRequest5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

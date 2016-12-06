@@ -25,8 +25,8 @@ class NamingSystemTests: XCTestCase {
 			let instance = try runNamingSystem1()
 			try runNamingSystem1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -69,8 +69,8 @@ class NamingSystemTests: XCTestCase {
 			let instance = try runNamingSystem2()
 			try runNamingSystem2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -98,8 +98,8 @@ class NamingSystemTests: XCTestCase {
 			let instance = try runNamingSystem3()
 			try runNamingSystem3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

@@ -26,7 +26,7 @@ open class Schedule: DomainResource {
 	
 	/// Comments on the availability to describe any extended information. Such as custom constraints on the slot(s)
 	/// that may be associated.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// External Ids for this item.
 	public var identifier: [Identifier]?
@@ -84,7 +84,7 @@ open class Schedule: DomainResource {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -171,6 +171,9 @@ open class Schedule: DomainResource {
 		}
 		if let actor = self.actor {
 			json["actor"] = actor.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()

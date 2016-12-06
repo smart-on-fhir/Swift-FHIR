@@ -104,7 +104,7 @@ open class DiagnosticRequest: DomainResource {
 		if let exist = json["authoredOn"] {
 			presentKeys.insert("authoredOn")
 			if let val = exist as? String {
-				self.authoredOn = DateTime(string: val)
+				self.authoredOn = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "authoredOn", wants: String.self, has: type(of: exist)))
@@ -217,7 +217,7 @@ open class DiagnosticRequest: DomainResource {
 		if let exist = json["occurrenceDateTime"] {
 			presentKeys.insert("occurrenceDateTime")
 			if let val = exist as? String {
-				self.occurrenceDateTime = DateTime(string: val)
+				self.occurrenceDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "occurrenceDateTime", wants: String.self, has: type(of: exist)))
@@ -440,6 +440,9 @@ open class DiagnosticRequest: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let context = self.context {
 			json["context"] = context.asJSON(errors: &errors)
 		}
@@ -451,6 +454,9 @@ open class DiagnosticRequest: DomainResource {
 		}
 		if let intent = self.intent {
 			json["intent"] = intent.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "intent"))
 		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
@@ -494,8 +500,14 @@ open class DiagnosticRequest: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let supportingInformation = self.supportingInformation {
 			json["supportingInformation"] = supportingInformation.map() { $0.asJSON(errors: &errors) }

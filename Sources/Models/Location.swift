@@ -24,11 +24,11 @@ open class Location: DomainResource {
 	public var address: Address?
 	
 	/// A list of alternate names that the location is known as, or was known as in the past.
-	public var alias: [String]?
+	public var alias: [FHIRString]?
 	
 	/// Additional details about the location that could be displayed as further information to identify the location
 	/// beyond its name.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Technical endpoints providing access to services operated for the location.
 	public var endpoint: [Reference]?
@@ -43,7 +43,7 @@ open class Location: DomainResource {
 	public var mode: LocationMode?
 	
 	/// Name of the location as used by humans.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Another Location this one is physically part of.
 	public var partOf: Reference?
@@ -83,7 +83,7 @@ open class Location: DomainResource {
 		if let exist = json["alias"] {
 			presentKeys.insert("alias")
 			if let val = exist as? [String] {
-				self.alias = val
+				self.alias = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "alias", wants: Array<String>.self, has: type(of: exist)))
@@ -92,7 +92,7 @@ open class Location: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -157,7 +157,7 @@ open class Location: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -377,8 +377,14 @@ open class LocationPosition: BackboneElement {
 		if let latitude = self.latitude {
 			json["latitude"] = latitude.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "latitude"))
+		}
 		if let longitude = self.longitude {
 			json["longitude"] = longitude.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "longitude"))
 		}
 		
 		return json

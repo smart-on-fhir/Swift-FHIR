@@ -25,8 +25,8 @@ class MeasureReportTests: XCTestCase {
 			let instance = try runMeasureReport1()
 			try runMeasureReport1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test MeasureReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test MeasureReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -152,8 +152,8 @@ class MeasureReportTests: XCTestCase {
 			let instance = try runMeasureReport2()
 			try runMeasureReport2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test MeasureReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test MeasureReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -319,8 +319,8 @@ class MeasureReportTests: XCTestCase {
 			let instance = try runMeasureReport3()
 			try runMeasureReport3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test MeasureReport successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test MeasureReport successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

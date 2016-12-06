@@ -24,7 +24,7 @@ open class HealthcareService: DomainResource {
 	public var appointmentRequired: Bool?
 	
 	/// Description of availability exceptions.
-	public var availabilityExceptions: String?
+	public var availabilityExceptions: FHIRString?
 	
 	/// Times the Service Site is available.
 	public var availableTime: [HealthcareServiceAvailableTime]?
@@ -33,7 +33,7 @@ open class HealthcareService: DomainResource {
 	public var characteristic: [CodeableConcept]?
 	
 	/// Additional description and/or any specific issues not covered elsewhere.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Location(s) service is inteded for/available to.
 	public var coverageArea: [Reference]?
@@ -42,13 +42,13 @@ open class HealthcareService: DomainResource {
 	public var eligibility: CodeableConcept?
 	
 	/// Describes the eligibility conditions for the service.
-	public var eligibilityNote: String?
+	public var eligibilityNote: FHIRString?
 	
 	/// Technical endpoints providing access to services operated for the location.
 	public var endpoint: [Reference]?
 	
 	/// Extra details about the service that can't be placed in the other fields.
-	public var extraDetails: String?
+	public var extraDetails: FHIRString?
 	
 	/// External identifiers for this item.
 	public var identifier: [Identifier]?
@@ -63,13 +63,13 @@ open class HealthcareService: DomainResource {
 	public var photo: Attachment?
 	
 	/// Program Names that categorize the service.
-	public var programName: [String]?
+	public var programName: [FHIRString]?
 	
 	/// Organization that provides this service.
 	public var providedBy: Reference?
 	
 	/// PKI Public keys to support secure communications.
-	public var publicKey: String?
+	public var publicKey: FHIRString?
 	
 	/// Ways that the service accepts referrals.
 	public var referralMethod: [CodeableConcept]?
@@ -78,7 +78,7 @@ open class HealthcareService: DomainResource {
 	public var serviceCategory: CodeableConcept?
 	
 	/// Description of service as presented to a consumer while searching.
-	public var serviceName: String?
+	public var serviceName: FHIRString?
 	
 	/// Conditions under which service is available/offered.
 	public var serviceProvisionCode: [CodeableConcept]?
@@ -116,7 +116,7 @@ open class HealthcareService: DomainResource {
 		if let exist = json["availabilityExceptions"] {
 			presentKeys.insert("availabilityExceptions")
 			if let val = exist as? String {
-				self.availabilityExceptions = val
+				self.availabilityExceptions = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "availabilityExceptions", wants: String.self, has: type(of: exist)))
@@ -153,7 +153,7 @@ open class HealthcareService: DomainResource {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -190,7 +190,7 @@ open class HealthcareService: DomainResource {
 		if let exist = json["eligibilityNote"] {
 			presentKeys.insert("eligibilityNote")
 			if let val = exist as? String {
-				self.eligibilityNote = val
+				self.eligibilityNote = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "eligibilityNote", wants: String.self, has: type(of: exist)))
@@ -213,7 +213,7 @@ open class HealthcareService: DomainResource {
 		if let exist = json["extraDetails"] {
 			presentKeys.insert("extraDetails")
 			if let val = exist as? String {
-				self.extraDetails = val
+				self.extraDetails = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "extraDetails", wants: String.self, has: type(of: exist)))
@@ -278,7 +278,7 @@ open class HealthcareService: DomainResource {
 		if let exist = json["programName"] {
 			presentKeys.insert("programName")
 			if let val = exist as? [String] {
-				self.programName = val
+				self.programName = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "programName", wants: Array<String>.self, has: type(of: exist)))
@@ -301,7 +301,7 @@ open class HealthcareService: DomainResource {
 		if let exist = json["publicKey"] {
 			presentKeys.insert("publicKey")
 			if let val = exist as? String {
-				self.publicKey = val
+				self.publicKey = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publicKey", wants: String.self, has: type(of: exist)))
@@ -338,7 +338,7 @@ open class HealthcareService: DomainResource {
 		if let exist = json["serviceName"] {
 			presentKeys.insert("serviceName")
 			if let val = exist as? String {
-				self.serviceName = val
+				self.serviceName = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "serviceName", wants: String.self, has: type(of: exist)))
@@ -524,7 +524,7 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 		if let exist = json["availableEndTime"] {
 			presentKeys.insert("availableEndTime")
 			if let val = exist as? String {
-				self.availableEndTime = FHIRTime(string: val)
+				self.availableEndTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "availableEndTime", wants: String.self, has: type(of: exist)))
@@ -533,7 +533,7 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 		if let exist = json["availableStartTime"] {
 			presentKeys.insert("availableStartTime")
 			if let val = exist as? String {
-				self.availableStartTime = FHIRTime(string: val)
+				self.availableStartTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "availableStartTime", wants: String.self, has: type(of: exist)))
@@ -587,14 +587,14 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 	}
 	
 	/// Reason presented to the user explaining why time not available.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Service not availablefrom this date.
 	public var during: Period?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String) {
+	public convenience init(description_fhir: FHIRString) {
 		self.init()
 		self.description_fhir = description_fhir
 	}
@@ -605,7 +605,7 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -636,6 +636,9 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 		
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "description_fhir"))
 		}
 		if let during = self.during {
 			json["during"] = during.asJSON(errors: &errors)

@@ -55,7 +55,7 @@ extension DomainResource {
 		
 		// contain
 		var cont = contained ?? [Resource]()
-		if let existing = containedResource(refid) {
+		if let existing = containedResource(refid.string) {
 			fhir_logIfDebug("Containing resource \(resource) will replace resource \(existing) already contained in \(self)")
 			cont = cont.filter() { $0 !== existing }
 		}
@@ -63,12 +63,14 @@ extension DomainResource {
 		contained = cont
 		
 		// mark as resolved
-		didResolveReference(refid, resolved: resource)
+		didResolveReference(refid.string, resolved: resource)
 		
 		// return reference
 		let ref = Reference(owner: self)
-		ref.reference = "#\(refid)"
-		ref.display = display
+		ref.reference = FHIRString("#\(refid)")
+		if let display = display {
+			ref.display = FHIRString(display)
+		}
 		return ref
 	}
 	
@@ -98,17 +100,17 @@ extension DomainResource {
 	- parameter display:  The string that will become the reference's `display`
 	- returns:            A `Reference`, ready for use
 	*/
-	open func reference(resource: Resource, withDisplay display: String? = nil) throws -> Reference {
+	open func reference(resource: Resource, withDisplay display: FHIRString? = nil) throws -> Reference {
 		let ref = Reference(owner: self)
 		ref.display = display
 		
 		// determine whether reference is absolute (resources not on same server)
 		let absolute = (nil == _server || nil == resource._server || (_server!.baseURL != resource._server!.baseURL))
 		if absolute {
-			ref.reference = try resource.absoluteURL().absoluteString
+			ref.reference = try resource.absoluteURL().absoluteFHIRString
 		}
 		else if let id = resource.id {
-			ref.reference = resource.relativeURLBase() + "/\(id)"
+			ref.reference = FHIRString(resource.relativeURLBase() + "/\(id)")
 		}
 		else {
 			throw FHIRError.resourceWithoutId

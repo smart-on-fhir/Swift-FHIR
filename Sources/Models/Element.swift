@@ -23,7 +23,7 @@ open class Element: FHIRAbstractBase {
 	public var extension_fhir: [Extension]?
 	
 	/// xml:id (or equivalent in JSON).
-	public var id: String?
+	public var id: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -45,7 +45,7 @@ open class Element: FHIRAbstractBase {
 		if let exist = json["id"] {
 			presentKeys.insert("id")
 			if let val = exist as? String {
-				self.id = val
+				self.id = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "id", wants: String.self, has: type(of: exist)))

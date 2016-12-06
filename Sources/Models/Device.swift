@@ -36,16 +36,16 @@ open class Device: DomainResource {
 	public var location: Reference?
 	
 	/// Lot number of manufacture.
-	public var lotNumber: String?
+	public var lotNumber: FHIRString?
 	
 	/// Date when the device was made.
 	public var manufactureDate: DateTime?
 	
 	/// Name of device manufacturer.
-	public var manufacturer: String?
+	public var manufacturer: FHIRString?
 	
 	/// Model id assigned by the manufacturer.
-	public var model: String?
+	public var model: FHIRString?
 	
 	/// Device notes and comments.
 	public var note: [Annotation]?
@@ -69,7 +69,7 @@ open class Device: DomainResource {
 	public var url: URL?
 	
 	/// Version number (i.e. software).
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -91,7 +91,7 @@ open class Device: DomainResource {
 		if let exist = json["expirationDate"] {
 			presentKeys.insert("expirationDate")
 			if let val = exist as? String {
-				self.expirationDate = DateTime(string: val)
+				self.expirationDate = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expirationDate", wants: String.self, has: type(of: exist)))
@@ -128,7 +128,7 @@ open class Device: DomainResource {
 		if let exist = json["lotNumber"] {
 			presentKeys.insert("lotNumber")
 			if let val = exist as? String {
-				self.lotNumber = val
+				self.lotNumber = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lotNumber", wants: String.self, has: type(of: exist)))
@@ -137,7 +137,7 @@ open class Device: DomainResource {
 		if let exist = json["manufactureDate"] {
 			presentKeys.insert("manufactureDate")
 			if let val = exist as? String {
-				self.manufactureDate = DateTime(string: val)
+				self.manufactureDate = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "manufactureDate", wants: String.self, has: type(of: exist)))
@@ -146,7 +146,7 @@ open class Device: DomainResource {
 		if let exist = json["manufacturer"] {
 			presentKeys.insert("manufacturer")
 			if let val = exist as? String {
-				self.manufacturer = val
+				self.manufacturer = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "manufacturer", wants: String.self, has: type(of: exist)))
@@ -155,7 +155,7 @@ open class Device: DomainResource {
 		if let exist = json["model"] {
 			presentKeys.insert("model")
 			if let val = exist as? String {
-				self.model = val
+				self.model = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "model", wants: String.self, has: type(of: exist)))
@@ -248,7 +248,7 @@ open class Device: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -257,7 +257,7 @@ open class Device: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))

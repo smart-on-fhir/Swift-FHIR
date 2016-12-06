@@ -25,8 +25,8 @@ class PaymentReconciliationTests: XCTestCase {
 			let instance = try runPaymentReconciliation1()
 			try runPaymentReconciliation1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test PaymentReconciliation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test PaymentReconciliation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

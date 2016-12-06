@@ -25,8 +25,8 @@ class SubstanceTests: XCTestCase {
 			let instance = try runSubstance1()
 			try runSubstance1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -72,8 +72,8 @@ class SubstanceTests: XCTestCase {
 			let instance = try runSubstance2()
 			try runSubstance2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -95,8 +95,8 @@ class SubstanceTests: XCTestCase {
 			let instance = try runSubstance3()
 			try runSubstance3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -118,8 +118,8 @@ class SubstanceTests: XCTestCase {
 			let instance = try runSubstance4()
 			try runSubstance4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -146,8 +146,8 @@ class SubstanceTests: XCTestCase {
 			let instance = try runSubstance5()
 			try runSubstance5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -182,8 +182,8 @@ class SubstanceTests: XCTestCase {
 			let instance = try runSubstance6()
 			try runSubstance6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

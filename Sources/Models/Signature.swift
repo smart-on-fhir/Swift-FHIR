@@ -25,7 +25,7 @@ open class Signature: Element {
 	public var blob: Base64Binary?
 	
 	/// The technical format of the signature.
-	public var contentType: String?
+	public var contentType: FHIRString?
 	
 	/// The party represented.
 	public var onBehalfOfReference: Reference?
@@ -68,7 +68,7 @@ open class Signature: Element {
 		if let exist = json["blob"] {
 			presentKeys.insert("blob")
 			if let val = exist as? String {
-				self.blob = Base64Binary(string: val)
+				self.blob = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "blob", wants: String.self, has: type(of: exist)))
@@ -77,7 +77,7 @@ open class Signature: Element {
 		if let exist = json["contentType"] {
 			presentKeys.insert("contentType")
 			if let val = exist as? String {
-				self.contentType = val
+				self.contentType = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -100,7 +100,7 @@ open class Signature: Element {
 		if let exist = json["onBehalfOfUri"] {
 			presentKeys.insert("onBehalfOfUri")
 			if let val = exist as? String {
-				self.onBehalfOfUri = URL(string: val)
+				self.onBehalfOfUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "onBehalfOfUri", wants: String.self, has: type(of: exist)))
@@ -126,7 +126,7 @@ open class Signature: Element {
 		if let exist = json["when"] {
 			presentKeys.insert("when")
 			if let val = exist as? String {
-				self.when = Instant(string: val)
+				self.when = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "when", wants: String.self, has: type(of: exist)))
@@ -152,7 +152,7 @@ open class Signature: Element {
 		if let exist = json["whoUri"] {
 			presentKeys.insert("whoUri")
 			if let val = exist as? String {
-				self.whoUri = URL(string: val)
+				self.whoUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "whoUri", wants: String.self, has: type(of: exist)))
@@ -184,14 +184,25 @@ open class Signature: Element {
 		if let type = self.type {
 			json["type"] = type.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let when = self.when {
 			json["when"] = when.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "when"))
 		}
 		if let whoReference = self.whoReference {
 			json["whoReference"] = whoReference.asJSON(errors: &errors)
 		}
 		if let whoUri = self.whoUri {
 			json["whoUri"] = whoUri.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.whoUri && nil == self.whoReference {
+			errors.append(FHIRValidationError(missing: "who[x]"))
 		}
 		
 		return json

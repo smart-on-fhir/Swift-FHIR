@@ -58,6 +58,9 @@ open class OperationOutcome: DomainResource {
 		if let issue = self.issue {
 			json["issue"] = issue.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "issue"))
+		}
 		
 		return json
 	}
@@ -82,13 +85,13 @@ open class OperationOutcomeIssue: BackboneElement {
 	public var details: CodeableConcept?
 	
 	/// Additional diagnostic information about the issue.
-	public var diagnostics: String?
+	public var diagnostics: FHIRString?
 	
 	/// FluentPath of element(s) related to issue.
-	public var expression: [String]?
+	public var expression: [FHIRString]?
 	
 	/// XPath of element(s) related to issue.
-	public var location: [String]?
+	public var location: [FHIRString]?
 	
 	/// Indicates whether the issue indicates a variation from successful processing.
 	public var severity: IssueSeverity?
@@ -138,7 +141,7 @@ open class OperationOutcomeIssue: BackboneElement {
 		if let exist = json["diagnostics"] {
 			presentKeys.insert("diagnostics")
 			if let val = exist as? String {
-				self.diagnostics = val
+				self.diagnostics = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "diagnostics", wants: String.self, has: type(of: exist)))
@@ -147,7 +150,7 @@ open class OperationOutcomeIssue: BackboneElement {
 		if let exist = json["expression"] {
 			presentKeys.insert("expression")
 			if let val = exist as? [String] {
-				self.expression = val
+				self.expression = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expression", wants: Array<String>.self, has: type(of: exist)))
@@ -156,7 +159,7 @@ open class OperationOutcomeIssue: BackboneElement {
 		if let exist = json["location"] {
 			presentKeys.insert("location")
 			if let val = exist as? [String] {
-				self.location = val
+				self.location = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "location", wants: Array<String>.self, has: type(of: exist)))
@@ -188,6 +191,9 @@ open class OperationOutcomeIssue: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let details = self.details {
 			json["details"] = details.asJSON(errors: &errors)
 		}
@@ -202,6 +208,9 @@ open class OperationOutcomeIssue: BackboneElement {
 		}
 		if let severity = self.severity {
 			json["severity"] = severity.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "severity"))
 		}
 		
 		return json

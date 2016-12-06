@@ -25,8 +25,8 @@ class ResearchStudyTests: XCTestCase {
 			let instance = try runResearchStudy1()
 			try runResearchStudy1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ResearchStudy successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ResearchStudy successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

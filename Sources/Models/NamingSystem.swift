@@ -27,7 +27,7 @@ open class NamingSystem: DomainResource {
 	public var date: DateTime?
 	
 	/// Natural language description of the naming system.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Intended jurisdiction for naming system (if applicable).
 	public var jurisdiction: [CodeableConcept]?
@@ -36,16 +36,16 @@ open class NamingSystem: DomainResource {
 	public var kind: NamingSystemType?
 	
 	/// Name for this naming system (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Use this instead.
 	public var replacedBy: Reference?
 	
 	/// Who maintains system namespace?.
-	public var responsible: String?
+	public var responsible: FHIRString?
 	
 	/// The status of this naming system. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -57,14 +57,14 @@ open class NamingSystem: DomainResource {
 	public var uniqueId: [NamingSystemUniqueId]?
 	
 	/// How/where is it used.
-	public var usage: String?
+	public var usage: FHIRString?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [UsageContext]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime, kind: NamingSystemType, name: String, status: PublicationStatus, uniqueId: [NamingSystemUniqueId]) {
+	public convenience init(date: DateTime, kind: NamingSystemType, name: FHIRString, status: PublicationStatus, uniqueId: [NamingSystemUniqueId]) {
 		self.init()
 		self.date = date
 		self.kind = kind
@@ -93,7 +93,7 @@ open class NamingSystem: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -105,7 +105,7 @@ open class NamingSystem: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -145,7 +145,7 @@ open class NamingSystem: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -157,7 +157,7 @@ open class NamingSystem: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -180,7 +180,7 @@ open class NamingSystem: DomainResource {
 		if let exist = json["responsible"] {
 			presentKeys.insert("responsible")
 			if let val = exist as? String {
-				self.responsible = val
+				self.responsible = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "responsible", wants: String.self, has: type(of: exist)))
@@ -237,7 +237,7 @@ open class NamingSystem: DomainResource {
 		if let exist = json["usage"] {
 			presentKeys.insert("usage")
 			if let val = exist as? String {
-				self.usage = val
+				self.usage = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "usage", wants: String.self, has: type(of: exist)))
@@ -269,6 +269,9 @@ open class NamingSystem: DomainResource {
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "date"))
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
@@ -278,8 +281,14 @@ open class NamingSystem: DomainResource {
 		if let kind = self.kind {
 			json["kind"] = kind.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
@@ -293,11 +302,17 @@ open class NamingSystem: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
 		}
 		if let uniqueId = self.uniqueId {
 			json["uniqueId"] = uniqueId.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "uniqueId"))
 		}
 		if let usage = self.usage {
 			json["usage"] = usage.asJSON()
@@ -322,7 +337,7 @@ open class NamingSystemUniqueId: BackboneElement {
 	}
 	
 	/// Notes about identifier usage.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// When is identifier valid?.
 	public var period: Period?
@@ -334,11 +349,11 @@ open class NamingSystemUniqueId: BackboneElement {
 	public var type: NamingSystemIdentifierType?
 	
 	/// The unique identifier.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: NamingSystemIdentifierType, value: String) {
+	public convenience init(type: NamingSystemIdentifierType, value: FHIRString) {
 		self.init()
 		self.type = type
 		self.value = value
@@ -350,7 +365,7 @@ open class NamingSystemUniqueId: BackboneElement {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -399,7 +414,7 @@ open class NamingSystemUniqueId: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -426,8 +441,14 @@ open class NamingSystemUniqueId: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
 		return json

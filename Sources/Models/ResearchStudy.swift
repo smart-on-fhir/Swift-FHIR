@@ -32,7 +32,7 @@ open class ResearchStudy: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// What this is study doing.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Inclusion & exclusion criteria.
 	public var enrollment: [Reference]?
@@ -80,7 +80,7 @@ open class ResearchStudy: DomainResource {
 	public var status: ResearchStudyStatus?
 	
 	/// Name for this study.
-	public var title: String?
+	public var title: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -137,7 +137,7 @@ open class ResearchStudy: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -359,7 +359,7 @@ open class ResearchStudy: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -428,6 +428,9 @@ open class ResearchStudy: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
 		}
@@ -452,14 +455,14 @@ open class ResearchStudyArm: BackboneElement {
 	public var code: CodeableConcept?
 	
 	/// Short explanation of study path.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Label for study arm.
-	public var name: String?
+	public var name: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String) {
+	public convenience init(name: FHIRString) {
 		self.init()
 		self.name = name
 	}
@@ -484,7 +487,7 @@ open class ResearchStudyArm: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -493,7 +496,7 @@ open class ResearchStudyArm: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -516,6 +519,9 @@ open class ResearchStudyArm: BackboneElement {
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		
 		return json

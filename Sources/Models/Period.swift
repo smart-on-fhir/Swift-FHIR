@@ -31,7 +31,7 @@ open class Period: Element {
 		if let exist = json["end"] {
 			presentKeys.insert("end")
 			if let val = exist as? String {
-				self.end = DateTime(string: val)
+				self.end = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "end", wants: String.self, has: type(of: exist)))
@@ -40,7 +40,7 @@ open class Period: Element {
 		if let exist = json["start"] {
 			presentKeys.insert("start")
 			if let val = exist as? String {
-				self.start = DateTime(string: val)
+				self.start = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "start", wants: String.self, has: type(of: exist)))

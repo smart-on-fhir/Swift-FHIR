@@ -25,8 +25,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient1()
 			try runPatient1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -64,8 +64,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient2()
 			try runPatient2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -114,8 +114,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient3()
 			try runPatient3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -150,8 +150,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient4()
 			try runPatient4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -184,8 +184,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient5()
 			try runPatient5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -218,8 +218,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient6()
 			try runPatient6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -253,8 +253,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient7()
 			try runPatient7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -317,8 +317,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient8()
 			try runPatient8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -390,8 +390,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient9()
 			try runPatient9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -416,8 +416,8 @@ class PatientTests: XCTestCase {
 			let instance = try runPatient10()
 			try runPatient10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

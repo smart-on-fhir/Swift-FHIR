@@ -23,14 +23,14 @@ open class Contributor: Element {
 	public var contact: [ContactDetail]?
 	
 	/// Name of the contributor.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// The type of contributor.
 	public var type: ContributorType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, type: ContributorType) {
+	public convenience init(name: FHIRString, type: ContributorType) {
 		self.init()
 		self.name = name
 		self.type = type
@@ -56,7 +56,7 @@ open class Contributor: Element {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -94,8 +94,14 @@ open class Contributor: Element {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json

@@ -18,13 +18,13 @@ open class Reference: Element {
 	}
 	
 	/// Text alternative for the resource.
-	public var display: String?
+	public var display: FHIRString?
 	
 	/// Logical reference, when literal reference is not known.
 	public var identifier: Identifier?
 	
 	/// Literal reference, Relative, internal or absolute URL.
-	public var reference: String?
+	public var reference: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -32,7 +32,7 @@ open class Reference: Element {
 		if let exist = json["display"] {
 			presentKeys.insert("display")
 			if let val = exist as? String {
-				self.display = val
+				self.display = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
@@ -55,7 +55,7 @@ open class Reference: Element {
 		if let exist = json["reference"] {
 			presentKeys.insert("reference")
 			if let val = exist as? String {
-				self.reference = val
+				self.reference = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "reference", wants: String.self, has: type(of: exist)))

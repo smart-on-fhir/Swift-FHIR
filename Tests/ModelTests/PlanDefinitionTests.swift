@@ -25,8 +25,8 @@ class PlanDefinitionTests: XCTestCase {
 			let instance = try runPlanDefinition1()
 			try runPlanDefinition1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -110,8 +110,8 @@ class PlanDefinitionTests: XCTestCase {
 			let instance = try runPlanDefinition2()
 			try runPlanDefinition2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -250,8 +250,8 @@ class PlanDefinitionTests: XCTestCase {
 			let instance = try runPlanDefinition3()
 			try runPlanDefinition3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

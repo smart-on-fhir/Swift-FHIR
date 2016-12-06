@@ -33,7 +33,7 @@ open class ReferralRequest: DomainResource {
 	public var context: Reference?
 	
 	/// A textual description of the referral.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Requested service(s) fulfillment time.
 	public var fulfillmentTime: Period?
@@ -88,7 +88,7 @@ open class ReferralRequest: DomainResource {
 		if let exist = json["authored"] {
 			presentKeys.insert("authored")
 			if let val = exist as? String {
-				self.authored = DateTime(string: val)
+				self.authored = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "authored", wants: String.self, has: type(of: exist)))
@@ -142,7 +142,7 @@ open class ReferralRequest: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -348,6 +348,9 @@ open class ReferralRequest: DomainResource {
 		if let category = self.category {
 			json["category"] = category.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "category"))
+		}
 		if let context = self.context {
 			json["context"] = context.asJSON(errors: &errors)
 		}
@@ -386,6 +389,9 @@ open class ReferralRequest: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let supportingInformation = self.supportingInformation {
 			json["supportingInformation"] = supportingInformation.map() { $0.asJSON(errors: &errors) }

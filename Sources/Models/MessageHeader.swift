@@ -215,7 +215,7 @@ open class MessageHeader: DomainResource {
 		if let exist = json["timestamp"] {
 			presentKeys.insert("timestamp")
 			if let val = exist as? String {
-				self.timestamp = Instant(string: val)
+				self.timestamp = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "timestamp", wants: String.self, has: type(of: exist)))
@@ -245,6 +245,9 @@ open class MessageHeader: DomainResource {
 		if let event = self.event {
 			json["event"] = event.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "event"))
+		}
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON(errors: &errors)
 		}
@@ -260,8 +263,14 @@ open class MessageHeader: DomainResource {
 		if let source = self.source {
 			json["source"] = source.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "source"))
+		}
 		if let timestamp = self.timestamp {
 			json["timestamp"] = timestamp.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "timestamp"))
 		}
 		
 		return json
@@ -283,7 +292,7 @@ open class MessageHeaderDestination: BackboneElement {
 	public var endpoint: URL?
 	
 	/// Name of system.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Particular delivery destination within the destination.
 	public var target: Reference?
@@ -301,7 +310,7 @@ open class MessageHeaderDestination: BackboneElement {
 		if let exist = json["endpoint"] {
 			presentKeys.insert("endpoint")
 			if let val = exist as? String {
-				self.endpoint = URL(string: val)
+				self.endpoint = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -313,7 +322,7 @@ open class MessageHeaderDestination: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -341,6 +350,9 @@ open class MessageHeaderDestination: BackboneElement {
 		
 		if let endpoint = self.endpoint {
 			json["endpoint"] = endpoint.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "endpoint"))
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -372,11 +384,11 @@ open class MessageHeaderResponse: BackboneElement {
 	public var details: Reference?
 	
 	/// Id of original message.
-	public var identifier: String?
+	public var identifier: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: ResponseType, identifier: String) {
+	public convenience init(code: ResponseType, identifier: FHIRString) {
 		self.init()
 		self.code = code
 		self.identifier = identifier
@@ -419,7 +431,7 @@ open class MessageHeaderResponse: BackboneElement {
 		if let exist = json["identifier"] {
 			presentKeys.insert("identifier")
 			if let val = exist as? String {
-				self.identifier = val
+				self.identifier = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "identifier", wants: String.self, has: type(of: exist)))
@@ -437,11 +449,17 @@ open class MessageHeaderResponse: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let details = self.details {
 			json["details"] = details.asJSON(errors: &errors)
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
 		}
 		
 		return json
@@ -466,13 +484,13 @@ open class MessageHeaderSource: BackboneElement {
 	public var endpoint: URL?
 	
 	/// Name of system.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of software running the system.
-	public var software: String?
+	public var software: FHIRString?
 	
 	/// Version of software running.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -501,7 +519,7 @@ open class MessageHeaderSource: BackboneElement {
 		if let exist = json["endpoint"] {
 			presentKeys.insert("endpoint")
 			if let val = exist as? String {
-				self.endpoint = URL(string: val)
+				self.endpoint = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -513,7 +531,7 @@ open class MessageHeaderSource: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -522,7 +540,7 @@ open class MessageHeaderSource: BackboneElement {
 		if let exist = json["software"] {
 			presentKeys.insert("software")
 			if let val = exist as? String {
-				self.software = val
+				self.software = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "software", wants: String.self, has: type(of: exist)))
@@ -531,7 +549,7 @@ open class MessageHeaderSource: BackboneElement {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -548,6 +566,9 @@ open class MessageHeaderSource: BackboneElement {
 		}
 		if let endpoint = self.endpoint {
 			json["endpoint"] = endpoint.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "endpoint"))
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

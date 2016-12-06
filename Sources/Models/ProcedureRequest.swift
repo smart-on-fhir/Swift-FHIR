@@ -186,7 +186,7 @@ open class ProcedureRequest: DomainResource {
 		if let exist = json["orderedOn"] {
 			presentKeys.insert("orderedOn")
 			if let val = exist as? String {
-				self.orderedOn = DateTime(string: val)
+				self.orderedOn = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "orderedOn", wants: String.self, has: type(of: exist)))
@@ -265,7 +265,7 @@ open class ProcedureRequest: DomainResource {
 		if let exist = json["scheduledDateTime"] {
 			presentKeys.insert("scheduledDateTime")
 			if let val = exist as? String {
-				self.scheduledDateTime = DateTime(string: val)
+				self.scheduledDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "scheduledDateTime", wants: String.self, has: type(of: exist)))
@@ -362,6 +362,9 @@ open class ProcedureRequest: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON(errors: &errors)
 		}
@@ -403,6 +406,9 @@ open class ProcedureRequest: DomainResource {
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let supportingInfo = self.supportingInfo {
 			json["supportingInfo"] = supportingInfo.map() { $0.asJSON(errors: &errors) }

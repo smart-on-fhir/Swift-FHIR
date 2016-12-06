@@ -25,8 +25,8 @@ class LinkageTests: XCTestCase {
 			let instance = try runLinkage1()
 			try runLinkage1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Linkage successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Linkage successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

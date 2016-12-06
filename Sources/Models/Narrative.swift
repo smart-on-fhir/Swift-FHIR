@@ -18,7 +18,7 @@ open class Narrative: Element {
 	}
 	
 	/// Limited xhtml content.
-	public var div: String?
+	public var div: FHIRString?
 	
 	/// The status of the narrative - whether it's entirely generated (from just the defined data or the extensions
 	/// too), or whether a human authored it and it may contain additional data.
@@ -26,7 +26,7 @@ open class Narrative: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(div: String, status: NarrativeStatus) {
+	public convenience init(div: FHIRString, status: NarrativeStatus) {
 		self.init()
 		self.div = div
 		self.status = status
@@ -38,7 +38,7 @@ open class Narrative: Element {
 		if let exist = json["div"] {
 			presentKeys.insert("div")
 			if let val = exist as? String {
-				self.div = val
+				self.div = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "div", wants: String.self, has: type(of: exist)))
@@ -73,8 +73,14 @@ open class Narrative: Element {
 		if let div = self.div {
 			json["div"] = div.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "div"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json

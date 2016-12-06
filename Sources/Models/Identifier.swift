@@ -35,7 +35,7 @@ open class Identifier: Element {
 	public var use: IdentifierUse?
 	
 	/// The value that is unique.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -71,7 +71,7 @@ open class Identifier: Element {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -108,7 +108,7 @@ open class Identifier: Element {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))

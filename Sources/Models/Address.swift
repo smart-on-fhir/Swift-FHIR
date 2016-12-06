@@ -22,28 +22,28 @@ open class Address: Element {
 	}
 	
 	/// Name of city, town etc..
-	public var city: String?
+	public var city: FHIRString?
 	
 	/// Country (e.g. can be ISO 3166 2 or 3 letter code).
-	public var country: String?
+	public var country: FHIRString?
 	
 	/// District name (aka county).
-	public var district: String?
+	public var district: FHIRString?
 	
 	/// Street name, number, direction & P.O. Box etc..
-	public var line: [String]?
+	public var line: [FHIRString]?
 	
 	/// Time period when address was/is in use.
 	public var period: Period?
 	
 	/// Postal code for area.
-	public var postalCode: String?
+	public var postalCode: FHIRString?
 	
 	/// Sub-unit of country (abbreviations ok).
-	public var state: String?
+	public var state: FHIRString?
 	
 	/// Text representation of the address.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of
 	/// addresses). Most addresses are both.
@@ -58,7 +58,7 @@ open class Address: Element {
 		if let exist = json["city"] {
 			presentKeys.insert("city")
 			if let val = exist as? String {
-				self.city = val
+				self.city = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "city", wants: String.self, has: type(of: exist)))
@@ -67,7 +67,7 @@ open class Address: Element {
 		if let exist = json["country"] {
 			presentKeys.insert("country")
 			if let val = exist as? String {
-				self.country = val
+				self.country = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "country", wants: String.self, has: type(of: exist)))
@@ -76,7 +76,7 @@ open class Address: Element {
 		if let exist = json["district"] {
 			presentKeys.insert("district")
 			if let val = exist as? String {
-				self.district = val
+				self.district = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "district", wants: String.self, has: type(of: exist)))
@@ -85,7 +85,7 @@ open class Address: Element {
 		if let exist = json["line"] {
 			presentKeys.insert("line")
 			if let val = exist as? [String] {
-				self.line = val
+				self.line = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "line", wants: Array<String>.self, has: type(of: exist)))
@@ -108,7 +108,7 @@ open class Address: Element {
 		if let exist = json["postalCode"] {
 			presentKeys.insert("postalCode")
 			if let val = exist as? String {
-				self.postalCode = val
+				self.postalCode = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "postalCode", wants: String.self, has: type(of: exist)))
@@ -117,7 +117,7 @@ open class Address: Element {
 		if let exist = json["state"] {
 			presentKeys.insert("state")
 			if let val = exist as? String {
-				self.state = val
+				self.state = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "state", wants: String.self, has: type(of: exist)))
@@ -126,7 +126,7 @@ open class Address: Element {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))

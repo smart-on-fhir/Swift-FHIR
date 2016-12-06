@@ -199,7 +199,7 @@ class LocalPatientServer: FHIROpenServer {
 		switch request.httpMethod ?? "GET" {
 		
 		case "POST":
-			let version = Int(handler.resource?.meta?.versionId ?? "1336")!
+			let version = Int(handler.resource?.meta?.versionId?.string ?? "1336")!
 			let location = "\(self.baseURL.absoluteString)Patient/\(UUID().uuidString)/_history/\(version+1)"
 			let headers = ["Location": location, "Last-mODified": "Tue, 3 May 2016 14:45:31 GMT"]
 			let http = HTTPURLResponse(url: request.url!, statusCode: 201, httpVersion: "1.1", headerFields: headers)
@@ -207,7 +207,7 @@ class LocalPatientServer: FHIROpenServer {
 			let prefer = request.allHTTPHeaderFields?["Prefer"] ?? "minimal"
 			if prefer.hasSuffix("representation") != negatePreferHeader {
 				let pat = try! Patient(json: try! handler.resource!.asJSON())			// to not manipulate handler.resource
-				pat.meta?.versionId = "\(version+1)"
+				pat.meta?.versionId = FHIRString("\(version+1)")
 				pat.name = [try! HumanName(json: ["family": "POST"])]
 				
 				let req = FHIRServerJSONRequestHandler(.POST)

@@ -25,8 +25,8 @@ class ImplementationGuideTests: XCTestCase {
 			let instance = try runImplementationGuide1()
 			try runImplementationGuide1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImplementationGuide successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ImplementationGuide successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

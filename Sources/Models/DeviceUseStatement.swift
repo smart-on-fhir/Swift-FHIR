@@ -33,7 +33,7 @@ open class DeviceUseStatement: DomainResource {
 	public var indication: [CodeableConcept]?
 	
 	/// Addition details (comments, instructions).
-	public var notes: [String]?
+	public var notes: [FHIRString]?
 	
 	/// When statement was recorded.
 	public var recordedOn: DateTime?
@@ -126,7 +126,7 @@ open class DeviceUseStatement: DomainResource {
 		if let exist = json["notes"] {
 			presentKeys.insert("notes")
 			if let val = exist as? [String] {
-				self.notes = val
+				self.notes = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "notes", wants: Array<String>.self, has: type(of: exist)))
@@ -135,7 +135,7 @@ open class DeviceUseStatement: DomainResource {
 		if let exist = json["recordedOn"] {
 			presentKeys.insert("recordedOn")
 			if let val = exist as? String {
-				self.recordedOn = DateTime(string: val)
+				self.recordedOn = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "recordedOn", wants: String.self, has: type(of: exist)))
@@ -161,7 +161,7 @@ open class DeviceUseStatement: DomainResource {
 		if let exist = json["timingDateTime"] {
 			presentKeys.insert("timingDateTime")
 			if let val = exist as? String {
-				self.timingDateTime = DateTime(string: val)
+				self.timingDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "timingDateTime", wants: String.self, has: type(of: exist)))
@@ -221,6 +221,9 @@ open class DeviceUseStatement: DomainResource {
 		if let device = self.device {
 			json["device"] = device.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "device"))
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
@@ -235,6 +238,9 @@ open class DeviceUseStatement: DomainResource {
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		if let timingDateTime = self.timingDateTime {
 			json["timingDateTime"] = timingDateTime.asJSON()

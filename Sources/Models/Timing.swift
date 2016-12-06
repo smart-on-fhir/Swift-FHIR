@@ -126,7 +126,7 @@ open class TimingRepeat: Element {
 	public var durationMax: NSDecimalNumber?
 	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM).
-	public var durationUnit: String?
+	public var durationUnit: FHIRString?
 	
 	/// Event occurs frequency times per period.
 	public var frequency: Int?
@@ -144,13 +144,13 @@ open class TimingRepeat: Element {
 	public var periodMax: NSDecimalNumber?
 	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM).
-	public var periodUnit: String?
+	public var periodUnit: FHIRString?
 	
 	/// Time of day for action.
 	public var timeOfDay: [FHIRTime]?
 	
 	/// Regular life events the event is tied to.
-	public var when: String?
+	public var when: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -249,7 +249,7 @@ open class TimingRepeat: Element {
 		if let exist = json["durationUnit"] {
 			presentKeys.insert("durationUnit")
 			if let val = exist as? String {
-				self.durationUnit = val
+				self.durationUnit = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "durationUnit", wants: String.self, has: type(of: exist)))
@@ -303,7 +303,7 @@ open class TimingRepeat: Element {
 		if let exist = json["periodUnit"] {
 			presentKeys.insert("periodUnit")
 			if let val = exist as? String {
-				self.periodUnit = val
+				self.periodUnit = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "periodUnit", wants: String.self, has: type(of: exist)))
@@ -321,7 +321,7 @@ open class TimingRepeat: Element {
 		if let exist = json["when"] {
 			presentKeys.insert("when")
 			if let val = exist as? String {
-				self.when = val
+				self.when = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "when", wants: String.self, has: type(of: exist)))

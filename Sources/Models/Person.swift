@@ -78,7 +78,7 @@ open class Person: DomainResource {
 		if let exist = json["birthDate"] {
 			presentKeys.insert("birthDate")
 			if let val = exist as? String {
-				self.birthDate = FHIRDate(string: val)
+				self.birthDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "birthDate", wants: String.self, has: type(of: exist)))
@@ -290,6 +290,9 @@ open class PersonLink: BackboneElement {
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "target"))
 		}
 		
 		return json

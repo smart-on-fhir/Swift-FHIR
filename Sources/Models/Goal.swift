@@ -211,7 +211,7 @@ open class Goal: DomainResource {
 		if let exist = json["startDate"] {
 			presentKeys.insert("startDate")
 			if let val = exist as? String {
-				self.startDate = FHIRDate(string: val)
+				self.startDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "startDate", wants: String.self, has: type(of: exist)))
@@ -237,7 +237,7 @@ open class Goal: DomainResource {
 		if let exist = json["statusDate"] {
 			presentKeys.insert("statusDate")
 			if let val = exist as? String {
-				self.statusDate = FHIRDate(string: val)
+				self.statusDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "statusDate", wants: String.self, has: type(of: exist)))
@@ -274,7 +274,7 @@ open class Goal: DomainResource {
 		if let exist = json["targetDate"] {
 			presentKeys.insert("targetDate")
 			if let val = exist as? String {
-				self.targetDate = FHIRDate(string: val)
+				self.targetDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "targetDate", wants: String.self, has: type(of: exist)))
@@ -309,6 +309,9 @@ open class Goal: DomainResource {
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "description_fhir"))
+		}
 		if let expressedBy = self.expressedBy {
 			json["expressedBy"] = expressedBy.asJSON(errors: &errors)
 		}
@@ -332,6 +335,9 @@ open class Goal: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let statusDate = self.statusDate {
 			json["statusDate"] = statusDate.asJSON()

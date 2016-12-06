@@ -140,7 +140,7 @@ open class MedicationAdministration: DomainResource {
 		if let exist = json["effectiveDateTime"] {
 			presentKeys.insert("effectiveDateTime")
 			if let val = exist as? String {
-				self.effectiveDateTime = DateTime(string: val)
+				self.effectiveDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "effectiveDateTime", wants: String.self, has: type(of: exist)))
@@ -421,6 +421,9 @@ open class MedicationAdministration: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let performer = self.performer {
 			json["performer"] = performer.asJSON(errors: &errors)
 		}
@@ -439,8 +442,19 @@ open class MedicationAdministration: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let supportingInformation = self.supportingInformation {
 			json["supportingInformation"] = supportingInformation.map() { $0.asJSON(errors: &errors) }
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.effectiveDateTime && nil == self.effectivePeriod {
+			errors.append(FHIRValidationError(missing: "effective[x]"))
+		}
+		if nil == self.medicationCodeableConcept && nil == self.medicationReference {
+			errors.append(FHIRValidationError(missing: "medication[x]"))
 		}
 		
 		return json
@@ -477,7 +491,7 @@ open class MedicationAdministrationDosage: BackboneElement {
 	public var site: CodeableConcept?
 	
 	/// Free text dosage instructions e.g. SIG.
-	public var text: String?
+	public var text: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -569,7 +583,7 @@ open class MedicationAdministrationDosage: BackboneElement {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))

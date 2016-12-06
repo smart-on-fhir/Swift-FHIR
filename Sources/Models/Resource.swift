@@ -20,13 +20,13 @@ open class Resource: FHIRAbstractResource {
 	}
 	
 	/// Logical id of this artifact.
-	public var id: String?
+	public var id: FHIRString?
 	
 	/// A set of rules under which this content was created.
 	public var implicitRules: URL?
 	
 	/// Language of the resource content.
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// Metadata about the resource.
 	public var meta: Meta?
@@ -37,7 +37,7 @@ open class Resource: FHIRAbstractResource {
 		if let exist = json["id"] {
 			presentKeys.insert("id")
 			if let val = exist as? String {
-				self.id = val
+				self.id = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "id", wants: String.self, has: type(of: exist)))
@@ -46,7 +46,7 @@ open class Resource: FHIRAbstractResource {
 		if let exist = json["implicitRules"] {
 			presentKeys.insert("implicitRules")
 			if let val = exist as? String {
-				self.implicitRules = URL(string: val)
+				self.implicitRules = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "implicitRules", wants: String.self, has: type(of: exist)))
@@ -55,7 +55,7 @@ open class Resource: FHIRAbstractResource {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))

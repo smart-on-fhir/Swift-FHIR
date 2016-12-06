@@ -25,8 +25,8 @@ class SlotTests: XCTestCase {
 			let instance = try runSlot1()
 			try runSlot1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -55,8 +55,8 @@ class SlotTests: XCTestCase {
 			let instance = try runSlot2()
 			try runSlot2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -82,8 +82,8 @@ class SlotTests: XCTestCase {
 			let instance = try runSlot3()
 			try runSlot3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -109,8 +109,8 @@ class SlotTests: XCTestCase {
 			let instance = try runSlot4()
 			try runSlot4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

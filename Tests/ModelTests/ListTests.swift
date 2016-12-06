@@ -25,8 +25,8 @@ class ListTests: XCTestCase {
 			let instance = try runList1()
 			try runList1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -58,8 +58,8 @@ class ListTests: XCTestCase {
 			let instance = try runList2()
 			try runList2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -98,8 +98,8 @@ class ListTests: XCTestCase {
 			let instance = try runList3()
 			try runList3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -130,8 +130,8 @@ class ListTests: XCTestCase {
 			let instance = try runList4()
 			try runList4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -162,8 +162,8 @@ class ListTests: XCTestCase {
 			let instance = try runList5()
 			try runList5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -209,8 +209,8 @@ class ListTests: XCTestCase {
 			let instance = try runList6()
 			try runList6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -252,8 +252,8 @@ class ListTests: XCTestCase {
 			let instance = try runList7()
 			try runList7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -289,8 +289,8 @@ class ListTests: XCTestCase {
 			let instance = try runList8()
 			try runList8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -315,8 +315,8 @@ class ListTests: XCTestCase {
 			let instance = try runList9()
 			try runList9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

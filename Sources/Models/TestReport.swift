@@ -26,7 +26,7 @@ open class TestReport: DomainResource {
 	public var issued: DateTime?
 	
 	/// Informal name of the executed TestScript.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// A participant in the test execution, either the execution engine, a client, or a server.
 	public var participant: [TestReportParticipant]?
@@ -50,7 +50,7 @@ open class TestReport: DomainResource {
 	public var testScript: Reference?
 	
 	/// Name of the tester producing this report (Organization or individual).
-	public var tester: String?
+	public var tester: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -80,7 +80,7 @@ open class TestReport: DomainResource {
 		if let exist = json["issued"] {
 			presentKeys.insert("issued")
 			if let val = exist as? String {
-				self.issued = DateTime(string: val)
+				self.issued = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "issued", wants: String.self, has: type(of: exist)))
@@ -89,7 +89,7 @@ open class TestReport: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -197,7 +197,7 @@ open class TestReport: DomainResource {
 		if let exist = json["tester"] {
 			presentKeys.insert("tester")
 			if let val = exist as? String {
-				self.tester = val
+				self.tester = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "tester", wants: String.self, has: type(of: exist)))
@@ -230,6 +230,9 @@ open class TestReport: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let teardown = self.teardown {
 			json["teardown"] = teardown.asJSON(errors: &errors)
 		}
@@ -238,6 +241,9 @@ open class TestReport: DomainResource {
 		}
 		if let testScript = self.testScript {
 			json["testScript"] = testScript.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "testScript"))
 		}
 		if let tester = self.tester {
 			json["tester"] = tester.asJSON()
@@ -257,7 +263,7 @@ open class TestReportParticipant: BackboneElement {
 	}
 	
 	/// The display name of the participant.
-	public var display: String?
+	public var display: FHIRString?
 	
 	/// The type of participant.
 	public var type: TestReportParticipantType?
@@ -279,7 +285,7 @@ open class TestReportParticipant: BackboneElement {
 		if let exist = json["display"] {
 			presentKeys.insert("display")
 			if let val = exist as? String {
-				self.display = val
+				self.display = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
@@ -305,7 +311,7 @@ open class TestReportParticipant: BackboneElement {
 		if let exist = json["uri"] {
 			presentKeys.insert("uri")
 			if let val = exist as? String {
-				self.uri = URL(string: val)
+				self.uri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uri", wants: String.self, has: type(of: exist)))
@@ -326,8 +332,14 @@ open class TestReportParticipant: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let uri = self.uri {
 			json["uri"] = uri.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "uri"))
 		}
 		
 		return json
@@ -381,6 +393,9 @@ open class TestReportSetup: BackboneElement {
 		
 		if let action = self.action {
 			json["action"] = action.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "action"))
 		}
 		
 		return json
@@ -464,10 +479,10 @@ open class TestReportSetupActionAssert: BackboneElement {
 	}
 	
 	/// A link to further details on the result.
-	public var detail: String?
+	public var detail: FHIRString?
 	
 	/// A message associated with the result.
-	public var message: String?
+	public var message: FHIRString?
 	
 	/// The result of this assertion.
 	public var result: TestReportResultCodes?
@@ -485,7 +500,7 @@ open class TestReportSetupActionAssert: BackboneElement {
 		if let exist = json["detail"] {
 			presentKeys.insert("detail")
 			if let val = exist as? String {
-				self.detail = val
+				self.detail = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "detail", wants: String.self, has: type(of: exist)))
@@ -494,7 +509,7 @@ open class TestReportSetupActionAssert: BackboneElement {
 		if let exist = json["message"] {
 			presentKeys.insert("message")
 			if let val = exist as? String {
-				self.message = val
+				self.message = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "message", wants: String.self, has: type(of: exist)))
@@ -531,6 +546,9 @@ open class TestReportSetupActionAssert: BackboneElement {
 		}
 		if let result = self.result {
 			json["result"] = result.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "result"))
 		}
 		
 		return json
@@ -552,7 +570,7 @@ open class TestReportSetupActionOperation: BackboneElement {
 	public var detail: URL?
 	
 	/// A message associated with the result.
-	public var message: String?
+	public var message: FHIRString?
 	
 	/// The result of this operation.
 	public var result: TestReportResultCodes?
@@ -570,7 +588,7 @@ open class TestReportSetupActionOperation: BackboneElement {
 		if let exist = json["detail"] {
 			presentKeys.insert("detail")
 			if let val = exist as? String {
-				self.detail = URL(string: val)
+				self.detail = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "detail", wants: String.self, has: type(of: exist)))
@@ -579,7 +597,7 @@ open class TestReportSetupActionOperation: BackboneElement {
 		if let exist = json["message"] {
 			presentKeys.insert("message")
 			if let val = exist as? String {
-				self.message = val
+				self.message = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "message", wants: String.self, has: type(of: exist)))
@@ -616,6 +634,9 @@ open class TestReportSetupActionOperation: BackboneElement {
 		}
 		if let result = self.result {
 			json["result"] = result.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "result"))
 		}
 		
 		return json
@@ -673,6 +694,9 @@ open class TestReportTeardown: BackboneElement {
 		if let action = self.action {
 			json["action"] = action.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "action"))
+		}
 		
 		return json
 	}
@@ -728,6 +752,9 @@ open class TestReportTeardownAction: BackboneElement {
 		if let operation = self.operation {
 			json["operation"] = operation.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "operation"))
+		}
 		
 		return json
 	}
@@ -746,10 +773,10 @@ open class TestReportTest: BackboneElement {
 	public var action: [TestReportTestAction]?
 	
 	/// Tracking/reporting short description of the test.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Tracking/logging name of this test.
-	public var name: String?
+	public var name: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -781,7 +808,7 @@ open class TestReportTest: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -790,7 +817,7 @@ open class TestReportTest: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -804,6 +831,9 @@ open class TestReportTest: BackboneElement {
 		
 		if let action = self.action {
 			json["action"] = action.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "action"))
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()

@@ -65,7 +65,7 @@ open class DosageInstruction: Element {
 	public var site: CodeableConcept?
 	
 	/// Free text dosage instructions e.g. SIG.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// When medication should be administered.
 	public var timing: Timing?
@@ -276,7 +276,7 @@ open class DosageInstruction: Element {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))

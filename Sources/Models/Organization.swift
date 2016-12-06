@@ -28,7 +28,7 @@ open class Organization: DomainResource {
 	public var address: [Address]?
 	
 	/// A list of alternate names that the organization is known as, or was known as in the past.
-	public var alias: [String]?
+	public var alias: [FHIRString]?
 	
 	/// Contact for the organization for a certain purpose.
 	public var contact: [OrganizationContact]?
@@ -40,7 +40,7 @@ open class Organization: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Name used for the organization.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// The organization of which this organization forms a part.
 	public var partOf: Reference?
@@ -80,7 +80,7 @@ open class Organization: DomainResource {
 		if let exist = json["alias"] {
 			presentKeys.insert("alias")
 			if let val = exist as? [String] {
-				self.alias = val
+				self.alias = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "alias", wants: Array<String>.self, has: type(of: exist)))
@@ -131,7 +131,7 @@ open class Organization: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))

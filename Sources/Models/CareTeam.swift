@@ -30,7 +30,7 @@ open class CareTeam: DomainResource {
 	public var managingOrganization: [Reference]?
 	
 	/// Name of the team, such as crisis assessment team.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Members of the team.
 	public var participant: [CareTeamParticipant]?
@@ -92,7 +92,7 @@ open class CareTeam: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))

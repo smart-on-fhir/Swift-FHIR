@@ -245,7 +245,7 @@ open class FHIROpenServer: FHIRServer {
 	func cababilityOperation(_ name: String) -> CapabilityStatementRestOperation? {
 		if let defs = cababilityOperations {
 			for def in defs {
-				if name == def.name {
+				if name == def.name?.string {
 					return def
 				}
 			}

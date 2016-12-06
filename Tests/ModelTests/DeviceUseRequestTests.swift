@@ -25,8 +25,8 @@ class DeviceUseRequestTests: XCTestCase {
 			let instance = try runDeviceUseRequest1()
 			try runDeviceUseRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

@@ -79,7 +79,7 @@ open class Basic: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = FHIRDate(string: val)
+				self.created = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -124,6 +124,9 @@ open class Basic: DomainResource {
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()

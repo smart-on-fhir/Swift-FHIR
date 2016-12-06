@@ -54,7 +54,7 @@ open class GuidanceResponse: DomainResource {
 	public var reasonReference: Reference?
 	
 	/// The id of the request associated with this response, if any.
-	public var requestId: String?
+	public var requestId: FHIRString?
 	
 	/// Proposed actions, if any.
 	public var result: Reference?
@@ -171,7 +171,7 @@ open class GuidanceResponse: DomainResource {
 		if let exist = json["occurrenceDateTime"] {
 			presentKeys.insert("occurrenceDateTime")
 			if let val = exist as? String {
-				self.occurrenceDateTime = DateTime(string: val)
+				self.occurrenceDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "occurrenceDateTime", wants: String.self, has: type(of: exist)))
@@ -236,7 +236,7 @@ open class GuidanceResponse: DomainResource {
 		if let exist = json["requestId"] {
 			presentKeys.insert("requestId")
 			if let val = exist as? String {
-				self.requestId = val
+				self.requestId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "requestId", wants: String.self, has: type(of: exist)))
@@ -308,6 +308,9 @@ open class GuidanceResponse: DomainResource {
 		if let module = self.module {
 			json["module"] = module.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "module"))
+		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON(errors: &errors) }
 		}
@@ -334,6 +337,9 @@ open class GuidanceResponse: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)

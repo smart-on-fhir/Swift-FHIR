@@ -25,8 +25,8 @@ class EligibilityResponseTests: XCTestCase {
 			let instance = try runEligibilityResponse1()
 			try runEligibilityResponse1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -139,8 +139,8 @@ class EligibilityResponseTests: XCTestCase {
 			let instance = try runEligibilityResponse2()
 			try runEligibilityResponse2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

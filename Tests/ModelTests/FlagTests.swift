@@ -25,8 +25,8 @@ class FlagTests: XCTestCase {
 			let instance = try runFlag1()
 			try runFlag1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -56,8 +56,8 @@ class FlagTests: XCTestCase {
 			let instance = try runFlag2()
 			try runFlag2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

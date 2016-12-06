@@ -23,17 +23,17 @@ open class Annotation: Element {
 	public var authorReference: Reference?
 	
 	/// Individual responsible for the annotation.
-	public var authorString: String?
+	public var authorString: FHIRString?
 	
 	/// The annotation  - text content.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// When the annotation was made.
 	public var time: DateTime?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(text: String) {
+	public convenience init(text: FHIRString) {
 		self.init()
 		self.text = text
 	}
@@ -58,7 +58,7 @@ open class Annotation: Element {
 		if let exist = json["authorString"] {
 			presentKeys.insert("authorString")
 			if let val = exist as? String {
-				self.authorString = val
+				self.authorString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "authorString", wants: String.self, has: type(of: exist)))
@@ -67,7 +67,7 @@ open class Annotation: Element {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
@@ -79,7 +79,7 @@ open class Annotation: Element {
 		if let exist = json["time"] {
 			presentKeys.insert("time")
 			if let val = exist as? String {
-				self.time = DateTime(string: val)
+				self.time = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "time", wants: String.self, has: type(of: exist)))
@@ -99,6 +99,9 @@ open class Annotation: Element {
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "text"))
 		}
 		if let time = self.time {
 			json["time"] = time.asJSON()

@@ -90,7 +90,7 @@ open class RelatedPerson: DomainResource {
 		if let exist = json["birthDate"] {
 			presentKeys.insert("birthDate")
 			if let val = exist as? String {
-				self.birthDate = FHIRDate(string: val)
+				self.birthDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "birthDate", wants: String.self, has: type(of: exist)))
@@ -237,6 +237,9 @@ open class RelatedPerson: DomainResource {
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)

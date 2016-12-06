@@ -25,8 +25,8 @@ class CoverageTests: XCTestCase {
 			let instance = try runCoverage1()
 			try runCoverage1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -65,8 +65,8 @@ class CoverageTests: XCTestCase {
 			let instance = try runCoverage2()
 			try runCoverage2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -98,8 +98,8 @@ class CoverageTests: XCTestCase {
 			let instance = try runCoverage3()
 			try runCoverage3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -130,8 +130,8 @@ class CoverageTests: XCTestCase {
 			let instance = try runCoverage4()
 			try runCoverage4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

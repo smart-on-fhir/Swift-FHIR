@@ -25,8 +25,8 @@ class ParametersTests: XCTestCase {
 			let instance = try runParameters1()
 			try runParameters1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

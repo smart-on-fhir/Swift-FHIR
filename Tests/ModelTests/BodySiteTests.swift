@@ -25,8 +25,8 @@ class BodySiteTests: XCTestCase {
 			let instance = try runBodySite1()
 			try runBodySite1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -53,8 +53,8 @@ class BodySiteTests: XCTestCase {
 			let instance = try runBodySite2()
 			try runBodySite2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -81,8 +81,8 @@ class BodySiteTests: XCTestCase {
 			let instance = try runBodySite3()
 			try runBodySite3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -99,7 +99,7 @@ class BodySiteTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealth.org/bodysite/identifiers")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.image?[0].contentType, "application/dicom")
-		//XCTAssertEqual(inst.image?[0].url?.absoluteString, "http://10.1.2.3:1000/wado?requestType=WADO&amp;wado_details…")
+		XCTAssertEqual(inst.image?[0].url?.absoluteString, "http://10.1.2.3:1000/wado?requestType=WADO&amp;wado_details…")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].code, "78961009")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].display, "Splenic structure (body structure)")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")

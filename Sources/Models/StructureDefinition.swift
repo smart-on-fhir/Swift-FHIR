@@ -30,16 +30,16 @@ open class StructureDefinition: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Where the extension can be used in instances.
-	public var context: [String]?
+	public var context: [FHIRString]?
 	
 	/// FluentPath invariants - when the extension can be used.
-	public var contextInvariant: [String]?
+	public var contextInvariant: [FHIRString]?
 	
 	/// If this is an extension, Identifies the context within FHIR resources where the extension can be used.
 	public var contextType: ExtensionContext?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
@@ -48,7 +48,7 @@ open class StructureDefinition: DomainResource {
 	public var derivation: TypeDerivationRule?
 	
 	/// Natural language description of the structure definition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Differential view of the structure.
 	public var differential: StructureDefinitionDifferential?
@@ -57,7 +57,7 @@ open class StructureDefinition: DomainResource {
 	public var experimental: Bool?
 	
 	/// FHIR Version this StructureDefinition targets.
-	public var fhirVersion: String?
+	public var fhirVersion: FHIRString?
 	
 	/// Additional identifier for the structure definition.
 	public var identifier: [Identifier]?
@@ -75,13 +75,13 @@ open class StructureDefinition: DomainResource {
 	public var mapping: [StructureDefinitionMapping]?
 	
 	/// Name for this structure definition (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this structure definition is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// Snapshot view of the structure.
 	public var snapshot: StructureDefinitionSnapshot?
@@ -90,10 +90,10 @@ open class StructureDefinition: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// Name for this structure definition (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Type defined or constrained by this structure.
-	public var type: String?
+	public var type: FHIRString?
 	
 	/// Logical uri to reference this structure definition (globally unique).
 	public var url: URL?
@@ -102,11 +102,11 @@ open class StructureDefinition: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the structure definition.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(abstract: Bool, kind: StructureDefinitionKind, name: String, status: PublicationStatus, type: String, url: URL) {
+	public convenience init(abstract: Bool, kind: StructureDefinitionKind, name: FHIRString, status: PublicationStatus, type: FHIRString, url: URL) {
 		self.init()
 		self.abstract = abstract
 		self.kind = kind
@@ -134,7 +134,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["baseDefinition"] {
 			presentKeys.insert("baseDefinition")
 			if let val = exist as? String {
-				self.baseDefinition = URL(string: val)
+				self.baseDefinition = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "baseDefinition", wants: String.self, has: type(of: exist)))
@@ -157,7 +157,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["context"] {
 			presentKeys.insert("context")
 			if let val = exist as? [String] {
-				self.context = val
+				self.context = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "context", wants: Array<String>.self, has: type(of: exist)))
@@ -166,7 +166,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["contextInvariant"] {
 			presentKeys.insert("contextInvariant")
 			if let val = exist as? [String] {
-				self.contextInvariant = val
+				self.contextInvariant = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contextInvariant", wants: Array<String>.self, has: type(of: exist)))
@@ -189,7 +189,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -198,7 +198,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -221,7 +221,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -253,7 +253,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["fhirVersion"] {
 			presentKeys.insert("fhirVersion")
 			if let val = exist as? String {
-				self.fhirVersion = val
+				self.fhirVersion = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fhirVersion", wants: String.self, has: type(of: exist)))
@@ -335,7 +335,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -347,7 +347,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -356,7 +356,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -396,7 +396,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -405,7 +405,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -417,7 +417,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -443,7 +443,7 @@ open class StructureDefinition: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -457,6 +457,9 @@ open class StructureDefinition: DomainResource {
 		
 		if let abstract = self.abstract {
 			json["abstract"] = abstract.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "abstract"))
 		}
 		if let baseDefinition = self.baseDefinition {
 			json["baseDefinition"] = baseDefinition.asJSON()
@@ -506,11 +509,17 @@ open class StructureDefinition: DomainResource {
 		if let kind = self.kind {
 			json["kind"] = kind.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
+		}
 		if let mapping = self.mapping {
 			json["mapping"] = mapping.map() { $0.asJSON(errors: &errors) }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
@@ -524,14 +533,23 @@ open class StructureDefinition: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		if let useContext = self.useContext {
 			json["useContext"] = useContext.map() { $0.asJSON(errors: &errors) }
@@ -594,6 +612,9 @@ open class StructureDefinitionDifferential: BackboneElement {
 		if let element = self.element {
 			json["element"] = element.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "element"))
+		}
 		
 		return json
 	}
@@ -611,20 +632,20 @@ open class StructureDefinitionMapping: BackboneElement {
 	}
 	
 	/// Versions, Issues, Scope limitations etc..
-	public var comments: String?
+	public var comments: FHIRString?
 	
 	/// Internal id when this mapping is used.
-	public var identity: String?
+	public var identity: FHIRString?
 	
 	/// Names what this mapping refers to.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Identifies what this mapping refers to.
 	public var uri: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String) {
+	public convenience init(identity: FHIRString) {
 		self.init()
 		self.identity = identity
 	}
@@ -635,7 +656,7 @@ open class StructureDefinitionMapping: BackboneElement {
 		if let exist = json["comments"] {
 			presentKeys.insert("comments")
 			if let val = exist as? String {
-				self.comments = val
+				self.comments = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -644,7 +665,7 @@ open class StructureDefinitionMapping: BackboneElement {
 		if let exist = json["identity"] {
 			presentKeys.insert("identity")
 			if let val = exist as? String {
-				self.identity = val
+				self.identity = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "identity", wants: String.self, has: type(of: exist)))
@@ -656,7 +677,7 @@ open class StructureDefinitionMapping: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -665,7 +686,7 @@ open class StructureDefinitionMapping: BackboneElement {
 		if let exist = json["uri"] {
 			presentKeys.insert("uri")
 			if let val = exist as? String {
-				self.uri = URL(string: val)
+				self.uri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uri", wants: String.self, has: type(of: exist)))
@@ -682,6 +703,9 @@ open class StructureDefinitionMapping: BackboneElement {
 		}
 		if let identity = self.identity {
 			json["identity"] = identity.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "identity"))
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -744,6 +768,9 @@ open class StructureDefinitionSnapshot: BackboneElement {
 		
 		if let element = self.element {
 			json["element"] = element.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "element"))
 		}
 		
 		return json

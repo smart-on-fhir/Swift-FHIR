@@ -44,7 +44,7 @@ open class VisionPrescription: DomainResource {
 	public var reasonReference: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -52,7 +52,7 @@ open class VisionPrescription: DomainResource {
 		if let exist = json["dateWritten"] {
 			presentKeys.insert("dateWritten")
 			if let val = exist as? String {
-				self.dateWritten = DateTime(string: val)
+				self.dateWritten = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "dateWritten", wants: String.self, has: type(of: exist)))
@@ -159,7 +159,7 @@ open class VisionPrescription: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -227,10 +227,10 @@ open class VisionPrescriptionDispense: BackboneElement {
 	public var base: CodeableConcept?
 	
 	/// Brand required.
-	public var brand: String?
+	public var brand: FHIRString?
 	
 	/// Color required.
-	public var color: String?
+	public var color: FHIRString?
 	
 	/// Lens cylinder.
 	public var cylinder: NSDecimalNumber?
@@ -245,7 +245,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 	public var eye: CodeableConcept?
 	
 	/// Notes for coatings.
-	public var note: String?
+	public var note: FHIRString?
 	
 	/// Contact lens power.
 	public var power: NSDecimalNumber?
@@ -306,7 +306,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 		if let exist = json["brand"] {
 			presentKeys.insert("brand")
 			if let val = exist as? String {
-				self.brand = val
+				self.brand = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "brand", wants: String.self, has: type(of: exist)))
@@ -315,7 +315,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 		if let exist = json["color"] {
 			presentKeys.insert("color")
 			if let val = exist as? String {
-				self.color = val
+				self.color = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "color", wants: String.self, has: type(of: exist)))
@@ -370,7 +370,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 		if let exist = json["note"] {
 			presentKeys.insert("note")
 			if let val = exist as? String {
-				self.note = val
+				self.note = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "note", wants: String.self, has: type(of: exist)))

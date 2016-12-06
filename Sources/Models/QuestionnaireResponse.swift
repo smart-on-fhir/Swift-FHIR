@@ -80,7 +80,7 @@ open class QuestionnaireResponse: DomainResource {
 		if let exist = json["authored"] {
 			presentKeys.insert("authored")
 			if let val = exist as? String {
-				self.authored = DateTime(string: val)
+				self.authored = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "authored", wants: String.self, has: type(of: exist)))
@@ -251,6 +251,9 @@ open class QuestionnaireResponse: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
@@ -280,17 +283,17 @@ open class QuestionnaireResponseItem: BackboneElement {
 	public var item: [QuestionnaireResponseItem]?
 	
 	/// Pointer to specific item from Questionnaire.
-	public var linkId: String?
+	public var linkId: FHIRString?
 	
 	/// The subject this group's answers are about.
 	public var subject: Reference?
 	
 	/// Name for group or question text.
-	public var text: String?
+	public var text: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(linkId: String) {
+	public convenience init(linkId: FHIRString) {
 		self.init()
 		self.linkId = linkId
 	}
@@ -315,7 +318,7 @@ open class QuestionnaireResponseItem: BackboneElement {
 		if let exist = json["definition"] {
 			presentKeys.insert("definition")
 			if let val = exist as? String {
-				self.definition = URL(string: val)
+				self.definition = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
@@ -338,7 +341,7 @@ open class QuestionnaireResponseItem: BackboneElement {
 		if let exist = json["linkId"] {
 			presentKeys.insert("linkId")
 			if let val = exist as? String {
-				self.linkId = val
+				self.linkId = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "linkId", wants: String.self, has: type(of: exist)))
@@ -364,7 +367,7 @@ open class QuestionnaireResponseItem: BackboneElement {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
@@ -387,6 +390,9 @@ open class QuestionnaireResponseItem: BackboneElement {
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "linkId"))
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
@@ -444,7 +450,7 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 	public var valueReference: Reference?
 	
 	/// Single-valued answer to the question.
-	public var valueString: String?
+	public var valueString: FHIRString?
 	
 	/// Single-valued answer to the question.
 	public var valueTime: FHIRTime?
@@ -509,7 +515,7 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		if let exist = json["valueDate"] {
 			presentKeys.insert("valueDate")
 			if let val = exist as? String {
-				self.valueDate = FHIRDate(string: val)
+				self.valueDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
@@ -518,7 +524,7 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -536,7 +542,7 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		if let exist = json["valueInstant"] {
 			presentKeys.insert("valueInstant")
 			if let val = exist as? String {
-				self.valueInstant = Instant(string: val)
+				self.valueInstant = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
@@ -582,7 +588,7 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		if let exist = json["valueString"] {
 			presentKeys.insert("valueString")
 			if let val = exist as? String {
-				self.valueString = val
+				self.valueString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -591,7 +597,7 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		if let exist = json["valueTime"] {
 			presentKeys.insert("valueTime")
 			if let val = exist as? String {
-				self.valueTime = FHIRTime(string: val)
+				self.valueTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
@@ -600,7 +606,7 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		if let exist = json["valueUri"] {
 			presentKeys.insert("valueUri")
 			if let val = exist as? String {
-				self.valueUri = URL(string: val)
+				self.valueUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))

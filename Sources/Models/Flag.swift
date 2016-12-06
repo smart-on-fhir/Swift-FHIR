@@ -191,6 +191,9 @@ open class Flag: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON(errors: &errors)
 		}
@@ -203,8 +206,14 @@ open class Flag: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		
 		return json

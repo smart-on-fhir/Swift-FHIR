@@ -25,8 +25,8 @@ class RelatedPersonTests: XCTestCase {
 			let instance = try runRelatedPerson1()
 			try runRelatedPerson1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -61,8 +61,8 @@ class RelatedPersonTests: XCTestCase {
 			let instance = try runRelatedPerson2()
 			try runRelatedPerson2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -93,8 +93,8 @@ class RelatedPersonTests: XCTestCase {
 			let instance = try runRelatedPerson3()
 			try runRelatedPerson3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -132,8 +132,8 @@ class RelatedPersonTests: XCTestCase {
 			let instance = try runRelatedPerson4()
 			try runRelatedPerson4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

@@ -83,7 +83,7 @@ open class NutritionRequest: DomainResource {
 		if let exist = json["dateTime"] {
 			presentKeys.insert("dateTime")
 			if let val = exist as? String {
-				self.dateTime = DateTime(string: val)
+				self.dateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "dateTime", wants: String.self, has: type(of: exist)))
@@ -247,6 +247,9 @@ open class NutritionRequest: DomainResource {
 		if let dateTime = self.dateTime {
 			json["dateTime"] = dateTime.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "dateTime"))
+		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON(errors: &errors)
 		}
@@ -270,6 +273,9 @@ open class NutritionRequest: DomainResource {
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
@@ -295,7 +301,7 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 	}
 	
 	/// Product or brand name of the modular additive.
-	public var additiveProductName: String?
+	public var additiveProductName: FHIRString?
 	
 	/// Type of modular component to add to the feeding.
 	public var additiveType: CodeableConcept?
@@ -304,10 +310,10 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 	public var administration: [NutritionRequestEnteralFormulaAdministration]?
 	
 	/// Formula feeding instructions expressed as text.
-	public var administrationInstruction: String?
+	public var administrationInstruction: FHIRString?
 	
 	/// Product or brand name of the enteral or infant formula.
-	public var baseFormulaProductName: String?
+	public var baseFormulaProductName: FHIRString?
 	
 	/// Type of enteral or infant formula.
 	public var baseFormulaType: CodeableConcept?
@@ -327,7 +333,7 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 		if let exist = json["additiveProductName"] {
 			presentKeys.insert("additiveProductName")
 			if let val = exist as? String {
-				self.additiveProductName = val
+				self.additiveProductName = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "additiveProductName", wants: String.self, has: type(of: exist)))
@@ -364,7 +370,7 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 		if let exist = json["administrationInstruction"] {
 			presentKeys.insert("administrationInstruction")
 			if let val = exist as? String {
-				self.administrationInstruction = val
+				self.administrationInstruction = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "administrationInstruction", wants: String.self, has: type(of: exist)))
@@ -373,7 +379,7 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 		if let exist = json["baseFormulaProductName"] {
 			presentKeys.insert("baseFormulaProductName")
 			if let val = exist as? String {
-				self.baseFormulaProductName = val
+				self.baseFormulaProductName = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "baseFormulaProductName", wants: String.self, has: type(of: exist)))
@@ -595,7 +601,7 @@ open class NutritionRequestOralDiet: BackboneElement {
 	public var fluidConsistencyType: [CodeableConcept]?
 	
 	/// Instructions or additional information about the oral diet.
-	public var instruction: String?
+	public var instruction: FHIRString?
 	
 	/// Required  nutrient modifications.
 	public var nutrient: [NutritionRequestOralDietNutrient]?
@@ -629,7 +635,7 @@ open class NutritionRequestOralDiet: BackboneElement {
 		if let exist = json["instruction"] {
 			presentKeys.insert("instruction")
 			if let val = exist as? String {
-				self.instruction = val
+				self.instruction = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "instruction", wants: String.self, has: type(of: exist)))
@@ -863,10 +869,10 @@ open class NutritionRequestSupplement: BackboneElement {
 	}
 	
 	/// Instructions or additional information about the oral supplement.
-	public var instruction: String?
+	public var instruction: FHIRString?
 	
 	/// Product or brand name of the nutritional supplement.
-	public var productName: String?
+	public var productName: FHIRString?
 	
 	/// Amount of the nutritional supplement.
 	public var quantity: Quantity?
@@ -883,7 +889,7 @@ open class NutritionRequestSupplement: BackboneElement {
 		if let exist = json["instruction"] {
 			presentKeys.insert("instruction")
 			if let val = exist as? String {
-				self.instruction = val
+				self.instruction = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "instruction", wants: String.self, has: type(of: exist)))
@@ -892,7 +898,7 @@ open class NutritionRequestSupplement: BackboneElement {
 		if let exist = json["productName"] {
 			presentKeys.insert("productName")
 			if let val = exist as? String {
-				self.productName = val
+				self.productName = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "productName", wants: String.self, has: type(of: exist)))

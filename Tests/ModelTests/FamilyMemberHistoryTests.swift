@@ -25,8 +25,8 @@ class FamilyMemberHistoryTests: XCTestCase {
 			let instance = try runFamilyMemberHistory1()
 			try runFamilyMemberHistory1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -59,8 +59,8 @@ class FamilyMemberHistoryTests: XCTestCase {
 			let instance = try runFamilyMemberHistory2()
 			try runFamilyMemberHistory2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

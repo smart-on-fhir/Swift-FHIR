@@ -25,8 +25,8 @@ class DeviceComponentTests: XCTestCase {
 			let instance = try runDeviceComponent1()
 			try runDeviceComponent1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -70,8 +70,8 @@ class DeviceComponentTests: XCTestCase {
 			let instance = try runDeviceComponent2()
 			try runDeviceComponent2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

@@ -25,8 +25,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan1()
 			try runCarePlan1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -70,8 +70,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan2()
 			try runCarePlan2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -115,8 +115,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan3()
 			try runCarePlan3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -160,8 +160,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan4()
 			try runCarePlan4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -213,8 +213,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan5()
 			try runCarePlan5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -256,8 +256,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan6()
 			try runCarePlan6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -295,8 +295,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan7()
 			try runCarePlan7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -347,8 +347,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan8()
 			try runCarePlan8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -503,8 +503,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan9()
 			try runCarePlan9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -577,8 +577,8 @@ class CarePlanTests: XCTestCase {
 			let instance = try runCarePlan10()
 			try runCarePlan10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

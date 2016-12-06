@@ -26,7 +26,7 @@ open class PaymentReconciliation: DomainResource {
 	public var detail: [PaymentReconciliationDetail]?
 	
 	/// Disposition Message.
-	public var disposition: String?
+	public var disposition: FHIRString?
 	
 	/// Printed Form Identifier.
 	public var form: CodeableConcept?
@@ -56,7 +56,7 @@ open class PaymentReconciliation: DomainResource {
 	public var requestProvider: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	/// Total amount of Payment.
 	public var total: Money?
@@ -67,7 +67,7 @@ open class PaymentReconciliation: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -90,7 +90,7 @@ open class PaymentReconciliation: DomainResource {
 		if let exist = json["disposition"] {
 			presentKeys.insert("disposition")
 			if let val = exist as? String {
-				self.disposition = val
+				self.disposition = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -225,7 +225,7 @@ open class PaymentReconciliation: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -357,7 +357,7 @@ open class PaymentReconciliationDetail: BackboneElement {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = FHIRDate(string: val)
+				self.date = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -463,6 +463,9 @@ open class PaymentReconciliationDetail: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -480,7 +483,7 @@ open class PaymentReconciliationNote: BackboneElement {
 	}
 	
 	/// Notes text.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// display | print | printoper.
 	public var type: CodeableConcept?
@@ -491,7 +494,7 @@ open class PaymentReconciliationNote: BackboneElement {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))

@@ -20,7 +20,7 @@ open class ContactDetail: Element {
 	}
 	
 	/// Name of an individual to contact.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Contact details for individual or organization.
 	public var telecom: [ContactPoint]?
@@ -31,7 +31,7 @@ open class ContactDetail: Element {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))

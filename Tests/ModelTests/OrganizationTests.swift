@@ -25,8 +25,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization1()
 			try runOrganization1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -79,8 +79,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization2()
 			try runOrganization2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -118,8 +118,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization3()
 			try runOrganization3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -157,8 +157,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization4()
 			try runOrganization4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -212,8 +212,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization5()
 			try runOrganization5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -251,8 +251,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization6()
 			try runOrganization6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -282,8 +282,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization7()
 			try runOrganization7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -305,8 +305,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization8()
 			try runOrganization8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -329,8 +329,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization9()
 			try runOrganization9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -358,8 +358,8 @@ class OrganizationTests: XCTestCase {
 			let instance = try runOrganization10()
 			try runOrganization10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

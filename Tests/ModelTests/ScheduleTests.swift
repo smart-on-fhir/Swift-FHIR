@@ -25,8 +25,8 @@ class ScheduleTests: XCTestCase {
 			let instance = try runSchedule1()
 			try runSchedule1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Schedule successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Schedule successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

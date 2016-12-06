@@ -21,7 +21,7 @@ open class SampledData: Element {
 	}
 	
 	/// Decimal values with spaces, or "E" | "U" | "L".
-	public var data: String?
+	public var data: FHIRString?
 	
 	/// Number of sample points at each time point.
 	public var dimensions: UInt?
@@ -43,7 +43,7 @@ open class SampledData: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(data: String, dimensions: UInt, origin: Quantity, period: NSDecimalNumber) {
+	public convenience init(data: FHIRString, dimensions: UInt, origin: Quantity, period: NSDecimalNumber) {
 		self.init()
 		self.data = data
 		self.dimensions = dimensions
@@ -57,7 +57,7 @@ open class SampledData: Element {
 		if let exist = json["data"] {
 			presentKeys.insert("data")
 			if let val = exist as? String {
-				self.data = val
+				self.data = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "data", wants: String.self, has: type(of: exist)))
@@ -143,8 +143,14 @@ open class SampledData: Element {
 		if let data = self.data {
 			json["data"] = data.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "data"))
+		}
 		if let dimensions = self.dimensions {
 			json["dimensions"] = dimensions.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "dimensions"))
 		}
 		if let factor = self.factor {
 			json["factor"] = factor.asJSON()
@@ -155,8 +161,14 @@ open class SampledData: Element {
 		if let origin = self.origin {
 			json["origin"] = origin.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "origin"))
+		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "period"))
 		}
 		if let upperLimit = self.upperLimit {
 			json["upperLimit"] = upperLimit.asJSON()

@@ -22,13 +22,13 @@ open class Appointment: DomainResource {
 	public var appointmentType: CodeableConcept?
 	
 	/// Additional comments.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// The date that this appointment was initially created.
 	public var created: DateTime?
 	
 	/// Shown on a subject line in a meeting request, or appointment list.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// When appointment is to conclude.
 	public var end: Instant?
@@ -98,7 +98,7 @@ open class Appointment: DomainResource {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -107,7 +107,7 @@ open class Appointment: DomainResource {
 		if let exist = json["created"] {
 			presentKeys.insert("created")
 			if let val = exist as? String {
-				self.created = DateTime(string: val)
+				self.created = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
@@ -116,7 +116,7 @@ open class Appointment: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -125,7 +125,7 @@ open class Appointment: DomainResource {
 		if let exist = json["end"] {
 			presentKeys.insert("end")
 			if let val = exist as? String {
-				self.end = Instant(string: val)
+				self.end = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "end", wants: String.self, has: type(of: exist)))
@@ -267,7 +267,7 @@ open class Appointment: DomainResource {
 		if let exist = json["start"] {
 			presentKeys.insert("start")
 			if let val = exist as? String {
-				self.start = Instant(string: val)
+				self.start = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "start", wants: String.self, has: type(of: exist)))
@@ -320,6 +320,9 @@ open class Appointment: DomainResource {
 		if let participant = self.participant {
 			json["participant"] = participant.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "participant"))
+		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
 		}
@@ -346,6 +349,9 @@ open class Appointment: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		
 		return json
@@ -459,6 +465,9 @@ open class AppointmentParticipant: BackboneElement {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let type = self.type {
 			json["type"] = type.map() { $0.asJSON(errors: &errors) }

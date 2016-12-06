@@ -200,7 +200,7 @@ open class Communication: DomainResource {
 		if let exist = json["received"] {
 			presentKeys.insert("received")
 			if let val = exist as? String {
-				self.received = DateTime(string: val)
+				self.received = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "received", wants: String.self, has: type(of: exist)))
@@ -237,7 +237,7 @@ open class Communication: DomainResource {
 		if let exist = json["sent"] {
 			presentKeys.insert("sent")
 			if let val = exist as? String {
-				self.sent = DateTime(string: val)
+				self.sent = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "sent", wants: String.self, has: type(of: exist)))
@@ -362,13 +362,13 @@ open class CommunicationPayload: BackboneElement {
 	public var contentReference: Reference?
 	
 	/// Message part content.
-	public var contentString: String?
+	public var contentString: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(content: Any) {
 		self.init()
-		if let value = content as? String {
+		if let value = content as? FHIRString {
 			self.contentString = value
 		}
 		else if let value = content as? Attachment {
@@ -416,7 +416,7 @@ open class CommunicationPayload: BackboneElement {
 		if let exist = json["contentString"] {
 			presentKeys.insert("contentString")
 			if let val = exist as? String {
-				self.contentString = val
+				self.contentString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentString", wants: String.self, has: type(of: exist)))
@@ -441,6 +441,11 @@ open class CommunicationPayload: BackboneElement {
 		}
 		if let contentString = self.contentString {
 			json["contentString"] = contentString.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.contentString && nil == self.contentAttachment && nil == self.contentReference {
+			errors.append(FHIRValidationError(missing: "content[x]"))
 		}
 		
 		return json

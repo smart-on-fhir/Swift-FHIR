@@ -20,7 +20,7 @@ open class Attachment: Element {
 	}
 	
 	/// Mime type of the content, with charset etc..
-	public var contentType: String?
+	public var contentType: FHIRString?
 	
 	/// Date attachment was first created.
 	public var creation: DateTime?
@@ -32,13 +32,13 @@ open class Attachment: Element {
 	public var hash: Base64Binary?
 	
 	/// Human language of the content (BCP-47).
-	public var language: String?
+	public var language: FHIRString?
 	
 	/// Number of bytes of content (if url provided).
 	public var size: UInt?
 	
 	/// Label to display in place of the data.
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Uri where the data can be found.
 	public var url: URL?
@@ -49,7 +49,7 @@ open class Attachment: Element {
 		if let exist = json["contentType"] {
 			presentKeys.insert("contentType")
 			if let val = exist as? String {
-				self.contentType = val
+				self.contentType = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -58,7 +58,7 @@ open class Attachment: Element {
 		if let exist = json["creation"] {
 			presentKeys.insert("creation")
 			if let val = exist as? String {
-				self.creation = DateTime(string: val)
+				self.creation = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "creation", wants: String.self, has: type(of: exist)))
@@ -67,7 +67,7 @@ open class Attachment: Element {
 		if let exist = json["data"] {
 			presentKeys.insert("data")
 			if let val = exist as? String {
-				self.data = Base64Binary(string: val)
+				self.data = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "data", wants: String.self, has: type(of: exist)))
@@ -76,7 +76,7 @@ open class Attachment: Element {
 		if let exist = json["hash"] {
 			presentKeys.insert("hash")
 			if let val = exist as? String {
-				self.hash = Base64Binary(string: val)
+				self.hash = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "hash", wants: String.self, has: type(of: exist)))
@@ -85,7 +85,7 @@ open class Attachment: Element {
 		if let exist = json["language"] {
 			presentKeys.insert("language")
 			if let val = exist as? String {
-				self.language = val
+				self.language = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
@@ -103,7 +103,7 @@ open class Attachment: Element {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -112,7 +112,7 @@ open class Attachment: Element {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))

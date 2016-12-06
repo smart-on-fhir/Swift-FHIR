@@ -25,8 +25,8 @@ class RiskAssessmentTests: XCTestCase {
 			let instance = try runRiskAssessment1()
 			try runRiskAssessment1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -61,8 +61,8 @@ class RiskAssessmentTests: XCTestCase {
 			let instance = try runRiskAssessment2()
 			try runRiskAssessment2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -82,8 +82,8 @@ class RiskAssessmentTests: XCTestCase {
 			let instance = try runRiskAssessment3()
 			try runRiskAssessment3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -112,8 +112,8 @@ class RiskAssessmentTests: XCTestCase {
 			let instance = try runRiskAssessment4()
 			try runRiskAssessment4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

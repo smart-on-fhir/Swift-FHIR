@@ -295,6 +295,11 @@ open class MedicationPackageContent: BackboneElement {
 			json["itemReference"] = itemReference.asJSON(errors: &errors)
 		}
 		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.itemCodeableConcept && nil == self.itemReference {
+			errors.append(FHIRValidationError(missing: "item[x]"))
+		}
+		
 		return json
 	}
 }
@@ -399,7 +404,7 @@ open class MedicationProductBatch: BackboneElement {
 	public var expirationDate: DateTime?
 	
 	/// Identifier assigned to batch.
-	public var lotNumber: String?
+	public var lotNumber: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -407,7 +412,7 @@ open class MedicationProductBatch: BackboneElement {
 		if let exist = json["expirationDate"] {
 			presentKeys.insert("expirationDate")
 			if let val = exist as? String {
-				self.expirationDate = DateTime(string: val)
+				self.expirationDate = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "expirationDate", wants: String.self, has: type(of: exist)))
@@ -416,7 +421,7 @@ open class MedicationProductBatch: BackboneElement {
 		if let exist = json["lotNumber"] {
 			presentKeys.insert("lotNumber")
 			if let val = exist as? String {
-				self.lotNumber = val
+				self.lotNumber = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "lotNumber", wants: String.self, has: type(of: exist)))
@@ -538,6 +543,11 @@ open class MedicationProductIngredient: BackboneElement {
 		}
 		if let itemReference = self.itemReference {
 			json["itemReference"] = itemReference.asJSON(errors: &errors)
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.itemCodeableConcept && nil == self.itemReference {
+			errors.append(FHIRValidationError(missing: "item[x]"))
 		}
 		
 		return json

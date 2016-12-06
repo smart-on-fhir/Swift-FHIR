@@ -24,13 +24,13 @@ open class ConceptMap: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the concept map.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -45,13 +45,13 @@ open class ConceptMap: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this concept map (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this concept map is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// Identifies the source of the concepts which are being mapped.
 	public var sourceReference: Reference?
@@ -69,7 +69,7 @@ open class ConceptMap: DomainResource {
 	public var targetUri: URL?
 	
 	/// Name for this concept map (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this concept map (globally unique).
 	public var url: URL?
@@ -78,7 +78,7 @@ open class ConceptMap: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the concept map.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -107,7 +107,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -116,7 +116,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -125,7 +125,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -185,7 +185,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -194,7 +194,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -203,7 +203,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -226,7 +226,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["sourceUri"] {
 			presentKeys.insert("sourceUri")
 			if let val = exist as? String {
-				self.sourceUri = URL(string: val)
+				self.sourceUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "sourceUri", wants: String.self, has: type(of: exist)))
@@ -266,7 +266,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["targetUri"] {
 			presentKeys.insert("targetUri")
 			if let val = exist as? String {
-				self.targetUri = URL(string: val)
+				self.targetUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "targetUri", wants: String.self, has: type(of: exist)))
@@ -275,7 +275,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -284,7 +284,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -307,7 +307,7 @@ open class ConceptMap: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -361,6 +361,9 @@ open class ConceptMap: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let targetReference = self.targetReference {
 			json["targetReference"] = targetReference.asJSON(errors: &errors)
 		}
@@ -402,13 +405,13 @@ open class ConceptMapGroup: BackboneElement {
 	public var source: URL?
 	
 	/// Specific version of the  code system.
-	public var sourceVersion: String?
+	public var sourceVersion: FHIRString?
 	
 	/// System of the target (if necessary).
 	public var target: URL?
 	
 	/// Specific version of the  code system.
-	public var targetVersion: String?
+	public var targetVersion: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -441,7 +444,7 @@ open class ConceptMapGroup: BackboneElement {
 		if let exist = json["source"] {
 			presentKeys.insert("source")
 			if let val = exist as? String {
-				self.source = URL(string: val)
+				self.source = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "source", wants: String.self, has: type(of: exist)))
@@ -453,7 +456,7 @@ open class ConceptMapGroup: BackboneElement {
 		if let exist = json["sourceVersion"] {
 			presentKeys.insert("sourceVersion")
 			if let val = exist as? String {
-				self.sourceVersion = val
+				self.sourceVersion = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "sourceVersion", wants: String.self, has: type(of: exist)))
@@ -462,7 +465,7 @@ open class ConceptMapGroup: BackboneElement {
 		if let exist = json["target"] {
 			presentKeys.insert("target")
 			if let val = exist as? String {
-				self.target = URL(string: val)
+				self.target = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "target", wants: String.self, has: type(of: exist)))
@@ -471,7 +474,7 @@ open class ConceptMapGroup: BackboneElement {
 		if let exist = json["targetVersion"] {
 			presentKeys.insert("targetVersion")
 			if let val = exist as? String {
-				self.targetVersion = val
+				self.targetVersion = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "targetVersion", wants: String.self, has: type(of: exist)))
@@ -486,8 +489,14 @@ open class ConceptMapGroup: BackboneElement {
 		if let element = self.element {
 			json["element"] = element.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "element"))
+		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "source"))
 		}
 		if let sourceVersion = self.sourceVersion {
 			json["sourceVersion"] = sourceVersion.asJSON()
@@ -515,7 +524,7 @@ open class ConceptMapGroupElement: BackboneElement {
 	}
 	
 	/// Identifies element being mapped.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Concept in target system for element.
 	public var target: [ConceptMapGroupElementTarget]?
@@ -526,7 +535,7 @@ open class ConceptMapGroupElement: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -575,10 +584,10 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 	}
 	
 	/// Code that identifies the target element.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Description of status/issues in mapping.
-	public var comments: String?
+	public var comments: FHIRString?
 	
 	/// Other elements required for this mapping (from context).
 	public var dependsOn: [ConceptMapGroupElementTargetDependsOn]?
@@ -596,7 +605,7 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -605,7 +614,7 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		if let exist = json["comments"] {
 			presentKeys.insert("comments")
 			if let val = exist as? String {
-				self.comments = val
+				self.comments = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -692,7 +701,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 	}
 	
 	/// Value of the referenced element.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Reference to property mapping depends on.
 	public var property: URL?
@@ -702,7 +711,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, property: URL) {
+	public convenience init(code: FHIRString, property: URL) {
 		self.init()
 		self.code = code
 		self.property = property
@@ -714,7 +723,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -726,7 +735,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		if let exist = json["property"] {
 			presentKeys.insert("property")
 			if let val = exist as? String {
-				self.property = URL(string: val)
+				self.property = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "property", wants: String.self, has: type(of: exist)))
@@ -738,7 +747,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		if let exist = json["system"] {
 			presentKeys.insert("system")
 			if let val = exist as? String {
-				self.system = URL(string: val)
+				self.system = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
@@ -753,8 +762,14 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let property = self.property {
 			json["property"] = property.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "property"))
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()

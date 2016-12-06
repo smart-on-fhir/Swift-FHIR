@@ -33,7 +33,7 @@ open class DiagnosticReport: DomainResource {
 	public var codedDiagnosis: [CodeableConcept]?
 	
 	/// Clinical Interpretation of test results.
-	public var conclusion: String?
+	public var conclusion: FHIRString?
 	
 	/// Clinically Relevant time/time-period for report.
 	public var effectiveDateTime: DateTime?
@@ -136,7 +136,7 @@ open class DiagnosticReport: DomainResource {
 		if let exist = json["conclusion"] {
 			presentKeys.insert("conclusion")
 			if let val = exist as? String {
-				self.conclusion = val
+				self.conclusion = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "conclusion", wants: String.self, has: type(of: exist)))
@@ -145,7 +145,7 @@ open class DiagnosticReport: DomainResource {
 		if let exist = json["effectiveDateTime"] {
 			presentKeys.insert("effectiveDateTime")
 			if let val = exist as? String {
-				self.effectiveDateTime = DateTime(string: val)
+				self.effectiveDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "effectiveDateTime", wants: String.self, has: type(of: exist)))
@@ -224,7 +224,7 @@ open class DiagnosticReport: DomainResource {
 		if let exist = json["issued"] {
 			presentKeys.insert("issued")
 			if let val = exist as? String {
-				self.issued = Instant(string: val)
+				self.issued = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "issued", wants: String.self, has: type(of: exist)))
@@ -343,6 +343,9 @@ open class DiagnosticReport: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let codedDiagnosis = self.codedDiagnosis {
 			json["codedDiagnosis"] = codedDiagnosis.map() { $0.asJSON(errors: &errors) }
 		}
@@ -388,6 +391,9 @@ open class DiagnosticReport: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON(errors: &errors)
 		}
@@ -409,7 +415,7 @@ open class DiagnosticReportImage: BackboneElement {
 	}
 	
 	/// Comment about the image (e.g. explanation).
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Reference to the image source.
 	public var link: Reference?
@@ -427,7 +433,7 @@ open class DiagnosticReportImage: BackboneElement {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -461,6 +467,9 @@ open class DiagnosticReportImage: BackboneElement {
 		}
 		if let link = self.link {
 			json["link"] = link.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "link"))
 		}
 		
 		return json

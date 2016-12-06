@@ -187,7 +187,7 @@ open class SupplyDelivery: DomainResource {
 		if let exist = json["time"] {
 			presentKeys.insert("time")
 			if let val = exist as? String {
-				self.time = DateTime(string: val)
+				self.time = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "time", wants: String.self, has: type(of: exist)))

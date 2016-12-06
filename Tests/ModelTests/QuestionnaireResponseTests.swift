@@ -25,8 +25,8 @@ class QuestionnaireResponseTests: XCTestCase {
 			let instance = try runQuestionnaireResponse1()
 			try runQuestionnaireResponse1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -85,8 +85,8 @@ class QuestionnaireResponseTests: XCTestCase {
 			let instance = try runQuestionnaireResponse2()
 			try runQuestionnaireResponse2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -137,8 +137,8 @@ class QuestionnaireResponseTests: XCTestCase {
 			let instance = try runQuestionnaireResponse3()
 			try runQuestionnaireResponse3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -181,8 +181,8 @@ class QuestionnaireResponseTests: XCTestCase {
 			let instance = try runQuestionnaireResponse4()
 			try runQuestionnaireResponse4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

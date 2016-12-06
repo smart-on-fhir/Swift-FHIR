@@ -33,7 +33,7 @@ open class ContactPoint: Element {
 	public var use: ContactPointUse?
 	
 	/// The actual contact point details.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -92,7 +92,7 @@ open class ContactPoint: Element {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))

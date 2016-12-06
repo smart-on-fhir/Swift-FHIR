@@ -64,7 +64,7 @@ open class MeasureReport: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -212,11 +212,17 @@ open class MeasureReport: DomainResource {
 		if let measure = self.measure {
 			json["measure"] = measure.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "measure"))
+		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "period"))
 		}
 		if let reportingOrganization = self.reportingOrganization {
 			json["reportingOrganization"] = reportingOrganization.asJSON(errors: &errors)
@@ -224,8 +230,14 @@ open class MeasureReport: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -345,6 +357,9 @@ open class MeasureReportGroup: BackboneElement {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
+		}
 		if let measureScore = self.measureScore {
 			json["measureScore"] = measureScore.asJSON()
 		}
@@ -447,6 +462,9 @@ open class MeasureReportGroupPopulation: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -523,6 +541,9 @@ open class MeasureReportGroupStratifier: BackboneElement {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
+		}
 		
 		return json
 	}
@@ -547,11 +568,11 @@ open class MeasureReportGroupStratifierGroup: BackboneElement {
 	public var population: [MeasureReportGroupStratifierGroupPopulation]?
 	
 	/// The stratum value, e.g. male.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(value: String) {
+	public convenience init(value: FHIRString) {
 		self.init()
 		self.value = value
 	}
@@ -585,7 +606,7 @@ open class MeasureReportGroupStratifierGroup: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -608,6 +629,9 @@ open class MeasureReportGroupStratifierGroup: BackboneElement {
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
 		return json
@@ -699,6 +723,9 @@ open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -775,6 +802,9 @@ open class MeasureReportGroupSupplementalData: BackboneElement {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
+		}
 		
 		return json
 	}
@@ -799,11 +829,11 @@ open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
 	public var patients: Reference?
 	
 	/// The data value, e.g. male.
-	public var value: String?
+	public var value: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(value: String) {
+	public convenience init(value: FHIRString) {
 		self.init()
 		self.value = value
 	}
@@ -837,7 +867,7 @@ open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
 		if let exist = json["value"] {
 			presentKeys.insert("value")
 			if let val = exist as? String {
-				self.value = val
+				self.value = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
@@ -860,6 +890,9 @@ open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
 		return json

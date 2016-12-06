@@ -25,8 +25,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation1()
 			try runObservation1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -138,8 +138,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation2()
 			try runObservation2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -251,8 +251,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation3()
 			try runObservation3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -346,8 +346,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation4()
 			try runObservation4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -441,8 +441,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation5()
 			try runObservation5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -554,8 +554,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation6()
 			try runObservation6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -610,8 +610,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation7()
 			try runObservation7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -668,8 +668,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation8()
 			try runObservation8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -727,8 +727,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation9()
 			try runObservation9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -762,8 +762,8 @@ class ObservationTests: XCTestCase {
 			let instance = try runObservation10()
 			try runObservation10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

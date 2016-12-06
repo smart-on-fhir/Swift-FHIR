@@ -25,8 +25,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice1()
 			try runDevice1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -57,8 +57,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice2()
 			try runDevice2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -85,8 +85,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice3()
 			try runDevice3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -116,8 +116,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice4()
 			try runDevice4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -144,8 +144,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice5()
 			try runDevice5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -185,8 +185,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice6()
 			try runDevice6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -221,8 +221,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice7()
 			try runDevice7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -258,8 +258,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice8()
 			try runDevice8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -289,8 +289,8 @@ class DeviceTests: XCTestCase {
 			let instance = try runDevice9()
 			try runDevice9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

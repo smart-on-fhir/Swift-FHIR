@@ -24,10 +24,10 @@ open class OperationDefinition: DomainResource {
 	public var base: Reference?
 	
 	/// Name used to invoke the operation.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Additional information about use.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
@@ -36,7 +36,7 @@ open class OperationDefinition: DomainResource {
 	public var date: DateTime?
 	
 	/// Natural language description of the operation definition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -54,7 +54,7 @@ open class OperationDefinition: DomainResource {
 	public var kind: OperationKind?
 	
 	/// Name for this operation definition (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// For generating overloaded methods in code.
 	public var overload: [OperationDefinitionOverload]?
@@ -63,13 +63,13 @@ open class OperationDefinition: DomainResource {
 	public var parameter: [OperationDefinitionParameter]?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this operation definition is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// Types this operation applies to.
-	public var resource: [String]?
+	public var resource: [FHIRString]?
 	
 	/// The status of this operation definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -87,11 +87,11 @@ open class OperationDefinition: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the operation definition.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, instance: Bool, kind: OperationKind, name: String, status: PublicationStatus, system: Bool, type: Bool) {
+	public convenience init(code: FHIRString, instance: Bool, kind: OperationKind, name: FHIRString, status: PublicationStatus, system: Bool, type: Bool) {
 		self.init()
 		self.code = code
 		self.instance = instance
@@ -122,7 +122,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -134,7 +134,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -157,7 +157,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -166,7 +166,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -236,7 +236,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -276,7 +276,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -285,7 +285,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -294,7 +294,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["resource"] {
 			presentKeys.insert("resource")
 			if let val = exist as? [String] {
-				self.resource = val
+				self.resource = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "resource", wants: Array<String>.self, has: type(of: exist)))
@@ -344,7 +344,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -367,7 +367,7 @@ open class OperationDefinition: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -384,6 +384,9 @@ open class OperationDefinition: DomainResource {
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
@@ -406,14 +409,23 @@ open class OperationDefinition: DomainResource {
 		if let instance = self.instance {
 			json["instance"] = instance.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "instance"))
+		}
 		if let jurisdiction = self.jurisdiction {
 			json["jurisdiction"] = jurisdiction.map() { $0.asJSON(errors: &errors) }
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let overload = self.overload {
 			json["overload"] = overload.map() { $0.asJSON(errors: &errors) }
@@ -433,11 +445,20 @@ open class OperationDefinition: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "system"))
+		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -465,10 +486,10 @@ open class OperationDefinitionOverload: BackboneElement {
 	}
 	
 	/// Comments to go on overload.
-	public var comment: String?
+	public var comment: FHIRString?
 	
 	/// Name of parameter to include in overload.
-	public var parameterName: [String]?
+	public var parameterName: [FHIRString]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -476,7 +497,7 @@ open class OperationDefinitionOverload: BackboneElement {
 		if let exist = json["comment"] {
 			presentKeys.insert("comment")
 			if let val = exist as? String {
-				self.comment = val
+				self.comment = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -485,7 +506,7 @@ open class OperationDefinitionOverload: BackboneElement {
 		if let exist = json["parameterName"] {
 			presentKeys.insert("parameterName")
 			if let val = exist as? [String] {
-				self.parameterName = val
+				self.parameterName = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "parameterName", wants: Array<String>.self, has: type(of: exist)))
@@ -523,16 +544,16 @@ open class OperationDefinitionParameter: BackboneElement {
 	public var binding: OperationDefinitionParameterBinding?
 	
 	/// Description of meaning/use.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Maximum Cardinality (a number or *).
-	public var max: String?
+	public var max: FHIRString?
 	
 	/// Minimum Cardinality.
 	public var min: Int?
 	
 	/// Name in Parameters.parameter.name or in URL.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Parts of a nested Parameter.
 	public var part: [OperationDefinitionParameter]?
@@ -544,14 +565,14 @@ open class OperationDefinitionParameter: BackboneElement {
 	public var searchType: SearchParamType?
 	
 	/// What type this parameter has.
-	public var type: String?
+	public var type: FHIRString?
 	
 	/// Whether this is an input or an output parameter.
 	public var use: OperationParameterUse?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(max: String, min: Int, name: String, use: OperationParameterUse) {
+	public convenience init(max: FHIRString, min: Int, name: FHIRString, use: OperationParameterUse) {
 		self.init()
 		self.max = max
 		self.min = min
@@ -579,7 +600,7 @@ open class OperationDefinitionParameter: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -588,7 +609,7 @@ open class OperationDefinitionParameter: BackboneElement {
 		if let exist = json["max"] {
 			presentKeys.insert("max")
 			if let val = exist as? String {
-				self.max = val
+				self.max = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "max", wants: String.self, has: type(of: exist)))
@@ -612,7 +633,7 @@ open class OperationDefinitionParameter: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -666,7 +687,7 @@ open class OperationDefinitionParameter: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -704,11 +725,20 @@ open class OperationDefinitionParameter: BackboneElement {
 		if let max = self.max {
 			json["max"] = max.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "max"))
+		}
 		if let min = self.min {
 			json["min"] = min.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "min"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let part = self.part {
 			json["part"] = part.map() { $0.asJSON(errors: &errors) }
@@ -724,6 +754,9 @@ open class OperationDefinitionParameter: BackboneElement {
 		}
 		if let use = self.use {
 			json["use"] = use.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "use"))
 		}
 		
 		return json
@@ -804,7 +837,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		if let exist = json["valueSetUri"] {
 			presentKeys.insert("valueSetUri")
 			if let val = exist as? String {
-				self.valueSetUri = URL(string: val)
+				self.valueSetUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueSetUri", wants: String.self, has: type(of: exist)))
@@ -824,11 +857,19 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		if let strength = self.strength {
 			json["strength"] = strength.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "strength"))
+		}
 		if let valueSetReference = self.valueSetReference {
 			json["valueSetReference"] = valueSetReference.asJSON(errors: &errors)
 		}
 		if let valueSetUri = self.valueSetUri {
 			json["valueSetUri"] = valueSetUri.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueSetUri && nil == self.valueSetReference {
+			errors.append(FHIRValidationError(missing: "valueSet[x]"))
 		}
 		
 		return json

@@ -23,7 +23,7 @@ open class TriggerDefinition: Element {
 	public var eventData: DataRequirement?
 	
 	/// Name of the event.
-	public var eventName: String?
+	public var eventName: FHIRString?
 	
 	/// Timing of the event.
 	public var eventTimingDate: FHIRDate?
@@ -67,7 +67,7 @@ open class TriggerDefinition: Element {
 		if let exist = json["eventName"] {
 			presentKeys.insert("eventName")
 			if let val = exist as? String {
-				self.eventName = val
+				self.eventName = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "eventName", wants: String.self, has: type(of: exist)))
@@ -76,7 +76,7 @@ open class TriggerDefinition: Element {
 		if let exist = json["eventTimingDate"] {
 			presentKeys.insert("eventTimingDate")
 			if let val = exist as? String {
-				self.eventTimingDate = FHIRDate(string: val)
+				self.eventTimingDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "eventTimingDate", wants: String.self, has: type(of: exist)))
@@ -85,7 +85,7 @@ open class TriggerDefinition: Element {
 		if let exist = json["eventTimingDateTime"] {
 			presentKeys.insert("eventTimingDateTime")
 			if let val = exist as? String {
-				self.eventTimingDateTime = DateTime(string: val)
+				self.eventTimingDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "eventTimingDateTime", wants: String.self, has: type(of: exist)))
@@ -162,6 +162,9 @@ open class TriggerDefinition: Element {
 		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json

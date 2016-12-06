@@ -25,8 +25,8 @@ class GuidanceResponseTests: XCTestCase {
 			let instance = try runGuidanceResponse1()
 			try runGuidanceResponse1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test GuidanceResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test GuidanceResponse successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

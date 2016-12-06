@@ -33,9 +33,9 @@ public extension Resource {
 	public func asRelativeReference() throws -> Reference {
 		let path = try relativeURLPath()
 		let reference = Reference()
-		reference.reference = path
+		reference.reference = FHIRString(path)
 		if let display = preferredRelativeReferenceDisplay() {
-			reference.display = display
+			reference.display = FHIRString(display)
 		}
 		return reference
 	}
@@ -118,7 +118,7 @@ public extension Resource {
 					fhir_warn("Error applying response headers after `read` call: \(error)")
 				}
 				if nil == resource.id, let lpc = URL(string: path) {
-					resource.id = lpc.lastPathComponent
+					resource.id = FHIRString(lpc.lastPathComponent)
 				}
 				callback(resource, nil)
 			}
@@ -193,7 +193,7 @@ public extension Resource {
 					
 				// no resource, but hopefully the id was detected in the Location header, so go and read the resource
 				catch FHIRError.responseNoResourceReceived {
-					if let id = self.id {
+					if let id = self.id?.string {
 						type(of: self).read(id, server: server) { resource, error in
 							if let resource = resource {
 								do {

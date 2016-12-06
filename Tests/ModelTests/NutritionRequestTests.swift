@@ -25,8 +25,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest1()
 			try runNutritionRequest1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -92,8 +92,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest2()
 			try runNutritionRequest2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -148,8 +148,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest3()
 			try runNutritionRequest3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -203,8 +203,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest4()
 			try runNutritionRequest4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -255,8 +255,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest5()
 			try runNutritionRequest5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -321,8 +321,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest6()
 			try runNutritionRequest6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -382,8 +382,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest7()
 			try runNutritionRequest7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -445,8 +445,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest8()
 			try runNutritionRequest8(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -504,8 +504,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest9()
 			try runNutritionRequest9(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -549,8 +549,8 @@ class NutritionRequestTests: XCTestCase {
 			let instance = try runNutritionRequest10()
 			try runNutritionRequest10(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

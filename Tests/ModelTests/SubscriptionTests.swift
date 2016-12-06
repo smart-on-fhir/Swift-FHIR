@@ -25,8 +25,8 @@ class SubscriptionTests: XCTestCase {
 			let instance = try runSubscription1()
 			try runSubscription1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -59,8 +59,8 @@ class SubscriptionTests: XCTestCase {
 			let instance = try runSubscription2()
 			try runSubscription2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

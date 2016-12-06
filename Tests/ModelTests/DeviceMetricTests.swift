@@ -25,8 +25,8 @@ class DeviceMetricTests: XCTestCase {
 			let instance = try runDeviceMetric1()
 			try runDeviceMetric1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceMetric successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceMetric successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

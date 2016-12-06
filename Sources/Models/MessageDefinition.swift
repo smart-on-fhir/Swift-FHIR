@@ -33,13 +33,13 @@ open class MessageDefinition: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the message definition.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Event type.
 	public var event: Coding?
@@ -54,16 +54,16 @@ open class MessageDefinition: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this message definition (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Protocol/workflow this is part of.
 	public var parent: [Reference]?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this message definition is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// Takes the place of.
 	public var replaces: [Reference]?
@@ -75,7 +75,7 @@ open class MessageDefinition: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// Name for this message definition (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this message definition (globally unique).
 	public var url: URL?
@@ -84,7 +84,7 @@ open class MessageDefinition: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the message definition.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -157,7 +157,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -166,7 +166,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -178,7 +178,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -241,7 +241,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -264,7 +264,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -273,7 +273,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -322,7 +322,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -331,7 +331,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -354,7 +354,7 @@ open class MessageDefinition: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -384,11 +384,17 @@ open class MessageDefinition: DomainResource {
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "date"))
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let event = self.event {
 			json["event"] = event.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "event"))
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
@@ -419,6 +425,9 @@ open class MessageDefinition: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -452,7 +461,7 @@ open class MessageDefinitionAllowedResponse: BackboneElement {
 	public var message: Reference?
 	
 	/// When should this response be used.
-	public var situation: String?
+	public var situation: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -484,7 +493,7 @@ open class MessageDefinitionAllowedResponse: BackboneElement {
 		if let exist = json["situation"] {
 			presentKeys.insert("situation")
 			if let val = exist as? String {
-				self.situation = val
+				self.situation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "situation", wants: String.self, has: type(of: exist)))
@@ -498,6 +507,9 @@ open class MessageDefinitionAllowedResponse: BackboneElement {
 		
 		if let message = self.message {
 			json["message"] = message.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "message"))
 		}
 		if let situation = self.situation {
 			json["situation"] = situation.asJSON()
@@ -520,10 +532,10 @@ open class MessageDefinitionFocus: BackboneElement {
 	}
 	
 	/// Type of resource.
-	public var code: String?
+	public var code: FHIRString?
 	
 	/// Maximum number of focuses of this type.
-	public var max: String?
+	public var max: FHIRString?
 	
 	/// Minimum number of focuses of this type.
 	public var min: UInt?
@@ -533,7 +545,7 @@ open class MessageDefinitionFocus: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
+	public convenience init(code: FHIRString) {
 		self.init()
 		self.code = code
 	}
@@ -544,7 +556,7 @@ open class MessageDefinitionFocus: BackboneElement {
 		if let exist = json["code"] {
 			presentKeys.insert("code")
 			if let val = exist as? String {
-				self.code = val
+				self.code = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
@@ -556,7 +568,7 @@ open class MessageDefinitionFocus: BackboneElement {
 		if let exist = json["max"] {
 			presentKeys.insert("max")
 			if let val = exist as? String {
-				self.max = val
+				self.max = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "max", wants: String.self, has: type(of: exist)))
@@ -593,6 +605,9 @@ open class MessageDefinitionFocus: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let max = self.max {
 			json["max"] = max.asJSON()

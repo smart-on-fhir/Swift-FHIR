@@ -82,7 +82,7 @@ open class Practitioner: DomainResource {
 		if let exist = json["birthDate"] {
 			presentKeys.insert("birthDate")
 			if let val = exist as? String {
-				self.birthDate = FHIRDate(string: val)
+				self.birthDate = FHIRDate(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "birthDate", wants: String.self, has: type(of: exist)))
@@ -547,6 +547,9 @@ open class PractitionerQualification: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }

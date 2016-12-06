@@ -25,8 +25,8 @@ class PaymentNoticeTests: XCTestCase {
 			let instance = try runPaymentNotice1()
 			try runPaymentNotice1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test PaymentNotice successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test PaymentNotice successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

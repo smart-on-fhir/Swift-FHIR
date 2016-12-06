@@ -24,7 +24,7 @@ open class PractitionerRole: DomainResource {
 	public var active: Bool?
 	
 	/// Description of availability exceptions.
-	public var availabilityExceptions: String?
+	public var availabilityExceptions: FHIRString?
 	
 	/// Times the Service Site is available.
 	public var availableTime: [PractitionerRoleAvailableTime]?
@@ -77,7 +77,7 @@ open class PractitionerRole: DomainResource {
 		if let exist = json["availabilityExceptions"] {
 			presentKeys.insert("availabilityExceptions")
 			if let val = exist as? String {
-				self.availabilityExceptions = val
+				self.availabilityExceptions = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "availabilityExceptions", wants: String.self, has: type(of: exist)))
@@ -342,7 +342,7 @@ open class PractitionerRoleAvailableTime: BackboneElement {
 		if let exist = json["availableEndTime"] {
 			presentKeys.insert("availableEndTime")
 			if let val = exist as? String {
-				self.availableEndTime = FHIRTime(string: val)
+				self.availableEndTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "availableEndTime", wants: String.self, has: type(of: exist)))
@@ -351,7 +351,7 @@ open class PractitionerRoleAvailableTime: BackboneElement {
 		if let exist = json["availableStartTime"] {
 			presentKeys.insert("availableStartTime")
 			if let val = exist as? String {
-				self.availableStartTime = FHIRTime(string: val)
+				self.availableStartTime = FHIRTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "availableStartTime", wants: String.self, has: type(of: exist)))
@@ -405,14 +405,14 @@ open class PractitionerRoleNotAvailable: BackboneElement {
 	}
 	
 	/// Reason presented to the user explaining why time not available.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Service not availablefrom this date.
 	public var during: Period?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String) {
+	public convenience init(description_fhir: FHIRString) {
 		self.init()
 		self.description_fhir = description_fhir
 	}
@@ -423,7 +423,7 @@ open class PractitionerRoleNotAvailable: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -454,6 +454,9 @@ open class PractitionerRoleNotAvailable: BackboneElement {
 		
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "description_fhir"))
 		}
 		if let during = self.during {
 			json["during"] = during.asJSON(errors: &errors)

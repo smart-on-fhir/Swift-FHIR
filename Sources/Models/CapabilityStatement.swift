@@ -27,13 +27,13 @@ open class CapabilityStatement: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the capability statement.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Document definition.
 	public var document: [CapabilityStatementDocument]?
@@ -42,10 +42,10 @@ open class CapabilityStatement: DomainResource {
 	public var experimental: Bool?
 	
 	/// FHIR Version the system uses.
-	public var fhirVersion: String?
+	public var fhirVersion: FHIRString?
 	
 	/// formats supported (xml | json | ttl | mime type).
-	public var format: [String]?
+	public var format: [FHIRString]?
 	
 	/// If this describes a specific instance.
 	public var implementation: CapabilityStatementImplementation?
@@ -67,19 +67,19 @@ open class CapabilityStatement: DomainResource {
 	public var messaging: [CapabilityStatementMessaging]?
 	
 	/// Name for this capability statement (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Patch formats supported.
-	public var patchFormat: [String]?
+	public var patchFormat: [FHIRString]?
 	
 	/// Profiles for use cases supported.
 	public var profile: [Reference]?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// Why this capability statement is defined.
-	public var purpose: String?
+	public var purpose: FHIRString?
 	
 	/// If the endpoint is a RESTful one.
 	public var rest: [CapabilityStatementRest]?
@@ -91,7 +91,7 @@ open class CapabilityStatement: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// Name for this capability statement (Human friendly).
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Logical uri to reference this capability statement (globally unique).
 	public var url: URL?
@@ -100,11 +100,11 @@ open class CapabilityStatement: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the capability statement.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(acceptUnknown: UnknownContentCode, date: DateTime, fhirVersion: String, format: [String], kind: CapabilityStatementKind, status: PublicationStatus) {
+	public convenience init(acceptUnknown: UnknownContentCode, date: DateTime, fhirVersion: FHIRString, format: [FHIRString], kind: CapabilityStatementKind, status: PublicationStatus) {
 		self.init()
 		self.acceptUnknown = acceptUnknown
 		self.date = date
@@ -151,7 +151,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -160,7 +160,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -172,7 +172,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -204,7 +204,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["fhirVersion"] {
 			presentKeys.insert("fhirVersion")
 			if let val = exist as? String {
-				self.fhirVersion = val
+				self.fhirVersion = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fhirVersion", wants: String.self, has: type(of: exist)))
@@ -216,7 +216,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["format"] {
 			presentKeys.insert("format")
 			if let val = exist as? [String] {
-				self.format = val
+				self.format = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "format", wants: Array<String>.self, has: type(of: exist)))
@@ -305,7 +305,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -314,7 +314,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["patchFormat"] {
 			presentKeys.insert("patchFormat")
 			if let val = exist as? [String] {
-				self.patchFormat = val
+				self.patchFormat = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "patchFormat", wants: Array<String>.self, has: type(of: exist)))
@@ -337,7 +337,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -346,7 +346,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["purpose"] {
 			presentKeys.insert("purpose")
 			if let val = exist as? String {
-				self.purpose = val
+				self.purpose = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -400,7 +400,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -409,7 +409,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -432,7 +432,7 @@ open class CapabilityStatement: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -447,6 +447,9 @@ open class CapabilityStatement: DomainResource {
 		if let acceptUnknown = self.acceptUnknown {
 			json["acceptUnknown"] = acceptUnknown.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "acceptUnknown"))
+		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
 		}
@@ -455,6 +458,9 @@ open class CapabilityStatement: DomainResource {
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "date"))
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -468,8 +474,14 @@ open class CapabilityStatement: DomainResource {
 		if let fhirVersion = self.fhirVersion {
 			json["fhirVersion"] = fhirVersion.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "fhirVersion"))
+		}
 		if let format = self.format {
 			json["format"] = format.map() { $0.asJSON() }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "format"))
 		}
 		if let implementation = self.implementation {
 			json["implementation"] = implementation.asJSON(errors: &errors)
@@ -485,6 +497,9 @@ open class CapabilityStatement: DomainResource {
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
 		}
 		if let messaging = self.messaging {
 			json["messaging"] = messaging.map() { $0.asJSON(errors: &errors) }
@@ -512,6 +527,9 @@ open class CapabilityStatement: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -542,7 +560,7 @@ open class CapabilityStatementDocument: BackboneElement {
 	}
 	
 	/// Description of document support.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Mode of this document declaration - whether application is producer or consumer.
 	public var mode: DocumentMode?
@@ -564,7 +582,7 @@ open class CapabilityStatementDocument: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -616,8 +634,14 @@ open class CapabilityStatementDocument: BackboneElement {
 		if let mode = self.mode {
 			json["mode"] = mode.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "profile"))
 		}
 		
 		return json
@@ -637,14 +661,14 @@ open class CapabilityStatementImplementation: BackboneElement {
 	}
 	
 	/// Describes this specific instance.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Base URL for the installation.
 	public var url: URL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String) {
+	public convenience init(description_fhir: FHIRString) {
 		self.init()
 		self.description_fhir = description_fhir
 	}
@@ -655,7 +679,7 @@ open class CapabilityStatementImplementation: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -667,7 +691,7 @@ open class CapabilityStatementImplementation: BackboneElement {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -681,6 +705,9 @@ open class CapabilityStatementImplementation: BackboneElement {
 		
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "description_fhir"))
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -702,7 +729,7 @@ open class CapabilityStatementMessaging: BackboneElement {
 	}
 	
 	/// Messaging interface behavior details.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Where messages should be sent.
 	public var endpoint: [CapabilityStatementMessagingEndpoint]?
@@ -726,7 +753,7 @@ open class CapabilityStatementMessaging: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -787,6 +814,9 @@ open class CapabilityStatementMessaging: BackboneElement {
 		if let event = self.event {
 			json["event"] = event.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "event"))
+		}
 		if let reliableCache = self.reliableCache {
 			json["reliableCache"] = reliableCache.asJSON()
 		}
@@ -826,7 +856,7 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 		if let exist = json["address"] {
 			presentKeys.insert("address")
 			if let val = exist as? String {
-				self.address = URL(string: val)
+				self.address = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "address", wants: String.self, has: type(of: exist)))
@@ -861,8 +891,14 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 		if let address = self.address {
 			json["address"] = address.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "address"))
+		}
 		if let protocol_fhir = self.protocol_fhir {
 			json["protocol"] = protocol_fhir.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "protocol_fhir"))
 		}
 		
 		return json
@@ -887,10 +923,10 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 	public var code: Coding?
 	
 	/// Endpoint-specific event documentation.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Resource that's focus of message.
-	public var focus: String?
+	public var focus: FHIRString?
 	
 	/// The mode of this event declaration - whether application is sender or receiver.
 	public var mode: EventCapabilityMode?
@@ -903,7 +939,7 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding, focus: String, mode: EventCapabilityMode, request: Reference, response: Reference) {
+	public convenience init(code: Coding, focus: FHIRString, mode: EventCapabilityMode, request: Reference, response: Reference) {
 		self.init()
 		self.code = code
 		self.focus = focus
@@ -949,7 +985,7 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -958,7 +994,7 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		if let exist = json["focus"] {
 			presentKeys.insert("focus")
 			if let val = exist as? String {
-				self.focus = val
+				self.focus = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "focus", wants: String.self, has: type(of: exist)))
@@ -1030,20 +1066,35 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let focus = self.focus {
 			json["focus"] = focus.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "focus"))
+		}
 		if let mode = self.mode {
 			json["mode"] = mode.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
 		}
 		if let request = self.request {
 			json["request"] = request.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "request"))
+		}
 		if let response = self.response {
 			json["response"] = response.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "response"))
 		}
 		
 		return json
@@ -1065,7 +1116,7 @@ open class CapabilityStatementRest: BackboneElement {
 	public var compartment: [URL]?
 	
 	/// General description of implementation.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// What operations are supported?.
 	public var interaction: [CapabilityStatementRestInteraction]?
@@ -1108,7 +1159,7 @@ open class CapabilityStatementRest: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -1219,6 +1270,9 @@ open class CapabilityStatementRest: BackboneElement {
 		if let mode = self.mode {
 			json["mode"] = mode.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
 		if let operation = self.operation {
 			json["operation"] = operation.map() { $0.asJSON(errors: &errors) }
 		}
@@ -1252,7 +1306,7 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 	public var code: FHIRRestfulInteractions?
 	
 	/// Anything special about operation behavior.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1284,7 +1338,7 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -1298,6 +1352,9 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
@@ -1322,11 +1379,11 @@ open class CapabilityStatementRestOperation: BackboneElement {
 	public var definition: Reference?
 	
 	/// Name by which the operation/query is invoked.
-	public var name: String?
+	public var name: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: Reference, name: String) {
+	public convenience init(definition: Reference, name: FHIRString) {
 		self.init()
 		self.definition = definition
 		self.name = name
@@ -1355,7 +1412,7 @@ open class CapabilityStatementRestOperation: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1373,8 +1430,14 @@ open class CapabilityStatementRestOperation: BackboneElement {
 		if let definition = self.definition {
 			json["definition"] = definition.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "definition"))
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		
 		return json
@@ -1405,7 +1468,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 	public var conditionalUpdate: Bool?
 	
 	/// Additional information about the use of the resource type.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// What operations are supported?.
 	public var interaction: [CapabilityStatementRestResourceInteraction]?
@@ -1420,16 +1483,16 @@ open class CapabilityStatementRestResource: BackboneElement {
 	public var referencePolicy: [ReferenceHandlingPolicy]?
 	
 	/// _include values supported by the server.
-	public var searchInclude: [String]?
+	public var searchInclude: [FHIRString]?
 	
 	/// Search params supported by implementation.
 	public var searchParam: [CapabilityStatementRestResourceSearchParam]?
 	
 	/// _revinclude values supported by the server.
-	public var searchRevInclude: [String]?
+	public var searchRevInclude: [FHIRString]?
 	
 	/// A resource type that is supported.
-	public var type: String?
+	public var type: FHIRString?
 	
 	/// If update can commit to a new identity.
 	public var updateCreate: Bool?
@@ -1442,7 +1505,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(interaction: [CapabilityStatementRestResourceInteraction], type: String) {
+	public convenience init(interaction: [CapabilityStatementRestResourceInteraction], type: FHIRString) {
 		self.init()
 		self.interaction = interaction
 		self.type = type
@@ -1500,7 +1563,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -1562,7 +1625,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let exist = json["searchInclude"] {
 			presentKeys.insert("searchInclude")
 			if let val = exist as? [String] {
-				self.searchInclude = val
+				self.searchInclude = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "searchInclude", wants: Array<String>.self, has: type(of: exist)))
@@ -1585,7 +1648,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let exist = json["searchRevInclude"] {
 			presentKeys.insert("searchRevInclude")
 			if let val = exist as? [String] {
-				self.searchRevInclude = val
+				self.searchRevInclude = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "searchRevInclude", wants: Array<String>.self, has: type(of: exist)))
@@ -1594,7 +1657,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -1650,6 +1713,9 @@ open class CapabilityStatementRestResource: BackboneElement {
 		if let interaction = self.interaction {
 			json["interaction"] = interaction.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "interaction"))
+		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON(errors: &errors)
 		}
@@ -1670,6 +1736,9 @@ open class CapabilityStatementRestResource: BackboneElement {
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let updateCreate = self.updateCreate {
 			json["updateCreate"] = updateCreate.asJSON()
@@ -1698,7 +1767,7 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 	public var code: FHIRRestfulInteractions?
 	
 	/// Anything special about operation behavior.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1730,7 +1799,7 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -1744,6 +1813,9 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 		
 		if let code = self.code {
 			json["code"] = code.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
@@ -1769,17 +1841,17 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	public var definition: URL?
 	
 	/// Server-specific usage.
-	public var documentation: String?
+	public var documentation: FHIRString?
 	
 	/// Name of search parameter.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// The type of value a search parameter refers to, and how the content is interpreted.
 	public var type: SearchParamType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, type: SearchParamType) {
+	public convenience init(name: FHIRString, type: SearchParamType) {
 		self.init()
 		self.name = name
 		self.type = type
@@ -1791,7 +1863,7 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		if let exist = json["definition"] {
 			presentKeys.insert("definition")
 			if let val = exist as? String {
-				self.definition = URL(string: val)
+				self.definition = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
@@ -1800,7 +1872,7 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		if let exist = json["documentation"] {
 			presentKeys.insert("documentation")
 			if let val = exist as? String {
-				self.documentation = val
+				self.documentation = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -1809,7 +1881,7 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1850,8 +1922,14 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let type = self.type {
 			json["type"] = type.rawValue
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -1876,7 +1954,7 @@ open class CapabilityStatementRestSecurity: BackboneElement {
 	public var cors: Bool?
 	
 	/// General description of how security works.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// OAuth | SMART-on-FHIR | NTLM | Basic | Kerberos | Certificates.
 	public var service: [CodeableConcept]?
@@ -1910,7 +1988,7 @@ open class CapabilityStatementRestSecurity: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -1966,7 +2044,7 @@ open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 	public var blob: Base64Binary?
 	
 	/// Mime type for certificate.
-	public var type: String?
+	public var type: FHIRString?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -1974,7 +2052,7 @@ open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 		if let exist = json["blob"] {
 			presentKeys.insert("blob")
 			if let val = exist as? String {
-				self.blob = Base64Binary(string: val)
+				self.blob = Base64Binary(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "blob", wants: String.self, has: type(of: exist)))
@@ -1983,7 +2061,7 @@ open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -2019,17 +2097,17 @@ open class CapabilityStatementSoftware: BackboneElement {
 	}
 	
 	/// A name the software is known by.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Date this version released.
 	public var releaseDate: DateTime?
 	
 	/// Version covered by this statement.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String) {
+	public convenience init(name: FHIRString) {
 		self.init()
 		self.name = name
 	}
@@ -2040,7 +2118,7 @@ open class CapabilityStatementSoftware: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -2052,7 +2130,7 @@ open class CapabilityStatementSoftware: BackboneElement {
 		if let exist = json["releaseDate"] {
 			presentKeys.insert("releaseDate")
 			if let val = exist as? String {
-				self.releaseDate = DateTime(string: val)
+				self.releaseDate = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "releaseDate", wants: String.self, has: type(of: exist)))
@@ -2061,7 +2139,7 @@ open class CapabilityStatementSoftware: BackboneElement {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -2075,6 +2153,9 @@ open class CapabilityStatementSoftware: BackboneElement {
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
 		}
 		if let releaseDate = self.releaseDate {
 			json["releaseDate"] = releaseDate.asJSON()

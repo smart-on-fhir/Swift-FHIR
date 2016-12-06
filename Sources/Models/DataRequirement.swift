@@ -27,17 +27,17 @@ open class DataRequirement: Element {
 	public var dateFilter: [DataRequirementDateFilter]?
 	
 	/// Indicates that specific structure elements are referenced by the knowledge module.
-	public var mustSupport: [String]?
+	public var mustSupport: [FHIRString]?
 	
 	/// The profile of the required data.
 	public var profile: [URL]?
 	
 	/// The type of the required data.
-	public var type: String?
+	public var type: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(type: FHIRString) {
 		self.init()
 		self.type = type
 	}
@@ -76,7 +76,7 @@ open class DataRequirement: Element {
 		if let exist = json["mustSupport"] {
 			presentKeys.insert("mustSupport")
 			if let val = exist as? [String] {
-				self.mustSupport = val
+				self.mustSupport = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "mustSupport", wants: Array<String>.self, has: type(of: exist)))
@@ -94,7 +94,7 @@ open class DataRequirement: Element {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -124,6 +124,9 @@ open class DataRequirement: Element {
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return json
 	}
@@ -142,10 +145,10 @@ open class DataRequirementCodeFilter: Element {
 	}
 	
 	/// The code-valued attribute of the filter.
-	public var path: String?
+	public var path: FHIRString?
 	
 	/// Code value of the filter.
-	public var valueCode: [String]?
+	public var valueCode: [FHIRString]?
 	
 	/// CodeableConcept value of the filter.
 	public var valueCodeableConcept: [CodeableConcept]?
@@ -157,11 +160,11 @@ open class DataRequirementCodeFilter: Element {
 	public var valueSetReference: Reference?
 	
 	/// Valueset for the filter.
-	public var valueSetString: String?
+	public var valueSetString: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(path: String) {
+	public convenience init(path: FHIRString) {
 		self.init()
 		self.path = path
 	}
@@ -172,7 +175,7 @@ open class DataRequirementCodeFilter: Element {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))
@@ -184,7 +187,7 @@ open class DataRequirementCodeFilter: Element {
 		if let exist = json["valueCode"] {
 			presentKeys.insert("valueCode")
 			if let val = exist as? [String] {
-				self.valueCode = val
+				self.valueCode = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueCode", wants: Array<String>.self, has: type(of: exist)))
@@ -235,7 +238,7 @@ open class DataRequirementCodeFilter: Element {
 		if let exist = json["valueSetString"] {
 			presentKeys.insert("valueSetString")
 			if let val = exist as? String {
-				self.valueSetString = val
+				self.valueSetString = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueSetString", wants: String.self, has: type(of: exist)))
@@ -249,6 +252,9 @@ open class DataRequirementCodeFilter: Element {
 		
 		if let path = self.path {
 			json["path"] = path.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "path"))
 		}
 		if let valueCode = self.valueCode {
 			json["valueCode"] = valueCode.map() { $0.asJSON() }
@@ -282,7 +288,7 @@ open class DataRequirementDateFilter: Element {
 	}
 	
 	/// The date-valued attribute of the filter.
-	public var path: String?
+	public var path: FHIRString?
 	
 	/// The value of the filter, as a Period, DateTime, or Duration value.
 	public var valueDateTime: DateTime?
@@ -295,7 +301,7 @@ open class DataRequirementDateFilter: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(path: String) {
+	public convenience init(path: FHIRString) {
 		self.init()
 		self.path = path
 	}
@@ -306,7 +312,7 @@ open class DataRequirementDateFilter: Element {
 		if let exist = json["path"] {
 			presentKeys.insert("path")
 			if let val = exist as? String {
-				self.path = val
+				self.path = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "path", wants: String.self, has: type(of: exist)))
@@ -318,7 +324,7 @@ open class DataRequirementDateFilter: Element {
 		if let exist = json["valueDateTime"] {
 			presentKeys.insert("valueDateTime")
 			if let val = exist as? String {
-				self.valueDateTime = DateTime(string: val)
+				self.valueDateTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
@@ -360,6 +366,9 @@ open class DataRequirementDateFilter: Element {
 		
 		if let path = self.path {
 			json["path"] = path.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "path"))
 		}
 		if let valueDateTime = self.valueDateTime {
 			json["valueDateTime"] = valueDateTime.asJSON()

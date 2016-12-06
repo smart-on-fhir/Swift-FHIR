@@ -25,8 +25,8 @@ class LocationTests: XCTestCase {
 			let instance = try runLocation1()
 			try runLocation1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -60,8 +60,8 @@ class LocationTests: XCTestCase {
 			let instance = try runLocation2()
 			try runLocation2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -103,8 +103,8 @@ class LocationTests: XCTestCase {
 			let instance = try runLocation3()
 			try runLocation3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -135,8 +135,8 @@ class LocationTests: XCTestCase {
 			let instance = try runLocation4()
 			try runLocation4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -173,8 +173,8 @@ class LocationTests: XCTestCase {
 			let instance = try runLocation5()
 			try runLocation5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -204,8 +204,8 @@ class LocationTests: XCTestCase {
 			let instance = try runLocation6()
 			try runLocation6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

@@ -27,7 +27,7 @@ open class ImplementationGuide: DomainResource {
 	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
-	public var copyright: String?
+	public var copyright: FHIRString?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
@@ -36,13 +36,13 @@ open class ImplementationGuide: DomainResource {
 	public var dependency: [ImplementationGuideDependency]?
 	
 	/// Natural language description of the implementation guide.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
 	/// FHIR Version this Implementation Guide targets.
-	public var fhirVersion: String?
+	public var fhirVersion: FHIRString?
 	
 	/// Profiles that apply globally.
 	public var global: [ImplementationGuideGlobal]?
@@ -51,7 +51,7 @@ open class ImplementationGuide: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this implementation guide (Computer friendly).
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Group of resources as used in .page.package.
 	public var package: [ImplementationGuidePackage]?
@@ -60,7 +60,7 @@ open class ImplementationGuide: DomainResource {
 	public var page: ImplementationGuidePage?
 	
 	/// Name of the publisher (Organization or individual).
-	public var publisher: String?
+	public var publisher: FHIRString?
 	
 	/// The status of this implementation guide. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -72,11 +72,11 @@ open class ImplementationGuide: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the implementation guide.
-	public var version: String?
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, status: PublicationStatus, url: URL) {
+	public convenience init(name: FHIRString, status: PublicationStatus, url: URL) {
 		self.init()
 		self.name = name
 		self.status = status
@@ -112,7 +112,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["copyright"] {
 			presentKeys.insert("copyright")
 			if let val = exist as? String {
-				self.copyright = val
+				self.copyright = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -121,7 +121,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["date"] {
 			presentKeys.insert("date")
 			if let val = exist as? String {
-				self.date = DateTime(string: val)
+				self.date = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
@@ -144,7 +144,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -162,7 +162,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["fhirVersion"] {
 			presentKeys.insert("fhirVersion")
 			if let val = exist as? String {
-				self.fhirVersion = val
+				self.fhirVersion = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "fhirVersion", wants: String.self, has: type(of: exist)))
@@ -199,7 +199,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -239,7 +239,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["publisher"] {
 			presentKeys.insert("publisher")
 			if let val = exist as? String {
-				self.publisher = val
+				self.publisher = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -265,7 +265,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["url"] {
 			presentKeys.insert("url")
 			if let val = exist as? String {
-				self.url = URL(string: val)
+				self.url = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
@@ -291,7 +291,7 @@ open class ImplementationGuide: DomainResource {
 		if let exist = json["version"] {
 			presentKeys.insert("version")
 			if let val = exist as? String {
-				self.version = val
+				self.version = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
@@ -336,6 +336,9 @@ open class ImplementationGuide: DomainResource {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let package = self.package {
 			json["package"] = package.map() { $0.asJSON(errors: &errors) }
 		}
@@ -348,8 +351,14 @@ open class ImplementationGuide: DomainResource {
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "url"))
 		}
 		if let useContext = self.useContext {
 			json["useContext"] = useContext.map() { $0.asJSON(errors: &errors) }
@@ -411,7 +420,7 @@ open class ImplementationGuideDependency: BackboneElement {
 		if let exist = json["uri"] {
 			presentKeys.insert("uri")
 			if let val = exist as? String {
-				self.uri = URL(string: val)
+				self.uri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "uri", wants: String.self, has: type(of: exist)))
@@ -429,8 +438,14 @@ open class ImplementationGuideDependency: BackboneElement {
 		if let type = self.type {
 			json["type"] = type.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		if let uri = self.uri {
 			json["uri"] = uri.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "uri"))
 		}
 		
 		return json
@@ -452,11 +467,11 @@ open class ImplementationGuideGlobal: BackboneElement {
 	public var profile: Reference?
 	
 	/// Type this profiles applies to.
-	public var type: String?
+	public var type: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(profile: Reference, type: String) {
+	public convenience init(profile: Reference, type: FHIRString) {
 		self.init()
 		self.profile = profile
 		self.type = type
@@ -485,7 +500,7 @@ open class ImplementationGuideGlobal: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? String {
-				self.type = val
+				self.type = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
@@ -503,8 +518,14 @@ open class ImplementationGuideGlobal: BackboneElement {
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "profile"))
+		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -523,17 +544,17 @@ open class ImplementationGuidePackage: BackboneElement {
 	}
 	
 	/// Human readable text describing the package.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// Name used .page.package.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Resource in the implementation guide.
 	public var resource: [ImplementationGuidePackageResource]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, resource: [ImplementationGuidePackageResource]) {
+	public convenience init(name: FHIRString, resource: [ImplementationGuidePackageResource]) {
 		self.init()
 		self.name = name
 		self.resource = resource
@@ -545,7 +566,7 @@ open class ImplementationGuidePackage: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -554,7 +575,7 @@ open class ImplementationGuidePackage: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -592,8 +613,14 @@ open class ImplementationGuidePackage: BackboneElement {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 		if let resource = self.resource {
 			json["resource"] = resource.map() { $0.asJSON(errors: &errors) }
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "resource"))
 		}
 		
 		return json
@@ -613,10 +640,10 @@ open class ImplementationGuidePackageResource: BackboneElement {
 	}
 	
 	/// Short code to identify the resource.
-	public var acronym: String?
+	public var acronym: FHIRString?
 	
 	/// Reason why included in guide.
-	public var description_fhir: String?
+	public var description_fhir: FHIRString?
 	
 	/// If not an example, has it's normal meaning.
 	public var example: Bool?
@@ -625,7 +652,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 	public var exampleFor: Reference?
 	
 	/// Human Name for the resource.
-	public var name: String?
+	public var name: FHIRString?
 	
 	/// Location of the resource.
 	public var sourceReference: Reference?
@@ -655,7 +682,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		if let exist = json["acronym"] {
 			presentKeys.insert("acronym")
 			if let val = exist as? String {
-				self.acronym = val
+				self.acronym = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "acronym", wants: String.self, has: type(of: exist)))
@@ -664,7 +691,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		if let exist = json["description"] {
 			presentKeys.insert("description")
 			if let val = exist as? String {
-				self.description_fhir = val
+				self.description_fhir = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
@@ -699,7 +726,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		if let exist = json["name"] {
 			presentKeys.insert("name")
 			if let val = exist as? String {
-				self.name = val
+				self.name = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
@@ -722,7 +749,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		if let exist = json["sourceUri"] {
 			presentKeys.insert("sourceUri")
 			if let val = exist as? String {
-				self.sourceUri = URL(string: val)
+				self.sourceUri = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "sourceUri", wants: String.self, has: type(of: exist)))
@@ -748,6 +775,9 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		if let example = self.example {
 			json["example"] = example.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "example"))
+		}
 		if let exampleFor = self.exampleFor {
 			json["exampleFor"] = exampleFor.asJSON(errors: &errors)
 		}
@@ -759,6 +789,11 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		}
 		if let sourceUri = self.sourceUri {
 			json["sourceUri"] = sourceUri.asJSON()
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.sourceUri && nil == self.sourceReference {
+			errors.append(FHIRValidationError(missing: "source[x]"))
 		}
 		
 		return json
@@ -777,14 +812,14 @@ open class ImplementationGuidePage: BackboneElement {
 	}
 	
 	/// Format of the page (e.g. html, markdown, etc.).
-	public var format: String?
+	public var format: FHIRString?
 	
 	/// The kind of page that this is. Some pages are autogenerated (list, example), and other kinds are of interest so
 	/// that tools can navigate the user to the page of interest.
 	public var kind: GuidePageKind?
 	
 	/// Name of package to include.
-	public var package: [String]?
+	public var package: [FHIRString]?
 	
 	/// Nested Pages / Sections.
 	public var page: [ImplementationGuidePage]?
@@ -793,14 +828,14 @@ open class ImplementationGuidePage: BackboneElement {
 	public var source: URL?
 	
 	/// Short title shown for navigational assistance.
-	public var title: String?
+	public var title: FHIRString?
 	
 	/// Kind of resource to include in the list.
-	public var type: [String]?
+	public var type: [FHIRString]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(kind: GuidePageKind, source: URL, title: String) {
+	public convenience init(kind: GuidePageKind, source: URL, title: FHIRString) {
 		self.init()
 		self.kind = kind
 		self.source = source
@@ -813,7 +848,7 @@ open class ImplementationGuidePage: BackboneElement {
 		if let exist = json["format"] {
 			presentKeys.insert("format")
 			if let val = exist as? String {
-				self.format = val
+				self.format = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "format", wants: String.self, has: type(of: exist)))
@@ -839,7 +874,7 @@ open class ImplementationGuidePage: BackboneElement {
 		if let exist = json["package"] {
 			presentKeys.insert("package")
 			if let val = exist as? [String] {
-				self.package = val
+				self.package = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "package", wants: Array<String>.self, has: type(of: exist)))
@@ -862,7 +897,7 @@ open class ImplementationGuidePage: BackboneElement {
 		if let exist = json["source"] {
 			presentKeys.insert("source")
 			if let val = exist as? String {
-				self.source = URL(string: val)
+				self.source = URL(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "source", wants: String.self, has: type(of: exist)))
@@ -874,7 +909,7 @@ open class ImplementationGuidePage: BackboneElement {
 		if let exist = json["title"] {
 			presentKeys.insert("title")
 			if let val = exist as? String {
-				self.title = val
+				self.title = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
@@ -886,7 +921,7 @@ open class ImplementationGuidePage: BackboneElement {
 		if let exist = json["type"] {
 			presentKeys.insert("type")
 			if let val = exist as? [String] {
-				self.type = val
+				self.type = FHIRString.instantiate(fromArray: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "type", wants: Array<String>.self, has: type(of: exist)))
@@ -904,6 +939,9 @@ open class ImplementationGuidePage: BackboneElement {
 		if let kind = self.kind {
 			json["kind"] = kind.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "kind"))
+		}
 		if let package = self.package {
 			json["package"] = package.map() { $0.asJSON() }
 		}
@@ -913,8 +951,14 @@ open class ImplementationGuidePage: BackboneElement {
 		if let source = self.source {
 			json["source"] = source.asJSON()
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "source"))
+		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "title"))
 		}
 		if let type = self.type {
 			json["type"] = type.map() { $0.asJSON() }

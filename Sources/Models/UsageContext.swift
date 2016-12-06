@@ -128,6 +128,9 @@ open class UsageContext: Element {
 		if let code = self.code {
 			json["code"] = code.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		if let valueCodeableConcept = self.valueCodeableConcept {
 			json["valueCodeableConcept"] = valueCodeableConcept.asJSON(errors: &errors)
 		}
@@ -136,6 +139,11 @@ open class UsageContext: Element {
 		}
 		if let valueRange = self.valueRange {
 			json["valueRange"] = valueRange.asJSON(errors: &errors)
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange {
+			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 		
 		return json

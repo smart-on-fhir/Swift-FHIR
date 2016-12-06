@@ -152,7 +152,7 @@ open class MedicationRequest: DomainResource {
 		if let exist = json["dateWritten"] {
 			presentKeys.insert("dateWritten")
 			if let val = exist as? String {
-				self.dateWritten = DateTime(string: val)
+				self.dateWritten = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "dateWritten", wants: String.self, has: type(of: exist)))
@@ -466,6 +466,9 @@ open class MedicationRequest: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		if let priorPrescription = self.priorPrescription {
 			json["priorPrescription"] = priorPrescription.asJSON(errors: &errors)
 		}
@@ -484,6 +487,9 @@ open class MedicationRequest: DomainResource {
 		if let stage = self.stage {
 			json["stage"] = stage.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "stage"))
+		}
 		if let status = self.status {
 			json["status"] = status.rawValue
 		}
@@ -492,6 +498,11 @@ open class MedicationRequest: DomainResource {
 		}
 		if let supportingInformation = self.supportingInformation {
 			json["supportingInformation"] = supportingInformation.map() { $0.asJSON(errors: &errors) }
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.medicationCodeableConcept && nil == self.medicationReference {
+			errors.append(FHIRValidationError(missing: "medication[x]"))
 		}
 		
 		return json
@@ -683,6 +694,9 @@ open class MedicationRequestSubstitution: BackboneElement {
 		
 		if let allowed = self.allowed {
 			json["allowed"] = allowed.asJSON()
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "allowed"))
 		}
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON(errors: &errors)

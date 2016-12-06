@@ -25,8 +25,8 @@ class TestScriptTests: XCTestCase {
 			let instance = try runTestScript1()
 			try runTestScript1(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -141,8 +141,8 @@ class TestScriptTests: XCTestCase {
 			let instance = try runTestScript2()
 			try runTestScript2(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -255,8 +255,8 @@ class TestScriptTests: XCTestCase {
 			let instance = try runTestScript3()
 			try runTestScript3(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -358,8 +358,8 @@ class TestScriptTests: XCTestCase {
 			let instance = try runTestScript4()
 			try runTestScript4(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -501,8 +501,8 @@ class TestScriptTests: XCTestCase {
 			let instance = try runTestScript5()
 			try runTestScript5(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -606,8 +606,8 @@ class TestScriptTests: XCTestCase {
 			let instance = try runTestScript6()
 			try runTestScript6(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	
@@ -709,8 +709,8 @@ class TestScriptTests: XCTestCase {
 			let instance = try runTestScript7()
 			try runTestScript7(instance.asJSON())
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw:\n---\n\(error)\n---")
 		}
 	}
 	

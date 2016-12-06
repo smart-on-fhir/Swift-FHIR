@@ -62,7 +62,7 @@ open class Contract: DomainResource {
 	public var signer: [ContractSigner]?
 	
 	/// active | cancelled | draft | entered-in-error.
-	public var status: String?
+	public var status: FHIRString?
 	
 	/// Contract Subtype.
 	public var subType: [CodeableConcept]?
@@ -228,7 +228,7 @@ open class Contract: DomainResource {
 		if let exist = json["issued"] {
 			presentKeys.insert("issued")
 			if let val = exist as? String {
-				self.issued = DateTime(string: val)
+				self.issued = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "issued", wants: String.self, has: type(of: exist)))
@@ -279,7 +279,7 @@ open class Contract: DomainResource {
 		if let exist = json["status"] {
 			presentKeys.insert("status")
 			if let val = exist as? String {
-				self.status = val
+				self.status = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
@@ -511,6 +511,9 @@ open class ContractAgent: BackboneElement {
 		if let actor = self.actor {
 			json["actor"] = actor.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "actor"))
+		}
 		if let role = self.role {
 			json["role"] = role.map() { $0.asJSON(errors: &errors) }
 		}
@@ -603,6 +606,11 @@ open class ContractFriendly: BackboneElement {
 			json["contentReference"] = contentReference.asJSON(errors: &errors)
 		}
 		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.contentAttachment && nil == self.contentReference {
+			errors.append(FHIRValidationError(missing: "content[x]"))
+		}
+		
 		return json
 	}
 }
@@ -688,6 +696,11 @@ open class ContractLegal: BackboneElement {
 			json["contentReference"] = contentReference.asJSON(errors: &errors)
 		}
 		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.contentAttachment && nil == self.contentReference {
+			errors.append(FHIRValidationError(missing: "content[x]"))
+		}
+		
 		return json
 	}
 }
@@ -771,6 +784,11 @@ open class ContractRule: BackboneElement {
 		}
 		if let contentReference = self.contentReference {
 			json["contentReference"] = contentReference.asJSON(errors: &errors)
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.contentAttachment && nil == self.contentReference {
+			errors.append(FHIRValidationError(missing: "content[x]"))
 		}
 		
 		return json
@@ -871,11 +889,20 @@ open class ContractSigner: BackboneElement {
 		if let party = self.party {
 			json["party"] = party.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "party"))
+		}
 		if let signature = self.signature {
 			json["signature"] = signature.map() { $0.asJSON(errors: &errors) }
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "signature"))
+		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
 		return json
@@ -918,7 +945,7 @@ open class ContractTerm: BackboneElement {
 	public var subType: CodeableConcept?
 	
 	/// Human readable Contract term text.
-	public var text: String?
+	public var text: FHIRString?
 	
 	/// Context of the Contract term.
 	public var topic: [Reference]?
@@ -1019,7 +1046,7 @@ open class ContractTerm: BackboneElement {
 		if let exist = json["issued"] {
 			presentKeys.insert("issued")
 			if let val = exist as? String {
-				self.issued = DateTime(string: val)
+				self.issued = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "issued", wants: String.self, has: type(of: exist)))
@@ -1042,7 +1069,7 @@ open class ContractTerm: BackboneElement {
 		if let exist = json["text"] {
 			presentKeys.insert("text")
 			if let val = exist as? String {
-				self.text = val
+				self.text = FHIRString(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
@@ -1205,6 +1232,9 @@ open class ContractTermAgent: BackboneElement {
 		if let actor = self.actor {
 			json["actor"] = actor.asJSON(errors: &errors)
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "actor"))
+		}
 		if let role = self.role {
 			json["role"] = role.map() { $0.asJSON(errors: &errors) }
 		}
@@ -1257,7 +1287,7 @@ open class ContractTermValuedItem: BackboneElement {
 		if let exist = json["effectiveTime"] {
 			presentKeys.insert("effectiveTime")
 			if let val = exist as? String {
-				self.effectiveTime = DateTime(string: val)
+				self.effectiveTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "effectiveTime", wants: String.self, has: type(of: exist)))
@@ -1447,7 +1477,7 @@ open class ContractValuedItem: BackboneElement {
 		if let exist = json["effectiveTime"] {
 			presentKeys.insert("effectiveTime")
 			if let val = exist as? String {
-				self.effectiveTime = DateTime(string: val)
+				self.effectiveTime = DateTime(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "effectiveTime", wants: String.self, has: type(of: exist)))

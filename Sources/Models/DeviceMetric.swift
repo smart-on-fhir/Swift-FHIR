@@ -226,11 +226,17 @@ open class DeviceMetric: DomainResource {
 		if let category = self.category {
 			json["category"] = category.rawValue
 		}
+		else {
+			errors.append(FHIRValidationError(missing: "category"))
+		}
 		if let color = self.color {
 			json["color"] = color.rawValue
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "identifier"))
 		}
 		if let measurementPeriod = self.measurementPeriod {
 			json["measurementPeriod"] = measurementPeriod.asJSON(errors: &errors)
@@ -246,6 +252,9 @@ open class DeviceMetric: DomainResource {
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON(errors: &errors)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		if let unit = self.unit {
 			json["unit"] = unit.asJSON(errors: &errors)
@@ -293,7 +302,7 @@ open class DeviceMetricCalibration: BackboneElement {
 		if let exist = json["time"] {
 			presentKeys.insert("time")
 			if let val = exist as? String {
-				self.time = Instant(string: val)
+				self.time = Instant(json: val)
 			}
 			else {
 				errors.append(FHIRValidationError(key: "time", wants: String.self, has: type(of: exist)))

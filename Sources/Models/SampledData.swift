@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -24,26 +24,26 @@ open class SampledData: Element {
 	public var data: FHIRString?
 	
 	/// Number of sample points at each time point.
-	public var dimensions: UInt?
+	public var dimensions: FHIRInteger?
 	
 	/// Multiply data by this before adding to origin.
-	public var factor: NSDecimalNumber?
+	public var factor: FHIRDecimal?
 	
 	/// Lower limit of detection.
-	public var lowerLimit: NSDecimalNumber?
+	public var lowerLimit: FHIRDecimal?
 	
 	/// Zero value and units.
 	public var origin: Quantity?
 	
 	/// Number of milliseconds between samples.
-	public var period: NSDecimalNumber?
+	public var period: FHIRDecimal?
 	
 	/// Upper limit of detection.
-	public var upperLimit: NSDecimalNumber?
+	public var upperLimit: FHIRDecimal?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(data: FHIRString, dimensions: UInt, origin: Quantity, period: NSDecimalNumber) {
+	public convenience init(data: FHIRString, dimensions: FHIRInteger, origin: Quantity, period: FHIRDecimal) {
 		self.init()
 		self.data = data
 		self.dimensions = dimensions
@@ -54,127 +54,52 @@ open class SampledData: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["data"] {
-			presentKeys.insert("data")
-			if let val = exist as? String {
-				self.data = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "data", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		data = try createInstance(type: FHIRString.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
+		if nil == data && !presentKeys.contains("data") {
 			errors.append(FHIRValidationError(missing: "data"))
 		}
-		if let exist = json["dimensions"] {
-			presentKeys.insert("dimensions")
-			if let val = exist as? UInt {
-				self.dimensions = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "dimensions", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		else {
+		dimensions = try createInstance(type: FHIRInteger.self, for: "dimensions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dimensions
+		if nil == dimensions && !presentKeys.contains("dimensions") {
 			errors.append(FHIRValidationError(missing: "dimensions"))
 		}
-		if let exist = json["factor"] {
-			presentKeys.insert("factor")
-			if let val = exist as? NSNumber {
-				self.factor = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "factor", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["lowerLimit"] {
-			presentKeys.insert("lowerLimit")
-			if let val = exist as? NSNumber {
-				self.lowerLimit = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "lowerLimit", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["origin"] {
-			presentKeys.insert("origin")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.origin = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "origin"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "origin", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		factor = try createInstance(type: FHIRDecimal.self, for: "factor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? factor
+		lowerLimit = try createInstance(type: FHIRDecimal.self, for: "lowerLimit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lowerLimit
+		origin = try createInstance(type: Quantity.self, for: "origin", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? origin
+		if nil == origin && !presentKeys.contains("origin") {
 			errors.append(FHIRValidationError(missing: "origin"))
 		}
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? NSNumber {
-				self.period = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		else {
+		period = try createInstance(type: FHIRDecimal.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		if nil == period && !presentKeys.contains("period") {
 			errors.append(FHIRValidationError(missing: "period"))
 		}
-		if let exist = json["upperLimit"] {
-			presentKeys.insert("upperLimit")
-			if let val = exist as? NSNumber {
-				self.upperLimit = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "upperLimit", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
+		upperLimit = try createInstance(type: FHIRDecimal.self, for: "upperLimit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? upperLimit
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let data = self.data {
-			json["data"] = data.asJSON()
-		}
-		else {
+		self.data?.decorate(json: &json, withKey: "data", errors: &errors)
+		if nil == self.data {
 			errors.append(FHIRValidationError(missing: "data"))
 		}
-		if let dimensions = self.dimensions {
-			json["dimensions"] = dimensions.asJSON()
-		}
-		else {
+		self.dimensions?.decorate(json: &json, withKey: "dimensions", errors: &errors)
+		if nil == self.dimensions {
 			errors.append(FHIRValidationError(missing: "dimensions"))
 		}
-		if let factor = self.factor {
-			json["factor"] = factor.asJSON()
-		}
-		if let lowerLimit = self.lowerLimit {
-			json["lowerLimit"] = lowerLimit.asJSON()
-		}
-		if let origin = self.origin {
-			json["origin"] = origin.asJSON(errors: &errors)
-		}
-		else {
+		self.factor?.decorate(json: &json, withKey: "factor", errors: &errors)
+		self.lowerLimit?.decorate(json: &json, withKey: "lowerLimit", errors: &errors)
+		self.origin?.decorate(json: &json, withKey: "origin", errors: &errors)
+		if nil == self.origin {
 			errors.append(FHIRValidationError(missing: "origin"))
 		}
-		if let period = self.period {
-			json["period"] = period.asJSON()
-		}
-		else {
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		if nil == self.period {
 			errors.append(FHIRValidationError(missing: "period"))
 		}
-		if let upperLimit = self.upperLimit {
-			json["upperLimit"] = upperLimit.asJSON()
-		}
-		
-		return json
+		self.upperLimit?.decorate(json: &json, withKey: "upperLimit", errors: &errors)
 	}
 }
 

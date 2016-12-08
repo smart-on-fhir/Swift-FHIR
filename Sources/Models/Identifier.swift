@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ open class Identifier: Element {
 	public var period: Period?
 	
 	/// The namespace for the identifier.
-	public var system: URL?
+	public var system: FHIRURL?
 	
 	/// Description of identifier.
 	public var type: CodeableConcept?
@@ -40,106 +40,26 @@ open class Identifier: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["assigner"] {
-			presentKeys.insert("assigner")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.assigner = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "assigner"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "assigner", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.period = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "period"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["system"] {
-			presentKeys.insert("system")
-			if let val = exist as? String {
-				self.system = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "system", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.type = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["use"] {
-			presentKeys.insert("use")
-			if let val = exist as? String {
-				if let enumval = IdentifierUse(rawValue: val) {
-					self.use = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "use", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["value"] {
-			presentKeys.insert("value")
-			if let val = exist as? String {
-				self.value = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		assigner = try createInstance(type: Reference.self, for: "assigner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? assigner
+		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		system = try createInstance(type: FHIRURL.self, for: "system", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? system
+		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
+		use = createEnum(type: IdentifierUse.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors) ?? use
+		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let assigner = self.assigner {
-			json["assigner"] = assigner.asJSON(errors: &errors)
-		}
-		if let period = self.period {
-			json["period"] = period.asJSON(errors: &errors)
-		}
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON(errors: &errors)
-		}
-		if let use = self.use {
-			json["use"] = use.rawValue
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		
-		return json
+		self.assigner?.decorate(json: &json, withKey: "assigner", errors: &errors)
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		self.system?.decorate(json: &json, withKey: "system", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		self.use?.decorate(json: &json, withKey: "use", errors: &errors)
+		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
 	}
 }
 

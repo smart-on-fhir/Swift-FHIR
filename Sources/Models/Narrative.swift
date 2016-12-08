@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -35,55 +35,30 @@ open class Narrative: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["div"] {
-			presentKeys.insert("div")
-			if let val = exist as? String {
-				self.div = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "div", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		div = try createInstance(type: FHIRString.self, for: "div", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? div
+		if nil == div && !presentKeys.contains("div") {
 			errors.append(FHIRValidationError(missing: "div"))
 		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = NarrativeStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		status = createEnum(type: NarrativeStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let div = self.div {
-			json["div"] = div.asJSON()
-		}
-		else {
+		self.div?.decorate(json: &json, withKey: "div", errors: &errors)
+		if nil == self.div {
 			errors.append(FHIRValidationError(missing: "div"))
 		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
-		else {
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		
-		return json
 	}
 }
 

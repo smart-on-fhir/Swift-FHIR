@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -64,198 +64,48 @@ open class DeviceUseStatement: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["bodySite"] {
-			presentKeys.insert("bodySite")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.bodySite = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "bodySite"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "bodySite", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["device"] {
-			presentKeys.insert("device")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.device = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "device"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "device", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		bodySite = try createInstance(type: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
+		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
+		if nil == device && !presentKeys.contains("device") {
 			errors.append(FHIRValidationError(missing: "device"))
 		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.identifier = try Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["indication"] {
-			presentKeys.insert("indication")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.indication = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "indication"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "indication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["notes"] {
-			presentKeys.insert("notes")
-			if let val = exist as? [String] {
-				self.notes = FHIRString.instantiate(fromArray: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "notes", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["recordedOn"] {
-			presentKeys.insert("recordedOn")
-			if let val = exist as? String {
-				self.recordedOn = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "recordedOn", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["subject"] {
-			presentKeys.insert("subject")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.subject = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "subject"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		indication = try createInstances(of: CodeableConcept.self, for: "indication", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? indication
+		notes = try createInstances(of: FHIRString.self, for: "notes", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? notes
+		recordedOn = try createInstance(type: DateTime.self, for: "recordedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recordedOn
+		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
+		if nil == subject && !presentKeys.contains("subject") {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
-		if let exist = json["timingDateTime"] {
-			presentKeys.insert("timingDateTime")
-			if let val = exist as? String {
-				self.timingDateTime = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "timingDateTime", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["timingPeriod"] {
-			presentKeys.insert("timingPeriod")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.timingPeriod = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "timingPeriod"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "timingPeriod", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["timingTiming"] {
-			presentKeys.insert("timingTiming")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.timingTiming = try Timing(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "timingTiming"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "timingTiming", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["whenUsed"] {
-			presentKeys.insert("whenUsed")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.whenUsed = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "whenUsed"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "whenUsed", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		timingDateTime = try createInstance(type: DateTime.self, for: "timingDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingDateTime
+		timingPeriod = try createInstance(type: Period.self, for: "timingPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingPeriod
+		timingTiming = try createInstance(type: Timing.self, for: "timingTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingTiming
+		whenUsed = try createInstance(type: Period.self, for: "whenUsed", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whenUsed
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let bodySite = self.bodySite {
-			json["bodySite"] = bodySite.asJSON(errors: &errors)
-		}
-		if let device = self.device {
-			json["device"] = device.asJSON(errors: &errors)
-		}
-		else {
+		self.bodySite?.decorate(json: &json, withKey: "bodySite", errors: &errors)
+		self.device?.decorate(json: &json, withKey: "device", errors: &errors)
+		if nil == self.device {
 			errors.append(FHIRValidationError(missing: "device"))
 		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
-		}
-		if let indication = self.indication {
-			json["indication"] = indication.map() { $0.asJSON(errors: &errors) }
-		}
-		if let notes = self.notes {
-			json["notes"] = notes.map() { $0.asJSON() }
-		}
-		if let recordedOn = self.recordedOn {
-			json["recordedOn"] = recordedOn.asJSON()
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON(errors: &errors)
-		}
-		else {
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "indication", using: self.indication, errors: &errors)
+		arrayDecorate(json: &json, withKey: "notes", using: self.notes, errors: &errors)
+		self.recordedOn?.decorate(json: &json, withKey: "recordedOn", errors: &errors)
+		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
+		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
-		if let timingDateTime = self.timingDateTime {
-			json["timingDateTime"] = timingDateTime.asJSON()
-		}
-		if let timingPeriod = self.timingPeriod {
-			json["timingPeriod"] = timingPeriod.asJSON(errors: &errors)
-		}
-		if let timingTiming = self.timingTiming {
-			json["timingTiming"] = timingTiming.asJSON(errors: &errors)
-		}
-		if let whenUsed = self.whenUsed {
-			json["whenUsed"] = whenUsed.asJSON(errors: &errors)
-		}
-		
-		return json
+		self.timingDateTime?.decorate(json: &json, withKey: "timingDateTime", errors: &errors)
+		self.timingPeriod?.decorate(json: &json, withKey: "timingPeriod", errors: &errors)
+		self.timingTiming?.decorate(json: &json, withKey: "timingTiming", errors: &errors)
+		self.whenUsed?.decorate(json: &json, withKey: "whenUsed", errors: &errors)
 	}
 }
 

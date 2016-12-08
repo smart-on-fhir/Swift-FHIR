@@ -2,7 +2,7 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -34,7 +34,7 @@ class CodeSystemTests: XCTestCase {
 	func runCodeSystem1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-example.json")
 		
-		XCTAssertTrue(inst.caseSensitive ?? false)
+		XCTAssertEqual(inst.caseSensitive, true)
 		XCTAssertEqual(inst.concept?[0].code, "chol-mmol")
 		XCTAssertEqual(inst.concept?[0].definition, "Serum Cholesterol, in mmol/L")
 		XCTAssertEqual(inst.concept?[0].designation?[0].use?.code, "internal-label")
@@ -59,7 +59,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
 		XCTAssertEqual(inst.date?.description, "2016-01-28")
 		XCTAssertEqual(inst.description_fhir, "This is an example code system that includes all the ACME codes for serum/plasma cholesterol from v2.36.")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://acme.com/identifiers/codesystems")
 		XCTAssertEqual(inst.identifier?.value, "internal-cholesterol-inl")
@@ -88,7 +88,7 @@ class CodeSystemTests: XCTestCase {
 	func runCodeSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-list-example-codes.json")
 		
-		XCTAssertTrue(inst.caseSensitive ?? false)
+		XCTAssertEqual(inst.caseSensitive, true)
 		XCTAssertEqual(inst.concept?[0].code, "alerts")
 		XCTAssertEqual(inst.concept?[0].definition, "A list of alerts for the patient.")
 		XCTAssertEqual(inst.concept?[0].display, "Alerts")
@@ -120,7 +120,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.173")

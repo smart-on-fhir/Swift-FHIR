@@ -2,7 +2,7 @@
 //  StructureMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ class StructureMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].context, "test")
 		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].contextType, StructureMapContextType(rawValue: "variable")!)
 		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].element, "test")
-		XCTAssertTrue(inst.group?[0].rule?[0].source?[0].required ?? false)
+		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].required, true)
 		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].variable, "t")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.name, "Example Map")

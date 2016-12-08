@@ -2,7 +2,7 @@
 //  DosageInstruction.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DosageInstruction) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DosageInstruction) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -23,7 +23,7 @@ open class DosageInstruction: Element {
 	public var additionalInstructions: [CodeableConcept]?
 	
 	/// Take "as needed" (for x).
-	public var asNeededBoolean: Bool?
+	public var asNeededBoolean: FHIRBool?
 	
 	/// Take "as needed" (for x).
 	public var asNeededCodeableConcept: CodeableConcept?
@@ -59,7 +59,7 @@ open class DosageInstruction: Element {
 	public var route: CodeableConcept?
 	
 	/// The order of the dosage instructions.
-	public var sequence: Int?
+	public var sequence: FHIRInteger?
 	
 	/// Body site to administer to.
 	public var site: CodeableConcept?
@@ -73,288 +73,48 @@ open class DosageInstruction: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["additionalInstructions"] {
-			presentKeys.insert("additionalInstructions")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.additionalInstructions = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "additionalInstructions"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "additionalInstructions", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["asNeededBoolean"] {
-			presentKeys.insert("asNeededBoolean")
-			if let val = exist as? Bool {
-				self.asNeededBoolean = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "asNeededBoolean", wants: Bool.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["asNeededCodeableConcept"] {
-			presentKeys.insert("asNeededCodeableConcept")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.asNeededCodeableConcept = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "asNeededCodeableConcept"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "asNeededCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["doseQuantity"] {
-			presentKeys.insert("doseQuantity")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.doseQuantity = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "doseQuantity"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "doseQuantity", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["doseRange"] {
-			presentKeys.insert("doseRange")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.doseRange = try Range(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "doseRange"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "doseRange", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["maxDosePerAdministration"] {
-			presentKeys.insert("maxDosePerAdministration")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.maxDosePerAdministration = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "maxDosePerAdministration"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "maxDosePerAdministration", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["maxDosePerLifetime"] {
-			presentKeys.insert("maxDosePerLifetime")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.maxDosePerLifetime = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "maxDosePerLifetime"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "maxDosePerLifetime", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["maxDosePerPeriod"] {
-			presentKeys.insert("maxDosePerPeriod")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.maxDosePerPeriod = try Ratio(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "maxDosePerPeriod"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "maxDosePerPeriod", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["method"] {
-			presentKeys.insert("method")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.method = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "method"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "method", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["rateQuantity"] {
-			presentKeys.insert("rateQuantity")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.rateQuantity = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "rateQuantity"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "rateQuantity", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["rateRange"] {
-			presentKeys.insert("rateRange")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.rateRange = try Range(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "rateRange"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "rateRange", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["rateRatio"] {
-			presentKeys.insert("rateRatio")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.rateRatio = try Ratio(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "rateRatio"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "rateRatio", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["route"] {
-			presentKeys.insert("route")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.route = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "route"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "route", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["sequence"] {
-			presentKeys.insert("sequence")
-			if let val = exist as? Int {
-				self.sequence = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "sequence", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["site"] {
-			presentKeys.insert("site")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.site = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "site"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "site", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["text"] {
-			presentKeys.insert("text")
-			if let val = exist as? String {
-				self.text = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["timing"] {
-			presentKeys.insert("timing")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.timing = try Timing(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "timing"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "timing", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		
+		additionalInstructions = try createInstances(of: CodeableConcept.self, for: "additionalInstructions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additionalInstructions
+		asNeededBoolean = try createInstance(type: FHIRBool.self, for: "asNeededBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asNeededBoolean
+		asNeededCodeableConcept = try createInstance(type: CodeableConcept.self, for: "asNeededCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asNeededCodeableConcept
+		doseQuantity = try createInstance(type: Quantity.self, for: "doseQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseQuantity
+		doseRange = try createInstance(type: Range.self, for: "doseRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseRange
+		maxDosePerAdministration = try createInstance(type: Quantity.self, for: "maxDosePerAdministration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerAdministration
+		maxDosePerLifetime = try createInstance(type: Quantity.self, for: "maxDosePerLifetime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerLifetime
+		maxDosePerPeriod = try createInstance(type: Ratio.self, for: "maxDosePerPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerPeriod
+		method = try createInstance(type: CodeableConcept.self, for: "method", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? method
+		rateQuantity = try createInstance(type: Quantity.self, for: "rateQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateQuantity
+		rateRange = try createInstance(type: Range.self, for: "rateRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateRange
+		rateRatio = try createInstance(type: Ratio.self, for: "rateRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateRatio
+		route = try createInstance(type: CodeableConcept.self, for: "route", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? route
+		sequence = try createInstance(type: FHIRInteger.self, for: "sequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequence
+		site = try createInstance(type: CodeableConcept.self, for: "site", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? site
+		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
+		timing = try createInstance(type: Timing.self, for: "timing", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timing
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let additionalInstructions = self.additionalInstructions {
-			json["additionalInstructions"] = additionalInstructions.map() { $0.asJSON(errors: &errors) }
-		}
-		if let asNeededBoolean = self.asNeededBoolean {
-			json["asNeededBoolean"] = asNeededBoolean.asJSON()
-		}
-		if let asNeededCodeableConcept = self.asNeededCodeableConcept {
-			json["asNeededCodeableConcept"] = asNeededCodeableConcept.asJSON(errors: &errors)
-		}
-		if let doseQuantity = self.doseQuantity {
-			json["doseQuantity"] = doseQuantity.asJSON(errors: &errors)
-		}
-		if let doseRange = self.doseRange {
-			json["doseRange"] = doseRange.asJSON(errors: &errors)
-		}
-		if let maxDosePerAdministration = self.maxDosePerAdministration {
-			json["maxDosePerAdministration"] = maxDosePerAdministration.asJSON(errors: &errors)
-		}
-		if let maxDosePerLifetime = self.maxDosePerLifetime {
-			json["maxDosePerLifetime"] = maxDosePerLifetime.asJSON(errors: &errors)
-		}
-		if let maxDosePerPeriod = self.maxDosePerPeriod {
-			json["maxDosePerPeriod"] = maxDosePerPeriod.asJSON(errors: &errors)
-		}
-		if let method = self.method {
-			json["method"] = method.asJSON(errors: &errors)
-		}
-		if let rateQuantity = self.rateQuantity {
-			json["rateQuantity"] = rateQuantity.asJSON(errors: &errors)
-		}
-		if let rateRange = self.rateRange {
-			json["rateRange"] = rateRange.asJSON(errors: &errors)
-		}
-		if let rateRatio = self.rateRatio {
-			json["rateRatio"] = rateRatio.asJSON(errors: &errors)
-		}
-		if let route = self.route {
-			json["route"] = route.asJSON(errors: &errors)
-		}
-		if let sequence = self.sequence {
-			json["sequence"] = sequence.asJSON()
-		}
-		if let site = self.site {
-			json["site"] = site.asJSON(errors: &errors)
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		if let timing = self.timing {
-			json["timing"] = timing.asJSON(errors: &errors)
-		}
-		
-		return json
+		arrayDecorate(json: &json, withKey: "additionalInstructions", using: self.additionalInstructions, errors: &errors)
+		self.asNeededBoolean?.decorate(json: &json, withKey: "asNeededBoolean", errors: &errors)
+		self.asNeededCodeableConcept?.decorate(json: &json, withKey: "asNeededCodeableConcept", errors: &errors)
+		self.doseQuantity?.decorate(json: &json, withKey: "doseQuantity", errors: &errors)
+		self.doseRange?.decorate(json: &json, withKey: "doseRange", errors: &errors)
+		self.maxDosePerAdministration?.decorate(json: &json, withKey: "maxDosePerAdministration", errors: &errors)
+		self.maxDosePerLifetime?.decorate(json: &json, withKey: "maxDosePerLifetime", errors: &errors)
+		self.maxDosePerPeriod?.decorate(json: &json, withKey: "maxDosePerPeriod", errors: &errors)
+		self.method?.decorate(json: &json, withKey: "method", errors: &errors)
+		self.rateQuantity?.decorate(json: &json, withKey: "rateQuantity", errors: &errors)
+		self.rateRange?.decorate(json: &json, withKey: "rateRange", errors: &errors)
+		self.rateRatio?.decorate(json: &json, withKey: "rateRatio", errors: &errors)
+		self.route?.decorate(json: &json, withKey: "route", errors: &errors)
+		self.sequence?.decorate(json: &json, withKey: "sequence", errors: &errors)
+		self.site?.decorate(json: &json, withKey: "site", errors: &errors)
+		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
+		self.timing?.decorate(json: &json, withKey: "timing", errors: &errors)
 	}
 }
 

@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -81,8 +81,8 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.physicalType?.coding?[0].code, "bu")
 		XCTAssertEqual(inst.physicalType?.coding?[0].display, "Building")
 		XCTAssertEqual(inst.physicalType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/location-physical-type")
-		XCTAssertEqual(inst.position?.latitude, NSDecimalNumber(string: "-83.69471"))
-		XCTAssertEqual(inst.position?.longitude, NSDecimalNumber(string: "42.2565"))
+		XCTAssertEqual(inst.position?.latitude, "-83.69471")
+		XCTAssertEqual(inst.position?.longitude, "42.2565")
 		XCTAssertEqual(inst.status, LocationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.telecom?[0].value, "(+1) 734-677-7777")
@@ -232,9 +232,9 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.physicalType?.coding?[0].code, "wi")
 		XCTAssertEqual(inst.physicalType?.coding?[0].display, "Wing")
 		XCTAssertEqual(inst.physicalType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/location-physical-type")
-		XCTAssertEqual(inst.position?.altitude, NSDecimalNumber(string: "0"))
-		XCTAssertEqual(inst.position?.latitude, NSDecimalNumber(string: "42.25475478"))
-		XCTAssertEqual(inst.position?.longitude, NSDecimalNumber(string: "-83.6945691"))
+		XCTAssertEqual(inst.position?.altitude, "0")
+		XCTAssertEqual(inst.position?.latitude, "42.25475478")
+		XCTAssertEqual(inst.position?.longitude, "-83.6945691")
 		XCTAssertEqual(inst.status, LocationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "work")!)

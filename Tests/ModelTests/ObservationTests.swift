@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -55,7 +55,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].code, "LA6724-4")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].display, "Good color all over")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarcolor")
@@ -70,7 +70,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].code, "LA6718-6")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].display, "At least 100 beats per minute")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarheartrate")
@@ -85,7 +85,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].code, "LA6721-0")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].display, "Grimace and pulling away, cough, or sneeze during suctioning")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarreflexirritability")
@@ -100,7 +100,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].code, "LA6715-2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].display, "Active motion ")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarmuscletone")
@@ -115,7 +115,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].code, "LA6727-7")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].display, "Good, strong cry; normal rate and effort of breathing    ")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarrespiratoryeffort")
@@ -128,7 +128,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.valueQuantity?.value, "10")
 		
 		return inst
 	}
@@ -168,7 +168,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].code, "LA6722-8")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].display, "The baby's whole body is completely bluish-gray or pale")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "0"))
+		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "0")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].code, "0")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarcolor")
@@ -183,7 +183,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].code, "LA6716-0")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].display, "No heart rate")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "0"))
+		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "0")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].code, "0")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarheartrate")
@@ -198,7 +198,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].code, "LA6719-4")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].display, "No response to airways being suctioned")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "0"))
+		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "0")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].code, "0")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarreflexirritability")
@@ -213,7 +213,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].code, "LA6713-7")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].display, "Limp; no movement")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "0"))
+		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "0")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].code, "0")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarmuscletone")
@@ -228,7 +228,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].code, "LA6725-1")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].display, "Not breathing")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "0"))
+		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "0")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].code, "0")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarrespiratoryeffort")
@@ -241,7 +241,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "0"))
+		XCTAssertEqual(inst.valueQuantity?.value, "0")
 		
 		return inst
 	}
@@ -275,7 +275,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].code, "LA6724-4")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].display, "Good color all over")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarcolor")
@@ -287,7 +287,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].code, "LA6718-6")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].display, "At least 100 beats per minute")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarheartrate")
@@ -299,7 +299,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].code, "LA6721-0")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].display, "Grimace and pulling away, cough, or sneeze during suctioning")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarreflexirritability")
@@ -311,7 +311,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].code, "LA6715-2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].display, "Active motion ")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarmuscletone")
@@ -323,7 +323,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].code, "LA6727-7")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].display, "Good, strong cry; normal rate and effort of breathing    ")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarrespiratoryeffort")
@@ -336,7 +336,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.valueQuantity?.value, "10")
 		
 		return inst
 	}
@@ -370,7 +370,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].code, "LA6723-6")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].display, "Good color in body with bluish hands or feet")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "1")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].code, "1")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarcolor")
@@ -382,7 +382,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].code, "LA6720-2")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].display, "Fewer than 100 beats per minute")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "1")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].code, "1")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarheartrate")
@@ -394,7 +394,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].code, "LA6721-0")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].display, "Grimace during suctioning")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "1")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].code, "1")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarreflexirritability")
@@ -406,7 +406,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].code, "LA6714-5")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].display, "Some flexion of arms and legs")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "1")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].code, "1")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarmuscletone")
@@ -418,7 +418,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].code, "LA6726-9")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].display, "Weak cry; may sound like whimpering, slow or irregular breathing")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "1")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].code, "1")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarrespiratoryeffort")
@@ -431,7 +431,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "5"))
+		XCTAssertEqual(inst.valueQuantity?.value, "5")
 		
 		return inst
 	}
@@ -471,7 +471,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].code, "LA6724-4")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].display, "Good color all over")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[0].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarcolor")
@@ -486,7 +486,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].code, "LA6718-6")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].display, "At least 100 beats per minute")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[1].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarheartrate")
@@ -501,7 +501,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].code, "LA6721-0")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].display, "Grimace and pulling away, cough, or sneeze during suctioning")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[2].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarreflexirritability")
@@ -516,7 +516,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].code, "LA6715-2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].display, "Active motion ")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[3].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarmuscletone")
@@ -531,7 +531,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].code, "LA6727-7")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].display, "Good, strong cry; normal rate and effort of breathing    ")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].extension_fhir?[0].valueDecimal, "2")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org/la")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].code, "2")
 		XCTAssertEqual(inst.component?[4].valueCodeableConcept?.coding?[1].system?.absoluteString, "http:/acme.ped/apgarrespiratoryeffort")
@@ -544,7 +544,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.valueQuantity?.code, "{score}")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.valueQuantity?.value, "10")
 		
 		return inst
 	}
@@ -640,7 +640,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[0].valueQuantity?.code, "mm[Hg]")
 		XCTAssertEqual(inst.component?[0].valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.component?[0].valueQuantity?.unit, "mmHg")
-		XCTAssertEqual(inst.component?[0].valueQuantity?.value, NSDecimalNumber(string: "107"))
+		XCTAssertEqual(inst.component?[0].valueQuantity?.value, "107")
 		XCTAssertEqual(inst.component?[1].code?.coding?[0].code, "8462-4")
 		XCTAssertEqual(inst.component?[1].code?.coding?[0].display, "Diastolic blood pressure")
 		XCTAssertEqual(inst.component?[1].code?.coding?[0].system?.absoluteString, "http://loinc.org")
@@ -698,14 +698,14 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.component?[0].valueQuantity?.code, "mm[Hg]")
 		XCTAssertEqual(inst.component?[0].valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.component?[0].valueQuantity?.unit, "mmHg")
-		XCTAssertEqual(inst.component?[0].valueQuantity?.value, NSDecimalNumber(string: "107"))
+		XCTAssertEqual(inst.component?[0].valueQuantity?.value, "107")
 		XCTAssertEqual(inst.component?[1].code?.coding?[0].code, "8462-4")
 		XCTAssertEqual(inst.component?[1].code?.coding?[0].display, "Diastolic blood pressure")
 		XCTAssertEqual(inst.component?[1].code?.coding?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.component?[1].valueQuantity?.code, "mm[Hg]")
 		XCTAssertEqual(inst.component?[1].valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.component?[1].valueQuantity?.unit, "mmHg")
-		XCTAssertEqual(inst.component?[1].valueQuantity?.value, NSDecimalNumber(string: "60"))
+		XCTAssertEqual(inst.component?[1].valueQuantity?.value, "60")
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2012-09-17")
 		XCTAssertEqual(inst.id, "blood-pressure")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
@@ -752,7 +752,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.valueQuantity?.code, "g/cm-2")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.valueQuantity?.unit, "g/cm²")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "0.887"))
+		XCTAssertEqual(inst.valueQuantity?.value, "0.887")
 		
 		return inst
 	}
@@ -787,7 +787,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.valueQuantity?.code, "kg/m2")
 		XCTAssertEqual(inst.valueQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.valueQuantity?.unit, "kg/m2")
-		XCTAssertEqual(inst.valueQuantity?.value, NSDecimalNumber(string: "16.2"))
+		XCTAssertEqual(inst.valueQuantity?.value, "16.2")
 		
 		return inst
 	}

@@ -167,7 +167,7 @@ open class FHIRSearch
 					if let links = bundle.link {
 						for link in links {
 							if "next" == link.relation {
-								self.nextPageURL = link.url
+								self.nextPageURL = link.url?.url
 								break
 							}
 						}

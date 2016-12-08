@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.expansion?.contains?[0].display, "Cholesterol [Moles/volume] in Serum or Plasma")
 		XCTAssertEqual(inst.expansion?.contains?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.expansion?.contains?[0].version, "2.50")
-		XCTAssertTrue(inst.expansion?.contains?[1].abstract ?? false)
+		XCTAssertEqual(inst.expansion?.contains?[1].abstract, true)
 		XCTAssertEqual(inst.expansion?.contains?[1].contains?[0].code, "2093-3")
 		XCTAssertEqual(inst.expansion?.contains?[1].contains?[0].display, "Cholesterol [Mass/volume] in Serum or Plasma")
 		XCTAssertEqual(inst.expansion?.contains?[1].contains?[0].system?.absoluteString, "http://loinc.org")
@@ -61,7 +61,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.expansion?.contains?[1].contains?[2].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.expansion?.contains?[1].contains?[2].version, "2.50")
 		XCTAssertEqual(inst.expansion?.contains?[1].display, "Cholesterol codes")
-		XCTAssertTrue(inst.expansion?.contains?[2].abstract ?? false)
+		XCTAssertEqual(inst.expansion?.contains?[2].abstract, true)
 		XCTAssertEqual(inst.expansion?.contains?[2].contains?[0].code, "2096-6")
 		XCTAssertEqual(inst.expansion?.contains?[2].contains?[0].display, "Cholesterol/Triglyceride [Mass Ratio] in Serum or Plasma")
 		XCTAssertEqual(inst.expansion?.contains?[2].contains?[0].system?.absoluteString, "http://loinc.org")
@@ -87,7 +87,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.expansion?.parameter?[0].valueString, "2.50")
 		XCTAssertEqual(inst.expansion?.timestamp?.description, "2015-06-22T13:56:07Z")
 		XCTAssertEqual(inst.expansion?.total, 8)
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example-expansion")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
@@ -127,7 +127,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.copyright, "This content from LOINCÂ® is copyright Â© 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use")
 		XCTAssertEqual(inst.date?.description, "2015-06-22")
 		XCTAssertEqual(inst.description_fhir, "This is an example value set that includes all the LOINC codes for serum/plasma cholesterol from v2.36.")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example-intensional")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
 		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-ext")
@@ -212,7 +212,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.copyright, "This content from LOINCÂ® is copyright Â© 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use.")
 		XCTAssertEqual(inst.date?.description, "2015-06-22")
 		XCTAssertEqual(inst.description_fhir, "This is an example value set that includes all the LOINC codes for serum/plasma cholesterol from v2.36.")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example-extensional")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
 		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-int")
@@ -246,11 +246,11 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2016-12-06T12:22:34+11:00")
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.2.173")
-		XCTAssertTrue(inst.immutable ?? false)
+		XCTAssertEqual(inst.immutable, true)
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-12-06T12:22:34.981+11:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")

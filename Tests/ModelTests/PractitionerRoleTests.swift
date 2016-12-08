@@ -2,7 +2,7 @@
 //  PractitionerRoleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -34,7 +34,7 @@ class PractitionerRoleTests: XCTestCase {
 	func runPractitionerRole1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PractitionerRole {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitionerrole-example.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.code?[0].coding?[0].code, "RP")
 		XCTAssertEqual(inst.code?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0286")
 		XCTAssertEqual(inst.endpoint?[0].reference, "Endpoint/example")

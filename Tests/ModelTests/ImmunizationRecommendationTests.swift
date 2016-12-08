@@ -2,7 +2,7 @@
 //  ImmunizationRecommendationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -51,11 +51,11 @@ class ImmunizationRecommendationTests: XCTestCase {
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].code?.coding?[0].display, "Past Due Date")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].code?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/immunization-recommendation-date-criterion")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].value?.description, "2016-12-28T00:00:00-05:00")
-		XCTAssertEqual(inst.recommendation?[0].doseNumber, UInt(1))
+		XCTAssertEqual(inst.recommendation?[0].doseNumber, 1)
 		XCTAssertEqual(inst.recommendation?[0].forecastStatus?.text, "Not Complete")
 		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.authority?.reference, "Organization/hl7")
 		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.description_fhir, "First sequence in protocol")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.doseSequence, UInt(1))
+		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.doseSequence, 1)
 		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.series, "Vaccination Series 1")
 		XCTAssertEqual(inst.recommendation?[0].supportingImmunization?[0].reference, "Immunization/example")
 		XCTAssertEqual(inst.recommendation?[0].supportingPatientInformation?[0].reference, "Observation/example")

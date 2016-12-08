@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -28,43 +28,18 @@ open class Element: FHIRAbstractBase {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["extension"] {
-			presentKeys.insert("extension")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.extension_fhir = try Extension.instantiate(fromArray: val, owner: self) as? [Extension]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "extension"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "extension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["id"] {
-			presentKeys.insert("id")
-			if let val = exist as? String {
-				self.id = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "id", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		extension_fhir = try createInstances(of: Extension.self, for: "extension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? extension_fhir
+		id = try createInstance(type: FHIRString.self, for: "id", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? id
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let extension_fhir = self.extension_fhir {
-			json["extension"] = extension_fhir.map() { $0.asJSON(errors: &errors) }
-		}
-		if let id = self.id {
-			json["id"] = id.asJSON()
-		}
-		
-		return json
+		arrayDecorate(json: &json, withKey: "extension", using: self.extension_fhir, errors: &errors)
+		self.id?.decorate(json: &json, withKey: "id", errors: &errors)
 	}
 }
 

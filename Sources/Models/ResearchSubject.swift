@@ -2,7 +2,7 @@
 //  ResearchSubject.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -58,158 +58,48 @@ open class ResearchSubject: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["actualArm"] {
-			presentKeys.insert("actualArm")
-			if let val = exist as? String {
-				self.actualArm = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "actualArm", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["assignedArm"] {
-			presentKeys.insert("assignedArm")
-			if let val = exist as? String {
-				self.assignedArm = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "assignedArm", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["consent"] {
-			presentKeys.insert("consent")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.consent = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "consent"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "consent", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.identifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["individual"] {
-			presentKeys.insert("individual")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.individual = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "individual"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "individual", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		actualArm = try createInstance(type: FHIRString.self, for: "actualArm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actualArm
+		assignedArm = try createInstance(type: FHIRString.self, for: "assignedArm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? assignedArm
+		consent = try createInstance(type: Reference.self, for: "consent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? consent
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		individual = try createInstance(type: Reference.self, for: "individual", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? individual
+		if nil == individual && !presentKeys.contains("individual") {
 			errors.append(FHIRValidationError(missing: "individual"))
 		}
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.period = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "period"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = ResearchSubjectStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		status = createEnum(type: ResearchSubjectStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let exist = json["study"] {
-			presentKeys.insert("study")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.study = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "study"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "study", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		study = try createInstance(type: Reference.self, for: "study", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? study
+		if nil == study && !presentKeys.contains("study") {
 			errors.append(FHIRValidationError(missing: "study"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let actualArm = self.actualArm {
-			json["actualArm"] = actualArm.asJSON()
-		}
-		if let assignedArm = self.assignedArm {
-			json["assignedArm"] = assignedArm.asJSON()
-		}
-		if let consent = self.consent {
-			json["consent"] = consent.asJSON(errors: &errors)
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON(errors: &errors)
-		}
-		if let individual = self.individual {
-			json["individual"] = individual.asJSON(errors: &errors)
-		}
-		else {
+		self.actualArm?.decorate(json: &json, withKey: "actualArm", errors: &errors)
+		self.assignedArm?.decorate(json: &json, withKey: "assignedArm", errors: &errors)
+		self.consent?.decorate(json: &json, withKey: "consent", errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		self.individual?.decorate(json: &json, withKey: "individual", errors: &errors)
+		if nil == self.individual {
 			errors.append(FHIRValidationError(missing: "individual"))
 		}
-		if let period = self.period {
-			json["period"] = period.asJSON(errors: &errors)
-		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
-		else {
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let study = self.study {
-			json["study"] = study.asJSON(errors: &errors)
-		}
-		else {
+		self.study?.decorate(json: &json, withKey: "study", errors: &errors)
+		if nil == self.study {
 			errors.append(FHIRValidationError(missing: "study"))
 		}
-		
-		return json
 	}
 }
 

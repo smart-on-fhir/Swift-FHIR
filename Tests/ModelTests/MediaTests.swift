@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -38,7 +38,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.deviceName, "G.E. Medical Systems")
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://nema.org/fhir/extensions#0002-0010")
 		XCTAssertEqual(inst.extension_fhir?[0].valueUri?.absoluteString, "urn:oid:1.2.840.10008.1.2.1")
-		XCTAssertEqual(inst.height, UInt(480))
+		XCTAssertEqual(inst.height, 480)
 		XCTAssertEqual(inst.id, "1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "InstanceUID")
@@ -61,7 +61,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.view?.coding?[0].code, "399067008")
 		XCTAssertEqual(inst.view?.coding?[0].display, "Lateral projection")
 		XCTAssertEqual(inst.view?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.width, UInt(640))
+		XCTAssertEqual(inst.width, 640)
 		
 		return inst
 	}
@@ -83,7 +83,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.content?.contentType, "audio/mpeg")
 		XCTAssertEqual(inst.content?.data, Base64Binary(value: "dG9vIGJpZyB0b28gaW5jbHVkZSB0aGUgd2hvbGU="))
 		XCTAssertEqual(inst.content?.id, "a1")
-		XCTAssertEqual(inst.duration, UInt(65))
+		XCTAssertEqual(inst.duration, 65)
 		XCTAssertEqual(inst.id, "sound")
 		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
@@ -112,8 +112,8 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.content?.creation?.description, "2009-09-03")
 		XCTAssertEqual(inst.content?.id, "a1")
 		XCTAssertEqual(inst.deviceName, "Acme Camera")
-		XCTAssertEqual(inst.frames, UInt(1))
-		XCTAssertEqual(inst.height, UInt(145))
+		XCTAssertEqual(inst.frames, 1)
+		XCTAssertEqual(inst.height, 145)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
@@ -122,7 +122,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagram for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
-		XCTAssertEqual(inst.width, UInt(126))
+		XCTAssertEqual(inst.width, 126)
 		
 		return inst
 	}

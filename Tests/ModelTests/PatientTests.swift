@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -34,7 +34,7 @@ class PatientTests: XCTestCase {
 	func runPatient1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-a.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.contact?[0].organization?.display, "Walt Disney Corporation")
 		XCTAssertEqual(inst.contact?[0].organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].code, "owner")
@@ -73,7 +73,7 @@ class PatientTests: XCTestCase {
 	func runPatient2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-animal.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.animal?.breed?.coding?[0].code, "58108001")
 		XCTAssertEqual(inst.animal?.breed?.coding?[0].display, "Golden retriever")
 		XCTAssertEqual(inst.animal?.breed?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -123,7 +123,7 @@ class PatientTests: XCTestCase {
 	func runPatient3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-b.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "other")!)
 		XCTAssertEqual(inst.id, "pat2")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:0.1.2.3.4.5.6.7")
@@ -159,7 +159,7 @@ class PatientTests: XCTestCase {
 	func runPatient4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-c.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.birthDate?.description, "1982-01-23")
 		XCTAssertEqual(inst.deceasedDateTime?.description, "2015-02-14T13:42:00+10:00")
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "male")!)
@@ -193,9 +193,9 @@ class PatientTests: XCTestCase {
 	func runPatient5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-d.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.birthDate?.description, "1982-08-02")
-		XCTAssertTrue(inst.deceasedBoolean ?? false)
+		XCTAssertEqual(inst.deceasedBoolean, true)
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "female")!)
 		XCTAssertEqual(inst.id, "pat4")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:0.1.2.3.4.5.6.7")
@@ -227,16 +227,16 @@ class PatientTests: XCTestCase {
 	func runPatient6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-dicom.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://nema.org/fhir/extensions#0010:1010")
 		XCTAssertEqual(inst.extension_fhir?[0].valueQuantity?.unit, "Y")
-		XCTAssertEqual(inst.extension_fhir?[0].valueQuantity?.value, NSDecimalNumber(string: "56"))
+		XCTAssertEqual(inst.extension_fhir?[0].valueQuantity?.value, "56")
 		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://nema.org/fhir/extensions#0010:1020")
 		XCTAssertEqual(inst.extension_fhir?[1].valueQuantity?.unit, "m")
-		XCTAssertEqual(inst.extension_fhir?[1].valueQuantity?.value, NSDecimalNumber(string: "1.83"))
+		XCTAssertEqual(inst.extension_fhir?[1].valueQuantity?.value, "1.83")
 		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://nema.org/fhir/extensions#0010:1030")
 		XCTAssertEqual(inst.extension_fhir?[2].valueQuantity?.unit, "kg")
-		XCTAssertEqual(inst.extension_fhir?[2].valueQuantity?.value, NSDecimalNumber(string: "72.58"))
+		XCTAssertEqual(inst.extension_fhir?[2].valueQuantity?.value, "72.58")
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "male")!)
 		XCTAssertEqual(inst.id, "dicom")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://nema.org/examples/patients")
@@ -262,7 +262,7 @@ class PatientTests: XCTestCase {
 	func runPatient7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-f001-pieter.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
 		XCTAssertEqual(inst.address?[0].line?[0], "Van Egmondkade 23")
@@ -273,7 +273,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.communication?[0].language?.coding?[0].display, "Dutch")
 		XCTAssertEqual(inst.communication?[0].language?.coding?[0].system?.absoluteString, "urn:ietf:bcp:47")
 		XCTAssertEqual(inst.communication?[0].language?.text, "Nederlands")
-		XCTAssertTrue(inst.communication?[0].preferred ?? false)
+		XCTAssertEqual(inst.communication?[0].preferred, true)
 		XCTAssertEqual(inst.contact?[0].name?.family, "Abels")
 		XCTAssertEqual(inst.contact?[0].name?.given?[0], "Sarah")
 		XCTAssertEqual(inst.contact?[0].name?.use, NameUse(rawValue: "usual")!)
@@ -282,7 +282,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "mobile")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "0690383372")
-		XCTAssertFalse(inst.deceasedBoolean ?? true)
+		XCTAssertEqual(inst.deceasedBoolean, false)
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "male")!)
 		XCTAssertEqual(inst.id, "f001")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
@@ -296,7 +296,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.maritalStatus?.coding?[0].display, "Married")
 		XCTAssertEqual(inst.maritalStatus?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/MaritalStatus")
 		XCTAssertEqual(inst.maritalStatus?.text, "Getrouwd")
-		XCTAssertTrue(inst.multipleBirthBoolean ?? false)
+		XCTAssertEqual(inst.multipleBirthBoolean, true)
 		XCTAssertEqual(inst.name?[0].family, "van de Heuvel")
 		XCTAssertEqual(inst.name?[0].given?[0], "Pieter")
 		XCTAssertEqual(inst.name?[0].suffix?[0], "MSc")
@@ -326,7 +326,7 @@ class PatientTests: XCTestCase {
 	func runPatient8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-f201-roel.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
 		XCTAssertEqual(inst.address?[0].line?[0], "Bos en Lommerplein 280")
@@ -336,7 +336,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.communication?[0].language?.coding?[0].code, "nl-NL")
 		XCTAssertEqual(inst.communication?[0].language?.coding?[0].display, "Dutch")
 		XCTAssertEqual(inst.communication?[0].language?.coding?[0].system?.absoluteString, "urn:ietf:bcp:47")
-		XCTAssertTrue(inst.communication?[0].preferred ?? false)
+		XCTAssertEqual(inst.communication?[0].preferred, true)
 		XCTAssertEqual(inst.contact?[0].name?.text, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.contact?[0].name?.use, NameUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].code, "127850001")
@@ -347,7 +347,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "home")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "+31201234567")
-		XCTAssertFalse(inst.deceasedBoolean ?? true)
+		XCTAssertEqual(inst.deceasedBoolean, false)
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "male")!)
 		XCTAssertEqual(inst.id, "f201")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
@@ -365,7 +365,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.maritalStatus?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.maritalStatus?.coding?[1].code, "M")
 		XCTAssertEqual(inst.maritalStatus?.coding?[1].system?.absoluteString, "http://hl7.org/fhir/v3/MaritalStatus")
-		XCTAssertFalse(inst.multipleBirthBoolean ?? true)
+		XCTAssertEqual(inst.multipleBirthBoolean, false)
 		XCTAssertEqual(inst.name?[0].family, "Bor")
 		XCTAssertEqual(inst.name?[0].given?[0], "Roelof Olaf")
 		XCTAssertEqual(inst.name?[0].prefix?[0], "Drs.")
@@ -399,7 +399,7 @@ class PatientTests: XCTestCase {
 	func runPatient9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-ihe-pcd.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.id, "ihe-pcd")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "Internal Identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "AB60001")
@@ -425,9 +425,9 @@ class PatientTests: XCTestCase {
 	func runPatient10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Patient {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-proband.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.birthDate?.description, "1966-04-04")
-		XCTAssertFalse(inst.deceasedBoolean ?? true)
+		XCTAssertEqual(inst.deceasedBoolean, false)
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].url?.absoluteString, "ombCategory")
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].valueCoding?.code, "2106-3")
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].valueCoding?.display, "White")

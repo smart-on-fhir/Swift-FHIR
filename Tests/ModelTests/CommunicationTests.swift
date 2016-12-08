@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -46,7 +46,7 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.contentType, "application/pdf")
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.creation?.description, "2010-02-01T10:57:34+01:00")
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.hash, Base64Binary(value: "SGVsbG8gdGhlcmU="))
-		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, UInt(104274))
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, 104274)
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.url?.absoluteString, "http://happyvalley.com/docs/AB12345")
 		XCTAssertEqual(inst.recipient?[0].identifier?.system?.absoluteString, "http://www.jurisdiction.com/insurer")
 		XCTAssertEqual(inst.recipient?[0].identifier?.value, "123456")
@@ -95,7 +95,7 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.contentType, "application/pdf")
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.creation?.description, "2010-02-01T10:57:34+01:00")
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.hash, Base64Binary(value: "SGVsbG8gdGhlcmU="))
-		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, UInt(104274))
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, 104274)
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.url?.absoluteString, "http://happyvalley.com/docs/AB12345")
 		XCTAssertEqual(inst.recipient?[0].reference, "#payor")
 		XCTAssertEqual(inst.sender?.reference, "#provider")

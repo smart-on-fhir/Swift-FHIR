@@ -2,7 +2,7 @@
 //  TestReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -43,7 +43,7 @@ class TestReportTests: XCTestCase {
 		XCTAssertEqual(inst.participant?[1].display, "HealthIntersections STU3")
 		XCTAssertEqual(inst.participant?[1].type, TestReportParticipantType(rawValue: "server")!)
 		XCTAssertEqual(inst.participant?[1].uri?.absoluteString, "http://fhir3.healthintersections.com.au/open")
-		XCTAssertEqual(inst.score, NSDecimalNumber(string: "100.0"))
+		XCTAssertEqual(inst.score, "100.0")
 		XCTAssertEqual(inst.setup?.action?[0].operation?.detail?.absoluteString, "http://projectcrucible.org/permalink/1")
 		XCTAssertEqual(inst.setup?.action?[0].operation?.message, "DELETE Patient")
 		XCTAssertEqual(inst.setup?.action?[0].operation?.result, TestReportResultCodes(rawValue: "pass")!)

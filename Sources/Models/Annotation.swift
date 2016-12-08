@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -41,73 +41,28 @@ open class Annotation: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["authorReference"] {
-			presentKeys.insert("authorReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.authorReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "authorReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "authorReference", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["authorString"] {
-			presentKeys.insert("authorString")
-			if let val = exist as? String {
-				self.authorString = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "authorString", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["text"] {
-			presentKeys.insert("text")
-			if let val = exist as? String {
-				self.text = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		authorReference = try createInstance(type: Reference.self, for: "authorReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authorReference
+		authorString = try createInstance(type: FHIRString.self, for: "authorString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authorString
+		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
+		if nil == text && !presentKeys.contains("text") {
 			errors.append(FHIRValidationError(missing: "text"))
 		}
-		if let exist = json["time"] {
-			presentKeys.insert("time")
-			if let val = exist as? String {
-				self.time = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "time", wants: String.self, has: type(of: exist)))
-			}
-		}
+		time = try createInstance(type: DateTime.self, for: "time", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? time
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let authorReference = self.authorReference {
-			json["authorReference"] = authorReference.asJSON(errors: &errors)
-		}
-		if let authorString = self.authorString {
-			json["authorString"] = authorString.asJSON()
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		else {
+		self.authorReference?.decorate(json: &json, withKey: "authorReference", errors: &errors)
+		self.authorString?.decorate(json: &json, withKey: "authorString", errors: &errors)
+		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
+		if nil == self.text {
 			errors.append(FHIRValidationError(missing: "text"))
 		}
-		if let time = self.time {
-			json["time"] = time.asJSON()
-		}
-		
-		return json
+		self.time?.decorate(json: &json, withKey: "time", errors: &errors)
 	}
 }
 

@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -40,13 +40,13 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.explanation?.reasonNotGiven?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.id, "notGiven")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertTrue(inst.primarySource ?? false)
+		XCTAssertEqual(inst.primarySource, true)
 		XCTAssertEqual(inst.status, MedicationAdministrationStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].code, "01")
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].display, "DTP")
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/sid/cvx")
-		XCTAssertTrue(inst.wasNotGiven ?? false)
+		XCTAssertEqual(inst.wasNotGiven, true)
 		
 		return inst
 	}
@@ -68,7 +68,7 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2013-01-10")
 		XCTAssertEqual(inst.doseQuantity?.code, "mg")
 		XCTAssertEqual(inst.doseQuantity?.system?.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.doseQuantity?.value, NSDecimalNumber(string: "5"))
+		XCTAssertEqual(inst.doseQuantity?.value, "5")
 		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.expirationDate?.description, "2015-02-15")
 		XCTAssertEqual(inst.explanation?.reason?[0].coding?[0].code, "429060002")
@@ -82,10 +82,10 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].text, "Notes on adminstration of vaccine")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.performer?.reference, "Practitioner/example")
-		XCTAssertTrue(inst.primarySource ?? false)
+		XCTAssertEqual(inst.primarySource, true)
 		XCTAssertEqual(inst.reaction?[0].date?.description, "2013-01-10")
 		XCTAssertEqual(inst.reaction?[0].detail?.reference, "Observation/example")
-		XCTAssertTrue(inst.reaction?[0].reported ?? false)
+		XCTAssertEqual(inst.reaction?[0].reported, true)
 		XCTAssertEqual(inst.requester?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.route?.coding?[0].code, "IM")
 		XCTAssertEqual(inst.route?.coding?[0].display, "Injection, intramuscular")
@@ -97,7 +97,7 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.vaccinationProtocol?[0].authority?.reference, "Organization/hl7")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].description_fhir, "Vaccination Protocol Sequence 1")
-		XCTAssertEqual(inst.vaccinationProtocol?[0].doseSequence, UInt(1))
+		XCTAssertEqual(inst.vaccinationProtocol?[0].doseSequence, 1)
 		XCTAssertEqual(inst.vaccinationProtocol?[0].doseStatus?.coding?[0].code, "count")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].doseStatus?.coding?[0].display, "Counts")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].doseStatus?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/vaccination-protocol-dose-status")
@@ -105,13 +105,13 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.vaccinationProtocol?[0].doseStatusReason?.coding?[0].display, "Cold chain break")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].doseStatusReason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/vaccination-protocol-dose-status-reason")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].series, "Vaccination Series 1")
-		XCTAssertEqual(inst.vaccinationProtocol?[0].seriesDoses, UInt(2))
+		XCTAssertEqual(inst.vaccinationProtocol?[0].seriesDoses, 2)
 		XCTAssertEqual(inst.vaccinationProtocol?[0].targetDisease?[0].coding?[0].code, "1857005")
 		XCTAssertEqual(inst.vaccinationProtocol?[0].targetDisease?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].code, "FLUVAX")
 		XCTAssertEqual(inst.vaccineCode?.coding?[0].system?.absoluteString, "urn:oid:1.2.36.1.2001.1005.17")
 		XCTAssertEqual(inst.vaccineCode?.text, "Fluvax (Influenza)")
-		XCTAssertFalse(inst.wasNotGiven ?? true)
+		XCTAssertEqual(inst.wasNotGiven, false)
 		
 		return inst
 	}

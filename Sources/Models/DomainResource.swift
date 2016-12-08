@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -34,82 +34,25 @@ open class DomainResource: Resource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["contained"] {
+		
+		if let js = json["contained"] as? [FHIRJSON] {
 			presentKeys.insert("contained")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.contained = try Resource.instantiate(fromArray: val, owner: self) as? [Resource]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "contained"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "contained", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
+			self.contained = try js.map() { try Resource.instantiate(from: $0, owner: self) as? Resource }.filter() { nil != $0 }.map() { $0! }
 		}
-		if let exist = json["extension"] {
-			presentKeys.insert("extension")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.extension_fhir = try Extension.instantiate(fromArray: val, owner: self) as? [Extension]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "extension"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "extension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["modifierExtension"] {
-			presentKeys.insert("modifierExtension")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.modifierExtension = try Extension.instantiate(fromArray: val, owner: self) as? [Extension]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "modifierExtension"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "modifierExtension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["text"] {
-			presentKeys.insert("text")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.text = try Narrative(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "text"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "text", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		extension_fhir = try createInstances(of: Extension.self, for: "extension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? extension_fhir
+		modifierExtension = try createInstances(of: Extension.self, for: "modifierExtension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modifierExtension
+		text = try createInstance(type: Narrative.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let contained = self.contained {
-			json["contained"] = contained.map() { $0.asJSON(errors: &errors) }
-		}
-		if let extension_fhir = self.extension_fhir {
-			json["extension"] = extension_fhir.map() { $0.asJSON(errors: &errors) }
-		}
-		if let modifierExtension = self.modifierExtension {
-			json["modifierExtension"] = modifierExtension.map() { $0.asJSON(errors: &errors) }
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON(errors: &errors)
-		}
-		
-		return json
+		arrayDecorate(json: &json, withKey: "contained", using: self.contained, errors: &errors)
+		arrayDecorate(json: &json, withKey: "extension", using: self.extension_fhir, errors: &errors)
+		arrayDecorate(json: &json, withKey: "modifierExtension", using: self.modifierExtension, errors: &errors)
+		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
 	}
 }
 

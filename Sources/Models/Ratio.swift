@@ -2,7 +2,7 @@
 //  Ratio.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -28,48 +28,18 @@ open class Ratio: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["denominator"] {
-			presentKeys.insert("denominator")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.denominator = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "denominator"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "denominator", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["numerator"] {
-			presentKeys.insert("numerator")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.numerator = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "numerator"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "numerator", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		
+		denominator = try createInstance(type: Quantity.self, for: "denominator", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? denominator
+		numerator = try createInstance(type: Quantity.self, for: "numerator", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? numerator
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let denominator = self.denominator {
-			json["denominator"] = denominator.asJSON(errors: &errors)
-		}
-		if let numerator = self.numerator {
-			json["numerator"] = numerator.asJSON(errors: &errors)
-		}
-		
-		return json
+		self.denominator?.decorate(json: &json, withKey: "denominator", errors: &errors)
+		self.numerator?.decorate(json: &json, withKey: "numerator", errors: &errors)
 	}
 }
 

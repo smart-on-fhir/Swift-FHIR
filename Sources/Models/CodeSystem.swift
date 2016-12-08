@@ -2,7 +2,7 @@
 //  CodeSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -20,10 +20,10 @@ open class CodeSystem: DomainResource {
 	}
 	
 	/// If code comparison is case sensitive.
-	public var caseSensitive: Bool?
+	public var caseSensitive: FHIRBool?
 	
 	/// If code system defines a post-composition grammar.
-	public var compositional: Bool?
+	public var compositional: FHIRBool?
 	
 	/// Concepts in the code system.
 	public var concept: [CodeSystemConcept]?
@@ -39,7 +39,7 @@ open class CodeSystem: DomainResource {
 	public var copyright: FHIRString?
 	
 	/// Total concepts in the code system.
-	public var count: UInt?
+	public var count: FHIRInteger?
 	
 	/// Date this was last changed.
 	public var date: DateTime?
@@ -48,7 +48,7 @@ open class CodeSystem: DomainResource {
 	public var description_fhir: FHIRString?
 	
 	/// If for testing purposes, not real usage.
-	public var experimental: Bool?
+	public var experimental: FHIRBool?
 	
 	/// Filter that can be used in a value set.
 	public var filter: [CodeSystemFilter]?
@@ -81,19 +81,19 @@ open class CodeSystem: DomainResource {
 	public var title: FHIRString?
 	
 	/// Logical uri to reference this code system (globally unique) (Coding.system).
-	public var url: URL?
+	public var url: FHIRURL?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [UsageContext]?
 	
 	/// Canonical URL for value set with entire code system.
-	public var valueSet: URL?
+	public var valueSet: FHIRURL?
 	
 	/// Business version of the code system (Coding.version).
 	public var version: FHIRString?
 	
 	/// If definitions are not stable.
-	public var versionNeeded: Bool?
+	public var versionNeeded: FHIRBool?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -106,376 +106,76 @@ open class CodeSystem: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["caseSensitive"] {
-			presentKeys.insert("caseSensitive")
-			if let val = exist as? Bool {
-				self.caseSensitive = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "caseSensitive", wants: Bool.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["compositional"] {
-			presentKeys.insert("compositional")
-			if let val = exist as? Bool {
-				self.compositional = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "compositional", wants: Bool.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["concept"] {
-			presentKeys.insert("concept")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.concept = try CodeSystemConcept.instantiate(fromArray: val, owner: self) as? [CodeSystemConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "concept"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "concept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["contact"] {
-			presentKeys.insert("contact")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.contact = try ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "contact"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["content"] {
-			presentKeys.insert("content")
-			if let val = exist as? String {
-				if let enumval = CodeSystemContentMode(rawValue: val) {
-					self.content = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "content", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "content", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		caseSensitive = try createInstance(type: FHIRBool.self, for: "caseSensitive", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? caseSensitive
+		compositional = try createInstance(type: FHIRBool.self, for: "compositional", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? compositional
+		concept = try createInstances(of: CodeSystemConcept.self, for: "concept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? concept
+		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
+		content = createEnum(type: CodeSystemContentMode.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors) ?? content
+		if nil == content && !presentKeys.contains("content") {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
-		if let exist = json["copyright"] {
-			presentKeys.insert("copyright")
-			if let val = exist as? String {
-				self.copyright = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "copyright", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["count"] {
-			presentKeys.insert("count")
-			if let val = exist as? UInt {
-				self.count = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "count", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["date"] {
-			presentKeys.insert("date")
-			if let val = exist as? String {
-				self.date = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["description"] {
-			presentKeys.insert("description")
-			if let val = exist as? String {
-				self.description_fhir = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["experimental"] {
-			presentKeys.insert("experimental")
-			if let val = exist as? Bool {
-				self.experimental = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "experimental", wants: Bool.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["filter"] {
-			presentKeys.insert("filter")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.filter = try CodeSystemFilter.instantiate(fromArray: val, owner: self) as? [CodeSystemFilter]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "filter"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "filter", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["hierarchyMeaning"] {
-			presentKeys.insert("hierarchyMeaning")
-			if let val = exist as? String {
-				if let enumval = CodeSystemHierarchyMeaning(rawValue: val) {
-					self.hierarchyMeaning = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "hierarchyMeaning", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "hierarchyMeaning", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.identifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["jurisdiction"] {
-			presentKeys.insert("jurisdiction")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.jurisdiction = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "jurisdiction"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["name"] {
-			presentKeys.insert("name")
-			if let val = exist as? String {
-				self.name = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["property"] {
-			presentKeys.insert("property")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.property = try CodeSystemProperty.instantiate(fromArray: val, owner: self) as? [CodeSystemProperty]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "property"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "property", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["publisher"] {
-			presentKeys.insert("publisher")
-			if let val = exist as? String {
-				self.publisher = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "publisher", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["purpose"] {
-			presentKeys.insert("purpose")
-			if let val = exist as? String {
-				self.purpose = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "purpose", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = PublicationStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		copyright = try createInstance(type: FHIRString.self, for: "copyright", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? copyright
+		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
+		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
+		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
+		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
+		filter = try createInstances(of: CodeSystemFilter.self, for: "filter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? filter
+		hierarchyMeaning = createEnum(type: CodeSystemHierarchyMeaning.self, for: "hierarchyMeaning", in: json, presentKeys: &presentKeys, errors: &errors) ?? hierarchyMeaning
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
+		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
+		property = try createInstances(of: CodeSystemProperty.self, for: "property", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? property
+		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
+		purpose = try createInstance(type: FHIRString.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
+		status = createEnum(type: PublicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let exist = json["title"] {
-			presentKeys.insert("title")
-			if let val = exist as? String {
-				self.title = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["url"] {
-			presentKeys.insert("url")
-			if let val = exist as? String {
-				self.url = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["useContext"] {
-			presentKeys.insert("useContext")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.useContext = try UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "useContext"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueSet"] {
-			presentKeys.insert("valueSet")
-			if let val = exist as? String {
-				self.valueSet = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueSet", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["version"] {
-			presentKeys.insert("version")
-			if let val = exist as? String {
-				self.version = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "version", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["versionNeeded"] {
-			presentKeys.insert("versionNeeded")
-			if let val = exist as? Bool {
-				self.versionNeeded = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "versionNeeded", wants: Bool.self, has: type(of: exist)))
-			}
-		}
+		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
+		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
+		useContext = try createInstances(of: UsageContext.self, for: "useContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? useContext
+		valueSet = try createInstance(type: FHIRURL.self, for: "valueSet", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSet
+		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
+		versionNeeded = try createInstance(type: FHIRBool.self, for: "versionNeeded", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? versionNeeded
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let caseSensitive = self.caseSensitive {
-			json["caseSensitive"] = caseSensitive.asJSON()
-		}
-		if let compositional = self.compositional {
-			json["compositional"] = compositional.asJSON()
-		}
-		if let concept = self.concept {
-			json["concept"] = concept.map() { $0.asJSON(errors: &errors) }
-		}
-		if let contact = self.contact {
-			json["contact"] = contact.map() { $0.asJSON(errors: &errors) }
-		}
-		if let content = self.content {
-			json["content"] = content.rawValue
-		}
-		else {
+		self.caseSensitive?.decorate(json: &json, withKey: "caseSensitive", errors: &errors)
+		self.compositional?.decorate(json: &json, withKey: "compositional", errors: &errors)
+		arrayDecorate(json: &json, withKey: "concept", using: self.concept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "contact", using: self.contact, errors: &errors)
+		self.content?.decorate(json: &json, withKey: "content", errors: &errors)
+		if nil == self.content {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
-		if let copyright = self.copyright {
-			json["copyright"] = copyright.asJSON()
-		}
-		if let count = self.count {
-			json["count"] = count.asJSON()
-		}
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let experimental = self.experimental {
-			json["experimental"] = experimental.asJSON()
-		}
-		if let filter = self.filter {
-			json["filter"] = filter.map() { $0.asJSON(errors: &errors) }
-		}
-		if let hierarchyMeaning = self.hierarchyMeaning {
-			json["hierarchyMeaning"] = hierarchyMeaning.rawValue
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON(errors: &errors)
-		}
-		if let jurisdiction = self.jurisdiction {
-			json["jurisdiction"] = jurisdiction.map() { $0.asJSON(errors: &errors) }
-		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let property = self.property {
-			json["property"] = property.map() { $0.asJSON(errors: &errors) }
-		}
-		if let publisher = self.publisher {
-			json["publisher"] = publisher.asJSON()
-		}
-		if let purpose = self.purpose {
-			json["purpose"] = purpose.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
-		else {
+		self.copyright?.decorate(json: &json, withKey: "copyright", errors: &errors)
+		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
+		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
+		arrayDecorate(json: &json, withKey: "filter", using: self.filter, errors: &errors)
+		self.hierarchyMeaning?.decorate(json: &json, withKey: "hierarchyMeaning", errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		arrayDecorate(json: &json, withKey: "property", using: self.property, errors: &errors)
+		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
+		self.purpose?.decorate(json: &json, withKey: "purpose", errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let title = self.title {
-			json["title"] = title.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		if let useContext = self.useContext {
-			json["useContext"] = useContext.map() { $0.asJSON(errors: &errors) }
-		}
-		if let valueSet = self.valueSet {
-			json["valueSet"] = valueSet.asJSON()
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		if let versionNeeded = self.versionNeeded {
-			json["versionNeeded"] = versionNeeded.asJSON()
-		}
-		
-		return json
+		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
+		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
+		arrayDecorate(json: &json, withKey: "useContext", using: self.useContext, errors: &errors)
+		self.valueSet?.decorate(json: &json, withKey: "valueSet", errors: &errors)
+		self.version?.decorate(json: &json, withKey: "version", errors: &errors)
+		self.versionNeeded?.decorate(json: &json, withKey: "versionNeeded", errors: &errors)
 	}
 }
 
@@ -519,107 +219,32 @@ open class CodeSystemConcept: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? String {
-				self.code = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		if nil == code && !presentKeys.contains("code") {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let exist = json["concept"] {
-			presentKeys.insert("concept")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.concept = try CodeSystemConcept.instantiate(fromArray: val, owner: self) as? [CodeSystemConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "concept"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "concept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["definition"] {
-			presentKeys.insert("definition")
-			if let val = exist as? String {
-				self.definition = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "definition", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["designation"] {
-			presentKeys.insert("designation")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.designation = try CodeSystemConceptDesignation.instantiate(fromArray: val, owner: self) as? [CodeSystemConceptDesignation]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "designation"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "designation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["display"] {
-			presentKeys.insert("display")
-			if let val = exist as? String {
-				self.display = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["property"] {
-			presentKeys.insert("property")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.property = try CodeSystemConceptProperty.instantiate(fromArray: val, owner: self) as? [CodeSystemConceptProperty]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "property"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "property", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
+		concept = try createInstances(of: CodeSystemConcept.self, for: "concept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? concept
+		definition = try createInstance(type: FHIRString.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
+		designation = try createInstances(of: CodeSystemConceptDesignation.self, for: "designation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? designation
+		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
+		property = try createInstances(of: CodeSystemConceptProperty.self, for: "property", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? property
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		else {
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let concept = self.concept {
-			json["concept"] = concept.map() { $0.asJSON(errors: &errors) }
-		}
-		if let definition = self.definition {
-			json["definition"] = definition.asJSON()
-		}
-		if let designation = self.designation {
-			json["designation"] = designation.map() { $0.asJSON(errors: &errors) }
-		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		if let property = self.property {
-			json["property"] = property.map() { $0.asJSON(errors: &errors) }
-		}
-		
-		return json
+		arrayDecorate(json: &json, withKey: "concept", using: self.concept, errors: &errors)
+		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
+		arrayDecorate(json: &json, withKey: "designation", using: self.designation, errors: &errors)
+		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
+		arrayDecorate(json: &json, withKey: "property", using: self.property, errors: &errors)
 	}
 }
 
@@ -654,61 +279,26 @@ open class CodeSystemConceptDesignation: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["language"] {
-			presentKeys.insert("language")
-			if let val = exist as? String {
-				self.language = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["use"] {
-			presentKeys.insert("use")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.use = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "use"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "use", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["value"] {
-			presentKeys.insert("value")
-			if let val = exist as? String {
-				self.value = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
+		use = try createInstance(type: Coding.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? use
+		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
+		if nil == value && !presentKeys.contains("value") {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let language = self.language {
-			json["language"] = language.asJSON()
-		}
-		if let use = self.use {
-			json["use"] = use.asJSON(errors: &errors)
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		else {
+		self.language?.decorate(json: &json, withKey: "language", errors: &errors)
+		self.use?.decorate(json: &json, withKey: "use", errors: &errors)
+		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
+		if nil == self.value {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
-		
-		return json
 	}
 }
 
@@ -727,7 +317,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 	public var code: FHIRString?
 	
 	/// Value of the property for this concept.
-	public var valueBoolean: Bool?
+	public var valueBoolean: FHIRBool?
 	
 	/// Value of the property for this concept.
 	public var valueCode: FHIRString?
@@ -739,7 +329,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 	public var valueDateTime: DateTime?
 	
 	/// Value of the property for this concept.
-	public var valueInteger: Int?
+	public var valueInteger: FHIRInteger?
 	
 	/// Value of the property for this concept.
 	public var valueString: FHIRString?
@@ -758,10 +348,10 @@ open class CodeSystemConceptProperty: BackboneElement {
 		else if let value = value as? FHIRString {
 			self.valueString = value
 		}
-		else if let value = value as? Int {
+		else if let value = value as? FHIRInteger {
 			self.valueInteger = value
 		}
-		else if let value = value as? Bool {
+		else if let value = value as? FHIRBool {
 			self.valueBoolean = value
 		}
 		else if let value = value as? DateTime {
@@ -775,119 +365,45 @@ open class CodeSystemConceptProperty: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? String {
-				self.code = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		if nil == code && !presentKeys.contains("code") {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let exist = json["valueBoolean"] {
-			presentKeys.insert("valueBoolean")
-			if let val = exist as? Bool {
-				self.valueBoolean = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCode"] {
-			presentKeys.insert("valueCode")
-			if let val = exist as? String {
-				self.valueCode = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCoding"] {
-			presentKeys.insert("valueCoding")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCoding = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCoding"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCoding", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDateTime"] {
-			presentKeys.insert("valueDateTime")
-			if let val = exist as? String {
-				self.valueDateTime = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueInteger"] {
-			presentKeys.insert("valueInteger")
-			if let val = exist as? Int {
-				self.valueInteger = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueString"] {
-			presentKeys.insert("valueString")
-			if let val = exist as? String {
-				self.valueString = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
-			}
-		}
+		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
+		valueCode = try createInstance(type: FHIRString.self, for: "valueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCode
+		valueCoding = try createInstance(type: Coding.self, for: "valueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCoding
+		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
+		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
+		valueString = try createInstance(type: FHIRString.self, for: "valueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueString
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueCode && nil == self.valueCoding && nil == self.valueString && nil == self.valueInteger && nil == self.valueBoolean && nil == self.valueDateTime {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
+		
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		else {
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let valueBoolean = self.valueBoolean {
-			json["valueBoolean"] = valueBoolean.asJSON()
-		}
-		if let valueCode = self.valueCode {
-			json["valueCode"] = valueCode.asJSON()
-		}
-		if let valueCoding = self.valueCoding {
-			json["valueCoding"] = valueCoding.asJSON(errors: &errors)
-		}
-		if let valueDateTime = self.valueDateTime {
-			json["valueDateTime"] = valueDateTime.asJSON()
-		}
-		if let valueInteger = self.valueInteger {
-			json["valueInteger"] = valueInteger.asJSON()
-		}
-		if let valueString = self.valueString {
-			json["valueString"] = valueString.asJSON()
-		}
+		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
+		self.valueCode?.decorate(json: &json, withKey: "valueCode", errors: &errors)
+		self.valueCoding?.decorate(json: &json, withKey: "valueCoding", errors: &errors)
+		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
+		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
+		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
 		if nil == self.valueCode && nil == self.valueCoding && nil == self.valueString && nil == self.valueInteger && nil == self.valueBoolean && nil == self.valueDateTime {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
-		
-		return json
 	}
 }
 
@@ -926,84 +442,40 @@ open class CodeSystemFilter: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? String {
-				self.code = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		if nil == code && !presentKeys.contains("code") {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let exist = json["description"] {
-			presentKeys.insert("description")
-			if let val = exist as? String {
-				self.description_fhir = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["operator"] {
-			presentKeys.insert("operator")
-			if let val = exist as? [String] { var i = -1
-				self.operator_fhir = val.map() { i += 1
-					if let enumval = FilterOperator(rawValue: $0) { return enumval }
-					errors.append(FHIRValidationError(key: "operator_fhir.\(i)", problem: "the value “\(val)” is not valid"))
-					return nil
-				}.filter() { nil != $0 }.map() { $0! }
-			}
-			else {
-				errors.append(FHIRValidationError(key: "operator", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
-		else {
+		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
+		operator_fhir = createEnums(of: FilterOperator.self, for: "operator", in: json, presentKeys: &presentKeys, errors: &errors) ?? operator_fhir
+		if (nil == operator_fhir || operator_fhir!.isEmpty) && !presentKeys.contains("operator") {
 			errors.append(FHIRValidationError(missing: "operator"))
 		}
-		if let exist = json["value"] {
-			presentKeys.insert("value")
-			if let val = exist as? String {
-				self.value = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
+		if nil == value && !presentKeys.contains("value") {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		else {
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		arrayDecorate(json: &json, withKey: "operator", using: self.operator_fhir, errors: &errors)
+		if nil == operator_fhir || self.operator_fhir!.isEmpty {
+			errors.append(FHIRValidationError(missing: "operator"))
 		}
-		if let operator_fhir = self.operator_fhir {
-			json["operator"] = operator_fhir.map() { $0.rawValue }
-		}
-		else {
-			errors.append(FHIRValidationError(missing: "operator_fhir"))
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		else {
+		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
+		if nil == self.value {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
-		
-		return json
 	}
 }
 
@@ -1029,7 +501,7 @@ open class CodeSystemProperty: BackboneElement {
 	public var type: PropertyType?
 	
 	/// Formal identifier for the property.
-	public var uri: URL?
+	public var uri: FHIRURL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1042,79 +514,34 @@ open class CodeSystemProperty: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? String {
-				self.code = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		if nil == code && !presentKeys.contains("code") {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let exist = json["description"] {
-			presentKeys.insert("description")
-			if let val = exist as? String {
-				self.description_fhir = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? String {
-				if let enumval = PropertyType(rawValue: val) {
-					self.type = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
+		type = createEnum(type: PropertyType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let exist = json["uri"] {
-			presentKeys.insert("uri")
-			if let val = exist as? String {
-				self.uri = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "uri", wants: String.self, has: type(of: exist)))
-			}
-		}
+		uri = try createInstance(type: FHIRURL.self, for: "uri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? uri
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		else {
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.rawValue
-		}
-		else {
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let uri = self.uri {
-			json["uri"] = uri.asJSON()
-		}
-		
-		return json
+		self.uri?.decorate(json: &json, withKey: "uri", errors: &errors)
 	}
 }
 

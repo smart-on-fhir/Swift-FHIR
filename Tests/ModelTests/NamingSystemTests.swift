@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.uniqueId?[0].type, NamingSystemIdentifierType(rawValue: "oid")!)
 		XCTAssertEqual(inst.uniqueId?[0].value, "1.2.36.1.2001.1003.0")
 		XCTAssertEqual(inst.uniqueId?[1].period?.start?.description, "2015-08-21")
-		XCTAssertTrue(inst.uniqueId?[1].preferred ?? false)
+		XCTAssertEqual(inst.uniqueId?[1].preferred, true)
 		XCTAssertEqual(inst.uniqueId?[1].type, NamingSystemIdentifierType(rawValue: "uri")!)
 		XCTAssertEqual(inst.uniqueId?[1].value, "http://ns.electronichealth.net.au/id/hi/ihi/1.0")
 		XCTAssertEqual(inst.usage, "Used in Australia for identifying patients")
@@ -120,7 +120,7 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.uniqueId?[0].type, NamingSystemIdentifierType(rawValue: "oid")!)
 		XCTAssertEqual(inst.uniqueId?[0].value, "2.16.840.1.113883.6.96")
-		XCTAssertTrue(inst.uniqueId?[1].preferred ?? false)
+		XCTAssertEqual(inst.uniqueId?[1].preferred, true)
 		XCTAssertEqual(inst.uniqueId?[1].type, NamingSystemIdentifierType(rawValue: "uri")!)
 		XCTAssertEqual(inst.uniqueId?[1].value, "http://snomed.info/sct")
 		

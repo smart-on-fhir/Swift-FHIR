@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -43,7 +43,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.id, "examplereq")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/sampleappointment-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
-		XCTAssertEqual(inst.minutesDuration, UInt(15))
+		XCTAssertEqual(inst.minutesDuration, 15)
 		XCTAssertEqual(inst.participant?[0].actor?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant?[0].actor?.reference, "Patient/example")
 		XCTAssertEqual(inst.participant?[0].required, ParticipantRequired(rawValue: "required")!)
@@ -56,7 +56,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.participant?[2].actor?.reference, "Location/1")
 		XCTAssertEqual(inst.participant?[2].required, ParticipantRequired(rawValue: "required")!)
 		XCTAssertEqual(inst.participant?[2].status, ParticipationStatus(rawValue: "accepted")!)
-		XCTAssertEqual(inst.priority, UInt(5))
+		XCTAssertEqual(inst.priority, 5)
 		XCTAssertEqual(inst.reason?.coding?[0].code, "413095006")
 		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason?.text, "Clinical Review")
@@ -112,7 +112,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.participant?[2].actor?.reference, "Location/1")
 		XCTAssertEqual(inst.participant?[2].required, ParticipantRequired(rawValue: "required")!)
 		XCTAssertEqual(inst.participant?[2].status, ParticipationStatus(rawValue: "accepted")!)
-		XCTAssertEqual(inst.priority, UInt(5))
+		XCTAssertEqual(inst.priority, 5)
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "gp")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].system?.absoluteString, "http://example.org/service-category")
@@ -165,7 +165,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.participant?[3].actor?.display, "Phone Call")
 		XCTAssertEqual(inst.participant?[3].required, ParticipantRequired(rawValue: "information-only")!)
 		XCTAssertEqual(inst.participant?[3].status, ParticipationStatus(rawValue: "accepted")!)
-		XCTAssertEqual(inst.priority, UInt(5))
+		XCTAssertEqual(inst.priority, 5)
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "gp")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].system?.absoluteString, "http://example.org/service-category")

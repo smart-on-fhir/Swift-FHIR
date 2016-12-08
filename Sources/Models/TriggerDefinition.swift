@@ -2,7 +2,7 @@
 //  TriggerDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -50,124 +50,34 @@ open class TriggerDefinition: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["eventData"] {
-			presentKeys.insert("eventData")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.eventData = try DataRequirement(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "eventData"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "eventData", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["eventName"] {
-			presentKeys.insert("eventName")
-			if let val = exist as? String {
-				self.eventName = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "eventName", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["eventTimingDate"] {
-			presentKeys.insert("eventTimingDate")
-			if let val = exist as? String {
-				self.eventTimingDate = FHIRDate(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "eventTimingDate", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["eventTimingDateTime"] {
-			presentKeys.insert("eventTimingDateTime")
-			if let val = exist as? String {
-				self.eventTimingDateTime = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "eventTimingDateTime", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["eventTimingReference"] {
-			presentKeys.insert("eventTimingReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.eventTimingReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "eventTimingReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "eventTimingReference", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["eventTimingTiming"] {
-			presentKeys.insert("eventTimingTiming")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.eventTimingTiming = try Timing(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "eventTimingTiming"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "eventTimingTiming", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? String {
-				if let enumval = TriggerType(rawValue: val) {
-					self.type = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		eventData = try createInstance(type: DataRequirement.self, for: "eventData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventData
+		eventName = try createInstance(type: FHIRString.self, for: "eventName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventName
+		eventTimingDate = try createInstance(type: FHIRDate.self, for: "eventTimingDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventTimingDate
+		eventTimingDateTime = try createInstance(type: DateTime.self, for: "eventTimingDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventTimingDateTime
+		eventTimingReference = try createInstance(type: Reference.self, for: "eventTimingReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventTimingReference
+		eventTimingTiming = try createInstance(type: Timing.self, for: "eventTimingTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventTimingTiming
+		type = createEnum(type: TriggerType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let eventData = self.eventData {
-			json["eventData"] = eventData.asJSON(errors: &errors)
-		}
-		if let eventName = self.eventName {
-			json["eventName"] = eventName.asJSON()
-		}
-		if let eventTimingDate = self.eventTimingDate {
-			json["eventTimingDate"] = eventTimingDate.asJSON()
-		}
-		if let eventTimingDateTime = self.eventTimingDateTime {
-			json["eventTimingDateTime"] = eventTimingDateTime.asJSON()
-		}
-		if let eventTimingReference = self.eventTimingReference {
-			json["eventTimingReference"] = eventTimingReference.asJSON(errors: &errors)
-		}
-		if let eventTimingTiming = self.eventTimingTiming {
-			json["eventTimingTiming"] = eventTimingTiming.asJSON(errors: &errors)
-		}
-		if let type = self.type {
-			json["type"] = type.rawValue
-		}
-		else {
+		self.eventData?.decorate(json: &json, withKey: "eventData", errors: &errors)
+		self.eventName?.decorate(json: &json, withKey: "eventName", errors: &errors)
+		self.eventTimingDate?.decorate(json: &json, withKey: "eventTimingDate", errors: &errors)
+		self.eventTimingDateTime?.decorate(json: &json, withKey: "eventTimingDateTime", errors: &errors)
+		self.eventTimingReference?.decorate(json: &json, withKey: "eventTimingReference", errors: &errors)
+		self.eventTimingTiming?.decorate(json: &json, withKey: "eventTimingTiming", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		
-		return json
 	}
 }
 

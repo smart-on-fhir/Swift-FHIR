@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -68,230 +68,50 @@ open class EpisodeOfCare: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["account"] {
-			presentKeys.insert("account")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.account = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "account"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "account", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["careManager"] {
-			presentKeys.insert("careManager")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.careManager = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "careManager"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "careManager", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["condition"] {
-			presentKeys.insert("condition")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.condition = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "condition"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "condition", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.identifier = try Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["managingOrganization"] {
-			presentKeys.insert("managingOrganization")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.managingOrganization = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "managingOrganization"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["patient"] {
-			presentKeys.insert("patient")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.patient = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "patient"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		account = try createInstances(of: Reference.self, for: "account", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? account
+		careManager = try createInstance(type: Reference.self, for: "careManager", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? careManager
+		condition = try createInstances(of: Reference.self, for: "condition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? condition
+		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		managingOrganization = try createInstance(type: Reference.self, for: "managingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? managingOrganization
+		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
+		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.period = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "period"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["referralRequest"] {
-			presentKeys.insert("referralRequest")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.referralRequest = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "referralRequest"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "referralRequest", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = EpisodeOfCareStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		referralRequest = try createInstances(of: Reference.self, for: "referralRequest", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referralRequest
+		status = createEnum(type: EpisodeOfCareStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let exist = json["statusHistory"] {
-			presentKeys.insert("statusHistory")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.statusHistory = try EpisodeOfCareStatusHistory.instantiate(fromArray: val, owner: self) as? [EpisodeOfCareStatusHistory]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "statusHistory"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "statusHistory", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["team"] {
-			presentKeys.insert("team")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.team = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "team"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "team", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.type = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
+		statusHistory = try createInstances(of: EpisodeOfCareStatusHistory.self, for: "statusHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusHistory
+		team = try createInstances(of: Reference.self, for: "team", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? team
+		type = try createInstances(of: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let account = self.account {
-			json["account"] = account.map() { $0.asJSON(errors: &errors) }
-		}
-		if let careManager = self.careManager {
-			json["careManager"] = careManager.asJSON(errors: &errors)
-		}
-		if let condition = self.condition {
-			json["condition"] = condition.map() { $0.asJSON(errors: &errors) }
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
-		}
-		if let managingOrganization = self.managingOrganization {
-			json["managingOrganization"] = managingOrganization.asJSON(errors: &errors)
-		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON(errors: &errors)
-		}
-		else {
+		arrayDecorate(json: &json, withKey: "account", using: self.account, errors: &errors)
+		self.careManager?.decorate(json: &json, withKey: "careManager", errors: &errors)
+		arrayDecorate(json: &json, withKey: "condition", using: self.condition, errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		self.managingOrganization?.decorate(json: &json, withKey: "managingOrganization", errors: &errors)
+		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
+		if nil == self.patient {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
-		if let period = self.period {
-			json["period"] = period.asJSON(errors: &errors)
-		}
-		if let referralRequest = self.referralRequest {
-			json["referralRequest"] = referralRequest.map() { $0.asJSON(errors: &errors) }
-		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
-		else {
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		arrayDecorate(json: &json, withKey: "referralRequest", using: self.referralRequest, errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let statusHistory = self.statusHistory {
-			json["statusHistory"] = statusHistory.map() { $0.asJSON(errors: &errors) }
-		}
-		if let team = self.team {
-			json["team"] = team.map() { $0.asJSON(errors: &errors) }
-		}
-		if let type = self.type {
-			json["type"] = type.map() { $0.asJSON(errors: &errors) }
-		}
-		
-		return json
+		arrayDecorate(json: &json, withKey: "statusHistory", using: self.statusHistory, errors: &errors)
+		arrayDecorate(json: &json, withKey: "team", using: self.team, errors: &errors)
+		arrayDecorate(json: &json, withKey: "type", using: self.type, errors: &errors)
 	}
 }
 
@@ -324,60 +144,30 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.period = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "period"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		if nil == period && !presentKeys.contains("period") {
 			errors.append(FHIRValidationError(missing: "period"))
 		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = EpisodeOfCareStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		status = createEnum(type: EpisodeOfCareStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let period = self.period {
-			json["period"] = period.asJSON(errors: &errors)
-		}
-		else {
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		if nil == self.period {
 			errors.append(FHIRValidationError(missing: "period"))
 		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
-		else {
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		
-		return json
 	}
 }
 

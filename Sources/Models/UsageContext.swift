@@ -2,7 +2,7 @@
 //  UsageContext.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -55,98 +55,39 @@ open class UsageContext: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.code = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "code"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		code = try createInstance(type: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		if nil == code && !presentKeys.contains("code") {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let exist = json["valueCodeableConcept"] {
-			presentKeys.insert("valueCodeableConcept")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCodeableConcept = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCodeableConcept"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueQuantity"] {
-			presentKeys.insert("valueQuantity")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueQuantity = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueQuantity"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueRange"] {
-			presentKeys.insert("valueRange")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueRange = try Range(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueRange"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		valueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
+		valueQuantity = try createInstance(type: Quantity.self, for: "valueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueQuantity
+		valueRange = try createInstance(type: Range.self, for: "valueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRange
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
+		
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let code = self.code {
-			json["code"] = code.asJSON(errors: &errors)
-		}
-		else {
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		if let valueCodeableConcept = self.valueCodeableConcept {
-			json["valueCodeableConcept"] = valueCodeableConcept.asJSON(errors: &errors)
-		}
-		if let valueQuantity = self.valueQuantity {
-			json["valueQuantity"] = valueQuantity.asJSON(errors: &errors)
-		}
-		if let valueRange = self.valueRange {
-			json["valueRange"] = valueRange.asJSON(errors: &errors)
-		}
+		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
+		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
+		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
 		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
-		
-		return json
 	}
 }
 

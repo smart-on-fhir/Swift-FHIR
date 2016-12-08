@@ -2,7 +2,7 @@
 //  AccountTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -39,7 +39,7 @@ class AccountTests: XCTestCase {
 		XCTAssertEqual(inst.balance?.code, "USD")
 		XCTAssertEqual(inst.balance?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.balance?.unit, "USD")
-		XCTAssertEqual(inst.balance?.value, NSDecimalNumber(string: "-1200"))
+		XCTAssertEqual(inst.balance?.value, "-1200")
 		XCTAssertEqual(inst.coverage?[0].reference, "Coverage/9876B1")
 		XCTAssertEqual(inst.coveragePeriod?.end?.description, "2016-06-30")
 		XCTAssertEqual(inst.coveragePeriod?.start?.description, "2016-01-01")

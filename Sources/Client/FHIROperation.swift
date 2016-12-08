@@ -80,18 +80,18 @@ open class FHIROperation: CustomStringConvertible {
 		case .none:
 			throw FHIRError.operationConfigurationError("Operation \(self) has not been properly set up")
 		case .system:
-			guard definition.system ?? false else {
+			guard definition.system?.bool ?? false else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in system context")
 			}
 		case .resourceType:
-			guard definition.type ?? false else {
+			guard definition.type?.bool ?? false else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in type context")
 			}
 			guard let resources = definition.resource, let typ = type, resources.contains(FHIRString(typ.resourceType)) else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed against \(type ?? nil) type")
 			}
 		case .instance:
-			guard definition.instance ?? false else {
+			guard definition.instance?.bool ?? false else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in instance context")
 			}
 			_ = try instance?.relativeURLPath()

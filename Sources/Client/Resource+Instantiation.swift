@@ -12,7 +12,7 @@ import Models
 #endif
 
 
-public extension Resource {
+extension Resource {
 	
 	/**
 	Attempt to instantiate a Resource of the receiving class by reading a JSON file at the given filesystem path.

@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Meta) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Meta) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ open class Meta: Element {
 	public var lastUpdated: Instant?
 	
 	/// Profiles this resource claims to conform to.
-	public var profile: [URL]?
+	public var profile: [FHIRURL]?
 	
 	/// Security Labels applied to this resource.
 	public var security: [Coding]?
@@ -38,84 +38,24 @@ open class Meta: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["lastUpdated"] {
-			presentKeys.insert("lastUpdated")
-			if let val = exist as? String {
-				self.lastUpdated = Instant(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "lastUpdated", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["profile"] {
-			presentKeys.insert("profile")
-			if let val = exist as? [String] {
-				self.profile = URL.instantiate(fromArray: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "profile", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["security"] {
-			presentKeys.insert("security")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.security = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "security"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "security", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["tag"] {
-			presentKeys.insert("tag")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.tag = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "tag"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "tag", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["versionId"] {
-			presentKeys.insert("versionId")
-			if let val = exist as? String {
-				self.versionId = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "versionId", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		lastUpdated = try createInstance(type: Instant.self, for: "lastUpdated", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastUpdated
+		profile = try createInstances(of: FHIRURL.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
+		security = try createInstances(of: Coding.self, for: "security", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? security
+		tag = try createInstances(of: Coding.self, for: "tag", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? tag
+		versionId = try createInstance(type: FHIRString.self, for: "versionId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? versionId
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let lastUpdated = self.lastUpdated {
-			json["lastUpdated"] = lastUpdated.asJSON()
-		}
-		if let profile = self.profile {
-			json["profile"] = profile.map() { $0.asJSON() }
-		}
-		if let security = self.security {
-			json["security"] = security.map() { $0.asJSON(errors: &errors) }
-		}
-		if let tag = self.tag {
-			json["tag"] = tag.map() { $0.asJSON(errors: &errors) }
-		}
-		if let versionId = self.versionId {
-			json["versionId"] = versionId.asJSON()
-		}
-		
-		return json
+		self.lastUpdated?.decorate(json: &json, withKey: "lastUpdated", errors: &errors)
+		arrayDecorate(json: &json, withKey: "profile", using: self.profile, errors: &errors)
+		arrayDecorate(json: &json, withKey: "security", using: self.security, errors: &errors)
+		arrayDecorate(json: &json, withKey: "tag", using: self.tag, errors: &errors)
+		self.versionId?.decorate(json: &json, withKey: "versionId", errors: &errors)
 	}
 }
 

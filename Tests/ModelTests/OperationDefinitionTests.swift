@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -43,7 +43,7 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2015-08-04")
 		XCTAssertEqual(inst.description_fhir, "Limited implementation of the Populate Questionnaire implemenation")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertTrue(inst.instance ?? false)
+		XCTAssertEqual(inst.instance, true)
 		XCTAssertEqual(inst.kind, OperationKind(rawValue: "operation")!)
 		XCTAssertEqual(inst.name, "Populate Questionnaire")
 		XCTAssertEqual(inst.parameter?[0].max, "1")
@@ -60,9 +60,9 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.publisher, "Acme Healthcare Services")
 		XCTAssertEqual(inst.resource?[0], "Questionnaire")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertFalse(inst.system ?? true)
+		XCTAssertEqual(inst.system, false)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertFalse(inst.type ?? true)
+		XCTAssertEqual(inst.type, false)
 		XCTAssertEqual(inst.url?.absoluteString, "http://h7.org/fhir/OperationDefinition/example")
 		XCTAssertEqual(inst.version, "B")
 		

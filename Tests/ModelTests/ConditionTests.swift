@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -233,7 +233,7 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.onsetAge?.code, "a")
 		XCTAssertEqual(inst.onsetAge?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.onsetAge?.unit, "years")
-		XCTAssertEqual(inst.onsetAge?.value, NSDecimalNumber(string: "52"))
+		XCTAssertEqual(inst.onsetAge?.value, "52")
 		XCTAssertEqual(inst.severity?.coding?[0].code, "24484000")
 		XCTAssertEqual(inst.severity?.coding?[0].display, "Severe")
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")

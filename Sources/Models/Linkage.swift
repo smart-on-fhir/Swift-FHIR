@@ -2,7 +2,7 @@
 //  Linkage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -35,54 +35,24 @@ open class Linkage: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["author"] {
-			presentKeys.insert("author")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.author = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "author"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["item"] {
-			presentKeys.insert("item")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.item = try LinkageItem.instantiate(fromArray: val, owner: self) as? [LinkageItem]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "item"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "item", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		author = try createInstance(type: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author
+		item = try createInstances(of: LinkageItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
+		if (nil == item || item!.isEmpty) && !presentKeys.contains("item") {
 			errors.append(FHIRValidationError(missing: "item"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let author = self.author {
-			json["author"] = author.asJSON(errors: &errors)
-		}
-		if let item = self.item {
-			json["item"] = item.map() { $0.asJSON(errors: &errors) }
-		}
-		else {
+		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
+		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
+		if nil == item || self.item!.isEmpty {
 			errors.append(FHIRValidationError(missing: "item"))
 		}
-		
-		return json
 	}
 }
 
@@ -116,60 +86,30 @@ open class LinkageItem: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["resource"] {
-			presentKeys.insert("resource")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.resource = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "resource"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		resource = try createInstance(type: Reference.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
+		if nil == resource && !presentKeys.contains("resource") {
 			errors.append(FHIRValidationError(missing: "resource"))
 		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? String {
-				if let enumval = LinkageType(rawValue: val) {
-					self.type = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		type = createEnum(type: LinkageType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let resource = self.resource {
-			json["resource"] = resource.asJSON(errors: &errors)
-		}
-		else {
+		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
+		if nil == self.resource {
 			errors.append(FHIRValidationError(missing: "resource"))
 		}
-		if let type = self.type {
-			json["type"] = type.rawValue
-		}
-		else {
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		
-		return json
 	}
 }
 

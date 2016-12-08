@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -106,9 +106,9 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2015-08-18T07:03:00Z")
 		XCTAssertEqual(inst.collection?.collector?.reference, "Practitioner/f202")
 		XCTAssertEqual(inst.container?[0].capacity?.unit, "mls")
-		XCTAssertEqual(inst.container?[0].capacity?.value, NSDecimalNumber(string: "50"))
+		XCTAssertEqual(inst.container?[0].capacity?.value, "50")
 		XCTAssertEqual(inst.container?[0].specimenQuantity?.unit, "mls")
-		XCTAssertEqual(inst.container?[0].specimenQuantity?.value, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.container?[0].specimenQuantity?.value, "10")
 		XCTAssertEqual(inst.container?[0].type?.text, "Non-sterile specimen container")
 		XCTAssertEqual(inst.id, "vma-urine")
 		XCTAssertEqual(inst.receivedTime?.description, "2015-08-18T07:03:00Z")
@@ -146,15 +146,15 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.collection?.method?.coding?[0].code, "LNV")
 		XCTAssertEqual(inst.collection?.method?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0488")
 		XCTAssertEqual(inst.collection?.quantity?.unit, "mL")
-		XCTAssertEqual(inst.collection?.quantity?.value, NSDecimalNumber(string: "6"))
+		XCTAssertEqual(inst.collection?.quantity?.value, "6")
 		XCTAssertEqual(inst.contained?[0].id, "hep")
 		XCTAssertEqual(inst.container?[0].additiveReference?.reference, "#hep")
 		XCTAssertEqual(inst.container?[0].capacity?.unit, "mL")
-		XCTAssertEqual(inst.container?[0].capacity?.value, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.container?[0].capacity?.value, "10")
 		XCTAssertEqual(inst.container?[0].description_fhir, "Green Gel tube")
 		XCTAssertEqual(inst.container?[0].identifier?[0].value, "48736-15394-75465")
 		XCTAssertEqual(inst.container?[0].specimenQuantity?.unit, "mL")
-		XCTAssertEqual(inst.container?[0].specimenQuantity?.value, NSDecimalNumber(string: "6"))
+		XCTAssertEqual(inst.container?[0].specimenQuantity?.value, "6")
 		XCTAssertEqual(inst.container?[0].type?.text, "Vacutainer")
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://ehr.acme.org/identifiers/collections")

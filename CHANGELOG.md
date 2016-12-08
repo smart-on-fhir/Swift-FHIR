@@ -5,8 +5,10 @@ Changelog
 ## x.x
 
 - Change initializers: provide convenience initializers; initializers taking JSON may throw
-- Generate enums for many closed ValueSets
-- Much better model validation
+- BREAKING: now using custom types for all FHIR primitives, enabling to detect extensions (and ids) on primitives
+- BREAKING: generate enums for most closed ValueSets
+- Much better model deserialization and validation
+- Complete refactoring of JSON serialization
 
 
 ## 2.9

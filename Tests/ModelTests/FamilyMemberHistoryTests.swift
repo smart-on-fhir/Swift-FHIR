@@ -2,7 +2,7 @@
 //  FamilyMemberHistoryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ class FamilyMemberHistoryTests: XCTestCase {
 		XCTAssertEqual(inst.condition?[0].onsetAge?.code, "a")
 		XCTAssertEqual(inst.condition?[0].onsetAge?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.condition?[0].onsetAge?.unit, "yr")
-		XCTAssertEqual(inst.condition?[0].onsetAge?.value, NSDecimalNumber(string: "56"))
+		XCTAssertEqual(inst.condition?[0].onsetAge?.value, "56")
 		XCTAssertEqual(inst.id, "mother")
 		XCTAssertEqual(inst.patient?.display, "Peter Patient")
 		XCTAssertEqual(inst.patient?.reference, "Patient/100")
@@ -76,7 +76,7 @@ class FamilyMemberHistoryTests: XCTestCase {
 		XCTAssertEqual(inst.condition?[0].onsetAge?.code, "a")
 		XCTAssertEqual(inst.condition?[0].onsetAge?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.condition?[0].onsetAge?.unit, "yr")
-		XCTAssertEqual(inst.condition?[0].onsetAge?.value, NSDecimalNumber(string: "74"))
+		XCTAssertEqual(inst.condition?[0].onsetAge?.value, "74")
 		XCTAssertEqual(inst.date?.description, "2011-03-18")
 		XCTAssertEqual(inst.id, "father")
 		XCTAssertEqual(inst.patient?.display, "Peter Patient")

@@ -2,7 +2,7 @@
 //  Task.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -36,7 +36,7 @@ open class Task: DomainResource {
 	public var definitionReference: Reference?
 	
 	/// Formal definition of task.
-	public var definitionUri: URL?
+	public var definitionUri: FHIRURL?
 	
 	/// Human-readable explanation of task.
 	public var description_fhir: FHIRString?
@@ -113,482 +113,82 @@ open class Task: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["authoredOn"] {
-			presentKeys.insert("authoredOn")
-			if let val = exist as? String {
-				self.authoredOn = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "authoredOn", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["basedOn"] {
-			presentKeys.insert("basedOn")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.basedOn = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "basedOn"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "basedOn", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["businessStatus"] {
-			presentKeys.insert("businessStatus")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.businessStatus = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "businessStatus"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "businessStatus", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.code = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "code"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["context"] {
-			presentKeys.insert("context")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.context = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "context"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "context", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["definitionReference"] {
-			presentKeys.insert("definitionReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.definitionReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "definitionReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "definitionReference", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["definitionUri"] {
-			presentKeys.insert("definitionUri")
-			if let val = exist as? String {
-				self.definitionUri = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "definitionUri", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["description"] {
-			presentKeys.insert("description")
-			if let val = exist as? String {
-				self.description_fhir = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "description", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["executionPeriod"] {
-			presentKeys.insert("executionPeriod")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.executionPeriod = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "executionPeriod"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "executionPeriod", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["focus"] {
-			presentKeys.insert("focus")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.focus = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "focus"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "focus", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["for"] {
-			presentKeys.insert("for")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.for_fhir = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "for"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "for", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["groupIdentifier"] {
-			presentKeys.insert("groupIdentifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.groupIdentifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "groupIdentifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "groupIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.identifier = try Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["input"] {
-			presentKeys.insert("input")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.input = try TaskInput.instantiate(fromArray: val, owner: self) as? [TaskInput]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "input"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "input", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["intent"] {
-			presentKeys.insert("intent")
-			if let val = exist as? String {
-				if let enumval = RequestIntent(rawValue: val) {
-					self.intent = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "intent", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "intent", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		authoredOn = try createInstance(type: DateTime.self, for: "authoredOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authoredOn
+		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
+		businessStatus = try createInstance(type: CodeableConcept.self, for: "businessStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? businessStatus
+		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
+		definitionReference = try createInstance(type: Reference.self, for: "definitionReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definitionReference
+		definitionUri = try createInstance(type: FHIRURL.self, for: "definitionUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definitionUri
+		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
+		executionPeriod = try createInstance(type: Period.self, for: "executionPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? executionPeriod
+		focus = try createInstance(type: Reference.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
+		for_fhir = try createInstance(type: Reference.self, for: "for", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? for_fhir
+		groupIdentifier = try createInstance(type: Identifier.self, for: "groupIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? groupIdentifier
+		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		input = try createInstances(of: TaskInput.self, for: "input", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? input
+		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, presentKeys: &presentKeys, errors: &errors) ?? intent
+		if nil == intent && !presentKeys.contains("intent") {
 			errors.append(FHIRValidationError(missing: "intent"))
 		}
-		if let exist = json["lastModified"] {
-			presentKeys.insert("lastModified")
-			if let val = exist as? String {
-				self.lastModified = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "lastModified", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["note"] {
-			presentKeys.insert("note")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.note = try Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "note"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["output"] {
-			presentKeys.insert("output")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.output = try TaskOutput.instantiate(fromArray: val, owner: self) as? [TaskOutput]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "output"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "output", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["owner"] {
-			presentKeys.insert("owner")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.owner = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "owner"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "owner", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["partOf"] {
-			presentKeys.insert("partOf")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.partOf = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "partOf"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "partOf", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["performerType"] {
-			presentKeys.insert("performerType")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.performerType = try CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "performerType"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "performerType", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["priority"] {
-			presentKeys.insert("priority")
-			if let val = exist as? String {
-				if let enumval = RequestPriority(rawValue: val) {
-					self.priority = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "priority", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "priority", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["reason"] {
-			presentKeys.insert("reason")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.reason = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "reason"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["relevantHistory"] {
-			presentKeys.insert("relevantHistory")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.relevantHistory = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "relevantHistory"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "relevantHistory", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["requester"] {
-			presentKeys.insert("requester")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.requester = try TaskRequester(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "requester"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "requester", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["restriction"] {
-			presentKeys.insert("restriction")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.restriction = try TaskRestriction(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "restriction"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "restriction", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = TaskStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		lastModified = try createInstance(type: DateTime.self, for: "lastModified", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastModified
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		output = try createInstances(of: TaskOutput.self, for: "output", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? output
+		owner = try createInstance(type: Reference.self, for: "owner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? owner
+		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
+		performerType = try createInstances(of: CodeableConcept.self, for: "performerType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performerType
+		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, presentKeys: &presentKeys, errors: &errors) ?? priority
+		reason = try createInstance(type: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
+		relevantHistory = try createInstances(of: Reference.self, for: "relevantHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relevantHistory
+		requester = try createInstance(type: TaskRequester.self, for: "requester", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requester
+		restriction = try createInstance(type: TaskRestriction.self, for: "restriction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? restriction
+		status = createEnum(type: TaskStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let exist = json["statusReason"] {
-			presentKeys.insert("statusReason")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.statusReason = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "statusReason"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "statusReason", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		statusReason = try createInstance(type: CodeableConcept.self, for: "statusReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusReason
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let authoredOn = self.authoredOn {
-			json["authoredOn"] = authoredOn.asJSON()
-		}
-		if let basedOn = self.basedOn {
-			json["basedOn"] = basedOn.map() { $0.asJSON(errors: &errors) }
-		}
-		if let businessStatus = self.businessStatus {
-			json["businessStatus"] = businessStatus.asJSON(errors: &errors)
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON(errors: &errors)
-		}
-		if let context = self.context {
-			json["context"] = context.asJSON(errors: &errors)
-		}
-		if let definitionReference = self.definitionReference {
-			json["definitionReference"] = definitionReference.asJSON(errors: &errors)
-		}
-		if let definitionUri = self.definitionUri {
-			json["definitionUri"] = definitionUri.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let executionPeriod = self.executionPeriod {
-			json["executionPeriod"] = executionPeriod.asJSON(errors: &errors)
-		}
-		if let focus = self.focus {
-			json["focus"] = focus.asJSON(errors: &errors)
-		}
-		if let for_fhir = self.for_fhir {
-			json["for"] = for_fhir.asJSON(errors: &errors)
-		}
-		if let groupIdentifier = self.groupIdentifier {
-			json["groupIdentifier"] = groupIdentifier.asJSON(errors: &errors)
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
-		}
-		if let input = self.input {
-			json["input"] = input.map() { $0.asJSON(errors: &errors) }
-		}
-		if let intent = self.intent {
-			json["intent"] = intent.rawValue
-		}
-		else {
+		self.authoredOn?.decorate(json: &json, withKey: "authoredOn", errors: &errors)
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
+		self.businessStatus?.decorate(json: &json, withKey: "businessStatus", errors: &errors)
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
+		self.definitionReference?.decorate(json: &json, withKey: "definitionReference", errors: &errors)
+		self.definitionUri?.decorate(json: &json, withKey: "definitionUri", errors: &errors)
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		self.executionPeriod?.decorate(json: &json, withKey: "executionPeriod", errors: &errors)
+		self.focus?.decorate(json: &json, withKey: "focus", errors: &errors)
+		self.for_fhir?.decorate(json: &json, withKey: "for", errors: &errors)
+		self.groupIdentifier?.decorate(json: &json, withKey: "groupIdentifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "input", using: self.input, errors: &errors)
+		self.intent?.decorate(json: &json, withKey: "intent", errors: &errors)
+		if nil == self.intent {
 			errors.append(FHIRValidationError(missing: "intent"))
 		}
-		if let lastModified = self.lastModified {
-			json["lastModified"] = lastModified.asJSON()
-		}
-		if let note = self.note {
-			json["note"] = note.map() { $0.asJSON(errors: &errors) }
-		}
-		if let output = self.output {
-			json["output"] = output.map() { $0.asJSON(errors: &errors) }
-		}
-		if let owner = self.owner {
-			json["owner"] = owner.asJSON(errors: &errors)
-		}
-		if let partOf = self.partOf {
-			json["partOf"] = partOf.map() { $0.asJSON(errors: &errors) }
-		}
-		if let performerType = self.performerType {
-			json["performerType"] = performerType.map() { $0.asJSON(errors: &errors) }
-		}
-		if let priority = self.priority {
-			json["priority"] = priority.rawValue
-		}
-		if let reason = self.reason {
-			json["reason"] = reason.asJSON(errors: &errors)
-		}
-		if let relevantHistory = self.relevantHistory {
-			json["relevantHistory"] = relevantHistory.map() { $0.asJSON(errors: &errors) }
-		}
-		if let requester = self.requester {
-			json["requester"] = requester.asJSON(errors: &errors)
-		}
-		if let restriction = self.restriction {
-			json["restriction"] = restriction.asJSON(errors: &errors)
-		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
-		else {
+		self.lastModified?.decorate(json: &json, withKey: "lastModified", errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		arrayDecorate(json: &json, withKey: "output", using: self.output, errors: &errors)
+		self.owner?.decorate(json: &json, withKey: "owner", errors: &errors)
+		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
+		arrayDecorate(json: &json, withKey: "performerType", using: self.performerType, errors: &errors)
+		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
+		self.reason?.decorate(json: &json, withKey: "reason", errors: &errors)
+		arrayDecorate(json: &json, withKey: "relevantHistory", using: self.relevantHistory, errors: &errors)
+		self.requester?.decorate(json: &json, withKey: "requester", errors: &errors)
+		self.restriction?.decorate(json: &json, withKey: "restriction", errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let statusReason = self.statusReason {
-			json["statusReason"] = statusReason.asJSON(errors: &errors)
-		}
-		
-		return json
+		self.statusReason?.decorate(json: &json, withKey: "statusReason", errors: &errors)
 	}
 }
 
@@ -622,7 +222,7 @@ open class TaskInput: BackboneElement {
 	public var valueBase64Binary: Base64Binary?
 	
 	/// Content to use in performing the task.
-	public var valueBoolean: Bool?
+	public var valueBoolean: FHIRBool?
 	
 	/// Content to use in performing the task.
 	public var valueCode: FHIRString?
@@ -646,7 +246,7 @@ open class TaskInput: BackboneElement {
 	public var valueDateTime: DateTime?
 	
 	/// Content to use in performing the task.
-	public var valueDecimal: NSDecimalNumber?
+	public var valueDecimal: FHIRDecimal?
 	
 	/// Content to use in performing the task.
 	public var valueDistance: Distance?
@@ -667,7 +267,7 @@ open class TaskInput: BackboneElement {
 	public var valueInstant: Instant?
 	
 	/// Content to use in performing the task.
-	public var valueInteger: Int?
+	public var valueInteger: FHIRInteger?
 	
 	/// Content to use in performing the task.
 	public var valueMarkdown: FHIRString?
@@ -679,13 +279,13 @@ open class TaskInput: BackboneElement {
 	public var valueMoney: Money?
 	
 	/// Content to use in performing the task.
-	public var valueOid: FHIRString?
+	public var valueOid: FHIRURL?
 	
 	/// Content to use in performing the task.
 	public var valuePeriod: Period?
 	
 	/// Content to use in performing the task.
-	public var valuePositiveInt: UInt?
+	public var valuePositiveInt: FHIRInteger?
 	
 	/// Content to use in performing the task.
 	public var valueQuantity: Quantity?
@@ -715,10 +315,10 @@ open class TaskInput: BackboneElement {
 	public var valueTiming: Timing?
 	
 	/// Content to use in performing the task.
-	public var valueUnsignedInt: UInt?
+	public var valueUnsignedInt: FHIRInteger?
 	
 	/// Content to use in performing the task.
-	public var valueUri: URL?
+	public var valueUri: FHIRURL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -728,7 +328,7 @@ open class TaskInput: BackboneElement {
 		if let value = value as? Base64Binary {
 			self.valueBase64Binary = value
 		}
-		else if let value = value as? Bool {
+		else if let value = value as? FHIRBool {
 			self.valueBoolean = value
 		}
 		else if let value = value as? FHIRString {
@@ -740,7 +340,7 @@ open class TaskInput: BackboneElement {
 		else if let value = value as? DateTime {
 			self.valueDateTime = value
 		}
-		else if let value = value as? NSDecimalNumber {
+		else if let value = value as? FHIRDecimal {
 			self.valueDecimal = value
 		}
 		else if let value = value as? FHIRString {
@@ -749,16 +349,16 @@ open class TaskInput: BackboneElement {
 		else if let value = value as? Instant {
 			self.valueInstant = value
 		}
-		else if let value = value as? Int {
+		else if let value = value as? FHIRInteger {
 			self.valueInteger = value
 		}
 		else if let value = value as? FHIRString {
 			self.valueMarkdown = value
 		}
-		else if let value = value as? FHIRString {
+		else if let value = value as? FHIRURL {
 			self.valueOid = value
 		}
-		else if let value = value as? UInt {
+		else if let value = value as? FHIRInteger {
 			self.valuePositiveInt = value
 		}
 		else if let value = value as? FHIRString {
@@ -767,10 +367,10 @@ open class TaskInput: BackboneElement {
 		else if let value = value as? FHIRTime {
 			self.valueTime = value
 		}
-		else if let value = value as? UInt {
+		else if let value = value as? FHIRInteger {
 			self.valueUnsignedInt = value
 		}
-		else if let value = value as? URL {
+		else if let value = value as? FHIRURL {
 			self.valueUri = value
 		}
 		else if let value = value as? Address {
@@ -847,613 +447,109 @@ open class TaskInput: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.type = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let exist = json["valueAddress"] {
-			presentKeys.insert("valueAddress")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAddress = try Address(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAddress"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAddress", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueAge"] {
-			presentKeys.insert("valueAge")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAge = try Age(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAge"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAge", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueAnnotation"] {
-			presentKeys.insert("valueAnnotation")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAnnotation = try Annotation(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAnnotation"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAnnotation", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueAttachment"] {
-			presentKeys.insert("valueAttachment")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAttachment = try Attachment(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAttachment"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueBase64Binary"] {
-			presentKeys.insert("valueBase64Binary")
-			if let val = exist as? String {
-				self.valueBase64Binary = Base64Binary(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueBase64Binary", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueBoolean"] {
-			presentKeys.insert("valueBoolean")
-			if let val = exist as? Bool {
-				self.valueBoolean = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCode"] {
-			presentKeys.insert("valueCode")
-			if let val = exist as? String {
-				self.valueCode = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCodeableConcept"] {
-			presentKeys.insert("valueCodeableConcept")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCodeableConcept = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCodeableConcept"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCoding"] {
-			presentKeys.insert("valueCoding")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCoding = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCoding"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCoding", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueContactPoint"] {
-			presentKeys.insert("valueContactPoint")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueContactPoint = try ContactPoint(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueContactPoint"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCount"] {
-			presentKeys.insert("valueCount")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCount = try Count(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCount"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCount", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDate"] {
-			presentKeys.insert("valueDate")
-			if let val = exist as? String {
-				self.valueDate = FHIRDate(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDateTime"] {
-			presentKeys.insert("valueDateTime")
-			if let val = exist as? String {
-				self.valueDateTime = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDecimal"] {
-			presentKeys.insert("valueDecimal")
-			if let val = exist as? NSNumber {
-				self.valueDecimal = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDecimal", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDistance"] {
-			presentKeys.insert("valueDistance")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueDistance = try Distance(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueDistance"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDistance", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDuration"] {
-			presentKeys.insert("valueDuration")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueDuration = try Duration(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueDuration"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDuration", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueHumanName"] {
-			presentKeys.insert("valueHumanName")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueHumanName = try HumanName(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueHumanName"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueHumanName", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueId"] {
-			presentKeys.insert("valueId")
-			if let val = exist as? String {
-				self.valueId = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueIdentifier"] {
-			presentKeys.insert("valueIdentifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueIdentifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueIdentifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueInstant"] {
-			presentKeys.insert("valueInstant")
-			if let val = exist as? String {
-				self.valueInstant = Instant(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueInteger"] {
-			presentKeys.insert("valueInteger")
-			if let val = exist as? Int {
-				self.valueInteger = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueMarkdown"] {
-			presentKeys.insert("valueMarkdown")
-			if let val = exist as? String {
-				self.valueMarkdown = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueMeta"] {
-			presentKeys.insert("valueMeta")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueMeta = try Meta(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueMeta"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueMeta", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueMoney"] {
-			presentKeys.insert("valueMoney")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueMoney = try Money(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueMoney"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueMoney", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueOid"] {
-			presentKeys.insert("valueOid")
-			if let val = exist as? String {
-				self.valueOid = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueOid", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valuePeriod"] {
-			presentKeys.insert("valuePeriod")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valuePeriod = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valuePeriod"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valuePeriod", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valuePositiveInt"] {
-			presentKeys.insert("valuePositiveInt")
-			if let val = exist as? UInt {
-				self.valuePositiveInt = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valuePositiveInt", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueQuantity"] {
-			presentKeys.insert("valueQuantity")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueQuantity = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueQuantity"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueRange"] {
-			presentKeys.insert("valueRange")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueRange = try Range(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueRange"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueRatio"] {
-			presentKeys.insert("valueRatio")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueRatio = try Ratio(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueRatio"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueRatio", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueReference"] {
-			presentKeys.insert("valueReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueReference", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueSampledData"] {
-			presentKeys.insert("valueSampledData")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueSampledData = try SampledData(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueSampledData"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueSampledData", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueSignature"] {
-			presentKeys.insert("valueSignature")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueSignature = try Signature(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueSignature"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueSignature", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueString"] {
-			presentKeys.insert("valueString")
-			if let val = exist as? String {
-				self.valueString = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueTime"] {
-			presentKeys.insert("valueTime")
-			if let val = exist as? String {
-				self.valueTime = FHIRTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueTiming"] {
-			presentKeys.insert("valueTiming")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueTiming = try Timing(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueTiming"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueTiming", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueUnsignedInt"] {
-			presentKeys.insert("valueUnsignedInt")
-			if let val = exist as? UInt {
-				self.valueUnsignedInt = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueUnsignedInt", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueUri"] {
-			presentKeys.insert("valueUri")
-			if let val = exist as? String {
-				self.valueUri = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
-			}
-		}
+		valueAddress = try createInstance(type: Address.self, for: "valueAddress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAddress
+		valueAge = try createInstance(type: Age.self, for: "valueAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAge
+		valueAnnotation = try createInstance(type: Annotation.self, for: "valueAnnotation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAnnotation
+		valueAttachment = try createInstance(type: Attachment.self, for: "valueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAttachment
+		valueBase64Binary = try createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBase64Binary
+		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
+		valueCode = try createInstance(type: FHIRString.self, for: "valueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCode
+		valueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
+		valueCoding = try createInstance(type: Coding.self, for: "valueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCoding
+		valueContactPoint = try createInstance(type: ContactPoint.self, for: "valueContactPoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueContactPoint
+		valueCount = try createInstance(type: Count.self, for: "valueCount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCount
+		valueDate = try createInstance(type: FHIRDate.self, for: "valueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDate
+		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
+		valueDecimal = try createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDecimal
+		valueDistance = try createInstance(type: Distance.self, for: "valueDistance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDistance
+		valueDuration = try createInstance(type: Duration.self, for: "valueDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDuration
+		valueHumanName = try createInstance(type: HumanName.self, for: "valueHumanName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueHumanName
+		valueId = try createInstance(type: FHIRString.self, for: "valueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueId
+		valueIdentifier = try createInstance(type: Identifier.self, for: "valueIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueIdentifier
+		valueInstant = try createInstance(type: Instant.self, for: "valueInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInstant
+		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
+		valueMarkdown = try createInstance(type: FHIRString.self, for: "valueMarkdown", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMarkdown
+		valueMeta = try createInstance(type: Meta.self, for: "valueMeta", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMeta
+		valueMoney = try createInstance(type: Money.self, for: "valueMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMoney
+		valueOid = try createInstance(type: FHIRURL.self, for: "valueOid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueOid
+		valuePeriod = try createInstance(type: Period.self, for: "valuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePeriod
+		valuePositiveInt = try createInstance(type: FHIRInteger.self, for: "valuePositiveInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePositiveInt
+		valueQuantity = try createInstance(type: Quantity.self, for: "valueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueQuantity
+		valueRange = try createInstance(type: Range.self, for: "valueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRange
+		valueRatio = try createInstance(type: Ratio.self, for: "valueRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRatio
+		valueReference = try createInstance(type: Reference.self, for: "valueReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueReference
+		valueSampledData = try createInstance(type: SampledData.self, for: "valueSampledData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSampledData
+		valueSignature = try createInstance(type: Signature.self, for: "valueSignature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSignature
+		valueString = try createInstance(type: FHIRString.self, for: "valueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueString
+		valueTime = try createInstance(type: FHIRTime.self, for: "valueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTime
+		valueTiming = try createInstance(type: Timing.self, for: "valueTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTiming
+		valueUnsignedInt = try createInstance(type: FHIRInteger.self, for: "valueUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUnsignedInt
+		valueUri = try createInstance(type: FHIRURL.self, for: "valueUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUri
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
+		
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let type = self.type {
-			json["type"] = type.asJSON(errors: &errors)
-		}
-		else {
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let valueAddress = self.valueAddress {
-			json["valueAddress"] = valueAddress.asJSON(errors: &errors)
-		}
-		if let valueAge = self.valueAge {
-			json["valueAge"] = valueAge.asJSON(errors: &errors)
-		}
-		if let valueAnnotation = self.valueAnnotation {
-			json["valueAnnotation"] = valueAnnotation.asJSON(errors: &errors)
-		}
-		if let valueAttachment = self.valueAttachment {
-			json["valueAttachment"] = valueAttachment.asJSON(errors: &errors)
-		}
-		if let valueBase64Binary = self.valueBase64Binary {
-			json["valueBase64Binary"] = valueBase64Binary.asJSON()
-		}
-		if let valueBoolean = self.valueBoolean {
-			json["valueBoolean"] = valueBoolean.asJSON()
-		}
-		if let valueCode = self.valueCode {
-			json["valueCode"] = valueCode.asJSON()
-		}
-		if let valueCodeableConcept = self.valueCodeableConcept {
-			json["valueCodeableConcept"] = valueCodeableConcept.asJSON(errors: &errors)
-		}
-		if let valueCoding = self.valueCoding {
-			json["valueCoding"] = valueCoding.asJSON(errors: &errors)
-		}
-		if let valueContactPoint = self.valueContactPoint {
-			json["valueContactPoint"] = valueContactPoint.asJSON(errors: &errors)
-		}
-		if let valueCount = self.valueCount {
-			json["valueCount"] = valueCount.asJSON(errors: &errors)
-		}
-		if let valueDate = self.valueDate {
-			json["valueDate"] = valueDate.asJSON()
-		}
-		if let valueDateTime = self.valueDateTime {
-			json["valueDateTime"] = valueDateTime.asJSON()
-		}
-		if let valueDecimal = self.valueDecimal {
-			json["valueDecimal"] = valueDecimal.asJSON()
-		}
-		if let valueDistance = self.valueDistance {
-			json["valueDistance"] = valueDistance.asJSON(errors: &errors)
-		}
-		if let valueDuration = self.valueDuration {
-			json["valueDuration"] = valueDuration.asJSON(errors: &errors)
-		}
-		if let valueHumanName = self.valueHumanName {
-			json["valueHumanName"] = valueHumanName.asJSON(errors: &errors)
-		}
-		if let valueId = self.valueId {
-			json["valueId"] = valueId.asJSON()
-		}
-		if let valueIdentifier = self.valueIdentifier {
-			json["valueIdentifier"] = valueIdentifier.asJSON(errors: &errors)
-		}
-		if let valueInstant = self.valueInstant {
-			json["valueInstant"] = valueInstant.asJSON()
-		}
-		if let valueInteger = self.valueInteger {
-			json["valueInteger"] = valueInteger.asJSON()
-		}
-		if let valueMarkdown = self.valueMarkdown {
-			json["valueMarkdown"] = valueMarkdown.asJSON()
-		}
-		if let valueMeta = self.valueMeta {
-			json["valueMeta"] = valueMeta.asJSON(errors: &errors)
-		}
-		if let valueMoney = self.valueMoney {
-			json["valueMoney"] = valueMoney.asJSON(errors: &errors)
-		}
-		if let valueOid = self.valueOid {
-			json["valueOid"] = valueOid.asJSON()
-		}
-		if let valuePeriod = self.valuePeriod {
-			json["valuePeriod"] = valuePeriod.asJSON(errors: &errors)
-		}
-		if let valuePositiveInt = self.valuePositiveInt {
-			json["valuePositiveInt"] = valuePositiveInt.asJSON()
-		}
-		if let valueQuantity = self.valueQuantity {
-			json["valueQuantity"] = valueQuantity.asJSON(errors: &errors)
-		}
-		if let valueRange = self.valueRange {
-			json["valueRange"] = valueRange.asJSON(errors: &errors)
-		}
-		if let valueRatio = self.valueRatio {
-			json["valueRatio"] = valueRatio.asJSON(errors: &errors)
-		}
-		if let valueReference = self.valueReference {
-			json["valueReference"] = valueReference.asJSON(errors: &errors)
-		}
-		if let valueSampledData = self.valueSampledData {
-			json["valueSampledData"] = valueSampledData.asJSON(errors: &errors)
-		}
-		if let valueSignature = self.valueSignature {
-			json["valueSignature"] = valueSignature.asJSON(errors: &errors)
-		}
-		if let valueString = self.valueString {
-			json["valueString"] = valueString.asJSON()
-		}
-		if let valueTime = self.valueTime {
-			json["valueTime"] = valueTime.asJSON()
-		}
-		if let valueTiming = self.valueTiming {
-			json["valueTiming"] = valueTiming.asJSON(errors: &errors)
-		}
-		if let valueUnsignedInt = self.valueUnsignedInt {
-			json["valueUnsignedInt"] = valueUnsignedInt.asJSON()
-		}
-		if let valueUri = self.valueUri {
-			json["valueUri"] = valueUri.asJSON()
-		}
+		self.valueAddress?.decorate(json: &json, withKey: "valueAddress", errors: &errors)
+		self.valueAge?.decorate(json: &json, withKey: "valueAge", errors: &errors)
+		self.valueAnnotation?.decorate(json: &json, withKey: "valueAnnotation", errors: &errors)
+		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
+		self.valueBase64Binary?.decorate(json: &json, withKey: "valueBase64Binary", errors: &errors)
+		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
+		self.valueCode?.decorate(json: &json, withKey: "valueCode", errors: &errors)
+		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
+		self.valueCoding?.decorate(json: &json, withKey: "valueCoding", errors: &errors)
+		self.valueContactPoint?.decorate(json: &json, withKey: "valueContactPoint", errors: &errors)
+		self.valueCount?.decorate(json: &json, withKey: "valueCount", errors: &errors)
+		self.valueDate?.decorate(json: &json, withKey: "valueDate", errors: &errors)
+		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
+		self.valueDecimal?.decorate(json: &json, withKey: "valueDecimal", errors: &errors)
+		self.valueDistance?.decorate(json: &json, withKey: "valueDistance", errors: &errors)
+		self.valueDuration?.decorate(json: &json, withKey: "valueDuration", errors: &errors)
+		self.valueHumanName?.decorate(json: &json, withKey: "valueHumanName", errors: &errors)
+		self.valueId?.decorate(json: &json, withKey: "valueId", errors: &errors)
+		self.valueIdentifier?.decorate(json: &json, withKey: "valueIdentifier", errors: &errors)
+		self.valueInstant?.decorate(json: &json, withKey: "valueInstant", errors: &errors)
+		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
+		self.valueMarkdown?.decorate(json: &json, withKey: "valueMarkdown", errors: &errors)
+		self.valueMeta?.decorate(json: &json, withKey: "valueMeta", errors: &errors)
+		self.valueMoney?.decorate(json: &json, withKey: "valueMoney", errors: &errors)
+		self.valueOid?.decorate(json: &json, withKey: "valueOid", errors: &errors)
+		self.valuePeriod?.decorate(json: &json, withKey: "valuePeriod", errors: &errors)
+		self.valuePositiveInt?.decorate(json: &json, withKey: "valuePositiveInt", errors: &errors)
+		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
+		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
+		self.valueRatio?.decorate(json: &json, withKey: "valueRatio", errors: &errors)
+		self.valueReference?.decorate(json: &json, withKey: "valueReference", errors: &errors)
+		self.valueSampledData?.decorate(json: &json, withKey: "valueSampledData", errors: &errors)
+		self.valueSignature?.decorate(json: &json, withKey: "valueSignature", errors: &errors)
+		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)
+		self.valueTime?.decorate(json: &json, withKey: "valueTime", errors: &errors)
+		self.valueTiming?.decorate(json: &json, withKey: "valueTiming", errors: &errors)
+		self.valueUnsignedInt?.decorate(json: &json, withKey: "valueUnsignedInt", errors: &errors)
+		self.valueUri?.decorate(json: &json, withKey: "valueUri", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
 		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
-		
-		return json
 	}
 }
 
@@ -1487,7 +583,7 @@ open class TaskOutput: BackboneElement {
 	public var valueBase64Binary: Base64Binary?
 	
 	/// Result of output.
-	public var valueBoolean: Bool?
+	public var valueBoolean: FHIRBool?
 	
 	/// Result of output.
 	public var valueCode: FHIRString?
@@ -1511,7 +607,7 @@ open class TaskOutput: BackboneElement {
 	public var valueDateTime: DateTime?
 	
 	/// Result of output.
-	public var valueDecimal: NSDecimalNumber?
+	public var valueDecimal: FHIRDecimal?
 	
 	/// Result of output.
 	public var valueDistance: Distance?
@@ -1532,7 +628,7 @@ open class TaskOutput: BackboneElement {
 	public var valueInstant: Instant?
 	
 	/// Result of output.
-	public var valueInteger: Int?
+	public var valueInteger: FHIRInteger?
 	
 	/// Result of output.
 	public var valueMarkdown: FHIRString?
@@ -1544,13 +640,13 @@ open class TaskOutput: BackboneElement {
 	public var valueMoney: Money?
 	
 	/// Result of output.
-	public var valueOid: FHIRString?
+	public var valueOid: FHIRURL?
 	
 	/// Result of output.
 	public var valuePeriod: Period?
 	
 	/// Result of output.
-	public var valuePositiveInt: UInt?
+	public var valuePositiveInt: FHIRInteger?
 	
 	/// Result of output.
 	public var valueQuantity: Quantity?
@@ -1580,10 +676,10 @@ open class TaskOutput: BackboneElement {
 	public var valueTiming: Timing?
 	
 	/// Result of output.
-	public var valueUnsignedInt: UInt?
+	public var valueUnsignedInt: FHIRInteger?
 	
 	/// Result of output.
-	public var valueUri: URL?
+	public var valueUri: FHIRURL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1593,7 +689,7 @@ open class TaskOutput: BackboneElement {
 		if let value = value as? Base64Binary {
 			self.valueBase64Binary = value
 		}
-		else if let value = value as? Bool {
+		else if let value = value as? FHIRBool {
 			self.valueBoolean = value
 		}
 		else if let value = value as? FHIRString {
@@ -1605,7 +701,7 @@ open class TaskOutput: BackboneElement {
 		else if let value = value as? DateTime {
 			self.valueDateTime = value
 		}
-		else if let value = value as? NSDecimalNumber {
+		else if let value = value as? FHIRDecimal {
 			self.valueDecimal = value
 		}
 		else if let value = value as? FHIRString {
@@ -1614,16 +710,16 @@ open class TaskOutput: BackboneElement {
 		else if let value = value as? Instant {
 			self.valueInstant = value
 		}
-		else if let value = value as? Int {
+		else if let value = value as? FHIRInteger {
 			self.valueInteger = value
 		}
 		else if let value = value as? FHIRString {
 			self.valueMarkdown = value
 		}
-		else if let value = value as? FHIRString {
+		else if let value = value as? FHIRURL {
 			self.valueOid = value
 		}
-		else if let value = value as? UInt {
+		else if let value = value as? FHIRInteger {
 			self.valuePositiveInt = value
 		}
 		else if let value = value as? FHIRString {
@@ -1632,10 +728,10 @@ open class TaskOutput: BackboneElement {
 		else if let value = value as? FHIRTime {
 			self.valueTime = value
 		}
-		else if let value = value as? UInt {
+		else if let value = value as? FHIRInteger {
 			self.valueUnsignedInt = value
 		}
-		else if let value = value as? URL {
+		else if let value = value as? FHIRURL {
 			self.valueUri = value
 		}
 		else if let value = value as? Address {
@@ -1712,613 +808,109 @@ open class TaskOutput: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.type = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let exist = json["valueAddress"] {
-			presentKeys.insert("valueAddress")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAddress = try Address(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAddress"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAddress", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueAge"] {
-			presentKeys.insert("valueAge")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAge = try Age(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAge"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAge", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueAnnotation"] {
-			presentKeys.insert("valueAnnotation")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAnnotation = try Annotation(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAnnotation"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAnnotation", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueAttachment"] {
-			presentKeys.insert("valueAttachment")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueAttachment = try Attachment(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueAttachment"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueBase64Binary"] {
-			presentKeys.insert("valueBase64Binary")
-			if let val = exist as? String {
-				self.valueBase64Binary = Base64Binary(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueBase64Binary", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueBoolean"] {
-			presentKeys.insert("valueBoolean")
-			if let val = exist as? Bool {
-				self.valueBoolean = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCode"] {
-			presentKeys.insert("valueCode")
-			if let val = exist as? String {
-				self.valueCode = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCode", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCodeableConcept"] {
-			presentKeys.insert("valueCodeableConcept")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCodeableConcept = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCodeableConcept"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCoding"] {
-			presentKeys.insert("valueCoding")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCoding = try Coding(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCoding"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCoding", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueContactPoint"] {
-			presentKeys.insert("valueContactPoint")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueContactPoint = try ContactPoint(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueContactPoint"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueCount"] {
-			presentKeys.insert("valueCount")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueCount = try Count(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueCount"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueCount", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDate"] {
-			presentKeys.insert("valueDate")
-			if let val = exist as? String {
-				self.valueDate = FHIRDate(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDate", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDateTime"] {
-			presentKeys.insert("valueDateTime")
-			if let val = exist as? String {
-				self.valueDateTime = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDecimal"] {
-			presentKeys.insert("valueDecimal")
-			if let val = exist as? NSNumber {
-				self.valueDecimal = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDecimal", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDistance"] {
-			presentKeys.insert("valueDistance")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueDistance = try Distance(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueDistance"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDistance", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueDuration"] {
-			presentKeys.insert("valueDuration")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueDuration = try Duration(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueDuration"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueDuration", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueHumanName"] {
-			presentKeys.insert("valueHumanName")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueHumanName = try HumanName(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueHumanName"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueHumanName", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueId"] {
-			presentKeys.insert("valueId")
-			if let val = exist as? String {
-				self.valueId = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueId", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueIdentifier"] {
-			presentKeys.insert("valueIdentifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueIdentifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueIdentifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueInstant"] {
-			presentKeys.insert("valueInstant")
-			if let val = exist as? String {
-				self.valueInstant = Instant(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueInstant", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueInteger"] {
-			presentKeys.insert("valueInteger")
-			if let val = exist as? Int {
-				self.valueInteger = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueMarkdown"] {
-			presentKeys.insert("valueMarkdown")
-			if let val = exist as? String {
-				self.valueMarkdown = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueMeta"] {
-			presentKeys.insert("valueMeta")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueMeta = try Meta(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueMeta"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueMeta", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueMoney"] {
-			presentKeys.insert("valueMoney")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueMoney = try Money(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueMoney"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueMoney", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueOid"] {
-			presentKeys.insert("valueOid")
-			if let val = exist as? String {
-				self.valueOid = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueOid", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valuePeriod"] {
-			presentKeys.insert("valuePeriod")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valuePeriod = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valuePeriod"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valuePeriod", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valuePositiveInt"] {
-			presentKeys.insert("valuePositiveInt")
-			if let val = exist as? UInt {
-				self.valuePositiveInt = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valuePositiveInt", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueQuantity"] {
-			presentKeys.insert("valueQuantity")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueQuantity = try Quantity(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueQuantity"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueRange"] {
-			presentKeys.insert("valueRange")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueRange = try Range(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueRange"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueRatio"] {
-			presentKeys.insert("valueRatio")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueRatio = try Ratio(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueRatio"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueRatio", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueReference"] {
-			presentKeys.insert("valueReference")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueReference = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueReference"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueReference", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueSampledData"] {
-			presentKeys.insert("valueSampledData")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueSampledData = try SampledData(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueSampledData"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueSampledData", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueSignature"] {
-			presentKeys.insert("valueSignature")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueSignature = try Signature(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueSignature"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueSignature", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueString"] {
-			presentKeys.insert("valueString")
-			if let val = exist as? String {
-				self.valueString = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueString", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueTime"] {
-			presentKeys.insert("valueTime")
-			if let val = exist as? String {
-				self.valueTime = FHIRTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueTime", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueTiming"] {
-			presentKeys.insert("valueTiming")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.valueTiming = try Timing(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "valueTiming"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueTiming", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueUnsignedInt"] {
-			presentKeys.insert("valueUnsignedInt")
-			if let val = exist as? UInt {
-				self.valueUnsignedInt = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueUnsignedInt", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["valueUri"] {
-			presentKeys.insert("valueUri")
-			if let val = exist as? String {
-				self.valueUri = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "valueUri", wants: String.self, has: type(of: exist)))
-			}
-		}
+		valueAddress = try createInstance(type: Address.self, for: "valueAddress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAddress
+		valueAge = try createInstance(type: Age.self, for: "valueAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAge
+		valueAnnotation = try createInstance(type: Annotation.self, for: "valueAnnotation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAnnotation
+		valueAttachment = try createInstance(type: Attachment.self, for: "valueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAttachment
+		valueBase64Binary = try createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBase64Binary
+		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
+		valueCode = try createInstance(type: FHIRString.self, for: "valueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCode
+		valueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
+		valueCoding = try createInstance(type: Coding.self, for: "valueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCoding
+		valueContactPoint = try createInstance(type: ContactPoint.self, for: "valueContactPoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueContactPoint
+		valueCount = try createInstance(type: Count.self, for: "valueCount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCount
+		valueDate = try createInstance(type: FHIRDate.self, for: "valueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDate
+		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
+		valueDecimal = try createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDecimal
+		valueDistance = try createInstance(type: Distance.self, for: "valueDistance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDistance
+		valueDuration = try createInstance(type: Duration.self, for: "valueDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDuration
+		valueHumanName = try createInstance(type: HumanName.self, for: "valueHumanName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueHumanName
+		valueId = try createInstance(type: FHIRString.self, for: "valueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueId
+		valueIdentifier = try createInstance(type: Identifier.self, for: "valueIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueIdentifier
+		valueInstant = try createInstance(type: Instant.self, for: "valueInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInstant
+		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
+		valueMarkdown = try createInstance(type: FHIRString.self, for: "valueMarkdown", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMarkdown
+		valueMeta = try createInstance(type: Meta.self, for: "valueMeta", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMeta
+		valueMoney = try createInstance(type: Money.self, for: "valueMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMoney
+		valueOid = try createInstance(type: FHIRURL.self, for: "valueOid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueOid
+		valuePeriod = try createInstance(type: Period.self, for: "valuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePeriod
+		valuePositiveInt = try createInstance(type: FHIRInteger.self, for: "valuePositiveInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePositiveInt
+		valueQuantity = try createInstance(type: Quantity.self, for: "valueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueQuantity
+		valueRange = try createInstance(type: Range.self, for: "valueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRange
+		valueRatio = try createInstance(type: Ratio.self, for: "valueRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRatio
+		valueReference = try createInstance(type: Reference.self, for: "valueReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueReference
+		valueSampledData = try createInstance(type: SampledData.self, for: "valueSampledData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSampledData
+		valueSignature = try createInstance(type: Signature.self, for: "valueSignature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSignature
+		valueString = try createInstance(type: FHIRString.self, for: "valueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueString
+		valueTime = try createInstance(type: FHIRTime.self, for: "valueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTime
+		valueTiming = try createInstance(type: Timing.self, for: "valueTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTiming
+		valueUnsignedInt = try createInstance(type: FHIRInteger.self, for: "valueUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUnsignedInt
+		valueUri = try createInstance(type: FHIRURL.self, for: "valueUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUri
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
+		
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let type = self.type {
-			json["type"] = type.asJSON(errors: &errors)
-		}
-		else {
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let valueAddress = self.valueAddress {
-			json["valueAddress"] = valueAddress.asJSON(errors: &errors)
-		}
-		if let valueAge = self.valueAge {
-			json["valueAge"] = valueAge.asJSON(errors: &errors)
-		}
-		if let valueAnnotation = self.valueAnnotation {
-			json["valueAnnotation"] = valueAnnotation.asJSON(errors: &errors)
-		}
-		if let valueAttachment = self.valueAttachment {
-			json["valueAttachment"] = valueAttachment.asJSON(errors: &errors)
-		}
-		if let valueBase64Binary = self.valueBase64Binary {
-			json["valueBase64Binary"] = valueBase64Binary.asJSON()
-		}
-		if let valueBoolean = self.valueBoolean {
-			json["valueBoolean"] = valueBoolean.asJSON()
-		}
-		if let valueCode = self.valueCode {
-			json["valueCode"] = valueCode.asJSON()
-		}
-		if let valueCodeableConcept = self.valueCodeableConcept {
-			json["valueCodeableConcept"] = valueCodeableConcept.asJSON(errors: &errors)
-		}
-		if let valueCoding = self.valueCoding {
-			json["valueCoding"] = valueCoding.asJSON(errors: &errors)
-		}
-		if let valueContactPoint = self.valueContactPoint {
-			json["valueContactPoint"] = valueContactPoint.asJSON(errors: &errors)
-		}
-		if let valueCount = self.valueCount {
-			json["valueCount"] = valueCount.asJSON(errors: &errors)
-		}
-		if let valueDate = self.valueDate {
-			json["valueDate"] = valueDate.asJSON()
-		}
-		if let valueDateTime = self.valueDateTime {
-			json["valueDateTime"] = valueDateTime.asJSON()
-		}
-		if let valueDecimal = self.valueDecimal {
-			json["valueDecimal"] = valueDecimal.asJSON()
-		}
-		if let valueDistance = self.valueDistance {
-			json["valueDistance"] = valueDistance.asJSON(errors: &errors)
-		}
-		if let valueDuration = self.valueDuration {
-			json["valueDuration"] = valueDuration.asJSON(errors: &errors)
-		}
-		if let valueHumanName = self.valueHumanName {
-			json["valueHumanName"] = valueHumanName.asJSON(errors: &errors)
-		}
-		if let valueId = self.valueId {
-			json["valueId"] = valueId.asJSON()
-		}
-		if let valueIdentifier = self.valueIdentifier {
-			json["valueIdentifier"] = valueIdentifier.asJSON(errors: &errors)
-		}
-		if let valueInstant = self.valueInstant {
-			json["valueInstant"] = valueInstant.asJSON()
-		}
-		if let valueInteger = self.valueInteger {
-			json["valueInteger"] = valueInteger.asJSON()
-		}
-		if let valueMarkdown = self.valueMarkdown {
-			json["valueMarkdown"] = valueMarkdown.asJSON()
-		}
-		if let valueMeta = self.valueMeta {
-			json["valueMeta"] = valueMeta.asJSON(errors: &errors)
-		}
-		if let valueMoney = self.valueMoney {
-			json["valueMoney"] = valueMoney.asJSON(errors: &errors)
-		}
-		if let valueOid = self.valueOid {
-			json["valueOid"] = valueOid.asJSON()
-		}
-		if let valuePeriod = self.valuePeriod {
-			json["valuePeriod"] = valuePeriod.asJSON(errors: &errors)
-		}
-		if let valuePositiveInt = self.valuePositiveInt {
-			json["valuePositiveInt"] = valuePositiveInt.asJSON()
-		}
-		if let valueQuantity = self.valueQuantity {
-			json["valueQuantity"] = valueQuantity.asJSON(errors: &errors)
-		}
-		if let valueRange = self.valueRange {
-			json["valueRange"] = valueRange.asJSON(errors: &errors)
-		}
-		if let valueRatio = self.valueRatio {
-			json["valueRatio"] = valueRatio.asJSON(errors: &errors)
-		}
-		if let valueReference = self.valueReference {
-			json["valueReference"] = valueReference.asJSON(errors: &errors)
-		}
-		if let valueSampledData = self.valueSampledData {
-			json["valueSampledData"] = valueSampledData.asJSON(errors: &errors)
-		}
-		if let valueSignature = self.valueSignature {
-			json["valueSignature"] = valueSignature.asJSON(errors: &errors)
-		}
-		if let valueString = self.valueString {
-			json["valueString"] = valueString.asJSON()
-		}
-		if let valueTime = self.valueTime {
-			json["valueTime"] = valueTime.asJSON()
-		}
-		if let valueTiming = self.valueTiming {
-			json["valueTiming"] = valueTiming.asJSON(errors: &errors)
-		}
-		if let valueUnsignedInt = self.valueUnsignedInt {
-			json["valueUnsignedInt"] = valueUnsignedInt.asJSON()
-		}
-		if let valueUri = self.valueUri {
-			json["valueUri"] = valueUri.asJSON()
-		}
+		self.valueAddress?.decorate(json: &json, withKey: "valueAddress", errors: &errors)
+		self.valueAge?.decorate(json: &json, withKey: "valueAge", errors: &errors)
+		self.valueAnnotation?.decorate(json: &json, withKey: "valueAnnotation", errors: &errors)
+		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
+		self.valueBase64Binary?.decorate(json: &json, withKey: "valueBase64Binary", errors: &errors)
+		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
+		self.valueCode?.decorate(json: &json, withKey: "valueCode", errors: &errors)
+		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
+		self.valueCoding?.decorate(json: &json, withKey: "valueCoding", errors: &errors)
+		self.valueContactPoint?.decorate(json: &json, withKey: "valueContactPoint", errors: &errors)
+		self.valueCount?.decorate(json: &json, withKey: "valueCount", errors: &errors)
+		self.valueDate?.decorate(json: &json, withKey: "valueDate", errors: &errors)
+		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
+		self.valueDecimal?.decorate(json: &json, withKey: "valueDecimal", errors: &errors)
+		self.valueDistance?.decorate(json: &json, withKey: "valueDistance", errors: &errors)
+		self.valueDuration?.decorate(json: &json, withKey: "valueDuration", errors: &errors)
+		self.valueHumanName?.decorate(json: &json, withKey: "valueHumanName", errors: &errors)
+		self.valueId?.decorate(json: &json, withKey: "valueId", errors: &errors)
+		self.valueIdentifier?.decorate(json: &json, withKey: "valueIdentifier", errors: &errors)
+		self.valueInstant?.decorate(json: &json, withKey: "valueInstant", errors: &errors)
+		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
+		self.valueMarkdown?.decorate(json: &json, withKey: "valueMarkdown", errors: &errors)
+		self.valueMeta?.decorate(json: &json, withKey: "valueMeta", errors: &errors)
+		self.valueMoney?.decorate(json: &json, withKey: "valueMoney", errors: &errors)
+		self.valueOid?.decorate(json: &json, withKey: "valueOid", errors: &errors)
+		self.valuePeriod?.decorate(json: &json, withKey: "valuePeriod", errors: &errors)
+		self.valuePositiveInt?.decorate(json: &json, withKey: "valuePositiveInt", errors: &errors)
+		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
+		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
+		self.valueRatio?.decorate(json: &json, withKey: "valueRatio", errors: &errors)
+		self.valueReference?.decorate(json: &json, withKey: "valueReference", errors: &errors)
+		self.valueSampledData?.decorate(json: &json, withKey: "valueSampledData", errors: &errors)
+		self.valueSignature?.decorate(json: &json, withKey: "valueSignature", errors: &errors)
+		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)
+		self.valueTime?.decorate(json: &json, withKey: "valueTime", errors: &errors)
+		self.valueTiming?.decorate(json: &json, withKey: "valueTiming", errors: &errors)
+		self.valueUnsignedInt?.decorate(json: &json, withKey: "valueUnsignedInt", errors: &errors)
+		self.valueUri?.decorate(json: &json, withKey: "valueUri", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
 		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
-		
-		return json
 	}
 }
 
@@ -2349,54 +941,24 @@ open class TaskRequester: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["agent"] {
-			presentKeys.insert("agent")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.agent = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "agent"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "agent", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		agent = try createInstance(type: Reference.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
+		if nil == agent && !presentKeys.contains("agent") {
 			errors.append(FHIRValidationError(missing: "agent"))
 		}
-		if let exist = json["onBehalfOf"] {
-			presentKeys.insert("onBehalfOf")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.onBehalfOf = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "onBehalfOf"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "onBehalfOf", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let agent = self.agent {
-			json["agent"] = agent.asJSON(errors: &errors)
-		}
-		else {
+		self.agent?.decorate(json: &json, withKey: "agent", errors: &errors)
+		if nil == self.agent {
 			errors.append(FHIRValidationError(missing: "agent"))
 		}
-		if let onBehalfOf = self.onBehalfOf {
-			json["onBehalfOf"] = onBehalfOf.asJSON(errors: &errors)
-		}
-		
-		return json
+		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
 	}
 }
 
@@ -2419,65 +981,25 @@ open class TaskRestriction: BackboneElement {
 	public var recipient: [Reference]?
 	
 	/// How many times to repeat.
-	public var repetitions: UInt?
+	public var repetitions: FHIRInteger?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.period = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "period"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["recipient"] {
-			presentKeys.insert("recipient")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.recipient = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "recipient"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "recipient", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["repetitions"] {
-			presentKeys.insert("repetitions")
-			if let val = exist as? UInt {
-				self.repetitions = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "repetitions", wants: UInt.self, has: type(of: exist)))
-			}
-		}
+		
+		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		recipient = try createInstances(of: Reference.self, for: "recipient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recipient
+		repetitions = try createInstance(type: FHIRInteger.self, for: "repetitions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? repetitions
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let period = self.period {
-			json["period"] = period.asJSON(errors: &errors)
-		}
-		if let recipient = self.recipient {
-			json["recipient"] = recipient.map() { $0.asJSON(errors: &errors) }
-		}
-		if let repetitions = self.repetitions {
-			json["repetitions"] = repetitions.asJSON()
-		}
-		
-		return json
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		arrayDecorate(json: &json, withKey: "recipient", using: self.recipient, errors: &errors)
+		self.repetitions?.decorate(json: &json, withKey: "repetitions", errors: &errors)
 	}
 }
 

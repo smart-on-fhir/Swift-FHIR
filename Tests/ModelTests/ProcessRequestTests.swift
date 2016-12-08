@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -211,7 +211,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.id, "87654")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "76543")
-		XCTAssertFalse(inst.nullify ?? true)
+		XCTAssertEqual(inst.nullify, false)
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/claim/12345")
 		XCTAssertEqual(inst.status, "active")

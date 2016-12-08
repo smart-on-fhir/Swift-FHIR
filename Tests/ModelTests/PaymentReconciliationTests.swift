@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -37,21 +37,21 @@ class PaymentReconciliationTests: XCTestCase {
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.detail?[0].amount?.code, "USD")
 		XCTAssertEqual(inst.detail?[0].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.detail?[0].amount?.value, NSDecimalNumber(string: "1000.0"))
+		XCTAssertEqual(inst.detail?[0].amount?.value, "1000.0")
 		XCTAssertEqual(inst.detail?[0].date?.description, "2014-08-16")
 		XCTAssertEqual(inst.detail?[0].request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332402")
 		XCTAssertEqual(inst.detail?[0].type?.coding?[0].code, "payment")
 		XCTAssertEqual(inst.detail?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/paymenttype")
 		XCTAssertEqual(inst.detail?[1].amount?.code, "USD")
 		XCTAssertEqual(inst.detail?[1].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.detail?[1].amount?.value, NSDecimalNumber(string: "4000.0"))
+		XCTAssertEqual(inst.detail?[1].amount?.value, "4000.0")
 		XCTAssertEqual(inst.detail?[1].date?.description, "2014-08-12")
 		XCTAssertEqual(inst.detail?[1].request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332699")
 		XCTAssertEqual(inst.detail?[1].type?.coding?[0].code, "payment")
 		XCTAssertEqual(inst.detail?[1].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/paymenttype")
 		XCTAssertEqual(inst.detail?[2].amount?.code, "USD")
 		XCTAssertEqual(inst.detail?[2].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.detail?[2].amount?.value, NSDecimalNumber(string: "-1500.0"))
+		XCTAssertEqual(inst.detail?[2].amount?.value, "-1500.0")
 		XCTAssertEqual(inst.detail?[2].date?.description, "2014-08-16")
 		XCTAssertEqual(inst.detail?[2].type?.coding?[0].code, "advance")
 		XCTAssertEqual(inst.detail?[2].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/paymenttype")
@@ -69,7 +69,7 @@ class PaymentReconciliationTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.total?.code, "USD")
 		XCTAssertEqual(inst.total?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.total?.value, NSDecimalNumber(string: "3500.0"))
+		XCTAssertEqual(inst.total?.value, "3500.0")
 		
 		return inst
 	}

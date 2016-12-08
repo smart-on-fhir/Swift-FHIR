@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "https://example.com/base/MedicationRequest/3123")
 		XCTAssertEqual(inst.entry?[0].resource?.id, "3123")
 		XCTAssertEqual(inst.entry?[0].search?.mode, SearchEntryMode(rawValue: "match")!)
-		XCTAssertEqual(inst.entry?[0].search?.score, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.entry?[0].search?.score, "1")
 		XCTAssertEqual(inst.entry?[1].fullUrl?.absoluteString, "https://example.com/base/Medication/example")
 		XCTAssertEqual(inst.entry?[1].resource?.id, "example")
 		XCTAssertEqual(inst.entry?[1].search?.mode, SearchEntryMode(rawValue: "include")!)
@@ -47,7 +47,7 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.link?[1].relation, "next")
 		XCTAssertEqual(inst.link?[1].url?.absoluteString, "https://example.com/base/MedicationRequest?patient=347&searchId=ff15fd40-ff71-4b48-b366-09c706bed9d0&page=2")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2014-08-18T01:43:30Z")
-		XCTAssertEqual(inst.total, UInt(3))
+		XCTAssertEqual(inst.total, 3)
 		XCTAssertEqual(inst.type, BundleType(rawValue: "searchset")!)
 		
 		return inst

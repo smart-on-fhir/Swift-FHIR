@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -39,7 +39,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[1].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[1].telecom?[0].value, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
 		XCTAssertEqual(inst.date?.description, "2013-07-25")
-		XCTAssertFalse(inst.experimental ?? true)
+		XCTAssertEqual(inst.experimental, false)
 		XCTAssertEqual(inst.group?[0].element?[0].code, "ACNE")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].code, "309068002")
 		XCTAssertEqual(inst.group?[0].element?[1].code, "ACNFLD")
@@ -112,7 +112,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.copyright, "Creative Commons 0")
 		XCTAssertEqual(inst.date?.description, "2012-06-13")
 		XCTAssertEqual(inst.description_fhir, "A mapping between the FHIR and HL7 v3 AddressUse Code systems")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.group?[0].element?[0].code, "home")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].code, "H")
 		XCTAssertEqual(inst.group?[0].element?[1].code, "home")

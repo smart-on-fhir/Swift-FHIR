@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Reference) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Reference) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -29,55 +29,20 @@ open class Reference: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["display"] {
-			presentKeys.insert("display")
-			if let val = exist as? String {
-				self.display = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.identifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["reference"] {
-			presentKeys.insert("reference")
-			if let val = exist as? String {
-				self.reference = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "reference", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		reference = try createInstance(type: FHIRString.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON(errors: &errors)
-		}
-		if let reference = self.reference {
-			json["reference"] = reference.asJSON()
-		}
-		
-		return json
+		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
 	}
 }
 

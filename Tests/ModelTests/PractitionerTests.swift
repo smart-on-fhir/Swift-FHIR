@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -437,7 +437,7 @@ class PractitionerTests: XCTestCase {
 	func runPractitioner8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f201-ab.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.address?[0].city, "Den helder")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
 		XCTAssertEqual(inst.address?[0].line?[0], "Walvisbaai 3")
@@ -489,7 +489,7 @@ class PractitionerTests: XCTestCase {
 	func runPractitioner9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f202-lm.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.address?[0].city, "Den helder")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
 		XCTAssertEqual(inst.address?[0].line?[0], "Walvisbaai 3")
@@ -542,7 +542,7 @@ class PractitionerTests: XCTestCase {
 	func runPractitioner10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f203-jvg.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.address?[0].city, "Den helder")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
 		XCTAssertEqual(inst.address?[0].line?[0], "Walvisbaai 3")

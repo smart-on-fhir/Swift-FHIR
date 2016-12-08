@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -65,202 +65,52 @@ open class DeviceMetric: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["calibration"] {
-			presentKeys.insert("calibration")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.calibration = try DeviceMetricCalibration.instantiate(fromArray: val, owner: self) as? [DeviceMetricCalibration]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "calibration"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "calibration", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["category"] {
-			presentKeys.insert("category")
-			if let val = exist as? String {
-				if let enumval = DeviceMetricCategory(rawValue: val) {
-					self.category = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "category", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "category", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		calibration = try createInstances(of: DeviceMetricCalibration.self, for: "calibration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? calibration
+		category = createEnum(type: DeviceMetricCategory.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors) ?? category
+		if nil == category && !presentKeys.contains("category") {
 			errors.append(FHIRValidationError(missing: "category"))
 		}
-		if let exist = json["color"] {
-			presentKeys.insert("color")
-			if let val = exist as? String {
-				if let enumval = DeviceMetricColor(rawValue: val) {
-					self.color = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "color", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "color", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.identifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		color = createEnum(type: DeviceMetricColor.self, for: "color", in: json, presentKeys: &presentKeys, errors: &errors) ?? color
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		if nil == identifier && !presentKeys.contains("identifier") {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
-		if let exist = json["measurementPeriod"] {
-			presentKeys.insert("measurementPeriod")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.measurementPeriod = try Timing(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "measurementPeriod"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "measurementPeriod", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["operationalStatus"] {
-			presentKeys.insert("operationalStatus")
-			if let val = exist as? String {
-				if let enumval = DeviceMetricOperationalStatus(rawValue: val) {
-					self.operationalStatus = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "operationalStatus", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "operationalStatus", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["parent"] {
-			presentKeys.insert("parent")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.parent = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "parent"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "parent", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["source"] {
-			presentKeys.insert("source")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.source = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "source"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.type = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "type"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		measurementPeriod = try createInstance(type: Timing.self, for: "measurementPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measurementPeriod
+		operationalStatus = createEnum(type: DeviceMetricOperationalStatus.self, for: "operationalStatus", in: json, presentKeys: &presentKeys, errors: &errors) ?? operationalStatus
+		parent = try createInstance(type: Reference.self, for: "parent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parent
+		source = try createInstance(type: Reference.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
+		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let exist = json["unit"] {
-			presentKeys.insert("unit")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.unit = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "unit"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "unit", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		unit = try createInstance(type: CodeableConcept.self, for: "unit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? unit
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let calibration = self.calibration {
-			json["calibration"] = calibration.map() { $0.asJSON(errors: &errors) }
-		}
-		if let category = self.category {
-			json["category"] = category.rawValue
-		}
-		else {
+		arrayDecorate(json: &json, withKey: "calibration", using: self.calibration, errors: &errors)
+		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		if nil == self.category {
 			errors.append(FHIRValidationError(missing: "category"))
 		}
-		if let color = self.color {
-			json["color"] = color.rawValue
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON(errors: &errors)
-		}
-		else {
+		self.color?.decorate(json: &json, withKey: "color", errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		if nil == self.identifier {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
-		if let measurementPeriod = self.measurementPeriod {
-			json["measurementPeriod"] = measurementPeriod.asJSON(errors: &errors)
-		}
-		if let operationalStatus = self.operationalStatus {
-			json["operationalStatus"] = operationalStatus.rawValue
-		}
-		if let parent = self.parent {
-			json["parent"] = parent.asJSON(errors: &errors)
-		}
-		if let source = self.source {
-			json["source"] = source.asJSON(errors: &errors)
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON(errors: &errors)
-		}
-		else {
+		self.measurementPeriod?.decorate(json: &json, withKey: "measurementPeriod", errors: &errors)
+		self.operationalStatus?.decorate(json: &json, withKey: "operationalStatus", errors: &errors)
+		self.parent?.decorate(json: &json, withKey: "parent", errors: &errors)
+		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		if let unit = self.unit {
-			json["unit"] = unit.asJSON(errors: &errors)
-		}
-		
-		return json
+		self.unit?.decorate(json: &json, withKey: "unit", errors: &errors)
 	}
 }
 
@@ -285,60 +135,20 @@ open class DeviceMetricCalibration: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["state"] {
-			presentKeys.insert("state")
-			if let val = exist as? String {
-				if let enumval = DeviceMetricCalibrationState(rawValue: val) {
-					self.state = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "state", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "state", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["time"] {
-			presentKeys.insert("time")
-			if let val = exist as? String {
-				self.time = Instant(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "time", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? String {
-				if let enumval = DeviceMetricCalibrationType(rawValue: val) {
-					self.type = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		state = createEnum(type: DeviceMetricCalibrationState.self, for: "state", in: json, presentKeys: &presentKeys, errors: &errors) ?? state
+		time = try createInstance(type: Instant.self, for: "time", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? time
+		type = createEnum(type: DeviceMetricCalibrationType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let state = self.state {
-			json["state"] = state.rawValue
-		}
-		if let time = self.time {
-			json["time"] = time.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.rawValue
-		}
-		
-		return json
+		self.state?.decorate(json: &json, withKey: "state", errors: &errors)
+		self.time?.decorate(json: &json, withKey: "time", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 

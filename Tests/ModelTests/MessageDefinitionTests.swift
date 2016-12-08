@@ -2,7 +2,7 @@
 //  MessageDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -40,15 +40,15 @@ class MessageDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2016-11-09")
 		XCTAssertEqual(inst.event?.code, "patient-link")
 		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-events")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.focus?[0].code, "Patient")
 		XCTAssertEqual(inst.focus?[0].max, "2")
-		XCTAssertEqual(inst.focus?[0].min, UInt(2))
+		XCTAssertEqual(inst.focus?[0].min, 2)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.name, "A24")
 		XCTAssertEqual(inst.publisher, "Health Level Seven, Int'l")
 		XCTAssertEqual(inst.purpose, "Notifies recipient systems that two patients have been 'linked' - meaning they represent the same individual")
-		XCTAssertFalse(inst.responseRequired ?? true)
+		XCTAssertEqual(inst.responseRequired, false)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

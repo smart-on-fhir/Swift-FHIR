@@ -2,7 +2,7 @@
 //  SequenceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -122,20 +122,20 @@ class SequenceTests: XCTestCase {
 		XCTAssertEqual(inst.id, "fda-example")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.quality?[0].end, 101770080)
-		XCTAssertEqual(inst.quality?[0].fScore, NSDecimalNumber(string: "0.545551"))
-		XCTAssertEqual(inst.quality?[0].gtFP, NSDecimalNumber(string: "2186"))
+		XCTAssertEqual(inst.quality?[0].fScore, "0.545551")
+		XCTAssertEqual(inst.quality?[0].gtFP, "2186")
 		XCTAssertEqual(inst.quality?[0].method?.coding?[0].code, "job-ByxYPx809jFVy21KJG74Jg3Y")
 		XCTAssertEqual(inst.quality?[0].method?.coding?[0].system?.absoluteString, "https://precision.fda.gov/jobs/")
 		XCTAssertEqual(inst.quality?[0].method?.text, "Vcfeval + Hap.py Comparison")
-		XCTAssertEqual(inst.quality?[0].precision, NSDecimalNumber(string: "0.428005"))
-		XCTAssertEqual(inst.quality?[0].queryFP, NSDecimalNumber(string: "10670"))
-		XCTAssertEqual(inst.quality?[0].queryTP, NSDecimalNumber(string: "7984"))
-		XCTAssertEqual(inst.quality?[0].recall, NSDecimalNumber(string: "0.752111"))
+		XCTAssertEqual(inst.quality?[0].precision, "0.428005")
+		XCTAssertEqual(inst.quality?[0].queryFP, "10670")
+		XCTAssertEqual(inst.quality?[0].queryTP, "7984")
+		XCTAssertEqual(inst.quality?[0].recall, "0.752111")
 		XCTAssertEqual(inst.quality?[0].standardSequence?.coding?[0].code, "file-Bk50V4Q0qVb65P0v2VPbfYPZ")
 		XCTAssertEqual(inst.quality?[0].standardSequence?.coding?[0].system?.absoluteString, "https://precision.fda.gov/files/")
 		XCTAssertEqual(inst.quality?[0].start, 10453)
-		XCTAssertEqual(inst.quality?[0].truthFN, NSDecimalNumber(string: "2554"))
-		XCTAssertEqual(inst.quality?[0].truthTP, NSDecimalNumber(string: "7749"))
+		XCTAssertEqual(inst.quality?[0].truthFN, "2554")
+		XCTAssertEqual(inst.quality?[0].truthTP, "7749")
 		XCTAssertEqual(inst.quality?[0].type, QualityType(rawValue: "SNP")!)
 		XCTAssertEqual(inst.referenceSeq?.referenceSeqId?.coding?[0].code, "NC_000001.11")
 		XCTAssertEqual(inst.referenceSeq?.referenceSeqId?.coding?[0].system?.absoluteString, "http://www.ncbi.nlm.nih.gov/nuccore")

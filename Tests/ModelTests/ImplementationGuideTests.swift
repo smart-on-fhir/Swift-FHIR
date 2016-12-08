@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -45,7 +45,7 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2015-01-01")
 		XCTAssertEqual(inst.dependency?[0].type, GuideDependencyType(rawValue: "reference")!)
 		XCTAssertEqual(inst.dependency?[0].uri?.absoluteString, "http://hl7.org/fhir/ImplementationGuide/uscore")
-		XCTAssertFalse(inst.experimental ?? true)
+		XCTAssertEqual(inst.experimental, false)
 		XCTAssertEqual(inst.fhirVersion, "1.0.0")
 		XCTAssertEqual(inst.global?[0].profile?.reference, "StructureDefinition/daf-patient")
 		XCTAssertEqual(inst.global?[0].type, "Patient")
@@ -57,7 +57,7 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.package?[0].name, "test")
 		XCTAssertEqual(inst.package?[0].resource?[0].acronym, "daf-tst")
 		XCTAssertEqual(inst.package?[0].resource?[0].description_fhir, "A test example to show how a package works")
-		XCTAssertTrue(inst.package?[0].resource?[0].example ?? false)
+		XCTAssertEqual(inst.package?[0].resource?[0].example, true)
 		XCTAssertEqual(inst.package?[0].resource?[0].exampleFor?.reference, "StructureDefinition/daf-patient")
 		XCTAssertEqual(inst.package?[0].resource?[0].name, "Test Example")
 		XCTAssertEqual(inst.package?[0].resource?[0].sourceUri?.absoluteString, "test.html")

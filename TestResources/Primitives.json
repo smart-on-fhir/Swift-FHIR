@@ -1,0 +1,31 @@
+{
+	"initArrayValid": {
+		"code": ["au", "nz"],
+		"_code": [
+			null,
+			{
+				"id": "ext",
+				"extension": [
+					{
+						"url": "http://hl7.org/fhir/StructureDefinition/display",
+						"valueString": "New Zealand a.k.a Kiwiland"
+					}
+				]
+			}
+		]
+	},
+	"initArrayInvalid1": {
+		"code": ["au", "nz"],
+		"_code": [
+			null,
+			{
+				"extension": [
+					{
+						"uri": "http://hl7.org/fhir/StructureDefinition/display",
+						"valueString": "New Zealand a.k.a Kiwiland"
+					}
+				]
+			}
+		]
+	}
+}

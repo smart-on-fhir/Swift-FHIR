@@ -2,7 +2,7 @@
 //  ScheduleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -34,7 +34,7 @@ class ScheduleTests: XCTestCase {
 	func runSchedule1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Schedule {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-example.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.actor?.display, "Burgers UMC, South Wing, second floor")
 		XCTAssertEqual(inst.actor?.reference, "Location/1")
 		XCTAssertEqual(inst.comment, "The slots attached to this schedule should be specialized to cover immunizations within the clinic")

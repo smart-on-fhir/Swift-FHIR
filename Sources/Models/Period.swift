@@ -2,7 +2,7 @@
 //  Period.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Period) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Period) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -28,38 +28,18 @@ open class Period: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["end"] {
-			presentKeys.insert("end")
-			if let val = exist as? String {
-				self.end = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "end", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["start"] {
-			presentKeys.insert("start")
-			if let val = exist as? String {
-				self.start = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "start", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		end = try createInstance(type: DateTime.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
+		start = try createInstance(type: DateTime.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let end = self.end {
-			json["end"] = end.asJSON()
-		}
-		if let start = self.start {
-			json["start"] = start.asJSON()
-		}
-		
-		return json
+		self.end?.decorate(json: &json, withKey: "end", errors: &errors)
+		self.start?.decorate(json: &json, withKey: "start", errors: &errors)
 	}
 }
 

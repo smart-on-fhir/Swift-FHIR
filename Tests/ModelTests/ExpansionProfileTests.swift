@@ -2,7 +2,7 @@
 //  ExpansionProfileTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -34,8 +34,8 @@ class ExpansionProfileTests: XCTestCase {
 	func runExpansionProfile1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ExpansionProfile {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "expansionprofile-example.json")
 		
-		XCTAssertTrue(inst.excludeNested ?? false)
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.excludeNested, true)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[ Provide Rendering ]</div>")

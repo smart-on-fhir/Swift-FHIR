@@ -2,7 +2,7 @@
 //  CapabilityStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -44,7 +44,7 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.document?[0].documentation, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst.document?[0].mode, DocumentMode(rawValue: "consumer")!)
 		XCTAssertEqual(inst.document?[0].profile?.reference, "http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.fhirVersion, "1.0.0")
 		XCTAssertEqual(inst.format?[0], "xml")
 		XCTAssertEqual(inst.format?[1], "json")
@@ -64,7 +64,7 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.messaging?[0].event?[0].mode, EventCapabilityMode(rawValue: "receiver")!)
 		XCTAssertEqual(inst.messaging?[0].event?[0].request?.reference, "StructureDefinition/daf-patient")
 		XCTAssertEqual(inst.messaging?[0].event?[0].response?.reference, "StructureDefinition/MessageHeader")
-		XCTAssertEqual(inst.messaging?[0].reliableCache, UInt(30))
+		XCTAssertEqual(inst.messaging?[0].reliableCache, 30)
 		XCTAssertEqual(inst.name, "ACME EHR capability statement")
 		XCTAssertEqual(inst.publisher, "ACME Corporation")
 		XCTAssertEqual(inst.purpose, "Main EHR capability statement, published for contracting and operational support")
@@ -73,9 +73,9 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].interaction?[0].code, FHIRRestfulInteractions(rawValue: "transaction")!)
 		XCTAssertEqual(inst.rest?[0].interaction?[1].code, FHIRRestfulInteractions(rawValue: "history-system")!)
 		XCTAssertEqual(inst.rest?[0].mode, RestfulCapabilityMode(rawValue: "server")!)
-		XCTAssertTrue(inst.rest?[0].resource?[0].conditionalCreate ?? false)
+		XCTAssertEqual(inst.rest?[0].resource?[0].conditionalCreate, true)
 		XCTAssertEqual(inst.rest?[0].resource?[0].conditionalDelete, ConditionalDeleteStatus(rawValue: "not-supported")!)
-		XCTAssertFalse(inst.rest?[0].resource?[0].conditionalUpdate ?? true)
+		XCTAssertEqual(inst.rest?[0].resource?[0].conditionalUpdate, false)
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[0].code, FHIRRestfulInteractions(rawValue: "read")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[1].code, FHIRRestfulInteractions(rawValue: "vread")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[1].documentation, "Only supported for patient records since 12-Dec 2012")
@@ -84,7 +84,7 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[4].code, FHIRRestfulInteractions(rawValue: "create")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[5].code, FHIRRestfulInteractions(rawValue: "history-type")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].profile?.reference, "http://fhir.hl7.org/base/StructureDefinition/7896271d-57f6-4231-89dc-dcc91eab2416")
-		XCTAssertTrue(inst.rest?[0].resource?[0].readHistory ?? false)
+		XCTAssertEqual(inst.rest?[0].resource?[0].readHistory, true)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchInclude?[0], "Organization")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-identifier")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].documentation, "Only supports search by institution MRN")
@@ -95,11 +95,11 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].type, SearchParamType(rawValue: "reference")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchRevInclude?[0], "Person")
 		XCTAssertEqual(inst.rest?[0].resource?[0].type, "Patient")
-		XCTAssertFalse(inst.rest?[0].resource?[0].updateCreate ?? true)
+		XCTAssertEqual(inst.rest?[0].resource?[0].updateCreate, false)
 		XCTAssertEqual(inst.rest?[0].resource?[0].versioning, ResourceVersionPolicy(rawValue: "versioned-update")!)
 		XCTAssertEqual(inst.rest?[0].security?.certificate?[0].blob, Base64Binary(value: "IHRoaXMgYmxvYiBpcyBub3QgdmFsaWQ="))
 		XCTAssertEqual(inst.rest?[0].security?.certificate?[0].type, "application/jwt")
-		XCTAssertTrue(inst.rest?[0].security?.cors ?? false)
+		XCTAssertEqual(inst.rest?[0].security?.cors, true)
 		XCTAssertEqual(inst.rest?[0].security?.description_fhir, "See Smart on FHIR documentation")
 		XCTAssertEqual(inst.rest?[0].security?.service?[0].coding?[0].code, "SMART-on-FHIR")
 		XCTAssertEqual(inst.rest?[0].security?.service?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/restful-security-service")

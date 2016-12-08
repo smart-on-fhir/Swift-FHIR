@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Binary) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Binary) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -39,67 +39,32 @@ open class Binary: Resource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["content"] {
-			presentKeys.insert("content")
-			if let val = exist as? String {
-				self.content = Base64Binary(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "content", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		content = try createInstance(type: Base64Binary.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
+		if nil == content && !presentKeys.contains("content") {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
-		if let exist = json["contentType"] {
-			presentKeys.insert("contentType")
-			if let val = exist as? String {
-				self.contentType = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		contentType = try createInstance(type: FHIRString.self, for: "contentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentType
+		if nil == contentType && !presentKeys.contains("contentType") {
 			errors.append(FHIRValidationError(missing: "contentType"))
 		}
-		if let exist = json["securityContext"] {
-			presentKeys.insert("securityContext")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.securityContext = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "securityContext"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "securityContext", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		securityContext = try createInstance(type: Reference.self, for: "securityContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityContext
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let content = self.content {
-			json["content"] = content.asJSON()
-		}
-		else {
+		self.content?.decorate(json: &json, withKey: "content", errors: &errors)
+		if nil == self.content {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
-		if let contentType = self.contentType {
-			json["contentType"] = contentType.asJSON()
-		}
-		else {
+		self.contentType?.decorate(json: &json, withKey: "contentType", errors: &errors)
+		if nil == self.contentType {
 			errors.append(FHIRValidationError(missing: "contentType"))
 		}
-		if let securityContext = self.securityContext {
-			json["securityContext"] = securityContext.asJSON(errors: &errors)
-		}
-		
-		return json
+		self.securityContext?.decorate(json: &json, withKey: "securityContext", errors: &errors)
 	}
 }
 

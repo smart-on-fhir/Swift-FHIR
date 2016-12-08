@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -39,7 +39,7 @@ class SlotTests: XCTestCase {
 		XCTAssertEqual(inst.id, "1")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/identifiers/slots")
 		XCTAssertEqual(inst.identifier?[0].value, "123132")
-		XCTAssertTrue(inst.overbooked ?? false)
+		XCTAssertEqual(inst.overbooked, true)
 		XCTAssertEqual(inst.schedule?.reference, "Schedule/example")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "17")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")

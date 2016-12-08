@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -270,7 +270,7 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[0].flag?.coding?[0].display, "Prescribed")
 		XCTAssertEqual(inst.entry?[0].flag?.coding?[0].system?.absoluteString, "http://nehta.gov.au/codes/medications/changetype")
 		XCTAssertEqual(inst.entry?[0].item?.display, "hydroxocobalamin")
-		XCTAssertTrue(inst.entry?[1].deleted ?? false)
+		XCTAssertEqual(inst.entry?[1].deleted, true)
 		XCTAssertEqual(inst.entry?[1].flag?.coding?[0].code, "02")
 		XCTAssertEqual(inst.entry?[1].flag?.coding?[0].display, "Cancelled")
 		XCTAssertEqual(inst.entry?[1].flag?.coding?[0].system?.absoluteString, "http://nehta.gov.au/codes/medications/changetype")
@@ -326,7 +326,7 @@ class ListTests: XCTestCase {
 		
 		XCTAssertEqual(inst.date?.description, "2012-11-25T22:17:00+11:00")
 		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
-		XCTAssertTrue(inst.entry?[0].deleted ?? false)
+		XCTAssertEqual(inst.entry?[0].deleted, true)
 		XCTAssertEqual(inst.entry?[0].flag?.text, "Deleted due to error")
 		XCTAssertEqual(inst.entry?[0].item?.reference, "Condition/example")
 		XCTAssertEqual(inst.entry?[1].date?.description, "2012-11-21")

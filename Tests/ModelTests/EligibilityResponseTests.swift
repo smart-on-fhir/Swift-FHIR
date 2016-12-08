@@ -2,7 +2,7 @@
 //  EligibilityResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -39,18 +39,18 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.id, "E2500")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
 		XCTAssertEqual(inst.identifier?[0].value, "881234")
-		XCTAssertTrue(inst.inforce ?? false)
+		XCTAssertEqual(inst.inforce, true)
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].category?.coding?[0].code, "medical")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-category")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[0].benefitMoney?.code, "SAR")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[0].benefitMoney?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[0].benefitMoney?.value, NSDecimalNumber(string: "500000"))
+		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[0].benefitMoney?.value, "500000")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[0].type?.coding?[0].code, "benefit")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[1].benefitMoney?.code, "SAR")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[1].benefitMoney?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[1].benefitMoney?.value, NSDecimalNumber(string: "100"))
+		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[1].benefitMoney?.value, "100")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[1].type?.coding?[0].code, "copay-maximum")
-		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[2].benefitUnsignedInt, UInt(20))
+		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[2].benefitUnsignedInt, 20)
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].financial?[2].type?.coding?[0].code, "copay-percent")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].network?.coding?[0].code, "in")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[0].network?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-network")
@@ -65,7 +65,7 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-category")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].financial?[0].benefitMoney?.code, "SAR")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].financial?[0].benefitMoney?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].financial?[0].benefitMoney?.value, NSDecimalNumber(string: "15000"))
+		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].financial?[0].benefitMoney?.value, "15000")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].financial?[0].type?.coding?[0].code, "benefit")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].network?.coding?[0].code, "in")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[1].network?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-network")
@@ -80,7 +80,7 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-category")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].financial?[0].benefitMoney?.code, "SAR")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].financial?[0].benefitMoney?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].financial?[0].benefitMoney?.value, NSDecimalNumber(string: "2000"))
+		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].financial?[0].benefitMoney?.value, "2000")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].financial?[0].type?.coding?[0].code, "benefit")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].network?.coding?[0].code, "in")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[2].network?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-network")
@@ -95,7 +95,7 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-category")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].financial?[0].benefitMoney?.code, "SAR")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].financial?[0].benefitMoney?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].financial?[0].benefitMoney?.value, NSDecimalNumber(string: "400"))
+		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].financial?[0].benefitMoney?.value, "400")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].financial?[0].type?.coding?[0].code, "benefit")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].network?.coding?[0].code, "in")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[3].network?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-network")
@@ -112,7 +112,7 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].financial?[0].type?.coding?[0].code, "room")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].financial?[1].benefitMoney?.code, "SAR")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].financial?[1].benefitMoney?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].financial?[1].benefitMoney?.value, NSDecimalNumber(string: "600"))
+		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].financial?[1].benefitMoney?.value, "600")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].financial?[1].type?.coding?[0].code, "benefit")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].network?.coding?[0].code, "in")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].network?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-network")
@@ -153,7 +153,7 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.id, "E2500")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
 		XCTAssertEqual(inst.identifier?[0].value, "881234")
-		XCTAssertTrue(inst.inforce ?? false)
+		XCTAssertEqual(inst.inforce, true)
 		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
 		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
 		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")

@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -45,11 +45,11 @@ class GoalTests: XCTestCase {
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.high?.code, "[lb_av]")
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.high?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.high?.unit, "lbs")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.high?.value, NSDecimalNumber(string: "180"))
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.high?.value, "180")
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.low?.code, "[lb_av]")
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.low?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.low?.unit, "lbs")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.low?.value, NSDecimalNumber(string: "160"))
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].valueRange?.low?.value, "160")
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/goal-target")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.status, GoalStatus(rawValue: "in-progress")!)

@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -141,7 +141,7 @@ class RelatedPersonTests: XCTestCase {
 	func runRelatedPerson4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RelatedPerson {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example.json")
 		
-		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.address?[0].city, "Paris")
 		XCTAssertEqual(inst.address?[0].country, "FRA")
 		XCTAssertEqual(inst.address?[0].line?[0], "43, Place du Marché Sainte Catherine")

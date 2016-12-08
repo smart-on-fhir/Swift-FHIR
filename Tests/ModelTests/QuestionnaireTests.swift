@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -52,7 +52,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].linkId, "birthLength")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].text, "Birth length (cm)")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].type, QuestionnaireItemType(rawValue: "decimal")!)
-		XCTAssertTrue(inst.item?[0].item?[1].item?[2].item?[0].enableWhen?[0].hasAnswer ?? false)
+		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].enableWhen?[0].hasAnswer, true)
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].enableWhen?[0].question, "vitaminKgiven")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].item?[0].linkId, "vitaminiKDose1")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].item?[0].text, "1st dose")

@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -47,20 +47,20 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.ingredient?[0].quantity?.denominator?.code, "mg")
 		XCTAssertEqual(inst.ingredient?[0].quantity?.denominator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.ingredient?[0].quantity?.denominator?.unit, "mg")
-		XCTAssertEqual(inst.ingredient?[0].quantity?.denominator?.value, NSDecimalNumber(string: "1000"))
+		XCTAssertEqual(inst.ingredient?[0].quantity?.denominator?.value, "1000")
 		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.code, "mg")
 		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.unit, "mg")
-		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.value, NSDecimalNumber(string: "875"))
+		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.value, "875")
 		XCTAssertEqual(inst.ingredient?[0].substanceReference?.reference, "#ingr1")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.code, "mg")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.unit, "mg")
-		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.value, NSDecimalNumber(string: "1000"))
+		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.value, "1000")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.code, "mg")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.unit, "mg")
-		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.value, NSDecimalNumber(string: "125"))
+		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.value, "125")
 		XCTAssertEqual(inst.ingredient?[1].substanceReference?.reference, "#ingr2")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -171,7 +171,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.instance?[0].quantity?.code, "mL")
 		XCTAssertEqual(inst.instance?[0].quantity?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.instance?[0].quantity?.unit, "mL")
-		XCTAssertEqual(inst.instance?[0].quantity?.value, NSDecimalNumber(string: "100"))
+		XCTAssertEqual(inst.instance?[0].quantity?.value, "100")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

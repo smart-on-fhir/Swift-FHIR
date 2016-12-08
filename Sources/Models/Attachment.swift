@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -35,121 +35,41 @@ open class Attachment: Element {
 	public var language: FHIRString?
 	
 	/// Number of bytes of content (if url provided).
-	public var size: UInt?
+	public var size: FHIRInteger?
 	
 	/// Label to display in place of the data.
 	public var title: FHIRString?
 	
 	/// Uri where the data can be found.
-	public var url: URL?
+	public var url: FHIRURL?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["contentType"] {
-			presentKeys.insert("contentType")
-			if let val = exist as? String {
-				self.contentType = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["creation"] {
-			presentKeys.insert("creation")
-			if let val = exist as? String {
-				self.creation = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "creation", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["data"] {
-			presentKeys.insert("data")
-			if let val = exist as? String {
-				self.data = Base64Binary(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "data", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["hash"] {
-			presentKeys.insert("hash")
-			if let val = exist as? String {
-				self.hash = Base64Binary(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "hash", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["language"] {
-			presentKeys.insert("language")
-			if let val = exist as? String {
-				self.language = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["size"] {
-			presentKeys.insert("size")
-			if let val = exist as? UInt {
-				self.size = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "size", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["title"] {
-			presentKeys.insert("title")
-			if let val = exist as? String {
-				self.title = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["url"] {
-			presentKeys.insert("url")
-			if let val = exist as? String {
-				self.url = URL(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		contentType = try createInstance(type: FHIRString.self, for: "contentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentType
+		creation = try createInstance(type: DateTime.self, for: "creation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? creation
+		data = try createInstance(type: Base64Binary.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
+		hash = try createInstance(type: Base64Binary.self, for: "hash", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? hash
+		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
+		size = try createInstance(type: FHIRInteger.self, for: "size", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? size
+		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
+		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let contentType = self.contentType {
-			json["contentType"] = contentType.asJSON()
-		}
-		if let creation = self.creation {
-			json["creation"] = creation.asJSON()
-		}
-		if let data = self.data {
-			json["data"] = data.asJSON()
-		}
-		if let hash = self.hash {
-			json["hash"] = hash.asJSON()
-		}
-		if let language = self.language {
-			json["language"] = language.asJSON()
-		}
-		if let size = self.size {
-			json["size"] = size.asJSON()
-		}
-		if let title = self.title {
-			json["title"] = title.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
+		self.contentType?.decorate(json: &json, withKey: "contentType", errors: &errors)
+		self.creation?.decorate(json: &json, withKey: "creation", errors: &errors)
+		self.data?.decorate(json: &json, withKey: "data", errors: &errors)
+		self.hash?.decorate(json: &json, withKey: "hash", errors: &errors)
+		self.language?.decorate(json: &json, withKey: "language", errors: &errors)
+		self.size?.decorate(json: &json, withKey: "size", errors: &errors)
+		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
+		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
 	}
 }
 

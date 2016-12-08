@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -33,60 +33,20 @@ open class Timing: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["code"] {
-			presentKeys.insert("code")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.code = try CodeableConcept(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "code"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["event"] {
-			presentKeys.insert("event")
-			if let val = exist as? [String] {
-				self.event = DateTime.instantiate(fromArray: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "event", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["repeat"] {
-			presentKeys.insert("repeat")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.repeat_fhir = try TimingRepeat(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "repeat"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "repeat", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
+		
+		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		event = try createInstances(of: DateTime.self, for: "event", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? event
+		repeat_fhir = try createInstance(type: TimingRepeat.self, for: "repeat", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? repeat_fhir
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let code = self.code {
-			json["code"] = code.asJSON(errors: &errors)
-		}
-		if let event = self.event {
-			json["event"] = event.map() { $0.asJSON() }
-		}
-		if let repeat_fhir = self.repeat_fhir {
-			json["repeat"] = repeat_fhir.asJSON(errors: &errors)
-		}
-		
-		return json
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		arrayDecorate(json: &json, withKey: "event", using: self.event, errors: &errors)
+		self.repeat_fhir?.decorate(json: &json, withKey: "repeat", errors: &errors)
 	}
 }
 
@@ -111,37 +71,37 @@ open class TimingRepeat: Element {
 	public var boundsRange: Range?
 	
 	/// Number of times to repeat.
-	public var count: Int?
+	public var count: FHIRInteger?
 	
 	/// Maximum number of times to repeat.
-	public var countMax: Int?
+	public var countMax: FHIRInteger?
 	
 	/// If one or more days of week is provided, then the action happens only on the specified day(s).
 	public var dayOfWeek: [DaysOfWeek]?
 	
 	/// How long when it happens.
-	public var duration: NSDecimalNumber?
+	public var duration: FHIRDecimal?
 	
 	/// How long when it happens (Max).
-	public var durationMax: NSDecimalNumber?
+	public var durationMax: FHIRDecimal?
 	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM).
 	public var durationUnit: FHIRString?
 	
 	/// Event occurs frequency times per period.
-	public var frequency: Int?
+	public var frequency: FHIRInteger?
 	
 	/// Event occurs up to frequencyMax times per period.
-	public var frequencyMax: Int?
+	public var frequencyMax: FHIRInteger?
 	
 	/// Minutes from event (before or after).
-	public var offset: UInt?
+	public var offset: FHIRInteger?
 	
 	/// Event occurs frequency times per period.
-	public var period: NSDecimalNumber?
+	public var period: FHIRDecimal?
 	
 	/// Upper limit of period (3-4 hours).
-	public var periodMax: NSDecimalNumber?
+	public var periodMax: FHIRDecimal?
 	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM).
 	public var periodUnit: FHIRString?
@@ -155,237 +115,48 @@ open class TimingRepeat: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["boundsDuration"] {
-			presentKeys.insert("boundsDuration")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.boundsDuration = try Duration(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "boundsDuration"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "boundsDuration", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["boundsPeriod"] {
-			presentKeys.insert("boundsPeriod")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.boundsPeriod = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "boundsPeriod"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "boundsPeriod", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["boundsRange"] {
-			presentKeys.insert("boundsRange")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.boundsRange = try Range(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "boundsRange"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "boundsRange", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["count"] {
-			presentKeys.insert("count")
-			if let val = exist as? Int {
-				self.count = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "count", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["countMax"] {
-			presentKeys.insert("countMax")
-			if let val = exist as? Int {
-				self.countMax = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "countMax", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["dayOfWeek"] {
-			presentKeys.insert("dayOfWeek")
-			if let val = exist as? [String] { var i = -1
-				self.dayOfWeek = val.map() { i += 1
-					if let enumval = DaysOfWeek(rawValue: $0) { return enumval }
-					errors.append(FHIRValidationError(key: "dayOfWeek.\(i)", problem: "the value “\(val)” is not valid"))
-					return nil
-				}.filter() { nil != $0 }.map() { $0! }
-			}
-			else {
-				errors.append(FHIRValidationError(key: "dayOfWeek", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["duration"] {
-			presentKeys.insert("duration")
-			if let val = exist as? NSNumber {
-				self.duration = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "duration", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["durationMax"] {
-			presentKeys.insert("durationMax")
-			if let val = exist as? NSNumber {
-				self.durationMax = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "durationMax", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["durationUnit"] {
-			presentKeys.insert("durationUnit")
-			if let val = exist as? String {
-				self.durationUnit = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "durationUnit", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["frequency"] {
-			presentKeys.insert("frequency")
-			if let val = exist as? Int {
-				self.frequency = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "frequency", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["frequencyMax"] {
-			presentKeys.insert("frequencyMax")
-			if let val = exist as? Int {
-				self.frequencyMax = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "frequencyMax", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["offset"] {
-			presentKeys.insert("offset")
-			if let val = exist as? UInt {
-				self.offset = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "offset", wants: UInt.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? NSNumber {
-				self.period = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["periodMax"] {
-			presentKeys.insert("periodMax")
-			if let val = exist as? NSNumber {
-				self.periodMax = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "periodMax", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["periodUnit"] {
-			presentKeys.insert("periodUnit")
-			if let val = exist as? String {
-				self.periodUnit = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "periodUnit", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["timeOfDay"] {
-			presentKeys.insert("timeOfDay")
-			if let val = exist as? [String] {
-				self.timeOfDay = FHIRTime.instantiate(fromArray: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "timeOfDay", wants: Array<String>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["when"] {
-			presentKeys.insert("when")
-			if let val = exist as? String {
-				self.when = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "when", wants: String.self, has: type(of: exist)))
-			}
-		}
+		
+		boundsDuration = try createInstance(type: Duration.self, for: "boundsDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? boundsDuration
+		boundsPeriod = try createInstance(type: Period.self, for: "boundsPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? boundsPeriod
+		boundsRange = try createInstance(type: Range.self, for: "boundsRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? boundsRange
+		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
+		countMax = try createInstance(type: FHIRInteger.self, for: "countMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? countMax
+		dayOfWeek = createEnums(of: DaysOfWeek.self, for: "dayOfWeek", in: json, presentKeys: &presentKeys, errors: &errors) ?? dayOfWeek
+		duration = try createInstance(type: FHIRDecimal.self, for: "duration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? duration
+		durationMax = try createInstance(type: FHIRDecimal.self, for: "durationMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? durationMax
+		durationUnit = try createInstance(type: FHIRString.self, for: "durationUnit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? durationUnit
+		frequency = try createInstance(type: FHIRInteger.self, for: "frequency", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? frequency
+		frequencyMax = try createInstance(type: FHIRInteger.self, for: "frequencyMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? frequencyMax
+		offset = try createInstance(type: FHIRInteger.self, for: "offset", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offset
+		period = try createInstance(type: FHIRDecimal.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		periodMax = try createInstance(type: FHIRDecimal.self, for: "periodMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? periodMax
+		periodUnit = try createInstance(type: FHIRString.self, for: "periodUnit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? periodUnit
+		timeOfDay = try createInstances(of: FHIRTime.self, for: "timeOfDay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timeOfDay
+		when = try createInstance(type: FHIRString.self, for: "when", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? when
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let boundsDuration = self.boundsDuration {
-			json["boundsDuration"] = boundsDuration.asJSON(errors: &errors)
-		}
-		if let boundsPeriod = self.boundsPeriod {
-			json["boundsPeriod"] = boundsPeriod.asJSON(errors: &errors)
-		}
-		if let boundsRange = self.boundsRange {
-			json["boundsRange"] = boundsRange.asJSON(errors: &errors)
-		}
-		if let count = self.count {
-			json["count"] = count.asJSON()
-		}
-		if let countMax = self.countMax {
-			json["countMax"] = countMax.asJSON()
-		}
-		if let dayOfWeek = self.dayOfWeek {
-			json["dayOfWeek"] = dayOfWeek.map() { $0.rawValue }
-		}
-		if let duration = self.duration {
-			json["duration"] = duration.asJSON()
-		}
-		if let durationMax = self.durationMax {
-			json["durationMax"] = durationMax.asJSON()
-		}
-		if let durationUnit = self.durationUnit {
-			json["durationUnit"] = durationUnit.asJSON()
-		}
-		if let frequency = self.frequency {
-			json["frequency"] = frequency.asJSON()
-		}
-		if let frequencyMax = self.frequencyMax {
-			json["frequencyMax"] = frequencyMax.asJSON()
-		}
-		if let offset = self.offset {
-			json["offset"] = offset.asJSON()
-		}
-		if let period = self.period {
-			json["period"] = period.asJSON()
-		}
-		if let periodMax = self.periodMax {
-			json["periodMax"] = periodMax.asJSON()
-		}
-		if let periodUnit = self.periodUnit {
-			json["periodUnit"] = periodUnit.asJSON()
-		}
-		if let timeOfDay = self.timeOfDay {
-			json["timeOfDay"] = timeOfDay.map() { $0.asJSON() }
-		}
-		if let when = self.when {
-			json["when"] = when.asJSON()
-		}
-		
-		return json
+		self.boundsDuration?.decorate(json: &json, withKey: "boundsDuration", errors: &errors)
+		self.boundsPeriod?.decorate(json: &json, withKey: "boundsPeriod", errors: &errors)
+		self.boundsRange?.decorate(json: &json, withKey: "boundsRange", errors: &errors)
+		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
+		self.countMax?.decorate(json: &json, withKey: "countMax", errors: &errors)
+		arrayDecorate(json: &json, withKey: "dayOfWeek", using: self.dayOfWeek, errors: &errors)
+		self.duration?.decorate(json: &json, withKey: "duration", errors: &errors)
+		self.durationMax?.decorate(json: &json, withKey: "durationMax", errors: &errors)
+		self.durationUnit?.decorate(json: &json, withKey: "durationUnit", errors: &errors)
+		self.frequency?.decorate(json: &json, withKey: "frequency", errors: &errors)
+		self.frequencyMax?.decorate(json: &json, withKey: "frequencyMax", errors: &errors)
+		self.offset?.decorate(json: &json, withKey: "offset", errors: &errors)
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		self.periodMax?.decorate(json: &json, withKey: "periodMax", errors: &errors)
+		self.periodUnit?.decorate(json: &json, withKey: "periodUnit", errors: &errors)
+		arrayDecorate(json: &json, withKey: "timeOfDay", using: self.timeOfDay, errors: &errors)
+		self.when?.decorate(json: &json, withKey: "when", errors: &errors)
 	}
 }
 

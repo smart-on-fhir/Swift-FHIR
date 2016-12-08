@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -44,10 +44,10 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].linkId, "sex")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[1].text, "Sex")
 		XCTAssertEqual(inst.item?[0].item?[0].linkId, "group")
-		XCTAssertEqual(inst.item?[0].item?[1].item?[0].answer?[0].valueDecimal, NSDecimalNumber(string: "3.25"))
+		XCTAssertEqual(inst.item?[0].item?[1].item?[0].answer?[0].valueDecimal, "3.25")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[0].linkId, "birthWeight")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[0].text, "Birth weight (kg)")
-		XCTAssertEqual(inst.item?[0].item?[1].item?[1].answer?[0].valueDecimal, NSDecimalNumber(string: "44.3"))
+		XCTAssertEqual(inst.item?[0].item?[1].item?[1].answer?[0].valueDecimal, "44.3")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].linkId, "birthLength")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].text, "Birth length (cm)")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].answer?[0].item?[0].item?[0].answer?[0].valueDate?.description, "1972-11-30")
@@ -63,7 +63,7 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].answer?[0].valueDate?.description, "1972-12-04")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].linkId, "hepBgivenDate")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].item?[0].text, "Date given")
-		XCTAssertTrue(inst.item?[0].item?[1].item?[3].answer?[0].valueBoolean ?? false)
+		XCTAssertEqual(inst.item?[0].item?[1].item?[3].answer?[0].valueBoolean, true)
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].linkId, "hepBgiven")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[3].text, "Hep B given y / n")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[4].answer?[0].valueString, "Already able to speak Chinese")
@@ -151,19 +151,19 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].answer?[0].valueCoding?.code, "LA6560-2")
 		XCTAssertEqual(inst.item?[0].answer?[0].valueCoding?.display, "Confused")
 		XCTAssertEqual(inst.item?[0].answer?[0].valueCoding?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.item?[0].answer?[0].valueCoding?.extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "4"))
+		XCTAssertEqual(inst.item?[0].answer?[0].valueCoding?.extension_fhir?[0].valueDecimal, "4")
 		XCTAssertEqual(inst.item?[0].answer?[0].valueCoding?.system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[0].linkId, "1.1")
 		XCTAssertEqual(inst.item?[1].answer?[0].valueCoding?.code, "LA6566-9")
 		XCTAssertEqual(inst.item?[1].answer?[0].valueCoding?.display, "Localizing pain")
 		XCTAssertEqual(inst.item?[1].answer?[0].valueCoding?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.item?[1].answer?[0].valueCoding?.extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "5"))
+		XCTAssertEqual(inst.item?[1].answer?[0].valueCoding?.extension_fhir?[0].valueDecimal, "5")
 		XCTAssertEqual(inst.item?[1].answer?[0].valueCoding?.system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[1].linkId, "1.2")
 		XCTAssertEqual(inst.item?[2].answer?[0].valueCoding?.code, "LA6556-0")
 		XCTAssertEqual(inst.item?[2].answer?[0].valueCoding?.display, "Eyes open spontaneously")
 		XCTAssertEqual(inst.item?[2].answer?[0].valueCoding?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/iso21090-CO-value")
-		XCTAssertEqual(inst.item?[2].answer?[0].valueCoding?.extension_fhir?[0].valueDecimal, NSDecimalNumber(string: "4"))
+		XCTAssertEqual(inst.item?[2].answer?[0].valueCoding?.extension_fhir?[0].valueDecimal, "4")
 		XCTAssertEqual(inst.item?[2].answer?[0].valueCoding?.system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[2].linkId, "1.3")
 		XCTAssertEqual(inst.questionnaire?.reference, "Questionnaire/gcs")

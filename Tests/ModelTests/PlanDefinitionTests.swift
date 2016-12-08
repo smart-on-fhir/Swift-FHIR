@@ -2,7 +2,7 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -42,7 +42,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.value, "cycle-definition-1")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "21-day cycle for 6 cycles")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.count, 6)
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.duration, NSDecimalNumber(string: "21"))
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.duration, "21")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.durationUnit, "d")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].groupingBehavior, PlanActionGroupingBehavior(rawValue: "sentence-group")!)
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].selectionBehavior, PlanActionSelectionBehavior(rawValue: "exactly-one")!)
@@ -54,7 +54,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.contributor?[0].name, "Lee Surprenant")
 		XCTAssertEqual(inst.contributor?[0].type, ContributorType(rawValue: "author")!)
 		XCTAssertEqual(inst.copyright, "All rights reserved.")
-		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "KDN5")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/ordertemplates")
 		XCTAssertEqual(inst.identifier?[0].value, "KDN5")

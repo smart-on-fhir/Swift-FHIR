@@ -2,7 +2,7 @@
 //  MeasureReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -61,186 +61,56 @@ open class MeasureReport: DomainResource {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["date"] {
-			presentKeys.insert("date")
-			if let val = exist as? String {
-				self.date = DateTime(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "date", wants: String.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["evaluatedResources"] {
-			presentKeys.insert("evaluatedResources")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.evaluatedResources = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "evaluatedResources"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "evaluatedResources", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["group"] {
-			presentKeys.insert("group")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.group = try MeasureReportGroup.instantiate(fromArray: val, owner: self) as? [MeasureReportGroup]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "group"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["measure"] {
-			presentKeys.insert("measure")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.measure = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "measure"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "measure", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
+		evaluatedResources = try createInstance(type: Reference.self, for: "evaluatedResources", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? evaluatedResources
+		group = try createInstances(of: MeasureReportGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
+		measure = try createInstance(type: Reference.self, for: "measure", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measure
+		if nil == measure && !presentKeys.contains("measure") {
 			errors.append(FHIRValidationError(missing: "measure"))
 		}
-		if let exist = json["patient"] {
-			presentKeys.insert("patient")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.patient = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "patient"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["period"] {
-			presentKeys.insert("period")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.period = try Period(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "period"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
+		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		if nil == period && !presentKeys.contains("period") {
 			errors.append(FHIRValidationError(missing: "period"))
 		}
-		if let exist = json["reportingOrganization"] {
-			presentKeys.insert("reportingOrganization")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.reportingOrganization = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "reportingOrganization"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "reportingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["status"] {
-			presentKeys.insert("status")
-			if let val = exist as? String {
-				if let enumval = MeasureReportStatus(rawValue: val) {
-					self.status = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "status", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		reportingOrganization = try createInstance(type: Reference.self, for: "reportingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reportingOrganization
+		status = createEnum(type: MeasureReportStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? String {
-				if let enumval = MeasureReportType(rawValue: val) {
-					self.type = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		type = createEnum(type: MeasureReportType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let evaluatedResources = self.evaluatedResources {
-			json["evaluatedResources"] = evaluatedResources.asJSON(errors: &errors)
-		}
-		if let group = self.group {
-			json["group"] = group.map() { $0.asJSON(errors: &errors) }
-		}
-		if let measure = self.measure {
-			json["measure"] = measure.asJSON(errors: &errors)
-		}
-		else {
+		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
+		self.evaluatedResources?.decorate(json: &json, withKey: "evaluatedResources", errors: &errors)
+		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
+		self.measure?.decorate(json: &json, withKey: "measure", errors: &errors)
+		if nil == self.measure {
 			errors.append(FHIRValidationError(missing: "measure"))
 		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON(errors: &errors)
-		}
-		if let period = self.period {
-			json["period"] = period.asJSON(errors: &errors)
-		}
-		else {
+		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		if nil == self.period {
 			errors.append(FHIRValidationError(missing: "period"))
 		}
-		if let reportingOrganization = self.reportingOrganization {
-			json["reportingOrganization"] = reportingOrganization.asJSON(errors: &errors)
-		}
-		if let status = self.status {
-			json["status"] = status.rawValue
-		}
-		else {
+		self.reportingOrganization?.decorate(json: &json, withKey: "reportingOrganization", errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		if let type = self.type {
-			json["type"] = type.rawValue
-		}
-		else {
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		
-		return json
 	}
 }
 
@@ -259,7 +129,7 @@ open class MeasureReportGroup: BackboneElement {
 	public var identifier: Identifier?
 	
 	/// The measure score.
-	public var measureScore: NSDecimalNumber?
+	public var measureScore: FHIRDecimal?
 	
 	/// The populations in the group.
 	public var population: [MeasureReportGroupPopulation]?
@@ -280,100 +150,30 @@ open class MeasureReportGroup: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.identifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		if nil == identifier && !presentKeys.contains("identifier") {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
-		if let exist = json["measureScore"] {
-			presentKeys.insert("measureScore")
-			if let val = exist as? NSNumber {
-				self.measureScore = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "measureScore", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["population"] {
-			presentKeys.insert("population")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.population = try MeasureReportGroupPopulation.instantiate(fromArray: val, owner: self) as? [MeasureReportGroupPopulation]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "population"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "population", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["stratifier"] {
-			presentKeys.insert("stratifier")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.stratifier = try MeasureReportGroupStratifier.instantiate(fromArray: val, owner: self) as? [MeasureReportGroupStratifier]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "stratifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "stratifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["supplementalData"] {
-			presentKeys.insert("supplementalData")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.supplementalData = try MeasureReportGroupSupplementalData.instantiate(fromArray: val, owner: self) as? [MeasureReportGroupSupplementalData]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "supplementalData"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "supplementalData", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
+		measureScore = try createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measureScore
+		population = try createInstances(of: MeasureReportGroupPopulation.self, for: "population", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? population
+		stratifier = try createInstances(of: MeasureReportGroupStratifier.self, for: "stratifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? stratifier
+		supplementalData = try createInstances(of: MeasureReportGroupSupplementalData.self, for: "supplementalData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supplementalData
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON(errors: &errors)
-		}
-		else {
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		if nil == self.identifier {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
-		if let measureScore = self.measureScore {
-			json["measureScore"] = measureScore.asJSON()
-		}
-		if let population = self.population {
-			json["population"] = population.map() { $0.asJSON(errors: &errors) }
-		}
-		if let stratifier = self.stratifier {
-			json["stratifier"] = stratifier.map() { $0.asJSON(errors: &errors) }
-		}
-		if let supplementalData = self.supplementalData {
-			json["supplementalData"] = supplementalData.map() { $0.asJSON(errors: &errors) }
-		}
-		
-		return json
+		self.measureScore?.decorate(json: &json, withKey: "measureScore", errors: &errors)
+		arrayDecorate(json: &json, withKey: "population", using: self.population, errors: &errors)
+		arrayDecorate(json: &json, withKey: "stratifier", using: self.stratifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "supplementalData", using: self.supplementalData, errors: &errors)
 	}
 }
 
@@ -389,7 +189,7 @@ open class MeasureReportGroupPopulation: BackboneElement {
 	}
 	
 	/// Size of the population.
-	public var count: Int?
+	public var count: FHIRInteger?
 	
 	/// For patient-list reports, the patients in this population.
 	public var patients: Reference?
@@ -407,66 +207,26 @@ open class MeasureReportGroupPopulation: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["count"] {
-			presentKeys.insert("count")
-			if let val = exist as? Int {
-				self.count = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "count", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["patients"] {
-			presentKeys.insert("patients")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.patients = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "patients"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "patients", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? String {
-				if let enumval = MeasurePopulationType(rawValue: val) {
-					self.type = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
+		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
+		type = createEnum(type: MeasurePopulationType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let count = self.count {
-			json["count"] = count.asJSON()
-		}
-		if let patients = self.patients {
-			json["patients"] = patients.asJSON(errors: &errors)
-		}
-		if let type = self.type {
-			json["type"] = type.rawValue
-		}
-		else {
+		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
+		self.patients?.decorate(json: &json, withKey: "patients", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		
-		return json
 	}
 }
 
@@ -498,54 +258,24 @@ open class MeasureReportGroupStratifier: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["group"] {
-			presentKeys.insert("group")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.group = try MeasureReportGroupStratifierGroup.instantiate(fromArray: val, owner: self) as? [MeasureReportGroupStratifierGroup]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "group"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.identifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		group = try createInstances(of: MeasureReportGroupStratifierGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		if nil == identifier && !presentKeys.contains("identifier") {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let group = self.group {
-			json["group"] = group.map() { $0.asJSON(errors: &errors) }
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON(errors: &errors)
-		}
-		else {
+		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		if nil == self.identifier {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
-		
-		return json
 	}
 }
 
@@ -562,7 +292,7 @@ open class MeasureReportGroupStratifierGroup: BackboneElement {
 	}
 	
 	/// The measure score.
-	public var measureScore: NSDecimalNumber?
+	public var measureScore: FHIRDecimal?
 	
 	/// Population results in this stratum.
 	public var population: [MeasureReportGroupStratifierGroupPopulation]?
@@ -580,61 +310,26 @@ open class MeasureReportGroupStratifierGroup: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["measureScore"] {
-			presentKeys.insert("measureScore")
-			if let val = exist as? NSNumber {
-				self.measureScore = NSDecimalNumber(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "measureScore", wants: NSNumber.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["population"] {
-			presentKeys.insert("population")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.population = try MeasureReportGroupStratifierGroupPopulation.instantiate(fromArray: val, owner: self) as? [MeasureReportGroupStratifierGroupPopulation]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "population"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "population", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["value"] {
-			presentKeys.insert("value")
-			if let val = exist as? String {
-				self.value = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		measureScore = try createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measureScore
+		population = try createInstances(of: MeasureReportGroupStratifierGroupPopulation.self, for: "population", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? population
+		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
+		if nil == value && !presentKeys.contains("value") {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let measureScore = self.measureScore {
-			json["measureScore"] = measureScore.asJSON()
-		}
-		if let population = self.population {
-			json["population"] = population.map() { $0.asJSON(errors: &errors) }
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		else {
+		self.measureScore?.decorate(json: &json, withKey: "measureScore", errors: &errors)
+		arrayDecorate(json: &json, withKey: "population", using: self.population, errors: &errors)
+		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
+		if nil == self.value {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
-		
-		return json
 	}
 }
 
@@ -650,7 +345,7 @@ open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 	}
 	
 	/// Size of the population.
-	public var count: Int?
+	public var count: FHIRInteger?
 	
 	/// For patient-list reports, the patients in this population.
 	public var patients: Reference?
@@ -668,66 +363,26 @@ open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["count"] {
-			presentKeys.insert("count")
-			if let val = exist as? Int {
-				self.count = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "count", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["patients"] {
-			presentKeys.insert("patients")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.patients = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "patients"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "patients", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["type"] {
-			presentKeys.insert("type")
-			if let val = exist as? String {
-				if let enumval = MeasurePopulationType(rawValue: val) {
-					self.type = enumval
-				}
-				else {
-					errors.append(FHIRValidationError(key: "type", problem: "the value “\(val)” is not valid"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
+		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
+		type = createEnum(type: MeasurePopulationType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let count = self.count {
-			json["count"] = count.asJSON()
-		}
-		if let patients = self.patients {
-			json["patients"] = patients.asJSON(errors: &errors)
-		}
-		if let type = self.type {
-			json["type"] = type.rawValue
-		}
-		else {
+		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
+		self.patients?.decorate(json: &json, withKey: "patients", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		
-		return json
 	}
 }
 
@@ -759,54 +414,24 @@ open class MeasureReportGroupSupplementalData: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["group"] {
-			presentKeys.insert("group")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.group = try MeasureReportGroupSupplementalDataGroup.instantiate(fromArray: val, owner: self) as? [MeasureReportGroupSupplementalDataGroup]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "group"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["identifier"] {
-			presentKeys.insert("identifier")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.identifier = try Identifier(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "identifier"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		group = try createInstances(of: MeasureReportGroupSupplementalDataGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		if nil == identifier && !presentKeys.contains("identifier") {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let group = self.group {
-			json["group"] = group.map() { $0.asJSON(errors: &errors) }
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON(errors: &errors)
-		}
-		else {
+		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		if nil == self.identifier {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
-		
-		return json
 	}
 }
 
@@ -823,7 +448,7 @@ open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
 	}
 	
 	/// Number of members in the group.
-	public var count: Int?
+	public var count: FHIRInteger?
 	
 	/// For patient-list reports, the patients in this population.
 	public var patients: Reference?
@@ -841,61 +466,26 @@ open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["count"] {
-			presentKeys.insert("count")
-			if let val = exist as? Int {
-				self.count = val
-			}
-			else {
-				errors.append(FHIRValidationError(key: "count", wants: Int.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["patients"] {
-			presentKeys.insert("patients")
-			if let val = exist as? FHIRJSON {
-				do {
-					self.patients = try Reference(json: val, owner: self)
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "patients"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "patients", wants: FHIRJSON.self, has: type(of: exist)))
-			}
-		}
-		if let exist = json["value"] {
-			presentKeys.insert("value")
-			if let val = exist as? String {
-				self.value = FHIRString(json: val)
-			}
-			else {
-				errors.append(FHIRValidationError(key: "value", wants: String.self, has: type(of: exist)))
-			}
-		}
-		else {
+		
+		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
+		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
+		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
+		if nil == value && !presentKeys.contains("value") {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let count = self.count {
-			json["count"] = count.asJSON()
-		}
-		if let patients = self.patients {
-			json["patients"] = patients.asJSON(errors: &errors)
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		else {
+		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
+		self.patients?.decorate(json: &json, withKey: "patients", errors: &errors)
+		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
+		if nil == self.value {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
-		
-		return json
 	}
 }
 

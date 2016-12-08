@@ -2,7 +2,7 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2016-12-06.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2016-12-08.
 //  2016, SMART Health IT.
 //
 
@@ -25,31 +25,16 @@ open class BackboneElement: Element {
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		if let exist = json["modifierExtension"] {
-			presentKeys.insert("modifierExtension")
-			if let val = exist as? [FHIRJSON] {
-				do {
-					self.modifierExtension = try Extension.instantiate(fromArray: val, owner: self) as? [Extension]
-				}
-				catch let error as FHIRValidationError {
-					errors.append(error.prefixed(with: "modifierExtension"))
-				}
-			}
-			else {
-				errors.append(FHIRValidationError(key: "modifierExtension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-			}
-		}
+		
+		modifierExtension = try createInstances(of: Extension.self, for: "modifierExtension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modifierExtension
+		
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
-		var json = super.asJSON(errors: &errors)
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
 		
-		if let modifierExtension = self.modifierExtension {
-			json["modifierExtension"] = modifierExtension.map() { $0.asJSON(errors: &errors) }
-		}
-		
-		return json
+		arrayDecorate(json: &json, withKey: "modifierExtension", using: self.modifierExtension, errors: &errors)
 	}
 }
 

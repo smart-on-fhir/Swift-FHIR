@@ -84,12 +84,12 @@ extension DomainResource {
 	
 	    let server = FHIROpenServer(...)
 	
-	    let lab = Organization(json: nil)
+	    let lab = Organization()
 	    lab.id = "ACME"
 	    ...
 	    lab._server = server
 	
-	    let task = Task(json: nil)
+	    let task = Task()
 	    task.created = DateTime.now()
 	    ...
 	    task._server = server

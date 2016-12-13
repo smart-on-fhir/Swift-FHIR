@@ -2,7 +2,7 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-12-08.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-12-13.
 //  2016, SMART Health IT.
 //
 
@@ -189,10 +189,7 @@ open class ParametersParameter: BackboneElement {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		part = try createInstances(of: ParametersParameter.self, for: "part", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? part
-		if let js = json["resource"] as? FHIRJSON {
-			presentKeys.insert("resource")
-			self.resource = try Resource.instantiate(from: js, owner: self) as? Resource
-		}
+		resource = try createInstance(type: Resource.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
 		valueAddress = try createInstance(type: Address.self, for: "valueAddress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAddress
 		valueAge = try createInstance(type: Age.self, for: "valueAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAge
 		valueAnnotation = try createInstance(type: Annotation.self, for: "valueAnnotation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAnnotation

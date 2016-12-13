@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-12-08.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-12-13.
 //  2016, SMART Health IT.
 //
 
@@ -113,10 +113,7 @@ open class BundleEntry: BackboneElement {
 		fullUrl = try createInstance(type: FHIRURL.self, for: "fullUrl", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fullUrl
 		link = try createInstances(of: BundleLink.self, for: "link", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? link
 		request = try createInstance(type: BundleEntryRequest.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
-		if let js = json["resource"] as? FHIRJSON {
-			presentKeys.insert("resource")
-			self.resource = try Resource.instantiate(from: js, owner: self) as? Resource
-		}
+		resource = try createInstance(type: Resource.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
 		response = try createInstance(type: BundleEntryResponse.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? response
 		search = try createInstance(type: BundleEntrySearch.self, for: "search", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? search
 		
@@ -250,10 +247,7 @@ open class BundleEntryResponse: BackboneElement {
 		etag = try createInstance(type: FHIRString.self, for: "etag", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? etag
 		lastModified = try createInstance(type: Instant.self, for: "lastModified", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastModified
 		location = try createInstance(type: FHIRURL.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		if let js = json["outcome"] as? FHIRJSON {
-			presentKeys.insert("outcome")
-			self.outcome = try Resource.instantiate(from: js, owner: self) as? Resource
-		}
+		outcome = try createInstance(type: Resource.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
 		status = try createInstance(type: FHIRString.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))

@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-12-08.
+//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-12-13.
 //  2016, SMART Health IT.
 //
 
@@ -35,10 +35,7 @@ open class DomainResource: Resource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		if let js = json["contained"] as? [FHIRJSON] {
-			presentKeys.insert("contained")
-			self.contained = try js.map() { try Resource.instantiate(from: $0, owner: self) as? Resource }.filter() { nil != $0 }.map() { $0! }
-		}
+		contained = try createInstances(of: Resource.self, for: "contained", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contained
 		extension_fhir = try createInstances(of: Extension.self, for: "extension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? extension_fhir
 		modifierExtension = try createInstances(of: Extension.self, for: "modifierExtension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modifierExtension
 		text = try createInstance(type: Narrative.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text

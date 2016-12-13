@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
+//  Generated from FHIR 1.8.0.10521 on 2016-12-13.
 //  2016, SMART Health IT.
 //
 
@@ -12,950 +12,951 @@ Extension to FHIRAbstractBase to be able to instantiate by class name.
 */
 extension FHIRAbstractBase {
 	
-	public class func factory(_ className: String, json: FHIRJSON, owner: FHIRAbstractBase?) throws -> FHIRAbstractBase {
-		switch className {
+	public class func factory<T: FHIRAbstractBase>(_ typeName: String, json: FHIRJSON, owner: FHIRAbstractBase?, type: T.Type) throws -> T {
+		switch typeName {
 			case "Account":
-				return try Account(json: json, owner: owner)
+				if let res = try Account(json: json, owner: owner) as? T { return res }
 			case "AccountGuarantor":
-				return try AccountGuarantor(json: json, owner: owner)
+				if let res = try AccountGuarantor(json: json, owner: owner) as? T { return res }
 			case "ActivityDefinition":
-				return try ActivityDefinition(json: json, owner: owner)
+				if let res = try ActivityDefinition(json: json, owner: owner) as? T { return res }
 			case "ActivityDefinitionDynamicValue":
-				return try ActivityDefinitionDynamicValue(json: json, owner: owner)
+				if let res = try ActivityDefinitionDynamicValue(json: json, owner: owner) as? T { return res }
 			case "Address":
-				return try Address(json: json, owner: owner)
+				if let res = try Address(json: json, owner: owner) as? T { return res }
 			case "Age":
-				return try Age(json: json, owner: owner)
+				if let res = try Age(json: json, owner: owner) as? T { return res }
 			case "AllergyIntolerance":
-				return try AllergyIntolerance(json: json, owner: owner)
+				if let res = try AllergyIntolerance(json: json, owner: owner) as? T { return res }
 			case "AllergyIntoleranceReaction":
-				return try AllergyIntoleranceReaction(json: json, owner: owner)
+				if let res = try AllergyIntoleranceReaction(json: json, owner: owner) as? T { return res }
 			case "Annotation":
-				return try Annotation(json: json, owner: owner)
+				if let res = try Annotation(json: json, owner: owner) as? T { return res }
 			case "Appointment":
-				return try Appointment(json: json, owner: owner)
+				if let res = try Appointment(json: json, owner: owner) as? T { return res }
 			case "AppointmentParticipant":
-				return try AppointmentParticipant(json: json, owner: owner)
+				if let res = try AppointmentParticipant(json: json, owner: owner) as? T { return res }
 			case "AppointmentResponse":
-				return try AppointmentResponse(json: json, owner: owner)
+				if let res = try AppointmentResponse(json: json, owner: owner) as? T { return res }
 			case "Attachment":
-				return try Attachment(json: json, owner: owner)
+				if let res = try Attachment(json: json, owner: owner) as? T { return res }
 			case "AuditEvent":
-				return try AuditEvent(json: json, owner: owner)
+				if let res = try AuditEvent(json: json, owner: owner) as? T { return res }
 			case "AuditEventAgent":
-				return try AuditEventAgent(json: json, owner: owner)
+				if let res = try AuditEventAgent(json: json, owner: owner) as? T { return res }
 			case "AuditEventAgentNetwork":
-				return try AuditEventAgentNetwork(json: json, owner: owner)
+				if let res = try AuditEventAgentNetwork(json: json, owner: owner) as? T { return res }
 			case "AuditEventEntity":
-				return try AuditEventEntity(json: json, owner: owner)
+				if let res = try AuditEventEntity(json: json, owner: owner) as? T { return res }
 			case "AuditEventEntityDetail":
-				return try AuditEventEntityDetail(json: json, owner: owner)
+				if let res = try AuditEventEntityDetail(json: json, owner: owner) as? T { return res }
 			case "AuditEventSource":
-				return try AuditEventSource(json: json, owner: owner)
+				if let res = try AuditEventSource(json: json, owner: owner) as? T { return res }
 			case "BackboneElement":
-				return try BackboneElement(json: json, owner: owner)
+				if let res = try BackboneElement(json: json, owner: owner) as? T { return res }
 			case "Basic":
-				return try Basic(json: json, owner: owner)
+				if let res = try Basic(json: json, owner: owner) as? T { return res }
 			case "Binary":
-				return try Binary(json: json, owner: owner)
+				if let res = try Binary(json: json, owner: owner) as? T { return res }
 			case "BodySite":
-				return try BodySite(json: json, owner: owner)
+				if let res = try BodySite(json: json, owner: owner) as? T { return res }
 			case "Bundle":
-				return try Bundle(json: json, owner: owner)
+				if let res = try Bundle(json: json, owner: owner) as? T { return res }
 			case "BundleEntry":
-				return try BundleEntry(json: json, owner: owner)
+				if let res = try BundleEntry(json: json, owner: owner) as? T { return res }
 			case "BundleEntryRequest":
-				return try BundleEntryRequest(json: json, owner: owner)
+				if let res = try BundleEntryRequest(json: json, owner: owner) as? T { return res }
 			case "BundleEntryResponse":
-				return try BundleEntryResponse(json: json, owner: owner)
+				if let res = try BundleEntryResponse(json: json, owner: owner) as? T { return res }
 			case "BundleEntrySearch":
-				return try BundleEntrySearch(json: json, owner: owner)
+				if let res = try BundleEntrySearch(json: json, owner: owner) as? T { return res }
 			case "BundleLink":
-				return try BundleLink(json: json, owner: owner)
+				if let res = try BundleLink(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatement":
-				return try CapabilityStatement(json: json, owner: owner)
+				if let res = try CapabilityStatement(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementDocument":
-				return try CapabilityStatementDocument(json: json, owner: owner)
+				if let res = try CapabilityStatementDocument(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementImplementation":
-				return try CapabilityStatementImplementation(json: json, owner: owner)
+				if let res = try CapabilityStatementImplementation(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementMessaging":
-				return try CapabilityStatementMessaging(json: json, owner: owner)
+				if let res = try CapabilityStatementMessaging(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementMessagingEndpoint":
-				return try CapabilityStatementMessagingEndpoint(json: json, owner: owner)
+				if let res = try CapabilityStatementMessagingEndpoint(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementMessagingEvent":
-				return try CapabilityStatementMessagingEvent(json: json, owner: owner)
+				if let res = try CapabilityStatementMessagingEvent(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRest":
-				return try CapabilityStatementRest(json: json, owner: owner)
+				if let res = try CapabilityStatementRest(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRestInteraction":
-				return try CapabilityStatementRestInteraction(json: json, owner: owner)
+				if let res = try CapabilityStatementRestInteraction(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRestOperation":
-				return try CapabilityStatementRestOperation(json: json, owner: owner)
+				if let res = try CapabilityStatementRestOperation(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRestResource":
-				return try CapabilityStatementRestResource(json: json, owner: owner)
+				if let res = try CapabilityStatementRestResource(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRestResourceInteraction":
-				return try CapabilityStatementRestResourceInteraction(json: json, owner: owner)
+				if let res = try CapabilityStatementRestResourceInteraction(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRestResourceSearchParam":
-				return try CapabilityStatementRestResourceSearchParam(json: json, owner: owner)
+				if let res = try CapabilityStatementRestResourceSearchParam(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRestSecurity":
-				return try CapabilityStatementRestSecurity(json: json, owner: owner)
+				if let res = try CapabilityStatementRestSecurity(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementRestSecurityCertificate":
-				return try CapabilityStatementRestSecurityCertificate(json: json, owner: owner)
+				if let res = try CapabilityStatementRestSecurityCertificate(json: json, owner: owner) as? T { return res }
 			case "CapabilityStatementSoftware":
-				return try CapabilityStatementSoftware(json: json, owner: owner)
+				if let res = try CapabilityStatementSoftware(json: json, owner: owner) as? T { return res }
 			case "CarePlan":
-				return try CarePlan(json: json, owner: owner)
+				if let res = try CarePlan(json: json, owner: owner) as? T { return res }
 			case "CarePlanActivity":
-				return try CarePlanActivity(json: json, owner: owner)
+				if let res = try CarePlanActivity(json: json, owner: owner) as? T { return res }
 			case "CarePlanActivityDetail":
-				return try CarePlanActivityDetail(json: json, owner: owner)
+				if let res = try CarePlanActivityDetail(json: json, owner: owner) as? T { return res }
 			case "CarePlanRelatedPlan":
-				return try CarePlanRelatedPlan(json: json, owner: owner)
+				if let res = try CarePlanRelatedPlan(json: json, owner: owner) as? T { return res }
 			case "CareTeam":
-				return try CareTeam(json: json, owner: owner)
+				if let res = try CareTeam(json: json, owner: owner) as? T { return res }
 			case "CareTeamParticipant":
-				return try CareTeamParticipant(json: json, owner: owner)
+				if let res = try CareTeamParticipant(json: json, owner: owner) as? T { return res }
 			case "Claim":
-				return try Claim(json: json, owner: owner)
+				if let res = try Claim(json: json, owner: owner) as? T { return res }
 			case "ClaimAccident":
-				return try ClaimAccident(json: json, owner: owner)
+				if let res = try ClaimAccident(json: json, owner: owner) as? T { return res }
 			case "ClaimCareTeam":
-				return try ClaimCareTeam(json: json, owner: owner)
+				if let res = try ClaimCareTeam(json: json, owner: owner) as? T { return res }
 			case "ClaimDiagnosis":
-				return try ClaimDiagnosis(json: json, owner: owner)
+				if let res = try ClaimDiagnosis(json: json, owner: owner) as? T { return res }
 			case "ClaimInformation":
-				return try ClaimInformation(json: json, owner: owner)
+				if let res = try ClaimInformation(json: json, owner: owner) as? T { return res }
 			case "ClaimInsurance":
-				return try ClaimInsurance(json: json, owner: owner)
+				if let res = try ClaimInsurance(json: json, owner: owner) as? T { return res }
 			case "ClaimItem":
-				return try ClaimItem(json: json, owner: owner)
+				if let res = try ClaimItem(json: json, owner: owner) as? T { return res }
 			case "ClaimItemDetail":
-				return try ClaimItemDetail(json: json, owner: owner)
+				if let res = try ClaimItemDetail(json: json, owner: owner) as? T { return res }
 			case "ClaimItemDetailSubDetail":
-				return try ClaimItemDetailSubDetail(json: json, owner: owner)
+				if let res = try ClaimItemDetailSubDetail(json: json, owner: owner) as? T { return res }
 			case "ClaimItemProsthesis":
-				return try ClaimItemProsthesis(json: json, owner: owner)
+				if let res = try ClaimItemProsthesis(json: json, owner: owner) as? T { return res }
 			case "ClaimPayee":
-				return try ClaimPayee(json: json, owner: owner)
+				if let res = try ClaimPayee(json: json, owner: owner) as? T { return res }
 			case "ClaimProcedure":
-				return try ClaimProcedure(json: json, owner: owner)
+				if let res = try ClaimProcedure(json: json, owner: owner) as? T { return res }
 			case "ClaimRelated":
-				return try ClaimRelated(json: json, owner: owner)
+				if let res = try ClaimRelated(json: json, owner: owner) as? T { return res }
 			case "ClaimResponse":
-				return try ClaimResponse(json: json, owner: owner)
+				if let res = try ClaimResponse(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseAddItem":
-				return try ClaimResponseAddItem(json: json, owner: owner)
+				if let res = try ClaimResponseAddItem(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseAddItemDetail":
-				return try ClaimResponseAddItemDetail(json: json, owner: owner)
+				if let res = try ClaimResponseAddItemDetail(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseError":
-				return try ClaimResponseError(json: json, owner: owner)
+				if let res = try ClaimResponseError(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseInsurance":
-				return try ClaimResponseInsurance(json: json, owner: owner)
+				if let res = try ClaimResponseInsurance(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseItem":
-				return try ClaimResponseItem(json: json, owner: owner)
+				if let res = try ClaimResponseItem(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseItemAdjudication":
-				return try ClaimResponseItemAdjudication(json: json, owner: owner)
+				if let res = try ClaimResponseItemAdjudication(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseItemDetail":
-				return try ClaimResponseItemDetail(json: json, owner: owner)
+				if let res = try ClaimResponseItemDetail(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseItemDetailSubDetail":
-				return try ClaimResponseItemDetailSubDetail(json: json, owner: owner)
+				if let res = try ClaimResponseItemDetailSubDetail(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseNote":
-				return try ClaimResponseNote(json: json, owner: owner)
+				if let res = try ClaimResponseNote(json: json, owner: owner) as? T { return res }
 			case "ClaimResponsePayment":
-				return try ClaimResponsePayment(json: json, owner: owner)
+				if let res = try ClaimResponsePayment(json: json, owner: owner) as? T { return res }
 			case "ClinicalImpression":
-				return try ClinicalImpression(json: json, owner: owner)
+				if let res = try ClinicalImpression(json: json, owner: owner) as? T { return res }
 			case "ClinicalImpressionFinding":
-				return try ClinicalImpressionFinding(json: json, owner: owner)
+				if let res = try ClinicalImpressionFinding(json: json, owner: owner) as? T { return res }
 			case "ClinicalImpressionInvestigation":
-				return try ClinicalImpressionInvestigation(json: json, owner: owner)
+				if let res = try ClinicalImpressionInvestigation(json: json, owner: owner) as? T { return res }
 			case "CodeSystem":
-				return try CodeSystem(json: json, owner: owner)
+				if let res = try CodeSystem(json: json, owner: owner) as? T { return res }
 			case "CodeSystemConcept":
-				return try CodeSystemConcept(json: json, owner: owner)
+				if let res = try CodeSystemConcept(json: json, owner: owner) as? T { return res }
 			case "CodeSystemConceptDesignation":
-				return try CodeSystemConceptDesignation(json: json, owner: owner)
+				if let res = try CodeSystemConceptDesignation(json: json, owner: owner) as? T { return res }
 			case "CodeSystemConceptProperty":
-				return try CodeSystemConceptProperty(json: json, owner: owner)
+				if let res = try CodeSystemConceptProperty(json: json, owner: owner) as? T { return res }
 			case "CodeSystemFilter":
-				return try CodeSystemFilter(json: json, owner: owner)
+				if let res = try CodeSystemFilter(json: json, owner: owner) as? T { return res }
 			case "CodeSystemProperty":
-				return try CodeSystemProperty(json: json, owner: owner)
+				if let res = try CodeSystemProperty(json: json, owner: owner) as? T { return res }
 			case "CodeableConcept":
-				return try CodeableConcept(json: json, owner: owner)
+				if let res = try CodeableConcept(json: json, owner: owner) as? T { return res }
 			case "Coding":
-				return try Coding(json: json, owner: owner)
+				if let res = try Coding(json: json, owner: owner) as? T { return res }
 			case "Communication":
-				return try Communication(json: json, owner: owner)
+				if let res = try Communication(json: json, owner: owner) as? T { return res }
 			case "CommunicationPayload":
-				return try CommunicationPayload(json: json, owner: owner)
+				if let res = try CommunicationPayload(json: json, owner: owner) as? T { return res }
 			case "CommunicationRequest":
-				return try CommunicationRequest(json: json, owner: owner)
+				if let res = try CommunicationRequest(json: json, owner: owner) as? T { return res }
 			case "CommunicationRequestPayload":
-				return try CommunicationRequestPayload(json: json, owner: owner)
+				if let res = try CommunicationRequestPayload(json: json, owner: owner) as? T { return res }
 			case "CompartmentDefinition":
-				return try CompartmentDefinition(json: json, owner: owner)
+				if let res = try CompartmentDefinition(json: json, owner: owner) as? T { return res }
 			case "CompartmentDefinitionResource":
-				return try CompartmentDefinitionResource(json: json, owner: owner)
+				if let res = try CompartmentDefinitionResource(json: json, owner: owner) as? T { return res }
 			case "Composition":
-				return try Composition(json: json, owner: owner)
+				if let res = try Composition(json: json, owner: owner) as? T { return res }
 			case "CompositionAttester":
-				return try CompositionAttester(json: json, owner: owner)
+				if let res = try CompositionAttester(json: json, owner: owner) as? T { return res }
 			case "CompositionEvent":
-				return try CompositionEvent(json: json, owner: owner)
+				if let res = try CompositionEvent(json: json, owner: owner) as? T { return res }
 			case "CompositionSection":
-				return try CompositionSection(json: json, owner: owner)
+				if let res = try CompositionSection(json: json, owner: owner) as? T { return res }
 			case "ConceptMap":
-				return try ConceptMap(json: json, owner: owner)
+				if let res = try ConceptMap(json: json, owner: owner) as? T { return res }
 			case "ConceptMapGroup":
-				return try ConceptMapGroup(json: json, owner: owner)
+				if let res = try ConceptMapGroup(json: json, owner: owner) as? T { return res }
 			case "ConceptMapGroupElement":
-				return try ConceptMapGroupElement(json: json, owner: owner)
+				if let res = try ConceptMapGroupElement(json: json, owner: owner) as? T { return res }
 			case "ConceptMapGroupElementTarget":
-				return try ConceptMapGroupElementTarget(json: json, owner: owner)
+				if let res = try ConceptMapGroupElementTarget(json: json, owner: owner) as? T { return res }
 			case "ConceptMapGroupElementTargetDependsOn":
-				return try ConceptMapGroupElementTargetDependsOn(json: json, owner: owner)
+				if let res = try ConceptMapGroupElementTargetDependsOn(json: json, owner: owner) as? T { return res }
 			case "Condition":
-				return try Condition(json: json, owner: owner)
+				if let res = try Condition(json: json, owner: owner) as? T { return res }
 			case "ConditionEvidence":
-				return try ConditionEvidence(json: json, owner: owner)
+				if let res = try ConditionEvidence(json: json, owner: owner) as? T { return res }
 			case "ConditionStage":
-				return try ConditionStage(json: json, owner: owner)
+				if let res = try ConditionStage(json: json, owner: owner) as? T { return res }
 			case "Consent":
-				return try Consent(json: json, owner: owner)
+				if let res = try Consent(json: json, owner: owner) as? T { return res }
 			case "ConsentExcept":
-				return try ConsentExcept(json: json, owner: owner)
+				if let res = try ConsentExcept(json: json, owner: owner) as? T { return res }
 			case "ConsentExceptActor":
-				return try ConsentExceptActor(json: json, owner: owner)
+				if let res = try ConsentExceptActor(json: json, owner: owner) as? T { return res }
 			case "ConsentExceptData":
-				return try ConsentExceptData(json: json, owner: owner)
+				if let res = try ConsentExceptData(json: json, owner: owner) as? T { return res }
 			case "ContactDetail":
-				return try ContactDetail(json: json, owner: owner)
+				if let res = try ContactDetail(json: json, owner: owner) as? T { return res }
 			case "ContactPoint":
-				return try ContactPoint(json: json, owner: owner)
+				if let res = try ContactPoint(json: json, owner: owner) as? T { return res }
 			case "Contract":
-				return try Contract(json: json, owner: owner)
+				if let res = try Contract(json: json, owner: owner) as? T { return res }
 			case "ContractAgent":
-				return try ContractAgent(json: json, owner: owner)
+				if let res = try ContractAgent(json: json, owner: owner) as? T { return res }
 			case "ContractFriendly":
-				return try ContractFriendly(json: json, owner: owner)
+				if let res = try ContractFriendly(json: json, owner: owner) as? T { return res }
 			case "ContractLegal":
-				return try ContractLegal(json: json, owner: owner)
+				if let res = try ContractLegal(json: json, owner: owner) as? T { return res }
 			case "ContractRule":
-				return try ContractRule(json: json, owner: owner)
+				if let res = try ContractRule(json: json, owner: owner) as? T { return res }
 			case "ContractSigner":
-				return try ContractSigner(json: json, owner: owner)
+				if let res = try ContractSigner(json: json, owner: owner) as? T { return res }
 			case "ContractTerm":
-				return try ContractTerm(json: json, owner: owner)
+				if let res = try ContractTerm(json: json, owner: owner) as? T { return res }
 			case "ContractTermAgent":
-				return try ContractTermAgent(json: json, owner: owner)
+				if let res = try ContractTermAgent(json: json, owner: owner) as? T { return res }
 			case "ContractTermValuedItem":
-				return try ContractTermValuedItem(json: json, owner: owner)
+				if let res = try ContractTermValuedItem(json: json, owner: owner) as? T { return res }
 			case "ContractValuedItem":
-				return try ContractValuedItem(json: json, owner: owner)
+				if let res = try ContractValuedItem(json: json, owner: owner) as? T { return res }
 			case "Contributor":
-				return try Contributor(json: json, owner: owner)
+				if let res = try Contributor(json: json, owner: owner) as? T { return res }
 			case "Count":
-				return try Count(json: json, owner: owner)
+				if let res = try Count(json: json, owner: owner) as? T { return res }
 			case "Coverage":
-				return try Coverage(json: json, owner: owner)
+				if let res = try Coverage(json: json, owner: owner) as? T { return res }
 			case "CoverageGroup":
-				return try CoverageGroup(json: json, owner: owner)
+				if let res = try CoverageGroup(json: json, owner: owner) as? T { return res }
 			case "DataElement":
-				return try DataElement(json: json, owner: owner)
+				if let res = try DataElement(json: json, owner: owner) as? T { return res }
 			case "DataElementMapping":
-				return try DataElementMapping(json: json, owner: owner)
+				if let res = try DataElementMapping(json: json, owner: owner) as? T { return res }
 			case "DataRequirement":
-				return try DataRequirement(json: json, owner: owner)
+				if let res = try DataRequirement(json: json, owner: owner) as? T { return res }
 			case "DataRequirementCodeFilter":
-				return try DataRequirementCodeFilter(json: json, owner: owner)
+				if let res = try DataRequirementCodeFilter(json: json, owner: owner) as? T { return res }
 			case "DataRequirementDateFilter":
-				return try DataRequirementDateFilter(json: json, owner: owner)
+				if let res = try DataRequirementDateFilter(json: json, owner: owner) as? T { return res }
 			case "DetectedIssue":
-				return try DetectedIssue(json: json, owner: owner)
+				if let res = try DetectedIssue(json: json, owner: owner) as? T { return res }
 			case "DetectedIssueMitigation":
-				return try DetectedIssueMitigation(json: json, owner: owner)
+				if let res = try DetectedIssueMitigation(json: json, owner: owner) as? T { return res }
 			case "Device":
-				return try Device(json: json, owner: owner)
+				if let res = try Device(json: json, owner: owner) as? T { return res }
 			case "DeviceComponent":
-				return try DeviceComponent(json: json, owner: owner)
+				if let res = try DeviceComponent(json: json, owner: owner) as? T { return res }
 			case "DeviceComponentProductionSpecification":
-				return try DeviceComponentProductionSpecification(json: json, owner: owner)
+				if let res = try DeviceComponentProductionSpecification(json: json, owner: owner) as? T { return res }
 			case "DeviceMetric":
-				return try DeviceMetric(json: json, owner: owner)
+				if let res = try DeviceMetric(json: json, owner: owner) as? T { return res }
 			case "DeviceMetricCalibration":
-				return try DeviceMetricCalibration(json: json, owner: owner)
+				if let res = try DeviceMetricCalibration(json: json, owner: owner) as? T { return res }
 			case "DeviceUseRequest":
-				return try DeviceUseRequest(json: json, owner: owner)
+				if let res = try DeviceUseRequest(json: json, owner: owner) as? T { return res }
 			case "DeviceUseStatement":
-				return try DeviceUseStatement(json: json, owner: owner)
+				if let res = try DeviceUseStatement(json: json, owner: owner) as? T { return res }
 			case "DiagnosticReport":
-				return try DiagnosticReport(json: json, owner: owner)
+				if let res = try DiagnosticReport(json: json, owner: owner) as? T { return res }
 			case "DiagnosticReportImage":
-				return try DiagnosticReportImage(json: json, owner: owner)
+				if let res = try DiagnosticReportImage(json: json, owner: owner) as? T { return res }
 			case "DiagnosticRequest":
-				return try DiagnosticRequest(json: json, owner: owner)
+				if let res = try DiagnosticRequest(json: json, owner: owner) as? T { return res }
 			case "Distance":
-				return try Distance(json: json, owner: owner)
+				if let res = try Distance(json: json, owner: owner) as? T { return res }
 			case "DocumentManifest":
-				return try DocumentManifest(json: json, owner: owner)
+				if let res = try DocumentManifest(json: json, owner: owner) as? T { return res }
 			case "DocumentManifestContent":
-				return try DocumentManifestContent(json: json, owner: owner)
+				if let res = try DocumentManifestContent(json: json, owner: owner) as? T { return res }
 			case "DocumentManifestRelated":
-				return try DocumentManifestRelated(json: json, owner: owner)
+				if let res = try DocumentManifestRelated(json: json, owner: owner) as? T { return res }
 			case "DocumentReference":
-				return try DocumentReference(json: json, owner: owner)
+				if let res = try DocumentReference(json: json, owner: owner) as? T { return res }
 			case "DocumentReferenceContent":
-				return try DocumentReferenceContent(json: json, owner: owner)
+				if let res = try DocumentReferenceContent(json: json, owner: owner) as? T { return res }
 			case "DocumentReferenceContext":
-				return try DocumentReferenceContext(json: json, owner: owner)
+				if let res = try DocumentReferenceContext(json: json, owner: owner) as? T { return res }
 			case "DocumentReferenceContextRelated":
-				return try DocumentReferenceContextRelated(json: json, owner: owner)
+				if let res = try DocumentReferenceContextRelated(json: json, owner: owner) as? T { return res }
 			case "DocumentReferenceRelatesTo":
-				return try DocumentReferenceRelatesTo(json: json, owner: owner)
+				if let res = try DocumentReferenceRelatesTo(json: json, owner: owner) as? T { return res }
 			case "DomainResource":
-				return try DomainResource(json: json, owner: owner)
+				if let res = try DomainResource(json: json, owner: owner) as? T { return res }
 			case "DosageInstruction":
-				return try DosageInstruction(json: json, owner: owner)
+				if let res = try DosageInstruction(json: json, owner: owner) as? T { return res }
 			case "Duration":
-				return try Duration(json: json, owner: owner)
+				if let res = try Duration(json: json, owner: owner) as? T { return res }
 			case "Element":
-				return try Element(json: json, owner: owner)
+				if let res = try Element(json: json, owner: owner) as? T { return res }
 			case "ElementDefinition":
-				return try ElementDefinition(json: json, owner: owner)
+				if let res = try ElementDefinition(json: json, owner: owner) as? T { return res }
 			case "ElementDefinitionBase":
-				return try ElementDefinitionBase(json: json, owner: owner)
+				if let res = try ElementDefinitionBase(json: json, owner: owner) as? T { return res }
 			case "ElementDefinitionBinding":
-				return try ElementDefinitionBinding(json: json, owner: owner)
+				if let res = try ElementDefinitionBinding(json: json, owner: owner) as? T { return res }
 			case "ElementDefinitionConstraint":
-				return try ElementDefinitionConstraint(json: json, owner: owner)
+				if let res = try ElementDefinitionConstraint(json: json, owner: owner) as? T { return res }
 			case "ElementDefinitionExample":
-				return try ElementDefinitionExample(json: json, owner: owner)
+				if let res = try ElementDefinitionExample(json: json, owner: owner) as? T { return res }
 			case "ElementDefinitionMapping":
-				return try ElementDefinitionMapping(json: json, owner: owner)
+				if let res = try ElementDefinitionMapping(json: json, owner: owner) as? T { return res }
 			case "ElementDefinitionSlicing":
-				return try ElementDefinitionSlicing(json: json, owner: owner)
+				if let res = try ElementDefinitionSlicing(json: json, owner: owner) as? T { return res }
 			case "ElementDefinitionType":
-				return try ElementDefinitionType(json: json, owner: owner)
+				if let res = try ElementDefinitionType(json: json, owner: owner) as? T { return res }
 			case "EligibilityRequest":
-				return try EligibilityRequest(json: json, owner: owner)
+				if let res = try EligibilityRequest(json: json, owner: owner) as? T { return res }
 			case "EligibilityResponse":
-				return try EligibilityResponse(json: json, owner: owner)
+				if let res = try EligibilityResponse(json: json, owner: owner) as? T { return res }
 			case "EligibilityResponseError":
-				return try EligibilityResponseError(json: json, owner: owner)
+				if let res = try EligibilityResponseError(json: json, owner: owner) as? T { return res }
 			case "EligibilityResponseInsurance":
-				return try EligibilityResponseInsurance(json: json, owner: owner)
+				if let res = try EligibilityResponseInsurance(json: json, owner: owner) as? T { return res }
 			case "EligibilityResponseInsuranceBenefitBalance":
-				return try EligibilityResponseInsuranceBenefitBalance(json: json, owner: owner)
+				if let res = try EligibilityResponseInsuranceBenefitBalance(json: json, owner: owner) as? T { return res }
 			case "EligibilityResponseInsuranceBenefitBalanceFinancial":
-				return try EligibilityResponseInsuranceBenefitBalanceFinancial(json: json, owner: owner)
+				if let res = try EligibilityResponseInsuranceBenefitBalanceFinancial(json: json, owner: owner) as? T { return res }
 			case "Encounter":
-				return try Encounter(json: json, owner: owner)
+				if let res = try Encounter(json: json, owner: owner) as? T { return res }
 			case "EncounterHospitalization":
-				return try EncounterHospitalization(json: json, owner: owner)
+				if let res = try EncounterHospitalization(json: json, owner: owner) as? T { return res }
 			case "EncounterLocation":
-				return try EncounterLocation(json: json, owner: owner)
+				if let res = try EncounterLocation(json: json, owner: owner) as? T { return res }
 			case "EncounterParticipant":
-				return try EncounterParticipant(json: json, owner: owner)
+				if let res = try EncounterParticipant(json: json, owner: owner) as? T { return res }
 			case "EncounterStatusHistory":
-				return try EncounterStatusHistory(json: json, owner: owner)
+				if let res = try EncounterStatusHistory(json: json, owner: owner) as? T { return res }
 			case "Endpoint":
-				return try Endpoint(json: json, owner: owner)
+				if let res = try Endpoint(json: json, owner: owner) as? T { return res }
 			case "EnrollmentRequest":
-				return try EnrollmentRequest(json: json, owner: owner)
+				if let res = try EnrollmentRequest(json: json, owner: owner) as? T { return res }
 			case "EnrollmentResponse":
-				return try EnrollmentResponse(json: json, owner: owner)
+				if let res = try EnrollmentResponse(json: json, owner: owner) as? T { return res }
 			case "EpisodeOfCare":
-				return try EpisodeOfCare(json: json, owner: owner)
+				if let res = try EpisodeOfCare(json: json, owner: owner) as? T { return res }
 			case "EpisodeOfCareStatusHistory":
-				return try EpisodeOfCareStatusHistory(json: json, owner: owner)
+				if let res = try EpisodeOfCareStatusHistory(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfile":
-				return try ExpansionProfile(json: json, owner: owner)
+				if let res = try ExpansionProfile(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfileDesignation":
-				return try ExpansionProfileDesignation(json: json, owner: owner)
+				if let res = try ExpansionProfileDesignation(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfileDesignationExclude":
-				return try ExpansionProfileDesignationExclude(json: json, owner: owner)
+				if let res = try ExpansionProfileDesignationExclude(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfileDesignationExcludeDesignation":
-				return try ExpansionProfileDesignationExcludeDesignation(json: json, owner: owner)
+				if let res = try ExpansionProfileDesignationExcludeDesignation(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfileDesignationInclude":
-				return try ExpansionProfileDesignationInclude(json: json, owner: owner)
+				if let res = try ExpansionProfileDesignationInclude(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfileDesignationIncludeDesignation":
-				return try ExpansionProfileDesignationIncludeDesignation(json: json, owner: owner)
+				if let res = try ExpansionProfileDesignationIncludeDesignation(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfileExcludedSystem":
-				return try ExpansionProfileExcludedSystem(json: json, owner: owner)
+				if let res = try ExpansionProfileExcludedSystem(json: json, owner: owner) as? T { return res }
 			case "ExpansionProfileFixedVersion":
-				return try ExpansionProfileFixedVersion(json: json, owner: owner)
+				if let res = try ExpansionProfileFixedVersion(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefit":
-				return try ExplanationOfBenefit(json: json, owner: owner)
+				if let res = try ExplanationOfBenefit(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitAccident":
-				return try ExplanationOfBenefitAccident(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitAccident(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitAddItem":
-				return try ExplanationOfBenefitAddItem(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitAddItem(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitAddItemDetail":
-				return try ExplanationOfBenefitAddItemDetail(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitAddItemDetail(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitBenefitBalance":
-				return try ExplanationOfBenefitBenefitBalance(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitBenefitBalance(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitBenefitBalanceFinancial":
-				return try ExplanationOfBenefitBenefitBalanceFinancial(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitBenefitBalanceFinancial(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitCareTeam":
-				return try ExplanationOfBenefitCareTeam(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitCareTeam(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitDiagnosis":
-				return try ExplanationOfBenefitDiagnosis(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitDiagnosis(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitInformation":
-				return try ExplanationOfBenefitInformation(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitInformation(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitInsurance":
-				return try ExplanationOfBenefitInsurance(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitInsurance(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitItem":
-				return try ExplanationOfBenefitItem(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitItem(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitItemAdjudication":
-				return try ExplanationOfBenefitItemAdjudication(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitItemAdjudication(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitItemDetail":
-				return try ExplanationOfBenefitItemDetail(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitItemDetail(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitItemDetailSubDetail":
-				return try ExplanationOfBenefitItemDetailSubDetail(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitItemDetailSubDetail(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitItemProsthesis":
-				return try ExplanationOfBenefitItemProsthesis(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitItemProsthesis(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitNote":
-				return try ExplanationOfBenefitNote(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitNote(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitPayee":
-				return try ExplanationOfBenefitPayee(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitPayee(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitPayment":
-				return try ExplanationOfBenefitPayment(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitPayment(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitProcedure":
-				return try ExplanationOfBenefitProcedure(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitProcedure(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitRelated":
-				return try ExplanationOfBenefitRelated(json: json, owner: owner)
+				if let res = try ExplanationOfBenefitRelated(json: json, owner: owner) as? T { return res }
 			case "Extension":
-				return try Extension(json: json, owner: owner)
+				if let res = try Extension(json: json, owner: owner) as? T { return res }
 			case "FamilyMemberHistory":
-				return try FamilyMemberHistory(json: json, owner: owner)
+				if let res = try FamilyMemberHistory(json: json, owner: owner) as? T { return res }
 			case "FamilyMemberHistoryCondition":
-				return try FamilyMemberHistoryCondition(json: json, owner: owner)
+				if let res = try FamilyMemberHistoryCondition(json: json, owner: owner) as? T { return res }
 			case "Flag":
-				return try Flag(json: json, owner: owner)
+				if let res = try Flag(json: json, owner: owner) as? T { return res }
 			case "Goal":
-				return try Goal(json: json, owner: owner)
+				if let res = try Goal(json: json, owner: owner) as? T { return res }
 			case "GoalOutcome":
-				return try GoalOutcome(json: json, owner: owner)
+				if let res = try GoalOutcome(json: json, owner: owner) as? T { return res }
 			case "Group":
-				return try Group(json: json, owner: owner)
+				if let res = try Group(json: json, owner: owner) as? T { return res }
 			case "GroupCharacteristic":
-				return try GroupCharacteristic(json: json, owner: owner)
+				if let res = try GroupCharacteristic(json: json, owner: owner) as? T { return res }
 			case "GroupMember":
-				return try GroupMember(json: json, owner: owner)
+				if let res = try GroupMember(json: json, owner: owner) as? T { return res }
 			case "GuidanceResponse":
-				return try GuidanceResponse(json: json, owner: owner)
+				if let res = try GuidanceResponse(json: json, owner: owner) as? T { return res }
 			case "HealthcareService":
-				return try HealthcareService(json: json, owner: owner)
+				if let res = try HealthcareService(json: json, owner: owner) as? T { return res }
 			case "HealthcareServiceAvailableTime":
-				return try HealthcareServiceAvailableTime(json: json, owner: owner)
+				if let res = try HealthcareServiceAvailableTime(json: json, owner: owner) as? T { return res }
 			case "HealthcareServiceNotAvailable":
-				return try HealthcareServiceNotAvailable(json: json, owner: owner)
+				if let res = try HealthcareServiceNotAvailable(json: json, owner: owner) as? T { return res }
 			case "HumanName":
-				return try HumanName(json: json, owner: owner)
+				if let res = try HumanName(json: json, owner: owner) as? T { return res }
 			case "Identifier":
-				return try Identifier(json: json, owner: owner)
+				if let res = try Identifier(json: json, owner: owner) as? T { return res }
 			case "ImagingManifest":
-				return try ImagingManifest(json: json, owner: owner)
+				if let res = try ImagingManifest(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudy":
-				return try ImagingManifestStudy(json: json, owner: owner)
+				if let res = try ImagingManifestStudy(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudyBaseLocation":
-				return try ImagingManifestStudyBaseLocation(json: json, owner: owner)
+				if let res = try ImagingManifestStudyBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudySeries":
-				return try ImagingManifestStudySeries(json: json, owner: owner)
+				if let res = try ImagingManifestStudySeries(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudySeriesBaseLocation":
-				return try ImagingManifestStudySeriesBaseLocation(json: json, owner: owner)
+				if let res = try ImagingManifestStudySeriesBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudySeriesInstance":
-				return try ImagingManifestStudySeriesInstance(json: json, owner: owner)
+				if let res = try ImagingManifestStudySeriesInstance(json: json, owner: owner) as? T { return res }
 			case "ImagingStudy":
-				return try ImagingStudy(json: json, owner: owner)
+				if let res = try ImagingStudy(json: json, owner: owner) as? T { return res }
 			case "ImagingStudyBaseLocation":
-				return try ImagingStudyBaseLocation(json: json, owner: owner)
+				if let res = try ImagingStudyBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingStudySeries":
-				return try ImagingStudySeries(json: json, owner: owner)
+				if let res = try ImagingStudySeries(json: json, owner: owner) as? T { return res }
 			case "ImagingStudySeriesBaseLocation":
-				return try ImagingStudySeriesBaseLocation(json: json, owner: owner)
+				if let res = try ImagingStudySeriesBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingStudySeriesInstance":
-				return try ImagingStudySeriesInstance(json: json, owner: owner)
+				if let res = try ImagingStudySeriesInstance(json: json, owner: owner) as? T { return res }
 			case "Immunization":
-				return try Immunization(json: json, owner: owner)
+				if let res = try Immunization(json: json, owner: owner) as? T { return res }
 			case "ImmunizationExplanation":
-				return try ImmunizationExplanation(json: json, owner: owner)
+				if let res = try ImmunizationExplanation(json: json, owner: owner) as? T { return res }
 			case "ImmunizationReaction":
-				return try ImmunizationReaction(json: json, owner: owner)
+				if let res = try ImmunizationReaction(json: json, owner: owner) as? T { return res }
 			case "ImmunizationRecommendation":
-				return try ImmunizationRecommendation(json: json, owner: owner)
+				if let res = try ImmunizationRecommendation(json: json, owner: owner) as? T { return res }
 			case "ImmunizationRecommendationRecommendation":
-				return try ImmunizationRecommendationRecommendation(json: json, owner: owner)
+				if let res = try ImmunizationRecommendationRecommendation(json: json, owner: owner) as? T { return res }
 			case "ImmunizationRecommendationRecommendationDateCriterion":
-				return try ImmunizationRecommendationRecommendationDateCriterion(json: json, owner: owner)
+				if let res = try ImmunizationRecommendationRecommendationDateCriterion(json: json, owner: owner) as? T { return res }
 			case "ImmunizationRecommendationRecommendationProtocol":
-				return try ImmunizationRecommendationRecommendationProtocol(json: json, owner: owner)
+				if let res = try ImmunizationRecommendationRecommendationProtocol(json: json, owner: owner) as? T { return res }
 			case "ImmunizationVaccinationProtocol":
-				return try ImmunizationVaccinationProtocol(json: json, owner: owner)
+				if let res = try ImmunizationVaccinationProtocol(json: json, owner: owner) as? T { return res }
 			case "ImplementationGuide":
-				return try ImplementationGuide(json: json, owner: owner)
+				if let res = try ImplementationGuide(json: json, owner: owner) as? T { return res }
 			case "ImplementationGuideDependency":
-				return try ImplementationGuideDependency(json: json, owner: owner)
+				if let res = try ImplementationGuideDependency(json: json, owner: owner) as? T { return res }
 			case "ImplementationGuideGlobal":
-				return try ImplementationGuideGlobal(json: json, owner: owner)
+				if let res = try ImplementationGuideGlobal(json: json, owner: owner) as? T { return res }
 			case "ImplementationGuidePackage":
-				return try ImplementationGuidePackage(json: json, owner: owner)
+				if let res = try ImplementationGuidePackage(json: json, owner: owner) as? T { return res }
 			case "ImplementationGuidePackageResource":
-				return try ImplementationGuidePackageResource(json: json, owner: owner)
+				if let res = try ImplementationGuidePackageResource(json: json, owner: owner) as? T { return res }
 			case "ImplementationGuidePage":
-				return try ImplementationGuidePage(json: json, owner: owner)
+				if let res = try ImplementationGuidePage(json: json, owner: owner) as? T { return res }
 			case "Library":
-				return try Library(json: json, owner: owner)
+				if let res = try Library(json: json, owner: owner) as? T { return res }
 			case "Linkage":
-				return try Linkage(json: json, owner: owner)
+				if let res = try Linkage(json: json, owner: owner) as? T { return res }
 			case "LinkageItem":
-				return try LinkageItem(json: json, owner: owner)
+				if let res = try LinkageItem(json: json, owner: owner) as? T { return res }
 			case "List":
-				return try List(json: json, owner: owner)
+				if let res = try List(json: json, owner: owner) as? T { return res }
 			case "ListEntry":
-				return try ListEntry(json: json, owner: owner)
+				if let res = try ListEntry(json: json, owner: owner) as? T { return res }
 			case "Location":
-				return try Location(json: json, owner: owner)
+				if let res = try Location(json: json, owner: owner) as? T { return res }
 			case "LocationPosition":
-				return try LocationPosition(json: json, owner: owner)
+				if let res = try LocationPosition(json: json, owner: owner) as? T { return res }
 			case "Measure":
-				return try Measure(json: json, owner: owner)
+				if let res = try Measure(json: json, owner: owner) as? T { return res }
 			case "MeasureGroup":
-				return try MeasureGroup(json: json, owner: owner)
+				if let res = try MeasureGroup(json: json, owner: owner) as? T { return res }
 			case "MeasureGroupPopulation":
-				return try MeasureGroupPopulation(json: json, owner: owner)
+				if let res = try MeasureGroupPopulation(json: json, owner: owner) as? T { return res }
 			case "MeasureGroupStratifier":
-				return try MeasureGroupStratifier(json: json, owner: owner)
+				if let res = try MeasureGroupStratifier(json: json, owner: owner) as? T { return res }
 			case "MeasureReport":
-				return try MeasureReport(json: json, owner: owner)
+				if let res = try MeasureReport(json: json, owner: owner) as? T { return res }
 			case "MeasureReportGroup":
-				return try MeasureReportGroup(json: json, owner: owner)
+				if let res = try MeasureReportGroup(json: json, owner: owner) as? T { return res }
 			case "MeasureReportGroupPopulation":
-				return try MeasureReportGroupPopulation(json: json, owner: owner)
+				if let res = try MeasureReportGroupPopulation(json: json, owner: owner) as? T { return res }
 			case "MeasureReportGroupStratifier":
-				return try MeasureReportGroupStratifier(json: json, owner: owner)
+				if let res = try MeasureReportGroupStratifier(json: json, owner: owner) as? T { return res }
 			case "MeasureReportGroupStratifierGroup":
-				return try MeasureReportGroupStratifierGroup(json: json, owner: owner)
+				if let res = try MeasureReportGroupStratifierGroup(json: json, owner: owner) as? T { return res }
 			case "MeasureReportGroupStratifierGroupPopulation":
-				return try MeasureReportGroupStratifierGroupPopulation(json: json, owner: owner)
+				if let res = try MeasureReportGroupStratifierGroupPopulation(json: json, owner: owner) as? T { return res }
 			case "MeasureReportGroupSupplementalData":
-				return try MeasureReportGroupSupplementalData(json: json, owner: owner)
+				if let res = try MeasureReportGroupSupplementalData(json: json, owner: owner) as? T { return res }
 			case "MeasureReportGroupSupplementalDataGroup":
-				return try MeasureReportGroupSupplementalDataGroup(json: json, owner: owner)
+				if let res = try MeasureReportGroupSupplementalDataGroup(json: json, owner: owner) as? T { return res }
 			case "MeasureSupplementalData":
-				return try MeasureSupplementalData(json: json, owner: owner)
+				if let res = try MeasureSupplementalData(json: json, owner: owner) as? T { return res }
 			case "Media":
-				return try Media(json: json, owner: owner)
+				if let res = try Media(json: json, owner: owner) as? T { return res }
 			case "Medication":
-				return try Medication(json: json, owner: owner)
+				if let res = try Medication(json: json, owner: owner) as? T { return res }
 			case "MedicationAdministration":
-				return try MedicationAdministration(json: json, owner: owner)
+				if let res = try MedicationAdministration(json: json, owner: owner) as? T { return res }
 			case "MedicationAdministrationDosage":
-				return try MedicationAdministrationDosage(json: json, owner: owner)
+				if let res = try MedicationAdministrationDosage(json: json, owner: owner) as? T { return res }
 			case "MedicationDispense":
-				return try MedicationDispense(json: json, owner: owner)
+				if let res = try MedicationDispense(json: json, owner: owner) as? T { return res }
 			case "MedicationDispenseSubstitution":
-				return try MedicationDispenseSubstitution(json: json, owner: owner)
+				if let res = try MedicationDispenseSubstitution(json: json, owner: owner) as? T { return res }
 			case "MedicationPackage":
-				return try MedicationPackage(json: json, owner: owner)
+				if let res = try MedicationPackage(json: json, owner: owner) as? T { return res }
 			case "MedicationPackageContent":
-				return try MedicationPackageContent(json: json, owner: owner)
+				if let res = try MedicationPackageContent(json: json, owner: owner) as? T { return res }
 			case "MedicationProduct":
-				return try MedicationProduct(json: json, owner: owner)
+				if let res = try MedicationProduct(json: json, owner: owner) as? T { return res }
 			case "MedicationProductBatch":
-				return try MedicationProductBatch(json: json, owner: owner)
+				if let res = try MedicationProductBatch(json: json, owner: owner) as? T { return res }
 			case "MedicationProductIngredient":
-				return try MedicationProductIngredient(json: json, owner: owner)
+				if let res = try MedicationProductIngredient(json: json, owner: owner) as? T { return res }
 			case "MedicationRequest":
-				return try MedicationRequest(json: json, owner: owner)
+				if let res = try MedicationRequest(json: json, owner: owner) as? T { return res }
 			case "MedicationRequestDispenseRequest":
-				return try MedicationRequestDispenseRequest(json: json, owner: owner)
+				if let res = try MedicationRequestDispenseRequest(json: json, owner: owner) as? T { return res }
 			case "MedicationRequestSubstitution":
-				return try MedicationRequestSubstitution(json: json, owner: owner)
+				if let res = try MedicationRequestSubstitution(json: json, owner: owner) as? T { return res }
 			case "MedicationStatement":
-				return try MedicationStatement(json: json, owner: owner)
+				if let res = try MedicationStatement(json: json, owner: owner) as? T { return res }
 			case "MessageDefinition":
-				return try MessageDefinition(json: json, owner: owner)
+				if let res = try MessageDefinition(json: json, owner: owner) as? T { return res }
 			case "MessageDefinitionAllowedResponse":
-				return try MessageDefinitionAllowedResponse(json: json, owner: owner)
+				if let res = try MessageDefinitionAllowedResponse(json: json, owner: owner) as? T { return res }
 			case "MessageDefinitionFocus":
-				return try MessageDefinitionFocus(json: json, owner: owner)
+				if let res = try MessageDefinitionFocus(json: json, owner: owner) as? T { return res }
 			case "MessageHeader":
-				return try MessageHeader(json: json, owner: owner)
+				if let res = try MessageHeader(json: json, owner: owner) as? T { return res }
 			case "MessageHeaderDestination":
-				return try MessageHeaderDestination(json: json, owner: owner)
+				if let res = try MessageHeaderDestination(json: json, owner: owner) as? T { return res }
 			case "MessageHeaderResponse":
-				return try MessageHeaderResponse(json: json, owner: owner)
+				if let res = try MessageHeaderResponse(json: json, owner: owner) as? T { return res }
 			case "MessageHeaderSource":
-				return try MessageHeaderSource(json: json, owner: owner)
+				if let res = try MessageHeaderSource(json: json, owner: owner) as? T { return res }
 			case "Meta":
-				return try Meta(json: json, owner: owner)
+				if let res = try Meta(json: json, owner: owner) as? T { return res }
 			case "MetadataResource":
-				return try MetadataResource(json: json, owner: owner)
+				if let res = try MetadataResource(json: json, owner: owner) as? T { return res }
 			case "Money":
-				return try Money(json: json, owner: owner)
+				if let res = try Money(json: json, owner: owner) as? T { return res }
 			case "NamingSystem":
-				return try NamingSystem(json: json, owner: owner)
+				if let res = try NamingSystem(json: json, owner: owner) as? T { return res }
 			case "NamingSystemUniqueId":
-				return try NamingSystemUniqueId(json: json, owner: owner)
+				if let res = try NamingSystemUniqueId(json: json, owner: owner) as? T { return res }
 			case "Narrative":
-				return try Narrative(json: json, owner: owner)
+				if let res = try Narrative(json: json, owner: owner) as? T { return res }
 			case "NutritionRequest":
-				return try NutritionRequest(json: json, owner: owner)
+				if let res = try NutritionRequest(json: json, owner: owner) as? T { return res }
 			case "NutritionRequestEnteralFormula":
-				return try NutritionRequestEnteralFormula(json: json, owner: owner)
+				if let res = try NutritionRequestEnteralFormula(json: json, owner: owner) as? T { return res }
 			case "NutritionRequestEnteralFormulaAdministration":
-				return try NutritionRequestEnteralFormulaAdministration(json: json, owner: owner)
+				if let res = try NutritionRequestEnteralFormulaAdministration(json: json, owner: owner) as? T { return res }
 			case "NutritionRequestOralDiet":
-				return try NutritionRequestOralDiet(json: json, owner: owner)
+				if let res = try NutritionRequestOralDiet(json: json, owner: owner) as? T { return res }
 			case "NutritionRequestOralDietNutrient":
-				return try NutritionRequestOralDietNutrient(json: json, owner: owner)
+				if let res = try NutritionRequestOralDietNutrient(json: json, owner: owner) as? T { return res }
 			case "NutritionRequestOralDietTexture":
-				return try NutritionRequestOralDietTexture(json: json, owner: owner)
+				if let res = try NutritionRequestOralDietTexture(json: json, owner: owner) as? T { return res }
 			case "NutritionRequestSupplement":
-				return try NutritionRequestSupplement(json: json, owner: owner)
+				if let res = try NutritionRequestSupplement(json: json, owner: owner) as? T { return res }
 			case "Observation":
-				return try Observation(json: json, owner: owner)
+				if let res = try Observation(json: json, owner: owner) as? T { return res }
 			case "ObservationComponent":
-				return try ObservationComponent(json: json, owner: owner)
+				if let res = try ObservationComponent(json: json, owner: owner) as? T { return res }
 			case "ObservationReferenceRange":
-				return try ObservationReferenceRange(json: json, owner: owner)
+				if let res = try ObservationReferenceRange(json: json, owner: owner) as? T { return res }
 			case "ObservationRelated":
-				return try ObservationRelated(json: json, owner: owner)
+				if let res = try ObservationRelated(json: json, owner: owner) as? T { return res }
 			case "OperationDefinition":
-				return try OperationDefinition(json: json, owner: owner)
+				if let res = try OperationDefinition(json: json, owner: owner) as? T { return res }
 			case "OperationDefinitionOverload":
-				return try OperationDefinitionOverload(json: json, owner: owner)
+				if let res = try OperationDefinitionOverload(json: json, owner: owner) as? T { return res }
 			case "OperationDefinitionParameter":
-				return try OperationDefinitionParameter(json: json, owner: owner)
+				if let res = try OperationDefinitionParameter(json: json, owner: owner) as? T { return res }
 			case "OperationDefinitionParameterBinding":
-				return try OperationDefinitionParameterBinding(json: json, owner: owner)
+				if let res = try OperationDefinitionParameterBinding(json: json, owner: owner) as? T { return res }
 			case "OperationOutcome":
-				return try OperationOutcome(json: json, owner: owner)
+				if let res = try OperationOutcome(json: json, owner: owner) as? T { return res }
 			case "OperationOutcomeIssue":
-				return try OperationOutcomeIssue(json: json, owner: owner)
+				if let res = try OperationOutcomeIssue(json: json, owner: owner) as? T { return res }
 			case "Organization":
-				return try Organization(json: json, owner: owner)
+				if let res = try Organization(json: json, owner: owner) as? T { return res }
 			case "OrganizationContact":
-				return try OrganizationContact(json: json, owner: owner)
+				if let res = try OrganizationContact(json: json, owner: owner) as? T { return res }
 			case "ParameterDefinition":
-				return try ParameterDefinition(json: json, owner: owner)
+				if let res = try ParameterDefinition(json: json, owner: owner) as? T { return res }
 			case "Parameters":
-				return try Parameters(json: json, owner: owner)
+				if let res = try Parameters(json: json, owner: owner) as? T { return res }
 			case "ParametersParameter":
-				return try ParametersParameter(json: json, owner: owner)
+				if let res = try ParametersParameter(json: json, owner: owner) as? T { return res }
 			case "Patient":
-				return try Patient(json: json, owner: owner)
+				if let res = try Patient(json: json, owner: owner) as? T { return res }
 			case "PatientAnimal":
-				return try PatientAnimal(json: json, owner: owner)
+				if let res = try PatientAnimal(json: json, owner: owner) as? T { return res }
 			case "PatientCommunication":
-				return try PatientCommunication(json: json, owner: owner)
+				if let res = try PatientCommunication(json: json, owner: owner) as? T { return res }
 			case "PatientContact":
-				return try PatientContact(json: json, owner: owner)
+				if let res = try PatientContact(json: json, owner: owner) as? T { return res }
 			case "PatientLink":
-				return try PatientLink(json: json, owner: owner)
+				if let res = try PatientLink(json: json, owner: owner) as? T { return res }
 			case "PaymentNotice":
-				return try PaymentNotice(json: json, owner: owner)
+				if let res = try PaymentNotice(json: json, owner: owner) as? T { return res }
 			case "PaymentReconciliation":
-				return try PaymentReconciliation(json: json, owner: owner)
+				if let res = try PaymentReconciliation(json: json, owner: owner) as? T { return res }
 			case "PaymentReconciliationDetail":
-				return try PaymentReconciliationDetail(json: json, owner: owner)
+				if let res = try PaymentReconciliationDetail(json: json, owner: owner) as? T { return res }
 			case "PaymentReconciliationNote":
-				return try PaymentReconciliationNote(json: json, owner: owner)
+				if let res = try PaymentReconciliationNote(json: json, owner: owner) as? T { return res }
 			case "Period":
-				return try Period(json: json, owner: owner)
+				if let res = try Period(json: json, owner: owner) as? T { return res }
 			case "Person":
-				return try Person(json: json, owner: owner)
+				if let res = try Person(json: json, owner: owner) as? T { return res }
 			case "PersonLink":
-				return try PersonLink(json: json, owner: owner)
+				if let res = try PersonLink(json: json, owner: owner) as? T { return res }
 			case "PlanDefinition":
-				return try PlanDefinition(json: json, owner: owner)
+				if let res = try PlanDefinition(json: json, owner: owner) as? T { return res }
 			case "PlanDefinitionActionDefinition":
-				return try PlanDefinitionActionDefinition(json: json, owner: owner)
+				if let res = try PlanDefinitionActionDefinition(json: json, owner: owner) as? T { return res }
 			case "PlanDefinitionActionDefinitionCondition":
-				return try PlanDefinitionActionDefinitionCondition(json: json, owner: owner)
+				if let res = try PlanDefinitionActionDefinitionCondition(json: json, owner: owner) as? T { return res }
 			case "PlanDefinitionActionDefinitionDynamicValue":
-				return try PlanDefinitionActionDefinitionDynamicValue(json: json, owner: owner)
+				if let res = try PlanDefinitionActionDefinitionDynamicValue(json: json, owner: owner) as? T { return res }
 			case "PlanDefinitionActionDefinitionRelatedAction":
-				return try PlanDefinitionActionDefinitionRelatedAction(json: json, owner: owner)
+				if let res = try PlanDefinitionActionDefinitionRelatedAction(json: json, owner: owner) as? T { return res }
 			case "Practitioner":
-				return try Practitioner(json: json, owner: owner)
+				if let res = try Practitioner(json: json, owner: owner) as? T { return res }
 			case "PractitionerPractRole":
-				return try PractitionerPractRole(json: json, owner: owner)
+				if let res = try PractitionerPractRole(json: json, owner: owner) as? T { return res }
 			case "PractitionerQualification":
-				return try PractitionerQualification(json: json, owner: owner)
+				if let res = try PractitionerQualification(json: json, owner: owner) as? T { return res }
 			case "PractitionerRole":
-				return try PractitionerRole(json: json, owner: owner)
+				if let res = try PractitionerRole(json: json, owner: owner) as? T { return res }
 			case "PractitionerRoleAvailableTime":
-				return try PractitionerRoleAvailableTime(json: json, owner: owner)
+				if let res = try PractitionerRoleAvailableTime(json: json, owner: owner) as? T { return res }
 			case "PractitionerRoleNotAvailable":
-				return try PractitionerRoleNotAvailable(json: json, owner: owner)
+				if let res = try PractitionerRoleNotAvailable(json: json, owner: owner) as? T { return res }
 			case "Procedure":
-				return try Procedure(json: json, owner: owner)
+				if let res = try Procedure(json: json, owner: owner) as? T { return res }
 			case "ProcedureFocalDevice":
-				return try ProcedureFocalDevice(json: json, owner: owner)
+				if let res = try ProcedureFocalDevice(json: json, owner: owner) as? T { return res }
 			case "ProcedurePerformer":
-				return try ProcedurePerformer(json: json, owner: owner)
+				if let res = try ProcedurePerformer(json: json, owner: owner) as? T { return res }
 			case "ProcedureRequest":
-				return try ProcedureRequest(json: json, owner: owner)
+				if let res = try ProcedureRequest(json: json, owner: owner) as? T { return res }
 			case "ProcessRequest":
-				return try ProcessRequest(json: json, owner: owner)
+				if let res = try ProcessRequest(json: json, owner: owner) as? T { return res }
 			case "ProcessRequestItem":
-				return try ProcessRequestItem(json: json, owner: owner)
+				if let res = try ProcessRequestItem(json: json, owner: owner) as? T { return res }
 			case "ProcessResponse":
-				return try ProcessResponse(json: json, owner: owner)
+				if let res = try ProcessResponse(json: json, owner: owner) as? T { return res }
 			case "ProcessResponseNote":
-				return try ProcessResponseNote(json: json, owner: owner)
+				if let res = try ProcessResponseNote(json: json, owner: owner) as? T { return res }
 			case "Provenance":
-				return try Provenance(json: json, owner: owner)
+				if let res = try Provenance(json: json, owner: owner) as? T { return res }
 			case "ProvenanceAgent":
-				return try ProvenanceAgent(json: json, owner: owner)
+				if let res = try ProvenanceAgent(json: json, owner: owner) as? T { return res }
 			case "ProvenanceEntity":
-				return try ProvenanceEntity(json: json, owner: owner)
+				if let res = try ProvenanceEntity(json: json, owner: owner) as? T { return res }
 			case "Quantity":
-				return try Quantity(json: json, owner: owner)
+				if let res = try Quantity(json: json, owner: owner) as? T { return res }
 			case "Questionnaire":
-				return try Questionnaire(json: json, owner: owner)
+				if let res = try Questionnaire(json: json, owner: owner) as? T { return res }
 			case "QuestionnaireItem":
-				return try QuestionnaireItem(json: json, owner: owner)
+				if let res = try QuestionnaireItem(json: json, owner: owner) as? T { return res }
 			case "QuestionnaireItemEnableWhen":
-				return try QuestionnaireItemEnableWhen(json: json, owner: owner)
+				if let res = try QuestionnaireItemEnableWhen(json: json, owner: owner) as? T { return res }
 			case "QuestionnaireItemOption":
-				return try QuestionnaireItemOption(json: json, owner: owner)
+				if let res = try QuestionnaireItemOption(json: json, owner: owner) as? T { return res }
 			case "QuestionnaireResponse":
-				return try QuestionnaireResponse(json: json, owner: owner)
+				if let res = try QuestionnaireResponse(json: json, owner: owner) as? T { return res }
 			case "QuestionnaireResponseItem":
-				return try QuestionnaireResponseItem(json: json, owner: owner)
+				if let res = try QuestionnaireResponseItem(json: json, owner: owner) as? T { return res }
 			case "QuestionnaireResponseItemAnswer":
-				return try QuestionnaireResponseItemAnswer(json: json, owner: owner)
+				if let res = try QuestionnaireResponseItemAnswer(json: json, owner: owner) as? T { return res }
 			case "Range":
-				return try Range(json: json, owner: owner)
+				if let res = try Range(json: json, owner: owner) as? T { return res }
 			case "Ratio":
-				return try Ratio(json: json, owner: owner)
+				if let res = try Ratio(json: json, owner: owner) as? T { return res }
 			case "Reference":
-				return try Reference(json: json, owner: owner)
+				if let res = try Reference(json: json, owner: owner) as? T { return res }
 			case "ReferralRequest":
-				return try ReferralRequest(json: json, owner: owner)
+				if let res = try ReferralRequest(json: json, owner: owner) as? T { return res }
 			case "RelatedArtifact":
-				return try RelatedArtifact(json: json, owner: owner)
+				if let res = try RelatedArtifact(json: json, owner: owner) as? T { return res }
 			case "RelatedPerson":
-				return try RelatedPerson(json: json, owner: owner)
+				if let res = try RelatedPerson(json: json, owner: owner) as? T { return res }
 			case "RequestGroup":
-				return try RequestGroup(json: json, owner: owner)
+				if let res = try RequestGroup(json: json, owner: owner) as? T { return res }
 			case "RequestGroupAction":
-				return try RequestGroupAction(json: json, owner: owner)
+				if let res = try RequestGroupAction(json: json, owner: owner) as? T { return res }
 			case "RequestGroupActionCondition":
-				return try RequestGroupActionCondition(json: json, owner: owner)
+				if let res = try RequestGroupActionCondition(json: json, owner: owner) as? T { return res }
 			case "RequestGroupActionRelatedAction":
-				return try RequestGroupActionRelatedAction(json: json, owner: owner)
+				if let res = try RequestGroupActionRelatedAction(json: json, owner: owner) as? T { return res }
 			case "ResearchStudy":
-				return try ResearchStudy(json: json, owner: owner)
+				if let res = try ResearchStudy(json: json, owner: owner) as? T { return res }
 			case "ResearchStudyArm":
-				return try ResearchStudyArm(json: json, owner: owner)
+				if let res = try ResearchStudyArm(json: json, owner: owner) as? T { return res }
 			case "ResearchSubject":
-				return try ResearchSubject(json: json, owner: owner)
+				if let res = try ResearchSubject(json: json, owner: owner) as? T { return res }
 			case "Resource":
-				return try Resource(json: json, owner: owner)
+				if let res = try Resource(json: json, owner: owner) as? T { return res }
 			case "RiskAssessment":
-				return try RiskAssessment(json: json, owner: owner)
+				if let res = try RiskAssessment(json: json, owner: owner) as? T { return res }
 			case "RiskAssessmentPrediction":
-				return try RiskAssessmentPrediction(json: json, owner: owner)
+				if let res = try RiskAssessmentPrediction(json: json, owner: owner) as? T { return res }
 			case "SampledData":
-				return try SampledData(json: json, owner: owner)
+				if let res = try SampledData(json: json, owner: owner) as? T { return res }
 			case "Schedule":
-				return try Schedule(json: json, owner: owner)
+				if let res = try Schedule(json: json, owner: owner) as? T { return res }
 			case "SearchParameter":
-				return try SearchParameter(json: json, owner: owner)
+				if let res = try SearchParameter(json: json, owner: owner) as? T { return res }
 			case "SearchParameterComponent":
-				return try SearchParameterComponent(json: json, owner: owner)
+				if let res = try SearchParameterComponent(json: json, owner: owner) as? T { return res }
 			case "Sequence":
-				return try Sequence(json: json, owner: owner)
+				if let res = try Sequence(json: json, owner: owner) as? T { return res }
 			case "SequenceQuality":
-				return try SequenceQuality(json: json, owner: owner)
+				if let res = try SequenceQuality(json: json, owner: owner) as? T { return res }
 			case "SequenceReferenceSeq":
-				return try SequenceReferenceSeq(json: json, owner: owner)
+				if let res = try SequenceReferenceSeq(json: json, owner: owner) as? T { return res }
 			case "SequenceRepository":
-				return try SequenceRepository(json: json, owner: owner)
+				if let res = try SequenceRepository(json: json, owner: owner) as? T { return res }
 			case "SequenceStructureVariant":
-				return try SequenceStructureVariant(json: json, owner: owner)
+				if let res = try SequenceStructureVariant(json: json, owner: owner) as? T { return res }
 			case "SequenceStructureVariantInner":
-				return try SequenceStructureVariantInner(json: json, owner: owner)
+				if let res = try SequenceStructureVariantInner(json: json, owner: owner) as? T { return res }
 			case "SequenceStructureVariantOuter":
-				return try SequenceStructureVariantOuter(json: json, owner: owner)
+				if let res = try SequenceStructureVariantOuter(json: json, owner: owner) as? T { return res }
 			case "SequenceVariant":
-				return try SequenceVariant(json: json, owner: owner)
+				if let res = try SequenceVariant(json: json, owner: owner) as? T { return res }
 			case "ServiceDefinition":
-				return try ServiceDefinition(json: json, owner: owner)
+				if let res = try ServiceDefinition(json: json, owner: owner) as? T { return res }
 			case "Signature":
-				return try Signature(json: json, owner: owner)
+				if let res = try Signature(json: json, owner: owner) as? T { return res }
 			case "Slot":
-				return try Slot(json: json, owner: owner)
+				if let res = try Slot(json: json, owner: owner) as? T { return res }
 			case "Specimen":
-				return try Specimen(json: json, owner: owner)
+				if let res = try Specimen(json: json, owner: owner) as? T { return res }
 			case "SpecimenCollection":
-				return try SpecimenCollection(json: json, owner: owner)
+				if let res = try SpecimenCollection(json: json, owner: owner) as? T { return res }
 			case "SpecimenContainer":
-				return try SpecimenContainer(json: json, owner: owner)
+				if let res = try SpecimenContainer(json: json, owner: owner) as? T { return res }
 			case "SpecimenTreatment":
-				return try SpecimenTreatment(json: json, owner: owner)
+				if let res = try SpecimenTreatment(json: json, owner: owner) as? T { return res }
 			case "StructureDefinition":
-				return try StructureDefinition(json: json, owner: owner)
+				if let res = try StructureDefinition(json: json, owner: owner) as? T { return res }
 			case "StructureDefinitionDifferential":
-				return try StructureDefinitionDifferential(json: json, owner: owner)
+				if let res = try StructureDefinitionDifferential(json: json, owner: owner) as? T { return res }
 			case "StructureDefinitionMapping":
-				return try StructureDefinitionMapping(json: json, owner: owner)
+				if let res = try StructureDefinitionMapping(json: json, owner: owner) as? T { return res }
 			case "StructureDefinitionSnapshot":
-				return try StructureDefinitionSnapshot(json: json, owner: owner)
+				if let res = try StructureDefinitionSnapshot(json: json, owner: owner) as? T { return res }
 			case "StructureMap":
-				return try StructureMap(json: json, owner: owner)
+				if let res = try StructureMap(json: json, owner: owner) as? T { return res }
 			case "StructureMapGroup":
-				return try StructureMapGroup(json: json, owner: owner)
+				if let res = try StructureMapGroup(json: json, owner: owner) as? T { return res }
 			case "StructureMapGroupInput":
-				return try StructureMapGroupInput(json: json, owner: owner)
+				if let res = try StructureMapGroupInput(json: json, owner: owner) as? T { return res }
 			case "StructureMapGroupRule":
-				return try StructureMapGroupRule(json: json, owner: owner)
+				if let res = try StructureMapGroupRule(json: json, owner: owner) as? T { return res }
 			case "StructureMapGroupRuleDependent":
-				return try StructureMapGroupRuleDependent(json: json, owner: owner)
+				if let res = try StructureMapGroupRuleDependent(json: json, owner: owner) as? T { return res }
 			case "StructureMapGroupRuleSource":
-				return try StructureMapGroupRuleSource(json: json, owner: owner)
+				if let res = try StructureMapGroupRuleSource(json: json, owner: owner) as? T { return res }
 			case "StructureMapGroupRuleTarget":
-				return try StructureMapGroupRuleTarget(json: json, owner: owner)
+				if let res = try StructureMapGroupRuleTarget(json: json, owner: owner) as? T { return res }
 			case "StructureMapGroupRuleTargetParameter":
-				return try StructureMapGroupRuleTargetParameter(json: json, owner: owner)
+				if let res = try StructureMapGroupRuleTargetParameter(json: json, owner: owner) as? T { return res }
 			case "StructureMapStructure":
-				return try StructureMapStructure(json: json, owner: owner)
+				if let res = try StructureMapStructure(json: json, owner: owner) as? T { return res }
 			case "Subscription":
-				return try Subscription(json: json, owner: owner)
+				if let res = try Subscription(json: json, owner: owner) as? T { return res }
 			case "SubscriptionChannel":
-				return try SubscriptionChannel(json: json, owner: owner)
+				if let res = try SubscriptionChannel(json: json, owner: owner) as? T { return res }
 			case "Substance":
-				return try Substance(json: json, owner: owner)
+				if let res = try Substance(json: json, owner: owner) as? T { return res }
 			case "SubstanceIngredient":
-				return try SubstanceIngredient(json: json, owner: owner)
+				if let res = try SubstanceIngredient(json: json, owner: owner) as? T { return res }
 			case "SubstanceInstance":
-				return try SubstanceInstance(json: json, owner: owner)
+				if let res = try SubstanceInstance(json: json, owner: owner) as? T { return res }
 			case "SupplyDelivery":
-				return try SupplyDelivery(json: json, owner: owner)
+				if let res = try SupplyDelivery(json: json, owner: owner) as? T { return res }
 			case "SupplyRequest":
-				return try SupplyRequest(json: json, owner: owner)
+				if let res = try SupplyRequest(json: json, owner: owner) as? T { return res }
 			case "SupplyRequestWhen":
-				return try SupplyRequestWhen(json: json, owner: owner)
+				if let res = try SupplyRequestWhen(json: json, owner: owner) as? T { return res }
 			case "Task":
-				return try Task(json: json, owner: owner)
+				if let res = try Task(json: json, owner: owner) as? T { return res }
 			case "TaskInput":
-				return try TaskInput(json: json, owner: owner)
+				if let res = try TaskInput(json: json, owner: owner) as? T { return res }
 			case "TaskOutput":
-				return try TaskOutput(json: json, owner: owner)
+				if let res = try TaskOutput(json: json, owner: owner) as? T { return res }
 			case "TaskRequester":
-				return try TaskRequester(json: json, owner: owner)
+				if let res = try TaskRequester(json: json, owner: owner) as? T { return res }
 			case "TaskRestriction":
-				return try TaskRestriction(json: json, owner: owner)
+				if let res = try TaskRestriction(json: json, owner: owner) as? T { return res }
 			case "TestReport":
-				return try TestReport(json: json, owner: owner)
+				if let res = try TestReport(json: json, owner: owner) as? T { return res }
 			case "TestReportParticipant":
-				return try TestReportParticipant(json: json, owner: owner)
+				if let res = try TestReportParticipant(json: json, owner: owner) as? T { return res }
 			case "TestReportSetup":
-				return try TestReportSetup(json: json, owner: owner)
+				if let res = try TestReportSetup(json: json, owner: owner) as? T { return res }
 			case "TestReportSetupAction":
-				return try TestReportSetupAction(json: json, owner: owner)
+				if let res = try TestReportSetupAction(json: json, owner: owner) as? T { return res }
 			case "TestReportSetupActionAssert":
-				return try TestReportSetupActionAssert(json: json, owner: owner)
+				if let res = try TestReportSetupActionAssert(json: json, owner: owner) as? T { return res }
 			case "TestReportSetupActionOperation":
-				return try TestReportSetupActionOperation(json: json, owner: owner)
+				if let res = try TestReportSetupActionOperation(json: json, owner: owner) as? T { return res }
 			case "TestReportTeardown":
-				return try TestReportTeardown(json: json, owner: owner)
+				if let res = try TestReportTeardown(json: json, owner: owner) as? T { return res }
 			case "TestReportTeardownAction":
-				return try TestReportTeardownAction(json: json, owner: owner)
+				if let res = try TestReportTeardownAction(json: json, owner: owner) as? T { return res }
 			case "TestReportTest":
-				return try TestReportTest(json: json, owner: owner)
+				if let res = try TestReportTest(json: json, owner: owner) as? T { return res }
 			case "TestReportTestAction":
-				return try TestReportTestAction(json: json, owner: owner)
+				if let res = try TestReportTestAction(json: json, owner: owner) as? T { return res }
 			case "TestScript":
-				return try TestScript(json: json, owner: owner)
+				if let res = try TestScript(json: json, owner: owner) as? T { return res }
 			case "TestScriptDestination":
-				return try TestScriptDestination(json: json, owner: owner)
+				if let res = try TestScriptDestination(json: json, owner: owner) as? T { return res }
 			case "TestScriptFixture":
-				return try TestScriptFixture(json: json, owner: owner)
+				if let res = try TestScriptFixture(json: json, owner: owner) as? T { return res }
 			case "TestScriptMetadata":
-				return try TestScriptMetadata(json: json, owner: owner)
+				if let res = try TestScriptMetadata(json: json, owner: owner) as? T { return res }
 			case "TestScriptMetadataCapability":
-				return try TestScriptMetadataCapability(json: json, owner: owner)
+				if let res = try TestScriptMetadataCapability(json: json, owner: owner) as? T { return res }
 			case "TestScriptMetadataLink":
-				return try TestScriptMetadataLink(json: json, owner: owner)
+				if let res = try TestScriptMetadataLink(json: json, owner: owner) as? T { return res }
 			case "TestScriptOrigin":
-				return try TestScriptOrigin(json: json, owner: owner)
+				if let res = try TestScriptOrigin(json: json, owner: owner) as? T { return res }
 			case "TestScriptRule":
-				return try TestScriptRule(json: json, owner: owner)
+				if let res = try TestScriptRule(json: json, owner: owner) as? T { return res }
 			case "TestScriptRuleParam":
-				return try TestScriptRuleParam(json: json, owner: owner)
+				if let res = try TestScriptRuleParam(json: json, owner: owner) as? T { return res }
 			case "TestScriptRuleset":
-				return try TestScriptRuleset(json: json, owner: owner)
+				if let res = try TestScriptRuleset(json: json, owner: owner) as? T { return res }
 			case "TestScriptRulesetRule":
-				return try TestScriptRulesetRule(json: json, owner: owner)
+				if let res = try TestScriptRulesetRule(json: json, owner: owner) as? T { return res }
 			case "TestScriptRulesetRuleParam":
-				return try TestScriptRulesetRuleParam(json: json, owner: owner)
+				if let res = try TestScriptRulesetRuleParam(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetup":
-				return try TestScriptSetup(json: json, owner: owner)
+				if let res = try TestScriptSetup(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupAction":
-				return try TestScriptSetupAction(json: json, owner: owner)
+				if let res = try TestScriptSetupAction(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionAssert":
-				return try TestScriptSetupActionAssert(json: json, owner: owner)
+				if let res = try TestScriptSetupActionAssert(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionAssertRule":
-				return try TestScriptSetupActionAssertRule(json: json, owner: owner)
+				if let res = try TestScriptSetupActionAssertRule(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionAssertRuleParam":
-				return try TestScriptSetupActionAssertRuleParam(json: json, owner: owner)
+				if let res = try TestScriptSetupActionAssertRuleParam(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionAssertRuleset":
-				return try TestScriptSetupActionAssertRuleset(json: json, owner: owner)
+				if let res = try TestScriptSetupActionAssertRuleset(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionAssertRulesetRule":
-				return try TestScriptSetupActionAssertRulesetRule(json: json, owner: owner)
+				if let res = try TestScriptSetupActionAssertRulesetRule(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionAssertRulesetRuleParam":
-				return try TestScriptSetupActionAssertRulesetRuleParam(json: json, owner: owner)
+				if let res = try TestScriptSetupActionAssertRulesetRuleParam(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionOperation":
-				return try TestScriptSetupActionOperation(json: json, owner: owner)
+				if let res = try TestScriptSetupActionOperation(json: json, owner: owner) as? T { return res }
 			case "TestScriptSetupActionOperationRequestHeader":
-				return try TestScriptSetupActionOperationRequestHeader(json: json, owner: owner)
+				if let res = try TestScriptSetupActionOperationRequestHeader(json: json, owner: owner) as? T { return res }
 			case "TestScriptTeardown":
-				return try TestScriptTeardown(json: json, owner: owner)
+				if let res = try TestScriptTeardown(json: json, owner: owner) as? T { return res }
 			case "TestScriptTeardownAction":
-				return try TestScriptTeardownAction(json: json, owner: owner)
+				if let res = try TestScriptTeardownAction(json: json, owner: owner) as? T { return res }
 			case "TestScriptTest":
-				return try TestScriptTest(json: json, owner: owner)
+				if let res = try TestScriptTest(json: json, owner: owner) as? T { return res }
 			case "TestScriptTestAction":
-				return try TestScriptTestAction(json: json, owner: owner)
+				if let res = try TestScriptTestAction(json: json, owner: owner) as? T { return res }
 			case "TestScriptVariable":
-				return try TestScriptVariable(json: json, owner: owner)
+				if let res = try TestScriptVariable(json: json, owner: owner) as? T { return res }
 			case "Timing":
-				return try Timing(json: json, owner: owner)
+				if let res = try Timing(json: json, owner: owner) as? T { return res }
 			case "TimingRepeat":
-				return try TimingRepeat(json: json, owner: owner)
+				if let res = try TimingRepeat(json: json, owner: owner) as? T { return res }
 			case "TriggerDefinition":
-				return try TriggerDefinition(json: json, owner: owner)
+				if let res = try TriggerDefinition(json: json, owner: owner) as? T { return res }
 			case "UsageContext":
-				return try UsageContext(json: json, owner: owner)
+				if let res = try UsageContext(json: json, owner: owner) as? T { return res }
 			case "ValueSet":
-				return try ValueSet(json: json, owner: owner)
+				if let res = try ValueSet(json: json, owner: owner) as? T { return res }
 			case "ValueSetCompose":
-				return try ValueSetCompose(json: json, owner: owner)
+				if let res = try ValueSetCompose(json: json, owner: owner) as? T { return res }
 			case "ValueSetComposeInclude":
-				return try ValueSetComposeInclude(json: json, owner: owner)
+				if let res = try ValueSetComposeInclude(json: json, owner: owner) as? T { return res }
 			case "ValueSetComposeIncludeConcept":
-				return try ValueSetComposeIncludeConcept(json: json, owner: owner)
+				if let res = try ValueSetComposeIncludeConcept(json: json, owner: owner) as? T { return res }
 			case "ValueSetComposeIncludeConceptDesignation":
-				return try ValueSetComposeIncludeConceptDesignation(json: json, owner: owner)
+				if let res = try ValueSetComposeIncludeConceptDesignation(json: json, owner: owner) as? T { return res }
 			case "ValueSetComposeIncludeFilter":
-				return try ValueSetComposeIncludeFilter(json: json, owner: owner)
+				if let res = try ValueSetComposeIncludeFilter(json: json, owner: owner) as? T { return res }
 			case "ValueSetExpansion":
-				return try ValueSetExpansion(json: json, owner: owner)
+				if let res = try ValueSetExpansion(json: json, owner: owner) as? T { return res }
 			case "ValueSetExpansionContains":
-				return try ValueSetExpansionContains(json: json, owner: owner)
+				if let res = try ValueSetExpansionContains(json: json, owner: owner) as? T { return res }
 			case "ValueSetExpansionParameter":
-				return try ValueSetExpansionParameter(json: json, owner: owner)
+				if let res = try ValueSetExpansionParameter(json: json, owner: owner) as? T { return res }
 			case "VisionPrescription":
-				return try VisionPrescription(json: json, owner: owner)
+				if let res = try VisionPrescription(json: json, owner: owner) as? T { return res }
 			case "VisionPrescriptionDispense":
-				return try VisionPrescriptionDispense(json: json, owner: owner)
+				if let res = try VisionPrescriptionDispense(json: json, owner: owner) as? T { return res }
 			default:
-				return try FHIRAbstractBase(json: json, owner: owner)
+				break
 		}
+		return try T(json: json, owner: owner)
 	}
 }

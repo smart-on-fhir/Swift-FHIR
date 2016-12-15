@@ -243,8 +243,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 	override open func responseResource<T: Resource>(ofType: T.Type) -> T? {
 		if let json = json {
 			do {
-				let resource = try Resource.instantiate(from: json, owner: nil)
-				return resource as? T
+				return try T.instantiate(from: json, owner: nil)
 			}
 			catch let error {
 				fhir_warn("\(error)")

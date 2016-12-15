@@ -152,7 +152,7 @@ open class FHIRSearch
 				#if !NO_MODEL_IMPORT
 				let bundle = Models.Bundle(json: jsonres.json)
 				#else
-				let bundle = SwiftFHIR.Bundle(json: jsonres.json)
+				let bundle = Bundle(json: jsonres.json)
 				#endif
 				bundle._server = server
 				if let entries = bundle.entry {

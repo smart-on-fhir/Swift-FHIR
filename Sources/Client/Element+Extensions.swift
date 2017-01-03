@@ -12,6 +12,19 @@ import Models
 #endif
 
 
+public extension FHIRPrimitive {
+	
+	/**
+	Returns an array of `Extension` elements for the given extension URL, if any.
+	
+	- parameter forURI: The URI defining the extension on the receiver
+	*/
+	public final func extensions(forURI uri: String) -> [Extension]? {
+		return extension_fhir?.filter() { return $0.url?.absoluteString == uri }
+	}
+}
+
+
 public extension Element {
 	
 	/**

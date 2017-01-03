@@ -1,0 +1,62 @@
+{
+	"resourceType": "Questionnaire",
+	"id": "Swift-FHIR.testcase.localization",
+	"status": "draft",
+	"item": [{
+		"linkId": "withdrawalReason",
+		"type": "choice",
+		"text": "I wish to withdraw because…",
+		"_text": {
+			"extension": [{
+				"url": "http://hl7.org/fhir/StructureDefinition/translation", "extension": [
+					{"url": "lang", "valueCode": "de-CH"}, {"url": "content", "valueString": "Ich möchte aus der Studie austreten weil…"}
+				]},{
+				"url": "http://hl7.org/fhir/StructureDefinition/translation", "extension": [
+					{"url": "lang", "valueCode": "de-DE"}, {"url": "content", "valueString": "Ich möchte gerne aus der Studie austreten weil ich…"}
+				]},{
+				"url": "http://hl7.org/fhir/StructureDefinition/translation", "extension": [
+					{"url": "lang", "valueCode": "fr"}, {"url": "content", "valueString": "Je veux retirer de l'étude parce que …"}
+				]}
+			]
+		},
+		"options": {
+			"reference": "#withdrawalReasons"
+		}
+	}],
+	"contained": [{
+		"id": "withdrawalReasons",
+		"resourceType": "ValueSet",
+		"status": "active",
+		"compose": {
+			"include": [{
+				"concept": [{
+					"code": "time-commitment",
+					"display": "Surveys take too much time",
+					"designation": [{
+						"language": "de-CH", "value": "Die Fragebögen sind zu lang"
+					},{
+						"language": "de-DE", "value": "Diese Fragebögen sind viel zu lange"
+					},{
+						"language": "fr", "value": "Les enquêtes prennent trop de temps"
+					}]
+				},{
+					"code": "too-difficult",
+					"display": "App is too difficult to use",
+					"_display": {
+						"extension": [{
+							"url": "http://hl7.org/fhir/StructureDefinition/translation", "extension": [
+								{"url": "lang", "valueCode": "de-CH"}, {"url": "content", "valueString": "Die Bedienung der App ist umständlich"}
+							]},{
+							"url": "http://hl7.org/fhir/StructureDefinition/translation", "extension": [
+								{"url": "lang", "valueCode": "de-DE"}, {"url": "content", "valueString": "Die Bedienung dieser App ist zu umständlich"}
+							]},{
+							"url": "http://hl7.org/fhir/StructureDefinition/translation", "extension": [
+								{"url": "lang", "valueCode": "fr"}, {"url": "content", "valueString": "Le fonctionnement de l'application est maladroit"}
+							]
+						}]
+					}
+				}]
+			}]
+		}
+	}]
+}

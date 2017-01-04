@@ -71,7 +71,7 @@ public struct FHIRDecimal: FHIRPrimitive, LosslessStringConvertible, Expressible
 	
 	public func asJSON(errors: inout [FHIRValidationError]) -> JSONType {
 		#if os(Linux)
-		return doubleValue
+		return Double("\(decimal)") ?? 0.0
 		#else
 		return decimal as NSNumber
 		#endif

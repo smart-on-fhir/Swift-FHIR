@@ -33,6 +33,7 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	
 	- note: If the factory does not return a subclass of the receiver, will discard the factory-created instance and use
 	`self.init(json:owner:)` instead.
+	- todo: Disabled factory use on Linux for now since it crashes the compiler as of Swift 3.0.1
 	
 	- parameter json:  A FHIRJSON decoded from a JSON response
 	- parameter owner: The FHIRAbstractBase owning the new instance, if appropriate
@@ -40,9 +41,11 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	- throws:          FHIRValidationError
 	*/
 	public final override class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?) throws -> Self {
+		#if !os(Linux)
 		if let type = json["resourceType"] as? String {
 			return try factory(type, json: json, owner: owner, type: self)
 		}
+		#endif
 		return try self.init(json: json, owner: owner)		// must use 'required' init with dynamic type
 	}
 	

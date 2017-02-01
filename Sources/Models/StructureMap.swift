@@ -2,8 +2,8 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -179,13 +179,17 @@ open class StructureMapGroup: BackboneElement {
 	/// Transform Rule from source to target.
 	public var rule: [StructureMapGroupRule]?
 	
+	/// If this is the default rule set to apply for thie source type, or this combination of types.
+	public var typeMode: StructureMapGroupTypeMode?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(input: [StructureMapGroupInput], name: FHIRString, rule: [StructureMapGroupRule]) {
+	public convenience init(input: [StructureMapGroupInput], name: FHIRString, rule: [StructureMapGroupRule], typeMode: StructureMapGroupTypeMode) {
 		self.init()
 		self.input = input
 		self.name = name
 		self.rule = rule
+		self.typeMode = typeMode
 	}
 	
 	
@@ -205,6 +209,10 @@ open class StructureMapGroup: BackboneElement {
 		rule = try createInstances(of: StructureMapGroupRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rule
 		if (nil == rule || rule!.isEmpty) && !presentKeys.contains("rule") {
 			errors.append(FHIRValidationError(missing: "rule"))
+		}
+		typeMode = createEnum(type: StructureMapGroupTypeMode.self, for: "typeMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? typeMode
+		if nil == typeMode && !presentKeys.contains("typeMode") {
+			errors.append(FHIRValidationError(missing: "typeMode"))
 		}
 		
 		return errors.isEmpty ? nil : errors
@@ -226,6 +234,10 @@ open class StructureMapGroup: BackboneElement {
 		arrayDecorate(json: &json, withKey: "rule", using: self.rule, errors: &errors)
 		if nil == rule || self.rule!.isEmpty {
 			errors.append(FHIRValidationError(missing: "rule"))
+		}
+		self.typeMode?.decorate(json: &json, withKey: "typeMode", errors: &errors)
+		if nil == self.typeMode {
+			errors.append(FHIRValidationError(missing: "typeMode"))
 		}
 	}
 }
@@ -380,7 +392,7 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 	/// Name of a rule or group to apply.
 	public var name: FHIRString?
 	
-	/// Names of variables to pass to the rule or group.
+	/// Variable to pass to the rule or group.
 	public var variable: [FHIRString]?
 	
 	
@@ -430,32 +442,140 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		get { return "StructureMapGroupRuleSource" }
 	}
 	
-	/// FluentPath expression  - must be true or the mapping engine throws an error instead of completing.
+	/// FHIRPath expression  - must be true or the mapping engine throws an error instead of completing.
 	public var check: FHIRString?
 	
-	/// FluentPath expression  - must be true or the rule does not apply.
+	/// FHIRPath expression  - must be true or the rule does not apply.
 	public var condition: FHIRString?
 	
 	/// Type or variable this rule applies to.
 	public var context: FHIRString?
 	
-	/// How to interpret the context.
-	public var contextType: StructureMapContextType?
+	/// Default value if no value exists.
+	public var defaultValueAddress: Address?
+	
+	/// Default value if no value exists.
+	public var defaultValueAge: Age?
+	
+	/// Default value if no value exists.
+	public var defaultValueAnnotation: Annotation?
+	
+	/// Default value if no value exists.
+	public var defaultValueAttachment: Attachment?
+	
+	/// Default value if no value exists.
+	public var defaultValueBase64Binary: Base64Binary?
+	
+	/// Default value if no value exists.
+	public var defaultValueBoolean: FHIRBool?
+	
+	/// Default value if no value exists.
+	public var defaultValueCode: FHIRString?
+	
+	/// Default value if no value exists.
+	public var defaultValueCodeableConcept: CodeableConcept?
+	
+	/// Default value if no value exists.
+	public var defaultValueCoding: Coding?
+	
+	/// Default value if no value exists.
+	public var defaultValueContactPoint: ContactPoint?
+	
+	/// Default value if no value exists.
+	public var defaultValueCount: Count?
+	
+	/// Default value if no value exists.
+	public var defaultValueDate: FHIRDate?
+	
+	/// Default value if no value exists.
+	public var defaultValueDateTime: DateTime?
+	
+	/// Default value if no value exists.
+	public var defaultValueDecimal: FHIRDecimal?
+	
+	/// Default value if no value exists.
+	public var defaultValueDistance: Distance?
+	
+	/// Default value if no value exists.
+	public var defaultValueDuration: Duration?
+	
+	/// Default value if no value exists.
+	public var defaultValueHumanName: HumanName?
+	
+	/// Default value if no value exists.
+	public var defaultValueId: FHIRString?
+	
+	/// Default value if no value exists.
+	public var defaultValueIdentifier: Identifier?
+	
+	/// Default value if no value exists.
+	public var defaultValueInstant: Instant?
+	
+	/// Default value if no value exists.
+	public var defaultValueInteger: FHIRInteger?
+	
+	/// Default value if no value exists.
+	public var defaultValueMarkdown: FHIRString?
+	
+	/// Default value if no value exists.
+	public var defaultValueMeta: Meta?
+	
+	/// Default value if no value exists.
+	public var defaultValueMoney: Money?
+	
+	/// Default value if no value exists.
+	public var defaultValueOid: FHIRURL?
+	
+	/// Default value if no value exists.
+	public var defaultValuePeriod: Period?
+	
+	/// Default value if no value exists.
+	public var defaultValuePositiveInt: FHIRInteger?
+	
+	/// Default value if no value exists.
+	public var defaultValueQuantity: Quantity?
+	
+	/// Default value if no value exists.
+	public var defaultValueRange: Range?
+	
+	/// Default value if no value exists.
+	public var defaultValueRatio: Ratio?
+	
+	/// Default value if no value exists.
+	public var defaultValueReference: Reference?
+	
+	/// Default value if no value exists.
+	public var defaultValueSampledData: SampledData?
+	
+	/// Default value if no value exists.
+	public var defaultValueSignature: Signature?
+	
+	/// Default value if no value exists.
+	public var defaultValueString: FHIRString?
+	
+	/// Default value if no value exists.
+	public var defaultValueTime: FHIRTime?
+	
+	/// Default value if no value exists.
+	public var defaultValueTiming: Timing?
+	
+	/// Default value if no value exists.
+	public var defaultValueUnsignedInt: FHIRInteger?
+	
+	/// Default value if no value exists.
+	public var defaultValueUri: FHIRURL?
 	
 	/// Optional field for this source.
 	public var element: FHIRString?
 	
 	/// How to handle the list mode for this element.
-	public var listMode: StructureMapListMode?
+	public var listMode: StructureMapSourceListMode?
 	
 	/// Specified maximum cardinality (number or *).
 	public var max: FHIRString?
 	
 	/// Specified minimum cardinality.
 	public var min: FHIRInteger?
-	
-	/// Whether this rule applies if the source isn't found.
-	public var required: FHIRBool?
 	
 	/// Type for this source.
 	public var type: FHIRString?
@@ -465,11 +585,9 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(context: FHIRString, contextType: StructureMapContextType, required: FHIRBool) {
+	public convenience init(context: FHIRString) {
 		self.init()
 		self.context = context
-		self.contextType = contextType
-		self.required = required
 	}
 	
 	
@@ -482,18 +600,48 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if nil == context && !presentKeys.contains("context") {
 			errors.append(FHIRValidationError(missing: "context"))
 		}
-		contextType = createEnum(type: StructureMapContextType.self, for: "contextType", in: json, presentKeys: &presentKeys, errors: &errors) ?? contextType
-		if nil == contextType && !presentKeys.contains("contextType") {
-			errors.append(FHIRValidationError(missing: "contextType"))
-		}
+		defaultValueAddress = try createInstance(type: Address.self, for: "defaultValueAddress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAddress
+		defaultValueAge = try createInstance(type: Age.self, for: "defaultValueAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAge
+		defaultValueAnnotation = try createInstance(type: Annotation.self, for: "defaultValueAnnotation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAnnotation
+		defaultValueAttachment = try createInstance(type: Attachment.self, for: "defaultValueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAttachment
+		defaultValueBase64Binary = try createInstance(type: Base64Binary.self, for: "defaultValueBase64Binary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueBase64Binary
+		defaultValueBoolean = try createInstance(type: FHIRBool.self, for: "defaultValueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueBoolean
+		defaultValueCode = try createInstance(type: FHIRString.self, for: "defaultValueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCode
+		defaultValueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "defaultValueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCodeableConcept
+		defaultValueCoding = try createInstance(type: Coding.self, for: "defaultValueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCoding
+		defaultValueContactPoint = try createInstance(type: ContactPoint.self, for: "defaultValueContactPoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueContactPoint
+		defaultValueCount = try createInstance(type: Count.self, for: "defaultValueCount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCount
+		defaultValueDate = try createInstance(type: FHIRDate.self, for: "defaultValueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDate
+		defaultValueDateTime = try createInstance(type: DateTime.self, for: "defaultValueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDateTime
+		defaultValueDecimal = try createInstance(type: FHIRDecimal.self, for: "defaultValueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDecimal
+		defaultValueDistance = try createInstance(type: Distance.self, for: "defaultValueDistance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDistance
+		defaultValueDuration = try createInstance(type: Duration.self, for: "defaultValueDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDuration
+		defaultValueHumanName = try createInstance(type: HumanName.self, for: "defaultValueHumanName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueHumanName
+		defaultValueId = try createInstance(type: FHIRString.self, for: "defaultValueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueId
+		defaultValueIdentifier = try createInstance(type: Identifier.self, for: "defaultValueIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueIdentifier
+		defaultValueInstant = try createInstance(type: Instant.self, for: "defaultValueInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueInstant
+		defaultValueInteger = try createInstance(type: FHIRInteger.self, for: "defaultValueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueInteger
+		defaultValueMarkdown = try createInstance(type: FHIRString.self, for: "defaultValueMarkdown", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueMarkdown
+		defaultValueMeta = try createInstance(type: Meta.self, for: "defaultValueMeta", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueMeta
+		defaultValueMoney = try createInstance(type: Money.self, for: "defaultValueMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueMoney
+		defaultValueOid = try createInstance(type: FHIRURL.self, for: "defaultValueOid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueOid
+		defaultValuePeriod = try createInstance(type: Period.self, for: "defaultValuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValuePeriod
+		defaultValuePositiveInt = try createInstance(type: FHIRInteger.self, for: "defaultValuePositiveInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValuePositiveInt
+		defaultValueQuantity = try createInstance(type: Quantity.self, for: "defaultValueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueQuantity
+		defaultValueRange = try createInstance(type: Range.self, for: "defaultValueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueRange
+		defaultValueRatio = try createInstance(type: Ratio.self, for: "defaultValueRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueRatio
+		defaultValueReference = try createInstance(type: Reference.self, for: "defaultValueReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueReference
+		defaultValueSampledData = try createInstance(type: SampledData.self, for: "defaultValueSampledData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueSampledData
+		defaultValueSignature = try createInstance(type: Signature.self, for: "defaultValueSignature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueSignature
+		defaultValueString = try createInstance(type: FHIRString.self, for: "defaultValueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueString
+		defaultValueTime = try createInstance(type: FHIRTime.self, for: "defaultValueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueTime
+		defaultValueTiming = try createInstance(type: Timing.self, for: "defaultValueTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueTiming
+		defaultValueUnsignedInt = try createInstance(type: FHIRInteger.self, for: "defaultValueUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueUnsignedInt
+		defaultValueUri = try createInstance(type: FHIRURL.self, for: "defaultValueUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueUri
 		element = try createInstance(type: FHIRString.self, for: "element", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? element
-		listMode = createEnum(type: StructureMapListMode.self, for: "listMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? listMode
+		listMode = createEnum(type: StructureMapSourceListMode.self, for: "listMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? listMode
 		max = try createInstance(type: FHIRString.self, for: "max", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? max
 		min = try createInstance(type: FHIRInteger.self, for: "min", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? min
-		required = try createInstance(type: FHIRBool.self, for: "required", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? required
-		if nil == required && !presentKeys.contains("required") {
-			errors.append(FHIRValidationError(missing: "required"))
-		}
 		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		variable = try createInstance(type: FHIRString.self, for: "variable", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variable
 		
@@ -509,18 +657,48 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		if nil == self.context {
 			errors.append(FHIRValidationError(missing: "context"))
 		}
-		self.contextType?.decorate(json: &json, withKey: "contextType", errors: &errors)
-		if nil == self.contextType {
-			errors.append(FHIRValidationError(missing: "contextType"))
-		}
+		self.defaultValueAddress?.decorate(json: &json, withKey: "defaultValueAddress", errors: &errors)
+		self.defaultValueAge?.decorate(json: &json, withKey: "defaultValueAge", errors: &errors)
+		self.defaultValueAnnotation?.decorate(json: &json, withKey: "defaultValueAnnotation", errors: &errors)
+		self.defaultValueAttachment?.decorate(json: &json, withKey: "defaultValueAttachment", errors: &errors)
+		self.defaultValueBase64Binary?.decorate(json: &json, withKey: "defaultValueBase64Binary", errors: &errors)
+		self.defaultValueBoolean?.decorate(json: &json, withKey: "defaultValueBoolean", errors: &errors)
+		self.defaultValueCode?.decorate(json: &json, withKey: "defaultValueCode", errors: &errors)
+		self.defaultValueCodeableConcept?.decorate(json: &json, withKey: "defaultValueCodeableConcept", errors: &errors)
+		self.defaultValueCoding?.decorate(json: &json, withKey: "defaultValueCoding", errors: &errors)
+		self.defaultValueContactPoint?.decorate(json: &json, withKey: "defaultValueContactPoint", errors: &errors)
+		self.defaultValueCount?.decorate(json: &json, withKey: "defaultValueCount", errors: &errors)
+		self.defaultValueDate?.decorate(json: &json, withKey: "defaultValueDate", errors: &errors)
+		self.defaultValueDateTime?.decorate(json: &json, withKey: "defaultValueDateTime", errors: &errors)
+		self.defaultValueDecimal?.decorate(json: &json, withKey: "defaultValueDecimal", errors: &errors)
+		self.defaultValueDistance?.decorate(json: &json, withKey: "defaultValueDistance", errors: &errors)
+		self.defaultValueDuration?.decorate(json: &json, withKey: "defaultValueDuration", errors: &errors)
+		self.defaultValueHumanName?.decorate(json: &json, withKey: "defaultValueHumanName", errors: &errors)
+		self.defaultValueId?.decorate(json: &json, withKey: "defaultValueId", errors: &errors)
+		self.defaultValueIdentifier?.decorate(json: &json, withKey: "defaultValueIdentifier", errors: &errors)
+		self.defaultValueInstant?.decorate(json: &json, withKey: "defaultValueInstant", errors: &errors)
+		self.defaultValueInteger?.decorate(json: &json, withKey: "defaultValueInteger", errors: &errors)
+		self.defaultValueMarkdown?.decorate(json: &json, withKey: "defaultValueMarkdown", errors: &errors)
+		self.defaultValueMeta?.decorate(json: &json, withKey: "defaultValueMeta", errors: &errors)
+		self.defaultValueMoney?.decorate(json: &json, withKey: "defaultValueMoney", errors: &errors)
+		self.defaultValueOid?.decorate(json: &json, withKey: "defaultValueOid", errors: &errors)
+		self.defaultValuePeriod?.decorate(json: &json, withKey: "defaultValuePeriod", errors: &errors)
+		self.defaultValuePositiveInt?.decorate(json: &json, withKey: "defaultValuePositiveInt", errors: &errors)
+		self.defaultValueQuantity?.decorate(json: &json, withKey: "defaultValueQuantity", errors: &errors)
+		self.defaultValueRange?.decorate(json: &json, withKey: "defaultValueRange", errors: &errors)
+		self.defaultValueRatio?.decorate(json: &json, withKey: "defaultValueRatio", errors: &errors)
+		self.defaultValueReference?.decorate(json: &json, withKey: "defaultValueReference", errors: &errors)
+		self.defaultValueSampledData?.decorate(json: &json, withKey: "defaultValueSampledData", errors: &errors)
+		self.defaultValueSignature?.decorate(json: &json, withKey: "defaultValueSignature", errors: &errors)
+		self.defaultValueString?.decorate(json: &json, withKey: "defaultValueString", errors: &errors)
+		self.defaultValueTime?.decorate(json: &json, withKey: "defaultValueTime", errors: &errors)
+		self.defaultValueTiming?.decorate(json: &json, withKey: "defaultValueTiming", errors: &errors)
+		self.defaultValueUnsignedInt?.decorate(json: &json, withKey: "defaultValueUnsignedInt", errors: &errors)
+		self.defaultValueUri?.decorate(json: &json, withKey: "defaultValueUri", errors: &errors)
 		self.element?.decorate(json: &json, withKey: "element", errors: &errors)
 		self.listMode?.decorate(json: &json, withKey: "listMode", errors: &errors)
 		self.max?.decorate(json: &json, withKey: "max", errors: &errors)
 		self.min?.decorate(json: &json, withKey: "min", errors: &errors)
-		self.required?.decorate(json: &json, withKey: "required", errors: &errors)
-		if nil == self.required {
-			errors.append(FHIRValidationError(missing: "required"))
-		}
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		self.variable?.decorate(json: &json, withKey: "variable", errors: &errors)
 	}
@@ -545,7 +723,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 	public var element: FHIRString?
 	
 	/// If field is a list, how to manage the list.
-	public var listMode: [StructureMapListMode]?
+	public var listMode: [StructureMapTargetListMode]?
 	
 	/// Internal rule reference for shared list items.
 	public var listRuleId: FHIRString?
@@ -566,7 +744,7 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		context = try createInstance(type: FHIRString.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		contextType = createEnum(type: StructureMapContextType.self, for: "contextType", in: json, presentKeys: &presentKeys, errors: &errors) ?? contextType
 		element = try createInstance(type: FHIRString.self, for: "element", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? element
-		listMode = createEnums(of: StructureMapListMode.self, for: "listMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? listMode
+		listMode = createEnums(of: StructureMapTargetListMode.self, for: "listMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? listMode
 		listRuleId = try createInstance(type: FHIRString.self, for: "listRuleId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? listRuleId
 		parameter = try createInstances(of: StructureMapGroupRuleTargetParameter.self, for: "parameter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parameter
 		transform = createEnum(type: StructureMapTransform.self, for: "transform", in: json, presentKeys: &presentKeys, errors: &errors) ?? transform
@@ -684,6 +862,9 @@ open class StructureMapStructure: BackboneElement {
 		get { return "StructureMapStructure" }
 	}
 	
+	/// Name for type in this map.
+	public var alias: FHIRString?
+	
 	/// Documentation on use of structure.
 	public var documentation: FHIRString?
 	
@@ -705,6 +886,7 @@ open class StructureMapStructure: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		alias = try createInstance(type: FHIRString.self, for: "alias", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? alias
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		mode = createEnum(type: StructureMapModelMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
 		if nil == mode && !presentKeys.contains("mode") {
@@ -721,6 +903,7 @@ open class StructureMapStructure: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.alias?.decorate(json: &json, withKey: "alias", errors: &errors)
 		self.documentation?.decorate(json: &json, withKey: "documentation", errors: &errors)
 		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
 		if nil == self.mode {

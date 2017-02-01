@@ -2,8 +2,8 @@
 //  EligibilityResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/EligibilityResponse) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/EligibilityResponse) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -34,13 +34,13 @@ open class EligibilityResponse: DomainResource {
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
-	/// Coverage inforce.
+	/// Coverage inforce indicator.
 	public var inforce: FHIRBool?
 	
 	/// Details by insurance coverage.
 	public var insurance: [EligibilityResponseInsurance]?
 	
-	/// Insurer.
+	/// Insurer issuing the coverage.
 	public var insurer: Reference?
 	
 	/// complete | error | partial.
@@ -193,10 +193,10 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 		get { return "EligibilityResponseInsuranceBenefitBalance" }
 	}
 	
-	/// Benefit Category.
+	/// Type of services covered.
 	public var category: CodeableConcept?
 	
-	/// Description of the benefit.
+	/// Description of the benefit or services covered.
 	public var description_fhir: FHIRString?
 	
 	/// Excluded from the plan.
@@ -211,7 +211,7 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 	/// In or out of network.
 	public var network: CodeableConcept?
 	
-	/// Benefit SubCategory.
+	/// Detailed services covered within the type.
 	public var subCategory: CodeableConcept?
 	
 	/// Annual or lifetime.
@@ -277,22 +277,22 @@ open class EligibilityResponseInsuranceBenefitBalanceFinancial: BackboneElement 
 	}
 	
 	/// Benefits allowed.
-	public var benefitMoney: Money?
+	public var allowedMoney: Money?
 	
 	/// Benefits allowed.
-	public var benefitString: FHIRString?
+	public var allowedString: FHIRString?
 	
 	/// Benefits allowed.
-	public var benefitUnsignedInt: FHIRInteger?
-	
-	/// Benefits used.
-	public var benefitUsedMoney: Money?
-	
-	/// Benefits used.
-	public var benefitUsedUnsignedInt: FHIRInteger?
+	public var allowedUnsignedInt: FHIRInteger?
 	
 	/// Deductable, visits, benefit amount.
 	public var type: CodeableConcept?
+	
+	/// Benefits used.
+	public var usedMoney: Money?
+	
+	/// Benefits used.
+	public var usedUnsignedInt: FHIRInteger?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -305,15 +305,15 @@ open class EligibilityResponseInsuranceBenefitBalanceFinancial: BackboneElement 
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		benefitMoney = try createInstance(type: Money.self, for: "benefitMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? benefitMoney
-		benefitString = try createInstance(type: FHIRString.self, for: "benefitString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? benefitString
-		benefitUnsignedInt = try createInstance(type: FHIRInteger.self, for: "benefitUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? benefitUnsignedInt
-		benefitUsedMoney = try createInstance(type: Money.self, for: "benefitUsedMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? benefitUsedMoney
-		benefitUsedUnsignedInt = try createInstance(type: FHIRInteger.self, for: "benefitUsedUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? benefitUsedUnsignedInt
+		allowedMoney = try createInstance(type: Money.self, for: "allowedMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? allowedMoney
+		allowedString = try createInstance(type: FHIRString.self, for: "allowedString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? allowedString
+		allowedUnsignedInt = try createInstance(type: FHIRInteger.self, for: "allowedUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? allowedUnsignedInt
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		if nil == type && !presentKeys.contains("type") {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+		usedMoney = try createInstance(type: Money.self, for: "usedMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? usedMoney
+		usedUnsignedInt = try createInstance(type: FHIRInteger.self, for: "usedUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? usedUnsignedInt
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -321,15 +321,15 @@ open class EligibilityResponseInsuranceBenefitBalanceFinancial: BackboneElement 
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.benefitMoney?.decorate(json: &json, withKey: "benefitMoney", errors: &errors)
-		self.benefitString?.decorate(json: &json, withKey: "benefitString", errors: &errors)
-		self.benefitUnsignedInt?.decorate(json: &json, withKey: "benefitUnsignedInt", errors: &errors)
-		self.benefitUsedMoney?.decorate(json: &json, withKey: "benefitUsedMoney", errors: &errors)
-		self.benefitUsedUnsignedInt?.decorate(json: &json, withKey: "benefitUsedUnsignedInt", errors: &errors)
+		self.allowedMoney?.decorate(json: &json, withKey: "allowedMoney", errors: &errors)
+		self.allowedString?.decorate(json: &json, withKey: "allowedString", errors: &errors)
+		self.allowedUnsignedInt?.decorate(json: &json, withKey: "allowedUnsignedInt", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+		self.usedMoney?.decorate(json: &json, withKey: "usedMoney", errors: &errors)
+		self.usedUnsignedInt?.decorate(json: &json, withKey: "usedUnsignedInt", errors: &errors)
 	}
 }
 

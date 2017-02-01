@@ -2,22 +2,28 @@
 //  ExpansionProfileTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRExpansionProfile = Models.ExpansionProfile
+#else
 import SwiftFHIR
+typealias SwiftFHIRExpansionProfile = SwiftFHIR.ExpansionProfile
+#endif
 
 
 class ExpansionProfileTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ExpansionProfile {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRExpansionProfile {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ExpansionProfile {
-		return try SwiftFHIR.ExpansionProfile(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRExpansionProfile {
+		return try SwiftFHIRExpansionProfile(json: json)
 	}
 	
 	func testExpansionProfile1() {
@@ -31,7 +37,7 @@ class ExpansionProfileTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runExpansionProfile1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ExpansionProfile {
+	func runExpansionProfile1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRExpansionProfile {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "expansionprofile-example.json")
 		
 		XCTAssertEqual(inst.excludeNested, true)

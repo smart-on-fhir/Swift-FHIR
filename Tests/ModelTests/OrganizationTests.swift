@@ -2,22 +2,28 @@
 //  OrganizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIROrganization = Models.Organization
+#else
 import SwiftFHIR
+typealias SwiftFHIROrganization = SwiftFHIR.Organization
+#endif
 
 
 class OrganizationTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Organization {
+	func instantiateFrom(filename: String) throws -> SwiftFHIROrganization {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Organization {
-		return try SwiftFHIR.Organization(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIROrganization {
+		return try SwiftFHIROrganization(json: json)
 	}
 	
 	func testOrganization1() {
@@ -31,7 +37,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization1(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f001-burgers.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
@@ -85,7 +91,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization2(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f002-burgers-card.json")
 		
 		XCTAssertEqual(inst.active, true)
@@ -124,7 +130,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization3(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f003-burgers-ENT.json")
 		
 		XCTAssertEqual(inst.active, true)
@@ -163,7 +169,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization4(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f201-aumc.json")
 		
 		XCTAssertEqual(inst.active, true)
@@ -218,7 +224,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization5(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f203-bumc.json")
 		
 		XCTAssertEqual(inst.active, true)
@@ -257,7 +263,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization6(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-gastro.json")
 		
 		XCTAssertEqual(inst.id, "1")
@@ -288,7 +294,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization7(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-good-health-care.json")
 		
 		XCTAssertEqual(inst.id, "2.16.840.1.113883.19.5")
@@ -311,7 +317,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization8(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-insurer.json")
 		
 		XCTAssertEqual(inst.alias?[0], "ABC Insurance")
@@ -335,7 +341,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization9(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-lab.json")
 		
 		XCTAssertEqual(inst.id, "1832473e-2fe0-452d-abe9-3cdb9879522f")
@@ -364,7 +370,7 @@ class OrganizationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOrganization10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
+	func runOrganization10(_ json: FHIRJSON? = nil) throws -> SwiftFHIROrganization {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-mmanu.json")
 		
 		XCTAssertEqual(inst.active, true)

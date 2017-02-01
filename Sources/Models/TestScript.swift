@@ -2,8 +2,8 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -845,7 +845,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		get { return "TestScriptSetupActionAssert" }
 	}
 	
-	/// The fhirpath expression to evaluate against the source fixture.
+	/// The fluentpath expression to evaluate against the source fixture.
 	public var compareToSourceExpression: FHIRString?
 	
 	/// Id of the source fixture to be evaluated.
@@ -863,7 +863,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// The direction to use for the assertion.
 	public var direction: AssertionDirectionType?
 	
-	/// The fhirpath expression to be evaluated.
+	/// The fluentpath expression to be evaluated.
 	public var expression: FHIRString?
 	
 	/// HTTP header field name.
@@ -1577,7 +1577,7 @@ open class TestScriptVariable: BackboneElement {
 	/// Natural language description of the variable.
 	public var description_fhir: FHIRString?
 	
-	/// The fhirpath expression against the fixture body.
+	/// The fluentpath expression against the fixture body.
 	public var expression: FHIRString?
 	
 	/// HTTP header field name for source.

@@ -11,8 +11,12 @@ FHIR® is the registered trademark of [HL7][] and is used with the permission of
 ### Versioning
 
 Due to the complications of combining two volatile technologies, here's an overview of which version numbers use which **Swift** and **FHIR versions**.
-The `master` branch should always compile and is on (point releases of) these main versions.
-See the `develop` branch or specific `feature/x` branches for new Swift or FHIR versions, and check the [tags](https://github.com/smart-on-fhir/Swift-FHIR/releases).
+
+- The [`master`](https://github.com/smart-on-fhir/Swift-FHIR) branch should always compile and is on (point releases of) these main versions.
+- The [`develop`](https://github.com/smart-on-fhir/Swift-FHIR/tree/develop) branch should be on versions corresponding to the latest freezes.
+- The [`feature/latest-ci`](https://github.com/smart-on-fhir/Swift-FHIR/tree/feature/latest-ci) branch is updated from time to time with the latest and greatest.
+
+See [tags/releases](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------

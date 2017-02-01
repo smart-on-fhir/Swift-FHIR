@@ -2,8 +2,8 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -203,9 +203,6 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 	public var valueDecimal: FHIRDecimal?
 	
 	/// Single-valued answer to the question.
-	public var valueInstant: Instant?
-	
-	/// Single-valued answer to the question.
 	public var valueInteger: FHIRInteger?
 	
 	/// Single-valued answer to the question.
@@ -234,7 +231,6 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		valueDate = try createInstance(type: FHIRDate.self, for: "valueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDate
 		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
 		valueDecimal = try createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDecimal
-		valueInstant = try createInstance(type: Instant.self, for: "valueInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInstant
 		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
 		valueQuantity = try createInstance(type: Quantity.self, for: "valueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueQuantity
 		valueReference = try createInstance(type: Reference.self, for: "valueReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueReference
@@ -255,7 +251,6 @@ open class QuestionnaireResponseItemAnswer: BackboneElement {
 		self.valueDate?.decorate(json: &json, withKey: "valueDate", errors: &errors)
 		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
 		self.valueDecimal?.decorate(json: &json, withKey: "valueDecimal", errors: &errors)
-		self.valueInstant?.decorate(json: &json, withKey: "valueInstant", errors: &errors)
 		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
 		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
 		self.valueReference?.decorate(json: &json, withKey: "valueReference", errors: &errors)

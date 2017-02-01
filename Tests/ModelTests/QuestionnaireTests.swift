@@ -2,22 +2,28 @@
 //  QuestionnaireTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRQuestionnaire = Models.Questionnaire
+#else
 import SwiftFHIR
+typealias SwiftFHIRQuestionnaire = SwiftFHIR.Questionnaire
+#endif
 
 
 class QuestionnaireTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Questionnaire {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRQuestionnaire {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Questionnaire {
-		return try SwiftFHIR.Questionnaire(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRQuestionnaire {
+		return try SwiftFHIRQuestionnaire(json: json)
 	}
 	
 	func testQuestionnaire1() {
@@ -31,7 +37,7 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-bluebook.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-02-19")
@@ -104,12 +110,12 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-f201-lifelines.json")
 		
-		XCTAssertEqual(inst.concept?[0].code, "VL 1-1, 18-65_1.2.2")
-		XCTAssertEqual(inst.concept?[0].display, "Lifelines Questionnaire 1 part 1")
-		XCTAssertEqual(inst.concept?[0].system?.absoluteString, "http://example.org/system/code/lifelines/nl")
+		XCTAssertEqual(inst.code?[0].code, "VL 1-1, 18-65_1.2.2")
+		XCTAssertEqual(inst.code?[0].display, "Lifelines Questionnaire 1 part 1")
+		XCTAssertEqual(inst.code?[0].system?.absoluteString, "http://example.org/system/code/lifelines/nl")
 		XCTAssertEqual(inst.date?.description, "2010")
 		XCTAssertEqual(inst.id, "f201")
 		XCTAssertEqual(inst.item?[0].linkId, "1")
@@ -158,28 +164,28 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-gcs.json")
 		
-		XCTAssertEqual(inst.concept?[0].code, "9269-2")
-		XCTAssertEqual(inst.concept?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.code?[0].code, "9269-2")
+		XCTAssertEqual(inst.code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.contained?[0].id, "motor")
 		XCTAssertEqual(inst.contained?[1].id, "verbal")
 		XCTAssertEqual(inst.contained?[2].id, "eye")
 		XCTAssertEqual(inst.date?.description, "2015-08-03")
 		XCTAssertEqual(inst.id, "gcs")
-		XCTAssertEqual(inst.item?[0].concept?[0].code, "9270-0")
-		XCTAssertEqual(inst.item?[0].concept?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.item?[0].code?[0].code, "9270-0")
+		XCTAssertEqual(inst.item?[0].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[0].linkId, "1.1")
 		XCTAssertEqual(inst.item?[0].options?.reference, "#verbal")
 		XCTAssertEqual(inst.item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[1].concept?[0].code, "9268-4")
-		XCTAssertEqual(inst.item?[1].concept?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.item?[1].code?[0].code, "9268-4")
+		XCTAssertEqual(inst.item?[1].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[1].linkId, "1.2")
 		XCTAssertEqual(inst.item?[1].options?.reference, "#motor")
 		XCTAssertEqual(inst.item?[1].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[2].concept?[0].code, "9267-6")
-		XCTAssertEqual(inst.item?[2].concept?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.item?[2].code?[0].code, "9267-6")
+		XCTAssertEqual(inst.item?[2].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[2].linkId, "1.3")
 		XCTAssertEqual(inst.item?[2].options?.reference, "#eye")
 		XCTAssertEqual(inst.item?[2].type, QuestionnaireItemType(rawValue: "choice")!)
@@ -204,34 +210,34 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-01")
 		XCTAssertEqual(inst.id, "3141")
-		XCTAssertEqual(inst.item?[0].concept?[0].code, "COMORBIDITY")
-		XCTAssertEqual(inst.item?[0].concept?[0].system?.absoluteString, "http://example.org/system/code/sections")
-		XCTAssertEqual(inst.item?[0].item?[0].concept?[0].code, "COMORB")
-		XCTAssertEqual(inst.item?[0].item?[0].concept?[0].system?.absoluteString, "http://example.org/system/code/questions")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].concept?[0].code, "CARDIAL")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].concept?[0].system?.absoluteString, "http://example.org/system/code/sections")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].concept?[0].code, "COMORBCAR")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].concept?[0].system?.absoluteString, "http://example.org/system/code/questions")
+		XCTAssertEqual(inst.item?[0].code?[0].code, "COMORBIDITY")
+		XCTAssertEqual(inst.item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/sections")
+		XCTAssertEqual(inst.item?[0].item?[0].code?[0].code, "COMORB")
+		XCTAssertEqual(inst.item?[0].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].code?[0].code, "CARDIAL")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/sections")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].code?[0].code, "COMORBCAR")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].linkId, "1.1.1.1")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].options?.reference, "http://hl7.org/fhir/ValueSet/yesnodontknow")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].concept?[0].code, "COMCAR00")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].concept?[0].display, "Angina Pectoris")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].concept?[0].system?.absoluteString, "http://example.org/system/code/questions")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].concept?[1].code, "194828000")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].concept?[1].display, "Angina (disorder)")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].concept?[1].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[0].code, "COMCAR00")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[0].display, "Angina Pectoris")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[1].code, "194828000")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[1].display, "Angina (disorder)")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[1].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].linkId, "1.1.1.2")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].options?.reference, "http://hl7.org/fhir/ValueSet/yesnodontknow")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].concept?[0].code, "22298006")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].concept?[0].display, "Myocardial infarction (disorder)")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].concept?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].code?[0].code, "22298006")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].code?[0].display, "Myocardial infarction (disorder)")
+		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].code?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].linkId, "1.1.1.3")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].options?.reference, "http://hl7.org/fhir/ValueSet/yesnodontknow")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[2].type, QuestionnaireItemType(rawValue: "choice")!)
@@ -242,13 +248,13 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
 		XCTAssertEqual(inst.item?[0].linkId, "1")
 		XCTAssertEqual(inst.item?[0].type, QuestionnaireItemType(rawValue: "group")!)
-		XCTAssertEqual(inst.item?[1].concept?[0].code, "HISTOPATHOLOGY")
-		XCTAssertEqual(inst.item?[1].concept?[0].system?.absoluteString, "http://example.org/system/code/sections")
-		XCTAssertEqual(inst.item?[1].item?[0].concept?[0].code, "ABDOMINAL")
-		XCTAssertEqual(inst.item?[1].item?[0].concept?[0].system?.absoluteString, "http://example.org/system/code/sections")
-		XCTAssertEqual(inst.item?[1].item?[0].item?[0].concept?[0].code, "STADPT")
-		XCTAssertEqual(inst.item?[1].item?[0].item?[0].concept?[0].display, "pT category")
-		XCTAssertEqual(inst.item?[1].item?[0].item?[0].concept?[0].system?.absoluteString, "http://example.org/system/code/questions")
+		XCTAssertEqual(inst.item?[1].code?[0].code, "HISTOPATHOLOGY")
+		XCTAssertEqual(inst.item?[1].code?[0].system?.absoluteString, "http://example.org/system/code/sections")
+		XCTAssertEqual(inst.item?[1].item?[0].code?[0].code, "ABDOMINAL")
+		XCTAssertEqual(inst.item?[1].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/sections")
+		XCTAssertEqual(inst.item?[1].item?[0].item?[0].code?[0].code, "STADPT")
+		XCTAssertEqual(inst.item?[1].item?[0].item?[0].code?[0].display, "pT category")
+		XCTAssertEqual(inst.item?[1].item?[0].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
 		XCTAssertEqual(inst.item?[1].item?[0].item?[0].linkId, "2.1.2")
 		XCTAssertEqual(inst.item?[1].item?[0].item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
 		XCTAssertEqual(inst.item?[1].item?[0].linkId, "2.1")

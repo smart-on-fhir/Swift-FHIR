@@ -2,22 +2,28 @@
 //  TaskTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRTask = Models.Task
+#else
 import SwiftFHIR
+typealias SwiftFHIRTask = SwiftFHIR.Task
+#endif
 
 
 class TaskTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Task {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRTask {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Task {
-		return try SwiftFHIR.Task(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRTask {
+		return try SwiftFHIRTask(json: json)
 	}
 	
 	func testTask1() {
@@ -31,7 +37,7 @@ class TaskTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTask1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Task {
+	func runTask1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTask {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "task-example.json")
 		
 		XCTAssertEqual(inst.authoredOn?.description, "2016-03-10T22:39:32-04:00")

@@ -2,8 +2,8 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-13.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 
@@ -24,6 +24,10 @@ extension FHIRAbstractBase {
 				if let res = try ActivityDefinitionDynamicValue(json: json, owner: owner) as? T { return res }
 			case "Address":
 				if let res = try Address(json: json, owner: owner) as? T { return res }
+			case "AdverseEvent":
+				if let res = try AdverseEvent(json: json, owner: owner) as? T { return res }
+			case "AdverseEventSuspectEntity":
+				if let res = try AdverseEventSuspectEntity(json: json, owner: owner) as? T { return res }
 			case "Age":
 				if let res = try Age(json: json, owner: owner) as? T { return res }
 			case "AllergyIntolerance":
@@ -108,12 +112,22 @@ extension FHIRAbstractBase {
 				if let res = try CarePlanActivity(json: json, owner: owner) as? T { return res }
 			case "CarePlanActivityDetail":
 				if let res = try CarePlanActivityDetail(json: json, owner: owner) as? T { return res }
-			case "CarePlanRelatedPlan":
-				if let res = try CarePlanRelatedPlan(json: json, owner: owner) as? T { return res }
 			case "CareTeam":
 				if let res = try CareTeam(json: json, owner: owner) as? T { return res }
 			case "CareTeamParticipant":
 				if let res = try CareTeamParticipant(json: json, owner: owner) as? T { return res }
+			case "Catalog":
+				if let res = try Catalog(json: json, owner: owner) as? T { return res }
+			case "CatalogDocument":
+				if let res = try CatalogDocument(json: json, owner: owner) as? T { return res }
+			case "CatalogEntry":
+				if let res = try CatalogEntry(json: json, owner: owner) as? T { return res }
+			case "CatalogEntryRelatedItem":
+				if let res = try CatalogEntryRelatedItem(json: json, owner: owner) as? T { return res }
+			case "ChargeItem":
+				if let res = try ChargeItem(json: json, owner: owner) as? T { return res }
+			case "ChargeItemParticipant":
+				if let res = try ChargeItemParticipant(json: json, owner: owner) as? T { return res }
 			case "Claim":
 				if let res = try Claim(json: json, owner: owner) as? T { return res }
 			case "ClaimAccident":
@@ -132,8 +146,6 @@ extension FHIRAbstractBase {
 				if let res = try ClaimItemDetail(json: json, owner: owner) as? T { return res }
 			case "ClaimItemDetailSubDetail":
 				if let res = try ClaimItemDetailSubDetail(json: json, owner: owner) as? T { return res }
-			case "ClaimItemProsthesis":
-				if let res = try ClaimItemProsthesis(json: json, owner: owner) as? T { return res }
 			case "ClaimPayee":
 				if let res = try ClaimPayee(json: json, owner: owner) as? T { return res }
 			case "ClaimProcedure":
@@ -158,10 +170,10 @@ extension FHIRAbstractBase {
 				if let res = try ClaimResponseItemDetail(json: json, owner: owner) as? T { return res }
 			case "ClaimResponseItemDetailSubDetail":
 				if let res = try ClaimResponseItemDetailSubDetail(json: json, owner: owner) as? T { return res }
-			case "ClaimResponseNote":
-				if let res = try ClaimResponseNote(json: json, owner: owner) as? T { return res }
 			case "ClaimResponsePayment":
 				if let res = try ClaimResponsePayment(json: json, owner: owner) as? T { return res }
+			case "ClaimResponseProcessNote":
+				if let res = try ClaimResponseProcessNote(json: json, owner: owner) as? T { return res }
 			case "ClinicalImpression":
 				if let res = try ClinicalImpression(json: json, owner: owner) as? T { return res }
 			case "ClinicalImpressionFinding":
@@ -222,6 +234,10 @@ extension FHIRAbstractBase {
 				if let res = try ConditionStage(json: json, owner: owner) as? T { return res }
 			case "Consent":
 				if let res = try Consent(json: json, owner: owner) as? T { return res }
+			case "ConsentActor":
+				if let res = try ConsentActor(json: json, owner: owner) as? T { return res }
+			case "ConsentData":
+				if let res = try ConsentData(json: json, owner: owner) as? T { return res }
 			case "ConsentExcept":
 				if let res = try ConsentExcept(json: json, owner: owner) as? T { return res }
 			case "ConsentExceptActor":
@@ -258,8 +274,8 @@ extension FHIRAbstractBase {
 				if let res = try Count(json: json, owner: owner) as? T { return res }
 			case "Coverage":
 				if let res = try Coverage(json: json, owner: owner) as? T { return res }
-			case "CoverageGroup":
-				if let res = try CoverageGroup(json: json, owner: owner) as? T { return res }
+			case "CoverageGrouping":
+				if let res = try CoverageGrouping(json: json, owner: owner) as? T { return res }
 			case "DataElement":
 				if let res = try DataElement(json: json, owner: owner) as? T { return res }
 			case "DataElementMapping":
@@ -284,16 +300,18 @@ extension FHIRAbstractBase {
 				if let res = try DeviceMetric(json: json, owner: owner) as? T { return res }
 			case "DeviceMetricCalibration":
 				if let res = try DeviceMetricCalibration(json: json, owner: owner) as? T { return res }
-			case "DeviceUseRequest":
-				if let res = try DeviceUseRequest(json: json, owner: owner) as? T { return res }
+			case "DeviceRequest":
+				if let res = try DeviceRequest(json: json, owner: owner) as? T { return res }
+			case "DeviceRequestRequester":
+				if let res = try DeviceRequestRequester(json: json, owner: owner) as? T { return res }
 			case "DeviceUseStatement":
 				if let res = try DeviceUseStatement(json: json, owner: owner) as? T { return res }
 			case "DiagnosticReport":
 				if let res = try DiagnosticReport(json: json, owner: owner) as? T { return res }
 			case "DiagnosticReportImage":
 				if let res = try DiagnosticReportImage(json: json, owner: owner) as? T { return res }
-			case "DiagnosticRequest":
-				if let res = try DiagnosticRequest(json: json, owner: owner) as? T { return res }
+			case "DiagnosticReportPerformer":
+				if let res = try DiagnosticReportPerformer(json: json, owner: owner) as? T { return res }
 			case "Distance":
 				if let res = try Distance(json: json, owner: owner) as? T { return res }
 			case "DocumentManifest":
@@ -412,16 +430,14 @@ extension FHIRAbstractBase {
 				if let res = try ExplanationOfBenefitItemDetail(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitItemDetailSubDetail":
 				if let res = try ExplanationOfBenefitItemDetailSubDetail(json: json, owner: owner) as? T { return res }
-			case "ExplanationOfBenefitItemProsthesis":
-				if let res = try ExplanationOfBenefitItemProsthesis(json: json, owner: owner) as? T { return res }
-			case "ExplanationOfBenefitNote":
-				if let res = try ExplanationOfBenefitNote(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitPayee":
 				if let res = try ExplanationOfBenefitPayee(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitPayment":
 				if let res = try ExplanationOfBenefitPayment(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitProcedure":
 				if let res = try ExplanationOfBenefitProcedure(json: json, owner: owner) as? T { return res }
+			case "ExplanationOfBenefitProcessNote":
+				if let res = try ExplanationOfBenefitProcessNote(json: json, owner: owner) as? T { return res }
 			case "ExplanationOfBenefitRelated":
 				if let res = try ExplanationOfBenefitRelated(json: json, owner: owner) as? T { return res }
 			case "Extension":
@@ -434,8 +450,8 @@ extension FHIRAbstractBase {
 				if let res = try Flag(json: json, owner: owner) as? T { return res }
 			case "Goal":
 				if let res = try Goal(json: json, owner: owner) as? T { return res }
-			case "GoalOutcome":
-				if let res = try GoalOutcome(json: json, owner: owner) as? T { return res }
+			case "GoalTarget":
+				if let res = try GoalTarget(json: json, owner: owner) as? T { return res }
 			case "Group":
 				if let res = try Group(json: json, owner: owner) as? T { return res }
 			case "GroupCharacteristic":
@@ -458,22 +474,14 @@ extension FHIRAbstractBase {
 				if let res = try ImagingManifest(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudy":
 				if let res = try ImagingManifestStudy(json: json, owner: owner) as? T { return res }
-			case "ImagingManifestStudyBaseLocation":
-				if let res = try ImagingManifestStudyBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudySeries":
 				if let res = try ImagingManifestStudySeries(json: json, owner: owner) as? T { return res }
-			case "ImagingManifestStudySeriesBaseLocation":
-				if let res = try ImagingManifestStudySeriesBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingManifestStudySeriesInstance":
 				if let res = try ImagingManifestStudySeriesInstance(json: json, owner: owner) as? T { return res }
 			case "ImagingStudy":
 				if let res = try ImagingStudy(json: json, owner: owner) as? T { return res }
-			case "ImagingStudyBaseLocation":
-				if let res = try ImagingStudyBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingStudySeries":
 				if let res = try ImagingStudySeries(json: json, owner: owner) as? T { return res }
-			case "ImagingStudySeriesBaseLocation":
-				if let res = try ImagingStudySeriesBaseLocation(json: json, owner: owner) as? T { return res }
 			case "ImagingStudySeriesInstance":
 				if let res = try ImagingStudySeriesInstance(json: json, owner: owner) as? T { return res }
 			case "Immunization":
@@ -552,8 +560,12 @@ extension FHIRAbstractBase {
 				if let res = try MedicationAdministration(json: json, owner: owner) as? T { return res }
 			case "MedicationAdministrationDosage":
 				if let res = try MedicationAdministrationDosage(json: json, owner: owner) as? T { return res }
+			case "MedicationAdministrationPerformer":
+				if let res = try MedicationAdministrationPerformer(json: json, owner: owner) as? T { return res }
 			case "MedicationDispense":
 				if let res = try MedicationDispense(json: json, owner: owner) as? T { return res }
+			case "MedicationDispensePerformer":
+				if let res = try MedicationDispensePerformer(json: json, owner: owner) as? T { return res }
 			case "MedicationDispenseSubstitution":
 				if let res = try MedicationDispenseSubstitution(json: json, owner: owner) as? T { return res }
 			case "MedicationPackage":
@@ -570,6 +582,8 @@ extension FHIRAbstractBase {
 				if let res = try MedicationRequest(json: json, owner: owner) as? T { return res }
 			case "MedicationRequestDispenseRequest":
 				if let res = try MedicationRequestDispenseRequest(json: json, owner: owner) as? T { return res }
+			case "MedicationRequestRequester":
+				if let res = try MedicationRequestRequester(json: json, owner: owner) as? T { return res }
 			case "MedicationRequestSubstitution":
 				if let res = try MedicationRequestSubstitution(json: json, owner: owner) as? T { return res }
 			case "MedicationStatement":
@@ -600,20 +614,20 @@ extension FHIRAbstractBase {
 				if let res = try NamingSystemUniqueId(json: json, owner: owner) as? T { return res }
 			case "Narrative":
 				if let res = try Narrative(json: json, owner: owner) as? T { return res }
-			case "NutritionRequest":
-				if let res = try NutritionRequest(json: json, owner: owner) as? T { return res }
-			case "NutritionRequestEnteralFormula":
-				if let res = try NutritionRequestEnteralFormula(json: json, owner: owner) as? T { return res }
-			case "NutritionRequestEnteralFormulaAdministration":
-				if let res = try NutritionRequestEnteralFormulaAdministration(json: json, owner: owner) as? T { return res }
-			case "NutritionRequestOralDiet":
-				if let res = try NutritionRequestOralDiet(json: json, owner: owner) as? T { return res }
-			case "NutritionRequestOralDietNutrient":
-				if let res = try NutritionRequestOralDietNutrient(json: json, owner: owner) as? T { return res }
-			case "NutritionRequestOralDietTexture":
-				if let res = try NutritionRequestOralDietTexture(json: json, owner: owner) as? T { return res }
-			case "NutritionRequestSupplement":
-				if let res = try NutritionRequestSupplement(json: json, owner: owner) as? T { return res }
+			case "NutritionOrder":
+				if let res = try NutritionOrder(json: json, owner: owner) as? T { return res }
+			case "NutritionOrderEnteralFormula":
+				if let res = try NutritionOrderEnteralFormula(json: json, owner: owner) as? T { return res }
+			case "NutritionOrderEnteralFormulaAdministration":
+				if let res = try NutritionOrderEnteralFormulaAdministration(json: json, owner: owner) as? T { return res }
+			case "NutritionOrderOralDiet":
+				if let res = try NutritionOrderOralDiet(json: json, owner: owner) as? T { return res }
+			case "NutritionOrderOralDietNutrient":
+				if let res = try NutritionOrderOralDietNutrient(json: json, owner: owner) as? T { return res }
+			case "NutritionOrderOralDietTexture":
+				if let res = try NutritionOrderOralDietTexture(json: json, owner: owner) as? T { return res }
+			case "NutritionOrderSupplement":
+				if let res = try NutritionOrderSupplement(json: json, owner: owner) as? T { return res }
 			case "Observation":
 				if let res = try Observation(json: json, owner: owner) as? T { return res }
 			case "ObservationComponent":
@@ -660,8 +674,8 @@ extension FHIRAbstractBase {
 				if let res = try PaymentReconciliation(json: json, owner: owner) as? T { return res }
 			case "PaymentReconciliationDetail":
 				if let res = try PaymentReconciliationDetail(json: json, owner: owner) as? T { return res }
-			case "PaymentReconciliationNote":
-				if let res = try PaymentReconciliationNote(json: json, owner: owner) as? T { return res }
+			case "PaymentReconciliationProcessNote":
+				if let res = try PaymentReconciliationProcessNote(json: json, owner: owner) as? T { return res }
 			case "Period":
 				if let res = try Period(json: json, owner: owner) as? T { return res }
 			case "Person":
@@ -698,14 +712,16 @@ extension FHIRAbstractBase {
 				if let res = try ProcedurePerformer(json: json, owner: owner) as? T { return res }
 			case "ProcedureRequest":
 				if let res = try ProcedureRequest(json: json, owner: owner) as? T { return res }
+			case "ProcedureRequestRequester":
+				if let res = try ProcedureRequestRequester(json: json, owner: owner) as? T { return res }
 			case "ProcessRequest":
 				if let res = try ProcessRequest(json: json, owner: owner) as? T { return res }
 			case "ProcessRequestItem":
 				if let res = try ProcessRequestItem(json: json, owner: owner) as? T { return res }
 			case "ProcessResponse":
 				if let res = try ProcessResponse(json: json, owner: owner) as? T { return res }
-			case "ProcessResponseNote":
-				if let res = try ProcessResponseNote(json: json, owner: owner) as? T { return res }
+			case "ProcessResponseProcessNote":
+				if let res = try ProcessResponseProcessNote(json: json, owner: owner) as? T { return res }
 			case "Provenance":
 				if let res = try Provenance(json: json, owner: owner) as? T { return res }
 			case "ProvenanceAgent":
@@ -776,12 +792,6 @@ extension FHIRAbstractBase {
 				if let res = try SequenceReferenceSeq(json: json, owner: owner) as? T { return res }
 			case "SequenceRepository":
 				if let res = try SequenceRepository(json: json, owner: owner) as? T { return res }
-			case "SequenceStructureVariant":
-				if let res = try SequenceStructureVariant(json: json, owner: owner) as? T { return res }
-			case "SequenceStructureVariantInner":
-				if let res = try SequenceStructureVariantInner(json: json, owner: owner) as? T { return res }
-			case "SequenceStructureVariantOuter":
-				if let res = try SequenceStructureVariantOuter(json: json, owner: owner) as? T { return res }
 			case "SequenceVariant":
 				if let res = try SequenceVariant(json: json, owner: owner) as? T { return res }
 			case "ServiceDefinition":
@@ -796,8 +806,8 @@ extension FHIRAbstractBase {
 				if let res = try SpecimenCollection(json: json, owner: owner) as? T { return res }
 			case "SpecimenContainer":
 				if let res = try SpecimenContainer(json: json, owner: owner) as? T { return res }
-			case "SpecimenTreatment":
-				if let res = try SpecimenTreatment(json: json, owner: owner) as? T { return res }
+			case "SpecimenProcessing":
+				if let res = try SpecimenProcessing(json: json, owner: owner) as? T { return res }
 			case "StructureDefinition":
 				if let res = try StructureDefinition(json: json, owner: owner) as? T { return res }
 			case "StructureDefinitionDifferential":
@@ -836,6 +846,8 @@ extension FHIRAbstractBase {
 				if let res = try SubstanceInstance(json: json, owner: owner) as? T { return res }
 			case "SupplyDelivery":
 				if let res = try SupplyDelivery(json: json, owner: owner) as? T { return res }
+			case "SupplyDeliverySuppliedItem":
+				if let res = try SupplyDeliverySuppliedItem(json: json, owner: owner) as? T { return res }
 			case "SupplyRequest":
 				if let res = try SupplyRequest(json: json, owner: owner) as? T { return res }
 			case "SupplyRequestWhen":

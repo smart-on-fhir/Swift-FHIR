@@ -2,22 +2,28 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRBundle = Models.Bundle
+#else
 import SwiftFHIR
+typealias SwiftFHIRBundle = SwiftFHIR.Bundle
+#endif
 
 
 class BundleTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Bundle {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRBundle {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Bundle {
-		return try SwiftFHIR.Bundle(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRBundle {
+		return try SwiftFHIRBundle(json: json)
 	}
 	
 	func testBundle1() {
@@ -31,7 +37,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bundle-example.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "https://example.com/base/MedicationRequest/3123")
@@ -64,7 +70,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-general.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/3")
@@ -115,7 +121,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "document-example-dischargesummary.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://fhir.healthintersections.com.au/open/Composition/180f219f-97a8-486d-99d9-ed631fe4fc57")
@@ -162,7 +168,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-examples-general-template.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/71")
@@ -203,7 +209,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-cypress-template.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Patient/71")
@@ -254,7 +260,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-general.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Patient/1")
@@ -305,7 +311,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-examples-general.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Practitioner/13")
@@ -356,7 +362,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+	func runBundle8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "xds-example.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "urn:uuid:3fdc72f4-a11d-4a9d-9260-a9f745779e1d")

@@ -2,8 +2,8 @@
 //  CareTeam.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -38,8 +38,8 @@ open class CareTeam: DomainResource {
 	/// Time period team covers.
 	public var period: Period?
 	
-	/// active | suspended | inactive | entered in error.
-	public var status: CodeableConcept?
+	/// Indicates the current state of the care team.
+	public var status: CareTeamStatus?
 	
 	/// Who care team is for.
 	public var subject: Reference?
@@ -54,7 +54,7 @@ open class CareTeam: DomainResource {
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
 		participant = try createInstances(of: CareTeamParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		status = try createInstance(type: CodeableConcept.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
+		status = createEnum(type: CareTeamStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		
 		return errors.isEmpty ? nil : errors
@@ -88,6 +88,9 @@ open class CareTeamParticipant: BackboneElement {
 	/// Who is involved.
 	public var member: Reference?
 	
+	/// Organization of the practitioner.
+	public var onBehalfOf: Reference?
+	
 	/// Time period of participant.
 	public var period: Period?
 	
@@ -99,6 +102,7 @@ open class CareTeamParticipant: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		member = try createInstance(type: Reference.self, for: "member", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? member
+		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
 		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
 		
@@ -109,6 +113,7 @@ open class CareTeamParticipant: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.member?.decorate(json: &json, withKey: "member", errors: &errors)
+		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 	}

@@ -2,8 +2,8 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Medication) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -23,8 +23,14 @@ open class Medication: DomainResource {
 	/// Codes that identify this medication.
 	public var code: CodeableConcept?
 	
+	/// Image of medication.
+	public var image: [Attachment]?
+	
 	/// True if a brand.
 	public var isBrand: FHIRBool?
+	
+	/// True if medication does not require a prescription.
+	public var isOverTheCounter: FHIRBool?
 	
 	/// Manufacturer of the item.
 	public var manufacturer: Reference?
@@ -35,15 +41,21 @@ open class Medication: DomainResource {
 	/// Administrable medication details.
 	public var product: MedicationProduct?
 	
+	/// A code to iindicate if the medication is in active use.
+	public var status: MedicationStatus?
+	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		image = try createInstances(of: Attachment.self, for: "image", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? image
 		isBrand = try createInstance(type: FHIRBool.self, for: "isBrand", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? isBrand
+		isOverTheCounter = try createInstance(type: FHIRBool.self, for: "isOverTheCounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? isOverTheCounter
 		manufacturer = try createInstance(type: Reference.self, for: "manufacturer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manufacturer
 		package = try createInstance(type: MedicationPackage.self, for: "package", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? package
 		product = try createInstance(type: MedicationProduct.self, for: "product", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? product
+		status = createEnum(type: MedicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -52,10 +64,13 @@ open class Medication: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		arrayDecorate(json: &json, withKey: "image", using: self.image, errors: &errors)
 		self.isBrand?.decorate(json: &json, withKey: "isBrand", errors: &errors)
+		self.isOverTheCounter?.decorate(json: &json, withKey: "isOverTheCounter", errors: &errors)
 		self.manufacturer?.decorate(json: &json, withKey: "manufacturer", errors: &errors)
 		self.package?.decorate(json: &json, withKey: "package", errors: &errors)
 		self.product?.decorate(json: &json, withKey: "product", errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 	}
 }
 
@@ -249,6 +264,9 @@ open class MedicationProductIngredient: BackboneElement {
 	/// Quantity of ingredient present.
 	public var amount: Ratio?
 	
+	/// Active ingredient indicator.
+	public var isActive: FHIRBool?
+	
 	/// The product contained.
 	public var itemCodeableConcept: CodeableConcept?
 	
@@ -275,6 +293,7 @@ open class MedicationProductIngredient: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		amount = try createInstance(type: Ratio.self, for: "amount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? amount
+		isActive = try createInstance(type: FHIRBool.self, for: "isActive", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? isActive
 		itemCodeableConcept = try createInstance(type: CodeableConcept.self, for: "itemCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? itemCodeableConcept
 		itemReference = try createInstance(type: Reference.self, for: "itemReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? itemReference
 		
@@ -291,6 +310,7 @@ open class MedicationProductIngredient: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.amount?.decorate(json: &json, withKey: "amount", errors: &errors)
+		self.isActive?.decorate(json: &json, withKey: "isActive", errors: &errors)
 		self.itemCodeableConcept?.decorate(json: &json, withKey: "itemCodeableConcept", errors: &errors)
 		self.itemReference?.decorate(json: &json, withKey: "itemReference", errors: &errors)
 		

@@ -2,8 +2,8 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Condition) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -12,9 +12,8 @@ import Foundation
 /**
 Detailed information about conditions, problems or diagnoses.
 
-Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many
-uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as a
-discharge summary.
+A clinical condition, problem, diagnosis, or other event, situation, issue, or clinical concept that has risen to a
+level of concern.
 */
 open class Condition: DomainResource {
 	override open class var resourceType: String {
@@ -40,7 +39,7 @@ open class Condition: DomainResource {
 	public var abatementString: FHIRString?
 	
 	/// Date record was believed accurate.
-	public var assertedDate: FHIRDate?
+	public var assertedDate: DateTime?
 	
 	/// Person who asserts this condition.
 	public var asserter: Reference?
@@ -98,9 +97,8 @@ open class Condition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, subject: Reference) {
+	public convenience init(subject: Reference) {
 		self.init()
-		self.code = code
 		self.subject = subject
 	}
 	
@@ -114,15 +112,12 @@ open class Condition: DomainResource {
 		abatementPeriod = try createInstance(type: Period.self, for: "abatementPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? abatementPeriod
 		abatementRange = try createInstance(type: Range.self, for: "abatementRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? abatementRange
 		abatementString = try createInstance(type: FHIRString.self, for: "abatementString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? abatementString
-		assertedDate = try createInstance(type: FHIRDate.self, for: "assertedDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? assertedDate
+		assertedDate = try createInstance(type: DateTime.self, for: "assertedDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? assertedDate
 		asserter = try createInstance(type: Reference.self, for: "asserter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asserter
 		bodySite = try createInstances(of: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
 		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		clinicalStatus = try createInstance(type: FHIRString.self, for: "clinicalStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? clinicalStatus
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
-		}
 		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		evidence = try createInstances(of: ConditionEvidence.self, for: "evidence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? evidence
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
@@ -158,9 +153,6 @@ open class Condition: DomainResource {
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.clinicalStatus?.decorate(json: &json, withKey: "clinicalStatus", errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		if nil == self.code {
-			errors.append(FHIRValidationError(missing: "code"))
-		}
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		arrayDecorate(json: &json, withKey: "evidence", using: self.evidence, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)

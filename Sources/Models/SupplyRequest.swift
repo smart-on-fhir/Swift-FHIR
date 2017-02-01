@@ -2,8 +2,8 @@
 //  SupplyRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -21,6 +21,9 @@ open class SupplyRequest: DomainResource {
 	
 	/// When the request was made.
 	public var date: DateTime?
+	
+	/// The origin of the supply.
+	public var from: Reference?
 	
 	/// Unique identifier.
 	public var identifier: Identifier?
@@ -52,6 +55,9 @@ open class SupplyRequest: DomainResource {
 	/// Who is intended to fulfill the request.
 	public var supplier: [Reference]?
 	
+	/// The destination of the supply.
+	public var to: Reference?
+	
 	/// When the request should be fulfilled.
 	public var when: SupplyRequestWhen?
 	
@@ -60,6 +66,7 @@ open class SupplyRequest: DomainResource {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
+		from = try createInstance(type: Reference.self, for: "from", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? from
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		kind = try createInstance(type: CodeableConcept.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? kind
 		orderedItemCodeableConcept = try createInstance(type: CodeableConcept.self, for: "orderedItemCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? orderedItemCodeableConcept
@@ -70,6 +77,7 @@ open class SupplyRequest: DomainResource {
 		source = try createInstance(type: Reference.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
 		status = createEnum(type: SupplyRequestStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		supplier = try createInstances(of: Reference.self, for: "supplier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supplier
+		to = try createInstance(type: Reference.self, for: "to", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? to
 		when = try createInstance(type: SupplyRequestWhen.self, for: "when", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? when
 		
 		return errors.isEmpty ? nil : errors
@@ -79,6 +87,7 @@ open class SupplyRequest: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
+		self.from?.decorate(json: &json, withKey: "from", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.kind?.decorate(json: &json, withKey: "kind", errors: &errors)
 		self.orderedItemCodeableConcept?.decorate(json: &json, withKey: "orderedItemCodeableConcept", errors: &errors)
@@ -89,6 +98,7 @@ open class SupplyRequest: DomainResource {
 		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		arrayDecorate(json: &json, withKey: "supplier", using: self.supplier, errors: &errors)
+		self.to?.decorate(json: &json, withKey: "to", errors: &errors)
 		self.when?.decorate(json: &json, withKey: "when", errors: &errors)
 	}
 }

@@ -2,15 +2,15 @@
 //  TestReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/TestReport) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/TestReport) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Describes a set of tests.
+Describes the results of a TestScript execution.
 
 TestReport is a resource that includes summary information on the results of executing a TestScript.
 */
@@ -31,13 +31,16 @@ open class TestReport: DomainResource {
 	/// A participant in the test execution, either the execution engine, a client, or a server.
 	public var participant: [TestReportParticipant]?
 	
+	/// The overall result from the execution of the TestScript.
+	public var result: TestReportResult?
+	
 	/// The final score (percentage of tests passed) resulting from the execution of the TestScript.
 	public var score: FHIRDecimal?
 	
 	/// The results of the series of required setup operations before the tests were executed.
 	public var setup: TestReportSetup?
 	
-	/// The status of the TestReport.
+	/// The current state of this test report.
 	public var status: TestReportStatus?
 	
 	/// The results of running the series of required clean up steps.
@@ -54,8 +57,9 @@ open class TestReport: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: TestReportStatus, testScript: Reference) {
+	public convenience init(result: TestReportResult, status: TestReportStatus, testScript: Reference) {
 		self.init()
+		self.result = result
 		self.status = status
 		self.testScript = testScript
 	}
@@ -68,6 +72,10 @@ open class TestReport: DomainResource {
 		issued = try createInstance(type: DateTime.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
 		participant = try createInstances(of: TestReportParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
+		result = createEnum(type: TestReportResult.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors) ?? result
+		if nil == result && !presentKeys.contains("result") {
+			errors.append(FHIRValidationError(missing: "result"))
+		}
 		score = try createInstance(type: FHIRDecimal.self, for: "score", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? score
 		setup = try createInstance(type: TestReportSetup.self, for: "setup", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? setup
 		status = createEnum(type: TestReportStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
@@ -92,6 +100,10 @@ open class TestReport: DomainResource {
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
+		self.result?.decorate(json: &json, withKey: "result", errors: &errors)
+		if nil == self.result {
+			errors.append(FHIRValidationError(missing: "result"))
+		}
 		self.score?.decorate(json: &json, withKey: "score", errors: &errors)
 		self.setup?.decorate(json: &json, withKey: "setup", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
@@ -260,11 +272,11 @@ open class TestReportSetupActionAssert: BackboneElement {
 	public var message: FHIRString?
 	
 	/// The result of this assertion.
-	public var result: TestReportResultCodes?
+	public var result: TestReportActionResult?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(result: TestReportResultCodes) {
+	public convenience init(result: TestReportActionResult) {
 		self.init()
 		self.result = result
 	}
@@ -275,7 +287,7 @@ open class TestReportSetupActionAssert: BackboneElement {
 		
 		detail = try createInstance(type: FHIRString.self, for: "detail", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detail
 		message = try createInstance(type: FHIRString.self, for: "message", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? message
-		result = createEnum(type: TestReportResultCodes.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors) ?? result
+		result = createEnum(type: TestReportActionResult.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors) ?? result
 		if nil == result && !presentKeys.contains("result") {
 			errors.append(FHIRValidationError(missing: "result"))
 		}
@@ -313,11 +325,11 @@ open class TestReportSetupActionOperation: BackboneElement {
 	public var message: FHIRString?
 	
 	/// The result of this operation.
-	public var result: TestReportResultCodes?
+	public var result: TestReportActionResult?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(result: TestReportResultCodes) {
+	public convenience init(result: TestReportActionResult) {
 		self.init()
 		self.result = result
 	}
@@ -328,7 +340,7 @@ open class TestReportSetupActionOperation: BackboneElement {
 		
 		detail = try createInstance(type: FHIRURL.self, for: "detail", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detail
 		message = try createInstance(type: FHIRString.self, for: "message", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? message
-		result = createEnum(type: TestReportResultCodes.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors) ?? result
+		result = createEnum(type: TestReportActionResult.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors) ?? result
 		if nil == result && !presentKeys.contains("result") {
 			errors.append(FHIRValidationError(missing: "result"))
 		}

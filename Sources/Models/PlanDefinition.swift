@@ -2,8 +2,8 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -194,7 +194,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var activityDefinition: Reference?
 	
 	/// Defines whether the action can be selected multiple times.
-	public var cardinalityBehavior: PlanActionCardinalityBehavior?
+	public var cardinalityBehavior: ActionCardinalityBehavior?
 	
 	/// The meaning of the action or its sub-actions.
 	public var code: [CodeableConcept]?
@@ -212,7 +212,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var dynamicValue: [PlanDefinitionActionDefinitionDynamicValue]?
 	
 	/// Defines the grouping behavior for the action and its children.
-	public var groupingBehavior: PlanActionGroupingBehavior?
+	public var groupingBehavior: ActionGroupingBehavior?
 	
 	/// Input data requirements.
 	public var input: [DataRequirement]?
@@ -224,19 +224,19 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var output: [DataRequirement]?
 	
 	/// The type of participant in the action.
-	public var participantType: [PlanActionParticipantType]?
+	public var participantType: [ActionParticipantType]?
 	
 	/// Defines whether the action should usually be preselected.
-	public var precheckBehavior: PlanActionPrecheckBehavior?
+	public var precheckBehavior: ActionPrecheckBehavior?
 	
 	/// Relationship to another action.
 	public var relatedAction: [PlanDefinitionActionDefinitionRelatedAction]?
 	
 	/// Defines the requiredness behavior for the action.
-	public var requiredBehavior: PlanActionRequiredBehavior?
+	public var requiredBehavior: ActionRequiredBehavior?
 	
 	/// Defines the selection behavior for the action and its children.
-	public var selectionBehavior: PlanActionSelectionBehavior?
+	public var selectionBehavior: ActionSelectionBehavior?
 	
 	/// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system.
 	public var textEquivalent: FHIRString?
@@ -275,21 +275,21 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		actionDefinition = try createInstances(of: PlanDefinitionActionDefinition.self, for: "actionDefinition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionDefinition
 		actionIdentifier = try createInstance(type: Identifier.self, for: "actionIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionIdentifier
 		activityDefinition = try createInstance(type: Reference.self, for: "activityDefinition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? activityDefinition
-		cardinalityBehavior = createEnum(type: PlanActionCardinalityBehavior.self, for: "cardinalityBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? cardinalityBehavior
+		cardinalityBehavior = createEnum(type: ActionCardinalityBehavior.self, for: "cardinalityBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? cardinalityBehavior
 		code = try createInstances(of: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		condition = try createInstances(of: PlanDefinitionActionDefinitionCondition.self, for: "condition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? condition
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		documentation = try createInstances(of: RelatedArtifact.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		dynamicValue = try createInstances(of: PlanDefinitionActionDefinitionDynamicValue.self, for: "dynamicValue", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dynamicValue
-		groupingBehavior = createEnum(type: PlanActionGroupingBehavior.self, for: "groupingBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? groupingBehavior
+		groupingBehavior = createEnum(type: ActionGroupingBehavior.self, for: "groupingBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? groupingBehavior
 		input = try createInstances(of: DataRequirement.self, for: "input", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? input
 		label = try createInstance(type: FHIRString.self, for: "label", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? label
 		output = try createInstances(of: DataRequirement.self, for: "output", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? output
-		participantType = createEnums(of: PlanActionParticipantType.self, for: "participantType", in: json, presentKeys: &presentKeys, errors: &errors) ?? participantType
-		precheckBehavior = createEnum(type: PlanActionPrecheckBehavior.self, for: "precheckBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? precheckBehavior
+		participantType = createEnums(of: ActionParticipantType.self, for: "participantType", in: json, presentKeys: &presentKeys, errors: &errors) ?? participantType
+		precheckBehavior = createEnum(type: ActionPrecheckBehavior.self, for: "precheckBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? precheckBehavior
 		relatedAction = try createInstances(of: PlanDefinitionActionDefinitionRelatedAction.self, for: "relatedAction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatedAction
-		requiredBehavior = createEnum(type: PlanActionRequiredBehavior.self, for: "requiredBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? requiredBehavior
-		selectionBehavior = createEnum(type: PlanActionSelectionBehavior.self, for: "selectionBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? selectionBehavior
+		requiredBehavior = createEnum(type: ActionRequiredBehavior.self, for: "requiredBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? requiredBehavior
+		selectionBehavior = createEnum(type: ActionSelectionBehavior.self, for: "selectionBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? selectionBehavior
 		textEquivalent = try createInstance(type: FHIRString.self, for: "textEquivalent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? textEquivalent
 		timingDateTime = try createInstance(type: DateTime.self, for: "timingDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingDateTime
 		timingDuration = try createInstance(type: Duration.self, for: "timingDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingDuration
@@ -356,14 +356,14 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 	public var expression: FHIRString?
 	
 	/// The kind of condition.
-	public var kind: PlanActionConditionKind?
+	public var kind: ActionConditionKind?
 	
 	/// Language of the expression.
 	public var language: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(kind: PlanActionConditionKind) {
+	public convenience init(kind: ActionConditionKind) {
 		self.init()
 		self.kind = kind
 	}
@@ -374,7 +374,7 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 		
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		expression = try createInstance(type: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
-		kind = createEnum(type: PlanActionConditionKind.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors) ?? kind
+		kind = createEnum(type: ActionConditionKind.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors) ?? kind
 		if nil == kind && !presentKeys.contains("kind") {
 			errors.append(FHIRValidationError(missing: "kind"))
 		}
@@ -464,11 +464,11 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 	public var offsetRange: Range?
 	
 	/// The relationship of this action to the related action.
-	public var relationship: PlanActionRelationshipType?
+	public var relationship: ActionRelationshipType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actionIdentifier: Identifier, relationship: PlanActionRelationshipType) {
+	public convenience init(actionIdentifier: Identifier, relationship: ActionRelationshipType) {
 		self.init()
 		self.actionIdentifier = actionIdentifier
 		self.relationship = relationship
@@ -484,7 +484,7 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		}
 		offsetDuration = try createInstance(type: Duration.self, for: "offsetDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetDuration
 		offsetRange = try createInstance(type: Range.self, for: "offsetRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetRange
-		relationship = createEnum(type: PlanActionRelationshipType.self, for: "relationship", in: json, presentKeys: &presentKeys, errors: &errors) ?? relationship
+		relationship = createEnum(type: ActionRelationshipType.self, for: "relationship", in: json, presentKeys: &presentKeys, errors: &errors) ?? relationship
 		if nil == relationship && !presentKeys.contains("relationship") {
 			errors.append(FHIRValidationError(missing: "relationship"))
 		}

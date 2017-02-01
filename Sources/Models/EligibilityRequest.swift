@@ -2,28 +2,29 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Eligibility request.
+Determine insurance validity and scope of coverage.
 
-This resource provides the details  from the insurer to identify a specified coverage and optionally some class of
-service.
+The EligibilityRequest provides patient and insurance coverage information to an insurer for them to respond, in the
+form of an EligibilityResponse, with information regarding whether the stated coverage is valid and in-force and
+optionally to provide the insurance details of the policy.
 */
 open class EligibilityRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "EligibilityRequest" }
 	}
 	
-	/// Benefit Category.
+	/// Type of services covered.
 	public var benefitCategory: CodeableConcept?
 	
-	/// Benefit SubCategory.
+	/// Detailed services covered within the type.
 	public var benefitSubCategory: CodeableConcept?
 	
 	/// Business agreement.

@@ -2,8 +2,8 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -78,7 +78,7 @@ open class ActivityDefinition: DomainResource {
 	public var name: FHIRString?
 	
 	/// The type of participant in the action.
-	public var participantType: [PlanActionParticipantType]?
+	public var participantType: [ActionParticipantType]?
 	
 	/// What's administered/supplied.
 	public var productCodeableConcept: CodeableConcept?
@@ -158,7 +158,7 @@ open class ActivityDefinition: DomainResource {
 		library = try createInstances(of: Reference.self, for: "library", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? library
 		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		participantType = createEnums(of: PlanActionParticipantType.self, for: "participantType", in: json, presentKeys: &presentKeys, errors: &errors) ?? participantType
+		participantType = createEnums(of: ActionParticipantType.self, for: "participantType", in: json, presentKeys: &presentKeys, errors: &errors) ?? participantType
 		productCodeableConcept = try createInstance(type: CodeableConcept.self, for: "productCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? productCodeableConcept
 		productReference = try createInstance(type: Reference.self, for: "productReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? productReference
 		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher

@@ -2,22 +2,28 @@
 //  ImagingManifestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRImagingManifest = Models.ImagingManifest
+#else
 import SwiftFHIR
+typealias SwiftFHIRImagingManifest = SwiftFHIR.ImagingManifest
+#endif
 
 
 class ImagingManifestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ImagingManifest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRImagingManifest {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ImagingManifest {
-		return try SwiftFHIR.ImagingManifest(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRImagingManifest {
+		return try SwiftFHIRImagingManifest(json: json)
 	}
 	
 	func testImagingManifest1() {
@@ -31,7 +37,7 @@ class ImagingManifestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runImagingManifest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ImagingManifest {
+	func runImagingManifest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRImagingManifest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingmanifest-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/P2")
@@ -39,13 +45,10 @@ class ImagingManifestTests: XCTestCase {
 		XCTAssertEqual(inst.description_fhir, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.patient?.reference, "Patient/dicom")
-		XCTAssertEqual(inst.study?[0].baseLocation?[0].type?.code, "IID")
-		XCTAssertEqual(inst.study?[0].baseLocation?[0].url?.absoluteString, "https://pacs.hospital.org/IHEInvokeImageDisplay")
-		XCTAssertEqual(inst.study?[0].baseLocation?[1].type?.code, "WADO-RS")
-		XCTAssertEqual(inst.study?[0].baseLocation?[1].url?.absoluteString, "https://pacs.hospital.org/wado-rs")
+		XCTAssertEqual(inst.study?[0].endpoint?[0].reference, "Endpoint/example-iid")
+		XCTAssertEqual(inst.study?[0].endpoint?[1].reference, "Endpoint/example-wadors")
 		XCTAssertEqual(inst.study?[0].imagingStudy?.reference, "ImagingStudy/I3")
-		XCTAssertEqual(inst.study?[0].series?[0].baseLocation?[0].type?.code, "WADO-RS")
-		XCTAssertEqual(inst.study?[0].series?[0].baseLocation?[0].url?.absoluteString, "https://vna.healthexchange.org/wado-rs")
+		XCTAssertEqual(inst.study?[0].series?[0].endpoint?[0].reference, "Endpoint/eample-wadors")
 		XCTAssertEqual(inst.study?[0].series?[0].instance?[0].sopClass?.absoluteString, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
 		XCTAssertEqual(inst.study?[0].series?[0].instance?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092902")
 		XCTAssertEqual(inst.study?[0].series?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092901")
@@ -57,10 +60,6 @@ class ImagingManifestTests: XCTestCase {
 		XCTAssertEqual(inst.study?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A set of images to share accompanying an report document, including one SC image and two CT image</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.title?.coding?[0].code, "113030")
-		XCTAssertEqual(inst.title?.coding?[0].display, "Manifest")
-		XCTAssertEqual(inst.title?.coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
-		XCTAssertEqual(inst.title?.text, "A set of objects that have been exported for sharing")
 		XCTAssertEqual(inst.uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
 		
 		return inst

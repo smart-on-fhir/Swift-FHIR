@@ -2,22 +2,28 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCondition = Models.Condition
+#else
 import SwiftFHIR
+typealias SwiftFHIRCondition = SwiftFHIR.Condition
+#endif
 
 
 class ConditionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Condition {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRCondition {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Condition {
-		return try SwiftFHIR.Condition(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRCondition {
+		return try SwiftFHIRCondition(json: json)
 	}
 	
 	func testCondition1() {
@@ -31,7 +37,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2011-10-05")
@@ -76,7 +82,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2012-06-03")
@@ -123,7 +129,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2012-02-20")
@@ -167,9 +173,10 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f201-fever.json")
 		
+		XCTAssertEqual(inst.abatementString, "around April 9, 2013")
 		XCTAssertEqual(inst.assertedDate?.description, "2013-04-04")
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "38266002")
@@ -180,7 +187,7 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.category?[0].coding?[1].code, "problem-list-item")
 		XCTAssertEqual(inst.category?[0].coding?[1].system?.absoluteString, "http://hl7.org/fhir/condition-category")
-		XCTAssertEqual(inst.clinicalStatus, "active")
+		XCTAssertEqual(inst.clinicalStatus, "resolved")
 		XCTAssertEqual(inst.code?.coding?[0].code, "386661006")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Fever")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -191,6 +198,7 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.evidence?[0].detail?[0].display, "Temperature")
 		XCTAssertEqual(inst.evidence?[0].detail?[0].reference, "Observation/f202")
 		XCTAssertEqual(inst.id, "f201")
+		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.onsetDateTime?.description, "2013-04-02")
 		XCTAssertEqual(inst.severity?.coding?[0].code, "255604002")
 		XCTAssertEqual(inst.severity?.coding?[0].display, "Mild")
@@ -214,16 +222,20 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f202-malignancy.json")
 		
+		XCTAssertEqual(inst.abatementAge?.code, "a")
+		XCTAssertEqual(inst.abatementAge?.system?.absoluteString, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.abatementAge?.unit, "years")
+		XCTAssertEqual(inst.abatementAge?.value, "54")
 		XCTAssertEqual(inst.assertedDate?.description, "2012-12-01")
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "361355005")
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].display, "Entire head and neck")
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "encounter-diagnosis")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/condition-category")
-		XCTAssertEqual(inst.clinicalStatus, "active")
+		XCTAssertEqual(inst.clinicalStatus, "resolved")
 		XCTAssertEqual(inst.code?.coding?[0].code, "363346000")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Malignant neoplastic disease")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -256,7 +268,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2013-03-11")
@@ -301,7 +313,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f204-renal.json")
 		
 		XCTAssertEqual(inst.abatementDateTime?.description, "2013-03-20")
@@ -322,10 +334,12 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.context?.display, "Roel's encounter on March eleventh")
 		XCTAssertEqual(inst.context?.reference, "Encounter/f203")
 		XCTAssertEqual(inst.id, "f204")
+		XCTAssertEqual(inst.note?[0].text, "The patient is anuric.")
 		XCTAssertEqual(inst.onsetDateTime?.description, "2013-03-11")
 		XCTAssertEqual(inst.severity?.coding?[0].code, "24484000")
 		XCTAssertEqual(inst.severity?.coding?[0].display, "Severe")
 		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.stage?.assessment?[0].display, "Genetic analysis master panel")
 		XCTAssertEqual(inst.stage?.summary?.coding?[0].code, "14803004")
 		XCTAssertEqual(inst.stage?.summary?.coding?[0].display, "Temporary")
 		XCTAssertEqual(inst.stage?.summary?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -348,7 +362,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f205-infection.json")
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2013-04-04")
@@ -377,7 +391,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-stroke.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "encounter-diagnosis")
@@ -409,7 +423,7 @@ class ConditionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCondition10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Condition {
+	func runCondition10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "49521004")

@@ -2,8 +2,8 @@
 //  Consent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Consent) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Consent) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -21,11 +21,23 @@ open class Consent: DomainResource {
 		get { return "Consent" }
 	}
 	
+	/// Actions controlled by this consent.
+	public var action: [CodeableConcept]?
+	
+	/// Who|what controlled by this consent (or group, by role).
+	public var actor: [ConsentActor]?
+	
 	/// Classification of the consent statement - for indexing/retrieval.
 	public var category: [CodeableConcept]?
 	
 	/// Who is agreeing to the policy and exceptions.
 	public var consentor: [Reference]?
+	
+	/// Data controlled by this consent.
+	public var data: [ConsentData]?
+	
+	/// Timeframe for data controlled by this consent.
+	public var dataPeriod: Period?
 	
 	/// When this Consent was created or indexed.
 	public var dateTime: DateTime?
@@ -45,14 +57,17 @@ open class Consent: DomainResource {
 	/// Period that this consent applies.
 	public var period: Period?
 	
+	/// Policies covered by this consent.
+	public var policy: [FHIRURL]?
+	
 	/// Policy that this consents to.
-	public var policy: FHIRURL?
+	public var policyRule: FHIRURL?
 	
 	/// Context of activities for which the agreement is made.
 	public var purpose: [Coding]?
 	
-	/// Whose access is controlled by the policy.
-	public var recipient: [Reference]?
+	/// Security Labels that define affected resources.
+	public var securityLabel: [Coding]?
 	
 	/// Source from which this consent is taken.
 	public var sourceAttachment: Attachment?
@@ -68,10 +83,9 @@ open class Consent: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, policy: FHIRURL, status: ConsentStatus) {
+	public convenience init(patient: Reference, status: ConsentStatus) {
 		self.init()
 		self.patient = patient
-		self.policy = policy
 		self.status = status
 	}
 	
@@ -79,8 +93,12 @@ open class Consent: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		action = try createInstances(of: CodeableConcept.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
+		actor = try createInstances(of: ConsentActor.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
 		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		consentor = try createInstances(of: Reference.self, for: "consentor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? consentor
+		data = try createInstances(of: ConsentData.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
+		dataPeriod = try createInstance(type: Period.self, for: "dataPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dataPeriod
 		dateTime = try createInstance(type: DateTime.self, for: "dateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateTime
 		except = try createInstances(of: ConsentExcept.self, for: "except", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? except
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
@@ -90,12 +108,10 @@ open class Consent: DomainResource {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		policy = try createInstance(type: FHIRURL.self, for: "policy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policy
-		if nil == policy && !presentKeys.contains("policy") {
-			errors.append(FHIRValidationError(missing: "policy"))
-		}
+		policy = try createInstances(of: FHIRURL.self, for: "policy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policy
+		policyRule = try createInstance(type: FHIRURL.self, for: "policyRule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policyRule
 		purpose = try createInstances(of: Coding.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
-		recipient = try createInstances(of: Reference.self, for: "recipient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recipient
+		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
 		sourceAttachment = try createInstance(type: Attachment.self, for: "sourceAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceAttachment
 		sourceIdentifier = try createInstance(type: Identifier.self, for: "sourceIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceIdentifier
 		sourceReference = try createInstance(type: Reference.self, for: "sourceReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceReference
@@ -110,8 +126,12 @@ open class Consent: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "action", using: self.action, errors: &errors)
+		arrayDecorate(json: &json, withKey: "actor", using: self.actor, errors: &errors)
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		arrayDecorate(json: &json, withKey: "consentor", using: self.consentor, errors: &errors)
+		arrayDecorate(json: &json, withKey: "data", using: self.data, errors: &errors)
+		self.dataPeriod?.decorate(json: &json, withKey: "dataPeriod", errors: &errors)
 		self.dateTime?.decorate(json: &json, withKey: "dateTime", errors: &errors)
 		arrayDecorate(json: &json, withKey: "except", using: self.except, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
@@ -121,18 +141,127 @@ open class Consent: DomainResource {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
-		self.policy?.decorate(json: &json, withKey: "policy", errors: &errors)
-		if nil == self.policy {
-			errors.append(FHIRValidationError(missing: "policy"))
-		}
+		arrayDecorate(json: &json, withKey: "policy", using: self.policy, errors: &errors)
+		self.policyRule?.decorate(json: &json, withKey: "policyRule", errors: &errors)
 		arrayDecorate(json: &json, withKey: "purpose", using: self.purpose, errors: &errors)
-		arrayDecorate(json: &json, withKey: "recipient", using: self.recipient, errors: &errors)
+		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
 		self.sourceAttachment?.decorate(json: &json, withKey: "sourceAttachment", errors: &errors)
 		self.sourceIdentifier?.decorate(json: &json, withKey: "sourceIdentifier", errors: &errors)
 		self.sourceReference?.decorate(json: &json, withKey: "sourceReference", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
+		}
+	}
+}
+
+
+/**
+Who|what controlled by this consent (or group, by role).
+
+Who or what is controlled by this consent. Use group to identify a set of actors by some property they share (e.g.
+'admitting officers').
+*/
+open class ConsentActor: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ConsentActor" }
+	}
+	
+	/// Resource for the actor (or group, by role).
+	public var reference: Reference?
+	
+	/// How the actor is/was involved.
+	public var role: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(reference: Reference, role: CodeableConcept) {
+		self.init()
+		self.reference = reference
+		self.role = role
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
+		if nil == reference && !presentKeys.contains("reference") {
+			errors.append(FHIRValidationError(missing: "reference"))
+		}
+		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
+		if nil == role && !presentKeys.contains("role") {
+			errors.append(FHIRValidationError(missing: "role"))
+		}
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
+		if nil == self.reference {
+			errors.append(FHIRValidationError(missing: "reference"))
+		}
+		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
+		if nil == self.role {
+			errors.append(FHIRValidationError(missing: "role"))
+		}
+	}
+}
+
+
+/**
+Data controlled by this consent.
+
+The resources controlled by this consent, if specific resources are referenced.
+*/
+open class ConsentData: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ConsentData" }
+	}
+	
+	/// How the resource reference is interpreted when testing consent restrictions.
+	public var meaning: ConsentDataMeaning?
+	
+	/// The actual data reference.
+	public var reference: Reference?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(meaning: ConsentDataMeaning, reference: Reference) {
+		self.init()
+		self.meaning = meaning
+		self.reference = reference
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		meaning = createEnum(type: ConsentDataMeaning.self, for: "meaning", in: json, presentKeys: &presentKeys, errors: &errors) ?? meaning
+		if nil == meaning && !presentKeys.contains("meaning") {
+			errors.append(FHIRValidationError(missing: "meaning"))
+		}
+		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
+		if nil == reference && !presentKeys.contains("reference") {
+			errors.append(FHIRValidationError(missing: "reference"))
+		}
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.meaning?.decorate(json: &json, withKey: "meaning", errors: &errors)
+		if nil == self.meaning {
+			errors.append(FHIRValidationError(missing: "meaning"))
+		}
+		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
+		if nil == self.reference {
+			errors.append(FHIRValidationError(missing: "reference"))
 		}
 	}
 }
@@ -164,6 +293,9 @@ open class ConsentExcept: BackboneElement {
 	public var data: [ConsentExceptData]?
 	
 	/// Timeframe for data controlled by this exception.
+	public var dataPeriod: Period?
+	
+	/// Timeframe for this exception.
 	public var period: Period?
 	
 	/// Context of activities covered by this exception.
@@ -191,6 +323,7 @@ open class ConsentExcept: BackboneElement {
 		actor = try createInstances(of: ConsentExceptActor.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
 		code = try createInstances(of: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		data = try createInstances(of: ConsentExceptData.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
+		dataPeriod = try createInstance(type: Period.self, for: "dataPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dataPeriod
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
 		purpose = try createInstances(of: Coding.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
 		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
@@ -210,6 +343,7 @@ open class ConsentExcept: BackboneElement {
 		arrayDecorate(json: &json, withKey: "actor", using: self.actor, errors: &errors)
 		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
 		arrayDecorate(json: &json, withKey: "data", using: self.data, errors: &errors)
+		self.dataPeriod?.decorate(json: &json, withKey: "dataPeriod", errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		arrayDecorate(json: &json, withKey: "purpose", using: self.purpose, errors: &errors)
 		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)

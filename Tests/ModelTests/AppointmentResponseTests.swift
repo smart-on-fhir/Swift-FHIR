@@ -2,22 +2,28 @@
 //  AppointmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRAppointmentResponse = Models.AppointmentResponse
+#else
 import SwiftFHIR
+typealias SwiftFHIRAppointmentResponse = SwiftFHIR.AppointmentResponse
+#endif
 
 
 class AppointmentResponseTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.AppointmentResponse {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRAppointmentResponse {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.AppointmentResponse {
-		return try SwiftFHIR.AppointmentResponse(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRAppointmentResponse {
+		return try SwiftFHIRAppointmentResponse(json: json)
 	}
 	
 	func testAppointmentResponse1() {
@@ -31,7 +37,7 @@ class AppointmentResponseTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAppointmentResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AppointmentResponse {
+	func runAppointmentResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAppointmentResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "appointmentresponse-example-req.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Dr Adam Careful")
@@ -64,7 +70,7 @@ class AppointmentResponseTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAppointmentResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AppointmentResponse {
+	func runAppointmentResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAppointmentResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "appointmentresponse-example.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Peter James Chalmers")

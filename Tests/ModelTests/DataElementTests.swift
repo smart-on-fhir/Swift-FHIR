@@ -2,22 +2,28 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDataElement = Models.DataElement
+#else
 import SwiftFHIR
+typealias SwiftFHIRDataElement = SwiftFHIR.DataElement
+#endif
 
 
 class DataElementTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.DataElement {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRDataElement {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DataElement {
-		return try SwiftFHIR.DataElement(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRDataElement {
+		return try SwiftFHIRDataElement(json: json)
 	}
 	
 	func testDataElement1() {
@@ -31,7 +37,7 @@ class DataElementTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDataElement1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DataElement {
+	func runDataElement1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDataElement {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "2179414")
@@ -73,7 +79,7 @@ class DataElementTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDataElement2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DataElement {
+	func runDataElement2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDataElement {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-labtestmaster-example.json")
 		
 		XCTAssertEqual(inst.element?[0].alias?[0], "Protime, PT")

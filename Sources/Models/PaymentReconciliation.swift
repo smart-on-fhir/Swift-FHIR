@@ -2,8 +2,8 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -22,7 +22,7 @@ open class PaymentReconciliation: DomainResource {
 	/// Creation date.
 	public var created: DateTime?
 	
-	/// Details.
+	/// List of settlements.
 	public var detail: [PaymentReconciliationDetail]?
 	
 	/// Disposition Message.
@@ -34,9 +34,6 @@ open class PaymentReconciliation: DomainResource {
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
-	/// Note text.
-	public var note: [PaymentReconciliationNote]?
-	
 	/// Insurer.
 	public var organization: Reference?
 	
@@ -45,6 +42,9 @@ open class PaymentReconciliation: DomainResource {
 	
 	/// Period covered.
 	public var period: Period?
+	
+	/// Processing comments.
+	public var processNote: [PaymentReconciliationProcessNote]?
 	
 	/// Claim reference.
 	public var request: Reference?
@@ -70,10 +70,10 @@ open class PaymentReconciliation: DomainResource {
 		disposition = try createInstance(type: FHIRString.self, for: "disposition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? disposition
 		form = try createInstance(type: CodeableConcept.self, for: "form", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? form
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		note = try createInstances(of: PaymentReconciliationNote.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		organization = try createInstance(type: Reference.self, for: "organization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? organization
 		outcome = try createInstance(type: CodeableConcept.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		processNote = try createInstances(of: PaymentReconciliationProcessNote.self, for: "processNote", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? processNote
 		request = try createInstance(type: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
 		requestOrganization = try createInstance(type: Reference.self, for: "requestOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestOrganization
 		requestProvider = try createInstance(type: Reference.self, for: "requestProvider", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestProvider
@@ -91,10 +91,10 @@ open class PaymentReconciliation: DomainResource {
 		self.disposition?.decorate(json: &json, withKey: "disposition", errors: &errors)
 		self.form?.decorate(json: &json, withKey: "form", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		arrayDecorate(json: &json, withKey: "processNote", using: self.processNote, errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
 		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
@@ -105,7 +105,7 @@ open class PaymentReconciliation: DomainResource {
 
 
 /**
-Details.
+List of settlements.
 
 List of individual settlement amounts and the corresponding transaction.
 */
@@ -114,13 +114,13 @@ open class PaymentReconciliationDetail: BackboneElement {
 		get { return "PaymentReconciliationDetail" }
 	}
 	
-	/// Detail amount.
+	/// Amount being paid.
 	public var amount: Money?
 	
 	/// Invoice date.
 	public var date: FHIRDate?
 	
-	/// Payee.
+	/// Organization which is receiving the payment.
 	public var payee: Reference?
 	
 	/// Claim.
@@ -129,7 +129,7 @@ open class PaymentReconciliationDetail: BackboneElement {
 	/// Claim Response.
 	public var response: Reference?
 	
-	/// Submitter.
+	/// Organization which submitted the claim.
 	public var submitter: Reference?
 	
 	/// Type code.
@@ -178,16 +178,16 @@ open class PaymentReconciliationDetail: BackboneElement {
 
 
 /**
-Note text.
+Processing comments.
 
 Suite of notes.
 */
-open class PaymentReconciliationNote: BackboneElement {
+open class PaymentReconciliationProcessNote: BackboneElement {
 	override open class var resourceType: String {
-		get { return "PaymentReconciliationNote" }
+		get { return "PaymentReconciliationProcessNote" }
 	}
 	
-	/// Notes text.
+	/// Comment on the processing.
 	public var text: FHIRString?
 	
 	/// display | print | printoper.

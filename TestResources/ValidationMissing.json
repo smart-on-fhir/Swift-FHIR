@@ -23,6 +23,7 @@
 		},
 		{
 			"fhir_comments": "is also missing “linkId”",
+			"type": "display",
 			"option": [
 				{
 					"valueString": "I’m here!"	

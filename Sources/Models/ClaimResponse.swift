@@ -2,8 +2,8 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -43,14 +43,11 @@ open class ClaimResponse: DomainResource {
 	/// Insurance or medical plan.
 	public var insurance: [ClaimResponseInsurance]?
 	
-	/// Insurer.
+	/// Insurance issuing organization.
 	public var insurer: Reference?
 	
 	/// Line items.
 	public var item: [ClaimResponseItem]?
-	
-	/// Processing notes.
-	public var note: [ClaimResponseNote]?
 	
 	/// complete | error | partial.
 	public var outcome: CodeableConcept?
@@ -60,6 +57,9 @@ open class ClaimResponse: DomainResource {
 	
 	/// Payment details, if paid.
 	public var payment: ClaimResponsePayment?
+	
+	/// Processing notes.
+	public var processNote: [ClaimResponseProcessNote]?
 	
 	/// Id of resource triggering adjudication.
 	public var request: Reference?
@@ -99,10 +99,10 @@ open class ClaimResponse: DomainResource {
 		insurance = try createInstances(of: ClaimResponseInsurance.self, for: "insurance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? insurance
 		insurer = try createInstance(type: Reference.self, for: "insurer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? insurer
 		item = try createInstances(of: ClaimResponseItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
-		note = try createInstances(of: ClaimResponseNote.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		outcome = try createInstance(type: CodeableConcept.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
 		payeeType = try createInstance(type: CodeableConcept.self, for: "payeeType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payeeType
 		payment = try createInstance(type: ClaimResponsePayment.self, for: "payment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payment
+		processNote = try createInstances(of: ClaimResponseProcessNote.self, for: "processNote", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? processNote
 		request = try createInstance(type: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
 		requestOrganization = try createInstance(type: Reference.self, for: "requestOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestOrganization
 		requestProvider = try createInstance(type: Reference.self, for: "requestProvider", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestProvider
@@ -128,10 +128,10 @@ open class ClaimResponse: DomainResource {
 		arrayDecorate(json: &json, withKey: "insurance", using: self.insurance, errors: &errors)
 		self.insurer?.decorate(json: &json, withKey: "insurer", errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
-		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
 		self.payeeType?.decorate(json: &json, withKey: "payeeType", errors: &errors)
 		self.payment?.decorate(json: &json, withKey: "payment", errors: &errors)
+		arrayDecorate(json: &json, withKey: "processNote", using: self.processNote, errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
 		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
@@ -475,7 +475,7 @@ open class ClaimResponseItem: BackboneElement {
 /**
 Adjudication details.
 
-The adjudications results.
+The adjudication results.
 */
 open class ClaimResponseItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
@@ -488,7 +488,7 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 	/// Adjudication category such as co-pay, eligible, benefit, etc..
 	public var category: CodeableConcept?
 	
-	/// Adjudication reason.
+	/// Explanation of Adjudication outcome.
 	public var reason: CodeableConcept?
 	
 	/// Non-monetary value.
@@ -540,7 +540,7 @@ open class ClaimResponseItemDetail: BackboneElement {
 		get { return "ClaimResponseItemDetail" }
 	}
 	
-	/// Detail adjudication.
+	/// Detail level adjudication details.
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
 	/// List of note numbers which apply.
@@ -598,7 +598,7 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		get { return "ClaimResponseItemDetailSubDetail" }
 	}
 	
-	/// Subdetail adjudication.
+	/// Subdetail level adjudication details.
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
 	/// List of note numbers which apply.
@@ -642,51 +642,6 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 
 
 /**
-Processing notes.
-
-Note text.
-*/
-open class ClaimResponseNote: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ClaimResponseNote" }
-	}
-	
-	/// Language.
-	public var language: CodeableConcept?
-	
-	/// Note Number for this note.
-	public var number: FHIRInteger?
-	
-	/// Note explanatory text.
-	public var text: FHIRString?
-	
-	/// display | print | printoper.
-	public var type: CodeableConcept?
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		language = try createInstance(type: CodeableConcept.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
-		number = try createInstance(type: FHIRInteger.self, for: "number", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? number
-		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.language?.decorate(json: &json, withKey: "language", errors: &errors)
-		self.number?.decorate(json: &json, withKey: "number", errors: &errors)
-		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-	}
-}
-
-
-/**
 Payment details, if paid.
 
 Payment details for the claim if the claim has been paid.
@@ -699,16 +654,16 @@ open class ClaimResponsePayment: BackboneElement {
 	/// Payment adjustment for non-Claim issues.
 	public var adjustment: Money?
 	
-	/// Reason for Payment adjustment.
+	/// Explanation for the non-claim adjustment.
 	public var adjustmentReason: CodeableConcept?
 	
-	/// Payment amount.
+	/// Payable amount after adjustment.
 	public var amount: Money?
 	
 	/// Expected data of Payment.
 	public var date: FHIRDate?
 	
-	/// Payment identifier.
+	/// Identifier of the payment instrument.
 	public var identifier: Identifier?
 	
 	/// Partial or Complete.
@@ -736,6 +691,51 @@ open class ClaimResponsePayment: BackboneElement {
 		self.amount?.decorate(json: &json, withKey: "amount", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+	}
+}
+
+
+/**
+Processing notes.
+
+Note text.
+*/
+open class ClaimResponseProcessNote: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ClaimResponseProcessNote" }
+	}
+	
+	/// Language if different from the resource.
+	public var language: CodeableConcept?
+	
+	/// Sequence Number for this note.
+	public var number: FHIRInteger?
+	
+	/// Note explanatory text.
+	public var text: FHIRString?
+	
+	/// display | print | printoper.
+	public var type: CodeableConcept?
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		language = try createInstance(type: CodeableConcept.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
+		number = try createInstance(type: FHIRInteger.self, for: "number", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? number
+		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
+		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.language?.decorate(json: &json, withKey: "language", errors: &errors)
+		self.number?.decorate(json: &json, withKey: "number", errors: &errors)
+		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }

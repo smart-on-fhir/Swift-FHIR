@@ -2,8 +2,8 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -18,6 +18,9 @@ open class Observation: DomainResource {
 	override open class var resourceType: String {
 		get { return "Observation" }
 	}
+	
+	/// Fulfills plan, proposal or order.
+	public var basedOn: [Reference]?
 	
 	/// Observed body part.
 	public var bodySite: CodeableConcept?
@@ -34,6 +37,9 @@ open class Observation: DomainResource {
 	/// Component results.
 	public var component: [ObservationComponent]?
 	
+	/// Healthcare event during which this observation is made.
+	public var context: Reference?
+	
 	/// Why the result is missing.
 	public var dataAbsentReason: CodeableConcept?
 	
@@ -46,10 +52,10 @@ open class Observation: DomainResource {
 	/// Clinically relevant time/time-period for observation.
 	public var effectivePeriod: Period?
 	
-	/// Healthcare event during which this observation is made.
-	public var encounter: Reference?
+	/// Clinically relevant time/time-period for observation.
+	public var effectiveTiming: Timing?
 	
-	/// Unique Id for this particular observation.
+	/// Business Identifier for observation.
 	public var identifier: [Identifier]?
 	
 	/// High, low, normal, etc..
@@ -81,6 +87,9 @@ open class Observation: DomainResource {
 	
 	/// Actual result.
 	public var valueAttachment: Attachment?
+	
+	/// Actual result.
+	public var valueBoolean: FHIRBool?
 	
 	/// Actual result.
 	public var valueCodeableConcept: CodeableConcept?
@@ -121,6 +130,7 @@ open class Observation: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
 		bodySite = try createInstance(type: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
 		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
@@ -129,11 +139,12 @@ open class Observation: DomainResource {
 		}
 		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
 		component = try createInstances(of: ObservationComponent.self, for: "component", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? component
+		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		dataAbsentReason = try createInstance(type: CodeableConcept.self, for: "dataAbsentReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dataAbsentReason
 		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
 		effectiveDateTime = try createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveDateTime
 		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
-		encounter = try createInstance(type: Reference.self, for: "encounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? encounter
+		effectiveTiming = try createInstance(type: Timing.self, for: "effectiveTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveTiming
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		interpretation = try createInstance(type: CodeableConcept.self, for: "interpretation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? interpretation
 		issued = try createInstance(type: Instant.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
@@ -148,6 +159,7 @@ open class Observation: DomainResource {
 		}
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		valueAttachment = try createInstance(type: Attachment.self, for: "valueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAttachment
+		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
 		valueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
 		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
 		valuePeriod = try createInstance(type: Period.self, for: "valuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePeriod
@@ -164,6 +176,7 @@ open class Observation: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.bodySite?.decorate(json: &json, withKey: "bodySite", errors: &errors)
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
@@ -172,11 +185,12 @@ open class Observation: DomainResource {
 		}
 		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "component", using: self.component, errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.dataAbsentReason?.decorate(json: &json, withKey: "dataAbsentReason", errors: &errors)
 		self.device?.decorate(json: &json, withKey: "device", errors: &errors)
 		self.effectiveDateTime?.decorate(json: &json, withKey: "effectiveDateTime", errors: &errors)
 		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
-		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
+		self.effectiveTiming?.decorate(json: &json, withKey: "effectiveTiming", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.interpretation?.decorate(json: &json, withKey: "interpretation", errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
@@ -191,6 +205,7 @@ open class Observation: DomainResource {
 		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
+		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
 		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
 		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
 		self.valuePeriod?.decorate(json: &json, withKey: "valuePeriod", errors: &errors)
@@ -327,27 +342,31 @@ open class ObservationReferenceRange: BackboneElement {
 	/// Applicable age range, if relevant.
 	public var age: Range?
 	
+	/// Reference range population.
+	public var appliesTo: [CodeableConcept]?
+	
 	/// High Range, if relevant.
 	public var high: Quantity?
 	
 	/// Low Range, if relevant.
 	public var low: Quantity?
 	
-	/// Reference range qualifier.
-	public var meaning: [CodeableConcept]?
-	
 	/// Text based reference range in an observation.
 	public var text: FHIRString?
+	
+	/// Reference range qualifier.
+	public var type: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		age = try createInstance(type: Range.self, for: "age", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? age
+		appliesTo = try createInstances(of: CodeableConcept.self, for: "appliesTo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? appliesTo
 		high = try createInstance(type: Quantity.self, for: "high", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? high
 		low = try createInstance(type: Quantity.self, for: "low", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? low
-		meaning = try createInstances(of: CodeableConcept.self, for: "meaning", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? meaning
 		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
+		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -356,10 +375,11 @@ open class ObservationReferenceRange: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.age?.decorate(json: &json, withKey: "age", errors: &errors)
+		arrayDecorate(json: &json, withKey: "appliesTo", using: self.appliesTo, errors: &errors)
 		self.high?.decorate(json: &json, withKey: "high", errors: &errors)
 		self.low?.decorate(json: &json, withKey: "low", errors: &errors)
-		arrayDecorate(json: &json, withKey: "meaning", using: self.meaning, errors: &errors)
 		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 

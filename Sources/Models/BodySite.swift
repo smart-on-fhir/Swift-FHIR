@@ -2,8 +2,8 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -32,11 +32,11 @@ open class BodySite: DomainResource {
 	/// Attached images.
 	public var image: [Attachment]?
 	
-	/// Modification to location code.
-	public var modifier: [CodeableConcept]?
-	
-	/// Patient.
+	/// Who this is about.
 	public var patient: Reference?
+	
+	/// Modification to location code.
+	public var qualifier: [CodeableConcept]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -53,11 +53,11 @@ open class BodySite: DomainResource {
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		image = try createInstances(of: Attachment.self, for: "image", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? image
-		modifier = try createInstances(of: CodeableConcept.self, for: "modifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modifier
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
+		qualifier = try createInstances(of: CodeableConcept.self, for: "qualifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? qualifier
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -69,11 +69,11 @@ open class BodySite: DomainResource {
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "image", using: self.image, errors: &errors)
-		arrayDecorate(json: &json, withKey: "modifier", using: self.modifier, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		if nil == self.patient {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
+		arrayDecorate(json: &json, withKey: "qualifier", using: self.qualifier, errors: &errors)
 	}
 }
 

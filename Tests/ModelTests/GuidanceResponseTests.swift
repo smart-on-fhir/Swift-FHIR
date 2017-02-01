@@ -2,22 +2,28 @@
 //  GuidanceResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRGuidanceResponse = Models.GuidanceResponse
+#else
 import SwiftFHIR
+typealias SwiftFHIRGuidanceResponse = SwiftFHIR.GuidanceResponse
+#endif
 
 
 class GuidanceResponseTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.GuidanceResponse {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRGuidanceResponse {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.GuidanceResponse {
-		return try SwiftFHIR.GuidanceResponse(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRGuidanceResponse {
+		return try SwiftFHIRGuidanceResponse(json: json)
 	}
 	
 	func testGuidanceResponse1() {
@@ -31,7 +37,7 @@ class GuidanceResponseTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runGuidanceResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.GuidanceResponse {
+	func runGuidanceResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGuidanceResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "guidanceresponse-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

@@ -2,15 +2,15 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Process request.
+Request to perform some action on or in regards to an existing resource.
 
 This resource provides the target, request and response, and action details for an action to be performed by the target
 on or about existing resources.
@@ -39,13 +39,13 @@ open class ProcessRequest: DomainResource {
 	/// Items to re-adjudicate.
 	public var item: [ProcessRequestItem]?
 	
-	/// Nullify.
+	/// Remove history.
 	public var nullify: FHIRBool?
 	
 	/// Responsible organization.
 	public var organization: Reference?
 	
-	/// Period.
+	/// Selection period.
 	public var period: Period?
 	
 	/// Responsible practitioner.
@@ -54,16 +54,16 @@ open class ProcessRequest: DomainResource {
 	/// Reference number/string.
 	public var reference: FHIRString?
 	
-	/// Request reference.
+	/// Reference to the Request resource.
 	public var request: Reference?
 	
-	/// Response reference.
+	/// Reference to the Response resource.
 	public var response: Reference?
 	
 	/// active | cancelled | draft | entered-in-error.
 	public var status: FHIRString?
 	
-	/// Target of the request.
+	/// Party which is the target of the request.
 	public var target: Reference?
 	
 	

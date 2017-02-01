@@ -2,8 +2,8 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-12-13.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation

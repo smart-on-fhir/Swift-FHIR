@@ -2,22 +2,28 @@
 //  TestScriptTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRTestScript = Models.TestScript
+#else
 import SwiftFHIR
+typealias SwiftFHIRTestScript = SwiftFHIR.TestScript
+#endif
 
 
 class TestScriptTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.TestScript {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRTestScript {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.TestScript {
-		return try SwiftFHIR.TestScript(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRTestScript {
+		return try SwiftFHIRTestScript(json: json)
 	}
 	
 	func testTestScript1() {
@@ -31,7 +37,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-history.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -39,7 +45,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "support@HL7.org")
 		XCTAssertEqual(inst.copyright, "© HL7.org 2011+")
-		XCTAssertEqual(inst.date?.description, "2016-09-26")
+		XCTAssertEqual(inst.date?.description, "2017-01-18")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.fixture?[0].autocreate, false)
 		XCTAssertEqual(inst.fixture?[0].autodelete, false)
@@ -62,8 +68,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#update")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/http.html#delete")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[2].absoluteString, "http://hl7.org/fhir/http.html#history")
-		XCTAssertEqual(inst.metadata?.capability?[0].link?[3].absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
+		XCTAssertEqual(inst.metadata?.link?[0].description_fhir, "Demographics and other administrative information about an individual or animal receiving care or other health-related services.")
+		XCTAssertEqual(inst.metadata?.link?[0].url?.absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.name, "TestScript Example History")
 		XCTAssertEqual(inst.profile?[0].id, "bundle-profile")
 		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/StructureDefinition/Bundle")
@@ -147,7 +154,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-multisystem.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -155,7 +162,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "support@HL7.org")
 		XCTAssertEqual(inst.copyright, "© HL7.org 2011+")
-		XCTAssertEqual(inst.date?.description, "2016-09-26")
+		XCTAssertEqual(inst.date?.description, "2017-01-18")
 		XCTAssertEqual(inst.destination?[0].index, 1)
 		XCTAssertEqual(inst.destination?[0].profile?.code, "FHIR-Server")
 		XCTAssertEqual(inst.destination?[1].index, 2)
@@ -181,7 +188,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.metadata?.capability?[1].origin?[0], 1)
 		XCTAssertEqual(inst.metadata?.capability?[1].required, true)
 		XCTAssertEqual(inst.metadata?.capability?[1].validated, false)
-		XCTAssertEqual(inst.name, "Multisystem Test Script")
+		XCTAssertEqual(inst.metadata?.link?[0].description_fhir, "Demographics and other administrative information about an individual or animal receiving care or other health-related services.")
+		XCTAssertEqual(inst.metadata?.link?[0].url?.absoluteString, "http://hl7.org/fhir/patient.html")
+		XCTAssertEqual(inst.name, "testscript-example-multisystem")
 		XCTAssertEqual(inst.origin?[0].index, 1)
 		XCTAssertEqual(inst.origin?[0].profile?.code, "FHIR-Client")
 		XCTAssertEqual(inst.publisher, "HL7")
@@ -193,6 +202,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.destination, 1)
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.origin, 1)
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.params, "/${Dest1PatientResourceId}")
+		XCTAssertEqual(inst.test?[0].action?[0].operation?.requestId, "request-read-patient-01")
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.resource, "Patient")
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.type?.code, "read")
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.type?.system?.absoluteString, "http://hl7.org/fhir/testscript-operation-codes")
@@ -219,6 +229,8 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.test?[1].action?[0].operation?.destination, 2)
 		XCTAssertEqual(inst.test?[1].action?[0].operation?.origin, 1)
 		XCTAssertEqual(inst.test?[1].action?[0].operation?.params, "/${Dest2PatientResourceId}")
+		XCTAssertEqual(inst.test?[1].action?[0].operation?.requestHeader?[0].field, "Accept-Charset")
+		XCTAssertEqual(inst.test?[1].action?[0].operation?.requestHeader?[0].value, "utf-8")
 		XCTAssertEqual(inst.test?[1].action?[0].operation?.resource, "Patient")
 		XCTAssertEqual(inst.test?[1].action?[0].operation?.type?.code, "read")
 		XCTAssertEqual(inst.test?[1].action?[0].operation?.type?.system?.absoluteString, "http://hl7.org/fhir/testscript-operation-codes")
@@ -240,6 +252,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.test?[1].id, "02-ReadPatient-Destination2")
 		XCTAssertEqual(inst.test?[1].name, "ReadPatient-Destination2")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.title, "Multisystem Test Script")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/TestScript/testscript-example-multisystem")
 		XCTAssertEqual(inst.variable?[0].defaultValue, "example")
 		XCTAssertEqual(inst.variable?[0].name, "Dest1PatientResourceId")
@@ -261,7 +274,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-readtest.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -269,7 +282,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "support@HL7.org")
 		XCTAssertEqual(inst.copyright, "© HL7.org 2011+")
-		XCTAssertEqual(inst.date?.description, "2016-09-26")
+		XCTAssertEqual(inst.date?.description, "2017-01-18")
 		XCTAssertEqual(inst.description_fhir, "TestScript example resource with ported Sprinkler basic read tests R001, R002, R003, R004. The read tests will utilize user defined dynamic variables that will hold the Patient resource id values.")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "testscript-example-readtest")
@@ -281,8 +294,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.reference, "CapabilityStatement/example")
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Read Operation")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#read")
-		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
+		XCTAssertEqual(inst.metadata?.link?[0].description_fhir, "Demographics and other administrative information about an individual or animal receiving care or other health-related services.")
+		XCTAssertEqual(inst.metadata?.link?[0].url?.absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.name, "TestScript Example Read Test")
 		XCTAssertEqual(inst.profile?[0].id, "patient-profile")
 		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/StructureDefinition/Patient")
@@ -364,7 +378,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-rule.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -372,7 +386,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "support@HL7.org")
 		XCTAssertEqual(inst.copyright, "© HL7.org 2011+")
-		XCTAssertEqual(inst.date?.description, "2016-09-26")
+		XCTAssertEqual(inst.date?.description, "2017-01-18")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.fixture?[0].autocreate, false)
 		XCTAssertEqual(inst.fixture?[0].autodelete, false)
@@ -395,8 +409,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#delete")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/http.html#read")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[2].absoluteString, "http://hl7.org/fhir/http.html#update")
-		XCTAssertEqual(inst.metadata?.capability?[0].link?[3].absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
+		XCTAssertEqual(inst.metadata?.link?[0].description_fhir, "Demographics and other administrative information about an individual or animal receiving care or other health-related services.")
+		XCTAssertEqual(inst.metadata?.link?[0].url?.absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.name, "TestScript Example")
 		XCTAssertEqual(inst.profile?[0].id, "patient-profile")
 		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/StructureDefinition/Patient")
@@ -405,9 +420,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.rule?[0].id, "rule-responseStatusCode")
 		XCTAssertEqual(inst.rule?[0].param?[0].name, "expectedStatusCode")
 		XCTAssertEqual(inst.rule?[0].param?[0].value, "200")
-		XCTAssertEqual(inst.rule?[0].resource?.reference, "TestScript/example")
+		XCTAssertEqual(inst.rule?[0].resource?.reference, "TestScript/testscript-example")
 		XCTAssertEqual(inst.ruleset?[0].id, "ruleset-responseContentTypeStatusCode")
-		XCTAssertEqual(inst.ruleset?[0].resource?.reference, "TestScript/example")
+		XCTAssertEqual(inst.ruleset?[0].resource?.reference, "TestScript/testscript-example")
 		XCTAssertEqual(inst.ruleset?[0].rule?[0].param?[0].name, "expectedContentType")
 		XCTAssertEqual(inst.ruleset?[0].rule?[0].param?[0].value, "json")
 		XCTAssertEqual(inst.ruleset?[0].rule?[0].ruleId, "RuleResponseContentType")
@@ -507,7 +522,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-search.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -515,7 +530,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "support@HL7.org")
 		XCTAssertEqual(inst.copyright, "© HL7.org 2011+")
-		XCTAssertEqual(inst.date?.description, "2016-09-26")
+		XCTAssertEqual(inst.date?.description, "2017-01-18")
 		XCTAssertEqual(inst.description_fhir, "TestScript example resource with simple Patient search test. The read tests will utilize user defined dynamic variables that will hold the Patient search parameter values.")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.fixture?[0].id, "fixture-patient-create")
@@ -530,13 +545,31 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.reference, "CapabilityStatement/example")
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Search Operation")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#search")
-		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
+		XCTAssertEqual(inst.metadata?.link?[0].description_fhir, "Demographics and other administrative information about an individual or animal receiving care or other health-related services.")
+		XCTAssertEqual(inst.metadata?.link?[0].url?.absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.name, "TestScript Example Search")
 		XCTAssertEqual(inst.profile?[0].id, "bundle-profile")
 		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/StructureDefinition/Bundle")
 		XCTAssertEqual(inst.publisher, "HL7")
 		XCTAssertEqual(inst.purpose, "Patient Search Operation")
+		XCTAssertEqual(inst.setup?.action?[0].operation?.accept, ContentType(rawValue: "xml")!)
+		XCTAssertEqual(inst.setup?.action?[0].operation?.description_fhir, "Test simple search to verify server support.")
+		XCTAssertEqual(inst.setup?.action?[0].operation?.params, "?family=DONTEXPECTAMATCH&given=DONTEXPECTAMATCH")
+		XCTAssertEqual(inst.setup?.action?[0].operation?.resource, "Patient")
+		XCTAssertEqual(inst.setup?.action?[0].operation?.type?.code, "search")
+		XCTAssertEqual(inst.setup?.action?[0].operation?.type?.system?.absoluteString, "http://hl7.org/fhir/testscript-operation-codes")
+		XCTAssertEqual(inst.setup?.action?[1].assert?.description_fhir, "Confirm that the request url contains the family search parameter.")
+		XCTAssertEqual(inst.setup?.action?[1].assert?.direction, AssertionDirectionType(rawValue: "request")!)
+		XCTAssertEqual(inst.setup?.action?[1].assert?.operator_fhir, AssertionOperatorType(rawValue: "contains")!)
+		XCTAssertEqual(inst.setup?.action?[1].assert?.requestURL, "family")
+		XCTAssertEqual(inst.setup?.action?[2].assert?.description_fhir, "Confirm that the returned HTTP status is 200(OK).")
+		XCTAssertEqual(inst.setup?.action?[2].assert?.direction, AssertionDirectionType(rawValue: "response")!)
+		XCTAssertEqual(inst.setup?.action?[2].assert?.responseCode, "200")
+		XCTAssertEqual(inst.setup?.action?[3].assert?.description_fhir, "Confirm that the returned resource type is Bundle.")
+		XCTAssertEqual(inst.setup?.action?[3].assert?.resource, "Bundle")
+		XCTAssertEqual(inst.setup?.action?[4].assert?.description_fhir, "Confirm that the returned Bundle correctly defines the navigation links.")
+		XCTAssertEqual(inst.setup?.action?[4].assert?.navigationLinks, true)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.accept, ContentType(rawValue: "xml")!)
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.contentType, ContentType(rawValue: "xml")!)
@@ -582,6 +615,8 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.test?[1].action?[5].assert?.operator_fhir, AssertionOperatorType(rawValue: "equals")!)
 		XCTAssertEqual(inst.test?[1].action?[5].assert?.path, "fhir:Bundle/fhir:type/@value")
 		XCTAssertEqual(inst.test?[1].action?[5].assert?.value, "searchset")
+		XCTAssertEqual(inst.test?[1].action?[6].assert?.description_fhir, "Confirm that the returned Bundle total is greater than or equal to the number of returned entries.")
+		XCTAssertEqual(inst.test?[1].action?[6].assert?.expression, "Bundle.total.toInteger() >= entry.count()")
 		XCTAssertEqual(inst.test?[1].description_fhir, "Search for Patient resources using the user defined dynamic variables ${PatientSearchFamilyName} and ${PatientSearchGivenName} and validate response.")
 		XCTAssertEqual(inst.test?[1].id, "02-PatientSearchDynamic")
 		XCTAssertEqual(inst.test?[1].name, "Patient Search Dynamic")
@@ -596,6 +631,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.variable?[2].description_fhir, "Enter patient search criteria for a known given name on the target system")
 		XCTAssertEqual(inst.variable?[2].hint, "[Given name]")
 		XCTAssertEqual(inst.variable?[2].name, "PatientSearchGivenName")
+		XCTAssertEqual(inst.variable?[3].description_fhir, "Evaluate the returned Patient searchset Bundle.total value")
+		XCTAssertEqual(inst.variable?[3].expression, "Bundle.total.toInteger()")
+		XCTAssertEqual(inst.variable?[3].name, "PatientSearchBundleTotal")
 		XCTAssertEqual(inst.version, "1.0")
 		
 		return inst
@@ -612,7 +650,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-update.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -620,7 +658,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "support@HL7.org")
 		XCTAssertEqual(inst.copyright, "© HL7.org 2011+")
-		XCTAssertEqual(inst.date?.description, "2016-09-26")
+		XCTAssertEqual(inst.date?.description, "2017-01-18")
 		XCTAssertEqual(inst.description_fhir, "TestScript example resource with setup to delete if present and create a new instance of a Patient; and single test definition to update that Patient with various asserts.")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.fixture?[0].autocreate, false)
@@ -643,8 +681,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Update and Delete Operations")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#update")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/http.html#delete")
-		XCTAssertEqual(inst.metadata?.capability?[0].link?[2].absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
+		XCTAssertEqual(inst.metadata?.link?[0].description_fhir, "Demographics and other administrative information about an individual or animal receiving care or other health-related services.")
+		XCTAssertEqual(inst.metadata?.link?[0].url?.absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.name, "TestScript Example Update")
 		XCTAssertEqual(inst.profile?[0].id, "patient-profile")
 		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/StructureDefinition/Patient")
@@ -715,7 +754,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -723,7 +762,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "support@HL7.org")
 		XCTAssertEqual(inst.copyright, "© HL7.org 2011+")
-		XCTAssertEqual(inst.date?.description, "2016-09-26")
+		XCTAssertEqual(inst.date?.description, "2017-01-18")
 		XCTAssertEqual(inst.description_fhir, "TestScript example resource with setup to delete if present and create a new instance of a Patient; and single test definition to read the created Patient with various asserts.")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.fixture?[0].autocreate, false)
@@ -747,8 +786,9 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#delete")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/http.html#read")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[2].absoluteString, "http://hl7.org/fhir/http.html#update")
-		XCTAssertEqual(inst.metadata?.capability?[0].link?[3].absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
+		XCTAssertEqual(inst.metadata?.link?[0].description_fhir, "Demographics and other administrative information about an individual or animal receiving care or other health-related services.")
+		XCTAssertEqual(inst.metadata?.link?[0].url?.absoluteString, "http://hl7.org/fhir/patient.html")
 		XCTAssertEqual(inst.name, "TestScript Example")
 		XCTAssertEqual(inst.profile?[0].id, "patient-profile")
 		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/StructureDefinition/Patient")
@@ -777,6 +817,18 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.setup?.action?[3].assert?.description_fhir, "Confirm that the returned HTTP status is 201(Created).")
 		XCTAssertEqual(inst.setup?.action?[3].assert?.direction, AssertionDirectionType(rawValue: "response")!)
 		XCTAssertEqual(inst.setup?.action?[3].assert?.responseCode, "201")
+		XCTAssertEqual(inst.setup?.action?[4].operation?.description_fhir, "Read the created patient resource on the test server using the id from fixture-patient-create. Verify contents.")
+		XCTAssertEqual(inst.setup?.action?[4].operation?.resource, "Patient")
+		XCTAssertEqual(inst.setup?.action?[4].operation?.targetId, "fixture-patient-create")
+		XCTAssertEqual(inst.setup?.action?[4].operation?.type?.code, "read")
+		XCTAssertEqual(inst.setup?.action?[4].operation?.type?.system?.absoluteString, "http://hl7.org/fhir/testscript-operation-codes")
+		XCTAssertEqual(inst.setup?.action?[5].assert?.description_fhir, "Confirm that the returned HTTP status is 200(OK).")
+		XCTAssertEqual(inst.setup?.action?[5].assert?.direction, AssertionDirectionType(rawValue: "response")!)
+		XCTAssertEqual(inst.setup?.action?[5].assert?.response, AssertionResponseTypes(rawValue: "okay")!)
+		XCTAssertEqual(inst.setup?.action?[6].assert?.compareToSourceExpression, "Patient.name.first().family")
+		XCTAssertEqual(inst.setup?.action?[6].assert?.compareToSourceId, "fixture-patient-create")
+		XCTAssertEqual(inst.setup?.action?[6].assert?.description_fhir, "Confirm that the returned Patient contains the expected family name 'Chalmers'. Uses explicit compareToSourceId reference to fixture-patient-create used to create the Patient.")
+		XCTAssertEqual(inst.setup?.action?[6].assert?.operator_fhir, AssertionOperatorType(rawValue: "equals")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.teardown?.action?[0].operation?.description_fhir, "Delete the patient resource on the test server using the id from fixture-patient-create.")
 		XCTAssertEqual(inst.teardown?.action?[0].operation?.resource, "Patient")
@@ -829,6 +881,10 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.test?[0].name, "Read Patient")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/TestScript/testscript-example")
+		XCTAssertEqual(inst.useContext?[0].code?.code, "focus")
+		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].code, "positive")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/variant-state")
 		XCTAssertEqual(inst.variable?[0].name, "createResourceId")
 		XCTAssertEqual(inst.variable?[0].path, "Patient/id")
 		XCTAssertEqual(inst.variable?[0].sourceId, "fixture-patient-create")

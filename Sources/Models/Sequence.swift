@@ -2,8 +2,8 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -29,7 +29,7 @@ open class Sequence: DomainResource {
 	/// Unique ID for this particular sequence. This is a FHIR-defined id.
 	public var identifier: [Identifier]?
 	
-	/// Observed sequence.
+	/// Sequence that was observed.
 	public var observedSeq: FHIRString?
 	
 	/// Who and/or what this is about.
@@ -41,7 +41,7 @@ open class Sequence: DomainResource {
 	/// Pointer to next atomic sequence.
 	public var pointer: [Reference]?
 	
-	/// Sequence quality.
+	/// An set of value as quality of sequence.
 	public var quality: [SequenceQuality]?
 	
 	/// The number of copies of the seqeunce of interest.  (RNASeq).
@@ -50,7 +50,7 @@ open class Sequence: DomainResource {
 	/// Average number of reads representing a given nucleotide in the reconstructed sequence.
 	public var readCoverage: FHIRInteger?
 	
-	/// Reference sequence.
+	/// A sequence used as reference.
 	public var referenceSeq: SequenceReferenceSeq?
 	
 	/// External repository which contains detailed report related with observedSeq in this resource.
@@ -59,13 +59,10 @@ open class Sequence: DomainResource {
 	/// Specimen used for sequencing.
 	public var specimen: Reference?
 	
-	/// Structural variant.
-	public var structureVariant: [SequenceStructureVariant]?
-	
-	/// AA | DNA | RNA.
+	/// aa | dna | rna.
 	public var type: FHIRString?
 	
-	/// Sequence variant.
+	/// Variant in sequence.
 	public var variant: [SequenceVariant]?
 	
 	
@@ -95,7 +92,6 @@ open class Sequence: DomainResource {
 		referenceSeq = try createInstance(type: SequenceReferenceSeq.self, for: "referenceSeq", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referenceSeq
 		repository = try createInstances(of: SequenceRepository.self, for: "repository", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? repository
 		specimen = try createInstance(type: Reference.self, for: "specimen", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specimen
-		structureVariant = try createInstances(of: SequenceStructureVariant.self, for: "structureVariant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? structureVariant
 		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		variant = try createInstances(of: SequenceVariant.self, for: "variant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variant
 		
@@ -121,7 +117,6 @@ open class Sequence: DomainResource {
 		self.referenceSeq?.decorate(json: &json, withKey: "referenceSeq", errors: &errors)
 		arrayDecorate(json: &json, withKey: "repository", using: self.repository, errors: &errors)
 		self.specimen?.decorate(json: &json, withKey: "specimen", errors: &errors)
-		arrayDecorate(json: &json, withKey: "structureVariant", using: self.structureVariant, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		arrayDecorate(json: &json, withKey: "variant", using: self.variant, errors: &errors)
 	}
@@ -129,7 +124,7 @@ open class Sequence: DomainResource {
 
 
 /**
-Sequence quality.
+An set of value as quality of sequence.
 
 An experimental feature attribute that defines the quality of the feature in a quantitative way, such as a phred quality
 score ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
@@ -148,10 +143,10 @@ open class SequenceQuality: BackboneElement {
 	/// False positives where the non-REF alleles in the Truth and Query Call Sets match.
 	public var gtFP: FHIRDecimal?
 	
-	/// Method for quality.
+	/// Method to get quality.
 	public var method: CodeableConcept?
 	
-	/// Precision.
+	/// Precision of comparison.
 	public var precision: FHIRDecimal?
 	
 	/// False positives.
@@ -160,10 +155,10 @@ open class SequenceQuality: BackboneElement {
 	/// True positives from the perspective of the query data.
 	public var queryTP: FHIRDecimal?
 	
-	/// Recall.
+	/// Recall of comparison.
 	public var recall: FHIRDecimal?
 	
-	/// Quality score.
+	/// Quality score for the comparison.
 	public var score: Quantity?
 	
 	/// Standard sequence for comparison.
@@ -238,7 +233,7 @@ open class SequenceQuality: BackboneElement {
 
 
 /**
-Reference sequence.
+A sequence used as reference.
 
 A sequence that is used as a reference to describe variants that are present in a sequence analyzed.
 */
@@ -259,7 +254,7 @@ open class SequenceReferenceSeq: BackboneElement {
 	/// A Pointer to another Sequence entity as reference sequence.
 	public var referenceSeqPointer: Reference?
 	
-	/// A Reference Sequence string.
+	/// A string to represent reference sequence.
 	public var referenceSeqString: FHIRString?
 	
 	/// Directionality of DNA ( +1/-1).
@@ -336,7 +331,7 @@ open class SequenceRepository: BackboneElement {
 	/// Id of the dataset that used to call for dataset in repository.
 	public var datasetId: FHIRString?
 	
-	/// Name of the repository.
+	/// Repository's name.
 	public var name: FHIRString?
 	
 	/// Id of the read.
@@ -392,121 +387,7 @@ open class SequenceRepository: BackboneElement {
 
 
 /**
-Structural variant.
-*/
-open class SequenceStructureVariant: BackboneElement {
-	override open class var resourceType: String {
-		get { return "SequenceStructureVariant" }
-	}
-	
-	/// Structural variant inner.
-	public var inner: SequenceStructureVariantInner?
-	
-	/// Structural Variant Length.
-	public var length: FHIRInteger?
-	
-	/// Structural variant outer.
-	public var outer: SequenceStructureVariantOuter?
-	
-	/// Precision of boundaries.
-	public var precisionOfBoundaries: FHIRString?
-	
-	/// Structural Variant reported aCGH ratio.
-	public var reportedaCGHRatio: FHIRDecimal?
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		inner = try createInstance(type: SequenceStructureVariantInner.self, for: "inner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? inner
-		length = try createInstance(type: FHIRInteger.self, for: "length", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? length
-		outer = try createInstance(type: SequenceStructureVariantOuter.self, for: "outer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outer
-		precisionOfBoundaries = try createInstance(type: FHIRString.self, for: "precisionOfBoundaries", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? precisionOfBoundaries
-		reportedaCGHRatio = try createInstance(type: FHIRDecimal.self, for: "reportedaCGHRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reportedaCGHRatio
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.inner?.decorate(json: &json, withKey: "inner", errors: &errors)
-		self.length?.decorate(json: &json, withKey: "length", errors: &errors)
-		self.outer?.decorate(json: &json, withKey: "outer", errors: &errors)
-		self.precisionOfBoundaries?.decorate(json: &json, withKey: "precisionOfBoundaries", errors: &errors)
-		self.reportedaCGHRatio?.decorate(json: &json, withKey: "reportedaCGHRatio", errors: &errors)
-	}
-}
-
-
-/**
-Structural variant inner.
-*/
-open class SequenceStructureVariantInner: BackboneElement {
-	override open class var resourceType: String {
-		get { return "SequenceStructureVariantInner" }
-	}
-	
-	/// Structural Variant Inner End.
-	public var end: FHIRInteger?
-	
-	/// Structural Variant Inner Start.
-	public var start: FHIRInteger?
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		end = try createInstance(type: FHIRInteger.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
-		start = try createInstance(type: FHIRInteger.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.end?.decorate(json: &json, withKey: "end", errors: &errors)
-		self.start?.decorate(json: &json, withKey: "start", errors: &errors)
-	}
-}
-
-
-/**
-Structural variant outer.
-*/
-open class SequenceStructureVariantOuter: BackboneElement {
-	override open class var resourceType: String {
-		get { return "SequenceStructureVariantOuter" }
-	}
-	
-	/// Structural Variant Outer End.
-	public var end: FHIRInteger?
-	
-	/// Structural Variant Outer Start.
-	public var start: FHIRInteger?
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		end = try createInstance(type: FHIRInteger.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
-		start = try createInstance(type: FHIRInteger.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.end?.decorate(json: &json, withKey: "end", errors: &errors)
-		self.start?.decorate(json: &json, withKey: "start", errors: &errors)
-	}
-}
-
-
-/**
-Sequence variant.
+Variant in sequence.
 
 The definition of variant here originates from Sequence ontology
 ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element can represent amino
@@ -527,7 +408,7 @@ open class SequenceVariant: BackboneElement {
 	/// Allele that was observed.
 	public var observedAllele: FHIRString?
 	
-	/// Allele of reference sequence.
+	/// Allele in the reference sequence.
 	public var referenceAllele: FHIRString?
 	
 	/// Start position of the variant on the  reference sequence.

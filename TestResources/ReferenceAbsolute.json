@@ -1,18 +1,11 @@
 {
 	"resourceType": "MedicationRequest",
 	"id": "order-ref-absolute",
-	"stage": {
-		"coding": [
-			{
-				"system": "http://hl7.org/fhir/ValueSet/medication-request-stage",
-				"code": "proposal"
-			}
-		]
-	},
+	"intent": "proposal",
 	"medicationReference": {
 		"reference": "https://fhir-open-api-dstu2.smarthealthit.org/Medication/1"
 	},
-	"patient": {
+	"subject": {
 		"reference": "Patient/0"
 	}
 }

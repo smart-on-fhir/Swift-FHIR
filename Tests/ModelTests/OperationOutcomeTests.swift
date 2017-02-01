@@ -2,22 +2,28 @@
 //  OperationOutcomeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIROperationOutcome = Models.OperationOutcome
+#else
 import SwiftFHIR
+typealias SwiftFHIROperationOutcome = SwiftFHIR.OperationOutcome
+#endif
 
 
 class OperationOutcomeTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.OperationOutcome {
+	func instantiateFrom(filename: String) throws -> SwiftFHIROperationOutcome {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.OperationOutcome {
-		return try SwiftFHIR.OperationOutcome(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIROperationOutcome {
+		return try SwiftFHIROperationOutcome(json: json)
 	}
 	
 	func testOperationOutcome1() {
@@ -31,7 +37,7 @@ class OperationOutcomeTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOperationOutcome1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
+	func runOperationOutcome1(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-allok.json")
 		
 		XCTAssertEqual(inst.id, "allok")
@@ -54,7 +60,7 @@ class OperationOutcomeTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOperationOutcome2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
+	func runOperationOutcome2(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-break-the-glass.json")
 		
 		XCTAssertEqual(inst.id, "break-the-glass")
@@ -80,7 +86,7 @@ class OperationOutcomeTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOperationOutcome3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
+	func runOperationOutcome3(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-exception.json")
 		
 		XCTAssertEqual(inst.id, "exception")
@@ -103,7 +109,7 @@ class OperationOutcomeTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOperationOutcome4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
+	func runOperationOutcome4(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-searchfail.json")
 		
 		XCTAssertEqual(inst.id, "searchfail")
@@ -127,7 +133,7 @@ class OperationOutcomeTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOperationOutcome5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
+	func runOperationOutcome5(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-validationfail.json")
 		
 		XCTAssertEqual(inst.id, "validationfail")
@@ -151,7 +157,7 @@ class OperationOutcomeTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runOperationOutcome6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
+	func runOperationOutcome6(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example.json")
 		
 		XCTAssertEqual(inst.id, "101")

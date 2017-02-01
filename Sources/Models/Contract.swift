@@ -2,8 +2,8 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -19,13 +19,13 @@ open class Contract: DomainResource {
 		get { return "Contract" }
 	}
 	
-	/// Contract Action.
+	/// Action stipulated by this Contract.
 	public var action: [CodeableConcept]?
 	
-	/// Contract Action Reason.
+	/// Rationale for the stiplulated action.
 	public var actionReason: [CodeableConcept]?
 	
-	/// Contract Agent.
+	/// Entity being ascribed responsibility.
 	public var agent: [ContractAgent]?
 	
 	/// Effective time.
@@ -140,7 +140,7 @@ open class Contract: DomainResource {
 
 
 /**
-Contract Agent.
+Entity being ascribed responsibility.
 
 An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity taking
 place.
@@ -153,7 +153,7 @@ open class ContractAgent: BackboneElement {
 	/// Contract Agent Type.
 	public var actor: Reference?
 	
-	/// Contract  Agent Role.
+	/// Role type of the agent.
 	public var role: [CodeableConcept]?
 	
 	

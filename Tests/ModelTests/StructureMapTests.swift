@@ -2,22 +2,28 @@
 //  StructureMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRStructureMap = Models.StructureMap
+#else
 import SwiftFHIR
+typealias SwiftFHIRStructureMap = SwiftFHIR.StructureMap
+#endif
 
 
 class StructureMapTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.StructureMap {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRStructureMap {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.StructureMap {
-		return try SwiftFHIR.StructureMap(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRStructureMap {
+		return try SwiftFHIRStructureMap(json: json)
 	}
 	
 	func testStructureMap1() {
@@ -31,7 +37,7 @@ class StructureMapTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runStructureMap1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.StructureMap {
+	func runStructureMap1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRStructureMap {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "structuremap-example.json")
 		
 		XCTAssertEqual(inst.group?[0].input?[0].mode, StructureMapInputMode(rawValue: "source")!)
@@ -39,10 +45,9 @@ class StructureMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].name, "Examples")
 		XCTAssertEqual(inst.group?[0].rule?[0].name, "rule1")
 		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].context, "test")
-		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].contextType, StructureMapContextType(rawValue: "variable")!)
 		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].element, "test")
-		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].required, true)
 		XCTAssertEqual(inst.group?[0].rule?[0].source?[0].variable, "t")
+		XCTAssertEqual(inst.group?[0].typeMode, StructureMapGroupTypeMode(rawValue: "none")!)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.name, "Example Map")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)

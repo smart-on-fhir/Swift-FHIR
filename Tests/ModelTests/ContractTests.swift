@@ -2,22 +2,28 @@
 //  ContractTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRContract = Models.Contract
+#else
 import SwiftFHIR
+typealias SwiftFHIRContract = SwiftFHIR.Contract
+#endif
 
 
 class ContractTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Contract {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRContract {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Contract {
-		return try SwiftFHIR.Contract(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRContract {
+		return try SwiftFHIRContract(json: json)
 	}
 	
 	func testContract1() {
@@ -31,7 +37,7 @@ class ContractTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runContract1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Contract {
+	func runContract1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRContract {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id, "C-123")

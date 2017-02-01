@@ -2,8 +2,8 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -32,7 +32,7 @@ open class StructureDefinition: DomainResource {
 	/// Where the extension can be used in instances.
 	public var context: [FHIRString]?
 	
-	/// FluentPath invariants - when the extension can be used.
+	/// FHIRPath invariants - when the extension can be used.
 	public var contextInvariant: [FHIRString]?
 	
 	/// If this is an extension, Identifies the context within FHIR resources where the extension can be used.

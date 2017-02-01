@@ -2,22 +2,28 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSpecimen = Models.Specimen
+#else
 import SwiftFHIR
+typealias SwiftFHIRSpecimen = SwiftFHIR.Specimen
+#endif
 
 
 class SpecimenTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Specimen {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRSpecimen {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Specimen {
-		return try SwiftFHIR.Specimen(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRSpecimen {
+		return try SwiftFHIRSpecimen(json: json)
 	}
 	
 	func testSpecimen1() {
@@ -31,7 +37,7 @@ class SpecimenTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSpecimen1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
+	func runSpecimen1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSpecimen {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-isolate.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://lab.acme.org/specimens/2011")
@@ -66,7 +72,7 @@ class SpecimenTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSpecimen2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
+	func runSpecimen2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSpecimen {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-serum.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://acme.com/labs/accession-ids")
@@ -77,7 +83,7 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.container?[0].type?.coding?[0].display, "Serum Separator Tube")
 		XCTAssertEqual(inst.container?[0].type?.coding?[0].system?.absoluteString, "http://acme.com/labs")
 		XCTAssertEqual(inst.id, "sst")
-		XCTAssertEqual(inst.request?[0].reference, "DiagnosticRequest/ft4")
+		XCTAssertEqual(inst.request?[0].reference, "ProcedureRequest/ft4")
 		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "119364003")
@@ -98,7 +104,7 @@ class SpecimenTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSpecimen3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
+	func runSpecimen3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSpecimen {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-urine.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://lab.acme.org/specimens/2015")
@@ -111,13 +117,13 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.container?[0].specimenQuantity?.value, "10")
 		XCTAssertEqual(inst.container?[0].type?.text, "Non-sterile specimen container")
 		XCTAssertEqual(inst.id, "vma-urine")
+		XCTAssertEqual(inst.processing?[0].description_fhir, "Acidify to pH < 3.0 with 6 N HCl.")
+		XCTAssertEqual(inst.processing?[0].procedure?.coding?[0].code, "ACID")
+		XCTAssertEqual(inst.processing?[0].procedure?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0373")
 		XCTAssertEqual(inst.receivedTime?.description, "2015-08-18T07:03:00Z")
 		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.treatment?[0].description_fhir, "Acidify to pH < 3.0 with 6 N HCl.")
-		XCTAssertEqual(inst.treatment?[0].procedure?.coding?[0].code, "ACID")
-		XCTAssertEqual(inst.treatment?[0].procedure?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0373")
 		XCTAssertEqual(inst.type?.coding?[0].code, "RANDU")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Urine, Random")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0487")
@@ -136,11 +142,15 @@ class SpecimenTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSpecimen4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
+	func runSpecimen4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSpecimen {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://lab.acme.org/specimens/2011")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356")
+		XCTAssertEqual(inst.collection?.bodySite?.coding?[0].code, "49852007")
+		XCTAssertEqual(inst.collection?.bodySite?.coding?[0].display, "Structure of median cubital vein (body structure)")
+		XCTAssertEqual(inst.collection?.bodySite?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.collection?.bodySite?.text, "Right median cubital vein")
 		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2011-05-30T06:15:00Z")
 		XCTAssertEqual(inst.collection?.collector?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.collection?.method?.coding?[0].code, "LNV")
@@ -161,7 +171,7 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "23234352356")
 		XCTAssertEqual(inst.note?[0].text, "Specimen is grossly lipemic")
 		XCTAssertEqual(inst.receivedTime?.description, "2011-03-04T07:03:00Z")
-		XCTAssertEqual(inst.request?[0].reference, "DiagnosticRequest/example")
+		XCTAssertEqual(inst.request?[0].reference, "ProcedureRequest/example")
 		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")

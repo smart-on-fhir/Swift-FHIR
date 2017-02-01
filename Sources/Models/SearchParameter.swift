@@ -2,8 +2,8 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -49,7 +49,7 @@ open class SearchParameter: DomainResource {
 	/// If for testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
-	/// FluentPath expression that extracts the values.
+	/// FHIRPath expression that extracts the values.
 	public var expression: FHIRString?
 	
 	/// Intended jurisdiction for search parameter (if applicable).

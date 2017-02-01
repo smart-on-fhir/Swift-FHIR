@@ -2,8 +2,8 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -33,8 +33,14 @@ open class MedicationStatement: DomainResource {
 		get { return "MedicationStatement" }
 	}
 	
+	/// Fulfils plan, proposal or order.
+	public var basedOn: [Reference]?
+	
 	/// Type of medication usage.
-	public var category: FHIRString?
+	public var category: CodeableConcept?
+	
+	/// Encounter / Episode associated with MedicationStatement.
+	public var context: Reference?
 	
 	/// When the statement was asserted?.
 	public var dateAsserted: DateTime?
@@ -63,11 +69,11 @@ open class MedicationStatement: DomainResource {
 	/// What medication was taken.
 	public var medicationReference: Reference?
 	
-	/// Indicator of the certainty of whether the medication was taken by the patient.
-	public var notTaken: MedicationStatementNotTaken?
-	
 	/// Further information about the statement.
 	public var note: [Annotation]?
+	
+	/// Part of referenced event.
+	public var partOf: [Reference]?
 	
 	/// Reason for why the medication is being/was taken.
 	public var reasonForUseCodeableConcept: [CodeableConcept]?
@@ -85,9 +91,12 @@ open class MedicationStatement: DomainResource {
 	/// Who is/was taking  the medication.
 	public var subject: Reference?
 	
+	/// Indicator of the certainty of whether the medication was taken by the patient.
+	public var taken: MedicationStatementTaken?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(medication: Any, status: MedicationStatementStatus, subject: Reference) {
+	public convenience init(medication: Any, status: MedicationStatementStatus, subject: Reference, taken: MedicationStatementTaken) {
 		self.init()
 		if let value = medication as? CodeableConcept {
 			self.medicationCodeableConcept = value
@@ -100,13 +109,16 @@ open class MedicationStatement: DomainResource {
 		}
 		self.status = status
 		self.subject = subject
+		self.taken = taken
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		category = try createInstance(type: FHIRString.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
+		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
+		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
+		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		dateAsserted = try createInstance(type: DateTime.self, for: "dateAsserted", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateAsserted
 		derivedFrom = try createInstances(of: Reference.self, for: "derivedFrom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? derivedFrom
 		dosage = try createInstances(of: DosageInstruction.self, for: "dosage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosage
@@ -116,8 +128,8 @@ open class MedicationStatement: DomainResource {
 		informationSource = try createInstance(type: Reference.self, for: "informationSource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? informationSource
 		medicationCodeableConcept = try createInstance(type: CodeableConcept.self, for: "medicationCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? medicationCodeableConcept
 		medicationReference = try createInstance(type: Reference.self, for: "medicationReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? medicationReference
-		notTaken = createEnum(type: MedicationStatementNotTaken.self, for: "notTaken", in: json, presentKeys: &presentKeys, errors: &errors) ?? notTaken
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		reasonForUseCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonForUseCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonForUseCodeableConcept
 		reasonForUseReference = try createInstances(of: Reference.self, for: "reasonForUseReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonForUseReference
 		reasonNotTaken = try createInstances(of: CodeableConcept.self, for: "reasonNotTaken", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonNotTaken
@@ -128,6 +140,10 @@ open class MedicationStatement: DomainResource {
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		if nil == subject && !presentKeys.contains("subject") {
 			errors.append(FHIRValidationError(missing: "subject"))
+		}
+		taken = createEnum(type: MedicationStatementTaken.self, for: "taken", in: json, presentKeys: &presentKeys, errors: &errors) ?? taken
+		if nil == taken && !presentKeys.contains("taken") {
+			errors.append(FHIRValidationError(missing: "taken"))
 		}
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
@@ -142,7 +158,9 @@ open class MedicationStatement: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.dateAsserted?.decorate(json: &json, withKey: "dateAsserted", errors: &errors)
 		arrayDecorate(json: &json, withKey: "derivedFrom", using: self.derivedFrom, errors: &errors)
 		arrayDecorate(json: &json, withKey: "dosage", using: self.dosage, errors: &errors)
@@ -152,8 +170,8 @@ open class MedicationStatement: DomainResource {
 		self.informationSource?.decorate(json: &json, withKey: "informationSource", errors: &errors)
 		self.medicationCodeableConcept?.decorate(json: &json, withKey: "medicationCodeableConcept", errors: &errors)
 		self.medicationReference?.decorate(json: &json, withKey: "medicationReference", errors: &errors)
-		self.notTaken?.decorate(json: &json, withKey: "notTaken", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonForUseCodeableConcept", using: self.reasonForUseCodeableConcept, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonForUseReference", using: self.reasonForUseReference, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonNotTaken", using: self.reasonNotTaken, errors: &errors)
@@ -164,6 +182,10 @@ open class MedicationStatement: DomainResource {
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
+		}
+		self.taken?.decorate(json: &json, withKey: "taken", errors: &errors)
+		if nil == self.taken {
+			errors.append(FHIRValidationError(missing: "taken"))
 		}
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present

@@ -2,22 +2,28 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSearchParameter = Models.SearchParameter
+#else
 import SwiftFHIR
+typealias SwiftFHIRSearchParameter = SwiftFHIR.SearchParameter
+#endif
 
 
 class SearchParameterTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.SearchParameter {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRSearchParameter {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.SearchParameter {
-		return try SwiftFHIR.SearchParameter(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRSearchParameter {
+		return try SwiftFHIRSearchParameter(json: json)
 	}
 	
 	func testSearchParameter1() {
@@ -31,7 +37,7 @@ class SearchParameterTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSearchParameter1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.SearchParameter {
+	func runSearchParameter1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSearchParameter {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-extension.json")
 		
 		XCTAssertEqual(inst.base?[0], "Patient")
@@ -66,7 +72,7 @@ class SearchParameterTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSearchParameter2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.SearchParameter {
+	func runSearchParameter2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSearchParameter {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-reference.json")
 		
 		XCTAssertEqual(inst.base?[0], "Condition")
@@ -106,7 +112,7 @@ class SearchParameterTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSearchParameter3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.SearchParameter {
+	func runSearchParameter3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSearchParameter {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example.json")
 		
 		XCTAssertEqual(inst.base?[0], "Resource")

@@ -2,22 +2,28 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRProcessRequest = Models.ProcessRequest
+#else
 import SwiftFHIR
+typealias SwiftFHIRProcessRequest = SwiftFHIR.ProcessRequest
+#endif
 
 
 class ProcessRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ProcessRequest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRProcessRequest {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ProcessRequest {
-		return try SwiftFHIR.ProcessRequest(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRProcessRequest {
+		return try SwiftFHIRProcessRequest(json: json)
 	}
 	
 	func testProcessRequest1() {
@@ -31,7 +37,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-eob.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
@@ -58,7 +64,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
@@ -87,7 +93,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
@@ -115,7 +121,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-payrec.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
@@ -145,7 +151,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-specific.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
@@ -154,8 +160,12 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "111")
 		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.provider?.identifier?.system?.absoluteString, "http://npid.org/providerid")
+		XCTAssertEqual(inst.provider?.identifier?.value, "AF12345")
 		XCTAssertEqual(inst.request?.reference, "http://benefitco.com/oralhealthclaim/12345")
 		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.target?.identifier?.system?.absoluteString, "http://ninsurers.org/payorid")
+		XCTAssertEqual(inst.target?.identifier?.value, "WI12345")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -173,7 +183,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reprocess.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "reprocess")!)
@@ -203,7 +213,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reverse.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "cancel")!)
@@ -232,7 +242,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-status.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "status")!)
@@ -261,7 +271,7 @@ class ProcessRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessRequest9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
+	func runProcessRequest9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)

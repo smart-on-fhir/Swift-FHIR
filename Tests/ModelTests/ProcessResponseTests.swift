@@ -2,22 +2,28 @@
 //  ProcessResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRProcessResponse = Models.ProcessResponse
+#else
 import SwiftFHIR
+typealias SwiftFHIRProcessResponse = SwiftFHIR.ProcessResponse
+#endif
 
 
 class ProcessResponseTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ProcessResponse {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRProcessResponse {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ProcessResponse {
-		return try SwiftFHIR.ProcessResponse(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRProcessResponse {
+		return try SwiftFHIRProcessResponse(json: json)
 	}
 	
 	func testProcessResponse1() {
@@ -31,7 +37,80 @@ class ProcessResponseTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcessResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessResponse {
+	func runProcessResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessResponse {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processresponse-example-error.json")
+		
+		XCTAssertEqual(inst.created?.description, "2014-07-14")
+		XCTAssertEqual(inst.disposition, "Referred to claim not found on system.")
+		XCTAssertEqual(inst.error?[0].coding?[0].code, "a001")
+		XCTAssertEqual(inst.error?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/adjudication-error")
+		XCTAssertEqual(inst.form?.coding?[0].code, "PRRESP/2016/01")
+		XCTAssertEqual(inst.form?.coding?[0].system?.absoluteString, "http://ncforms.org/formid")
+		XCTAssertEqual(inst.id, "SR2349")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/processresponse")
+		XCTAssertEqual(inst.identifier?[0].value, "ER987634")
+		XCTAssertEqual(inst.organization?.reference, "Organization/2")
+		XCTAssertEqual(inst.outcome?.coding?[0].code, "error")
+		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/processoutcomecodes")
+		XCTAssertEqual(inst.processNote?[0].text, "Please check the submitted payor identification and local claim number.")
+		XCTAssertEqual(inst.processNote?[0].type?.coding?[0].code, "print")
+		XCTAssertEqual(inst.processNote?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/note-type")
+		XCTAssertEqual(inst.request?.reference, "http://happyvalley.com/fhir/claim/12204")
+		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
+		XCTAssertEqual(inst.requestProvider?.identifier?.system?.absoluteString, "http://npid.org/providerid")
+		XCTAssertEqual(inst.requestProvider?.identifier?.value, "AZ43258")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ProcessResponse</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testProcessResponse2() {
+		do {
+			let instance = try runProcessResponse2()
+			try runProcessResponse2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessResponse successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runProcessResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessResponse {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processresponse-example-pended.json")
+		
+		XCTAssertEqual(inst.communicationRequest?[0].reference, "#comreq-1")
+		XCTAssertEqual(inst.contained?[0].id, "comreq-1")
+		XCTAssertEqual(inst.created?.description, "2014-08-16")
+		XCTAssertEqual(inst.disposition, "Additional information required.")
+		XCTAssertEqual(inst.id, "SR2499")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/processresponse")
+		XCTAssertEqual(inst.identifier?[0].value, "881222")
+		XCTAssertEqual(inst.organization?.reference, "Organization/2")
+		XCTAssertEqual(inst.outcome?.coding?[0].code, "pended")
+		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/processoutcomecodes")
+		XCTAssertEqual(inst.request?.reference, "http://happyvalley.com/fhir/claim/12345")
+		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A ProcessResponse indicating pended status with a request for additional information.</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testProcessResponse3() {
+		do {
+			let instance = try runProcessResponse3()
+			try runProcessResponse3(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessResponse successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runProcessResponse3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

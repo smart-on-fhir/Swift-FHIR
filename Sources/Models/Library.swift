@@ -2,8 +2,8 @@
 //  Library.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Library) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Library) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 Represents a library of quality improvement components.
 
 The Library resource is a general-purpose container for knowledge asset definitions. It can be used to describe and
-expose exist knowledge assets such as logic libraries and information model descriptions, as well as to describe a
+expose existing knowledge assets such as logic libraries and information model descriptions, as well as to describe a
 collection of knowledge assets.
 */
 open class Library: DomainResource {

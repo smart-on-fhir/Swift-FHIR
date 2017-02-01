@@ -2,22 +2,28 @@
 //  PractitionerRoleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPractitionerRole = Models.PractitionerRole
+#else
 import SwiftFHIR
+typealias SwiftFHIRPractitionerRole = SwiftFHIR.PractitionerRole
+#endif
 
 
 class PractitionerRoleTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.PractitionerRole {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRPractitionerRole {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.PractitionerRole {
-		return try SwiftFHIR.PractitionerRole(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRPractitionerRole {
+		return try SwiftFHIRPractitionerRole(json: json)
 	}
 	
 	func testPractitionerRole1() {
@@ -31,7 +37,7 @@ class PractitionerRoleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitionerRole1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PractitionerRole {
+	func runPractitionerRole1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitionerRole {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitionerrole-example.json")
 		
 		XCTAssertEqual(inst.active, true)

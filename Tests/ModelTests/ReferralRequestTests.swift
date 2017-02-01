@@ -2,22 +2,28 @@
 //  ReferralRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRReferralRequest = Models.ReferralRequest
+#else
 import SwiftFHIR
+typealias SwiftFHIRReferralRequest = SwiftFHIR.ReferralRequest
+#endif
 
 
 class ReferralRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ReferralRequest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRReferralRequest {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ReferralRequest {
-		return try SwiftFHIR.ReferralRequest(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRReferralRequest {
+		return try SwiftFHIRReferralRequest(json: json)
 	}
 	
 	func testReferralRequest1() {
@@ -31,12 +37,14 @@ class ReferralRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runReferralRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ReferralRequest {
+	func runReferralRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRReferralRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "referralrequest-example.json")
 		
-		XCTAssertEqual(inst.authored?.description, "2014-02-14")
+		XCTAssertEqual(inst.authoredOn?.description, "2014-02-14")
 		XCTAssertEqual(inst.category, ReferralCategory(rawValue: "request")!)
+		XCTAssertEqual(inst.context?.display, "Beverly Waver's encounter on 2014-02-14")
 		XCTAssertEqual(inst.description_fhir, "In the past 2 years Beverly has had 6 instances of r) sided Otitis media. She is     falling behind her peers at school, and displaying some learning difficulties.")
+		XCTAssertEqual(inst.groupIdentifier?.value, "1234")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://orionhealth.com/fhir/apps/referralids")
 		XCTAssertEqual(inst.identifier?[0].value, "ret4421")

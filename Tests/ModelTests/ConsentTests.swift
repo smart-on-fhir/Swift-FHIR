@@ -2,22 +2,28 @@
 //  ConsentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRConsent = Models.Consent
+#else
 import SwiftFHIR
+typealias SwiftFHIRConsent = SwiftFHIR.Consent
+#endif
 
 
 class ConsentTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Consent {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRConsent {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Consent {
-		return try SwiftFHIR.Consent(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRConsent {
+		return try SwiftFHIRConsent(json: json)
 	}
 	
 	func testConsent1() {
@@ -31,7 +37,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-Emergency.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
@@ -52,7 +58,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -71,7 +77,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-grantor.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
@@ -91,7 +97,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -110,7 +116,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notAuthor.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
@@ -124,7 +130,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -143,7 +149,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notOrg.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
@@ -161,7 +167,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -180,7 +186,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notThem.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
@@ -198,7 +204,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -217,7 +223,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notThis.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
@@ -229,7 +235,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -248,7 +254,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notTime.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
@@ -260,7 +266,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -279,21 +285,20 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-Out.json")
 		
+		XCTAssertEqual(inst.actor?[0].reference?.display, "Good Health Psychiatric Hospital")
+		XCTAssertEqual(inst.actor?[0].reference?.reference, "Organization/2.16.840.1.113883.19.6")
+		XCTAssertEqual(inst.actor?[0].role?.coding?[0].code, "CST")
+		XCTAssertEqual(inst.actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
-		XCTAssertEqual(inst.except?[0].actor?[0].reference?.display, "Good Health Psychiatric Hospital")
-		XCTAssertEqual(inst.except?[0].actor?[0].reference?.reference, "Organization/2.16.840.1.113883.19.6")
-		XCTAssertEqual(inst.except?[0].actor?[0].role?.coding?[0].code, "CST")
-		XCTAssertEqual(inst.except?[0].actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
-		XCTAssertEqual(inst.except?[0].type, ConsentExceptType(rawValue: "deny")!)
 		XCTAssertEqual(inst.id, "consent-example-Out")
 		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
 		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -312,7 +317,7 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-pkb.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2016-06-16")
@@ -411,7 +416,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.organization?.reference, "Organization/pkb")
 		XCTAssertEqual(inst.patient?.display, "...example patient...")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -429,9 +434,14 @@ class ConsentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConsent10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
+	func runConsent10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConsent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-signature.json")
 		
+		XCTAssertEqual(inst.actor?[0].reference?.reference, "Practitioner/13")
+		XCTAssertEqual(inst.actor?[0].role?.coding?[0].code, "PRCP")
+		XCTAssertEqual(inst.actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "hipaa")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/consentcategorycodes")
 		XCTAssertEqual(inst.consentor?[0].reference, "Patient/72")
 		XCTAssertEqual(inst.dateTime?.description, "2016-05-26T00:41:10-04:00")
 		XCTAssertEqual(inst.except?[0].`class`?[0].code, "application/hl7-cda+xml")
@@ -451,8 +461,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/72")
 		XCTAssertEqual(inst.period?.end?.description, "2016-10-10")
 		XCTAssertEqual(inst.period?.start?.description, "2015-10-10")
-		XCTAssertEqual(inst.policy?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
-		XCTAssertEqual(inst.recipient?[0].reference, "Practitioner/13")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

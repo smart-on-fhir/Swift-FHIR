@@ -2,22 +2,28 @@
 //  AllergyIntoleranceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRAllergyIntolerance = Models.AllergyIntolerance
+#else
 import SwiftFHIR
+typealias SwiftFHIRAllergyIntolerance = SwiftFHIR.AllergyIntolerance
+#endif
 
 
 class AllergyIntoleranceTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.AllergyIntolerance {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRAllergyIntolerance {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.AllergyIntolerance {
-		return try SwiftFHIR.AllergyIntolerance(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRAllergyIntolerance {
+		return try SwiftFHIRAllergyIntolerance(json: json)
 	}
 	
 	func testAllergyIntolerance1() {
@@ -31,12 +37,13 @@ class AllergyIntoleranceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AllergyIntolerance {
+	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAllergyIntolerance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "allergyintolerance-example.json")
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2014-10-09T14:58:00+11:00")
 		XCTAssertEqual(inst.asserter?.reference, "Patient/example")
-		XCTAssertEqual(inst.category?[0], AllergyIntoleranceCategory(rawValue: "food")!)
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "food")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/allergy-intolerance-category")
 		XCTAssertEqual(inst.clinicalStatus, AllergyIntoleranceClinicalStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.code?.coding?[0].code, "227493005")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Cashew nuts")
@@ -49,7 +56,6 @@ class AllergyIntoleranceTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].text, "The criticality is high becasue of the observed anaphylactic reaction when challenged with cashew extract.")
 		XCTAssertEqual(inst.onsetDateTime?.description, "2004")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.reaction?[0].certainty, AllergyIntoleranceCertainty(rawValue: "confirmed")!)
 		XCTAssertEqual(inst.reaction?[0].description_fhir, "Challenge Protocol. Severe reaction to subcutaneous cashew extract. Epinephrine administered")
 		XCTAssertEqual(inst.reaction?[0].exposureRoute?.coding?[0].code, "34206005")
 		XCTAssertEqual(inst.reaction?[0].exposureRoute?.coding?[0].display, "Subcutaneous route")
@@ -62,7 +68,6 @@ class AllergyIntoleranceTests: XCTestCase {
 		XCTAssertEqual(inst.reaction?[0].substance?.coding?[0].code, "1160593")
 		XCTAssertEqual(inst.reaction?[0].substance?.coding?[0].display, "cashew nut allergenic extract Injectable Product")
 		XCTAssertEqual(inst.reaction?[0].substance?.coding?[0].system?.absoluteString, "http://www.nlm.nih.gov/research/umls/rxnorm")
-		XCTAssertEqual(inst.reaction?[1].certainty, AllergyIntoleranceCertainty(rawValue: "likely")!)
 		XCTAssertEqual(inst.reaction?[1].manifestation?[0].coding?[0].code, "64305001")
 		XCTAssertEqual(inst.reaction?[1].manifestation?[0].coding?[0].display, "Urticaria")
 		XCTAssertEqual(inst.reaction?[1].manifestation?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")

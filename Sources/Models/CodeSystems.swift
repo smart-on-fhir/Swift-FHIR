@@ -2,8 +2,8 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 
@@ -43,6 +43,67 @@ public enum AccountStatus: String {
 
 
 /**
+Defines behavior for an action or a group for how many times that item may be repeated
+
+URL: http://hl7.org/fhir/action-cardinality-behavior
+ValueSet: http://hl7.org/fhir/ValueSet/action-cardinality-behavior
+*/
+public enum ActionCardinalityBehavior: String {
+	
+	/// The action may only be selected one time
+	case single = "single"
+	
+	/// The action may be selected multiple times
+	case multiple = "multiple"
+}
+
+
+/**
+Defines the kinds of conditions that can appear on actions
+
+URL: http://hl7.org/fhir/action-condition-kind
+ValueSet: http://hl7.org/fhir/ValueSet/action-condition-kind
+*/
+public enum ActionConditionKind: String {
+	
+	/// The condition describes whether or not a given action is applicable
+	case applicability = "applicability"
+	
+	/// The condition is a starting condition for the action
+	case start = "start"
+	
+	/// The condition is a stop, or exit condition for the action
+	case stop = "stop"
+}
+
+
+/**
+Defines organization behavior of a group
+
+URL: http://hl7.org/fhir/action-grouping-behavior
+ValueSet: http://hl7.org/fhir/ValueSet/action-grouping-behavior
+*/
+public enum ActionGroupingBehavior: String {
+	
+	/// Any group marked with this behavior should be displayed as a visual group to the end user
+	case visualGroup = "visual-group"
+	
+	/// A group with this behavior logically groups its sub-elements, and may be shown as a visual group to the end
+	/// user, but it is not required to do so
+	case logicalGroup = "logical-group"
+	
+	/// A group of related alternative actions is a sentence group if the target referenced by the action is the same in
+	/// all the actions and each action simply constitutes a different variation on how to specify the details for the
+	/// target. For example, two actions that could be in a SentenceGroup are "aspirin, 500 mg, 2 times per day" and
+	/// "aspirin, 300 mg, 3 times per day". In both cases, aspirin is the target referenced by the action, and the two
+	/// actions represent different options for how aspirin might be ordered for the patient. Note that a SentenceGroup
+	/// would almost always have an associated selection behavior of "AtMostOne", unless it's a required action, in
+	/// which case, it would be "ExactlyOne"
+	case sentenceGroup = "sentence-group"
+}
+
+
+/**
 List of allowable action which this resource can request.
 
 URL: http://hl7.org/fhir/actionlist
@@ -61,6 +122,155 @@ public enum ActionList: String {
 	
 	/// Retrieve the processing status of the target resource.
 	case status = "status"
+}
+
+
+/**
+The type of participant for the action
+
+URL: http://hl7.org/fhir/action-participant-type
+ValueSet: http://hl7.org/fhir/ValueSet/action-participant-type
+*/
+public enum ActionParticipantType: String {
+	
+	/// The participant is the patient under evaluation
+	case patient = "patient"
+	
+	/// The participant is a practitioner involved in the patient's care
+	case practitioner = "practitioner"
+	
+	/// The participant is a person related to the patient
+	case relatedPerson = "related-person"
+}
+
+
+/**
+Defines selection frequency behavior for an action or group
+
+URL: http://hl7.org/fhir/action-precheck-behavior
+ValueSet: http://hl7.org/fhir/ValueSet/action-precheck-behavior
+*/
+public enum ActionPrecheckBehavior: String {
+	
+	/// An action with this behavior is one of the most frequent action that is, or should be, included by an end user,
+	/// for the particular context in which the action occurs. The system displaying the action to the end user should
+	/// consider "pre-checking" such an action as a convenience for the user
+	case yes = "yes"
+	
+	/// An action with this behavior is one of the less frequent actions included by the end user, for the particular
+	/// context in which the action occurs. The system displaying the actions to the end user would typically not "pre-
+	/// check" such an action
+	case no = "no"
+}
+
+
+/**
+Defines the types of relationships between actions
+
+URL: http://hl7.org/fhir/action-relationship-type
+ValueSet: http://hl7.org/fhir/ValueSet/action-relationship-type
+*/
+public enum ActionRelationshipType: String {
+	
+	/// The action must be performed before the start of the related action
+	case beforeStart = "before-start"
+	
+	/// The action must be performed before the related action
+	case before = "before"
+	
+	/// The action must be performed before the end of the related action
+	case beforeEnd = "before-end"
+	
+	/// The action must be performed concurrent with the start of the related action
+	case concurrentWithStart = "concurrent-with-start"
+	
+	/// The action must be performed concurrent with the related action
+	case concurrent = "concurrent"
+	
+	/// The action must be performed concurrent with the end of the related action
+	case concurrentWithEnd = "concurrent-with-end"
+	
+	/// The action must be performed after the start of the related action
+	case afterStart = "after-start"
+	
+	/// The action must be performed after the related action
+	case after = "after"
+	
+	/// The action must be performed after the end of the related action
+	case afterEnd = "after-end"
+}
+
+
+/**
+Defines requiredness behavior for selecting an action or an action group
+
+URL: http://hl7.org/fhir/action-required-behavior
+ValueSet: http://hl7.org/fhir/ValueSet/action-required-behavior
+*/
+public enum ActionRequiredBehavior: String {
+	
+	/// An action with this behavior must be included in the actions processed by the end user; the end user may not
+	/// choose not to include this action
+	case must = "must"
+	
+	/// An action with this behavior may be included in the set of actions processed by the end user
+	case could = "could"
+	
+	/// An action with this behavior must be included in the set of actions processed by the end user, unless the end
+	/// user provides documentation as to why the action was not included
+	case mustUnlessDocumented = "must-unless-documented"
+}
+
+
+/**
+Defines selection behavior of a group
+
+URL: http://hl7.org/fhir/action-selection-behavior
+ValueSet: http://hl7.org/fhir/ValueSet/action-selection-behavior
+*/
+public enum ActionSelectionBehavior: String {
+	
+	/// Any number of the actions in the group may be chosen, from zero to all
+	case any = "any"
+	
+	/// All the actions in the group must be selected as a single unit
+	case all = "all"
+	
+	/// All the actions in the group are meant to be chosen as a single unit: either all must be selected by the end
+	/// user, or none may be selected
+	case allOrNone = "all-or-none"
+	
+	/// The end user must choose one and only one of the selectable actions in the group. The user may not choose none
+	/// of the actions in the group
+	case exactlyOne = "exactly-one"
+	
+	/// The end user may choose zero or at most one of the actions in the group
+	case atMostOne = "at-most-one"
+	
+	/// The end user must choose a minimum of one, and as many additional as desired
+	case oneOrMore = "one-or-more"
+}
+
+
+/**
+The type of action to be performed
+
+URL: http://hl7.org/fhir/action-type
+ValueSet: http://hl7.org/fhir/ValueSet/action-type
+*/
+public enum ActionType: String {
+	
+	/// The action is to create a new resource
+	case create = "create"
+	
+	/// The action is to update an existing resource
+	case update = "update"
+	
+	/// The action is to remove an existing resource
+	case remove = "remove"
+	
+	/// The action is to fire a specific event
+	case fireEvent = "fire-event"
 }
 
 
@@ -177,6 +387,133 @@ public enum AdministrativeGender: String {
 
 
 /**
+Overall categorisation of the event e.g. real or potential
+
+URL: http://hl7.org/fhir/adverse-event-category
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-category
+*/
+public enum AdverseEventCategory: String {
+	
+	/// AE
+	case AE = "AE"
+	
+	/// PAE
+	case PAE = "PAE"
+}
+
+
+/**
+TODO
+
+URL: http://hl7.org/fhir/adverse-event-causality
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality
+*/
+public enum AdverseEventCausality: String {
+	
+	/// causality1
+	case causality1 = "causality1"
+	
+	/// causality2
+	case causality2 = "causality2"
+}
+
+
+/**
+TODO
+
+URL: http://hl7.org/fhir/adverse-event-causality-assess
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-assess
+*/
+public enum AdverseEventCausalityAssessment: String {
+	
+	/// assess1
+	case assess1 = "assess1"
+	
+	/// assess2
+	case assess2 = "assess2"
+}
+
+
+/**
+TODO
+
+URL: http://hl7.org/fhir/adverse-event-causality-method
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-method
+*/
+public enum AdverseEventCausalityMethod: String {
+	
+	/// method1
+	case method1 = "method1"
+	
+	/// method2
+	case method2 = "method2"
+}
+
+
+/**
+TODO
+
+URL: http://hl7.org/fhir/adverse-event-causality-result
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-result
+*/
+public enum AdverseEventCausalityResult: String {
+	
+	/// result1
+	case result1 = "result1"
+	
+	/// result2
+	case result2 = "result2"
+}
+
+
+/**
+TODO (and should this be required?)
+
+URL: http://hl7.org/fhir/adverse-event-outcome
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-outcome
+*/
+public enum AdverseEventOutcome: String {
+	
+	/// resolved
+	case resolved = "resolved"
+	
+	/// recovering
+	case recovering = "recovering"
+	
+	/// ongoing
+	case ongoing = "ongoing"
+	
+	/// resolvedWithSequelae
+	case resolvedWithSequelae = "resolvedWithSequelae"
+	
+	/// fatal
+	case fatal = "fatal"
+	
+	/// unknown
+	case unknown = "unknown"
+}
+
+
+/**
+Overall seriousness of this event for the patient
+
+URL: http://hl7.org/fhir/adverse-event-seriousness
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-seriousness
+*/
+public enum AdverseEventSeriousness: String {
+	
+	/// mild
+	case mild = "Mild"
+	
+	/// moderate
+	case moderate = "Moderate"
+	
+	/// severe
+	case severe = "Severe"
+}
+
+
+/**
 How resource references can be aggregated.
 
 URL: http://hl7.org/fhir/resource-aggregation-mode
@@ -210,16 +547,16 @@ public enum AllergyIntoleranceCategory: String {
 	/// Substances administered to achieve a physiological effect.
 	case medication = "medication"
 	
-	/// A preparation that is synthesized from living organisms or their products, especially a human or animal protein,
-	/// such as a hormone or antitoxin, that is used as a diagnostic, preventive, or therapeutic agent. Also called
-	/// biological drug. Examples of biologic medications include: vaccines; allergenic extracts, which are used for
-	/// both diagnosis and treatment (for example, allergy shots); gene therapies; cellular therapies.  There are other
-	/// biologic products, such as tissues, that are not typically associated with allergies.
-	case biologic = "biologic"
-	
 	/// Any substances that are encountered in the environment, including any substance not already classified as food,
 	/// medication, or biologic.
 	case environment = "environment"
+	
+	/// A preparation that is synthesized from living organisms or their products, especially a human or animal protein,
+	/// such as a hormone or antitoxin, that is used as a diagnostic, preventive, or therapeutic agent. Examples of
+	/// biologic medications include: vaccines; allergenic extracts, which are used for both diagnosis and treatment
+	/// (for example, allergy shots); gene therapies; cellular therapies.  There are other biologic products, such as
+	/// tissues, that are not typically associated with allergies.
+	case biologic = "biologic"
 }
 
 
@@ -460,7 +797,7 @@ public enum AssertionOperatorType: String {
 	/// Compare value string does not contain a known value.
 	case notContains = "notContains"
 	
-	/// Evaluate the fhirpath expression as a boolean condition.
+	/// Evaluate the fluentpath expression as a boolean condition.
 	case eval = "eval"
 }
 
@@ -655,6 +992,33 @@ public enum CarePlanActivityStatus: String {
 
 
 /**
+Codes indicating the degree of authority/intentionality associated with a care plan
+
+URL: http://hl7.org/fhir/care-plan-intent
+ValueSet: http://hl7.org/fhir/ValueSet/care-plan-intent
+*/
+public enum CarePlanIntent: String {
+	
+	/// The care plan is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and
+	/// without providing an authorization to act
+	case proposal = "proposal"
+	
+	/// The care plan represents an intention to ensure something occurs without providing an authorization for others
+	/// to act
+	case plan = "plan"
+	
+	/// The care plan represents a request/demand and authorization for action
+	case order = "order"
+	
+	/// The care plan represents a component or option for a RequestGroup that establishes timing, conditionality and/or
+	/// other constraints among a set of requests.
+	/// 
+	/// Refer to [[[RequestGroup]]] for additional information on how this status is used
+	case option = "option"
+}
+
+
+/**
 Codes identifying the types of relationships between two plans.
 
 URL: http://hl7.org/fhir/care-plan-relationship
@@ -681,9 +1045,6 @@ ValueSet: http://hl7.org/fhir/ValueSet/care-plan-status
 */
 public enum CarePlanStatus: String {
 	
-	/// The plan has been suggested but no commitment to it has yet been made.
-	case proposed = "proposed"
-	
 	/// The plan is in development or awaiting use but is not yet intended to be acted upon.
 	case draft = "draft"
 	
@@ -703,6 +1064,235 @@ public enum CarePlanStatus: String {
 	case cancelled = "cancelled"
 	
 	/// The authoring system doesn't know the current state of the care plan.
+	case unknown = "unknown"
+}
+
+
+/**
+Indicates the type of care team.
+
+URL: http://hl7.org/fhir/care-team-category
+ValueSet: http://hl7.org/fhir/ValueSet/care-team-category
+*/
+public enum CareTeamCategory: String {
+	
+	/// This type of team focuses on one specific type of incident, which is non-patient specific. The incident is
+	/// determined by the context of use.  For example, code team (code red, code blue, medical emergency treatment) or
+	/// the PICC line team.
+	case event = "event"
+	
+	/// This type of patient-specific team focuses on one specific encounter. The encounter is determined by the context
+	/// of use.  For example, during an inpatient encounter, the nutrition support care team
+	case encounter = "encounter"
+	
+	/// This type of team focuses on one specific episode of care with a defined time period or self-limiting process
+	/// (e.g. 10 visits). The episode of care is determined by the context of use.  For example, a maternity care team
+	/// over 9 months.
+	case episode = "episode"
+	
+	/// This type of team focuses on overall care coordination managing one or more conditions across a continuum of
+	/// care ensuring there is a smooth transition of care. The members of the team are determined or selected by an
+	/// individual or organization. When determined by an organization, the team may be assigned or based on the
+	/// person’s enrollment in a particular program.   For example, disease management team or patient centered medical
+	/// home team.
+	case careCoordination = "care-coordination"
+	
+	/// This type of team focuses on one specific condition. The condition is determined by the context of use.  For
+	/// example, a disease management team focused on one condition (e.g. diabetes).
+	case condition = "condition"
+	
+	/// This type of team is responsible for establishing, conducting, coordinating and monitoring the outcomes of
+	/// clinical trials. The team focuses on research, clinical care and education.
+	case clinicalResearch = "clinical-research"
+}
+
+
+/**
+Indicates the status of the care team.
+
+URL: http://hl7.org/fhir/care-team-status
+ValueSet: http://hl7.org/fhir/ValueSet/care-team-status
+*/
+public enum CareTeamStatus: String {
+	
+	/// The care team has been drafted and proposed, but not yet participating in the coordination and delivery of care.
+	case proposed = "proposed"
+	
+	/// The care team is currently participating in the coordination and delivery of care.
+	case active = "active"
+	
+	/// The care team is temporarily on hold or suspended and not participating in the coordination and delivery of
+	/// care.
+	case suspended = "suspended"
+	
+	/// The care team was, but is no longer, participating in the coordination and delivery of care.
+	case inactive = "inactive"
+	
+	/// The care team should have never existed.
+	case enteredInError = "entered-in-error"
+}
+
+
+/**
+The current reported status of the catalog content
+
+URL: http://hl7.org/fhir/catalog-content-status
+ValueSet: http://hl7.org/fhir/ValueSet/catalog-content-status
+*/
+public enum CatalogContentStatus: String {
+	
+	/// The catalog is approved
+	case approved = "approved"
+	
+	/// The catalog content is pending some action e.g. confirmation or approval
+	case pending = "pending"
+	
+	/// The catalog is discontinued
+	case discontinued = "discontinued"
+	
+	/// The catalog content is considered official
+	case official = "official"
+}
+
+
+/**
+The type of the catalog content
+
+URL: http://hl7.org/fhir/catalog-content-type
+ValueSet: http://hl7.org/fhir/ValueSet/catalog-content-type
+*/
+public enum CatalogContentType: String {
+	
+	/// This is a product submission
+	case singleSubmission = "single-submission"
+	
+	/// This is a resubmission of a previously submitted item
+	case resubmission = "resubmission"
+	
+	/// This is a full catalog transfer
+	case fullCatalog = "full-catalog"
+	
+	/// This is a differential update
+	case catalogUpdate = "catalog-update"
+	
+	/// This is a response to a request for catalog information
+	case catalogResponse = "catalog-response"
+}
+
+
+/**
+The type of relation from the main entry to the related entry
+
+URL: http://hl7.org/fhir/catalog-item-relation-type
+ValueSet: http://hl7.org/fhir/ValueSet/catalog-item-relation-type
+*/
+public enum CatalogEntryRelatedItemRelationtype: String {
+	
+	/// The entry is a package that contains the related entry
+	case pkgContains = "pkg-contains"
+	
+	/// The entry is contained in the related entry
+	case pkgIsContainedIn = "pkg-is-contained-in"
+	
+	/// The entry contains the related entry as a substance
+	case containsSbst = "contains-sbst"
+	
+	/// The entry combines with the related entry
+	case combinesWith = "combines-with"
+	
+	/// The entry requires the related entry for use
+	case requires = "requires"
+}
+
+
+/**
+The type of the related entry
+
+URL: http://hl7.org/fhir/catalog-entry-type
+ValueSet: http://hl7.org/fhir/ValueSet/catalog-entry-type
+*/
+public enum CatalogEntryRelatedItemType: String {
+	
+	/// This is a medication
+	case medication = "medication"
+	
+	/// This is a device
+	case device = "device"
+}
+
+
+/**
+The status of the entry that is mentioned in the catalog
+
+URL: http://hl7.org/fhir/catalog-entry-status
+ValueSet: http://hl7.org/fhir/ValueSet/catalog-entry-status
+*/
+public enum CatalogEntryStatus: String {
+	
+	/// The entry is approved for use
+	case approved = "approved"
+	
+	/// The entry is pending some action e.g. confirmation or approval
+	case pending = "pending"
+	
+	/// The catalog entry is discontinued
+	case discontinued = "discontinued"
+	
+	/// The catalog entry is considered official
+	case official = "official"
+}
+
+
+/**
+The update mode for processing the catalog content
+
+URL: http://hl7.org/fhir/catalog-update-mode
+ValueSet: http://hl7.org/fhir/ValueSet/catalog-update-mode
+*/
+public enum CatalogUpdateMode: String {
+	
+	/// This is a product submission
+	case update = "update"
+	
+	/// The catalog content is expected to be replacing the existing entries
+	case replace = "replace"
+	
+	/// The catalog content is expected to update the entries, and if not existing, insert the entry
+	case upsert = "upsert"
+}
+
+
+/**
+Codes identifying the stage lifecycle stage of a ChargeItem
+
+URL: http://hl7.org/fhir/chargeitem-status
+ValueSet: http://hl7.org/fhir/ValueSet/chargeitem-status
+*/
+public enum ChargeItemStatus: String {
+	
+	/// the charge item has been entered, but the charged service is not  yet complete, so it shall not be billed yet
+	/// but might be used in the context of pre-authorization
+	case preparation = "preparation"
+	
+	/// the charge item is ready for billing
+	case billable = "billable"
+	
+	/// the charge item has been determined to be not billable (e.g. due to rules associated with the billing code)
+	case notBillable = "not-billable"
+	
+	/// The processing of the charge was aborted
+	case aborted = "aborted"
+	
+	/// the charge item has been billed (e.g. a billing engine has generated financial transactions by applying the
+	/// associated ruled for the charge item to the context of the Encounter, and placed them into Claims/Invoices
+	case billed = "billed"
+	
+	/// The charge item has been entered in error and should not be processed for billing
+	case enteredInError = "entered-in-error"
+	
+	/// The authoring system does not know which of the status values currently applies for this charge item  Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
 	case unknown = "unknown"
 }
 
@@ -805,71 +1395,6 @@ public enum CodeSystemHierarchyMeaning: String {
 	/// "closed world" meaning all things must be in the hierarchy. This results in concepts such as "not otherwise
 	/// clasified."
 	case classifiedWith = "classified-with"
-}
-
-
-/**
-The status of the communication.
-
-URL: http://hl7.org/fhir/communication-request-status
-ValueSet: http://hl7.org/fhir/ValueSet/communication-request-status
-*/
-public enum CommunicationRequestStatus: String {
-	
-	/// The request has been proposed.
-	case proposed = "proposed"
-	
-	/// The request has been planned.
-	case planned = "planned"
-	
-	/// The request has been placed.
-	case requested = "requested"
-	
-	/// The receiving system has received the request but not yet decided whether it will be performed.
-	case received = "received"
-	
-	/// The receiving system has accepted the order, but work has not yet commenced.
-	case accepted = "accepted"
-	
-	/// The work to fulfill the order is happening.
-	case inProgress = "in-progress"
-	
-	/// The work has been complete, the report(s) released, and no further work is planned.
-	case completed = "completed"
-	
-	/// The request has been held by originating system/user request.
-	case suspended = "suspended"
-	
-	/// The receiving system has declined to fulfill the request
-	case rejected = "rejected"
-	
-	/// The communication was attempted, but due to some procedural error, it could not be completed.
-	case failed = "failed"
-}
-
-
-/**
-The status of the communication.
-
-URL: http://hl7.org/fhir/communication-status
-ValueSet: http://hl7.org/fhir/ValueSet/communication-status
-*/
-public enum CommunicationStatus: String {
-	
-	/// The communication transmission is ongoing.
-	case inProgress = "in-progress"
-	
-	/// The message transmission is complete, i.e., delivered to the recipient's destination.
-	case completed = "completed"
-	
-	/// The communication transmission has been held by originating system/user request.
-	case suspended = "suspended"
-	
-	/// The receiving system has declined to accept the message.
-	case rejected = "rejected"
-	
-	/// There was a failure in transmitting the message out.
-	case failed = "failed"
 }
 
 
@@ -1150,6 +1675,9 @@ public enum ConsentDataMeaning: String {
 	
 	/// The consent applies directly to the instance of the resource, and instances that refer to it
 	case dependents = "dependents"
+	
+	/// The consent applies to instances of resources that are authored by
+	case authoredby = "authoredby"
 }
 
 
@@ -1172,15 +1700,15 @@ public enum ConsentExceptType: String {
 /**
 Indicates the status of the consent
 
-URL: http://hl7.org/fhir/consent-status
-ValueSet: http://hl7.org/fhir/ValueSet/consent-status
+URL: http://hl7.org/fhir/consent-status-codes
+ValueSet: http://hl7.org/fhir/ValueSet/consent-status-codes
 */
 public enum ConsentStatus: String {
 	
 	/// The consent is in development or awaiting use but is not yet intended to be acted upon.
 	case draft = "draft"
 	
-	/// The consent has be proposed but not yet agreed to by all parties. The negotiation stage.
+	/// The consent has been proposed but not yet agreed to by all parties. The negotiation stage.
 	case proposed = "proposed"
 	
 	/// The consent is to be followed and enforced.
@@ -1334,25 +1862,6 @@ public enum CopyNumberEvent: String {
 	
 	/// loss of function
 	case lof = "lof"
-}
-
-
-/**
-The type of the service endpoint
-
-URL: http://hl7.org/fhir/dWebType
-ValueSet: http://hl7.org/fhir/ValueSet/dWebType
-*/
-public enum DWebType: String {
-	
-	/// Web Access to DICOM Persistent Objects - RESTful Services
-	case WADORS = "WADO-RS"
-	
-	/// Web Access to DICOM Persistent Objects - URI
-	case WADOURI = "WADO-URI"
-	
-	/// IHE - Invoke Image Display Profile
-	case IID = "IID"
 }
 
 
@@ -1674,7 +2183,9 @@ public enum DefinitionStatus: String {
 	/// The definition should no longer be used
 	case withdrawn = "withdrawn"
 	
-	/// The authoring system does not know which of the status values currently applies for this definition.
+	/// The authoring system does not know which of the status values currently applies for this request.  Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
 	case unknown = "unknown"
 }
 
@@ -1869,6 +2380,10 @@ public enum DiagnosticReportStatus: String {
 	
 	/// The report has been withdrawn following a previous final release.
 	case enteredInError = "entered-in-error"
+	
+	/// The report status is unknown.  Note that "unknown" is a value of last resort and every attempt should be made to
+	/// provide a meaningful value other than "unknown".
+	case unknown = "unknown"
 }
 
 
@@ -2116,7 +2631,9 @@ public enum EventStatus: String {
 	/// it.  (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
 	case enteredInError = "entered-in-error"
 	
-	/// The authoring system does not know which of the status values currently applies for this event
+	/// The authoring system does not know which of the status values currently applies for this request.  Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
 	case unknown = "unknown"
 }
 
@@ -2402,7 +2919,7 @@ public enum GoalRelationshipType: String {
 	case replacement = "replacement"
 	
 	/// Indicates that the target goal is considered to be a "piece" of attaining this goal.
-	case component = "component"
+	case milestone = "milestone"
 	
 	/// Indicates that the relationship is not covered by one of the pre-defined codes.  (An extension may convey more
 	/// information about the meaning of the relationship.)
@@ -2421,32 +2938,17 @@ public enum GoalStatus: String {
 	/// A goal is proposed for this patient
 	case proposed = "proposed"
 	
-	/// A goal is planned for this patient
-	case planned = "planned"
-	
-	/// A proposed goal was accepted
+	/// A proposed goal was accepted or acknowledged
 	case accepted = "accepted"
 	
-	/// A proposed goal was rejected
-	case rejected = "rejected"
+	/// A goal is planned for this patient
+	case planned = "planned"
 	
 	/// The goal is being sought but has not yet been reached.  (Also applies if goal was reached in the past but there
 	/// has been regression and goal is being sought again)
 	case inProgress = "in-progress"
 	
-	/// The goal has been met and no further action is needed
-	case achieved = "achieved"
-	
-	/// The goal has been met, but ongoing activity is needed to sustain the goal objective
-	case sustaining = "sustaining"
-	
-	/// The goal remains a long term objective but is no longer being actively pursued for a temporary period of time.
-	case onHold = "on-hold"
-	
-	/// The goal is no longer being sought
-	case cancelled = "cancelled"
-	
-	/// The goal is on scheduled for the planned timelines
+	/// The goal is on schedule for the planned timelines
 	case onTarget = "on-target"
 	
 	/// The goal is ahead of the planned timelines
@@ -2455,8 +2957,23 @@ public enum GoalStatus: String {
 	/// The goal is behind the planned timelines
 	case behindTarget = "behind-target"
 	
+	/// The goal has been met, but ongoing activity is needed to sustain the goal objective
+	case sustaining = "sustaining"
+	
+	/// The goal has been met and no further action is needed
+	case achieved = "achieved"
+	
+	/// The goal remains a long term objective but is no longer being actively pursued for a temporary period of time.
+	case onHold = "on-hold"
+	
+	/// The previously accepted goal is no longer being sought
+	case cancelled = "cancelled"
+	
 	/// The goal was entered in error and voided.
 	case enteredInError = "entered-in-error"
+	
+	/// A proposed goal was rejected
+	case rejected = "rejected"
 }
 
 
@@ -3335,11 +3852,32 @@ public enum MeasureType: String {
 	/// A measure that focuses on a health care provider's capacity, systems, and processes to provide high-quality care
 	case structure = "structure"
 	
-	/// A measure that focuses on patient-reported information
+	/// A measure that focuses on patient-reported information such as patient engagement or patient experience measures
 	case patientReportedOutcome = "patient-reported-outcome"
 	
 	/// A measure that combines multiple component measures in to a single quality measure
 	case composite = "composite"
+}
+
+
+/**
+A coded concept describing where the medication administered is expected to occur
+
+URL: http://hl7.org/fhir/medication-admin-category
+ValueSet: http://hl7.org/fhir/ValueSet/medication-admin-category
+*/
+public enum MedicationAdministrationCategory: String {
+	
+	/// Includes administrations in an inpatient or acute care setting
+	case inpatient = "inpatient"
+	
+	/// Includes administrations in an outpatient setting (for example, Emergency Department, Outpatient Clinic,
+	/// Outpatient Surgery, Doctor's office)
+	case outpatient = "outpatient"
+	
+	/// Includes administrations by the patient in their home (this would include long term care or nursing homes,
+	/// hospices, etc)
+	case community = "community"
 }
 
 
@@ -3366,6 +3904,32 @@ public enum MedicationAdministrationStatus: String {
 	
 	/// Actions implied by the administration have been permanently halted, before all of them occurred.
 	case stopped = "stopped"
+	
+	/// The authoring system does not know which of the status values currently applies for this request. Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
+	case unknown = "unknown"
+}
+
+
+/**
+A code describing where the dispensed medication is expected to be consumed or administered
+
+URL: http://hl7.org/fhir/medication-dispense-category
+ValueSet: http://hl7.org/fhir/ValueSet/medication-dispense-category
+*/
+public enum MedicationDispenseCategory: String {
+	
+	/// Includes dispenses for medications to be administered or consumed in an inpatient or acute care setting
+	case inpatient = "inpatient"
+	
+	/// Includes dispenses for medications to be administered or consumed in an outpatient setting (for example,
+	/// Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office)
+	case outpatient = "outpatient"
+	
+	/// Includes dispenses for medications to be administered or consumed by the patient in their home (this would
+	/// include long term care or nursing homes, hospices, etc)
+	case community = "community"
 }
 
 
@@ -3376,6 +3940,10 @@ URL: http://hl7.org/fhir/medication-dispense-status
 ValueSet: http://hl7.org/fhir/ValueSet/medication-dispense-status
 */
 public enum MedicationDispenseStatus: String {
+	
+	/// The core event has not started yet, but some staging activities have begun (e.g. initial compounding or
+	/// packaging of medication). Preparation stages may be tracked for billing purposes.
+	case preparation = "preparation"
 	
 	/// The dispense has started but has not yet completed.
 	case inProgress = "in-progress"
@@ -3417,6 +3985,52 @@ public enum MedicationRequestCategory: String {
 
 
 /**
+The kind of medication order
+
+URL: http://hl7.org/fhir/medication-request-intent
+ValueSet: http://hl7.org/fhir/ValueSet/medication-request-intent
+*/
+public enum MedicationRequestIntent: String {
+	
+	/// The request is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and
+	/// without providing an authorization to act
+	case proposal = "proposal"
+	
+	/// The request represents an intension to ensure something occurs without providing an authorization for others to
+	/// act
+	case plan = "plan"
+	
+	/// The request represents a request/demand and authorization for action
+	case order = "order"
+	
+	/// The request represents an instance for the particular order, for example a medication administration record.
+	case instanceOrder = "instance-order"
+}
+
+
+/**
+Identifies the level of importance to be assigned to actioning the request
+
+URL: http://hl7.org/fhir/medication-request-priority
+ValueSet: http://hl7.org/fhir/ValueSet/medication-request-priority
+*/
+public enum MedicationRequestPriority: String {
+	
+	/// The order has a normal priority .
+	case routine = "routine"
+	
+	/// The order should be urgently.
+	case urgent = "urgent"
+	
+	/// The order is time-critical.
+	case stat = "stat"
+	
+	/// The order should be acted on as soon as possible.
+	case asap = "asap"
+}
+
+
+/**
 A coded concept specifying the state of the prescribing event. Describes the lifecycle of the prescription
 
 URL: http://hl7.org/fhir/medication-request-status
@@ -3446,6 +4060,9 @@ public enum MedicationRequestStatus: String {
 	/// The prescription is not yet 'actionable', i.e. it is a work in progress, requires sign-off or verification, and
 	/// needs to be run through decision support process.
 	case draft = "draft"
+	
+	/// The authoring system does not know which of the status values currently applies for this request
+	case unknown = "unknown"
 }
 
 
@@ -3476,25 +4093,6 @@ public enum MedicationStatementCategory: String {
 
 
 /**
-A coded concept identifying level of certainty if patient has taken or has not taken the medication
-
-URL: http://hl7.org/fhir/medication-statement-nottaken
-ValueSet: http://hl7.org/fhir/ValueSet/medication-statement-nottaken
-*/
-public enum MedicationStatementNotTaken: String {
-	
-	/// Positive assertion that patient has taken medication
-	case Y = "y"
-	
-	/// Negative assertion that patient has not taken medication
-	case N = "n"
-	
-	/// Unknown assertion if patient has taken medication
-	case unk = "unk"
-}
-
-
-/**
 A coded concept indicating the current status of a MedicationStatement.
 
 URL: http://hl7.org/fhir/medication-statement-status
@@ -3508,7 +4106,7 @@ public enum MedicationStatementStatus: String {
 	/// The medication is no longer being taken.
 	case completed = "completed"
 	
-	/// The statement was entered in error.
+	/// The statement was recorded incorrectly.
 	case enteredInError = "entered-in-error"
 	
 	/// The medication may be taken at some time in the future.
@@ -3520,6 +4118,47 @@ public enum MedicationStatementStatus: String {
 	/// Actions implied by the statement have been temporarily halted, but are expected to continue later. May also be
 	/// called "suspended".
 	case onHold = "on-hold"
+}
+
+
+/**
+A coded concept identifying level of certainty if patient has taken or has not taken the medication
+
+URL: http://hl7.org/fhir/medication-statement-taken
+ValueSet: http://hl7.org/fhir/ValueSet/medication-statement-taken
+*/
+public enum MedicationStatementTaken: String {
+	
+	/// Positive assertion that patient has taken medication
+	case Y = "y"
+	
+	/// Negative assertion that patient has not taken medication
+	case N = "n"
+	
+	/// Unknown assertion if patient has taken medication
+	case unk = "unk"
+	
+	/// Patient reporting does not apply
+	case na = "na"
+}
+
+
+/**
+A coded concept defining if the medication is in active use
+
+URL: http://hl7.org/fhir/medication-status
+ValueSet: http://hl7.org/fhir/ValueSet/medication-status
+*/
+public enum MedicationStatus: String {
+	
+	/// The medication is available for use
+	case active = "active"
+	
+	/// The medication is not available for use
+	case inactive = "inactive"
+	
+	/// The medication was entered in error
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -4191,216 +4830,6 @@ public enum PayeeResourceType: String {
 
 
 /**
-Defines behavior for an action or a group for how many times that item may be repeated
-
-URL: http://hl7.org/fhir/action-cardinality-behavior
-ValueSet: http://hl7.org/fhir/ValueSet/action-cardinality-behavior
-*/
-public enum PlanActionCardinalityBehavior: String {
-	
-	/// The action may only be selected one time
-	case single = "single"
-	
-	/// The action may be selected multiple times
-	case multiple = "multiple"
-}
-
-
-/**
-Defines the kinds of conditions that can appear on actions
-
-URL: http://hl7.org/fhir/action-condition-kind
-ValueSet: http://hl7.org/fhir/ValueSet/action-condition-kind
-*/
-public enum PlanActionConditionKind: String {
-	
-	/// The condition describes whether or not a given action is applicable
-	case applicability = "applicability"
-	
-	/// The condition is a starting condition for the action
-	case start = "start"
-	
-	/// The condition is a stop, or exit condition for the action
-	case stop = "stop"
-}
-
-
-/**
-Defines organization behavior of a group
-
-URL: http://hl7.org/fhir/action-grouping-behavior
-ValueSet: http://hl7.org/fhir/ValueSet/action-grouping-behavior
-*/
-public enum PlanActionGroupingBehavior: String {
-	
-	/// Any group marked with this behavior should be displayed as a visual group to the end user
-	case visualGroup = "visual-group"
-	
-	/// A group with this behavior logically groups its sub-elements, and may be shown as a visual group to the end
-	/// user, but it is not required to do so
-	case logicalGroup = "logical-group"
-	
-	/// A group of related alternative actions is a sentence group if the target referenced by the action is the same in
-	/// all the actions and each action simply constitutes a different variation on how to specify the details for the
-	/// target. For example, two actions that could be in a SentenceGroup are "aspirin, 500 mg, 2 times per day" and
-	/// "aspirin, 300 mg, 3 times per day". In both cases, aspirin is the target referenced by the action, and the two
-	/// actions represent different options for how aspirin might be ordered for the patient. Note that a SentenceGroup
-	/// would almost always have an associated selection behavior of "AtMostOne", unless it's a required action, in
-	/// which case, it would be "ExactlyOne"
-	case sentenceGroup = "sentence-group"
-}
-
-
-/**
-The type of participant for the action
-
-URL: http://hl7.org/fhir/action-participant-type
-ValueSet: http://hl7.org/fhir/ValueSet/action-participant-type
-*/
-public enum PlanActionParticipantType: String {
-	
-	/// The participant is the patient under evaluation
-	case patient = "patient"
-	
-	/// The participant is a practitioner involved in the patient's care
-	case practitioner = "practitioner"
-	
-	/// The participant is a person related to the patient
-	case relatedPerson = "related-person"
-}
-
-
-/**
-Defines selection frequency behavior for an action or group
-
-URL: http://hl7.org/fhir/action-precheck-behavior
-ValueSet: http://hl7.org/fhir/ValueSet/action-precheck-behavior
-*/
-public enum PlanActionPrecheckBehavior: String {
-	
-	/// An action with this behavior is one of the most frequent action that is, or should be, included by an end user,
-	/// for the particular context in which the action occurs. The system displaying the action to the end user should
-	/// consider "pre-checking" such an action as a convenience for the user
-	case yes = "yes"
-	
-	/// An action with this behavior is one of the less frequent actions included by the end user, for the particular
-	/// context in which the action occurs. The system displaying the actions to the end user would typically not "pre-
-	/// check" such an action
-	case no = "no"
-}
-
-
-/**
-Defines the types of relationships between actions
-
-URL: http://hl7.org/fhir/action-relationship-type
-ValueSet: http://hl7.org/fhir/ValueSet/action-relationship-type
-*/
-public enum PlanActionRelationshipType: String {
-	
-	/// The action must be performed before the start of the related action
-	case beforeStart = "before-start"
-	
-	/// The action must be performed before the related action
-	case before = "before"
-	
-	/// The action must be performed before the end of the related action
-	case beforeEnd = "before-end"
-	
-	/// The action must be performed concurrent with the start of the related action
-	case concurrentWithStart = "concurrent-with-start"
-	
-	/// The action must be performed concurrent with the related action
-	case concurrent = "concurrent"
-	
-	/// The action must be performed concurrent with the end of the related action
-	case concurrentWithEnd = "concurrent-with-end"
-	
-	/// The action must be performed after the start of the related action
-	case afterStart = "after-start"
-	
-	/// The action must be performed after the related action
-	case after = "after"
-	
-	/// The action must be performed after the end of the related action
-	case afterEnd = "after-end"
-}
-
-
-/**
-Defines requiredness behavior for selecting an action or an action group
-
-URL: http://hl7.org/fhir/action-required-behavior
-ValueSet: http://hl7.org/fhir/ValueSet/action-required-behavior
-*/
-public enum PlanActionRequiredBehavior: String {
-	
-	/// An action with this behavior must be included in the actions processed by the end user; the end user may not
-	/// choose not to include this action
-	case must = "must"
-	
-	/// An action with this behavior may be included in the set of actions processed by the end user
-	case could = "could"
-	
-	/// An action with this behavior must be included in the set of actions processed by the end user, unless the end
-	/// user provides documentation as to why the action was not included
-	case mustUnlessDocumented = "must-unless-documented"
-}
-
-
-/**
-Defines selection behavior of a group
-
-URL: http://hl7.org/fhir/action-selection-behavior
-ValueSet: http://hl7.org/fhir/ValueSet/action-selection-behavior
-*/
-public enum PlanActionSelectionBehavior: String {
-	
-	/// Any number of the actions in the group may be chosen, from zero to all
-	case any = "any"
-	
-	/// All the actions in the group must be selected as a single unit
-	case all = "all"
-	
-	/// All the actions in the group are meant to be chosen as a single unit: either all must be selected by the end
-	/// user, or none may be selected
-	case allOrNone = "all-or-none"
-	
-	/// The end user must choose one and only one of the selectable actions in the group. The user may not choose none
-	/// of the actions in the group
-	case exactlyOne = "exactly-one"
-	
-	/// The end user may choose zero or at most one of the actions in the group
-	case atMostOne = "at-most-one"
-	
-	/// The end user must choose a minimum of one, and as many additional as desired
-	case oneOrMore = "one-or-more"
-}
-
-
-/**
-The type of action to be performed
-
-URL: http://hl7.org/fhir/action-type
-ValueSet: http://hl7.org/fhir/ValueSet/action-type
-*/
-public enum PlanActionType: String {
-	
-	/// The action is to create a new resource
-	case create = "create"
-	
-	/// The action is to update an existing resource
-	case update = "update"
-	
-	/// The action is to remove an existing resource
-	case remove = "remove"
-	
-	/// The action is to fire a specific event
-	case fireEvent = "fire-event"
-}
-
-
-/**
 The type of PlanDefinition
 
 URL: http://hl7.org/fhir/plan-definition-type
@@ -4442,68 +4871,6 @@ public enum ProcedureRelationshipType: String {
 
 
 /**
-The priority of the request.
-
-URL: http://hl7.org/fhir/procedure-request-priority
-ValueSet: http://hl7.org/fhir/ValueSet/procedure-request-priority
-*/
-public enum ProcedureRequestPriority: String {
-	
-	/// The request has a normal priority.
-	case routine = "routine"
-	
-	/// The request should be done urgently.
-	case urgent = "urgent"
-	
-	/// The request is time-critical.
-	case stat = "stat"
-	
-	/// The request should be acted on as soon as possible.
-	case asap = "asap"
-}
-
-
-/**
-The status of the request.
-
-URL: http://hl7.org/fhir/procedure-request-status
-ValueSet: http://hl7.org/fhir/ValueSet/procedure-request-status
-*/
-public enum ProcedureRequestStatus: String {
-	
-	/// The request has been proposed.
-	case proposed = "proposed"
-	
-	/// The request is in preliminary form, prior to being requested.
-	case draft = "draft"
-	
-	/// The request has been placed.
-	case requested = "requested"
-	
-	/// The receiving system has received the request but not yet decided whether it will be performed.
-	case received = "received"
-	
-	/// The receiving system has accepted the request, but work has not yet commenced.
-	case accepted = "accepted"
-	
-	/// The work to fulfill the request is happening.
-	case inProgress = "in-progress"
-	
-	/// The work has been completed, the report(s) released, and no further work is planned.
-	case completed = "completed"
-	
-	/// The request has been held by originating system/user request.
-	case suspended = "suspended"
-	
-	/// The receiving system has declined to fulfill the request.
-	case rejected = "rejected"
-	
-	/// The request was attempted, but due to some procedural error, it could not be completed.
-	case aborted = "aborted"
-}
-
-
-/**
 A code specifying the state of the procedure.
 
 URL: http://hl7.org/fhir/procedure-status
@@ -4511,8 +4878,15 @@ ValueSet: http://hl7.org/fhir/ValueSet/procedure-status
 */
 public enum ProcedureStatus: String {
 	
-	/// The procedure is still occurring.
+	/// The core procedure has not started yet, but some staging activities have begun (e.g. surgical suite
+	/// preparation).  Preparation stages may be tracked for billing purposes.
+	case preparation = "preparation"
+	
+	/// The procedure is currently occurring.
 	case inProgress = "in-progress"
+	
+	/// The procedure has been temporarily stopped but is expected to resume in the future
+	case suspended = "suspended"
 	
 	/// The procedure was terminated without completing successfully.
 	case aborted = "aborted"
@@ -4520,10 +4894,12 @@ public enum ProcedureStatus: String {
 	/// All actions involved in the procedure have taken place.
 	case completed = "completed"
 	
-	/// The statement was entered in error and Is not valid.
+	/// This electronic record should never have existed.
 	case enteredInError = "entered-in-error"
 	
-	/// The authoring system doesn't know the current state of the procedure.
+	/// The authoring system does not know which of the status values currently applies for this procedure.  Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
 	case unknown = "unknown"
 }
 
@@ -4661,13 +5037,13 @@ ValueSet: http://hl7.org/fhir/ValueSet/quality-type
 public enum QualityType: String {
 	
 	/// INDEL Comparison
-	case INDEL = "INDEL"
+	case indel = "indel"
 	
 	/// SNP Comparison
-	case SNP = "SNP"
+	case snp = "snp"
 	
 	/// UNKNOWN Comparison
-	case UNKNOWN = "UNKNOWN"
+	case unknown = "unknown"
 }
 
 
@@ -4724,9 +5100,6 @@ public enum QuestionnaireItemType: String {
 	
 	/// Question with a date and time answer
 	case dateTime = "dateTime"
-	
-	/// Question with a system timestamp answer
-	case instant = "instant"
 	
 	/// Question with a time (hour/minute/second) answer independent of date.
 	case time = "time"
@@ -4806,6 +5179,10 @@ public enum QuestionnaireResponseStatus: String {
 	
 	/// This QuestionnaireResponse was entered in error and voided.
 	case enteredInError = "entered-in-error"
+	
+	/// This QuestionnaireResponse has been partially filled out with answers, but it is unknown whether changes or
+	/// additions are expected to be made to it.
+	case stopped = "stopped"
 }
 
 
@@ -5136,7 +5513,9 @@ public enum RequestStatus: String {
 	/// it.  (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
 	case enteredInError = "entered-in-error"
 	
-	/// The authoring system does not know which of the status values currently applies for this request
+	/// The authoring system does not know which of the status values currently applies for this request.  Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
 	case unknown = "unknown"
 }
 
@@ -5499,13 +5878,13 @@ ValueSet: http://hl7.org/fhir/ValueSet/sequence-type
 public enum SequenceType: String {
 	
 	/// Amino acid sequence
-	case AA = "AA"
+	case aa = "aa"
 	
 	/// DNA Sequence
-	case DNA = "DNA"
+	case dna = "dna"
 	
 	/// RNA Sequence
-	case RNA = "RNA"
+	case rna = "rna"
 }
 
 
@@ -5682,6 +6061,25 @@ public enum StructureMapContextType: String {
 
 
 /**
+If this is the default rule set to apply for thie source type, or this combination of types
+
+URL: http://hl7.org/fhir/map-group-type-mode
+ValueSet: http://hl7.org/fhir/ValueSet/map-group-type-mode
+*/
+public enum StructureMapGroupTypeMode: String {
+	
+	/// This group is not a default group for the types
+	case none = "none"
+	
+	/// This group is a default mapping group for the specified types and for the primary source type
+	case types = "types"
+	
+	/// This group is a default mapping group for the specified types
+	case typeAndTypes = "type-and-types"
+}
+
+
+/**
 Mode for this instance of data
 
 URL: http://hl7.org/fhir/map-input-mode
@@ -5694,28 +6092,6 @@ public enum StructureMapInputMode: String {
 	
 	/// Names an instance that is being populated
 	case target = "target"
-}
-
-
-/**
-If field is a list, how to manage the list
-
-URL: http://hl7.org/fhir/map-list-mode
-ValueSet: http://hl7.org/fhir/ValueSet/map-list-mode
-*/
-public enum StructureMapListMode: String {
-	
-	/// when the target list is being assembled, the items for this rule go first. If more that one rule defines a first
-	/// item (for a given instance of mapping) then this is an error
-	case first = "first"
-	
-	/// the target instance is shared with the target instances generated by another rule (up to the first common n
-	/// items, then create new ones)
-	case share = "share"
-	
-	/// when the target list is being assembled, the items for this rule go last. If more that one rule defines a last
-	/// item (for a given instance of mapping) then this is an error
-	case last = "last"
 }
 
 
@@ -5738,6 +6114,56 @@ public enum StructureMapModelMode: String {
 	
 	/// This structure describes an instance that the mapping engine may ask to create that is used a target of data
 	case produced = "produced"
+}
+
+
+/**
+If field is a list, how to manage the source
+
+URL: http://hl7.org/fhir/map-source-list-mode
+ValueSet: http://hl7.org/fhir/ValueSet/map-source-list-mode
+*/
+public enum StructureMapSourceListMode: String {
+	
+	/// Only process this rule for the first in the list
+	case first = "first"
+	
+	/// Process this rule for all but the first
+	case not_first = "not_first"
+	
+	/// Only process this rule for the last in the list
+	case last = "last"
+	
+	/// Process this rule for all but the last
+	case not_last = "not_last"
+	
+	/// Only process this rule is there is only item
+	case only_one = "only_one"
+}
+
+
+/**
+If field is a list, how to manage the production
+
+URL: http://hl7.org/fhir/map-target-list-mode
+ValueSet: http://hl7.org/fhir/ValueSet/map-target-list-mode
+*/
+public enum StructureMapTargetListMode: String {
+	
+	/// when the target list is being assembled, the items for this rule go first. If more that one rule defines a first
+	/// item (for a given instance of mapping) then this is an error
+	case first = "first"
+	
+	/// the target instance is shared with the target instances generated by another rule (up to the first common n
+	/// items, then create new ones)
+	case share = "share"
+	
+	/// when the target list is being assembled, the items for this rule go last. If more that one rule defines a last
+	/// item (for a given instance of mapping) then this is an error
+	case last = "last"
+	
+	/// re-use the first item in the list, and keep adding content to it
+	case collate = "collate"
 }
 
 
@@ -5887,8 +6313,12 @@ public enum SupplyDeliveryStatus: String {
 	/// Supply has been delivered ("completed").
 	case completed = "completed"
 	
-	/// Dispensing was not completed.
+	/// Delivery was not completed.
 	case abandoned = "abandoned"
+	
+	/// This electronic record should never have existed, though it is possible that real-world decisions were based on
+	/// it. (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -6037,31 +6467,12 @@ public enum TaskStatus: String {
 
 
 /**
-The type of participant.
-
-URL: http://hl7.org/fhir/report-participant-type
-ValueSet: http://hl7.org/fhir/ValueSet/report-participant-type
-*/
-public enum TestReportParticipantType: String {
-	
-	/// The test execution engine.
-	case testEngine = "test-engine"
-	
-	/// A FHIR Client
-	case client = "client"
-	
-	/// A FHIR Server
-	case server = "server"
-}
-
-
-/**
 The results of executing an action.
 
-URL: http://hl7.org/fhir/report-result-codes
-ValueSet: http://hl7.org/fhir/ValueSet/report-result-codes
+URL: http://hl7.org/fhir/report-action-result-codes
+ValueSet: http://hl7.org/fhir/ValueSet/report-action-result-codes
 */
-public enum TestReportResultCodes: String {
+public enum TestReportActionResult: String {
 	
 	/// The action was successful.
 	case pass = "pass"
@@ -6081,21 +6492,65 @@ public enum TestReportResultCodes: String {
 
 
 /**
-The execution status of the TestReport.
+The type of participant.
+
+URL: http://hl7.org/fhir/report-participant-type
+ValueSet: http://hl7.org/fhir/ValueSet/report-participant-type
+*/
+public enum TestReportParticipantType: String {
+	
+	/// The test execution engine.
+	case testEngine = "test-engine"
+	
+	/// A FHIR Client
+	case client = "client"
+	
+	/// A FHIR Server
+	case server = "server"
+}
+
+
+/**
+The reported execution result.
+
+URL: http://hl7.org/fhir/report-result-codes
+ValueSet: http://hl7.org/fhir/ValueSet/report-result-codes
+*/
+public enum TestReportResult: String {
+	
+	/// All test operations successfully passed all asserts
+	case pass = "pass"
+	
+	/// One or more test operations failed one or more asserts
+	case fail = "fail"
+	
+	/// One or more test operations is pending execution completion
+	case pending = "pending"
+}
+
+
+/**
+The current status of the test report.
 
 URL: http://hl7.org/fhir/report-status-codes
 ValueSet: http://hl7.org/fhir/ValueSet/report-status-codes
 */
 public enum TestReportStatus: String {
 	
-	/// The TestReport is complete.
-	case complete = "complete"
+	/// All test operations have completed
+	case completed = "completed"
 	
-	/// The TestReport is pending.
-	case pending = "pending"
+	/// A test operations is currently executing
+	case inProgress = "in-progress"
 	
-	/// The TestReport failed with an error.
-	case error = "error"
+	/// A test operation is waiting for an external client request
+	case waiting = "waiting"
+	
+	/// The test script execution was manually stopped
+	case stopped = "stopped"
+	
+	/// This test report was entered or created in error
+	case enteredInError = "entered-in-error"
 }
 
 

@@ -2,8 +2,8 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -26,13 +26,13 @@ open class AllergyIntolerance: DomainResource {
 	/// Source of the information about the allergy.
 	public var asserter: Reference?
 	
-	/// Category of the identified substance.
-	public var category: [AllergyIntoleranceCategory]?
+	/// food | medication | environment | biologic.
+	public var category: [CodeableConcept]?
 	
 	/// The clinical status of the allergy or intolerance.
 	public var clinicalStatus: AllergyIntoleranceClinicalStatus?
 	
-	/// Allergy or intolerance code.
+	/// Code that identifies the allergy or intolerance.
 	public var code: CodeableConcept?
 	
 	/// Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance.
@@ -92,7 +92,7 @@ open class AllergyIntolerance: DomainResource {
 		
 		assertedDate = try createInstance(type: DateTime.self, for: "assertedDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? assertedDate
 		asserter = try createInstance(type: Reference.self, for: "asserter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asserter
-		category = createEnums(of: AllergyIntoleranceCategory.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors) ?? category
+		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		clinicalStatus = createEnum(type: AllergyIntoleranceClinicalStatus.self, for: "clinicalStatus", in: json, presentKeys: &presentKeys, errors: &errors) ?? clinicalStatus
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		criticality = createEnum(type: AllergyIntoleranceCriticality.self, for: "criticality", in: json, presentKeys: &presentKeys, errors: &errors) ?? criticality
@@ -161,10 +161,6 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		get { return "AllergyIntoleranceReaction" }
 	}
 	
-	/// Statement about the degree of clinical certainty that the specific substance was the cause of the manifestation
-	/// in this reaction event.
-	public var certainty: AllergyIntoleranceCertainty?
-	
 	/// Description of the event as a whole.
 	public var description_fhir: FHIRString?
 	
@@ -198,7 +194,6 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		certainty = createEnum(type: AllergyIntoleranceCertainty.self, for: "certainty", in: json, presentKeys: &presentKeys, errors: &errors) ?? certainty
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		exposureRoute = try createInstance(type: CodeableConcept.self, for: "exposureRoute", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? exposureRoute
 		manifestation = try createInstances(of: CodeableConcept.self, for: "manifestation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manifestation
@@ -216,7 +211,6 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.certainty?.decorate(json: &json, withKey: "certainty", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.exposureRoute?.decorate(json: &json, withKey: "exposureRoute", errors: &errors)
 		arrayDecorate(json: &json, withKey: "manifestation", using: self.manifestation, errors: &errors)

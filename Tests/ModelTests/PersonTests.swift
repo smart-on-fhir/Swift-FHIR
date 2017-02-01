@@ -2,22 +2,28 @@
 //  PersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPerson = Models.Person
+#else
 import SwiftFHIR
+typealias SwiftFHIRPerson = SwiftFHIR.Person
+#endif
 
 
 class PersonTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Person {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRPerson {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Person {
-		return try SwiftFHIR.Person(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRPerson {
+		return try SwiftFHIRPerson(json: json)
 	}
 	
 	func testPerson1() {
@@ -31,7 +37,7 @@ class PersonTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPerson1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Person {
+	func runPerson1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPerson {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "person-example-f002-ariadne.json")
 		
 		XCTAssertEqual(inst.active, true)
@@ -62,7 +68,7 @@ class PersonTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPerson2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Person {
+	func runPerson2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPerson {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "person-example.json")
 		
 		XCTAssertEqual(inst.active, true)

@@ -2,8 +2,8 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -98,8 +98,8 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// Contact lens back curvature.
 	public var backCurve: FHIRDecimal?
 	
-	/// up | down | in | out.
-	public var base: CodeableConcept?
+	/// The relative base, or reference lens edge, for the prism.
+	public var base: VisionBase?
 	
 	/// Brand required.
 	public var brand: FHIRString?
@@ -116,11 +116,11 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// Lens wear duration.
 	public var duration: Quantity?
 	
-	/// right | left.
-	public var eye: CodeableConcept?
+	/// The eye for which the lens applies.
+	public var eye: VisionEyes?
 	
 	/// Notes for coatings.
-	public var note: FHIRString?
+	public var note: [Annotation]?
 	
 	/// Contact lens power.
 	public var power: FHIRDecimal?
@@ -141,14 +141,14 @@ open class VisionPrescriptionDispense: BackboneElement {
 		add = try createInstance(type: FHIRDecimal.self, for: "add", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? add
 		axis = try createInstance(type: FHIRInteger.self, for: "axis", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? axis
 		backCurve = try createInstance(type: FHIRDecimal.self, for: "backCurve", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? backCurve
-		base = try createInstance(type: CodeableConcept.self, for: "base", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? base
+		base = createEnum(type: VisionBase.self, for: "base", in: json, presentKeys: &presentKeys, errors: &errors) ?? base
 		brand = try createInstance(type: FHIRString.self, for: "brand", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? brand
 		color = try createInstance(type: FHIRString.self, for: "color", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? color
 		cylinder = try createInstance(type: FHIRDecimal.self, for: "cylinder", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? cylinder
 		diameter = try createInstance(type: FHIRDecimal.self, for: "diameter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? diameter
 		duration = try createInstance(type: Quantity.self, for: "duration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? duration
-		eye = try createInstance(type: CodeableConcept.self, for: "eye", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eye
-		note = try createInstance(type: FHIRString.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		eye = createEnum(type: VisionEyes.self, for: "eye", in: json, presentKeys: &presentKeys, errors: &errors) ?? eye
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		power = try createInstance(type: FHIRDecimal.self, for: "power", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? power
 		prism = try createInstance(type: FHIRDecimal.self, for: "prism", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? prism
 		product = try createInstance(type: CodeableConcept.self, for: "product", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? product
@@ -170,7 +170,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 		self.diameter?.decorate(json: &json, withKey: "diameter", errors: &errors)
 		self.duration?.decorate(json: &json, withKey: "duration", errors: &errors)
 		self.eye?.decorate(json: &json, withKey: "eye", errors: &errors)
-		self.note?.decorate(json: &json, withKey: "note", errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.power?.decorate(json: &json, withKey: "power", errors: &errors)
 		self.prism?.decorate(json: &json, withKey: "prism", errors: &errors)
 		self.product?.decorate(json: &json, withKey: "product", errors: &errors)

@@ -2,22 +2,28 @@
 //  FlagTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRFlag = Models.Flag
+#else
 import SwiftFHIR
+typealias SwiftFHIRFlag = SwiftFHIR.Flag
+#endif
 
 
 class FlagTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Flag {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRFlag {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Flag {
-		return try SwiftFHIR.Flag(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRFlag {
+		return try SwiftFHIRFlag(json: json)
 	}
 	
 	func testFlag1() {
@@ -31,7 +37,7 @@ class FlagTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runFlag1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Flag {
+	func runFlag1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRFlag {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example-encounter.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "infection")
@@ -62,7 +68,7 @@ class FlagTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runFlag2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Flag {
+	func runFlag2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRFlag {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example.json")
 		
 		XCTAssertEqual(inst.author?.display, "Nancy Nurse")
@@ -76,7 +82,10 @@ class FlagTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://example.org/local")
 		XCTAssertEqual(inst.code?.text, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.status, FlagStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.identifier?[0].value, "12345")
+		XCTAssertEqual(inst.period?.end?.description, "2016-12-01")
+		XCTAssertEqual(inst.period?.start?.description, "2015-01-17")
+		XCTAssertEqual(inst.status, FlagStatus(rawValue: "inactive")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Large Dog warning for Peter Patient</div>")

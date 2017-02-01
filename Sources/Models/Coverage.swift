@@ -2,8 +2,8 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Foundation
 /**
 Insurance or medical plan or a payment agreement.
 
-Financial instrument which may be used to pay for or reimburse health care products and services.
+Financial instrument which may be used to reimburse or pay for health care products and services.
 */
 open class Coverage: DomainResource {
 	override open class var resourceType: String {
@@ -29,7 +29,7 @@ open class Coverage: DomainResource {
 	public var dependent: FHIRString?
 	
 	/// Additional coverage classifications.
-	public var group: CoverageGroup?
+	public var grouping: CoverageGrouping?
 	
 	/// The primary coverage ID.
 	public var identifier: [Identifier]?
@@ -64,7 +64,7 @@ open class Coverage: DomainResource {
 	/// ID assigned to the Subscriber.
 	public var subscriberId: FHIRString?
 	
-	/// Type of coverage.
+	/// Type of coverage such as medical or accident.
 	public var type: CodeableConcept?
 	
 	
@@ -74,7 +74,7 @@ open class Coverage: DomainResource {
 		beneficiary = try createInstance(type: Reference.self, for: "beneficiary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? beneficiary
 		contract = try createInstances(of: Reference.self, for: "contract", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contract
 		dependent = try createInstance(type: FHIRString.self, for: "dependent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dependent
-		group = try createInstance(type: CoverageGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
+		grouping = try createInstance(type: CoverageGrouping.self, for: "grouping", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? grouping
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		network = try createInstance(type: FHIRString.self, for: "network", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? network
 		order = try createInstance(type: FHIRInteger.self, for: "order", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? order
@@ -97,7 +97,7 @@ open class Coverage: DomainResource {
 		self.beneficiary?.decorate(json: &json, withKey: "beneficiary", errors: &errors)
 		arrayDecorate(json: &json, withKey: "contract", using: self.contract, errors: &errors)
 		self.dependent?.decorate(json: &json, withKey: "dependent", errors: &errors)
-		self.group?.decorate(json: &json, withKey: "group", errors: &errors)
+		self.grouping?.decorate(json: &json, withKey: "grouping", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.network?.decorate(json: &json, withKey: "network", errors: &errors)
 		self.order?.decorate(json: &json, withKey: "order", errors: &errors)
@@ -120,9 +120,9 @@ Additional coverage classifications.
 A suite of underwrite specific classifiers, for example may be used to identify a class of coverage or employer group,
 Policy, Plan.
 */
-open class CoverageGroup: BackboneElement {
+open class CoverageGrouping: BackboneElement {
 	override open class var resourceType: String {
-		get { return "CoverageGroup" }
+		get { return "CoverageGrouping" }
 	}
 	
 	/// An identifier for the class.

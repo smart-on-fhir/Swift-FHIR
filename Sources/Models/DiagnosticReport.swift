@@ -2,8 +2,8 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -56,8 +56,8 @@ open class DiagnosticReport: DomainResource {
 	/// DateTime this version was released.
 	public var issued: Instant?
 	
-	/// Responsible Diagnostic Service.
-	public var performer: [Reference]?
+	/// Participants in producing the report.
+	public var performer: [DiagnosticReportPerformer]?
 	
 	/// Entire report as issued.
 	public var presentedForm: [Attachment]?
@@ -103,7 +103,7 @@ open class DiagnosticReport: DomainResource {
 		image = try createInstances(of: DiagnosticReportImage.self, for: "image", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? image
 		imagingStudy = try createInstances(of: Reference.self, for: "imagingStudy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? imagingStudy
 		issued = try createInstance(type: Instant.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
-		performer = try createInstances(of: Reference.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
+		performer = try createInstances(of: DiagnosticReportPerformer.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
 		presentedForm = try createInstances(of: Attachment.self, for: "presentedForm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? presentedForm
 		request = try createInstances(of: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
 		result = try createInstances(of: Reference.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? result
@@ -193,6 +193,59 @@ open class DiagnosticReportImage: BackboneElement {
 		if nil == self.link {
 			errors.append(FHIRValidationError(missing: "link"))
 		}
+	}
+}
+
+
+/**
+Participants in producing the report.
+
+Indicates who or what participated in producing the report.
+*/
+open class DiagnosticReportPerformer: BackboneElement {
+	override open class var resourceType: String {
+		get { return "DiagnosticReportPerformer" }
+	}
+	
+	/// Practitioner or Organization  participant.
+	public var actor: Reference?
+	
+	/// Organization was acting for.
+	public var onBehalfOf: Reference?
+	
+	/// Type of performer.
+	public var role: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(actor: Reference) {
+		self.init()
+		self.actor = actor
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
+		if nil == actor && !presentKeys.contains("actor") {
+			errors.append(FHIRValidationError(missing: "actor"))
+		}
+		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
+		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.actor?.decorate(json: &json, withKey: "actor", errors: &errors)
+		if nil == self.actor {
+			errors.append(FHIRValidationError(missing: "actor"))
+		}
+		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
+		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 	}
 }
 

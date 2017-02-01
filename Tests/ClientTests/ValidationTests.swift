@@ -7,7 +7,12 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+import ModelTests
+#else
 import SwiftFHIR
+#endif
 
 
 /**
@@ -15,25 +20,27 @@ Test how JSON errors are handled.
 */
 class ValidationTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Questionnaire {
+	func instantiateFrom(filename: String) throws -> Questionnaire {
 		let json = try Bundle(for: type(of: self)).fhir_json(from: filename, subdirectory: "TestResources")
-		return try SwiftFHIR.Questionnaire(json: json)
+		return try Questionnaire(json: json)
 	}
 	
 	func testMissing() {
 		do {
-			let _ = try instantiateFrom(filename: "ValidationMissing")
+			let json = try readJSONFile("ValidationMissing.json", directory: testResourcesDirectory)
+			let _ = try Questionnaire(json: json)
 			XCTAssertTrue(false, "Should have thrown but am still here")
 		}
 		catch let error as FHIRValidationError {
 			let lines = error.description.components(separatedBy: CharacterSet.newlines)
 			print(lines.joined(separator: "\n"))
-			XCTAssertEqual(5, lines.count)
+			XCTAssertEqual(6, lines.count)
 			XCTAssertTrue(lines[0].hasPrefix("Questionnaire.resourceType: "), lines[0])
 			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.1.item.0.linkId: "), lines[1])
-			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.2.linkId: "), lines[2])
-			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.option.1.value[x]: "), lines[3])
-			XCTAssertTrue(lines[4].hasPrefix("Questionnaire.status: "), lines[4])
+			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.1.item.0.type: "), lines[2])
+			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.linkId: "), lines[3])
+			XCTAssertTrue(lines[4].hasPrefix("Questionnaire.item.2.option.1.value[x]: "), lines[4])
+			XCTAssertTrue(lines[5].hasPrefix("Questionnaire.status: "), lines[5])
 		}
 		catch let error {
 			XCTAssertNil(error, "Should not have gotten this error")
@@ -42,7 +49,8 @@ class ValidationTests: XCTestCase {
 	
 	func testSuperfluousAndWrong() {
 		do {
-			let _ = try instantiateFrom(filename: "ValidationSuperfluousAndWrong")
+			let json = try readJSONFile("ValidationSuperfluousAndWrong.json", directory: testResourcesDirectory)
+			let _ = try Questionnaire(json: json)
 			XCTAssertTrue(false, "Should have thrown but am still here")
 		}
 		catch let error as FHIRValidationError {
@@ -64,8 +72,7 @@ class ValidationTests: XCTestCase {
 	func testSerializationResource() {
 		let questionnaire1 = Questionnaire(status: .draft)
 		XCTAssertEqual("draft", questionnaire1.status?.rawValue)
-		let item = QuestionnaireItem(linkId: "abc")
-		item.type = .display
+		let item = QuestionnaireItem(linkId: "abc", type: .display)
 		item.text = "This is an empty questionnaire"
 		questionnaire1.item = [item]
 		do {

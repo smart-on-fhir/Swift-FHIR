@@ -2,8 +2,8 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -37,14 +37,14 @@ open class ProcessResponse: DomainResource {
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
-	/// Notes.
-	public var note: [ProcessResponseNote]?
-	
 	/// Authoring Organization.
 	public var organization: Reference?
 	
 	/// Processing outcome.
 	public var outcome: CodeableConcept?
+	
+	/// Processing comments or additional requirements.
+	public var processNote: [ProcessResponseProcessNote]?
 	
 	/// Request reference.
 	public var request: Reference?
@@ -68,9 +68,9 @@ open class ProcessResponse: DomainResource {
 		error = try createInstances(of: CodeableConcept.self, for: "error", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? error
 		form = try createInstance(type: CodeableConcept.self, for: "form", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? form
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		note = try createInstances(of: ProcessResponseNote.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		organization = try createInstance(type: Reference.self, for: "organization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? organization
 		outcome = try createInstance(type: CodeableConcept.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
+		processNote = try createInstances(of: ProcessResponseProcessNote.self, for: "processNote", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? processNote
 		request = try createInstance(type: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
 		requestOrganization = try createInstance(type: Reference.self, for: "requestOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestOrganization
 		requestProvider = try createInstance(type: Reference.self, for: "requestProvider", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestProvider
@@ -88,9 +88,9 @@ open class ProcessResponse: DomainResource {
 		arrayDecorate(json: &json, withKey: "error", using: self.error, errors: &errors)
 		self.form?.decorate(json: &json, withKey: "form", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
+		arrayDecorate(json: &json, withKey: "processNote", using: self.processNote, errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
 		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
@@ -100,16 +100,16 @@ open class ProcessResponse: DomainResource {
 
 
 /**
-Notes.
+Processing comments or additional requirements.
 
-Suite of processing note or additional requirements is the processing has been held.
+Suite of processing notes or additional requirements if the processing has been held.
 */
-open class ProcessResponseNote: BackboneElement {
+open class ProcessResponseProcessNote: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ProcessResponseNote" }
+		get { return "ProcessResponseProcessNote" }
 	}
 	
-	/// Notes text.
+	/// Comment on the processing.
 	public var text: FHIRString?
 	
 	/// display | print | printoper.

@@ -2,22 +2,28 @@
 //  CoverageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCoverage = Models.Coverage
+#else
 import SwiftFHIR
+typealias SwiftFHIRCoverage = SwiftFHIR.Coverage
+#endif
 
 
 class CoverageTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Coverage {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRCoverage {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Coverage {
-		return try SwiftFHIR.Coverage(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRCoverage {
+		return try SwiftFHIRCoverage(json: json)
 	}
 	
 	func testCoverage1() {
@@ -31,26 +37,30 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example-2.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/5")
+		XCTAssertEqual(inst.contract?[0].reference, "Contract/563818")
 		XCTAssertEqual(inst.dependent, "1")
-		XCTAssertEqual(inst.group?.group, "WESTAIR")
-		XCTAssertEqual(inst.group?.groupDisplay, "Western Airlines")
-		XCTAssertEqual(inst.group?.plan, "WESTAIR")
-		XCTAssertEqual(inst.group?.planDisplay, "Western Airlines")
-		XCTAssertEqual(inst.group?.subPlan, "D15C9")
-		XCTAssertEqual(inst.group?.subPlanDisplay, "Platinum")
+		XCTAssertEqual(inst.grouping?.group, "WESTAIR")
+		XCTAssertEqual(inst.grouping?.groupDisplay, "Western Airlines")
+		XCTAssertEqual(inst.grouping?.plan, "WESTAIR")
+		XCTAssertEqual(inst.grouping?.planDisplay, "Western Airlines")
+		XCTAssertEqual(inst.grouping?.subPlan, "D15C9")
+		XCTAssertEqual(inst.grouping?.subPlanDisplay, "Platinum")
 		XCTAssertEqual(inst.id, "7546D")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://xyz.com/codes/identifier")
-		XCTAssertEqual(inst.identifier?[0].value, "AB9876")
+		XCTAssertEqual(inst.identifier?[0].value, "AB98761")
+		XCTAssertEqual(inst.network, "5")
+		XCTAssertEqual(inst.order, 2)
 		XCTAssertEqual(inst.payor?[0].reference, "Organization/2")
 		XCTAssertEqual(inst.period?.end?.description, "2012-03-17")
 		XCTAssertEqual(inst.period?.start?.description, "2011-03-17")
 		XCTAssertEqual(inst.relationship?.coding?[0].code, "self")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subscriber?.reference, "Patient/5")
+		XCTAssertEqual(inst.subscriberId, "AB9876")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the coverage</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "EHCPOL")
@@ -71,7 +81,7 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example-ehic.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/5")
@@ -104,7 +114,7 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example-selfpay.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/5")
@@ -136,23 +146,23 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/4")
 		XCTAssertEqual(inst.dependent, "0")
-		XCTAssertEqual(inst.group?.`class`, "SILVER")
-		XCTAssertEqual(inst.group?.classDisplay, "Silver: Family Plan spouse only")
-		XCTAssertEqual(inst.group?.group, "CBI35")
-		XCTAssertEqual(inst.group?.groupDisplay, "Corporate Baker's Inc. Local #35")
-		XCTAssertEqual(inst.group?.plan, "B37FC")
-		XCTAssertEqual(inst.group?.planDisplay, "Full Coverage: Medical, Dental, Pharmacy, Vision, EHC")
-		XCTAssertEqual(inst.group?.subClass, "Tier2")
-		XCTAssertEqual(inst.group?.subClassDisplay, "Low deductable, max $20 copay")
-		XCTAssertEqual(inst.group?.subGroup, "123")
-		XCTAssertEqual(inst.group?.subGroupDisplay, "Trainee Part-time Benefits")
-		XCTAssertEqual(inst.group?.subPlan, "P7")
-		XCTAssertEqual(inst.group?.subPlanDisplay, "Includes afterlife benefits")
+		XCTAssertEqual(inst.grouping?.`class`, "SILVER")
+		XCTAssertEqual(inst.grouping?.classDisplay, "Silver: Family Plan spouse only")
+		XCTAssertEqual(inst.grouping?.group, "CBI35")
+		XCTAssertEqual(inst.grouping?.groupDisplay, "Corporate Baker's Inc. Local #35")
+		XCTAssertEqual(inst.grouping?.plan, "B37FC")
+		XCTAssertEqual(inst.grouping?.planDisplay, "Full Coverage: Medical, Dental, Pharmacy, Vision, EHC")
+		XCTAssertEqual(inst.grouping?.subClass, "Tier2")
+		XCTAssertEqual(inst.grouping?.subClassDisplay, "Low deductable, max $20 copay")
+		XCTAssertEqual(inst.grouping?.subGroup, "123")
+		XCTAssertEqual(inst.grouping?.subGroupDisplay, "Trainee Part-time Benefits")
+		XCTAssertEqual(inst.grouping?.subPlan, "P7")
+		XCTAssertEqual(inst.grouping?.subPlanDisplay, "Includes afterlife benefits")
 		XCTAssertEqual(inst.id, "9876B1")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://benefitsinc.com/certificate")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")

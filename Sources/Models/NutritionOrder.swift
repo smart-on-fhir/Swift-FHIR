@@ -1,9 +1,9 @@
 //
-//  NutritionRequest.swift
+//  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/NutritionRequest) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -14,9 +14,9 @@ Diet, formula or nutritional supplement request.
 
 A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
 */
-open class NutritionRequest: DomainResource {
+open class NutritionOrder: DomainResource {
 	override open class var resourceType: String {
-		get { return "NutritionRequest" }
+		get { return "NutritionOrder" }
 	}
 	
 	/// List of the patient's food and nutrition-related allergies and intolerances.
@@ -29,7 +29,7 @@ open class NutritionRequest: DomainResource {
 	public var encounter: Reference?
 	
 	/// Enteral formula components.
-	public var enteralFormula: NutritionRequestEnteralFormula?
+	public var enteralFormula: NutritionOrderEnteralFormula?
 	
 	/// Order-specific modifier about the type of food that should not be given.
 	public var excludeFoodModifier: [CodeableConcept]?
@@ -41,7 +41,7 @@ open class NutritionRequest: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Oral diet components.
-	public var oralDiet: NutritionRequestOralDiet?
+	public var oralDiet: NutritionOrderOralDiet?
 	
 	/// Who ordered the diet, formula or nutritional supplement.
 	public var orderer: Reference?
@@ -53,7 +53,7 @@ open class NutritionRequest: DomainResource {
 	public var status: NutritionOrderStatus?
 	
 	/// Supplement components.
-	public var supplement: [NutritionRequestSupplement]?
+	public var supplement: [NutritionOrderSupplement]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -73,18 +73,18 @@ open class NutritionRequest: DomainResource {
 			errors.append(FHIRValidationError(missing: "dateTime"))
 		}
 		encounter = try createInstance(type: Reference.self, for: "encounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? encounter
-		enteralFormula = try createInstance(type: NutritionRequestEnteralFormula.self, for: "enteralFormula", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enteralFormula
+		enteralFormula = try createInstance(type: NutritionOrderEnteralFormula.self, for: "enteralFormula", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enteralFormula
 		excludeFoodModifier = try createInstances(of: CodeableConcept.self, for: "excludeFoodModifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? excludeFoodModifier
 		foodPreferenceModifier = try createInstances(of: CodeableConcept.self, for: "foodPreferenceModifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? foodPreferenceModifier
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		oralDiet = try createInstance(type: NutritionRequestOralDiet.self, for: "oralDiet", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? oralDiet
+		oralDiet = try createInstance(type: NutritionOrderOralDiet.self, for: "oralDiet", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? oralDiet
 		orderer = try createInstance(type: Reference.self, for: "orderer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? orderer
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		status = createEnum(type: NutritionOrderStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		supplement = try createInstances(of: NutritionRequestSupplement.self, for: "supplement", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supplement
+		supplement = try createInstances(of: NutritionOrderSupplement.self, for: "supplement", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supplement
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -120,9 +120,9 @@ Enteral formula components.
 Feeding provided through the gastrointestinal tract via a tube, catheter, or stoma that delivers nutrition distal to the
 oral cavity.
 */
-open class NutritionRequestEnteralFormula: BackboneElement {
+open class NutritionOrderEnteralFormula: BackboneElement {
 	override open class var resourceType: String {
-		get { return "NutritionRequestEnteralFormula" }
+		get { return "NutritionOrderEnteralFormula" }
 	}
 	
 	/// Product or brand name of the modular additive.
@@ -132,7 +132,7 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 	public var additiveType: CodeableConcept?
 	
 	/// Formula feeding instruction as structured data.
-	public var administration: [NutritionRequestEnteralFormulaAdministration]?
+	public var administration: [NutritionOrderEnteralFormulaAdministration]?
 	
 	/// Formula feeding instructions expressed as text.
 	public var administrationInstruction: FHIRString?
@@ -158,7 +158,7 @@ open class NutritionRequestEnteralFormula: BackboneElement {
 		
 		additiveProductName = try createInstance(type: FHIRString.self, for: "additiveProductName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additiveProductName
 		additiveType = try createInstance(type: CodeableConcept.self, for: "additiveType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additiveType
-		administration = try createInstances(of: NutritionRequestEnteralFormulaAdministration.self, for: "administration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? administration
+		administration = try createInstances(of: NutritionOrderEnteralFormulaAdministration.self, for: "administration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? administration
 		administrationInstruction = try createInstance(type: FHIRString.self, for: "administrationInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? administrationInstruction
 		baseFormulaProductName = try createInstance(type: FHIRString.self, for: "baseFormulaProductName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? baseFormulaProductName
 		baseFormulaType = try createInstance(type: CodeableConcept.self, for: "baseFormulaType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? baseFormulaType
@@ -192,9 +192,9 @@ Formula administration instructions as structured data.  This repeating structur
 rate or volume over time for both bolus and continuous feeding.  An example of this would be an instruction to increase
 the rate of continuous feeding every 2 hours.
 */
-open class NutritionRequestEnteralFormulaAdministration: BackboneElement {
+open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 	override open class var resourceType: String {
-		get { return "NutritionRequestEnteralFormulaAdministration" }
+		get { return "NutritionOrderEnteralFormulaAdministration" }
 	}
 	
 	/// The volume of formula to provide.
@@ -237,9 +237,9 @@ Oral diet components.
 
 Diet given orally in contrast to enteral (tube) feeding.
 */
-open class NutritionRequestOralDiet: BackboneElement {
+open class NutritionOrderOralDiet: BackboneElement {
 	override open class var resourceType: String {
-		get { return "NutritionRequestOralDiet" }
+		get { return "NutritionOrderOralDiet" }
 	}
 	
 	/// The required consistency of fluids and liquids provided to the patient.
@@ -249,13 +249,13 @@ open class NutritionRequestOralDiet: BackboneElement {
 	public var instruction: FHIRString?
 	
 	/// Required  nutrient modifications.
-	public var nutrient: [NutritionRequestOralDietNutrient]?
+	public var nutrient: [NutritionOrderOralDietNutrient]?
 	
 	/// Scheduled frequency of diet.
 	public var schedule: [Timing]?
 	
 	/// Required  texture modifications.
-	public var texture: [NutritionRequestOralDietTexture]?
+	public var texture: [NutritionOrderOralDietTexture]?
 	
 	/// Type of oral diet or diet restrictions that describe what can be consumed orally.
 	public var type: [CodeableConcept]?
@@ -266,9 +266,9 @@ open class NutritionRequestOralDiet: BackboneElement {
 		
 		fluidConsistencyType = try createInstances(of: CodeableConcept.self, for: "fluidConsistencyType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fluidConsistencyType
 		instruction = try createInstance(type: FHIRString.self, for: "instruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instruction
-		nutrient = try createInstances(of: NutritionRequestOralDietNutrient.self, for: "nutrient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? nutrient
+		nutrient = try createInstances(of: NutritionOrderOralDietNutrient.self, for: "nutrient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? nutrient
 		schedule = try createInstances(of: Timing.self, for: "schedule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? schedule
-		texture = try createInstances(of: NutritionRequestOralDietTexture.self, for: "texture", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? texture
+		texture = try createInstances(of: NutritionOrderOralDietTexture.self, for: "texture", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? texture
 		type = try createInstances(of: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		
 		return errors.isEmpty ? nil : errors
@@ -293,9 +293,9 @@ Required  nutrient modifications.
 Class that defines the quantity and type of nutrient modifications (for example carbohydrate, fiber or sodium) required
 for the oral diet.
 */
-open class NutritionRequestOralDietNutrient: BackboneElement {
+open class NutritionOrderOralDietNutrient: BackboneElement {
 	override open class var resourceType: String {
-		get { return "NutritionRequestOralDietNutrient" }
+		get { return "NutritionOrderOralDietNutrient" }
 	}
 	
 	/// Quantity of the specified nutrient.
@@ -328,9 +328,9 @@ Required  texture modifications.
 
 Class that describes any texture modifications required for the patient to safely consume various types of solid foods.
 */
-open class NutritionRequestOralDietTexture: BackboneElement {
+open class NutritionOrderOralDietTexture: BackboneElement {
 	override open class var resourceType: String {
-		get { return "NutritionRequestOralDietTexture" }
+		get { return "NutritionOrderOralDietTexture" }
 	}
 	
 	/// Concepts that are used to identify an entity that is ingested for nutritional purposes.
@@ -363,9 +363,9 @@ Supplement components.
 
 Oral nutritional products given in order to add further nutritional value to the patient's diet.
 */
-open class NutritionRequestSupplement: BackboneElement {
+open class NutritionOrderSupplement: BackboneElement {
 	override open class var resourceType: String {
-		get { return "NutritionRequestSupplement" }
+		get { return "NutritionOrderSupplement" }
 	}
 	
 	/// Instructions or additional information about the oral supplement.

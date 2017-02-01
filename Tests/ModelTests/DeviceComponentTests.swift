@@ -2,22 +2,28 @@
 //  DeviceComponentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDeviceComponent = Models.DeviceComponent
+#else
 import SwiftFHIR
+typealias SwiftFHIRDeviceComponent = SwiftFHIR.DeviceComponent
+#endif
 
 
 class DeviceComponentTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.DeviceComponent {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRDeviceComponent {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DeviceComponent {
-		return try SwiftFHIR.DeviceComponent(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRDeviceComponent {
+		return try SwiftFHIRDeviceComponent(json: json)
 	}
 	
 	func testDeviceComponent1() {
@@ -31,7 +37,7 @@ class DeviceComponentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDeviceComponent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DeviceComponent {
+	func runDeviceComponent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDeviceComponent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example-prodspec.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "d1")
@@ -76,7 +82,7 @@ class DeviceComponentTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDeviceComponent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DeviceComponent {
+	func runDeviceComponent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDeviceComponent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "d1")

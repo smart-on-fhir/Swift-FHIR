@@ -2,8 +2,8 @@
 //  ImagingManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -12,13 +12,8 @@ import Foundation
 /**
 Key Object Selection.
 
-A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or
-other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances may have been
-selected for a purpose, such as  conference, or consult.  Reflecting a range of sharing purposes, typical
-ImagingManifest resources may include all SOP Instances in a study (perhaps for sharing through a Health Information
-Exchange); key images from multiple studies (for reference by a referring or treating physician); both a multi-frame
-ultrasound instance ("cine" video clip) and a set of measurements taken from that instance (for inclusion in a teaching
-file); and so on.
+A text description of the DICOM SOP instances selected in the ImagingManifest; or the reason for, or significance of,
+the selection.
 */
 open class ImagingManifest: DomainResource {
 	override open class var resourceType: String {
@@ -40,19 +35,15 @@ open class ImagingManifest: DomainResource {
 	/// Study identity of the selected instances.
 	public var study: [ImagingManifestStudy]?
 	
-	/// Reason for selection.
-	public var title: CodeableConcept?
-	
 	/// SOP Instance UID.
 	public var uid: FHIRURL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, study: [ImagingManifestStudy], title: CodeableConcept) {
+	public convenience init(patient: Reference, study: [ImagingManifestStudy]) {
 		self.init()
 		self.patient = patient
 		self.study = study
-		self.title = title
 	}
 	
 	
@@ -69,10 +60,6 @@ open class ImagingManifest: DomainResource {
 		study = try createInstances(of: ImagingManifestStudy.self, for: "study", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? study
 		if (nil == study || study!.isEmpty) && !presentKeys.contains("study") {
 			errors.append(FHIRValidationError(missing: "study"))
-		}
-		title = try createInstance(type: CodeableConcept.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
-		if nil == title && !presentKeys.contains("title") {
-			errors.append(FHIRValidationError(missing: "title"))
 		}
 		uid = try createInstance(type: FHIRURL.self, for: "uid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? uid
 		
@@ -93,10 +80,6 @@ open class ImagingManifest: DomainResource {
 		if nil == study || self.study!.isEmpty {
 			errors.append(FHIRValidationError(missing: "study"))
 		}
-		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
-		if nil == self.title {
-			errors.append(FHIRValidationError(missing: "title"))
-		}
 		self.uid?.decorate(json: &json, withKey: "uid", errors: &errors)
 	}
 }
@@ -113,7 +96,7 @@ open class ImagingManifestStudy: BackboneElement {
 	}
 	
 	/// Study access service endpoint.
-	public var baseLocation: [ImagingManifestStudyBaseLocation]?
+	public var endpoint: [Reference]?
 	
 	/// Reference to ImagingStudy.
 	public var imagingStudy: Reference?
@@ -136,7 +119,7 @@ open class ImagingManifestStudy: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		baseLocation = try createInstances(of: ImagingManifestStudyBaseLocation.self, for: "baseLocation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? baseLocation
+		endpoint = try createInstances(of: Reference.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
 		imagingStudy = try createInstance(type: Reference.self, for: "imagingStudy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? imagingStudy
 		series = try createInstances(of: ImagingManifestStudySeries.self, for: "series", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? series
 		if (nil == series || series!.isEmpty) && !presentKeys.contains("series") {
@@ -153,7 +136,7 @@ open class ImagingManifestStudy: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "baseLocation", using: self.baseLocation, errors: &errors)
+		arrayDecorate(json: &json, withKey: "endpoint", using: self.endpoint, errors: &errors)
 		self.imagingStudy?.decorate(json: &json, withKey: "imagingStudy", errors: &errors)
 		arrayDecorate(json: &json, withKey: "series", using: self.series, errors: &errors)
 		if nil == series || self.series!.isEmpty {
@@ -162,61 +145,6 @@ open class ImagingManifestStudy: BackboneElement {
 		self.uid?.decorate(json: &json, withKey: "uid", errors: &errors)
 		if nil == self.uid {
 			errors.append(FHIRValidationError(missing: "uid"))
-		}
-	}
-}
-
-
-/**
-Study access service endpoint.
-
-Methods of accessing  (e.g., retrieving, viewing) the study.
-*/
-open class ImagingManifestStudyBaseLocation: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ImagingManifestStudyBaseLocation" }
-	}
-	
-	/// WADO-RS | WADO-URI | IID.
-	public var type: Coding?
-	
-	/// Study access URL.
-	public var url: FHIRURL?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: Coding, url: FHIRURL) {
-		self.init()
-		self.type = type
-		self.url = url
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		type = try createInstance(type: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
-			errors.append(FHIRValidationError(missing: "url"))
-		}
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		if nil == self.type {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
-		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
-		if nil == self.url {
-			errors.append(FHIRValidationError(missing: "url"))
 		}
 	}
 }
@@ -233,7 +161,7 @@ open class ImagingManifestStudySeries: BackboneElement {
 	}
 	
 	/// Series access endpoint.
-	public var baseLocation: [ImagingManifestStudySeriesBaseLocation]?
+	public var endpoint: [Reference]?
 	
 	/// The selected instance.
 	public var instance: [ImagingManifestStudySeriesInstance]?
@@ -253,7 +181,7 @@ open class ImagingManifestStudySeries: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		baseLocation = try createInstances(of: ImagingManifestStudySeriesBaseLocation.self, for: "baseLocation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? baseLocation
+		endpoint = try createInstances(of: Reference.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
 		instance = try createInstances(of: ImagingManifestStudySeriesInstance.self, for: "instance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instance
 		if (nil == instance || instance!.isEmpty) && !presentKeys.contains("instance") {
 			errors.append(FHIRValidationError(missing: "instance"))
@@ -269,7 +197,7 @@ open class ImagingManifestStudySeries: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "baseLocation", using: self.baseLocation, errors: &errors)
+		arrayDecorate(json: &json, withKey: "endpoint", using: self.endpoint, errors: &errors)
 		arrayDecorate(json: &json, withKey: "instance", using: self.instance, errors: &errors)
 		if nil == instance || self.instance!.isEmpty {
 			errors.append(FHIRValidationError(missing: "instance"))
@@ -277,61 +205,6 @@ open class ImagingManifestStudySeries: BackboneElement {
 		self.uid?.decorate(json: &json, withKey: "uid", errors: &errors)
 		if nil == self.uid {
 			errors.append(FHIRValidationError(missing: "uid"))
-		}
-	}
-}
-
-
-/**
-Series access endpoint.
-
-Methods of accessing (e.g. retrieving) the series.
-*/
-open class ImagingManifestStudySeriesBaseLocation: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ImagingManifestStudySeriesBaseLocation" }
-	}
-	
-	/// WADO-RS | WADO-URI | IID.
-	public var type: Coding?
-	
-	/// Series access URL.
-	public var url: FHIRURL?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: Coding, url: FHIRURL) {
-		self.init()
-		self.type = type
-		self.url = url
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		type = try createInstance(type: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
-			errors.append(FHIRValidationError(missing: "url"))
-		}
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		if nil == self.type {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
-		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
-		if nil == self.url {
-			errors.append(FHIRValidationError(missing: "url"))
 		}
 	}
 }

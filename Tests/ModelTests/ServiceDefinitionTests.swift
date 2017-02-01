@@ -2,22 +2,28 @@
 //  ServiceDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRServiceDefinition = Models.ServiceDefinition
+#else
 import SwiftFHIR
+typealias SwiftFHIRServiceDefinition = SwiftFHIR.ServiceDefinition
+#endif
 
 
 class ServiceDefinitionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ServiceDefinition {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRServiceDefinition {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ServiceDefinition {
-		return try SwiftFHIR.ServiceDefinition(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRServiceDefinition {
+		return try SwiftFHIRServiceDefinition(json: json)
 	}
 	
 	func testServiceDefinition1() {
@@ -31,7 +37,7 @@ class ServiceDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runServiceDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ServiceDefinition {
+	func runServiceDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRServiceDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "servicedefinition-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2015-07-22")

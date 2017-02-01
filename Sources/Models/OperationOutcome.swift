@@ -2,8 +2,8 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -72,7 +72,7 @@ open class OperationOutcomeIssue: BackboneElement {
 	/// Additional diagnostic information about the issue.
 	public var diagnostics: FHIRString?
 	
-	/// FluentPath of element(s) related to issue.
+	/// FHIRPath of element(s) related to issue.
 	public var expression: [FHIRString]?
 	
 	/// XPath of element(s) related to issue.

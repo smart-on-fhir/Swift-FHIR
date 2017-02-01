@@ -2,8 +2,8 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -127,10 +127,10 @@ open class ProvenanceAgent: BackboneElement {
 		get { return "ProvenanceAgent" }
 	}
 	
-	/// On behalf of.
+	/// Who the agent is representing.
 	public var onBehalfOfReference: Reference?
 	
-	/// On behalf of.
+	/// Who the agent is representing.
 	public var onBehalfOfUri: FHIRURL?
 	
 	/// Type of relationship between agents.

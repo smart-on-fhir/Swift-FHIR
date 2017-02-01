@@ -2,8 +2,8 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Communication) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -60,13 +60,20 @@ open class Communication: DomainResource {
 	public var sent: DateTime?
 	
 	/// The status of the transmission.
-	public var status: CommunicationStatus?
+	public var status: EventStatus?
 	
 	/// Focus of message.
 	public var subject: Reference?
 	
 	/// Focal resources.
 	public var topic: [Reference]?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: EventStatus) {
+		self.init()
+		self.status = status
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -85,7 +92,10 @@ open class Communication: DomainResource {
 		recipient = try createInstances(of: Reference.self, for: "recipient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recipient
 		sender = try createInstance(type: Reference.self, for: "sender", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sender
 		sent = try createInstance(type: DateTime.self, for: "sent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sent
-		status = createEnum(type: CommunicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		status = createEnum(type: EventStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		topic = try createInstances(of: Reference.self, for: "topic", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? topic
 		
@@ -109,6 +119,9 @@ open class Communication: DomainResource {
 		self.sender?.decorate(json: &json, withKey: "sender", errors: &errors)
 		self.sent?.decorate(json: &json, withKey: "sent", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)
 	}

@@ -2,8 +2,8 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -73,7 +73,7 @@ open class FamilyMemberHistory: DomainResource {
 	public var name: FHIRString?
 	
 	/// General note about related person.
-	public var note: Annotation?
+	public var note: [Annotation]?
 	
 	/// Patient history is about.
 	public var patient: Reference?
@@ -114,7 +114,7 @@ open class FamilyMemberHistory: DomainResource {
 		gender = createEnum(type: AdministrativeGender.self, for: "gender", in: json, presentKeys: &presentKeys, errors: &errors) ?? gender
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		note = try createInstance(type: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
@@ -151,7 +151,7 @@ open class FamilyMemberHistory: DomainResource {
 		self.gender?.decorate(json: &json, withKey: "gender", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		self.note?.decorate(json: &json, withKey: "note", errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		if nil == self.patient {
 			errors.append(FHIRValidationError(missing: "patient"))
@@ -183,7 +183,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 	public var code: CodeableConcept?
 	
 	/// Extra information about condition.
-	public var note: Annotation?
+	public var note: [Annotation]?
 	
 	/// When condition first manifested.
 	public var onsetAge: Age?
@@ -215,7 +215,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		if nil == code && !presentKeys.contains("code") {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		note = try createInstance(type: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		onsetAge = try createInstance(type: Age.self, for: "onsetAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetAge
 		onsetPeriod = try createInstance(type: Period.self, for: "onsetPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetPeriod
 		onsetRange = try createInstance(type: Range.self, for: "onsetRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetRange
@@ -232,7 +232,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		self.note?.decorate(json: &json, withKey: "note", errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.onsetAge?.decorate(json: &json, withKey: "onsetAge", errors: &errors)
 		self.onsetPeriod?.decorate(json: &json, withKey: "onsetPeriod", errors: &errors)
 		self.onsetRange?.decorate(json: &json, withKey: "onsetRange", errors: &errors)

@@ -2,8 +2,8 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -21,7 +21,7 @@ open class Questionnaire: DomainResource {
 	}
 	
 	/// Concept that represents the overall questionnaire.
-	public var concept: [Coding]?
+	public var code: [Coding]?
 	
 	/// Date this version was authored.
 	public var date: DateTime?
@@ -67,7 +67,7 @@ open class Questionnaire: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		concept = try createInstances(of: Coding.self, for: "concept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? concept
+		code = try createInstances(of: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		item = try createInstances(of: QuestionnaireItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
@@ -89,7 +89,7 @@ open class Questionnaire: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "concept", using: self.concept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
@@ -119,7 +119,7 @@ open class QuestionnaireItem: BackboneElement {
 	}
 	
 	/// Concept that represents this item within in a questionnaire.
-	public var concept: [Coding]?
+	public var code: [Coding]?
 	
 	/// ElementDefinition - details for the item.
 	public var definition: FHIRURL?
@@ -144,9 +144,6 @@ open class QuestionnaireItem: BackboneElement {
 	
 	/// Default value when item is first rendered.
 	public var initialDecimal: FHIRDecimal?
-	
-	/// Default value when item is first rendered.
-	public var initialInstant: Instant?
 	
 	/// Default value when item is first rendered.
 	public var initialInteger: FHIRInteger?
@@ -202,16 +199,17 @@ open class QuestionnaireItem: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(linkId: FHIRString) {
+	public convenience init(linkId: FHIRString, type: QuestionnaireItemType) {
 		self.init()
 		self.linkId = linkId
+		self.type = type
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		concept = try createInstances(of: Coding.self, for: "concept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? concept
+		code = try createInstances(of: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		definition = try createInstance(type: FHIRURL.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
 		enableWhen = try createInstances(of: QuestionnaireItemEnableWhen.self, for: "enableWhen", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enableWhen
 		initialAttachment = try createInstance(type: Attachment.self, for: "initialAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialAttachment
@@ -220,7 +218,6 @@ open class QuestionnaireItem: BackboneElement {
 		initialDate = try createInstance(type: FHIRDate.self, for: "initialDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialDate
 		initialDateTime = try createInstance(type: DateTime.self, for: "initialDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialDateTime
 		initialDecimal = try createInstance(type: FHIRDecimal.self, for: "initialDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialDecimal
-		initialInstant = try createInstance(type: Instant.self, for: "initialInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialInstant
 		initialInteger = try createInstance(type: FHIRInteger.self, for: "initialInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialInteger
 		initialQuantity = try createInstance(type: Quantity.self, for: "initialQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialQuantity
 		initialReference = try createInstance(type: Reference.self, for: "initialReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialReference
@@ -241,6 +238,9 @@ open class QuestionnaireItem: BackboneElement {
 		required = try createInstance(type: FHIRBool.self, for: "required", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? required
 		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
 		type = createEnum(type: QuestionnaireItemType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -248,7 +248,7 @@ open class QuestionnaireItem: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "concept", using: self.concept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
 		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
 		arrayDecorate(json: &json, withKey: "enableWhen", using: self.enableWhen, errors: &errors)
 		self.initialAttachment?.decorate(json: &json, withKey: "initialAttachment", errors: &errors)
@@ -257,7 +257,6 @@ open class QuestionnaireItem: BackboneElement {
 		self.initialDate?.decorate(json: &json, withKey: "initialDate", errors: &errors)
 		self.initialDateTime?.decorate(json: &json, withKey: "initialDateTime", errors: &errors)
 		self.initialDecimal?.decorate(json: &json, withKey: "initialDecimal", errors: &errors)
-		self.initialInstant?.decorate(json: &json, withKey: "initialInstant", errors: &errors)
 		self.initialInteger?.decorate(json: &json, withKey: "initialInteger", errors: &errors)
 		self.initialQuantity?.decorate(json: &json, withKey: "initialQuantity", errors: &errors)
 		self.initialReference?.decorate(json: &json, withKey: "initialReference", errors: &errors)
@@ -278,6 +277,9 @@ open class QuestionnaireItem: BackboneElement {
 		self.required?.decorate(json: &json, withKey: "required", errors: &errors)
 		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 	}
 }
 
@@ -310,9 +312,6 @@ open class QuestionnaireItemEnableWhen: BackboneElement {
 	
 	/// Value question must have.
 	public var answerDecimal: FHIRDecimal?
-	
-	/// Value question must have.
-	public var answerInstant: Instant?
 	
 	/// Value question must have.
 	public var answerInteger: FHIRInteger?
@@ -355,7 +354,6 @@ open class QuestionnaireItemEnableWhen: BackboneElement {
 		answerDate = try createInstance(type: FHIRDate.self, for: "answerDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerDate
 		answerDateTime = try createInstance(type: DateTime.self, for: "answerDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerDateTime
 		answerDecimal = try createInstance(type: FHIRDecimal.self, for: "answerDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerDecimal
-		answerInstant = try createInstance(type: Instant.self, for: "answerInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerInstant
 		answerInteger = try createInstance(type: FHIRInteger.self, for: "answerInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerInteger
 		answerQuantity = try createInstance(type: Quantity.self, for: "answerQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerQuantity
 		answerReference = try createInstance(type: Reference.self, for: "answerReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerReference
@@ -380,7 +378,6 @@ open class QuestionnaireItemEnableWhen: BackboneElement {
 		self.answerDate?.decorate(json: &json, withKey: "answerDate", errors: &errors)
 		self.answerDateTime?.decorate(json: &json, withKey: "answerDateTime", errors: &errors)
 		self.answerDecimal?.decorate(json: &json, withKey: "answerDecimal", errors: &errors)
-		self.answerInstant?.decorate(json: &json, withKey: "answerInstant", errors: &errors)
 		self.answerInteger?.decorate(json: &json, withKey: "answerInteger", errors: &errors)
 		self.answerQuantity?.decorate(json: &json, withKey: "answerQuantity", errors: &errors)
 		self.answerReference?.decorate(json: &json, withKey: "answerReference", errors: &errors)

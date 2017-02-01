@@ -2,8 +2,8 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -21,7 +21,7 @@ open class ReferralRequest: DomainResource {
 	}
 	
 	/// Date of creation/activation.
-	public var authored: DateTime?
+	public var authoredOn: DateTime?
 	
 	/// Request fulfilled by this request.
 	public var basedOn: [Reference]?
@@ -38,11 +38,14 @@ open class ReferralRequest: DomainResource {
 	/// Requested service(s) fulfillment time.
 	public var fulfillmentTime: Period?
 	
+	/// Composite request this is part of.
+	public var groupIdentifier: Identifier?
+	
 	/// Business identifier.
 	public var identifier: [Identifier]?
 	
-	/// Composite request this is part of.
-	public var parent: Identifier?
+	/// Comments made about referral request.
+	public var note: [Annotation]?
 	
 	/// Patient referred to care or transfer.
 	public var patient: Reference?
@@ -69,7 +72,7 @@ open class ReferralRequest: DomainResource {
 	public var status: ReferralStatus?
 	
 	/// Additonal information to support referral or transfer of care request.
-	public var supportingInformation: [Reference]?
+	public var supportingInfo: [Reference]?
 	
 	/// Referral/Transition of care request type.
 	public var type: CodeableConcept?
@@ -86,7 +89,7 @@ open class ReferralRequest: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		authored = try createInstance(type: DateTime.self, for: "authored", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authored
+		authoredOn = try createInstance(type: DateTime.self, for: "authoredOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authoredOn
 		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
 		category = createEnum(type: ReferralCategory.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors) ?? category
 		if nil == category && !presentKeys.contains("category") {
@@ -95,8 +98,9 @@ open class ReferralRequest: DomainResource {
 		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		fulfillmentTime = try createInstance(type: Period.self, for: "fulfillmentTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fulfillmentTime
+		groupIdentifier = try createInstance(type: Identifier.self, for: "groupIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? groupIdentifier
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		parent = try createInstance(type: Identifier.self, for: "parent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parent
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		priority = try createInstance(type: CodeableConcept.self, for: "priority", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? priority
 		reason = try createInstance(type: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
@@ -108,7 +112,7 @@ open class ReferralRequest: DomainResource {
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		supportingInformation = try createInstances(of: Reference.self, for: "supportingInformation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingInformation
+		supportingInfo = try createInstances(of: Reference.self, for: "supportingInfo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingInfo
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		
 		return errors.isEmpty ? nil : errors
@@ -117,7 +121,7 @@ open class ReferralRequest: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.authored?.decorate(json: &json, withKey: "authored", errors: &errors)
+		self.authoredOn?.decorate(json: &json, withKey: "authoredOn", errors: &errors)
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
 		if nil == self.category {
@@ -126,8 +130,9 @@ open class ReferralRequest: DomainResource {
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.fulfillmentTime?.decorate(json: &json, withKey: "fulfillmentTime", errors: &errors)
+		self.groupIdentifier?.decorate(json: &json, withKey: "groupIdentifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		self.parent?.decorate(json: &json, withKey: "parent", errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		self.reason?.decorate(json: &json, withKey: "reason", errors: &errors)
@@ -139,7 +144,7 @@ open class ReferralRequest: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		arrayDecorate(json: &json, withKey: "supportingInformation", using: self.supportingInformation, errors: &errors)
+		arrayDecorate(json: &json, withKey: "supportingInfo", using: self.supportingInfo, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }

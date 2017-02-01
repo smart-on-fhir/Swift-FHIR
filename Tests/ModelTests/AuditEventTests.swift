@@ -2,22 +2,28 @@
 //  AuditEventTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRAuditEvent = Models.AuditEvent
+#else
 import SwiftFHIR
+typealias SwiftFHIRAuditEvent = SwiftFHIR.AuditEvent
+#endif
 
 
 class AuditEventTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.AuditEvent {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRAuditEvent {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.AuditEvent {
-		return try SwiftFHIR.AuditEvent(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRAuditEvent {
+		return try SwiftFHIRAuditEvent(json: json)
 	}
 	
 	func testAuditEvent1() {
@@ -31,7 +37,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-login.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
@@ -79,7 +85,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-logout.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
@@ -127,7 +133,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-media.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
@@ -192,7 +198,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-pixQuery.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
@@ -249,7 +255,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-search.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
@@ -302,7 +308,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-vread.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
@@ -355,7 +361,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example-disclosure.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
@@ -444,7 +450,7 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AuditEvent {
+	func runAuditEvent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)

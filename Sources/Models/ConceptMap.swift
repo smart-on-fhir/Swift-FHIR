@@ -2,8 +2,8 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -175,10 +175,9 @@ open class ConceptMapGroup: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ConceptMapGroupElement], source: FHIRURL) {
+	public convenience init(element: [ConceptMapGroupElement]) {
 		self.init()
 		self.element = element
-		self.source = source
 	}
 	
 	
@@ -190,9 +189,6 @@ open class ConceptMapGroup: BackboneElement {
 			errors.append(FHIRValidationError(missing: "element"))
 		}
 		source = try createInstance(type: FHIRURL.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		if nil == source && !presentKeys.contains("source") {
-			errors.append(FHIRValidationError(missing: "source"))
-		}
 		sourceVersion = try createInstance(type: FHIRString.self, for: "sourceVersion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceVersion
 		target = try createInstance(type: FHIRURL.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
 		targetVersion = try createInstance(type: FHIRString.self, for: "targetVersion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? targetVersion
@@ -208,9 +204,6 @@ open class ConceptMapGroup: BackboneElement {
 			errors.append(FHIRValidationError(missing: "element"))
 		}
 		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
-		if nil == self.source {
-			errors.append(FHIRValidationError(missing: "source"))
-		}
 		self.sourceVersion?.decorate(json: &json, withKey: "sourceVersion", errors: &errors)
 		self.target?.decorate(json: &json, withKey: "target", errors: &errors)
 		self.targetVersion?.decorate(json: &json, withKey: "targetVersion", errors: &errors)

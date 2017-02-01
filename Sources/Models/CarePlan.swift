@@ -2,8 +2,8 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -29,6 +29,9 @@ open class CarePlan: DomainResource {
 	/// Who is responsible for contents of the plan.
 	public var author: [Reference]?
 	
+	/// Fulfills care plan.
+	public var basedOn: [Reference]?
+	
 	/// Who's involved in plan?.
 	public var careTeam: [Reference]?
 	
@@ -39,7 +42,7 @@ open class CarePlan: DomainResource {
 	public var context: Reference?
 	
 	/// Protocol or definition.
-	public var definition: Reference?
+	public var definition: [Reference]?
 	
 	/// Summary of nature of plan.
 	public var description_fhir: FHIRString?
@@ -50,17 +53,21 @@ open class CarePlan: DomainResource {
 	/// External Ids for this plan.
 	public var identifier: [Identifier]?
 	
-	/// When last updated.
-	public var modified: DateTime?
+	/// Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into
+	/// the workflow chain.
+	public var intent: CarePlanIntent?
 	
 	/// Comments about the plan.
-	public var note: Annotation?
+	public var note: [Annotation]?
+	
+	/// Part of referenced CarePlan.
+	public var partOf: [Reference]?
 	
 	/// Time period plan covers.
 	public var period: Period?
 	
-	/// Plans related to this one.
-	public var relatedPlan: [CarePlanRelatedPlan]?
+	/// CarePlan replaced by this CarePlan.
+	public var replaces: [Reference]?
 	
 	/// Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical
 	/// record.
@@ -70,12 +77,13 @@ open class CarePlan: DomainResource {
 	public var subject: Reference?
 	
 	/// Information considered as part of plan.
-	public var support: [Reference]?
+	public var supportingInfo: [Reference]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: CarePlanStatus, subject: Reference) {
+	public convenience init(intent: CarePlanIntent, status: CarePlanStatus, subject: Reference) {
 		self.init()
+		self.intent = intent
 		self.status = status
 		self.subject = subject
 	}
@@ -87,17 +95,22 @@ open class CarePlan: DomainResource {
 		activity = try createInstances(of: CarePlanActivity.self, for: "activity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? activity
 		addresses = try createInstances(of: Reference.self, for: "addresses", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? addresses
 		author = try createInstances(of: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author
+		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
 		careTeam = try createInstances(of: Reference.self, for: "careTeam", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? careTeam
 		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		definition = try createInstance(type: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
+		definition = try createInstances(of: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		goal = try createInstances(of: Reference.self, for: "goal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? goal
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		modified = try createInstance(type: DateTime.self, for: "modified", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modified
-		note = try createInstance(type: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		intent = createEnum(type: CarePlanIntent.self, for: "intent", in: json, presentKeys: &presentKeys, errors: &errors) ?? intent
+		if nil == intent && !presentKeys.contains("intent") {
+			errors.append(FHIRValidationError(missing: "intent"))
+		}
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		relatedPlan = try createInstances(of: CarePlanRelatedPlan.self, for: "relatedPlan", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatedPlan
+		replaces = try createInstances(of: Reference.self, for: "replaces", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? replaces
 		status = createEnum(type: CarePlanStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -106,7 +119,7 @@ open class CarePlan: DomainResource {
 		if nil == subject && !presentKeys.contains("subject") {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
-		support = try createInstances(of: Reference.self, for: "support", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? support
+		supportingInfo = try createInstances(of: Reference.self, for: "supportingInfo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingInfo
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -117,17 +130,22 @@ open class CarePlan: DomainResource {
 		arrayDecorate(json: &json, withKey: "activity", using: self.activity, errors: &errors)
 		arrayDecorate(json: &json, withKey: "addresses", using: self.addresses, errors: &errors)
 		arrayDecorate(json: &json, withKey: "author", using: self.author, errors: &errors)
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		arrayDecorate(json: &json, withKey: "careTeam", using: self.careTeam, errors: &errors)
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
+		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "goal", using: self.goal, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		self.modified?.decorate(json: &json, withKey: "modified", errors: &errors)
-		self.note?.decorate(json: &json, withKey: "note", errors: &errors)
+		self.intent?.decorate(json: &json, withKey: "intent", errors: &errors)
+		if nil == self.intent {
+			errors.append(FHIRValidationError(missing: "intent"))
+		}
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
-		arrayDecorate(json: &json, withKey: "relatedPlan", using: self.relatedPlan, errors: &errors)
+		arrayDecorate(json: &json, withKey: "replaces", using: self.replaces, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -136,7 +154,7 @@ open class CarePlan: DomainResource {
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
-		arrayDecorate(json: &json, withKey: "support", using: self.support, errors: &errors)
+		arrayDecorate(json: &json, withKey: "supportingInfo", using: self.supportingInfo, errors: &errors)
 	}
 }
 
@@ -152,14 +170,14 @@ open class CarePlanActivity: BackboneElement {
 		get { return "CarePlanActivity" }
 	}
 	
-	/// Appointments, orders, etc..
-	public var actionResulting: [Reference]?
-	
 	/// In-line definition of activity.
 	public var detail: CarePlanActivityDetail?
 	
 	/// Results of the activity.
-	public var outcome: CodeableConcept?
+	public var outcomeCodeableConcept: [CodeableConcept]?
+	
+	/// Appointment, Encounter, Procedure, etc..
+	public var outcomeReference: [Reference]?
 	
 	/// Comments about the activity status/progress.
 	public var progress: [Annotation]?
@@ -171,9 +189,9 @@ open class CarePlanActivity: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		actionResulting = try createInstances(of: Reference.self, for: "actionResulting", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionResulting
 		detail = try createInstance(type: CarePlanActivityDetail.self, for: "detail", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detail
-		outcome = try createInstance(type: CodeableConcept.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
+		outcomeCodeableConcept = try createInstances(of: CodeableConcept.self, for: "outcomeCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcomeCodeableConcept
+		outcomeReference = try createInstances(of: Reference.self, for: "outcomeReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcomeReference
 		progress = try createInstances(of: Annotation.self, for: "progress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? progress
 		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
 		
@@ -183,9 +201,9 @@ open class CarePlanActivity: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "actionResulting", using: self.actionResulting, errors: &errors)
 		self.detail?.decorate(json: &json, withKey: "detail", errors: &errors)
-		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
+		arrayDecorate(json: &json, withKey: "outcomeCodeableConcept", using: self.outcomeCodeableConcept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "outcomeReference", using: self.outcomeReference, errors: &errors)
 		arrayDecorate(json: &json, withKey: "progress", using: self.progress, errors: &errors)
 		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
 	}
@@ -258,7 +276,7 @@ open class CarePlanActivityDetail: BackboneElement {
 	public var status: CarePlanActivityStatus?
 	
 	/// Reason for current status.
-	public var statusReason: CodeableConcept?
+	public var statusReason: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -292,7 +310,7 @@ open class CarePlanActivityDetail: BackboneElement {
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		statusReason = try createInstance(type: CodeableConcept.self, for: "statusReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusReason
+		statusReason = try createInstance(type: FHIRString.self, for: "statusReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusReason
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -322,54 +340,6 @@ open class CarePlanActivityDetail: BackboneElement {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		self.statusReason?.decorate(json: &json, withKey: "statusReason", errors: &errors)
-	}
-}
-
-
-/**
-Plans related to this one.
-
-Identifies CarePlans with some sort of formal relationship to the current plan.
-*/
-open class CarePlanRelatedPlan: BackboneElement {
-	override open class var resourceType: String {
-		get { return "CarePlanRelatedPlan" }
-	}
-	
-	/// Identifies the type of relationship this plan has to the target plan.
-	public var code: CarePlanRelationship?
-	
-	/// Plan relationship exists with.
-	public var plan: Reference?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(plan: Reference) {
-		self.init()
-		self.plan = plan
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		code = createEnum(type: CarePlanRelationship.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		plan = try createInstance(type: Reference.self, for: "plan", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? plan
-		if nil == plan && !presentKeys.contains("plan") {
-			errors.append(FHIRValidationError(missing: "plan"))
-		}
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		self.plan?.decorate(json: &json, withKey: "plan", errors: &errors)
-		if nil == self.plan {
-			errors.append(FHIRValidationError(missing: "plan"))
-		}
 	}
 }
 

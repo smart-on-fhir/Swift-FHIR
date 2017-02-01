@@ -2,8 +2,8 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Claim) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -32,7 +32,7 @@ open class Claim: DomainResource {
 	/// Creation date.
 	public var created: DateTime?
 	
-	/// Diagnosis.
+	/// List of Diagnosis.
 	public var diagnosis: [ClaimDiagnosis]?
 	
 	/// Period unable to work.
@@ -68,7 +68,7 @@ open class Claim: DomainResource {
 	/// Responsible organization.
 	public var organization: Reference?
 	
-	/// Original Prescription.
+	/// Original prescription if superceded by fulfiller.
 	public var originalPrescription: Reference?
 	
 	/// The subject of the Products and Services.
@@ -77,7 +77,7 @@ open class Claim: DomainResource {
 	/// Party to be paid any benefits payable.
 	public var payee: ClaimPayee?
 	
-	/// Prescription.
+	/// Prescription authorizing services or products.
 	public var prescription: Reference?
 	
 	/// Desired processing priority.
@@ -317,9 +317,9 @@ open class ClaimCareTeam: BackboneElement {
 
 
 /**
-Diagnosis.
+List of Diagnosis.
 
-Ordered list of patient diagnosis for which care is sought.
+List of patient diagnosis for which care is sought.
 */
 open class ClaimDiagnosis: BackboneElement {
 	override open class var resourceType: String {
@@ -338,7 +338,7 @@ open class ClaimDiagnosis: BackboneElement {
 	/// Number to covey order of diagnosis.
 	public var sequence: FHIRInteger?
 	
-	/// Type of Diagnosis.
+	/// Timing or nature of the diagnosis.
 	public var type: [CodeableConcept]?
 	
 	
@@ -410,7 +410,7 @@ open class ClaimInformation: BackboneElement {
 		get { return "ClaimInformation" }
 	}
 	
-	/// Category of information.
+	/// General class of information.
 	public var category: CodeableConcept?
 	
 	/// Type of information.
@@ -418,6 +418,9 @@ open class ClaimInformation: BackboneElement {
 	
 	/// Reason associated with the information.
 	public var reason: CodeableConcept?
+	
+	/// Information instance identifier.
+	public var sequence: FHIRInteger?
 	
 	/// When it occurred.
 	public var timingDate: FHIRDate?
@@ -439,9 +442,10 @@ open class ClaimInformation: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: CodeableConcept) {
+	public convenience init(category: CodeableConcept, sequence: FHIRInteger) {
 		self.init()
 		self.category = category
+		self.sequence = sequence
 	}
 	
 	
@@ -454,6 +458,10 @@ open class ClaimInformation: BackboneElement {
 		}
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		reason = try createInstance(type: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
+		sequence = try createInstance(type: FHIRInteger.self, for: "sequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequence
+		if nil == sequence && !presentKeys.contains("sequence") {
+			errors.append(FHIRValidationError(missing: "sequence"))
+		}
 		timingDate = try createInstance(type: FHIRDate.self, for: "timingDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingDate
 		timingPeriod = try createInstance(type: Period.self, for: "timingPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingPeriod
 		valueAttachment = try createInstance(type: Attachment.self, for: "valueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAttachment
@@ -473,6 +481,10 @@ open class ClaimInformation: BackboneElement {
 		}
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.reason?.decorate(json: &json, withKey: "reason", errors: &errors)
+		self.sequence?.decorate(json: &json, withKey: "sequence", errors: &errors)
+		if nil == self.sequence {
+			errors.append(FHIRValidationError(missing: "sequence"))
+		}
 		self.timingDate?.decorate(json: &json, withKey: "timingDate", errors: &errors)
 		self.timingPeriod?.decorate(json: &json, withKey: "timingPeriod", errors: &errors)
 		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
@@ -617,9 +629,6 @@ open class ClaimItem: BackboneElement {
 	/// Program specific reason for item inclusion.
 	public var programCode: [CodeableConcept]?
 	
-	/// Prosthetic details.
-	public var prosthesis: ClaimItemProsthesis?
-	
 	/// Count of Products or Services.
 	public var quantity: Quantity?
 	
@@ -672,7 +681,6 @@ open class ClaimItem: BackboneElement {
 		net = try createInstance(type: Money.self, for: "net", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? net
 		procedureLinkId = try createInstances(of: FHIRInteger.self, for: "procedureLinkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? procedureLinkId
 		programCode = try createInstances(of: CodeableConcept.self, for: "programCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? programCode
-		prosthesis = try createInstance(type: ClaimItemProsthesis.self, for: "prosthesis", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? prosthesis
 		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
 		revenue = try createInstance(type: CodeableConcept.self, for: "revenue", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? revenue
 		sequence = try createInstance(type: FHIRInteger.self, for: "sequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequence
@@ -706,7 +714,6 @@ open class ClaimItem: BackboneElement {
 		self.net?.decorate(json: &json, withKey: "net", errors: &errors)
 		arrayDecorate(json: &json, withKey: "procedureLinkId", using: self.procedureLinkId, errors: &errors)
 		arrayDecorate(json: &json, withKey: "programCode", using: self.programCode, errors: &errors)
-		self.prosthesis?.decorate(json: &json, withKey: "prosthesis", errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
 		self.revenue?.decorate(json: &json, withKey: "revenue", errors: &errors)
 		self.sequence?.decorate(json: &json, withKey: "sequence", errors: &errors)
@@ -910,46 +917,6 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 		self.service?.decorate(json: &json, withKey: "service", errors: &errors)
 		arrayDecorate(json: &json, withKey: "udi", using: self.udi, errors: &errors)
 		self.unitPrice?.decorate(json: &json, withKey: "unitPrice", errors: &errors)
-	}
-}
-
-
-/**
-Prosthetic details.
-
-The materials and placement date of prior fixed prosthesis.
-*/
-open class ClaimItemProsthesis: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ClaimItemProsthesis" }
-	}
-	
-	/// Is this the initial service.
-	public var initial: FHIRBool?
-	
-	/// Initial service Date.
-	public var priorDate: FHIRDate?
-	
-	/// Prosthetic Material.
-	public var priorMaterial: CodeableConcept?
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		initial = try createInstance(type: FHIRBool.self, for: "initial", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initial
-		priorDate = try createInstance(type: FHIRDate.self, for: "priorDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? priorDate
-		priorMaterial = try createInstance(type: CodeableConcept.self, for: "priorMaterial", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? priorMaterial
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.initial?.decorate(json: &json, withKey: "initial", errors: &errors)
-		self.priorDate?.decorate(json: &json, withKey: "priorDate", errors: &errors)
-		self.priorMaterial?.decorate(json: &json, withKey: "priorMaterial", errors: &errors)
 	}
 }
 

@@ -70,8 +70,6 @@
 		EE02F6421ACF252000179969 /* DeviceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5AF1ACF252000179969 /* DeviceComponent.swift */; };
 		EE02F6431ACF252000179969 /* DeviceMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B01ACF252000179969 /* DeviceMetric.swift */; };
 		EE02F6441ACF252000179969 /* DeviceMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B01ACF252000179969 /* DeviceMetric.swift */; };
-		EE02F6451ACF252000179969 /* DeviceUseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B11ACF252000179969 /* DeviceUseRequest.swift */; };
-		EE02F6461ACF252000179969 /* DeviceUseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B11ACF252000179969 /* DeviceUseRequest.swift */; };
 		EE02F6471ACF252000179969 /* DeviceUseStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B21ACF252000179969 /* DeviceUseStatement.swift */; };
 		EE02F6481ACF252000179969 /* DeviceUseStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B21ACF252000179969 /* DeviceUseStatement.swift */; };
 		EE02F64B1ACF252000179969 /* DiagnosticReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B41ACF252000179969 /* DiagnosticReport.swift */; };
@@ -272,8 +270,6 @@
 		EE02F77B1ACF259B00179969 /* DeviceMetricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F7081ACF259B00179969 /* DeviceMetricTests.swift */; };
 		EE02F77C1ACF259B00179969 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F7091ACF259B00179969 /* DeviceTests.swift */; };
 		EE02F77D1ACF259B00179969 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F7091ACF259B00179969 /* DeviceTests.swift */; };
-		EE02F77E1ACF259B00179969 /* DeviceUseRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F70A1ACF259B00179969 /* DeviceUseRequestTests.swift */; };
-		EE02F77F1ACF259B00179969 /* DeviceUseRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F70A1ACF259B00179969 /* DeviceUseRequestTests.swift */; };
 		EE02F7801ACF259B00179969 /* DeviceUseStatementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F70B1ACF259B00179969 /* DeviceUseStatementTests.swift */; };
 		EE02F7811ACF259B00179969 /* DeviceUseStatementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F70B1ACF259B00179969 /* DeviceUseStatementTests.swift */; };
 		EE02F7841ACF259B00179969 /* DiagnosticReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F70D1ACF259B00179969 /* DiagnosticReportTests.swift */; };
@@ -430,18 +426,40 @@
 		EE1F49D61C0D14F60095BF0F /* ReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */; };
 		EE1F49DF1C0D1BB40095BF0F /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = EE1F49DE1C0D1BB40095BF0F /* TestResources */; };
 		EE1F49E01C0D1BB40095BF0F /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = EE1F49DE1C0D1BB40095BF0F /* TestResources */; };
+		EE29C29F1E42010B000788D7 /* AdverseEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2981E42010B000788D7 /* AdverseEventTests.swift */; };
+		EE29C2A01E42010B000788D7 /* AdverseEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2981E42010B000788D7 /* AdverseEventTests.swift */; };
+		EE29C2A11E42010B000788D7 /* ChargeItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2991E42010B000788D7 /* ChargeItemTests.swift */; };
+		EE29C2A21E42010B000788D7 /* ChargeItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2991E42010B000788D7 /* ChargeItemTests.swift */; };
+		EE29C2A31E42010B000788D7 /* DeviceRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29A1E42010B000788D7 /* DeviceRequestTests.swift */; };
+		EE29C2A41E42010B000788D7 /* DeviceRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29A1E42010B000788D7 /* DeviceRequestTests.swift */; };
+		EE29C2A51E42010B000788D7 /* DocumentManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29B1E42010B000788D7 /* DocumentManifestTests.swift */; };
+		EE29C2A61E42010B000788D7 /* DocumentManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29B1E42010B000788D7 /* DocumentManifestTests.swift */; };
+		EE29C2A71E42010B000788D7 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29C1E42010B000788D7 /* DocumentReferenceTests.swift */; };
+		EE29C2A81E42010B000788D7 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29C1E42010B000788D7 /* DocumentReferenceTests.swift */; };
+		EE29C2A91E42010B000788D7 /* MeasureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29D1E42010B000788D7 /* MeasureTests.swift */; };
+		EE29C2AA1E42010B000788D7 /* MeasureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29D1E42010B000788D7 /* MeasureTests.swift */; };
+		EE29C2AB1E42010B000788D7 /* NutritionOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29E1E42010B000788D7 /* NutritionOrderTests.swift */; };
+		EE29C2AC1E42010B000788D7 /* NutritionOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C29E1E42010B000788D7 /* NutritionOrderTests.swift */; };
+		EE29C2B21E420122000788D7 /* AdverseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2AD1E420122000788D7 /* AdverseEvent.swift */; };
+		EE29C2B31E420122000788D7 /* AdverseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2AD1E420122000788D7 /* AdverseEvent.swift */; };
+		EE29C2B41E420122000788D7 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2AE1E420122000788D7 /* Catalog.swift */; };
+		EE29C2B51E420122000788D7 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2AE1E420122000788D7 /* Catalog.swift */; };
+		EE29C2B61E420122000788D7 /* ChargeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2AF1E420122000788D7 /* ChargeItem.swift */; };
+		EE29C2B71E420122000788D7 /* ChargeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2AF1E420122000788D7 /* ChargeItem.swift */; };
+		EE29C2B81E420122000788D7 /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2B01E420122000788D7 /* DeviceRequest.swift */; };
+		EE29C2B91E420122000788D7 /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2B01E420122000788D7 /* DeviceRequest.swift */; };
+		EE29C2BA1E420122000788D7 /* NutritionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2B11E420122000788D7 /* NutritionOrder.swift */; };
+		EE29C2BB1E420122000788D7 /* NutritionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2B11E420122000788D7 /* NutritionOrder.swift */; };
+		EE29C2BD1E42182D000788D7 /* XCTestCase+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2BC1E42182D000788D7 /* XCTestCase+Local.swift */; };
+		EE29C2BE1E42182D000788D7 /* XCTestCase+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29C2BC1E42182D000788D7 /* XCTestCase+Local.swift */; };
 		EE31DC511D64AC3600B04BEA /* ActivityDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4A1D64AC3600B04BEA /* ActivityDefinitionTests.swift */; };
 		EE31DC521D64AC3600B04BEA /* ActivityDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4A1D64AC3600B04BEA /* ActivityDefinitionTests.swift */; };
 		EE31DC531D64AC3600B04BEA /* ConsentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4B1D64AC3600B04BEA /* ConsentTests.swift */; };
 		EE31DC541D64AC3600B04BEA /* ConsentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4B1D64AC3600B04BEA /* ConsentTests.swift */; };
-		EE31DC551D64AC3600B04BEA /* DiagnosticRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4C1D64AC3600B04BEA /* DiagnosticRequestTests.swift */; };
-		EE31DC561D64AC3600B04BEA /* DiagnosticRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4C1D64AC3600B04BEA /* DiagnosticRequestTests.swift */; };
 		EE31DC571D64AC3600B04BEA /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4D1D64AC3600B04BEA /* EndpointTests.swift */; };
 		EE31DC581D64AC3600B04BEA /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4D1D64AC3600B04BEA /* EndpointTests.swift */; };
 		EE31DC591D64AC3600B04BEA /* ImagingManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4E1D64AC3600B04BEA /* ImagingManifestTests.swift */; };
 		EE31DC5A1D64AC3600B04BEA /* ImagingManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4E1D64AC3600B04BEA /* ImagingManifestTests.swift */; };
-		EE31DC5B1D64AC3600B04BEA /* NutritionRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4F1D64AC3600B04BEA /* NutritionRequestTests.swift */; };
-		EE31DC5C1D64AC3600B04BEA /* NutritionRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC4F1D64AC3600B04BEA /* NutritionRequestTests.swift */; };
 		EE31DC5D1D64AC3600B04BEA /* PlanDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC501D64AC3600B04BEA /* PlanDefinitionTests.swift */; };
 		EE31DC5E1D64AC3600B04BEA /* PlanDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC501D64AC3600B04BEA /* PlanDefinitionTests.swift */; };
 		EE31DC6A1D64AC6200B04BEA /* ActivityDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC5F1D64AC6200B04BEA /* ActivityDefinition.swift */; };
@@ -452,14 +470,10 @@
 		EE31DC6F1D64AC6300B04BEA /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC611D64AC6200B04BEA /* ContactDetail.swift */; };
 		EE31DC701D64AC6300B04BEA /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC621D64AC6200B04BEA /* Contributor.swift */; };
 		EE31DC711D64AC6300B04BEA /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC621D64AC6200B04BEA /* Contributor.swift */; };
-		EE31DC721D64AC6300B04BEA /* DiagnosticRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC631D64AC6200B04BEA /* DiagnosticRequest.swift */; };
-		EE31DC731D64AC6300B04BEA /* DiagnosticRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC631D64AC6200B04BEA /* DiagnosticRequest.swift */; };
 		EE31DC741D64AC6300B04BEA /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC641D64AC6200B04BEA /* Endpoint.swift */; };
 		EE31DC751D64AC6300B04BEA /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC641D64AC6200B04BEA /* Endpoint.swift */; };
 		EE31DC761D64AC6300B04BEA /* ImagingManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC651D64AC6200B04BEA /* ImagingManifest.swift */; };
 		EE31DC771D64AC6300B04BEA /* ImagingManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC651D64AC6200B04BEA /* ImagingManifest.swift */; };
-		EE31DC781D64AC6300B04BEA /* NutritionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC661D64AC6200B04BEA /* NutritionRequest.swift */; };
-		EE31DC791D64AC6300B04BEA /* NutritionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC661D64AC6200B04BEA /* NutritionRequest.swift */; };
 		EE31DC7A1D64AC6300B04BEA /* PlanDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC671D64AC6200B04BEA /* PlanDefinition.swift */; };
 		EE31DC7B1D64AC6300B04BEA /* PlanDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC671D64AC6200B04BEA /* PlanDefinition.swift */; };
 		EE31DC7E1D64AC6300B04BEA /* UsageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE31DC691D64AC6200B04BEA /* UsageContext.swift */; };
@@ -661,7 +675,6 @@
 		EE02F5AE1ACF252000179969 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		EE02F5AF1ACF252000179969 /* DeviceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceComponent.swift; sourceTree = "<group>"; };
 		EE02F5B01ACF252000179969 /* DeviceMetric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMetric.swift; sourceTree = "<group>"; };
-		EE02F5B11ACF252000179969 /* DeviceUseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUseRequest.swift; sourceTree = "<group>"; };
 		EE02F5B21ACF252000179969 /* DeviceUseStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUseStatement.swift; sourceTree = "<group>"; };
 		EE02F5B41ACF252000179969 /* DiagnosticReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticReport.swift; sourceTree = "<group>"; };
 		EE02F5B51ACF252000179969 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
@@ -762,7 +775,6 @@
 		EE02F7071ACF259B00179969 /* DeviceComponentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceComponentTests.swift; sourceTree = "<group>"; };
 		EE02F7081ACF259B00179969 /* DeviceMetricTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMetricTests.swift; sourceTree = "<group>"; };
 		EE02F7091ACF259B00179969 /* DeviceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
-		EE02F70A1ACF259B00179969 /* DeviceUseRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUseRequestTests.swift; sourceTree = "<group>"; };
 		EE02F70B1ACF259B00179969 /* DeviceUseStatementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUseStatementTests.swift; sourceTree = "<group>"; };
 		EE02F70D1ACF259B00179969 /* DiagnosticReportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticReportTests.swift; sourceTree = "<group>"; };
 		EE02F7101ACF259B00179969 /* EligibilityRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EligibilityRequestTests.swift; sourceTree = "<group>"; };
@@ -843,21 +855,30 @@
 		EE1F49D11C0D11060095BF0F /* FHIRBaseServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRBaseServer.swift; sourceTree = "<group>"; };
 		EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceTests.swift; sourceTree = "<group>"; };
 		EE1F49DE1C0D1BB40095BF0F /* TestResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestResources; sourceTree = SOURCE_ROOT; };
+		EE29C2981E42010B000788D7 /* AdverseEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdverseEventTests.swift; sourceTree = "<group>"; };
+		EE29C2991E42010B000788D7 /* ChargeItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeItemTests.swift; sourceTree = "<group>"; };
+		EE29C29A1E42010B000788D7 /* DeviceRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRequestTests.swift; sourceTree = "<group>"; };
+		EE29C29B1E42010B000788D7 /* DocumentManifestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManifestTests.swift; sourceTree = "<group>"; };
+		EE29C29C1E42010B000788D7 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
+		EE29C29D1E42010B000788D7 /* MeasureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureTests.swift; sourceTree = "<group>"; };
+		EE29C29E1E42010B000788D7 /* NutritionOrderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionOrderTests.swift; sourceTree = "<group>"; };
+		EE29C2AD1E420122000788D7 /* AdverseEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdverseEvent.swift; sourceTree = "<group>"; };
+		EE29C2AE1E420122000788D7 /* Catalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
+		EE29C2AF1E420122000788D7 /* ChargeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeItem.swift; sourceTree = "<group>"; };
+		EE29C2B01E420122000788D7 /* DeviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
+		EE29C2B11E420122000788D7 /* NutritionOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionOrder.swift; sourceTree = "<group>"; };
+		EE29C2BC1E42182D000788D7 /* XCTestCase+Local.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Local.swift"; sourceTree = "<group>"; };
 		EE31DC4A1D64AC3600B04BEA /* ActivityDefinitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDefinitionTests.swift; sourceTree = "<group>"; };
 		EE31DC4B1D64AC3600B04BEA /* ConsentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentTests.swift; sourceTree = "<group>"; };
-		EE31DC4C1D64AC3600B04BEA /* DiagnosticRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticRequestTests.swift; sourceTree = "<group>"; };
 		EE31DC4D1D64AC3600B04BEA /* EndpointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		EE31DC4E1D64AC3600B04BEA /* ImagingManifestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingManifestTests.swift; sourceTree = "<group>"; };
-		EE31DC4F1D64AC3600B04BEA /* NutritionRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionRequestTests.swift; sourceTree = "<group>"; };
 		EE31DC501D64AC3600B04BEA /* PlanDefinitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDefinitionTests.swift; sourceTree = "<group>"; };
 		EE31DC5F1D64AC6200B04BEA /* ActivityDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDefinition.swift; sourceTree = "<group>"; };
 		EE31DC601D64AC6200B04BEA /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		EE31DC611D64AC6200B04BEA /* ContactDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
 		EE31DC621D64AC6200B04BEA /* Contributor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
-		EE31DC631D64AC6200B04BEA /* DiagnosticRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticRequest.swift; sourceTree = "<group>"; };
 		EE31DC641D64AC6200B04BEA /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		EE31DC651D64AC6200B04BEA /* ImagingManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingManifest.swift; sourceTree = "<group>"; };
-		EE31DC661D64AC6200B04BEA /* NutritionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionRequest.swift; sourceTree = "<group>"; };
 		EE31DC671D64AC6200B04BEA /* PlanDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDefinition.swift; sourceTree = "<group>"; };
 		EE31DC691D64AC6200B04BEA /* UsageContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageContext.swift; sourceTree = "<group>"; };
 		EE39069E1CD3E4F6008FECEA /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
@@ -1027,6 +1048,7 @@
 				EEEE30E01BB1FD94008866E2 /* Account.swift */,
 				EE31DC5F1D64AC6200B04BEA /* ActivityDefinition.swift */,
 				EE02F5911ACF252000179969 /* Address.swift */,
+				EE29C2AD1E420122000788D7 /* AdverseEvent.swift */,
 				EE02F5921ACF252000179969 /* Age.swift */,
 				EE02F5931ACF252000179969 /* AllergyIntolerance.swift */,
 				EEEE30E11BB1FD94008866E2 /* Annotation.swift */,
@@ -1043,6 +1065,8 @@
 				EE723F6A1DC148C200C398BA /* CapabilityStatement.swift */,
 				EE02F59C1ACF252000179969 /* CarePlan.swift */,
 				EE6C88B21CB39A6A00ADFF94 /* CareTeam.swift */,
+				EE29C2AE1E420122000788D7 /* Catalog.swift */,
+				EE29C2AF1E420122000788D7 /* ChargeItem.swift */,
 				EE02F59D1ACF252000179969 /* Claim.swift */,
 				EE02F59E1ACF252000179969 /* ClaimResponse.swift */,
 				EE02F59F1ACF252000179969 /* ClinicalImpression.swift */,
@@ -1070,10 +1094,9 @@
 				EE02F5AE1ACF252000179969 /* Device.swift */,
 				EE02F5AF1ACF252000179969 /* DeviceComponent.swift */,
 				EE02F5B01ACF252000179969 /* DeviceMetric.swift */,
-				EE02F5B11ACF252000179969 /* DeviceUseRequest.swift */,
+				EE29C2B01E420122000788D7 /* DeviceRequest.swift */,
 				EE02F5B21ACF252000179969 /* DeviceUseStatement.swift */,
 				EE02F5B41ACF252000179969 /* DiagnosticReport.swift */,
-				EE31DC631D64AC6200B04BEA /* DiagnosticRequest.swift */,
 				EE02F5B51ACF252000179969 /* Distance.swift */,
 				EE02F5B61ACF252000179969 /* DocumentManifest.swift */,
 				EE02F5B71ACF252000179969 /* DocumentReference.swift */,
@@ -1139,7 +1162,7 @@
 				EE02F5D81ACF252000179969 /* Money.swift */,
 				EE02F5D91ACF252000179969 /* NamingSystem.swift */,
 				EE02F5DA1ACF252000179969 /* Narrative.swift */,
-				EE31DC661D64AC6200B04BEA /* NutritionRequest.swift */,
+				EE29C2B11E420122000788D7 /* NutritionOrder.swift */,
 				EE02F5DC1ACF252000179969 /* Observation.swift */,
 				EE02F5DD1ACF252000179969 /* OperationDefinition.swift */,
 				EE02F5DE1ACF252000179969 /* OperationOutcome.swift */,
@@ -1210,6 +1233,7 @@
 				EE39069E1CD3E4F6008FECEA /* RequestTests.swift */,
 				EEA97F921DCA19C300C3F016 /* ValidationTests.swift */,
 				EEDB87381E1BE6CE00E53FD4 /* LocalizationTests.swift */,
+				EE29C2BC1E42182D000788D7 /* XCTestCase+Local.swift */,
 			);
 			path = ClientTests;
 			sourceTree = "<group>";
@@ -1240,6 +1264,7 @@
 			children = (
 				EEEE30F41BB1FDB7008866E2 /* AccountTests.swift */,
 				EE31DC4A1D64AC3600B04BEA /* ActivityDefinitionTests.swift */,
+				EE29C2981E42010B000788D7 /* AdverseEventTests.swift */,
 				EE02F6F01ACF259B00179969 /* AllergyIntoleranceTests.swift */,
 				EE02F6F11ACF259B00179969 /* AppointmentResponseTests.swift */,
 				EE02F6F21ACF259B00179969 /* AppointmentTests.swift */,
@@ -1251,6 +1276,7 @@
 				EE723F781DC148E100C398BA /* CapabilityStatementTests.swift */,
 				EE02F6F81ACF259B00179969 /* CarePlanTests.swift */,
 				EE6C88E11CB39D0900ADFF94 /* CareTeamTests.swift */,
+				EE29C2991E42010B000788D7 /* ChargeItemTests.swift */,
 				EE02F6F91ACF259B00179969 /* ClaimResponseTests.swift */,
 				EE02F6FA1ACF259B00179969 /* ClaimTests.swift */,
 				EE02F6FB1ACF259B00179969 /* ClinicalImpressionTests.swift */,
@@ -1268,11 +1294,12 @@
 				EEEE30F51BB1FDB7008866E2 /* DetectedIssueTests.swift */,
 				EE02F7071ACF259B00179969 /* DeviceComponentTests.swift */,
 				EE02F7081ACF259B00179969 /* DeviceMetricTests.swift */,
+				EE29C29A1E42010B000788D7 /* DeviceRequestTests.swift */,
 				EE02F7091ACF259B00179969 /* DeviceTests.swift */,
-				EE02F70A1ACF259B00179969 /* DeviceUseRequestTests.swift */,
 				EE02F70B1ACF259B00179969 /* DeviceUseStatementTests.swift */,
 				EE02F70D1ACF259B00179969 /* DiagnosticReportTests.swift */,
-				EE31DC4C1D64AC3600B04BEA /* DiagnosticRequestTests.swift */,
+				EE29C29B1E42010B000788D7 /* DocumentManifestTests.swift */,
+				EE29C29C1E42010B000788D7 /* DocumentReferenceTests.swift */,
 				EE02F7101ACF259B00179969 /* EligibilityRequestTests.swift */,
 				EE02F7111ACF259B00179969 /* EligibilityResponseTests.swift */,
 				EE02F7121ACF259B00179969 /* EncounterTests.swift */,
@@ -1298,11 +1325,12 @@
 				EE02F7211ACF259B00179969 /* ListTests.swift */,
 				EE02F7221ACF259B00179969 /* LocationTests.swift */,
 				EE6C88EA1CB39D0900ADFF94 /* MeasureReportTests.swift */,
+				EE29C29D1E42010B000788D7 /* MeasureTests.swift */,
 				EE02F7231ACF259B00179969 /* MediaTests.swift */,
 				EE109CD71DF6AE4F00DB1774 /* MessageDefinitionTests.swift */,
 				EE02F7281ACF259B00179969 /* MessageHeaderTests.swift */,
 				EE02F7291ACF259B00179969 /* NamingSystemTests.swift */,
-				EE31DC4F1D64AC3600B04BEA /* NutritionRequestTests.swift */,
+				EE29C29E1E42010B000788D7 /* NutritionOrderTests.swift */,
 				EE02F72B1ACF259B00179969 /* ObservationTests.swift */,
 				EEEE30F81BB1FDB7008866E2 /* OperationDefinitionTests.swift */,
 				EE02F72C1ACF259B00179969 /* OperationOutcomeTests.swift */,
@@ -1548,15 +1576,16 @@
 				EE02F6BD1ACF252000179969 /* Provenance.swift in Sources */,
 				EE02F64F1ACF252000179969 /* DocumentManifest.swift in Sources */,
 				EE02F6AF1ACF252000179969 /* Period.swift in Sources */,
-				EE31DC781D64AC6300B04BEA /* NutritionRequest.swift in Sources */,
 				EE02F6AB1ACF252000179969 /* PaymentNotice.swift in Sources */,
 				EE02F6431ACF252000179969 /* DeviceMetric.swift in Sources */,
+				EE29C2BA1E420122000788D7 /* NutritionOrder.swift in Sources */,
 				EE02F6611ACF252000179969 /* EnrollmentResponse.swift in Sources */,
 				EE02F6831ACF252000179969 /* Media.swift in Sources */,
 				EE1310BD1C1B435300D9DAE7 /* FHIRType.swift in Sources */,
 				EE109CEE1DF8012900DB1774 /* Base64Binary.swift in Sources */,
 				EE02F6951ACF252000179969 /* NamingSystem.swift in Sources */,
 				EE02F6B71ACF252000179969 /* ProcedureRequest.swift in Sources */,
+				EE29C2B41E420122000788D7 /* Catalog.swift in Sources */,
 				EE02F61D1ACF252000179969 /* Claim.swift in Sources */,
 				EE02F6211ACF252000179969 /* ClinicalImpression.swift in Sources */,
 				EE02F61B1ACF252000179969 /* CarePlan.swift in Sources */,
@@ -1654,7 +1683,6 @@
 				EE02F66F1ACF252000179969 /* Group.swift in Sources */,
 				EE109CF11DF81BE300DB1774 /* FHIRURL.swift in Sources */,
 				EE1310BA1C1B435300D9DAE7 /* FHIRAbstractBase.swift in Sources */,
-				EE31DC721D64AC6300B04BEA /* DiagnosticRequest.swift in Sources */,
 				EE02F6351ACF252000179969 /* Contract.swift in Sources */,
 				EE0758601DCB5E4300E33FAF /* FHIRValidationError.swift in Sources */,
 				EE31DC6E1D64AC6300B04BEA /* ContactDetail.swift in Sources */,
@@ -1676,9 +1704,11 @@
 				EE6C88D51CB39A6A00ADFF94 /* Measure.swift in Sources */,
 				EE1310CF1C1B5EE500D9DAE7 /* Resource+Instantiation.swift in Sources */,
 				EE02F6B31ACF252000179969 /* Practitioner.swift in Sources */,
+				EE29C2B21E420122000788D7 /* AdverseEvent.swift in Sources */,
 				EE02F6B51ACF252000179969 /* Procedure.swift in Sources */,
 				EE02F6E91ACF252000179969 /* ValueSet.swift in Sources */,
 				EE6C88DF1CB39A6A00ADFF94 /* Task.swift in Sources */,
+				EE29C2B81E420122000788D7 /* DeviceRequest.swift in Sources */,
 				EE02F6C51ACF252000179969 /* Range.swift in Sources */,
 				EE02F6EB1ACF252000179969 /* VisionPrescription.swift in Sources */,
 				EE6C88DD1CB39A6A00ADFF94 /* Sequence.swift in Sources */,
@@ -1700,13 +1730,13 @@
 				EE02F6DF1ACF252000179969 /* StructureDefinition.swift in Sources */,
 				EE02F63D1ACF252000179969 /* DataElement.swift in Sources */,
 				EE31DC7E1D64AC6300B04BEA /* UsageContext.swift in Sources */,
-				EE02F6451ACF252000179969 /* DeviceUseRequest.swift in Sources */,
 				EE02F6251ACF252000179969 /* Coding.swift in Sources */,
 				EE31DC701D64AC6300B04BEA /* Contributor.swift in Sources */,
 				EEEE30F31BB1FD94008866E2 /* TestScript.swift in Sources */,
 				EEA97F9A1DCA1C6F00C3F016 /* MedicationRequest.swift in Sources */,
 				EE9ABA2B1D803D8400BA8B54 /* Patient+SMART.swift in Sources */,
 				EE1310BC1C1B435300D9DAE7 /* FHIRAbstractResource.swift in Sources */,
+				EE29C2B61E420122000788D7 /* ChargeItem.swift in Sources */,
 				EE02F62B1ACF252000179969 /* Composition.swift in Sources */,
 				EE02F6B91ACF252000179969 /* ProcessRequest.swift in Sources */,
 				EE02F63F1ACF252000179969 /* Device.swift in Sources */,
@@ -1736,8 +1766,11 @@
 				EE02F7761ACF259B00179969 /* DateAndTimeTests.swift in Sources */,
 				EEEE31021BB1FDB7008866E2 /* QuestionnaireResponseTests.swift in Sources */,
 				EEA97F931DCA19C300C3F016 /* ValidationTests.swift in Sources */,
+				EE29C2A51E42010B000788D7 /* DocumentManifestTests.swift in Sources */,
+				EE29C29F1E42010B000788D7 /* AdverseEventTests.swift in Sources */,
 				EE65DB4C1CB39FE100E25C72 /* ExpansionProfileTests.swift in Sources */,
 				EE02F7921ACF259B00179969 /* EnrollmentResponseTests.swift in Sources */,
+				EE29C2AB1E42010B000788D7 /* NutritionOrderTests.swift in Sources */,
 				EE02F7D01ACF259B00179969 /* PaymentReconciliationTests.swift in Sources */,
 				EE02F7F21ACF259B00179969 /* StructureDefinitionTests.swift in Sources */,
 				EE02F77A1ACF259B00179969 /* DeviceMetricTests.swift in Sources */,
@@ -1754,6 +1787,7 @@
 				EEE5DF371A5D862B002AFF53 /* FHIRSearchTests.swift in Sources */,
 				EE65DB4F1CB39FE100E25C72 /* LibraryTests.swift in Sources */,
 				EE39069F1CD3E4F6008FECEA /* RequestTests.swift in Sources */,
+				EE29C2A91E42010B000788D7 /* MeasureTests.swift in Sources */,
 				EE65DB511CB39FE100E25C72 /* MeasureReportTests.swift in Sources */,
 				EE02F7561ACF259B00179969 /* BodySiteTests.swift in Sources */,
 				EE02F7F61ACF259B00179969 /* SubstanceTests.swift in Sources */,
@@ -1761,6 +1795,7 @@
 				EE02F7EE1ACF259B00179969 /* SlotTests.swift in Sources */,
 				EE02F7A21ACF259B00179969 /* HealthcareServiceTests.swift in Sources */,
 				EEEE31051BB1FDB7008866E2 /* TestScriptTests.swift in Sources */,
+				EE29C2A71E42010B000788D7 /* DocumentReferenceTests.swift in Sources */,
 				EE02F7901ACF259B00179969 /* EnrollmentRequestTests.swift in Sources */,
 				EE02F78E1ACF259B00179969 /* EncounterTests.swift in Sources */,
 				EE109CDC1DF6AE4F00DB1774 /* ResearchStudyTests.swift in Sources */,
@@ -1776,6 +1811,7 @@
 				EE02F7AA1ACF259B00179969 /* ImmunizationTests.swift in Sources */,
 				EE02F76E1ACF259B00179969 /* ContractTests.swift in Sources */,
 				EE02F7541ACF259B00179969 /* BinaryTests.swift in Sources */,
+				EE29C2A11E42010B000788D7 /* ChargeItemTests.swift in Sources */,
 				EE02F7C21ACF259B00179969 /* OperationOutcomeTests.swift in Sources */,
 				EE31DC591D64AC3600B04BEA /* ImagingManifestTests.swift in Sources */,
 				EE02F74E1ACF259B00179969 /* AppointmentTests.swift in Sources */,
@@ -1784,12 +1820,10 @@
 				EE02F7DA1ACF259B00179969 /* ProcessRequestTests.swift in Sources */,
 				EE109CDA1DF6AE4F00DB1774 /* MessageDefinitionTests.swift in Sources */,
 				EE02F7E61ACF259B00179969 /* RelatedPersonTests.swift in Sources */,
-				EE31DC5B1D64AC3600B04BEA /* NutritionRequestTests.swift in Sources */,
 				EEEE31041BB1FDB7008866E2 /* SupplyRequestTests.swift in Sources */,
 				EE02F7D61ACF259B00179969 /* ProcedureRequestTests.swift in Sources */,
 				EE65DB571CB39FE100E25C72 /* StructureMapTests.swift in Sources */,
 				EE02F7641ACF259B00179969 /* CommunicationTests.swift in Sources */,
-				EE02F77E1ACF259B00179969 /* DeviceUseRequestTests.swift in Sources */,
 				EE31DC571D64AC3600B04BEA /* EndpointTests.swift in Sources */,
 				EEA97F961DCA1C3C00C3F016 /* RequestGroupTests.swift in Sources */,
 				EE02F7941ACF259B00179969 /* EpisodeOfCareTests.swift in Sources */,
@@ -1810,12 +1844,12 @@
 				EEEE311D1BB27E6D008866E2 /* XCTestCase+FHIR.swift in Sources */,
 				EE31DC531D64AC3600B04BEA /* ConsentTests.swift in Sources */,
 				EE02F7CC1ACF259B00179969 /* PatientTests.swift in Sources */,
-				EE31DC551D64AC3600B04BEA /* DiagnosticRequestTests.swift in Sources */,
 				EEEE30FF1BB1FDB7008866E2 /* ImplementationGuideTests.swift in Sources */,
 				EE02F77C1ACF259B00179969 /* DeviceTests.swift in Sources */,
 				EE02F79C1ACF259B00179969 /* FlagTests.swift in Sources */,
 				EE02F7E41ACF259B00179969 /* ReferralRequestTests.swift in Sources */,
 				EEEE31011BB1FDB7008866E2 /* OperationDefinitionTests.swift in Sources */,
+				EE29C2BD1E42182D000788D7 /* XCTestCase+Local.swift in Sources */,
 				EE31DC5D1D64AC3600B04BEA /* PlanDefinitionTests.swift in Sources */,
 				EE02F76A1ACF259B00179969 /* ConditionTests.swift in Sources */,
 				EE02F7AC1ACF259B00179969 /* ListTests.swift in Sources */,
@@ -1840,6 +1874,7 @@
 				EE723FE71DC14AA100C398BA /* CapabilityStatementTests.swift in Sources */,
 				EEEE30FD1BB1FDB7008866E2 /* AccountTests.swift in Sources */,
 				EE02F7F01ACF259B00179969 /* SpecimenTests.swift in Sources */,
+				EE29C2A31E42010B000788D7 /* DeviceRequestTests.swift in Sources */,
 				EE02F78A1ACF259B00179969 /* EligibilityRequestTests.swift in Sources */,
 				EE02F7801ACF259B00179969 /* DeviceUseStatementTests.swift in Sources */,
 				EE02F75A1ACF259B00179969 /* CarePlanTests.swift in Sources */,
@@ -1861,15 +1896,16 @@
 				EE02F6BE1ACF252000179969 /* Provenance.swift in Sources */,
 				EE02F6501ACF252000179969 /* DocumentManifest.swift in Sources */,
 				EE02F6B01ACF252000179969 /* Period.swift in Sources */,
-				EE31DC791D64AC6300B04BEA /* NutritionRequest.swift in Sources */,
 				EE02F6AC1ACF252000179969 /* PaymentNotice.swift in Sources */,
 				EE02F6441ACF252000179969 /* DeviceMetric.swift in Sources */,
+				EE29C2BB1E420122000788D7 /* NutritionOrder.swift in Sources */,
 				EE02F6621ACF252000179969 /* EnrollmentResponse.swift in Sources */,
 				EE02F6841ACF252000179969 /* Media.swift in Sources */,
 				EE02F6961ACF252000179969 /* NamingSystem.swift in Sources */,
 				EE109CEF1DF8012900DB1774 /* Base64Binary.swift in Sources */,
 				EE1310BF1C1B542100D9DAE7 /* BackboneElement.swift in Sources */,
 				EE02F6B81ACF252000179969 /* ProcedureRequest.swift in Sources */,
+				EE29C2B51E420122000788D7 /* Catalog.swift in Sources */,
 				EE02F61E1ACF252000179969 /* Claim.swift in Sources */,
 				EE02F6221ACF252000179969 /* ClinicalImpression.swift in Sources */,
 				EE02F61C1ACF252000179969 /* CarePlan.swift in Sources */,
@@ -1963,7 +1999,6 @@
 				EE1310D51C1B605D00D9DAE7 /* Resource+Instantiation.swift in Sources */,
 				EE02F6EF1ACF257000179969 /* FHIRSearch.swift in Sources */,
 				EE02F63C1ACF252000179969 /* Coverage.swift in Sources */,
-				EE31DC731D64AC6300B04BEA /* DiagnosticRequest.swift in Sources */,
 				EE109CF21DF81BE300DB1774 /* FHIRURL.swift in Sources */,
 				EE02F60C1ACF252000179969 /* Appointment.swift in Sources */,
 				EE31DC6F1D64AC6300B04BEA /* ContactDetail.swift in Sources */,
@@ -1989,9 +2024,11 @@
 				EE02F6661ACF252000179969 /* ExplanationOfBenefit.swift in Sources */,
 				EE1310C51C1B542100D9DAE7 /* FHIRType.swift in Sources */,
 				EE1310C21C1B542100D9DAE7 /* FHIRAbstractBase.swift in Sources */,
+				EE29C2B31E420122000788D7 /* AdverseEvent.swift in Sources */,
 				EE65DB801CB39FFD00E25C72 /* Task.swift in Sources */,
 				EE02F6B41ACF252000179969 /* Practitioner.swift in Sources */,
 				EE02F6B61ACF252000179969 /* Procedure.swift in Sources */,
+				EE29C2B91E420122000788D7 /* DeviceRequest.swift in Sources */,
 				EE02F6EA1ACF252000179969 /* ValueSet.swift in Sources */,
 				EE65DB7E1CB39FFD00E25C72 /* Sequence.swift in Sources */,
 				EE02F6C61ACF252000179969 /* Range.swift in Sources */,
@@ -2014,12 +2051,12 @@
 				EE31DC7F1D64AC6300B04BEA /* UsageContext.swift in Sources */,
 				EE02F63E1ACF252000179969 /* DataElement.swift in Sources */,
 				EE31DC711D64AC6300B04BEA /* Contributor.swift in Sources */,
-				EE02F6461ACF252000179969 /* DeviceUseRequest.swift in Sources */,
 				EE9ABA2F1D803DED00BA8B54 /* Patient+SMART.swift in Sources */,
 				EE02F6261ACF252000179969 /* Coding.swift in Sources */,
 				EEA97F9B1DCA1C6F00C3F016 /* MedicationRequest.swift in Sources */,
 				EEEE310F1BB1FE26008866E2 /* TestScript.swift in Sources */,
 				EE02F62C1ACF252000179969 /* Composition.swift in Sources */,
+				EE29C2B71E420122000788D7 /* ChargeItem.swift in Sources */,
 				EE02F6BA1ACF252000179969 /* ProcessRequest.swift in Sources */,
 				EE02F6401ACF252000179969 /* Device.swift in Sources */,
 				EE65DB741CB39FFD00E25C72 /* Library.swift in Sources */,
@@ -2049,8 +2086,11 @@
 				EE02F7771ACF259B00179969 /* DateAndTimeTests.swift in Sources */,
 				EEEE31151BB1FE32008866E2 /* QuestionnaireResponseTests.swift in Sources */,
 				EE02F7931ACF259B00179969 /* EnrollmentResponseTests.swift in Sources */,
+				EE29C2A61E42010B000788D7 /* DocumentManifestTests.swift in Sources */,
+				EE29C2A01E42010B000788D7 /* AdverseEventTests.swift in Sources */,
 				EE02F7D11ACF259B00179969 /* PaymentReconciliationTests.swift in Sources */,
 				EE31DC5A1D64AC3600B04BEA /* ImagingManifestTests.swift in Sources */,
+				EE29C2AC1E42010B000788D7 /* NutritionOrderTests.swift in Sources */,
 				EE02F7F31ACF259B00179969 /* StructureDefinitionTests.swift in Sources */,
 				EE02F77B1ACF259B00179969 /* DeviceMetricTests.swift in Sources */,
 				EE02F7D91ACF259B00179969 /* ProcedureTests.swift in Sources */,
@@ -2067,6 +2107,7 @@
 				EE02F7EF1ACF259B00179969 /* SlotTests.swift in Sources */,
 				EE02F7A31ACF259B00179969 /* HealthcareServiceTests.swift in Sources */,
 				EE65DB621CB39FE200E25C72 /* MeasureReportTests.swift in Sources */,
+				EE29C2AA1E42010B000788D7 /* MeasureTests.swift in Sources */,
 				EEEE31181BB1FE32008866E2 /* TestScriptTests.swift in Sources */,
 				EE65DB601CB39FE200E25C72 /* LibraryTests.swift in Sources */,
 				EE723FEB1DC14AA400C398BA /* CapabilityStatementTests.swift in Sources */,
@@ -2074,6 +2115,7 @@
 				EE02F7911ACF259B00179969 /* EnrollmentRequestTests.swift in Sources */,
 				EE02F78F1ACF259B00179969 /* EncounterTests.swift in Sources */,
 				EE65DB611CB39FE200E25C72 /* LinkageTests.swift in Sources */,
+				EE29C2A81E42010B000788D7 /* DocumentReferenceTests.swift in Sources */,
 				EEEE31161BB1FE32008866E2 /* SupplyDeliveryTests.swift in Sources */,
 				EE02F7E91ACF259B00179969 /* RiskAssessmentTests.swift in Sources */,
 				EE109CDD1DF6AE4F00DB1774 /* ResearchStudyTests.swift in Sources */,
@@ -2089,6 +2131,7 @@
 				EE723FED1DC14AA400C398BA /* TestReportTests.swift in Sources */,
 				EE02F74F1ACF259B00179969 /* AppointmentTests.swift in Sources */,
 				EE02F7671ACF259B00179969 /* CompositionTests.swift in Sources */,
+				EE29C2A21E42010B000788D7 /* ChargeItemTests.swift in Sources */,
 				EE02F7DB1ACF259B00179969 /* ProcessRequestTests.swift in Sources */,
 				EE02F7E71ACF259B00179969 /* RelatedPersonTests.swift in Sources */,
 				EE31DC5E1D64AC3600B04BEA /* PlanDefinitionTests.swift in Sources */,
@@ -2098,7 +2141,6 @@
 				EE02F7651ACF259B00179969 /* CommunicationTests.swift in Sources */,
 				EE109CDB1DF6AE4F00DB1774 /* MessageDefinitionTests.swift in Sources */,
 				EE723FEC1DC14AA400C398BA /* ServiceDefinitionTests.swift in Sources */,
-				EE02F77F1ACF259B00179969 /* DeviceUseRequestTests.swift in Sources */,
 				EE02F7951ACF259B00179969 /* EpisodeOfCareTests.swift in Sources */,
 				EE65DB681CB39FE200E25C72 /* StructureMapTests.swift in Sources */,
 				EE65DB651CB39FE200E25C72 /* PractitionerRoleTests.swift in Sources */,
@@ -2127,6 +2169,7 @@
 				EE02F7E51ACF259B00179969 /* ReferralRequestTests.swift in Sources */,
 				EEEE31141BB1FE32008866E2 /* OperationDefinitionTests.swift in Sources */,
 				EE02F76B1ACF259B00179969 /* ConditionTests.swift in Sources */,
+				EE29C2BE1E42182D000788D7 /* XCTestCase+Local.swift in Sources */,
 				EE65DB671CB39FE200E25C72 /* SequenceTests.swift in Sources */,
 				EE65DB591CB39FE200E25C72 /* CareTeamTests.swift in Sources */,
 				EE02F7AD1ACF259B00179969 /* ListTests.swift in Sources */,
@@ -2134,7 +2177,6 @@
 				EE02F7FB1ACF259B00179969 /* ValueSetTests.swift in Sources */,
 				EE02F7631ACF259B00179969 /* CommunicationRequestTests.swift in Sources */,
 				EE02F79F1ACF259B00179969 /* GoalTests.swift in Sources */,
-				EE31DC561D64AC3600B04BEA /* DiagnosticRequestTests.swift in Sources */,
 				EE02F7A71ACF259B00179969 /* ImagingStudyTests.swift in Sources */,
 				EE02F7A91ACF259B00179969 /* ImmunizationRecommendationTests.swift in Sources */,
 				EE02F7691ACF259B00179969 /* ConceptMapTests.swift in Sources */,
@@ -2142,7 +2184,6 @@
 				EEEE31111BB1FE32008866E2 /* DetectedIssueTests.swift in Sources */,
 				EE02F7751ACF259B00179969 /* DataElementTests.swift in Sources */,
 				EE02F7B11ACF259B00179969 /* MediaTests.swift in Sources */,
-				EE31DC5C1D64AC3600B04BEA /* NutritionRequestTests.swift in Sources */,
 				EEA97F941DCA19C300C3F016 /* ValidationTests.swift in Sources */,
 				EE02F74D1ACF259B00179969 /* AppointmentResponseTests.swift in Sources */,
 				EE02F75F1ACF259B00179969 /* ClaimTests.swift in Sources */,
@@ -2153,6 +2194,7 @@
 				EE02F78B1ACF259B00179969 /* EligibilityRequestTests.swift in Sources */,
 				EE02F7811ACF259B00179969 /* DeviceUseStatementTests.swift in Sources */,
 				EE02F75B1ACF259B00179969 /* CarePlanTests.swift in Sources */,
+				EE29C2A41E42010B000788D7 /* DeviceRequestTests.swift in Sources */,
 				EE02F7ED1ACF259B00179969 /* SearchParameterTests.swift in Sources */,
 				EEEE311E1BB2817D008866E2 /* XCTestCase+FHIR.swift in Sources */,
 				EE02F7C11ACF259B00179969 /* ObservationTests.swift in Sources */,
@@ -2322,6 +2364,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2336,6 +2379,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2396,6 +2440,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2410,6 +2455,7 @@
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

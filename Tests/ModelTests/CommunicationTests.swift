@@ -2,22 +2,28 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCommunication = Models.Communication
+#else
 import SwiftFHIR
+typealias SwiftFHIRCommunication = SwiftFHIR.Communication
+#endif
 
 
 class CommunicationTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Communication {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRCommunication {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Communication {
-		return try SwiftFHIR.Communication(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRCommunication {
+		return try SwiftFHIRCommunication(json: json)
 	}
 	
 	func testCommunication1() {
@@ -31,7 +37,7 @@ class CommunicationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-attachment.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
@@ -53,7 +59,7 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.sender?.identifier?.system?.absoluteString, "http://www.jurisdiction.com/provideroffices")
 		XCTAssertEqual(inst.sender?.identifier?.value, "3456")
 		XCTAssertEqual(inst.sent?.description, "2016-06-12T18:01:10-08:00")
-		XCTAssertEqual(inst.status, CommunicationStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment which is unsolicited</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -76,7 +82,7 @@ class CommunicationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCommunication2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+	func runCommunication2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-solicited-attachment.json")
 		
 		XCTAssertEqual(inst.basedOn?[0].reference, "#request")
@@ -100,7 +106,7 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.recipient?[0].reference, "#payor")
 		XCTAssertEqual(inst.sender?.reference, "#provider")
 		XCTAssertEqual(inst.sent?.description, "2016-06-12T18:01:10-08:00")
-		XCTAssertEqual(inst.status, CommunicationStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment in response to a Request</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -119,23 +125,29 @@ class CommunicationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCommunication3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+	func runCommunication3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "Alert")
 		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.category?.text, "Alert")
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "Paging System")
 		XCTAssertEqual(inst.identifier?[0].value, "2345678901")
+		XCTAssertEqual(inst.medium?[0].coding?[0].code, "WRITTEN")
+		XCTAssertEqual(inst.medium?[0].coding?[0].display, "written")
+		XCTAssertEqual(inst.medium?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationMode")
+		XCTAssertEqual(inst.medium?[0].text, "written")
 		XCTAssertEqual(inst.payload?[0].contentString, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
-		XCTAssertEqual(inst.payload?[1].contentReference?.reference, "Observation/643666aa12f")
-		XCTAssertEqual(inst.recipient?[0].reference, "Practitioner/21")
+		XCTAssertEqual(inst.payload?[1].contentReference?.display, "Serum Potassium Observation")
+		XCTAssertEqual(inst.received?.description, "2014-12-12T18:01:11-08:00")
+		XCTAssertEqual(inst.recipient?[0].reference, "Practitioner/example")
 		XCTAssertEqual(inst.sender?.reference, "Device/f001")
 		XCTAssertEqual(inst.sent?.description, "2014-12-12T18:01:10-08:00")
-		XCTAssertEqual(inst.status, CommunicationStatus(rawValue: "completed")!)
-		XCTAssertEqual(inst.subject?.reference, "Patient/1")
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Patient has very high serum potassium</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

@@ -2,8 +2,8 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import Foundation
@@ -37,6 +37,9 @@ open class Specimen: DomainResource {
 	/// Specimen from which this specimen originated.
 	public var parent: [Reference]?
 	
+	/// Processing and processing step details.
+	public var processing: [SpecimenProcessing]?
+	
 	/// The time when specimen was received for processing.
 	public var receivedTime: DateTime?
 	
@@ -48,9 +51,6 @@ open class Specimen: DomainResource {
 	
 	/// Where the specimen came from. This may be from the patient(s) or from the environment or a device.
 	public var subject: Reference?
-	
-	/// Treatment and processing step details.
-	public var treatment: [SpecimenTreatment]?
 	
 	/// Kind of material that forms the specimen.
 	public var type: CodeableConcept?
@@ -72,6 +72,7 @@ open class Specimen: DomainResource {
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		parent = try createInstances(of: Reference.self, for: "parent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parent
+		processing = try createInstances(of: SpecimenProcessing.self, for: "processing", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? processing
 		receivedTime = try createInstance(type: DateTime.self, for: "receivedTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? receivedTime
 		request = try createInstances(of: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
 		status = createEnum(type: SpecimenStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
@@ -79,7 +80,6 @@ open class Specimen: DomainResource {
 		if nil == subject && !presentKeys.contains("subject") {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
-		treatment = try createInstances(of: SpecimenTreatment.self, for: "treatment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? treatment
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		
 		return errors.isEmpty ? nil : errors
@@ -94,6 +94,7 @@ open class Specimen: DomainResource {
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "parent", using: self.parent, errors: &errors)
+		arrayDecorate(json: &json, withKey: "processing", using: self.processing, errors: &errors)
 		self.receivedTime?.decorate(json: &json, withKey: "receivedTime", errors: &errors)
 		arrayDecorate(json: &json, withKey: "request", using: self.request, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
@@ -101,7 +102,6 @@ open class Specimen: DomainResource {
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
-		arrayDecorate(json: &json, withKey: "treatment", using: self.treatment, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
@@ -224,13 +224,13 @@ open class SpecimenContainer: BackboneElement {
 
 
 /**
-Treatment and processing step details.
+Processing and processing step details.
 
-Details concerning treatment and processing steps for the specimen.
+Details concerning processing and processing steps for the specimen.
 */
-open class SpecimenTreatment: BackboneElement {
+open class SpecimenProcessing: BackboneElement {
 	override open class var resourceType: String {
-		get { return "SpecimenTreatment" }
+		get { return "SpecimenProcessing" }
 	}
 	
 	/// Material used in the processing step.
@@ -239,13 +239,13 @@ open class SpecimenTreatment: BackboneElement {
 	/// Textual description of procedure.
 	public var description_fhir: FHIRString?
 	
-	/// Indicates the treatment or processing step  applied to the specimen.
+	/// Indicates the treatment step  applied to the specimen.
 	public var procedure: CodeableConcept?
 	
-	/// Date and time of specimen treatment.
+	/// Date and time of specimen processing.
 	public var timeDateTime: DateTime?
 	
-	/// Date and time of specimen treatment.
+	/// Date and time of specimen processing.
 	public var timePeriod: Period?
 	
 	

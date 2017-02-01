@@ -2,22 +2,28 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCodeSystem = Models.CodeSystem
+#else
 import SwiftFHIR
+typealias SwiftFHIRCodeSystem = SwiftFHIR.CodeSystem
+#endif
 
 
 class CodeSystemTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.CodeSystem {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRCodeSystem {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.CodeSystem {
-		return try SwiftFHIR.CodeSystem(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRCodeSystem {
+		return try SwiftFHIRCodeSystem(json: json)
 	}
 	
 	func testCodeSystem1() {
@@ -31,7 +37,7 @@ class CodeSystemTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCodeSystem1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CodeSystem {
+	func runCodeSystem1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-example.json")
 		
 		XCTAssertEqual(inst.caseSensitive, true)
@@ -85,7 +91,7 @@ class CodeSystemTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCodeSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CodeSystem {
+	func runCodeSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-list-example-codes.json")
 		
 		XCTAssertEqual(inst.caseSensitive, true)
@@ -124,7 +130,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.173")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-12-06T12:22:34.981+11:00")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-02-01T04:47:20.479+00:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
@@ -132,7 +138,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "1.8.0")
+		XCTAssertEqual(inst.version, "1.9.0")
 		
 		return inst
 	}

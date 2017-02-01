@@ -2,22 +2,28 @@
 //  StructureDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRStructureDefinition = Models.StructureDefinition
+#else
 import SwiftFHIR
+typealias SwiftFHIRStructureDefinition = SwiftFHIR.StructureDefinition
+#endif
 
 
 class StructureDefinitionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.StructureDefinition {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRStructureDefinition {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.StructureDefinition {
-		return try SwiftFHIR.StructureDefinition(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRStructureDefinition {
+		return try SwiftFHIRStructureDefinition(json: json)
 	}
 	
 	func testStructureDefinition1() {
@@ -31,7 +37,7 @@ class StructureDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runStructureDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.StructureDefinition {
+	func runStructureDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRStructureDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "extension-structuredefinition-example.json")
 		
 		XCTAssertEqual(inst.abstract, false)
@@ -102,7 +108,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.differential?.element?[9].id, "Extension:anadditionalexamplevalue.url")
 		XCTAssertEqual(inst.differential?.element?[9].path, "Extension.url")
 		XCTAssertEqual(inst.differential?.element?[9].type?[0].code?.absoluteString, "uri")
-		XCTAssertEqual(inst.fhirVersion, "1.8.0")
+		XCTAssertEqual(inst.fhirVersion, "1.9.0")
 		XCTAssertEqual(inst.id, "structuredefinition-example")
 		XCTAssertEqual(inst.kind, StructureDefinitionKind(rawValue: "complex-type")!)
 		XCTAssertEqual(inst.mapping?[0].identity, "rim")
@@ -155,7 +161,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[2].path, "Extension.extension")
 		XCTAssertEqual(inst.snapshot?.element?[2].short, "Extension")
 		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.discriminator?[0], "url")
-		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.id, "83")
+		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.id, "76")
 		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.ordered, false)
 		XCTAssertEqual(inst.snapshot?.element?[2].slicing?.rules, SlicingRules(rawValue: "open")!)
 		XCTAssertEqual(inst.snapshot?.element?[2].type?[0].code?.absoluteString, "Extension")
@@ -263,7 +269,7 @@ class StructureDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runStructureDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.StructureDefinition {
+	func runStructureDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRStructureDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example.json")
 		
 		XCTAssertEqual(inst.abstract, false)
@@ -422,7 +428,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[9].path, "DiagnosticReport.request")
 		XCTAssertEqual(inst.snapshot?.element?[9].short, "What was requested")
 		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].code?.absoluteString, "Reference")
-		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/DiagnosticRequest")
+		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/ProcedureRequest")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Example Lipid Profile")

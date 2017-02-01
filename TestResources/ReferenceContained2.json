@@ -1,6 +1,7 @@
 {
 	"resourceType": "MedicationRequest",
 	"id": "order-ref-contained-wrong",
+	"intent": "proposal",
 	"contained": [
 		{
 			"resourceType": "Organization",
@@ -8,18 +9,10 @@
 			"name": "Morpheus Co."
 		}
 	],
-	"stage": {
-		"coding": [
-			{
-				"system": "http://hl7.org/fhir/ValueSet/medication-request-stage",
-				"code": "proposal"
-			}
-		]
-	},
 	"medicationReference": {
 		"reference": "#morpheus"
 	},
-	"patient": {
+	"subject": {
 		"reference": "Patient/0"
 	}
 }

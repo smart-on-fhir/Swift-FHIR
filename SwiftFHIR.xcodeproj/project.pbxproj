@@ -633,6 +633,8 @@
 		EEEE31181BB1FE32008866E2 /* TestScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE30FC1BB1FDB7008866E2 /* TestScriptTests.swift */; };
 		EEEE311D1BB27E6D008866E2 /* XCTestCase+FHIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE311C1BB27E6D008866E2 /* XCTestCase+FHIR.swift */; };
 		EEEE311E1BB2817D008866E2 /* XCTestCase+FHIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE311C1BB27E6D008866E2 /* XCTestCase+FHIR.swift */; };
+		EEF90D841E43425D00A545AE /* ValueSet+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF90D831E43425D00A545AE /* ValueSet+Localization.swift */; };
+		EEF90D851E43425D00A545AE /* ValueSet+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF90D831E43425D00A545AE /* ValueSet+Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -978,6 +980,7 @@
 		EEEE31221BB2828D008866E2 /* generator-settings.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = "generator-settings.py"; sourceTree = "<group>"; };
 		EEEE31231BB2828D008866E2 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		EEF20E151A5D4FFE009A6EDA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EEF90D831E43425D00A545AE /* ValueSet+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ValueSet+Localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1266,6 +1269,7 @@
 				EE1310D91C1B681500D9DAE7 /* FHIRServerDataResponse.swift */,
 				EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */,
 				EEDB87351E1BE44400E53FD4 /* FHIRString+Localization.swift */,
+				EEF90D831E43425D00A545AE /* ValueSet+Localization.swift */,
 				EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */,
 				EE1310CE1C1B5EE500D9DAE7 /* Resource+Instantiation.swift */,
 				EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */,
@@ -1768,6 +1772,7 @@
 				EE6C88D31CB39A6A00ADFF94 /* Library.swift in Sources */,
 				EE02F6291ACF252000179969 /* CommunicationRequest.swift in Sources */,
 				EE02F6931ACF252000179969 /* Money.swift in Sources */,
+				EEF90D841E43425D00A545AE /* ValueSet+Localization.swift in Sources */,
 				EE02F67F1ACF252000179969 /* List.swift in Sources */,
 				EE02F6CD1ACF252000179969 /* RelatedPerson.swift in Sources */,
 				EEED291B1DF94619007ADD02 /* FHIRBool.swift in Sources */,
@@ -2093,6 +2098,7 @@
 				EE02F62A1ACF252000179969 /* CommunicationRequest.swift in Sources */,
 				EE02F6941ACF252000179969 /* Money.swift in Sources */,
 				EE02F6801ACF252000179969 /* List.swift in Sources */,
+				EEF90D851E43425D00A545AE /* ValueSet+Localization.swift in Sources */,
 				EE02F6CE1ACF252000179969 /* RelatedPerson.swift in Sources */,
 				EE02F6061ACF252000179969 /* Address.swift in Sources */,
 				EEED291C1DF94619007ADD02 /* FHIRBool.swift in Sources */,

@@ -20,6 +20,7 @@ See [tags/releases](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
+ **3.0** |       3.0 | `2.0.0.xxxxx` | STU 3
 **2.10** |       3.0 | `1.8.0.10521` | STU 3 Freeze, Jan 2017
  **2.9** |       3.0 |  `1.6.0.9663` | STU 3 Ballot, Sep 2016
  **2.8** |       3.0 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
@@ -51,19 +52,19 @@ Progress
 Here's a rough list of what still needs to be done.
 
 ```
-[ ] Update/modernize FHIRSearch
 [ ] More convenience methods to working with resources in code
-[ ] Create enums for `code` type properties
+[x] Create enums for `code` type properties
 [ ] Nice support for simple PATCH operations
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
+[ ] Update/modernize FHIRSearch
 [ ] Search: report search parameters that the server ignored
 ```
 
 Working, at least to some extent:
 
 - Classes generated for FHIR's base resources
-    + Use Swift native types whenever possible
+    + Use custom structs for primitive types
     + Use custom Date/Time/DateTime/Instant structs
     + Generate enums for many closed ValueSets
 - Create elements and resources programmatically

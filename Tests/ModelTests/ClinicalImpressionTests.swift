@@ -2,22 +2,28 @@
 //  ClinicalImpressionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRClinicalImpression = Models.ClinicalImpression
+#else
 import SwiftFHIR
+typealias SwiftFHIRClinicalImpression = SwiftFHIR.ClinicalImpression
+#endif
 
 
 class ClinicalImpressionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ClinicalImpression {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRClinicalImpression {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ClinicalImpression {
-		return try SwiftFHIR.ClinicalImpression(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRClinicalImpression {
+		return try SwiftFHIRClinicalImpression(json: json)
 	}
 	
 	func testClinicalImpression1() {
@@ -31,7 +37,7 @@ class ClinicalImpressionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClinicalImpression1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ClinicalImpression {
+	func runClinicalImpression1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClinicalImpression {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "clinicalimpression-example.json")
 		
 		XCTAssertEqual(inst.assessor?.reference, "Practitioner/example")

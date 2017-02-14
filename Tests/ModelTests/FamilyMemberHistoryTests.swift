@@ -2,22 +2,28 @@
 //  FamilyMemberHistoryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRFamilyMemberHistory = Models.FamilyMemberHistory
+#else
 import SwiftFHIR
+typealias SwiftFHIRFamilyMemberHistory = SwiftFHIR.FamilyMemberHistory
+#endif
 
 
 class FamilyMemberHistoryTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.FamilyMemberHistory {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRFamilyMemberHistory {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.FamilyMemberHistory {
-		return try SwiftFHIR.FamilyMemberHistory(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRFamilyMemberHistory {
+		return try SwiftFHIRFamilyMemberHistory(json: json)
 	}
 	
 	func testFamilyMemberHistory1() {
@@ -31,7 +37,7 @@ class FamilyMemberHistoryTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runFamilyMemberHistory1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.FamilyMemberHistory {
+	func runFamilyMemberHistory1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRFamilyMemberHistory {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example-mother.json")
 		
 		XCTAssertEqual(inst.condition?[0].code?.coding?[0].code, "371041009")
@@ -65,7 +71,7 @@ class FamilyMemberHistoryTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runFamilyMemberHistory2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.FamilyMemberHistory {
+	func runFamilyMemberHistory2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRFamilyMemberHistory {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example.json")
 		
 		XCTAssertEqual(inst.condition?[0].code?.coding?[0].code, "315619001")

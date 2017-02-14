@@ -2,22 +2,28 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRConceptMap = Models.ConceptMap
+#else
 import SwiftFHIR
+typealias SwiftFHIRConceptMap = SwiftFHIR.ConceptMap
+#endif
 
 
 class ConceptMapTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ConceptMap {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRConceptMap {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ConceptMap {
-		return try SwiftFHIR.ConceptMap(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRConceptMap {
+		return try SwiftFHIRConceptMap(json: json)
 	}
 	
 	func testConceptMap1() {
@@ -31,7 +37,7 @@ class ConceptMapTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConceptMap1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ConceptMap {
+	func runConceptMap1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConceptMap {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example-specimen-type.json")
 		
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
@@ -103,7 +109,7 @@ class ConceptMapTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConceptMap2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ConceptMap {
+	func runConceptMap2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConceptMap {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team (example)")

@@ -542,6 +542,8 @@
 		EE723FF21DC14AD300C398BA /* RelatedArtifact.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6D1DC148C200C398BA /* RelatedArtifact.swift */; };
 		EE723FF31DC14AD300C398BA /* ServiceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6E1DC148C200C398BA /* ServiceDefinition.swift */; };
 		EE723FF41DC14AD300C398BA /* TestReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6F1DC148C200C398BA /* TestReport.swift */; };
+		EE7B36981E5344D8007B1D73 /* XCTestCase+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B36951E5344D8007B1D73 /* XCTestCase+Local.swift */; };
+		EE7B36991E5344D8007B1D73 /* XCTestCase+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B36951E5344D8007B1D73 /* XCTestCase+Local.swift */; };
 		EE82503F1DD61DE20097A737 /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F9721C58FC51003AEA7E /* ResourceTests.swift */; };
 		EE86F3EE1DF9BDE100922994 /* FHIREnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F3ED1DF9BDE100922994 /* FHIREnum.swift */; };
 		EE86F3EF1DF9BDE100922994 /* FHIREnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F3ED1DF9BDE100922994 /* FHIREnum.swift */; };
@@ -905,6 +907,7 @@
 		EE723F781DC148E100C398BA /* CapabilityStatementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapabilityStatementTests.swift; sourceTree = "<group>"; };
 		EE723F791DC148E100C398BA /* ServiceDefinitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDefinitionTests.swift; sourceTree = "<group>"; };
 		EE723F7A1DC148E100C398BA /* TestReportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestReportTests.swift; sourceTree = "<group>"; };
+		EE7B36951E5344D8007B1D73 /* XCTestCase+Local.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Local.swift"; sourceTree = "<group>"; };
 		EE86F3ED1DF9BDE100922994 /* FHIREnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIREnum.swift; sourceTree = "<group>"; };
 		EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Element+Extensions.swift"; sourceTree = "<group>"; };
 		EE9ABA2A1D803D8400BA8B54 /* Patient+SMART.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Patient+SMART.swift"; sourceTree = "<group>"; };
@@ -1213,6 +1216,7 @@
 				EE39069E1CD3E4F6008FECEA /* RequestTests.swift */,
 				EEA97F921DCA19C300C3F016 /* ValidationTests.swift */,
 				EEDB87381E1BE6CE00E53FD4 /* LocalizationTests.swift */,
+				EE7B36951E5344D8007B1D73 /* XCTestCase+Local.swift */,
 			);
 			path = ClientTests;
 			sourceTree = "<group>";
@@ -1785,6 +1789,7 @@
 				EE31DC591D64AC3600B04BEA /* ImagingManifestTests.swift in Sources */,
 				EE02F74E1ACF259B00179969 /* AppointmentTests.swift in Sources */,
 				EEDB87391E1BE6CE00E53FD4 /* LocalizationTests.swift in Sources */,
+				EE7B36981E5344D8007B1D73 /* XCTestCase+Local.swift in Sources */,
 				EE02F7661ACF259B00179969 /* CompositionTests.swift in Sources */,
 				EE02F7DA1ACF259B00179969 /* ProcessRequestTests.swift in Sources */,
 				EE109CDA1DF6AE4F00DB1774 /* MessageDefinitionTests.swift in Sources */,
@@ -2099,6 +2104,7 @@
 				EE02F7E71ACF259B00179969 /* RelatedPersonTests.swift in Sources */,
 				EE31DC5E1D64AC3600B04BEA /* PlanDefinitionTests.swift in Sources */,
 				EEDB873A1E1BE6CE00E53FD4 /* LocalizationTests.swift in Sources */,
+				EE7B36991E5344D8007B1D73 /* XCTestCase+Local.swift in Sources */,
 				EEEE31171BB1FE32008866E2 /* SupplyRequestTests.swift in Sources */,
 				EE02F7D71ACF259B00179969 /* ProcedureRequestTests.swift in Sources */,
 				EE02F7651ACF259B00179969 /* CommunicationTests.swift in Sources */,
@@ -2328,6 +2334,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2342,6 +2349,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2402,6 +2410,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2416,6 +2425,7 @@
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

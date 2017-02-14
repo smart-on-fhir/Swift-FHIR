@@ -2,22 +2,28 @@
 //  ActivityDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRActivityDefinition = Models.ActivityDefinition
+#else
 import SwiftFHIR
+typealias SwiftFHIRActivityDefinition = SwiftFHIR.ActivityDefinition
+#endif
 
 
 class ActivityDefinitionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ActivityDefinition {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRActivityDefinition {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ActivityDefinition {
-		return try SwiftFHIR.ActivityDefinition(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRActivityDefinition {
+		return try SwiftFHIRActivityDefinition(json: json)
 	}
 	
 	func testActivityDefinition1() {
@@ -31,7 +37,7 @@ class ActivityDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runActivityDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ActivityDefinition {
+	func runActivityDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRActivityDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-example.json")
 		
 		XCTAssertEqual(inst.category, ActivityDefinitionCategory(rawValue: "referral")!)

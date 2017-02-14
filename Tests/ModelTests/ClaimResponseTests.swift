@@ -2,22 +2,28 @@
 //  ClaimResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRClaimResponse = Models.ClaimResponse
+#else
 import SwiftFHIR
+typealias SwiftFHIRClaimResponse = SwiftFHIR.ClaimResponse
+#endif
 
 
 class ClaimResponseTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ClaimResponse {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRClaimResponse {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ClaimResponse {
-		return try SwiftFHIR.ClaimResponse(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRClaimResponse {
+		return try SwiftFHIRClaimResponse(json: json)
 	}
 	
 	func testClaimResponse1() {
@@ -31,7 +37,7 @@ class ClaimResponseTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaimResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ClaimResponse {
+	func runClaimResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaimResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claimresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

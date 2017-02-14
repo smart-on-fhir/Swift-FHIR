@@ -2,22 +2,28 @@
 //  AllergyIntoleranceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRAllergyIntolerance = Models.AllergyIntolerance
+#else
 import SwiftFHIR
+typealias SwiftFHIRAllergyIntolerance = SwiftFHIR.AllergyIntolerance
+#endif
 
 
 class AllergyIntoleranceTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.AllergyIntolerance {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRAllergyIntolerance {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.AllergyIntolerance {
-		return try SwiftFHIR.AllergyIntolerance(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRAllergyIntolerance {
+		return try SwiftFHIRAllergyIntolerance(json: json)
 	}
 	
 	func testAllergyIntolerance1() {
@@ -31,7 +37,7 @@ class AllergyIntoleranceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AllergyIntolerance {
+	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAllergyIntolerance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "allergyintolerance-example.json")
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2014-10-09T14:58:00+11:00")

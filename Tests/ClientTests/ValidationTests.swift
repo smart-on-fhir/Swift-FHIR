@@ -7,7 +7,12 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+import ModelTests
+#else
 import SwiftFHIR
+#endif
 
 
 /**
@@ -15,9 +20,9 @@ Test how JSON errors are handled.
 */
 class ValidationTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Questionnaire {
+	func instantiateFrom(filename: String) throws -> Questionnaire {
 		let json = try Bundle(for: type(of: self)).fhir_json(from: filename, subdirectory: "TestResources")
-		return try SwiftFHIR.Questionnaire(json: json)
+		return try Questionnaire(json: json)
 	}
 	
 	func testMissing() {

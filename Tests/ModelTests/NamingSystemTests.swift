@@ -2,22 +2,28 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRNamingSystem = Models.NamingSystem
+#else
 import SwiftFHIR
+typealias SwiftFHIRNamingSystem = SwiftFHIR.NamingSystem
+#endif
 
 
 class NamingSystemTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.NamingSystem {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRNamingSystem {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.NamingSystem {
-		return try SwiftFHIR.NamingSystem(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRNamingSystem {
+		return try SwiftFHIRNamingSystem(json: json)
 	}
 	
 	func testNamingSystem1() {
@@ -31,7 +37,7 @@ class NamingSystemTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runNamingSystem1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NamingSystem {
+	func runNamingSystem1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRNamingSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-id.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "HL7 Australia FHIR Team")
@@ -75,7 +81,7 @@ class NamingSystemTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runNamingSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NamingSystem {
+	func runNamingSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRNamingSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-replaced.json")
 		
 		XCTAssertEqual(inst.date?.description, "2005-01-25")
@@ -104,7 +110,7 @@ class NamingSystemTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runNamingSystem3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NamingSystem {
+	func runNamingSystem3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRNamingSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")

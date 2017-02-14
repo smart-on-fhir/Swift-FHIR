@@ -2,22 +2,28 @@
 //  DeviceUseRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDeviceUseRequest = Models.DeviceUseRequest
+#else
 import SwiftFHIR
+typealias SwiftFHIRDeviceUseRequest = SwiftFHIR.DeviceUseRequest
+#endif
 
 
 class DeviceUseRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.DeviceUseRequest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRDeviceUseRequest {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DeviceUseRequest {
-		return try SwiftFHIR.DeviceUseRequest(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRDeviceUseRequest {
+		return try SwiftFHIRDeviceUseRequest(json: json)
 	}
 	
 	func testDeviceUseRequest1() {
@@ -31,7 +37,7 @@ class DeviceUseRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDeviceUseRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DeviceUseRequest {
+	func runDeviceUseRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDeviceUseRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "deviceuserequest-example.json")
 		
 		XCTAssertEqual(inst.deviceReference?.reference, "Device/example")

@@ -2,22 +2,28 @@
 //  DeviceMetricTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDeviceMetric = Models.DeviceMetric
+#else
 import SwiftFHIR
+typealias SwiftFHIRDeviceMetric = SwiftFHIR.DeviceMetric
+#endif
 
 
 class DeviceMetricTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.DeviceMetric {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRDeviceMetric {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DeviceMetric {
-		return try SwiftFHIR.DeviceMetric(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRDeviceMetric {
+		return try SwiftFHIRDeviceMetric(json: json)
 	}
 	
 	func testDeviceMetric1() {
@@ -31,7 +37,7 @@ class DeviceMetricTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDeviceMetric1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DeviceMetric {
+	func runDeviceMetric1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDeviceMetric {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "devicemetric-example.json")
 		
 		XCTAssertEqual(inst.category, DeviceMetricCategory(rawValue: "measurement")!)

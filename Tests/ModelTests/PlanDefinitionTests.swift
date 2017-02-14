@@ -2,22 +2,28 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPlanDefinition = Models.PlanDefinition
+#else
 import SwiftFHIR
+typealias SwiftFHIRPlanDefinition = SwiftFHIR.PlanDefinition
+#endif
 
 
 class PlanDefinitionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.PlanDefinition {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRPlanDefinition {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.PlanDefinition {
-		return try SwiftFHIR.PlanDefinition(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRPlanDefinition {
+		return try SwiftFHIRPlanDefinition(json: json)
 	}
 	
 	func testPlanDefinition1() {
@@ -31,7 +37,7 @@ class PlanDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPlanDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PlanDefinition {
+	func runPlanDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example-kdn5-simplified.json")
 		
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].activityDefinition?.reference, "#1111")
@@ -116,7 +122,7 @@ class PlanDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPlanDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PlanDefinition {
+	func runPlanDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example.json")
 		
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].activityDefinition?.reference, "#referralToMentalHealthCare")
@@ -256,7 +262,7 @@ class PlanDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPlanDefinition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PlanDefinition {
+	func runPlanDefinition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-protocol-example.json")
 		
 		XCTAssertEqual(inst.actionDefinition?[0].activityDefinition?.reference, "#procedure")

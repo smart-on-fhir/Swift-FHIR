@@ -2,22 +2,28 @@
 //  MessageDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRMessageDefinition = Models.MessageDefinition
+#else
 import SwiftFHIR
+typealias SwiftFHIRMessageDefinition = SwiftFHIR.MessageDefinition
+#endif
 
 
 class MessageDefinitionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.MessageDefinition {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRMessageDefinition {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.MessageDefinition {
-		return try SwiftFHIR.MessageDefinition(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRMessageDefinition {
+		return try SwiftFHIRMessageDefinition(json: json)
 	}
 	
 	func testMessageDefinition1() {
@@ -31,7 +37,7 @@ class MessageDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runMessageDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.MessageDefinition {
+	func runMessageDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMessageDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "messagedefinition-example.json")
 		
 		XCTAssertEqual(inst.category, MessageSignificanceCategory(rawValue: "Notification")!)

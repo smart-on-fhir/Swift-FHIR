@@ -2,22 +2,28 @@
 //  PractitionerTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPractitioner = Models.Practitioner
+#else
 import SwiftFHIR
+typealias SwiftFHIRPractitioner = SwiftFHIR.Practitioner
+#endif
 
 
 class PractitionerTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Practitioner {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRPractitioner {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Practitioner {
-		return try SwiftFHIR.Practitioner(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRPractitioner {
+		return try SwiftFHIRPractitioner(json: json)
 	}
 	
 	func testPractitioner1() {
@@ -31,7 +37,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f001-evdb.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
@@ -87,7 +93,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f002-pv.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
@@ -143,7 +149,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f003-mv.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
@@ -202,7 +208,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f004-rb.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
@@ -262,7 +268,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f005-al.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
@@ -322,7 +328,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
@@ -378,7 +384,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f007-sh.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
@@ -434,7 +440,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f201-ab.json")
 		
 		XCTAssertEqual(inst.active, true)
@@ -486,7 +492,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f202-lm.json")
 		
 		XCTAssertEqual(inst.active, true)
@@ -539,7 +545,7 @@ class PractitionerTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPractitioner10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
+	func runPractitioner10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPractitioner {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f203-jvg.json")
 		
 		XCTAssertEqual(inst.active, true)

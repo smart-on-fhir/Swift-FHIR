@@ -2,22 +2,28 @@
 //  CapabilityStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCapabilityStatement = Models.CapabilityStatement
+#else
 import SwiftFHIR
+typealias SwiftFHIRCapabilityStatement = SwiftFHIR.CapabilityStatement
+#endif
 
 
 class CapabilityStatementTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.CapabilityStatement {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRCapabilityStatement {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.CapabilityStatement {
-		return try SwiftFHIR.CapabilityStatement(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRCapabilityStatement {
+		return try SwiftFHIRCapabilityStatement(json: json)
 	}
 	
 	func testCapabilityStatement1() {
@@ -31,7 +37,7 @@ class CapabilityStatementTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCapabilityStatement1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CapabilityStatement {
+	func runCapabilityStatement1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCapabilityStatement {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, UnknownContentCode(rawValue: "both")!)
@@ -125,7 +131,7 @@ class CapabilityStatementTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCapabilityStatement2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CapabilityStatement {
+	func runCapabilityStatement2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCapabilityStatement {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-phr-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, UnknownContentCode(rawValue: "no")!)

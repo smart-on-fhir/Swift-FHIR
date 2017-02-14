@@ -2,22 +2,28 @@
 //  PaymentNoticeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPaymentNotice = Models.PaymentNotice
+#else
 import SwiftFHIR
+typealias SwiftFHIRPaymentNotice = SwiftFHIR.PaymentNotice
+#endif
 
 
 class PaymentNoticeTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.PaymentNotice {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRPaymentNotice {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.PaymentNotice {
-		return try SwiftFHIR.PaymentNotice(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRPaymentNotice {
+		return try SwiftFHIRPaymentNotice(json: json)
 	}
 	
 	func testPaymentNotice1() {
@@ -31,7 +37,7 @@ class PaymentNoticeTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPaymentNotice1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PaymentNotice {
+	func runPaymentNotice1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPaymentNotice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentnotice-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

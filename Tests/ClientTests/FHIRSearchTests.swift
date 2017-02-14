@@ -7,11 +7,16 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+import Client
+#else
 import SwiftFHIR
+#endif
 
 
-class FHIRSearchTests: XCTestCase
-{
+class FHIRSearchTests: XCTestCase {
+	
     func testConstruction() {
 		let base = "https://fhir.me/"
 		

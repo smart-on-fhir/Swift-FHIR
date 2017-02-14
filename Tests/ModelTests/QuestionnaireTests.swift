@@ -2,22 +2,28 @@
 //  QuestionnaireTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRQuestionnaire = Models.Questionnaire
+#else
 import SwiftFHIR
+typealias SwiftFHIRQuestionnaire = SwiftFHIR.Questionnaire
+#endif
 
 
 class QuestionnaireTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Questionnaire {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRQuestionnaire {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Questionnaire {
-		return try SwiftFHIR.Questionnaire(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRQuestionnaire {
+		return try SwiftFHIRQuestionnaire(json: json)
 	}
 	
 	func testQuestionnaire1() {
@@ -31,7 +37,7 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-bluebook.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-02-19")
@@ -104,7 +110,7 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-f201-lifelines.json")
 		
 		XCTAssertEqual(inst.concept?[0].code, "VL 1-1, 18-65_1.2.2")
@@ -158,7 +164,7 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-gcs.json")
 		
 		XCTAssertEqual(inst.concept?[0].code, "9269-2")
@@ -204,7 +210,7 @@ class QuestionnaireTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runQuestionnaire4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Questionnaire {
+	func runQuestionnaire4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRQuestionnaire {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-01")

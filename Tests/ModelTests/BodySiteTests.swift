@@ -2,22 +2,28 @@
 //  BodySiteTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRBodySite = Models.BodySite
+#else
 import SwiftFHIR
+typealias SwiftFHIRBodySite = SwiftFHIR.BodySite
+#endif
 
 
 class BodySiteTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.BodySite {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRBodySite {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.BodySite {
-		return try SwiftFHIR.BodySite(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRBodySite {
+		return try SwiftFHIRBodySite(json: json)
 	}
 	
 	func testBodySite1() {
@@ -31,7 +37,7 @@ class BodySiteTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBodySite1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.BodySite {
+	func runBodySite1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBodySite {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-fetus.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "83418008")
@@ -59,7 +65,7 @@ class BodySiteTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBodySite2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.BodySite {
+	func runBodySite2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBodySite {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-skin-patch.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "39937001")
@@ -87,7 +93,7 @@ class BodySiteTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBodySite3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.BodySite {
+	func runBodySite3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBodySite {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-tumor.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "4147007")

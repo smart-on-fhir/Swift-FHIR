@@ -2,22 +2,28 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSubscription = Models.Subscription
+#else
 import SwiftFHIR
+typealias SwiftFHIRSubscription = SwiftFHIR.Subscription
+#endif
 
 
 class SubscriptionTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Subscription {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRSubscription {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Subscription {
-		return try SwiftFHIR.Subscription(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRSubscription {
+		return try SwiftFHIRSubscription(json: json)
 	}
 	
 	func testSubscription1() {
@@ -31,7 +37,7 @@ class SubscriptionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubscription1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Subscription {
+	func runSubscription1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubscription {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example-error.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
@@ -65,7 +71,7 @@ class SubscriptionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubscription2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Subscription {
+	func runSubscription2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubscription {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")

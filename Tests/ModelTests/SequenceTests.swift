@@ -2,22 +2,28 @@
 //  SequenceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSequence = Models.Sequence
+#else
 import SwiftFHIR
+typealias SwiftFHIRSequence = SwiftFHIR.Sequence
+#endif
 
 
 class SequenceTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Sequence {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRSequence {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Sequence {
-		return try SwiftFHIR.Sequence(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRSequence {
+		return try SwiftFHIRSequence(json: json)
 	}
 	
 	func testSequence1() {
@@ -31,7 +37,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coord-0base-example.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 0)
@@ -73,7 +79,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coord-1base-example.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 1)
@@ -115,7 +121,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example-fda.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 1)
@@ -167,7 +173,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example-pgx-1.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 0)
@@ -201,7 +207,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example-pgx-2.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 0)
@@ -235,7 +241,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example-TPMT-one.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 1)
@@ -268,7 +274,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example-TPMT-two.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 1)
@@ -301,7 +307,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 0)
@@ -337,7 +343,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-graphic-example-1.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 0)
@@ -370,7 +376,7 @@ class SequenceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSequence10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
+	func runSequence10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSequence {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-graphic-example-2.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 0)

@@ -2,22 +2,28 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRValueSet = Models.ValueSet
+#else
 import SwiftFHIR
+typealias SwiftFHIRValueSet = SwiftFHIR.ValueSet
+#endif
 
 
 class ValueSetTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ValueSet {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRValueSet {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ValueSet {
-		return try SwiftFHIR.ValueSet(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRValueSet {
+		return try SwiftFHIRValueSet(json: json)
 	}
 	
 	func testValueSet1() {
@@ -31,7 +37,7 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ValueSet {
+	func runValueSet1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-expansion.json")
 		
 		XCTAssertEqual(inst.compose?.include?[0].filter?[0].op, FilterOperator(rawValue: "=")!)
@@ -111,7 +117,7 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ValueSet {
+	func runValueSet2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-intensional.json")
 		
 		XCTAssertEqual(inst.compose?.exclude?[0].concept?[0].code, "5932-9")
@@ -153,7 +159,7 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ValueSet {
+	func runValueSet3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-yesnodontknow.json")
 		
 		XCTAssertEqual(inst.compose?.include?[0].valueSet?[0].absoluteString, "http://hl7.org/fhir/ValueSet/v2-0136")
@@ -192,7 +198,7 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ValueSet {
+	func runValueSet4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example.json")
 		
 		XCTAssertEqual(inst.compose?.include?[0].concept?[0].code, "14647-2")
@@ -238,7 +244,7 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ValueSet {
+	func runValueSet5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-list-example-codes.json")
 		
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")

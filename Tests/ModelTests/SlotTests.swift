@@ -2,22 +2,28 @@
 //  SlotTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSlot = Models.Slot
+#else
 import SwiftFHIR
+typealias SwiftFHIRSlot = SwiftFHIR.Slot
+#endif
 
 
 class SlotTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Slot {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRSlot {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Slot {
-		return try SwiftFHIR.Slot(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRSlot {
+		return try SwiftFHIRSlot(json: json)
 	}
 	
 	func testSlot1() {
@@ -31,7 +37,7 @@ class SlotTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSlot1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Slot {
+	func runSlot1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSlot {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example-busy.json")
 		
 		XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")
@@ -61,7 +67,7 @@ class SlotTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSlot2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Slot {
+	func runSlot2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSlot {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example-tentative.json")
 		
 		XCTAssertEqual(inst.comment, "Dr Careful is out of the office")
@@ -88,7 +94,7 @@ class SlotTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSlot3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Slot {
+	func runSlot3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSlot {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example-unavailable.json")
 		
 		XCTAssertEqual(inst.comment, "Dr Careful is out of the office")
@@ -115,7 +121,7 @@ class SlotTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSlot4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Slot {
+	func runSlot4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSlot {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example.json")
 		
 		XCTAssertEqual(inst.appointmentType?.coding?[0].code, "walkin")

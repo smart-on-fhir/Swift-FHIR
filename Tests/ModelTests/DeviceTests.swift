@@ -2,22 +2,28 @@
 //  DeviceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDevice = Models.Device
+#else
 import SwiftFHIR
+typealias SwiftFHIRDevice = SwiftFHIR.Device
+#endif
 
 
 class DeviceTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Device {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRDevice {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Device {
-		return try SwiftFHIR.Device(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRDevice {
+		return try SwiftFHIRDevice(json: json)
 	}
 	
 	func testDevice1() {
@@ -31,7 +37,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-f001-feedingtube.json")
 		
 		XCTAssertEqual(inst.expirationDate?.description, "2020-08-08")
@@ -63,7 +69,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-ihe-pcd.json")
 		
 		XCTAssertEqual(inst.id, "ihe-pcd")
@@ -91,7 +97,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-pacemaker.json")
 		
 		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)
@@ -122,7 +128,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-software.json")
 		
 		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "url")!)
@@ -150,7 +156,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-udi1.json")
 		
 		XCTAssertEqual(inst.expirationDate?.description, "2014-11-20")
@@ -191,7 +197,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-udi2.json")
 		
 		XCTAssertEqual(inst.expirationDate?.description, "2014-02-01")
@@ -227,7 +233,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-udi3.json")
 		
 		XCTAssertEqual(inst.expirationDate?.description, "2020-02-02")
@@ -264,7 +270,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-udi4.json")
 		
 		XCTAssertEqual(inst.id, "example-udi4")
@@ -295,7 +301,7 @@ class DeviceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDevice9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+	func runDevice9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDevice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)

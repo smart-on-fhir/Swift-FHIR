@@ -2,22 +2,28 @@
 //  ImagingManifestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRImagingManifest = Models.ImagingManifest
+#else
 import SwiftFHIR
+typealias SwiftFHIRImagingManifest = SwiftFHIR.ImagingManifest
+#endif
 
 
 class ImagingManifestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ImagingManifest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRImagingManifest {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ImagingManifest {
-		return try SwiftFHIR.ImagingManifest(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRImagingManifest {
+		return try SwiftFHIRImagingManifest(json: json)
 	}
 	
 	func testImagingManifest1() {
@@ -31,7 +37,7 @@ class ImagingManifestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runImagingManifest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ImagingManifest {
+	func runImagingManifest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRImagingManifest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingmanifest-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/P2")

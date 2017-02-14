@@ -2,22 +2,28 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCommunication = Models.Communication
+#else
 import SwiftFHIR
+typealias SwiftFHIRCommunication = SwiftFHIR.Communication
+#endif
 
 
 class CommunicationTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Communication {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRCommunication {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Communication {
-		return try SwiftFHIR.Communication(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRCommunication {
+		return try SwiftFHIRCommunication(json: json)
 	}
 	
 	func testCommunication1() {
@@ -31,7 +37,7 @@ class CommunicationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-attachment.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
@@ -76,7 +82,7 @@ class CommunicationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCommunication2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+	func runCommunication2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-solicited-attachment.json")
 		
 		XCTAssertEqual(inst.basedOn?[0].reference, "#request")
@@ -119,7 +125,7 @@ class CommunicationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCommunication3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+	func runCommunication3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "Alert")

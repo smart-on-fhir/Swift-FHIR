@@ -2,22 +2,28 @@
 //  ProcedureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRProcedure = Models.Procedure
+#else
 import SwiftFHIR
+typealias SwiftFHIRProcedure = SwiftFHIR.Procedure
+#endif
 
 
 class ProcedureTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Procedure {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRProcedure {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Procedure {
-		return try SwiftFHIR.Procedure(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRProcedure {
+		return try SwiftFHIRProcedure(json: json)
 	}
 	
 	func testProcedure1() {
@@ -31,7 +37,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-biopsy.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "368225008")
@@ -68,7 +74,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "17401000")
@@ -111,7 +117,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "39607008")
@@ -154,7 +160,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "83030008")
@@ -197,7 +203,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f004-tracheotomy.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "83030008")
@@ -240,7 +246,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f201-tpf.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "272676008")
@@ -280,7 +286,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-implant.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "25267002")
@@ -315,7 +321,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Procedure {
+	func runProcedure8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "80146002")

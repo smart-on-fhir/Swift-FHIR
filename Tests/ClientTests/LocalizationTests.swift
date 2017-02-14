@@ -7,7 +7,12 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+import ModelTests
+#else
 import SwiftFHIR
+#endif
 
 
 /**
@@ -24,8 +29,8 @@ class LocalizationTests: XCTestCase {
 	override func setUp() {
 		super.setUp()
 		do {
-			let json = try Bundle(for: type(of: self)).fhir_json(from: "Localization", subdirectory: "TestResources")
-			let questionnaire = try SwiftFHIR.Questionnaire(json: json)
+			let json = try readJSONFile("Localization.json", directory: testResourcesDirectory)
+			let questionnaire = try Questionnaire(json: json)
 			item = questionnaire.item?.first
 			let valueSet = item?.options?.resolved(ValueSet.self)
 			concept1 = valueSet?.compose?.include?.first?.concept?.first

@@ -2,22 +2,28 @@
 //  EligibilityRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIREligibilityRequest = Models.EligibilityRequest
+#else
 import SwiftFHIR
+typealias SwiftFHIREligibilityRequest = SwiftFHIR.EligibilityRequest
+#endif
 
 
 class EligibilityRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.EligibilityRequest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIREligibilityRequest {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.EligibilityRequest {
-		return try SwiftFHIR.EligibilityRequest(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIREligibilityRequest {
+		return try SwiftFHIREligibilityRequest(json: json)
 	}
 	
 	func testEligibilityRequest1() {
@@ -31,7 +37,7 @@ class EligibilityRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runEligibilityRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EligibilityRequest {
+	func runEligibilityRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityrequest-example.json")
 		
 		XCTAssertEqual(inst.coverage?.reference, "Coverage/9876B1")

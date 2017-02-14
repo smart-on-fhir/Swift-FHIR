@@ -2,22 +2,28 @@
 //  ClaimTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRClaim = Models.Claim
+#else
 import SwiftFHIR
+typealias SwiftFHIRClaim = SwiftFHIR.Claim
+#endif
 
 
 class ClaimTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Claim {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRClaim {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Claim {
-		return try SwiftFHIR.Claim(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRClaim {
+		return try SwiftFHIRClaim(json: json)
 	}
 	
 	func testClaim1() {
@@ -31,7 +37,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-institutional.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")
@@ -89,7 +95,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-average.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")
@@ -186,7 +192,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-contained-identifier.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.identifier?.system?.absoluteString, "http://www.jurisdiction.com/providerId")
@@ -240,7 +246,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-contained.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "#provider-1")
@@ -295,7 +301,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-identifier.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.identifier?.system?.absoluteString, "http://www.jurisdiction.com/providerId")
@@ -350,7 +356,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-orthoplan.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")
@@ -491,7 +497,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-pharmacy.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")
@@ -542,7 +548,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-professional.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")
@@ -593,7 +599,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision-glasses.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")
@@ -674,7 +680,7 @@ class ClaimTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runClaim10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
+	func runClaim10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRClaim {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")

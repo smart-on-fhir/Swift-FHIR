@@ -2,22 +2,28 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRMedia = Models.Media
+#else
 import SwiftFHIR
+typealias SwiftFHIRMedia = SwiftFHIR.Media
+#endif
 
 
 class MediaTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Media {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRMedia {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Media {
-		return try SwiftFHIR.Media(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRMedia {
+		return try SwiftFHIRMedia(json: json)
 	}
 	
 	func testMedia1() {
@@ -31,7 +37,7 @@ class MediaTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runMedia1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Media {
+	func runMedia1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "application/dicom")
@@ -77,7 +83,7 @@ class MediaTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runMedia2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Media {
+	func runMedia2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-sound.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "audio/mpeg")
@@ -105,7 +111,7 @@ class MediaTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runMedia3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Media {
+	func runMedia3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "image/gif")

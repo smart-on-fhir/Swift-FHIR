@@ -2,22 +2,28 @@
 //  BasicTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRBasic = Models.Basic
+#else
 import SwiftFHIR
+typealias SwiftFHIRBasic = SwiftFHIR.Basic
+#endif
 
 
 class BasicTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Basic {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRBasic {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Basic {
-		return try SwiftFHIR.Basic(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRBasic {
+		return try SwiftFHIRBasic(json: json)
 	}
 	
 	func testBasic1() {
@@ -31,7 +37,7 @@ class BasicTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBasic1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Basic {
+	func runBasic1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBasic {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-narrative.json")
 		
 		XCTAssertEqual(inst.code?.text, "Example Narrative Tester")
@@ -52,7 +58,7 @@ class BasicTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBasic2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Basic {
+	func runBasic2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBasic {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
@@ -94,7 +100,7 @@ class BasicTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBasic3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Basic {
+	func runBasic3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBasic {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example2.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "UMLCLASSMODEL")

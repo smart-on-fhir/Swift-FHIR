@@ -2,22 +2,28 @@
 //  FlagTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRFlag = Models.Flag
+#else
 import SwiftFHIR
+typealias SwiftFHIRFlag = SwiftFHIR.Flag
+#endif
 
 
 class FlagTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Flag {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRFlag {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Flag {
-		return try SwiftFHIR.Flag(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRFlag {
+		return try SwiftFHIRFlag(json: json)
 	}
 	
 	func testFlag1() {
@@ -31,7 +37,7 @@ class FlagTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runFlag1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Flag {
+	func runFlag1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRFlag {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example-encounter.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "infection")
@@ -62,7 +68,7 @@ class FlagTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runFlag2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Flag {
+	func runFlag2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRFlag {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example.json")
 		
 		XCTAssertEqual(inst.author?.display, "Nancy Nurse")

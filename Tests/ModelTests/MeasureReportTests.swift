@@ -2,22 +2,28 @@
 //  MeasureReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRMeasureReport = Models.MeasureReport
+#else
 import SwiftFHIR
+typealias SwiftFHIRMeasureReport = SwiftFHIR.MeasureReport
+#endif
 
 
 class MeasureReportTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.MeasureReport {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRMeasureReport {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.MeasureReport {
-		return try SwiftFHIR.MeasureReport(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRMeasureReport {
+		return try SwiftFHIRMeasureReport(json: json)
 	}
 	
 	func testMeasureReport1() {
@@ -31,7 +37,7 @@ class MeasureReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runMeasureReport1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.MeasureReport {
+	func runMeasureReport1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMeasureReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "measurereport-cms146-cat1-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "reporter")
@@ -158,7 +164,7 @@ class MeasureReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runMeasureReport2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.MeasureReport {
+	func runMeasureReport2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMeasureReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "measurereport-cms146-cat2-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "reporter")
@@ -325,7 +331,7 @@ class MeasureReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runMeasureReport3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.MeasureReport {
+	func runMeasureReport3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMeasureReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "measurereport-cms146-cat3-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "reporter")

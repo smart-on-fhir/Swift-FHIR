@@ -2,22 +2,28 @@
 //  EligibilityResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIREligibilityResponse = Models.EligibilityResponse
+#else
 import SwiftFHIR
+typealias SwiftFHIREligibilityResponse = SwiftFHIR.EligibilityResponse
+#endif
 
 
 class EligibilityResponseTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.EligibilityResponse {
+	func instantiateFrom(filename: String) throws -> SwiftFHIREligibilityResponse {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.EligibilityResponse {
-		return try SwiftFHIR.EligibilityResponse(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIREligibilityResponse {
+		return try SwiftFHIREligibilityResponse(json: json)
 	}
 	
 	func testEligibilityResponse1() {
@@ -31,7 +37,7 @@ class EligibilityResponseTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runEligibilityResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EligibilityResponse {
+	func runEligibilityResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example-benefits.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -145,7 +151,7 @@ class EligibilityResponseTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runEligibilityResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EligibilityResponse {
+	func runEligibilityResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

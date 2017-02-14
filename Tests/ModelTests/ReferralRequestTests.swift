@@ -2,22 +2,28 @@
 //  ReferralRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRReferralRequest = Models.ReferralRequest
+#else
 import SwiftFHIR
+typealias SwiftFHIRReferralRequest = SwiftFHIR.ReferralRequest
+#endif
 
 
 class ReferralRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ReferralRequest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRReferralRequest {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ReferralRequest {
-		return try SwiftFHIR.ReferralRequest(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRReferralRequest {
+		return try SwiftFHIRReferralRequest(json: json)
 	}
 	
 	func testReferralRequest1() {
@@ -31,7 +37,7 @@ class ReferralRequestTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runReferralRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ReferralRequest {
+	func runReferralRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRReferralRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "referralrequest-example.json")
 		
 		XCTAssertEqual(inst.authored?.description, "2014-02-14")

@@ -2,22 +2,28 @@
 //  CoverageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCoverage = Models.Coverage
+#else
 import SwiftFHIR
+typealias SwiftFHIRCoverage = SwiftFHIR.Coverage
+#endif
 
 
 class CoverageTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Coverage {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRCoverage {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Coverage {
-		return try SwiftFHIR.Coverage(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRCoverage {
+		return try SwiftFHIRCoverage(json: json)
 	}
 	
 	func testCoverage1() {
@@ -31,7 +37,7 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example-2.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/5")
@@ -71,7 +77,7 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example-ehic.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/5")
@@ -104,7 +110,7 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example-selfpay.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/5")
@@ -136,7 +142,7 @@ class CoverageTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCoverage4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Coverage {
+	func runCoverage4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCoverage {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example.json")
 		
 		XCTAssertEqual(inst.beneficiary?.reference, "Patient/4")

@@ -7,8 +7,12 @@
 //
 
 import XCTest
-@testable
+#if !NO_MODEL_IMPORT
+import Models
+import ModelTests
+#else
 import SwiftFHIR
+#endif
 
 
 /**
@@ -20,7 +24,7 @@ class PrimitiveTests: XCTestCase {
 	
 	override func setUp() {
 		super.setUp()
-		tests = try! Bundle(for: type(of: self)).fhir_json(from: "Primitives", subdirectory: "TestResources") as! [String: FHIRJSON]
+		tests = (try? readJSONFile("Primitives.json", directory: testResourcesDirectory)) as? [String: FHIRJSON]
 	}
 	
 	func testPrimitive() {
@@ -28,7 +32,10 @@ class PrimitiveTests: XCTestCase {
 	}
 	
 	func testPrimitiveArray() {
-		let json = tests!["initArrayValid"]!
+		guard let json = tests?["initArrayValid"] else {
+			XCTAssertTrue(false, "Tests not initialized")
+			return
+		}
 		
 		// Deserialization
 		var present = Set<String>()
@@ -60,7 +67,10 @@ class PrimitiveTests: XCTestCase {
 	}
 	
 	func testInvalidPrimitiveArray() {
-		let json = tests!["initArrayInvalid1"]!
+		guard let json = tests?["initArrayInvalid1"] else {
+			XCTAssertTrue(false, "Tests not initialized")
+			return
+		}
 		
 		var present = Set<String>()
 		var errors = [FHIRValidationError]()

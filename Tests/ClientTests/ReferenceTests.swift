@@ -7,7 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+import Client
+import ModelTests
+#else
 import SwiftFHIR
+#endif
 
 
 /**
@@ -16,48 +22,37 @@ Test reference resolving.
 class ReferenceTests: XCTestCase {
 	
 	func testContainedReference() {
-		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
-			do {
-				let order1 = try MedicationRequest.instantiate(fromPath: path)
-				XCTAssertEqual("order-ref-contained", order1.id)
-				XCTAssertNotNil(order1.medicationReference)
-				XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication.self)?.code?.text ?? "missing")
-				XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication.self)?.code?.text ?? "missing")		// second time, reading from `_resolved`
-				XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Medication.self)?.manufacturer?.resolved(Organization.self)?.name)
-			}
-			catch let error {
-				XCTAssertNil(error)
-			}
+		do {
+			let json = try readJSONFile("ReferenceContained1.json", directory: testResourcesDirectory)
+			let order1 = try MedicationRequest(json: json)
+			XCTAssertEqual("order-ref-contained", order1.id)
+			XCTAssertNotNil(order1.medicationReference)
+			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication.self)?.code?.text ?? "missing")
+			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication.self)?.code?.text ?? "missing")		// second time, reading from `_resolved`
+			XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Medication.self)?.manufacturer?.resolved(Organization.self)?.name)
 		}
-		else {
-			XCTAssertTrue(false, "Test resource not bundled")
+		catch {
+			XCTAssertTrue(false, "\(error)")
 		}
-		
-		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
-			do {
-				let order1 = try MedicationRequest.instantiate(fromPath: path)
-				XCTAssertEqual("order-ref-contained-wrong", order1.id)
-				XCTAssertNotNil(order1.medicationReference)
-				XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Must not resolve contained resource with wrong type")
-				XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Must still not resolve contained resource with wrong type")		// second time, reading from `_resolved`
-				XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Organization.self)?.name)
-			}
-			catch let error {
-				XCTAssertNil(error)
-			}
+
+		do {
+			let json = try readJSONFile("ReferenceContained2.json", directory: testResourcesDirectory)
+			let order1 = try MedicationRequest(json: json)
+			XCTAssertEqual("order-ref-contained-wrong", order1.id)
+			XCTAssertNotNil(order1.medicationReference)
+			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Must not resolve contained resource with wrong type")
+			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Must still not resolve contained resource with wrong type")		// second time, reading from `_resolved`
+			XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Organization.self)?.name)
 		}
-		else {
-			XCTAssertTrue(false, "Test resource not bundled")
+		catch {
+			XCTAssertTrue(false, "\(error)")
 		}
 	}
 	
 	func testBundledReference() {
-		guard let path = Bundle(for: type(of: self)).path(forResource: "ReferenceBundled", ofType: "json", inDirectory: "TestResources") else {
-			XCTAssertTrue(false, "Test resource not bundled")
-			return
-		}
 		do {
-			let bundle = try Bundle.instantiate(fromPath: path)
+			let json = try readJSONFile("ReferenceBundled.json", directory: testResourcesDirectory)
+			let bundle = try Bundle(json: json)
 			XCTAssertEqual("Bundle", type(of: bundle).resourceType)
 			
 			// get resources
@@ -97,14 +92,15 @@ class ReferenceTests: XCTestCase {
 				XCTAssertNil(error, "Should return immediately")
 			}	//	*/
 		}
-		catch let error {
-			XCTAssertNil(error)
+		catch {
+			XCTAssertTrue(false, "\(error)")
 		}
 	}
 	
 	func testRelativeReference() {
-		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationRequest.instantiate(fromPath: path)
+		do {
+			let json = try readJSONFile("ReferenceRelative.json", directory: testResourcesDirectory)
+			let order1 = try MedicationRequest(json: json)
 			XCTAssertEqual("order-ref-relative", order1.id)
 			XCTAssertEqual("Medication/med-1234", order1.medicationReference?.reference)
 			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")
@@ -118,14 +114,15 @@ class ReferenceTests: XCTestCase {
 				XCTAssertNil(error, "Should return immediately")
 			}
 		}
-		else {
-			XCTAssertTrue(false, "Test resource not bundled")
+		catch {
+			XCTAssertTrue(false, "\(error)")
 		}
 	}
 	
 	func testAbsoluteReference() {
-		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationRequest.instantiate(fromPath: path)
+		do {
+			let json = try readJSONFile("ReferenceAbsolute.json", directory: testResourcesDirectory)
+			let order1 = try MedicationRequest(json: json)
 			XCTAssertEqual("order-ref-absolute", order1.id)
 			XCTAssertEqual("https://fhir-open-api-dstu2.smarthealthit.org/Medication/1", order1.medicationReference?.reference)
 			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")
@@ -139,8 +136,8 @@ class ReferenceTests: XCTestCase {
 				XCTAssertNil(error, "Error resolving reference")
 			}
 		}
-		else {
-			XCTAssertTrue(false, "Test resource not bundled")
+		catch {
+			XCTAssertTrue(false, "\(error)")
 		}
 	}
 }

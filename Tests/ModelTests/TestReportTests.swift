@@ -2,22 +2,28 @@
 //  TestReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRTestReport = Models.TestReport
+#else
 import SwiftFHIR
+typealias SwiftFHIRTestReport = SwiftFHIR.TestReport
+#endif
 
 
 class TestReportTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.TestReport {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRTestReport {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.TestReport {
-		return try SwiftFHIR.TestReport(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRTestReport {
+		return try SwiftFHIRTestReport(json: json)
 	}
 	
 	func testTestReport1() {
@@ -31,7 +37,7 @@ class TestReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestReport1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestReport {
+	func runTestReport1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testreport-example.json")
 		
 		XCTAssertEqual(inst.id, "testreport-example")

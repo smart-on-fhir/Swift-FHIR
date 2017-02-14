@@ -2,22 +2,28 @@
 //  DiagnosticReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDiagnosticReport = Models.DiagnosticReport
+#else
 import SwiftFHIR
+typealias SwiftFHIRDiagnosticReport = SwiftFHIR.DiagnosticReport
+#endif
 
 
 class DiagnosticReportTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.DiagnosticReport {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRDiagnosticReport {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DiagnosticReport {
-		return try SwiftFHIR.DiagnosticReport(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRDiagnosticReport {
+		return try SwiftFHIRDiagnosticReport(json: json)
 	}
 	
 	func testDiagnosticReport1() {
@@ -31,7 +37,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-dxa.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "38269-7")
@@ -64,7 +70,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-f001-bloodexam.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "252275004")
@@ -110,7 +116,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-f201-brainct.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "394914008")
@@ -151,7 +157,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-f202-bloodculture.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "15220000")
@@ -194,7 +200,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-ghp.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "GHP")
@@ -248,7 +254,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-lipids.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "HM")
@@ -290,7 +296,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-papsmear.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "47527-7")
@@ -317,7 +323,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-pgx.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "PGxReport")
@@ -355,7 +361,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-ultrasound.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "394914008")
@@ -393,7 +399,7 @@ class DiagnosticReportTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticReport {
+	func runDiagnosticReport10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "HM")

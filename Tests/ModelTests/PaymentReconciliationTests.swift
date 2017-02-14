@@ -2,22 +2,28 @@
 //  PaymentReconciliationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPaymentReconciliation = Models.PaymentReconciliation
+#else
 import SwiftFHIR
+typealias SwiftFHIRPaymentReconciliation = SwiftFHIR.PaymentReconciliation
+#endif
 
 
 class PaymentReconciliationTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.PaymentReconciliation {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRPaymentReconciliation {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.PaymentReconciliation {
-		return try SwiftFHIR.PaymentReconciliation(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRPaymentReconciliation {
+		return try SwiftFHIRPaymentReconciliation(json: json)
 	}
 	
 	func testPaymentReconciliation1() {
@@ -31,7 +37,7 @@ class PaymentReconciliationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPaymentReconciliation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PaymentReconciliation {
+	func runPaymentReconciliation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPaymentReconciliation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentreconciliation-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

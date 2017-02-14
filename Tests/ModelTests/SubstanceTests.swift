@@ -2,22 +2,28 @@
 //  SubstanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSubstance = Models.Substance
+#else
 import SwiftFHIR
+typealias SwiftFHIRSubstance = SwiftFHIR.Substance
+#endif
 
 
 class SubstanceTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Substance {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRSubstance {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Substance {
-		return try SwiftFHIR.Substance(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRSubstance {
+		return try SwiftFHIRSubstance(json: json)
 	}
 	
 	func testSubstance1() {
@@ -31,7 +37,7 @@ class SubstanceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubstance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
+	func runSubstance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubstance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-amoxicillin-clavulanate.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "drug")
@@ -78,7 +84,7 @@ class SubstanceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubstance2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
+	func runSubstance2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubstance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f201-dust.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "406466009")
@@ -101,7 +107,7 @@ class SubstanceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubstance3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
+	func runSubstance3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubstance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f202-staphylococcus.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "3092008")
@@ -124,7 +130,7 @@ class SubstanceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubstance4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
+	func runSubstance4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubstance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f203-potassium.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "chemical")
@@ -152,7 +158,7 @@ class SubstanceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubstance5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
+	func runSubstance5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubstance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-silver-nitrate-product.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "chemical")
@@ -188,7 +194,7 @@ class SubstanceTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runSubstance6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
+	func runSubstance6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSubstance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "allergen")

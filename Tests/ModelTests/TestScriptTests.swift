@@ -2,22 +2,28 @@
 //  TestScriptTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRTestScript = Models.TestScript
+#else
 import SwiftFHIR
+typealias SwiftFHIRTestScript = SwiftFHIR.TestScript
+#endif
 
 
 class TestScriptTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.TestScript {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRTestScript {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.TestScript {
-		return try SwiftFHIR.TestScript(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRTestScript {
+		return try SwiftFHIRTestScript(json: json)
 	}
 	
 	func testTestScript1() {
@@ -31,7 +37,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-history.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -147,7 +153,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-multisystem.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -261,7 +267,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-readtest.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -364,7 +370,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-rule.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -507,7 +513,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-search.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -612,7 +618,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-update.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")
@@ -715,7 +721,7 @@ class TestScriptTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runTestScript7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestScript {
+	func runTestScript7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRTestScript {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "Support")

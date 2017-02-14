@@ -2,22 +2,28 @@
 //  ObservationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRObservation = Models.Observation
+#else
 import SwiftFHIR
+typealias SwiftFHIRObservation = SwiftFHIR.Observation
+#endif
 
 
 class ObservationTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Observation {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRObservation {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Observation {
-		return try SwiftFHIR.Observation(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRObservation {
+		return try SwiftFHIRObservation(json: json)
 	}
 	
 	func testObservation1() {
@@ -31,7 +37,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-10minute-apgar-score.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "survey")
@@ -144,7 +150,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-1minute-apgar-score.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "survey")
@@ -257,7 +263,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-20minute-apgar-score.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "survey")
@@ -352,7 +358,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-2minute-apgar-score.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "survey")
@@ -447,7 +453,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-5minute-apgar-score.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "survey")
@@ -560,7 +566,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure-cancel.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding?[0].code, "368209003")
@@ -616,7 +622,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure-dar.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding?[0].code, "368209003")
@@ -674,7 +680,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding?[0].code, "368209003")
@@ -733,7 +739,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bmd.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding?[0].code, "71341001:272741003=7771000")
@@ -768,7 +774,7 @@ class ObservationTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runObservation10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Observation {
+	func runObservation10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRObservation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bmi.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "vital-signs")

@@ -2,22 +2,28 @@
 //  ExplanationOfBenefitTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.8.0.10521 on 2016-12-08.
-//  2016, SMART Health IT.
+//  Generated from FHIR 1.8.0.10521 on 2017-02-14.
+//  2017, SMART Health IT.
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRExplanationOfBenefit = Models.ExplanationOfBenefit
+#else
 import SwiftFHIR
+typealias SwiftFHIRExplanationOfBenefit = SwiftFHIR.ExplanationOfBenefit
+#endif
 
 
 class ExplanationOfBenefitTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.ExplanationOfBenefit {
+	func instantiateFrom(filename: String) throws -> SwiftFHIRExplanationOfBenefit {
 		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ExplanationOfBenefit {
-		return try SwiftFHIR.ExplanationOfBenefit(json: json)
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIRExplanationOfBenefit {
+		return try SwiftFHIRExplanationOfBenefit(json: json)
 	}
 	
 	func testExplanationOfBenefit1() {
@@ -31,7 +37,7 @@ class ExplanationOfBenefitTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runExplanationOfBenefit1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ExplanationOfBenefit {
+	func runExplanationOfBenefit1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRExplanationOfBenefit {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "explanationofbenefit-example.json")
 		
 		XCTAssertEqual(inst.careTeam?[0].provider?.reference, "Practitioner/example")

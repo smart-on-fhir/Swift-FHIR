@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -55,9 +55,9 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "Heart valve disorder")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.context?.reference, "Encounter/f001")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].code, "426396005")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].display, "Cardiac chest pain")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].code, "426396005")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].display, "Cardiac chest pain")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "f001")
 		XCTAssertEqual(inst.onsetDateTime?.description, "2011-08-05")
 		XCTAssertEqual(inst.severity?.coding?[0].code, "6736007")
@@ -99,9 +99,9 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "NSCLC - Non-small cell lung cancer")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.context?.reference, "Encounter/f002")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].code, "169069000")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].display, "CT of thorax")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].code, "169069000")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].display, "CT of thorax")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "f002")
 		XCTAssertEqual(inst.onsetDateTime?.description, "2011-05-05")
 		XCTAssertEqual(inst.severity?.coding?[0].code, "24484000")
@@ -146,9 +146,9 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "Retropharyngeal abscess")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.context?.reference, "Encounter/f003")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].code, "169068008")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].display, "CT of neck")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].code, "169068008")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].display, "CT of neck")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "f003")
 		XCTAssertEqual(inst.onsetDateTime?.description, "2012-02-27")
 		XCTAssertEqual(inst.severity?.coding?[0].code, "371923003")
@@ -192,9 +192,9 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "Fever")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.context?.reference, "Encounter/f201")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].code, "258710007")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].display, "degrees C")
-		XCTAssertEqual(inst.evidence?[0].code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].code, "258710007")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].display, "degrees C")
+		XCTAssertEqual(inst.evidence?[0].code?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.evidence?[0].detail?[0].display, "Temperature")
 		XCTAssertEqual(inst.evidence?[0].detail?[0].reference, "Observation/f202")
 		XCTAssertEqual(inst.id, "f201")

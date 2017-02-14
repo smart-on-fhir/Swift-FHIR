@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -120,19 +120,28 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.description_fhir, "A mapping between the FHIR and HL7 v3 AddressUse Code systems")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.group?[0].element?[0].code, "home")
+		XCTAssertEqual(inst.group?[0].element?[0].display, "home")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].code, "H")
-		XCTAssertEqual(inst.group?[0].element?[1].code, "home")
-		XCTAssertEqual(inst.group?[0].element?[1].target?[0].code, "H")
-		XCTAssertEqual(inst.group?[0].element?[2].code, "work")
-		XCTAssertEqual(inst.group?[0].element?[2].target?[0].code, "WP")
-		XCTAssertEqual(inst.group?[0].element?[3].code, "temp")
-		XCTAssertEqual(inst.group?[0].element?[3].target?[0].code, "TMP")
-		XCTAssertEqual(inst.group?[0].element?[4].code, "old")
-		XCTAssertEqual(inst.group?[0].element?[4].target?[0].code, "BAD")
-		XCTAssertEqual(inst.group?[0].element?[4].target?[0].comments, "In the HL7 v3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
-		XCTAssertEqual(inst.group?[0].element?[4].target?[0].equivalence, ConceptMapEquivalence(rawValue: "disjoint")!)
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].display, "home")
+		XCTAssertEqual(inst.group?[0].element?[1].code, "work")
+		XCTAssertEqual(inst.group?[0].element?[1].display, "work")
+		XCTAssertEqual(inst.group?[0].element?[1].target?[0].code, "WP")
+		XCTAssertEqual(inst.group?[0].element?[1].target?[0].display, "work place")
+		XCTAssertEqual(inst.group?[0].element?[2].code, "temp")
+		XCTAssertEqual(inst.group?[0].element?[2].display, "temp")
+		XCTAssertEqual(inst.group?[0].element?[2].target?[0].code, "TMP")
+		XCTAssertEqual(inst.group?[0].element?[2].target?[0].display, "temporary address")
+		XCTAssertEqual(inst.group?[0].element?[3].code, "old")
+		XCTAssertEqual(inst.group?[0].element?[3].display, "old")
+		XCTAssertEqual(inst.group?[0].element?[3].target?[0].code, "BAD")
+		XCTAssertEqual(inst.group?[0].element?[3].target?[0].comments, "In the HL7 v3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
+		XCTAssertEqual(inst.group?[0].element?[3].target?[0].display, "bad address")
+		XCTAssertEqual(inst.group?[0].element?[3].target?[0].equivalence, ConceptMapEquivalence(rawValue: "disjoint")!)
 		XCTAssertEqual(inst.group?[0].source?.absoluteString, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.group?[0].target?.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
+		XCTAssertEqual(inst.group?[0].unmapped?.code, "temp")
+		XCTAssertEqual(inst.group?[0].unmapped?.display, "temp")
+		XCTAssertEqual(inst.group?[0].unmapped?.mode, ConceptMapGroupUnmappedMode(rawValue: "fixed")!)
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:uuid:53cd62ee-033e-414c-9f58-3ca97b5ffc3b")

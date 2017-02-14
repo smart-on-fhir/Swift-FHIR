@@ -2,7 +2,7 @@
 //  MedicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -10,11 +10,12 @@ import Foundation
 
 
 /**
-Prescription of medication to for patient.
+Ordering of medication for patient or group.
 
-An order for both supply of the medication and the instructions for administration of the medication to a patient. The
-resource is called "MedicationRequest" rather than "MedicationPrescription" or "MedicationOrder" to generalize the use
-across inpatient and outpatient settings as well as for care plans, etc and to harmonize with workflow patterns.
+An order or request for both supply of the medication and the instructions for administration of the medication to a
+patient. The resource is called "MedicationRequest" rather than "MedicationPrescription" or "MedicationOrder" to
+generalize the use across inpatient and outpatient settings as well as for care plans, etc and to harmonize with
+workflow patterns.
 */
 open class MedicationRequest: DomainResource {
 	override open class var resourceType: String {
@@ -51,7 +52,7 @@ open class MedicationRequest: DomainResource {
 	/// Composite request this is part of.
 	public var groupIdentifier: Identifier?
 	
-	/// External identifier.
+	/// External ids for this request.
 	public var identifier: [Identifier]?
 	
 	/// Whether the request is a proposal, plan, or an original order.
@@ -66,10 +67,10 @@ open class MedicationRequest: DomainResource {
 	/// Information about the prescription.
 	public var note: [Annotation]?
 	
-	/// An order/prescription that replaces.
+	/// An order/prescription that is being replaced.
 	public var priorPrescription: Reference?
 	
-	/// Indicates how quickly the Medicaiton Request should be addressed with respect to other requests.
+	/// Indicates how quickly the Medication Request should be addressed with respect to other requests.
 	public var priority: MedicationRequestPriority?
 	
 	/// Reason or indication for writing the prescription.
@@ -84,7 +85,7 @@ open class MedicationRequest: DomainResource {
 	/// Who/What requested the Request.
 	public var requester: MedicationRequestRequester?
 	
-	/// A code specifying the state of the order.  Generally this will be active or completed state.
+	/// A code specifying the current state of the order.  Generally this will be active or completed state.
 	public var status: MedicationRequestStatus?
 	
 	/// Who or group prescription is for.
@@ -204,9 +205,10 @@ open class MedicationRequest: DomainResource {
 /**
 Medication supply authorization.
 
-Indicates the specific details for the dispense or medication supply part of a medication order (also known as a
-Medication Prescription).  Note that this information is NOT always sent with the order.  There may be in some settings
-(e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department.
+Indicates the specific details for the dispense or medication supply part of a medication request (also known as a
+Medication Prescription or Medication Order).  Note that this information is NOT always sent with the order.  There may
+be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy
+department.
 */
 open class MedicationRequestDispenseRequest: BackboneElement {
 	override open class var resourceType: String {

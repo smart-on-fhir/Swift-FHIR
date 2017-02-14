@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ class SubscriptionTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example-error.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
-		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
+		XCTAssertEqual(inst.channel?.header?[0], "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst.channel?.payload, "application/fhir+json")
 		XCTAssertEqual(inst.channel?.type, SubscriptionChannelType(rawValue: "rest-hook")!)
 		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)
@@ -75,7 +75,7 @@ class SubscriptionTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
-		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
+		XCTAssertEqual(inst.channel?.header?[0], "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst.channel?.payload, "application/fhir+json")
 		XCTAssertEqual(inst.channel?.type, SubscriptionChannelType(rawValue: "rest-hook")!)
 		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "phone")!)

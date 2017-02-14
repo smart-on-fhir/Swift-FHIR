@@ -2,7 +2,7 @@
 //  MessageDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -44,21 +44,18 @@ class MessageDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org")
 		XCTAssertEqual(inst.date?.description, "2016-11-09")
-		XCTAssertEqual(inst.event?.code, "patient-link")
+		XCTAssertEqual(inst.event?.code, "communication-request")
 		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-events")
 		XCTAssertEqual(inst.experimental, true)
-		XCTAssertEqual(inst.focus?[0].code, "Patient")
-		XCTAssertEqual(inst.focus?[0].max, "2")
-		XCTAssertEqual(inst.focus?[0].min, 2)
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.name, "A24")
+		XCTAssertEqual(inst.name, "EXAMPLE")
 		XCTAssertEqual(inst.publisher, "Health Level Seven, Int'l")
-		XCTAssertEqual(inst.purpose, "Notifies recipient systems that two patients have been 'linked' - meaning they represent the same individual")
+		XCTAssertEqual(inst.purpose, "Defines a base example for other MessageDefintion instances.")
 		XCTAssertEqual(inst.responseRequired, false)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Message definition base example</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.title, "Link patients notification")
+		XCTAssertEqual(inst.title, "Message definition base example")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/MessageDefinition/example")
 		
 		return inst

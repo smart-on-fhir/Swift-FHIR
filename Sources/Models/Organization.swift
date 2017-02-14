@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -49,7 +49,7 @@ open class Organization: DomainResource {
 	public var telecom: [ContactPoint]?
 	
 	/// Kind of organization.
-	public var type: CodeableConcept?
+	public var type: [CodeableConcept]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -64,7 +64,7 @@ open class Organization: DomainResource {
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
 		partOf = try createInstance(type: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		telecom = try createInstances(of: ContactPoint.self, for: "telecom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? telecom
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
+		type = try createInstances(of: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -81,7 +81,7 @@ open class Organization: DomainResource {
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		self.partOf?.decorate(json: &json, withKey: "partOf", errors: &errors)
 		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		arrayDecorate(json: &json, withKey: "type", using: self.type, errors: &errors)
 	}
 }
 

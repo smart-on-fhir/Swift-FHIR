@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -24,9 +24,6 @@ open class MessageHeader: DomainResource {
 	/// The source of the decision.
 	public var author: Reference?
 	
-	/// The actual content of the message.
-	public var data: [Reference]?
-	
 	/// Message Destination Application(s).
 	public var destination: [MessageHeaderDestination]?
 	
@@ -35,6 +32,9 @@ open class MessageHeader: DomainResource {
 	
 	/// Code for the event this message represents.
 	public var event: Coding?
+	
+	/// The actual content of the message.
+	public var focus: [Reference]?
 	
 	/// Cause of event.
 	public var reason: CodeableConcept?
@@ -47,6 +47,9 @@ open class MessageHeader: DomainResource {
 	
 	/// Final responsibility for event.
 	public var responsible: Reference?
+	
+	/// Real world sender of the message.
+	public var sender: Reference?
 	
 	/// Message Source Application.
 	public var source: MessageHeaderSource?
@@ -68,17 +71,18 @@ open class MessageHeader: DomainResource {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		author = try createInstance(type: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author
-		data = try createInstances(of: Reference.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
 		destination = try createInstances(of: MessageHeaderDestination.self, for: "destination", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? destination
 		enterer = try createInstance(type: Reference.self, for: "enterer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enterer
 		event = try createInstance(type: Coding.self, for: "event", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? event
 		if nil == event && !presentKeys.contains("event") {
 			errors.append(FHIRValidationError(missing: "event"))
 		}
+		focus = try createInstances(of: Reference.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
 		reason = try createInstance(type: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
 		receiver = try createInstance(type: Reference.self, for: "receiver", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? receiver
 		response = try createInstance(type: MessageHeaderResponse.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? response
 		responsible = try createInstance(type: Reference.self, for: "responsible", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? responsible
+		sender = try createInstance(type: Reference.self, for: "sender", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sender
 		source = try createInstance(type: MessageHeaderSource.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
 		if nil == source && !presentKeys.contains("source") {
 			errors.append(FHIRValidationError(missing: "source"))
@@ -95,17 +99,18 @@ open class MessageHeader: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
-		arrayDecorate(json: &json, withKey: "data", using: self.data, errors: &errors)
 		arrayDecorate(json: &json, withKey: "destination", using: self.destination, errors: &errors)
 		self.enterer?.decorate(json: &json, withKey: "enterer", errors: &errors)
 		self.event?.decorate(json: &json, withKey: "event", errors: &errors)
 		if nil == self.event {
 			errors.append(FHIRValidationError(missing: "event"))
 		}
+		arrayDecorate(json: &json, withKey: "focus", using: self.focus, errors: &errors)
 		self.reason?.decorate(json: &json, withKey: "reason", errors: &errors)
 		self.receiver?.decorate(json: &json, withKey: "receiver", errors: &errors)
 		self.response?.decorate(json: &json, withKey: "response", errors: &errors)
 		self.responsible?.decorate(json: &json, withKey: "responsible", errors: &errors)
+		self.sender?.decorate(json: &json, withKey: "sender", errors: &errors)
 		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
 		if nil == self.source {
 			errors.append(FHIRValidationError(missing: "source"))

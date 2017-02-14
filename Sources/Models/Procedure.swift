@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -93,7 +93,7 @@ open class Procedure: DomainResource {
 	public var report: [Reference]?
 	
 	/// A code specifying the state of the procedure. Generally this will be in-progress or completed state.
-	public var status: ProcedureStatus?
+	public var status: EventStatus?
 	
 	/// Who the procedure was performed on.
 	public var subject: Reference?
@@ -106,7 +106,7 @@ open class Procedure: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: ProcedureStatus, subject: Reference) {
+	public convenience init(status: EventStatus, subject: Reference) {
 		self.init()
 		self.status = status
 		self.subject = subject
@@ -140,7 +140,7 @@ open class Procedure: DomainResource {
 		reasonCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
 		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		report = try createInstances(of: Reference.self, for: "report", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? report
-		status = createEnum(type: ProcedureStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		status = createEnum(type: EventStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
 		}

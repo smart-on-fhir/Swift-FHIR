@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -40,8 +40,8 @@ class CommunicationTests: XCTestCase {
 	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-attachment.json")
 		
-		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
-		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "SolicitedAttachment")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.id, "fm-attachment")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.providerco.com/communication")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
@@ -86,8 +86,8 @@ class CommunicationTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-solicited-attachment.json")
 		
 		XCTAssertEqual(inst.basedOn?[0].reference, "#request")
-		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
-		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "SolicitedAttachment")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.contained?[0].id, "provider")
 		XCTAssertEqual(inst.contained?[1].id, "payor")
 		XCTAssertEqual(inst.contained?[2].id, "request")
@@ -128,10 +128,11 @@ class CommunicationTests: XCTestCase {
 	func runCommunication3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
 		
-		XCTAssertEqual(inst.category?.coding?[0].code, "Alert")
-		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
-		XCTAssertEqual(inst.category?.text, "Alert")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "Alert")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
+		XCTAssertEqual(inst.category?[0].text, "Alert")
 		XCTAssertEqual(inst.context?.reference, "Encounter/example")
+		XCTAssertEqual(inst.definition?[0].display, "Hyperkalemia")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "Paging System")
@@ -140,6 +141,7 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.medium?[0].coding?[0].display, "written")
 		XCTAssertEqual(inst.medium?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationMode")
 		XCTAssertEqual(inst.medium?[0].text, "written")
+		XCTAssertEqual(inst.partOf?[0].display, "Serum Potassium Observation")
 		XCTAssertEqual(inst.payload?[0].contentString, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
 		XCTAssertEqual(inst.payload?[1].contentReference?.display, "Serum Potassium Observation")
 		XCTAssertEqual(inst.received?.description, "2014-12-12T18:01:11-08:00")

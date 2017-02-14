@@ -2,7 +2,7 @@
 //  ConsentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -54,13 +54,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[1].actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.except?[1].type, ConsentExceptType(rawValue: "deny")!)
 		XCTAssertEqual(inst.id, "consent-example-Emergency")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -93,13 +93,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[0].actor?[1].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.except?[0].type, ConsentExceptType(rawValue: "permit")!)
 		XCTAssertEqual(inst.id, "consent-example-grantor")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -126,13 +126,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[0].actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.except?[0].type, ConsentExceptType(rawValue: "deny")!)
 		XCTAssertEqual(inst.id, "consent-example-notAuthor")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -163,13 +163,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[0].actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.except?[0].type, ConsentExceptType(rawValue: "deny")!)
 		XCTAssertEqual(inst.id, "consent-example-notOrg")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -200,13 +200,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[0].actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.except?[0].type, ConsentExceptType(rawValue: "deny")!)
 		XCTAssertEqual(inst.id, "consent-example-notThem")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -231,13 +231,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[0].data?[0].reference?.reference, "Task/f201")
 		XCTAssertEqual(inst.except?[0].type, ConsentExceptType(rawValue: "deny")!)
 		XCTAssertEqual(inst.id, "consent-example-notThis")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -262,13 +262,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[0].period?.start?.description, "2015-01-01")
 		XCTAssertEqual(inst.except?[0].type, ConsentExceptType(rawValue: "deny")!)
 		XCTAssertEqual(inst.id, "consent-example-notTime")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -294,13 +294,13 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.id, "consent-example-Out")
-		XCTAssertEqual(inst.organization?.display, "Canada Infoway")
-		XCTAssertEqual(inst.organization?.reference, "Organization/Infoway")
+		XCTAssertEqual(inst.organization?[0].display, "Canada Infoway")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.patient?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
 		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
 		XCTAssertEqual(inst.sourceAttachment?.title, "The terms of the consent in lawyer speak.")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -412,12 +412,12 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.except?[9].securityLabel?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.except?[9].type, ConsentExceptType(rawValue: "permit")!)
 		XCTAssertEqual(inst.id, "consent-example-pkb")
-		XCTAssertEqual(inst.organization?.display, "Patients Know Best")
-		XCTAssertEqual(inst.organization?.reference, "Organization/pkb")
+		XCTAssertEqual(inst.organization?[0].display, "Patients Know Best")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/pkb")
 		XCTAssertEqual(inst.patient?.display, "...example patient...")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-out")
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -442,7 +442,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "hipaa")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/consentcategorycodes")
-		XCTAssertEqual(inst.consentor?[0].reference, "Patient/72")
+		XCTAssertEqual(inst.consentingParty?[0].reference, "Patient/72")
 		XCTAssertEqual(inst.dateTime?.description, "2016-05-26T00:41:10-04:00")
 		XCTAssertEqual(inst.except?[0].`class`?[0].code, "application/hl7-cda+xml")
 		XCTAssertEqual(inst.except?[0].`class`?[0].system?.absoluteString, "urn:ietf:bcp:13")
@@ -457,12 +457,12 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.id, "consent-example-signature")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:oid:2.16.840.1.113883.3.72.5.9.1")
 		XCTAssertEqual(inst.identifier?.value, "494e0c7a-a69e-4fb4-9d02-6aae747790d7")
-		XCTAssertEqual(inst.organization?.reference, "Organization/example")
+		XCTAssertEqual(inst.organization?[0].reference, "Organization/example")
 		XCTAssertEqual(inst.patient?.reference, "Patient/72")
 		XCTAssertEqual(inst.period?.end?.description, "2016-10-10")
 		XCTAssertEqual(inst.period?.start?.description, "2015-10-10")
 		XCTAssertEqual(inst.policyRule?.absoluteString, "http://hl7.org/fhir/ConsentPolicy/opt-in")
-		XCTAssertEqual(inst.status, ConsentStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, ConsentState(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

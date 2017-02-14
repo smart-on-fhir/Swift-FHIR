@@ -2,7 +2,7 @@
 //  SupplyDeliveryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -40,10 +40,12 @@ class SupplyDeliveryTests: XCTestCase {
 	func runSupplyDelivery1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSupplyDelivery {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "supplydelivery-example-pumpdelivery.json")
 		
+		XCTAssertEqual(inst.destination?.display, "Home care dept")
 		XCTAssertEqual(inst.id, "pumpdelivery")
 		XCTAssertEqual(inst.identifier?.assigner?.display, "SupplierDeliveryNr")
 		XCTAssertEqual(inst.identifier?.value, "98398459409")
 		XCTAssertEqual(inst.patient?.display, "Mr. Belpit")
+		XCTAssertEqual(inst.receiver?[0].display, "Nurse Smith")
 		XCTAssertEqual(inst.status, SupplyDeliveryStatus(rawValue: "in-progress")!)
 		XCTAssertEqual(inst.supplier?.display, "ACME distribution")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")

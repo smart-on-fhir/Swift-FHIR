@@ -2,7 +2,7 @@
 //  SupplyRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -66,8 +66,10 @@ class SupplyRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?.value, "Order10284")
 		XCTAssertEqual(inst.kind?.coding?[0].code, "central")
 		XCTAssertEqual(inst.kind?.coding?[0].display, "Central Stock Resupply")
-		XCTAssertEqual(inst.orderedItemCodeableConcept?.coding?[0].code, "BlueTubes")
-		XCTAssertEqual(inst.orderedItemCodeableConcept?.coding?[0].display, "Blood collect tubes blue cap")
+		XCTAssertEqual(inst.orderedItem?.itemCodeableConcept?.coding?[0].code, "BlueTubes")
+		XCTAssertEqual(inst.orderedItem?.itemCodeableConcept?.coding?[0].display, "Blood collect tubes blue cap")
+		XCTAssertEqual(inst.orderedItem?.quantity?.value, "10")
+		XCTAssertEqual(inst.patient?.display, "J. Wellington Wimpy")
 		XCTAssertEqual(inst.reasonCodeableConcept?.coding?[0].code, "stock_low")
 		XCTAssertEqual(inst.reasonCodeableConcept?.coding?[0].display, "Refill due to low stock")
 		XCTAssertEqual(inst.source?.display, "Purchasing Dept")

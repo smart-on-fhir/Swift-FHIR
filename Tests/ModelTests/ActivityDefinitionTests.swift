@@ -2,7 +2,7 @@
 //  ActivityDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -40,12 +40,12 @@ class ActivityDefinitionTests: XCTestCase {
 	func runActivityDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRActivityDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-example.json")
 		
-		XCTAssertEqual(inst.category, ActivityDefinitionCategory(rawValue: "referral")!)
 		XCTAssertEqual(inst.code?.coding?[0].code, "306206005")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code?.text, "Referral to service (procedure)")
 		XCTAssertEqual(inst.description_fhir, "refer to primary care mental-health integrated care program for evaluation and treatment of mental health conditions now")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.kind, "ReferralRequest")
 		XCTAssertEqual(inst.participantType?[0], ActionParticipantType(rawValue: "practitioner")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Referral definition</div>")
@@ -68,7 +68,6 @@ class ActivityDefinitionTests: XCTestCase {
 	func runActivityDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRActivityDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-medicationorder-example.json")
 		
-		XCTAssertEqual(inst.category, ActivityDefinitionCategory(rawValue: "drug")!)
 		XCTAssertEqual(inst.contained?[0].id, "citalopramMedication")
 		XCTAssertEqual(inst.contained?[1].id, "citalopramSubstance")
 		XCTAssertEqual(inst.dosageInstruction?[0].doseQuantity?.unit, "{tbl}")
@@ -85,6 +84,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.dynamicValue?[1].expression, "30 '{tbl}'")
 		XCTAssertEqual(inst.dynamicValue?[1].path, "dispenseRequest.quantity")
 		XCTAssertEqual(inst.id, "citalopramPrescription")
+		XCTAssertEqual(inst.kind, "MedicationRequest")
 		XCTAssertEqual(inst.productReference?.reference, "#citalopramMedication")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

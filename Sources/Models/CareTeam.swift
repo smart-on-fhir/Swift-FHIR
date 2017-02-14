@@ -2,7 +2,7 @@
 //  CareTeam.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -32,6 +32,9 @@ open class CareTeam: DomainResource {
 	/// Name of the team, such as crisis assessment team.
 	public var name: FHIRString?
 	
+	/// Comments made about the CareTeam.
+	public var note: [Annotation]?
+	
 	/// Members of the team.
 	public var participant: [CareTeamParticipant]?
 	
@@ -52,6 +55,7 @@ open class CareTeam: DomainResource {
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		managingOrganization = try createInstances(of: Reference.self, for: "managingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? managingOrganization
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		participant = try createInstances(of: CareTeamParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
 		status = createEnum(type: CareTeamStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
@@ -67,6 +71,7 @@ open class CareTeam: DomainResource {
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "managingOrganization", using: self.managingOrganization, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)

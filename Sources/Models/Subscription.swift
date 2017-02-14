@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -125,7 +125,7 @@ open class SubscriptionChannel: BackboneElement {
 	public var endpoint: FHIRURL?
 	
 	/// Usage depends on the channel type.
-	public var header: FHIRString?
+	public var header: [FHIRString]?
 	
 	/// Mimetype to send, or omit for no payload.
 	public var payload: FHIRString?
@@ -145,7 +145,7 @@ open class SubscriptionChannel: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		endpoint = try createInstance(type: FHIRURL.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		header = try createInstance(type: FHIRString.self, for: "header", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? header
+		header = try createInstances(of: FHIRString.self, for: "header", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? header
 		payload = try createInstance(type: FHIRString.self, for: "payload", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payload
 		type = createEnum(type: SubscriptionChannelType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
 		if nil == type && !presentKeys.contains("type") {
@@ -159,7 +159,7 @@ open class SubscriptionChannel: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.endpoint?.decorate(json: &json, withKey: "endpoint", errors: &errors)
-		self.header?.decorate(json: &json, withKey: "header", errors: &errors)
+		arrayDecorate(json: &json, withKey: "header", using: self.header, errors: &errors)
 		self.payload?.decorate(json: &json, withKey: "payload", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {

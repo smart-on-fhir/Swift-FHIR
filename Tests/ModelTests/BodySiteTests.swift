@@ -2,7 +2,7 @@
 //  BodySiteTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -68,6 +68,7 @@ class BodySiteTests: XCTestCase {
 	func runBodySite2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBodySite {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-skin-patch.json")
 		
+		XCTAssertEqual(inst.active, false)
 		XCTAssertEqual(inst.code?.coding?[0].code, "39937001")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Skin structure (body structure)")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")

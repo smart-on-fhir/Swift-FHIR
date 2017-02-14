@@ -2,7 +2,7 @@
 //  Endpoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -51,9 +51,6 @@ open class Endpoint: DomainResource {
 	/// Interval the endpoint is expected to be operational.
 	public var period: Period?
 	
-	/// PKI Public keys to support secure communications.
-	public var publicKey: FHIRString?
-	
 	/// active | suspended | error | off | test.
 	public var status: EndpointStatus?
 	
@@ -90,7 +87,6 @@ open class Endpoint: DomainResource {
 			errors.append(FHIRValidationError(missing: "payloadType"))
 		}
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		publicKey = try createInstance(type: FHIRString.self, for: "publicKey", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publicKey
 		status = createEnum(type: EndpointStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -121,7 +117,6 @@ open class Endpoint: DomainResource {
 			errors.append(FHIRValidationError(missing: "payloadType"))
 		}
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
-		self.publicKey?.decorate(json: &json, withKey: "publicKey", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))

@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-A container for slot(s) of time that may be available for booking appointments.
+A container for slots of time that may be available for booking appointments.
 */
 open class Schedule: DomainResource {
 	override open class var resourceType: String {
@@ -22,10 +22,10 @@ open class Schedule: DomainResource {
 	
 	/// The resource this Schedule resource is providing availability information for. These are expected to usually be
 	/// one of HealthcareService, Location, Practitioner, Device, Patient or RelatedPerson.
-	public var actor: Reference?
+	public var actor: [Reference]?
 	
-	/// Comments on the availability to describe any extended information. Such as custom constraints on the slot(s)
-	/// that may be associated.
+	/// Comments on the availability to describe any extended information. Such as custom constraints on the slots that
+	/// may be associated.
 	public var comment: FHIRString?
 	
 	/// External Ids for this item.
@@ -47,7 +47,7 @@ open class Schedule: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actor: Reference) {
+	public convenience init(actor: [Reference]) {
 		self.init()
 		self.actor = actor
 	}
@@ -57,8 +57,8 @@ open class Schedule: DomainResource {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		active = try createInstance(type: FHIRBool.self, for: "active", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? active
-		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") {
+		actor = try createInstances(of: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
+		if (nil == actor || actor!.isEmpty) && !presentKeys.contains("actor") {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
@@ -75,8 +75,8 @@ open class Schedule: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.active?.decorate(json: &json, withKey: "active", errors: &errors)
-		self.actor?.decorate(json: &json, withKey: "actor", errors: &errors)
-		if nil == self.actor {
+		arrayDecorate(json: &json, withKey: "actor", using: self.actor, errors: &errors)
+		if nil == actor || self.actor!.isEmpty {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)

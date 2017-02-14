@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -216,18 +216,35 @@ open class ProvenanceEntity: BackboneElement {
 	/// Entity is attributed to this agent.
 	public var agent: [ProvenanceAgent]?
 	
-	/// Identity of entity.
-	public var reference: Reference?
-	
 	/// How the entity was used during the activity.
 	public var role: ProvenanceEntityRole?
 	
+	/// Identity of entity.
+	public var whatIdentifier: Identifier?
+	
+	/// Identity of entity.
+	public var whatReference: Reference?
+	
+	/// Identity of entity.
+	public var whatUri: FHIRURL?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(reference: Reference, role: ProvenanceEntityRole) {
+	public convenience init(role: ProvenanceEntityRole, what: Any) {
 		self.init()
-		self.reference = reference
 		self.role = role
+		if let value = what as? FHIRURL {
+			self.whatUri = value
+		}
+		else if let value = what as? Reference {
+			self.whatReference = value
+		}
+		else if let value = what as? Identifier {
+			self.whatIdentifier = value
+		}
+		else {
+			fhir_warn("Type “\(type(of: what))” for property “\(what)” is invalid, ignoring")
+		}
 	}
 	
 	
@@ -235,14 +252,19 @@ open class ProvenanceEntity: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		agent = try createInstances(of: ProvenanceAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		if nil == reference && !presentKeys.contains("reference") {
-			errors.append(FHIRValidationError(missing: "reference"))
-		}
 		role = createEnum(type: ProvenanceEntityRole.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors) ?? role
 		if nil == role && !presentKeys.contains("role") {
 			errors.append(FHIRValidationError(missing: "role"))
 		}
+		whatIdentifier = try createInstance(type: Identifier.self, for: "whatIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whatIdentifier
+		whatReference = try createInstance(type: Reference.self, for: "whatReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whatReference
+		whatUri = try createInstance(type: FHIRURL.self, for: "whatUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whatUri
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.whatUri && nil == self.whatReference && nil == self.whatIdentifier {
+			errors.append(FHIRValidationError(missing: "what[x]"))
+		}
+		
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -251,13 +273,17 @@ open class ProvenanceEntity: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "agent", using: self.agent, errors: &errors)
-		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
-		if nil == self.reference {
-			errors.append(FHIRValidationError(missing: "reference"))
-		}
 		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 		if nil == self.role {
 			errors.append(FHIRValidationError(missing: "role"))
+		}
+		self.whatIdentifier?.decorate(json: &json, withKey: "whatIdentifier", errors: &errors)
+		self.whatReference?.decorate(json: &json, withKey: "whatReference", errors: &errors)
+		self.whatUri?.decorate(json: &json, withKey: "whatUri", errors: &errors)
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.whatUri && nil == self.whatReference && nil == self.whatIdentifier {
+			errors.append(FHIRValidationError(missing: "what[x]"))
 		}
 	}
 }

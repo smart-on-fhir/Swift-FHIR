@@ -2,7 +2,7 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -47,6 +47,9 @@ open class PlanDefinition: DomainResource {
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: FHIRBool?
+	
+	/// Goals of the plan.
+	public var goalDefinition: [PlanDefinitionGoalDefinition]?
 	
 	/// Additional identifier for the plan definition.
 	public var identifier: [Identifier]?
@@ -116,6 +119,7 @@ open class PlanDefinition: DomainResource {
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
 		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
+		goalDefinition = try createInstances(of: PlanDefinitionGoalDefinition.self, for: "goalDefinition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? goalDefinition
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
 		lastReviewDate = try createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastReviewDate
@@ -151,6 +155,7 @@ open class PlanDefinition: DomainResource {
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
 		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
+		arrayDecorate(json: &json, withKey: "goalDefinition", using: self.goalDefinition, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
 		self.lastReviewDate?.decorate(json: &json, withKey: "lastReviewDate", errors: &errors)
@@ -187,20 +192,17 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	/// A sub-action.
 	public var actionDefinition: [PlanDefinitionActionDefinition]?
 	
-	/// Unique identifier.
-	public var actionIdentifier: Identifier?
-	
-	/// Description of the activity to be performed.
-	public var activityDefinition: Reference?
-	
 	/// Defines whether the action can be selected multiple times.
 	public var cardinalityBehavior: ActionCardinalityBehavior?
 	
-	/// The meaning of the action or its sub-actions.
+	/// Code representing the meaning of the action or sub-actions.
 	public var code: [CodeableConcept]?
 	
 	/// Whether or not the action is applicable.
 	public var condition: [PlanDefinitionActionDefinitionCondition]?
+	
+	/// Description of the activity to be performed.
+	public var definition: Reference?
 	
 	/// Short description of the action.
 	public var description_fhir: FHIRString?
@@ -210,6 +212,9 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	
 	/// Dynamic aspects of the definition.
 	public var dynamicValue: [PlanDefinitionActionDefinitionDynamicValue]?
+	
+	/// What goals this action supports.
+	public var goalId: [FHIRString]?
 	
 	/// Defines the grouping behavior for the action and its children.
 	public var groupingBehavior: ActionGroupingBehavior?
@@ -228,6 +233,9 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	
 	/// Defines whether the action should usually be preselected.
 	public var precheckBehavior: ActionPrecheckBehavior?
+	
+	/// Why the action should be performed.
+	public var reason: [CodeableConcept]?
 	
 	/// Relationship to another action.
 	public var relatedAction: [PlanDefinitionActionDefinitionRelatedAction]?
@@ -273,20 +281,21 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		actionDefinition = try createInstances(of: PlanDefinitionActionDefinition.self, for: "actionDefinition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionDefinition
-		actionIdentifier = try createInstance(type: Identifier.self, for: "actionIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionIdentifier
-		activityDefinition = try createInstance(type: Reference.self, for: "activityDefinition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? activityDefinition
 		cardinalityBehavior = createEnum(type: ActionCardinalityBehavior.self, for: "cardinalityBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? cardinalityBehavior
 		code = try createInstances(of: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		condition = try createInstances(of: PlanDefinitionActionDefinitionCondition.self, for: "condition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? condition
+		definition = try createInstance(type: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		documentation = try createInstances(of: RelatedArtifact.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		dynamicValue = try createInstances(of: PlanDefinitionActionDefinitionDynamicValue.self, for: "dynamicValue", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dynamicValue
+		goalId = try createInstances(of: FHIRString.self, for: "goalId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? goalId
 		groupingBehavior = createEnum(type: ActionGroupingBehavior.self, for: "groupingBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? groupingBehavior
 		input = try createInstances(of: DataRequirement.self, for: "input", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? input
 		label = try createInstance(type: FHIRString.self, for: "label", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? label
 		output = try createInstances(of: DataRequirement.self, for: "output", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? output
 		participantType = createEnums(of: ActionParticipantType.self, for: "participantType", in: json, presentKeys: &presentKeys, errors: &errors) ?? participantType
 		precheckBehavior = createEnum(type: ActionPrecheckBehavior.self, for: "precheckBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? precheckBehavior
+		reason = try createInstances(of: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
 		relatedAction = try createInstances(of: PlanDefinitionActionDefinitionRelatedAction.self, for: "relatedAction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatedAction
 		requiredBehavior = createEnum(type: ActionRequiredBehavior.self, for: "requiredBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? requiredBehavior
 		selectionBehavior = createEnum(type: ActionSelectionBehavior.self, for: "selectionBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? selectionBehavior
@@ -308,20 +317,21 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "actionDefinition", using: self.actionDefinition, errors: &errors)
-		self.actionIdentifier?.decorate(json: &json, withKey: "actionIdentifier", errors: &errors)
-		self.activityDefinition?.decorate(json: &json, withKey: "activityDefinition", errors: &errors)
 		self.cardinalityBehavior?.decorate(json: &json, withKey: "cardinalityBehavior", errors: &errors)
 		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
 		arrayDecorate(json: &json, withKey: "condition", using: self.condition, errors: &errors)
+		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "documentation", using: self.documentation, errors: &errors)
 		arrayDecorate(json: &json, withKey: "dynamicValue", using: self.dynamicValue, errors: &errors)
+		arrayDecorate(json: &json, withKey: "goalId", using: self.goalId, errors: &errors)
 		self.groupingBehavior?.decorate(json: &json, withKey: "groupingBehavior", errors: &errors)
 		arrayDecorate(json: &json, withKey: "input", using: self.input, errors: &errors)
 		self.label?.decorate(json: &json, withKey: "label", errors: &errors)
 		arrayDecorate(json: &json, withKey: "output", using: self.output, errors: &errors)
 		arrayDecorate(json: &json, withKey: "participantType", using: self.participantType, errors: &errors)
 		self.precheckBehavior?.decorate(json: &json, withKey: "precheckBehavior", errors: &errors)
+		arrayDecorate(json: &json, withKey: "reason", using: self.reason, errors: &errors)
 		arrayDecorate(json: &json, withKey: "relatedAction", using: self.relatedAction, errors: &errors)
 		self.requiredBehavior?.decorate(json: &json, withKey: "requiredBehavior", errors: &errors)
 		self.selectionBehavior?.decorate(json: &json, withKey: "selectionBehavior", errors: &errors)
@@ -454,8 +464,8 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		get { return "PlanDefinitionActionDefinitionRelatedAction" }
 	}
 	
-	/// Identifier of the related action.
-	public var actionIdentifier: Identifier?
+	/// Id of the related action.
+	public var actionId: FHIRString?
 	
 	/// Time offset for the relationship.
 	public var offsetDuration: Duration?
@@ -468,9 +478,9 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actionIdentifier: Identifier, relationship: ActionRelationshipType) {
+	public convenience init(actionId: FHIRString, relationship: ActionRelationshipType) {
 		self.init()
-		self.actionIdentifier = actionIdentifier
+		self.actionId = actionId
 		self.relationship = relationship
 	}
 	
@@ -478,9 +488,9 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		actionIdentifier = try createInstance(type: Identifier.self, for: "actionIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionIdentifier
-		if nil == actionIdentifier && !presentKeys.contains("actionIdentifier") {
-			errors.append(FHIRValidationError(missing: "actionIdentifier"))
+		actionId = try createInstance(type: FHIRString.self, for: "actionId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionId
+		if nil == actionId && !presentKeys.contains("actionId") {
+			errors.append(FHIRValidationError(missing: "actionId"))
 		}
 		offsetDuration = try createInstance(type: Duration.self, for: "offsetDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetDuration
 		offsetRange = try createInstance(type: Range.self, for: "offsetRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetRange
@@ -495,9 +505,9 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.actionIdentifier?.decorate(json: &json, withKey: "actionIdentifier", errors: &errors)
-		if nil == self.actionIdentifier {
-			errors.append(FHIRValidationError(missing: "actionIdentifier"))
+		self.actionId?.decorate(json: &json, withKey: "actionId", errors: &errors)
+		if nil == self.actionId {
+			errors.append(FHIRValidationError(missing: "actionId"))
 		}
 		self.offsetDuration?.decorate(json: &json, withKey: "offsetDuration", errors: &errors)
 		self.offsetRange?.decorate(json: &json, withKey: "offsetRange", errors: &errors)
@@ -505,6 +515,130 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		if nil == self.relationship {
 			errors.append(FHIRValidationError(missing: "relationship"))
 		}
+	}
+}
+
+
+/**
+Goals of the plan.
+
+Goals that describe what the activities within the plan are intended to achieve. For example, weight loss, restoring an
+activity of daily living, obtaining herd immunity via immunization, meeting a process improvement objective, etc.
+*/
+open class PlanDefinitionGoalDefinition: BackboneElement {
+	override open class var resourceType: String {
+		get { return "PlanDefinitionGoalDefinition" }
+	}
+	
+	/// What does the goal address.
+	public var addresses: [CodeableConcept]?
+	
+	/// E.g. Treatment, dietary, behavioral, etc.
+	public var category: CodeableConcept?
+	
+	/// Code or text describing the goal.
+	public var description_fhir: CodeableConcept?
+	
+	/// Supporting documentation for the goal.
+	public var documentation: [RelatedArtifact]?
+	
+	/// high-priority | medium-priority | low-priority.
+	public var priority: CodeableConcept?
+	
+	/// When goal pursuit begins.
+	public var start: CodeableConcept?
+	
+	/// Target outcome for the goal.
+	public var target: [PlanDefinitionGoalDefinitionTarget]?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(description_fhir: CodeableConcept) {
+		self.init()
+		self.description_fhir = description_fhir
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		addresses = try createInstances(of: CodeableConcept.self, for: "addresses", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? addresses
+		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
+		description_fhir = try createInstance(type: CodeableConcept.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
+		if nil == description_fhir && !presentKeys.contains("description") {
+			errors.append(FHIRValidationError(missing: "description"))
+		}
+		documentation = try createInstances(of: RelatedArtifact.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
+		priority = try createInstance(type: CodeableConcept.self, for: "priority", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? priority
+		start = try createInstance(type: CodeableConcept.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
+		target = try createInstances(of: PlanDefinitionGoalDefinitionTarget.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		arrayDecorate(json: &json, withKey: "addresses", using: self.addresses, errors: &errors)
+		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		if nil == self.description_fhir {
+			errors.append(FHIRValidationError(missing: "description"))
+		}
+		arrayDecorate(json: &json, withKey: "documentation", using: self.documentation, errors: &errors)
+		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
+		self.start?.decorate(json: &json, withKey: "start", errors: &errors)
+		arrayDecorate(json: &json, withKey: "target", using: self.target, errors: &errors)
+	}
+}
+
+
+/**
+Target outcome for the goal.
+
+Indicates what should be done and within what timeframe.
+*/
+open class PlanDefinitionGoalDefinitionTarget: BackboneElement {
+	override open class var resourceType: String {
+		get { return "PlanDefinitionGoalDefinitionTarget" }
+	}
+	
+	/// The target value to be achieved.
+	public var detailCodeableConcept: CodeableConcept?
+	
+	/// The target value to be achieved.
+	public var detailQuantity: Quantity?
+	
+	/// The target value to be achieved.
+	public var detailRange: Range?
+	
+	/// Reach goal within.
+	public var due: Duration?
+	
+	/// The parameter whose value is to be tracked.
+	public var measure: CodeableConcept?
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		detailCodeableConcept = try createInstance(type: CodeableConcept.self, for: "detailCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detailCodeableConcept
+		detailQuantity = try createInstance(type: Quantity.self, for: "detailQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detailQuantity
+		detailRange = try createInstance(type: Range.self, for: "detailRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detailRange
+		due = try createInstance(type: Duration.self, for: "due", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? due
+		measure = try createInstance(type: CodeableConcept.self, for: "measure", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measure
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.detailCodeableConcept?.decorate(json: &json, withKey: "detailCodeableConcept", errors: &errors)
+		self.detailQuantity?.decorate(json: &json, withKey: "detailQuantity", errors: &errors)
+		self.detailRange?.decorate(json: &json, withKey: "detailRange", errors: &errors)
+		self.due?.decorate(json: &json, withKey: "due", errors: &errors)
+		self.measure?.decorate(json: &json, withKey: "measure", errors: &errors)
 	}
 }
 

@@ -2,7 +2,7 @@
 //  MessageDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -49,6 +49,9 @@ open class MessageDefinition: DomainResource {
 	
 	/// Resource(s) that are the subject of the event.
 	public var focus: [MessageDefinitionFocus]?
+	
+	/// Additional identifier for the message definition.
+	public var identifier: Identifier?
 	
 	/// Intended jurisdiction for message definition (if applicable).
 	public var jurisdiction: [CodeableConcept]?
@@ -115,6 +118,7 @@ open class MessageDefinition: DomainResource {
 		}
 		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
 		focus = try createInstances(of: MessageDefinitionFocus.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
 		parent = try createInstances(of: Reference.self, for: "parent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parent
@@ -153,6 +157,7 @@ open class MessageDefinition: DomainResource {
 		}
 		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
 		arrayDecorate(json: &json, withKey: "focus", using: self.focus, errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		arrayDecorate(json: &json, withKey: "parent", using: self.parent, errors: &errors)
@@ -182,7 +187,7 @@ open class MessageDefinitionAllowedResponse: BackboneElement {
 		get { return "MessageDefinitionAllowedResponse" }
 	}
 	
-	/// MessageDefinition for response.
+	/// Reference to allowed message definition response.
 	public var message: Reference?
 	
 	/// When should this response be used.

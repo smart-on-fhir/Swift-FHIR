@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -28,6 +28,9 @@ open class Encounter: DomainResource {
 	
 	/// The appointment that scheduled this encounter.
 	public var appointment: Reference?
+	
+	/// List of past encounter classes.
+	public var classHistory: [EncounterClassHistory]?
 	
 	/// Episode(s) of care that this encounter should be recorded against.
 	public var episodeOfCare: [Reference]?
@@ -56,9 +59,6 @@ open class Encounter: DomainResource {
 	/// List of participants involved in the encounter.
 	public var participant: [EncounterParticipant]?
 	
-	/// The patient present at the encounter.
-	public var patient: Reference?
-	
 	/// The start and end time of the encounter.
 	public var period: Period?
 	
@@ -77,6 +77,9 @@ open class Encounter: DomainResource {
 	/// List of past encounter statuses.
 	public var statusHistory: [EncounterStatusHistory]?
 	
+	/// The patient ro group present at the encounter.
+	public var subject: Reference?
+	
 	/// Specific type of encounter.
 	public var type: [CodeableConcept]?
 	
@@ -94,6 +97,7 @@ open class Encounter: DomainResource {
 		`class` = try createInstance(type: Coding.self, for: "class", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? `class`
 		account = try createInstances(of: Reference.self, for: "account", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? account
 		appointment = try createInstance(type: Reference.self, for: "appointment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? appointment
+		classHistory = try createInstances(of: EncounterClassHistory.self, for: "classHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? classHistory
 		episodeOfCare = try createInstances(of: Reference.self, for: "episodeOfCare", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? episodeOfCare
 		hospitalization = try createInstance(type: EncounterHospitalization.self, for: "hospitalization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? hospitalization
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
@@ -103,7 +107,6 @@ open class Encounter: DomainResource {
 		location = try createInstances(of: EncounterLocation.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
 		partOf = try createInstance(type: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		participant = try createInstances(of: EncounterParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
 		priority = try createInstance(type: CodeableConcept.self, for: "priority", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? priority
 		reason = try createInstances(of: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
@@ -113,6 +116,7 @@ open class Encounter: DomainResource {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		statusHistory = try createInstances(of: EncounterStatusHistory.self, for: "statusHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusHistory
+		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		type = try createInstances(of: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		
 		return errors.isEmpty ? nil : errors
@@ -124,6 +128,7 @@ open class Encounter: DomainResource {
 		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
 		arrayDecorate(json: &json, withKey: "account", using: self.account, errors: &errors)
 		self.appointment?.decorate(json: &json, withKey: "appointment", errors: &errors)
+		arrayDecorate(json: &json, withKey: "classHistory", using: self.classHistory, errors: &errors)
 		arrayDecorate(json: &json, withKey: "episodeOfCare", using: self.episodeOfCare, errors: &errors)
 		self.hospitalization?.decorate(json: &json, withKey: "hospitalization", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
@@ -133,7 +138,6 @@ open class Encounter: DomainResource {
 		arrayDecorate(json: &json, withKey: "location", using: self.location, errors: &errors)
 		self.partOf?.decorate(json: &json, withKey: "partOf", errors: &errors)
 		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
-		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		arrayDecorate(json: &json, withKey: "reason", using: self.reason, errors: &errors)
@@ -143,7 +147,69 @@ open class Encounter: DomainResource {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		arrayDecorate(json: &json, withKey: "statusHistory", using: self.statusHistory, errors: &errors)
+		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		arrayDecorate(json: &json, withKey: "type", using: self.type, errors: &errors)
+	}
+}
+
+
+/**
+List of past encounter classes.
+
+The class history permits the tracking of the encounters transitions without needing to go  through the resource
+history.
+
+This would be used for a case where an admission starts of as an emergency encounter, then transisions into an inpatient
+scenario. Doing this and not restarting a new encounter ensures that any lab/diagnostic results can more easily follow
+the patient and not require re-processing and not get lost or cancelled during a kindof discharge from emergency to
+inpatient.
+*/
+open class EncounterClassHistory: BackboneElement {
+	override open class var resourceType: String {
+		get { return "EncounterClassHistory" }
+	}
+	
+	/// inpatient | outpatient | ambulatory | emergency +.
+	public var `class`: Coding?
+	
+	/// The time that the episode was in the specified class.
+	public var period: Period?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(`class`: Coding, period: Period) {
+		self.init()
+		self.`class` = `class`
+		self.period = period
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		`class` = try createInstance(type: Coding.self, for: "class", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? `class`
+		if nil == `class` && !presentKeys.contains("class") {
+			errors.append(FHIRValidationError(missing: "class"))
+		}
+		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		if nil == period && !presentKeys.contains("period") {
+			errors.append(FHIRValidationError(missing: "period"))
+		}
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
+		if nil == self.`class` {
+			errors.append(FHIRValidationError(missing: "class"))
+		}
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		if nil == self.period {
+			errors.append(FHIRValidationError(missing: "period"))
+		}
 	}
 }
 

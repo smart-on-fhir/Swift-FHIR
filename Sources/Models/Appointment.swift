@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -57,7 +57,7 @@ open class Appointment: DomainResource {
 	/// The specific service that is to be performed during this appointment.
 	public var serviceType: [CodeableConcept]?
 	
-	/// If provided, then no schedule and start/end values MUST match slot.
+	/// The slots that this appointment is filling.
 	public var slot: [Reference]?
 	
 	/// The specialty of a practitioner that would be required to perform the service requested in this appointment.

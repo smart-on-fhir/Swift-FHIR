@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -59,6 +59,9 @@ open class FamilyMemberHistory: DomainResource {
 	/// Dead? How old/when?.
 	public var deceasedString: FHIRString?
 	
+	/// Instantiates protocol or definition.
+	public var definition: [Reference]?
+	
 	/// Age is estimated?.
 	public var estimatedAge: FHIRBool?
 	
@@ -72,11 +75,23 @@ open class FamilyMemberHistory: DomainResource {
 	/// The family member described.
 	public var name: FHIRString?
 	
+	/// Family member history did not occur.
+	public var notDone: FHIRBool?
+	
+	/// subject-unknown | withheld | unable-to-obtain | deferred.
+	public var notDoneReason: CodeableConcept?
+	
 	/// General note about related person.
 	public var note: [Annotation]?
 	
 	/// Patient history is about.
 	public var patient: Reference?
+	
+	/// Why was family member history performed?.
+	public var reasonCodeableConcept: [CodeableConcept]?
+	
+	/// Why was family member history performed?.
+	public var reasonReference: [Reference]?
 	
 	/// Relationship to the subject.
 	public var relationship: CodeableConcept?
@@ -110,15 +125,20 @@ open class FamilyMemberHistory: DomainResource {
 		deceasedDate = try createInstance(type: FHIRDate.self, for: "deceasedDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deceasedDate
 		deceasedRange = try createInstance(type: Range.self, for: "deceasedRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deceasedRange
 		deceasedString = try createInstance(type: FHIRString.self, for: "deceasedString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deceasedString
+		definition = try createInstances(of: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
 		estimatedAge = try createInstance(type: FHIRBool.self, for: "estimatedAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? estimatedAge
 		gender = createEnum(type: AdministrativeGender.self, for: "gender", in: json, presentKeys: &presentKeys, errors: &errors) ?? gender
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
+		notDone = try createInstance(type: FHIRBool.self, for: "notDone", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? notDone
+		notDoneReason = try createInstance(type: CodeableConcept.self, for: "notDoneReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? notDoneReason
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
+		reasonCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
+		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		relationship = try createInstance(type: CodeableConcept.self, for: "relationship", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relationship
 		if nil == relationship && !presentKeys.contains("relationship") {
 			errors.append(FHIRValidationError(missing: "relationship"))
@@ -147,15 +167,20 @@ open class FamilyMemberHistory: DomainResource {
 		self.deceasedDate?.decorate(json: &json, withKey: "deceasedDate", errors: &errors)
 		self.deceasedRange?.decorate(json: &json, withKey: "deceasedRange", errors: &errors)
 		self.deceasedString?.decorate(json: &json, withKey: "deceasedString", errors: &errors)
+		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		self.estimatedAge?.decorate(json: &json, withKey: "estimatedAge", errors: &errors)
 		self.gender?.decorate(json: &json, withKey: "gender", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		self.notDone?.decorate(json: &json, withKey: "notDone", errors: &errors)
+		self.notDoneReason?.decorate(json: &json, withKey: "notDoneReason", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		if nil == self.patient {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
+		arrayDecorate(json: &json, withKey: "reasonCodeableConcept", using: self.reasonCodeableConcept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.relationship?.decorate(json: &json, withKey: "relationship", errors: &errors)
 		if nil == self.relationship {
 			errors.append(FHIRValidationError(missing: "relationship"))

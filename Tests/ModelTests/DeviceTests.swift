@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -47,13 +47,11 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.location?.display, "Central Supply")
 		XCTAssertEqual(inst.manufactureDate?.description, "2015-08-08")
 		XCTAssertEqual(inst.owner?.reference, "Organization/2.16.840.1.113883.19.5")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "available")!)
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "25062003")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Feeding tube, device")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "urn:oid:2.16.840.1.113883.3.3719")
-		XCTAssertEqual(inst.udiCarrier?.value, "(01)00000123000017(10)ABC123(17)120415")
 		
 		return inst
 	}
@@ -170,18 +168,23 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model, "PM/Octane 2014")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.safety?[0].coding?[0].code, "mr-unsafe")
+		XCTAssertEqual(inst.safety?[0].coding?[0].display, "MR Unsafe")
+		XCTAssertEqual(inst.safety?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/device-safety")
+		XCTAssertEqual(inst.safety?[0].text, "MR Unsafe")
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "09504000059118")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/gs1-di")
-		XCTAssertEqual(inst.type?.coding?[1].code, "468063009")
-		XCTAssertEqual(inst.type?.coding?[1].display, "Coated femoral stem prosthesis, modular")
-		XCTAssertEqual(inst.type?.coding?[1].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type?.coding?[0].code, "468063009")
+		XCTAssertEqual(inst.type?.coding?[0].display, "Coated femoral stem prosthesis, modular")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.type?.text, "Coated femoral stem prosthesis, modular")
-		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
-		XCTAssertEqual(inst.udiCarrier?.value, "{01}09504000059118{17}141120{10}7654321D{21}10987654d321")
+		XCTAssertEqual(inst.udi?.carrierAIDC, Base64Binary(value: "XWQyMDExMDg1NzY3NDAwMjAxNzE3MTQxMTIwMTBOWUZVTDAx4oaUMjExOTI4MzfihpQ3MTNBMUIyQzNENEU1RjZH"))
+		XCTAssertEqual(inst.udi?.carrierHRF, "{01}00844588003288{17}141120{10}7654321D{21}10987654d321")
+		XCTAssertEqual(inst.udi?.deviceIdentifier, "00844588003288")
+		XCTAssertEqual(inst.udi?.entryType, UDIEntryType(rawValue: "barcode")!)
+		XCTAssertEqual(inst.udi?.issuer?.absoluteString, "http://hl7.org/fhir/NamingSystem/gs1")
+		XCTAssertEqual(inst.udi?.jurisdiction?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
+		XCTAssertEqual(inst.udi?.name, "FHIR® Hip System")
 		
 		return inst
 	}
@@ -207,17 +210,13 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example-udi2")
 		XCTAssertEqual(inst.manufactureDate?.description, "2013-02-01")
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
-		XCTAssertEqual(inst.model, "Bone,Putty Demineralized")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "inactive")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "A9999XYZ100T0474")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-other-di")
-		XCTAssertEqual(inst.type?.text, "DI = A9999XYZ100T0474")
-		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
-		XCTAssertEqual(inst.udiCarrier?.value, "=+05037=/A9999XYZ100T0474=,000025=A99971312345600=>014032=}013032")
+		XCTAssertEqual(inst.udi?.deviceIdentifier, "A9999XYZ100T0474")
+		XCTAssertEqual(inst.udi?.issuer?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-other")
+		XCTAssertEqual(inst.udi?.jurisdiction?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
+		XCTAssertEqual(inst.udi?.name, "Bone,Putty Demineralized")
 		
 		return inst
 	}
@@ -240,21 +239,19 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example-udi3")
 		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].code, "SNO")
 		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
-		XCTAssertEqual(inst.identifier?[0].value, "XYZ4567890123 45678")
+		XCTAssertEqual(inst.identifier?[0].value, "XYZ456789012345678")
 		XCTAssertEqual(inst.lotNumber, "LOT123456789012345")
 		XCTAssertEqual(inst.manufactureDate?.description, "2013-02-02")
 		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
 		XCTAssertEqual(inst.model, "Ultra Implantable")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "inactive")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "H123PARTNO1234567890120")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/hibcc-di")
-		XCTAssertEqual(inst.type?.text, "DI =H123PARTNO1234567890120")
-		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
-		XCTAssertEqual(inst.udiCarrier?.value, "+H123PARTNO1234567890120/$$420020216LOT123456789012345/SXYZ4567890123 45678/16D20130202C")
+		XCTAssertEqual(inst.udi?.carrierHRF, "+H123PARTNO1234567890120/$$420020216LOT123456789012345/SXYZ456789012345678/16D20130202C")
+		XCTAssertEqual(inst.udi?.entryType, UDIEntryType(rawValue: "manual")!)
+		XCTAssertEqual(inst.udi?.issuer?.absoluteString, "http://hl7.org/fhir/NamingSystem/hibcc")
+		XCTAssertEqual(inst.udi?.jurisdiction?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
+		XCTAssertEqual(inst.udi?.name, "FHIR® Ulltra Implantable")
 		
 		return inst
 	}
@@ -277,15 +274,11 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.lotNumber, "RZ12345678")
 		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "not-available")!)
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "inactive")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "1TE123456A")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-blood-di")
-		XCTAssertEqual(inst.type?.text, "DI = 1TE123456A")
-		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
-		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
-		XCTAssertEqual(inst.udiCarrier?.value, "=)1TE123456A&)RZ12345678")
+		XCTAssertEqual(inst.udi?.carrierHRF, "=)1TE123456A&)RZ12345678")
+		XCTAssertEqual(inst.udi?.issuer?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-blood")
+		XCTAssertEqual(inst.udi?.jurisdiction?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
 		
 		return inst
 	}
@@ -319,7 +312,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].authorReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.note?[0].text, "QA Checked")
 		XCTAssertEqual(inst.note?[0].time?.description, "2015-06-28T14:03:32+10:00")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "available")!)
+		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "86184003")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Electrocardiographic monitor and recorder")

@@ -2,7 +2,7 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -282,44 +282,14 @@ ValueSet: http://hl7.org/fhir/ValueSet/activity-definition-category
 */
 public enum ActivityDefinitionCategory: String {
 	
-	/// To communicate with a participant in some way
-	case communication = "communication"
+	/// The activity is intended to provide or is related to treatment of the patient
+	case treatment = "treatment"
 	
-	/// To use a specific device
-	case device = "device"
+	/// The activity is intended to provide or is related to education of the patient
+	case education = "education"
 	
-	/// To perform a particular diagnostic
-	case diagnostic = "diagnostic"
-	
-	/// To consume food of a specified nature
-	case diet = "diet"
-	
-	/// To consume/receive a drug or other product
-	case drug = "drug"
-	
-	/// To meet with the patient (in-patient, out-patient, etc.)
-	case encounter = "encounter"
-	
-	/// To administer a particular immunization
-	case immunization = "immunization"
-	
-	/// To capture information about a patient (vitals, labs, etc.)
-	case observation = "observation"
-	
-	/// To modify the patient in some way (surgery, physiotherapy, education, counseling, etc.)
-	case procedure = "procedure"
-	
-	/// To refer the patient to receive some service
-	case referral = "referral"
-	
-	/// To provide something to the patient (medication, medical supply, etc.)
-	case supply = "supply"
-	
-	/// To receive a particular vision correction device
-	case vision = "vision"
-	
-	/// Some other form of action
-	case other = "other"
+	/// The activity is intended to perform or is related to assessment of the patient
+	case assessment = "assessment"
 }
 
 
@@ -882,12 +852,12 @@ ValueSet: http://hl7.org/fhir/ValueSet/binding-strength
 */
 public enum BindingStrength: String {
 	
-	/// To be conformant, instances of this element SHALL include a code from the specified value set.
+	/// To be conformant, the concept in this element SHALL be from the specified value set
 	case required = "required"
 	
-	/// To be conformant, instances of this element SHALL include a code from the specified value set if any of the
-	/// codes within the value set can apply to the concept being communicated.  If the value set does not cover the
-	/// concept (based on human review), alternate codings (or, data type allowing, text) may be included instead.
+	/// To be conformant, the concept in this element SHALL be from the specified value set if any of the codes within
+	/// the value set can apply to the concept being communicated.  If the value set does not cover the concept (based
+	/// on human review), alternate codings (or, data type allowing, text) may be included instead.
 	case extensible = "extensible"
 	
 	/// Instances are encouraged to draw from the specified codes for interoperability purposes but are not required to
@@ -1272,7 +1242,7 @@ public enum ChargeItemStatus: String {
 	
 	/// the charge item has been entered, but the charged service is not  yet complete, so it shall not be billed yet
 	/// but might be used in the context of pre-authorization
-	case preparation = "preparation"
+	case planned = "planned"
 	
 	/// the charge item is ready for billing
 	case billable = "billable"
@@ -1395,6 +1365,56 @@ public enum CodeSystemHierarchyMeaning: String {
 	/// "closed world" meaning all things must be in the hierarchy. This results in concepts such as "not otherwise
 	/// clasified."
 	case classifiedWith = "classified-with"
+}
+
+
+/**
+Codes for general categories of communications such as alerts, instruction, etc.
+
+URL: http://hl7.org/fhir/communication-category
+ValueSet: http://hl7.org/fhir/ValueSet/communication-category
+*/
+public enum CommunicationCategory: String {
+	
+	/// The communication conveys an alert.
+	case alert = "alert"
+	
+	/// The communication conveys a notification.
+	case notification = "notification"
+	
+	/// The communication conveys a reminder.
+	case reminder = "reminder"
+	
+	/// The communication conveys instruction.
+	case instruction = "instruction"
+}
+
+
+/**
+Codes for the reason why a communication was not done.
+
+URL: http://hl7.org/fhir/communication-not-done-reason
+ValueSet: http://hl7.org/fhir/ValueSet/communication-not-done-reason
+*/
+public enum CommunicationNotDoneReason: String {
+	
+	/// The communication was not done due to an unknown reason.
+	case unknown = "unknown"
+	
+	/// The communication was not done due to a system error.
+	case systemError = "system-error"
+	
+	/// The communication was not done due to an invalid phone number.
+	case invalidPhoneNumber = "invalid-phone-number"
+	
+	/// The communication was not done due to the recipient being unavailable.
+	case recipientUnavailable = "recipient-unavailable"
+	
+	/// The communication was not done due to a family objection.
+	case familyObjection = "family-objection"
+	
+	/// The communication was not done due to a patient objection.
+	case patientObjection = "patient-objection"
 }
 
 
@@ -1541,6 +1561,25 @@ public enum ConceptMapEquivalence: String {
 	
 	/// This is an explicit assertion that there is no mapping between the source and target concept.
 	case disjoint = "disjoint"
+}
+
+
+/**
+Defines which action to take if there is no match in the group.
+
+URL: http://hl7.org/fhir/conceptmap-unmapped-mode
+ValueSet: http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode
+*/
+public enum ConceptMapGroupUnmappedMode: String {
+	
+	/// Use the code as provided in the $translate request
+	case provided = "provided"
+	
+	/// Use the code explicitly provided in the group.unmapped
+	case fixed = "fixed"
+	
+	/// Use the map identified by the canonical URL in URL
+	case otherMap = "other-map"
 }
 
 
@@ -1698,12 +1737,12 @@ public enum ConsentExceptType: String {
 
 
 /**
-Indicates the status of the consent
+Indicates the state of the consent
 
-URL: http://hl7.org/fhir/consent-status-codes
-ValueSet: http://hl7.org/fhir/ValueSet/consent-status-codes
+URL: http://hl7.org/fhir/consent-state-codes
+ValueSet: http://hl7.org/fhir/ValueSet/consent-state-codes
 */
-public enum ConsentStatus: String {
+public enum ConsentState: String {
 	
 	/// The consent is in development or awaiting use but is not yet intended to be acted upon.
 	case draft = "draft"
@@ -1766,6 +1805,9 @@ public enum ContactPointSystem: String {
 	/// A contact that is not a phone, fax, pager or email address and is expressed as a URL.  This is intended for
 	/// various personal contacts including blogs, Skype, Twitter, Facebook, etc. Do not use for email addresses.
 	case url = "url"
+	
+	/// A contact that can be used for sending an sms message (e.g. mobide phones, some landlines)
+	case sms = "sms"
 	
 	/// A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail
 	/// address.  This SHOULD NOT be used for contacts that are expressible as a URL (e.g. Skype, Twitter, Facebook,
@@ -2331,21 +2373,67 @@ public enum DeviceMetricOperationalStatus: String {
 
 
 /**
+Codes used to identify medical devices safety characterics. These codes are derived in part from the [United States Food
+and Drug Administration recommendations](http://www.fda.gov/downloads/medicaldevices/deviceregulationandguidance/guidanc
+edocuments/ucm107708.pdf) and are provided here as a suggestive example.
+
+URL: http://hl7.org/fhir/device-safety
+ValueSet: http://hl7.org/fhir/ValueSet/device-safety
+*/
+public enum DeviceSafety: String {
+	
+	/// Indicates that the device or packaging contains natural rubber that contacts humans
+	case containsLatex = "contains-latex"
+	
+	/// Indicates that natural rubber latex was not used as materials in the manufacture of the medical product and
+	/// container and the device labeling contains this information.
+	case latexFree = "latex-free"
+	
+	/// Indicates that whether the device or packaging contains natural rubber that contacts humans is not indicated on
+	/// the label Not all medical products that are NOT made with natural rubber latex will be marked
+	case latexUnknown = "latex-unknown"
+	
+	/// The device, when used in the MRI environment, has been demonstrated to present no additional risk to the patient
+	/// or other individual, but may affect the quality of the diagnostic information. The MRI conditions in which the
+	/// device was tested should be specified in conjunction with the term MR safe since a device which is safe under
+	/// one set of conditions may not be found to be so under more extreme MRI conditions.
+	case mrSafe = "mr-safe"
+	
+	/// An item that is known to pose hazards in all MRI environments. MR Unsafe items include magnetic items such as a
+	/// pair of ferromagnetic scissors.
+	case mrUnsafe = "mr-unsafe"
+	
+	/// An item that has been demonstrated to pose no known hazards in a specified MRI environment with specified
+	/// conditions of use. Field conditions that define the MRI environment include, for instance, static magnetic field
+	/// or specific absorption rate (SAR).
+	case mrConditional = "mr-conditional"
+	
+	/// Labeling does not contain MRI Safety information
+	case mrUnknown = "mr-unknown"
+}
+
+
+/**
 The availability status of the device.
 
-URL: http://hl7.org/fhir/devicestatus
-ValueSet: http://hl7.org/fhir/ValueSet/devicestatus
+URL: http://hl7.org/fhir/device-status
+ValueSet: http://hl7.org/fhir/ValueSet/device-status
 */
 public enum DeviceStatus: String {
 	
-	/// The Device is available for use.
-	case available = "available"
+	/// The Device is available for use.  Note: This means for *implanted devices*  the device is implanted in the
+	/// patient.
+	case active = "active"
 	
-	/// The Device is no longer available for use (e.g. lost, expired, damaged).
-	case notAvailable = "not-available"
+	/// The Device is no longer available for use (e.g. lost, expired, damaged).  Note: This means for *implanted
+	/// devices*  the device has been removed from the patient.
+	case inactive = "inactive"
 	
 	/// The Device was entered in error and voided.
 	case enteredInError = "entered-in-error"
+	
+	/// The status of the device has not been determined.
+	case unknown = "unknown"
 }
 
 
@@ -2364,25 +2452,36 @@ public enum DiagnosticReportStatus: String {
 	/// unverified.
 	case partial = "partial"
 	
+	/// Verified early results are available, but not all  results are final.
+	case preliminary = "preliminary"
+	
 	/// The report is complete and verified by an authorized person.
 	case final = "final"
 	
-	/// The report has been modified subsequent to being Final, and is complete and verified by an authorized person
+	/// Subsequent to being Final, the report has been modified.  This includes any change in the results, diagnosis,
+	/// narrative text, or other content of a report that has been issued.
+	case amended = "amended"
+	
+	/// Subsequent to being Final, the report has been modified  to correct an error in the report or referenced
+	/// results.
 	case corrected = "corrected"
 	
-	/// The report has been modified subsequent to being Final, and is complete and verified by an authorized person.
-	/// New content has been added, but existing content hasn't changed.
+	/// Subsequent to being Final, the report has been modified by adding new content. The existing content is
+	/// unchanged.
 	case appended = "appended"
 	
 	/// The report is unavailable because the measurement was not started or not completed (also sometimes called
 	/// "aborted").
 	case cancelled = "cancelled"
 	
-	/// The report has been withdrawn following a previous final release.
+	/// The report has been withdrawn following a previous final release.  This electronic record should never have
+	/// existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred,
+	/// the status should be "cancelled" rather than "entered-in-error".)
 	case enteredInError = "entered-in-error"
 	
-	/// The report status is unknown.  Note that "unknown" is a value of last resort and every attempt should be made to
-	/// provide a meaningful value other than "unknown".
+	/// The authoring system does not know which of the status values currently applies for this request. Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
 	case unknown = "unknown"
 }
 
@@ -2504,6 +2603,9 @@ public enum EncounterStatus: String {
 	/// The Patient is present for the encounter, however is not currently meeting with a practitioner.
 	case arrived = "arrived"
 	
+	/// The patient has been assessed for the priority of their treatment based on the severity of their condition.
+	case triaged = "triaged"
+	
 	/// The Encounter has begun and the patient is present / the practitioner and the patient are meeting.
 	case inProgress = "in-progress"
 	
@@ -2518,6 +2620,10 @@ public enum EncounterStatus: String {
 	
 	/// This instance should not have been part of this patient's medical record.
 	case enteredInError = "entered-in-error"
+	
+	/// The encounter status is unknown. Note that "unknown" is a value of last resort and every attempt should be made
+	/// to provide a meaningful value other than "unknown".
+	case unknown = "unknown"
 }
 
 
@@ -2796,6 +2902,28 @@ public enum FHIRRestfulInteractions: String {
 
 
 /**
+Codes describing the reason why a family member history was not done.
+
+URL: http://hl7.org/fhir/history-not-done-reason
+ValueSet: http://hl7.org/fhir/ValueSet/history-not-done-reason
+*/
+public enum FamilyHistoryNotDoneReason: String {
+	
+	/// Patient does not know the subject, e.g. the biological parent of an adopted patient.
+	case subjectUnknown = "subject-unknown"
+	
+	/// The patient withheld or refused to share the information.
+	case withheld = "withheld"
+	
+	/// Information cannot be obtained; e.g. unconscious patient
+	case unableToObtain = "unable-to-obtain"
+	
+	/// Patient does not have the information now, but can provide the information at a later date.
+	case deferred = "deferred"
+}
+
+
+/**
 A code that identifies the status of the family history record.
 
 URL: http://hl7.org/fhir/history-status
@@ -2974,6 +3102,28 @@ public enum GoalStatus: String {
 	
 	/// A proposed goal was rejected
 	case rejected = "rejected"
+}
+
+
+/**
+How a compartment must be linked
+
+URL: http://hl7.org/fhir/graph-compartment-rule
+ValueSet: http://hl7.org/fhir/ValueSet/graph-compartment-rule
+*/
+public enum GraphCompartmentRule: String {
+	
+	/// The compartment must be identical (the same literal reference)
+	case identical = "identical"
+	
+	/// The compartment must be the same - the record must be about the same patient, but the reference may be different
+	case matching = "matching"
+	
+	/// The compartment must be different
+	case different = "different"
+	
+	/// The compartment rule is defined in the accompanying FHIRPath expression
+	case custom = "custom"
 }
 
 
@@ -3247,6 +3397,28 @@ public enum IdentityAssuranceLevel: String {
 	
 	/// Very high confidence in the asserted identity's accuracy.
 	case level4 = "level4"
+}
+
+
+/**
+A set codes that define the functional status of an implanted device.
+
+URL: http://hl7.org/fhir/implant-status
+ValueSet: http://hl7.org/fhir/ValueSet/implant-status
+*/
+public enum ImplantStatus: String {
+	
+	/// The implanted device is working normally
+	case functional = "functional"
+	
+	/// The implanted device is not working
+	case nonFunctional = "non-functional"
+	
+	/// The implanted device has been turned off
+	case disabled = "disabled"
+	
+	/// the functional status of the implant has not been determined
+	case unknown = "unknown"
 }
 
 
@@ -4555,18 +4727,25 @@ public enum ObservationStatus: String {
 	/// The observation is complete.
 	case final = "final"
 	
-	/// The observation has been modified subsequent to being Final.
+	/// Subsequent to being Final, the observation has been modified subsequent.  This includes updates/new information
+	/// and corrections.
 	case amended = "amended"
+	
+	/// Subsequent to being Final, the observation has been modified to correct an error in the test result.
+	case corrected = "corrected"
 	
 	/// The observation is unavailable because the measurement was not started or not completed (also sometimes called
 	/// "aborted").
 	case cancelled = "cancelled"
 	
-	/// The observation has been withdrawn following previous final release.
+	/// The observation has been withdrawn following previous final release.  This electronic record should never have
+	/// existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred,
+	/// the status should be "cancelled" rather than "entered-in-error".)
 	case enteredInError = "entered-in-error"
 	
-	/// The observation status is unknown.  Note that "unknown" is a value of last resort and every attempt should be
-	/// made to provide a meaningful value other than "unknown".
+	/// The authoring system does not know which of the status values currently applies for this request. Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
 	case unknown = "unknown"
 }
 
@@ -4867,40 +5046,6 @@ public enum ProcedureRelationshipType: String {
 	
 	/// This procedure caused the related one to be performed.
 	case becauseOf = "because-of"
-}
-
-
-/**
-A code specifying the state of the procedure.
-
-URL: http://hl7.org/fhir/procedure-status
-ValueSet: http://hl7.org/fhir/ValueSet/procedure-status
-*/
-public enum ProcedureStatus: String {
-	
-	/// The core procedure has not started yet, but some staging activities have begun (e.g. surgical suite
-	/// preparation).  Preparation stages may be tracked for billing purposes.
-	case preparation = "preparation"
-	
-	/// The procedure is currently occurring.
-	case inProgress = "in-progress"
-	
-	/// The procedure has been temporarily stopped but is expected to resume in the future
-	case suspended = "suspended"
-	
-	/// The procedure was terminated without completing successfully.
-	case aborted = "aborted"
-	
-	/// All actions involved in the procedure have taken place.
-	case completed = "completed"
-	
-	/// This electronic record should never have existed.
-	case enteredInError = "entered-in-error"
-	
-	/// The authoring system does not know which of the status values currently applies for this procedure.  Note: This
-	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
-	/// which one.
-	case unknown = "unknown"
 }
 
 
@@ -5253,27 +5398,6 @@ public enum ReferenceVersionRules: String {
 
 
 /**
-Identifies the degree of intention/authorization associated with the request
-
-URL: http://hl7.org/fhir/referralcategory
-ValueSet: http://hl7.org/fhir/ValueSet/referralcategory
-*/
-public enum ReferralCategory: String {
-	
-	/// The referral request represents a suggestion or recommendation that a referral be made.
-	case proposal = "proposal"
-	
-	/// The referral request represents an intention by the author to make a referral, but no actual referral has yet
-	/// been made/authorized.
-	case plan = "plan"
-	
-	/// This is an actual referral request which, when active, will have the authorizations needed to allow it to be
-	/// actioned.
-	case request = "request"
-}
-
-
-/**
 The methods of referral can be used when referring to a specific HealthCareService resource.
 
 URL: http://hl7.org/fhir/service-referral-method
@@ -5297,32 +5421,6 @@ public enum ReferralMethod: String {
 	
 	/// Referrals may be accepted via regular postage (or hand delivered).
 	case mail = "mail"
-}
-
-
-/**
-The status of the referral.
-
-URL: http://hl7.org/fhir/referralstatus
-ValueSet: http://hl7.org/fhir/ValueSet/referralstatus
-*/
-public enum ReferralStatus: String {
-	
-	/// A draft referral that has yet to be send.
-	case draft = "draft"
-	
-	/// The referral is complete and is ready for fulfillment.
-	case active = "active"
-	
-	/// The referral has been cancelled without being completed. For example it is no longer needed.
-	case cancelled = "cancelled"
-	
-	/// The referral has been completely actioned.
-	case completed = "completed"
-	
-	/// This referral record should never have existed, though it's possible some degree of real-world activity or
-	/// decisions may have been taken due to its existence
-	case enteredInError = "entered-in-error"
 }
 
 
@@ -5438,50 +5536,24 @@ public enum RequestIntent: String {
 
 
 /**
-The clinical priority of an order.
+Identifies the level of importance to be assigned to actioning the request
 
 URL: http://hl7.org/fhir/request-priority
 ValueSet: http://hl7.org/fhir/ValueSet/request-priority
 */
 public enum RequestPriority: String {
 	
-	/// The order has a normal priority .
+	/// The request has normal priority
 	case routine = "routine"
 	
-	/// The order should be urgently.
+	/// The request should be actioned promptly - higher priority than routine
 	case urgent = "urgent"
 	
-	/// The order is time-critical.
-	case stat = "stat"
-	
-	/// The order should be acted on as soon as possible.
+	/// The request should be actioned as soon as possible - higher priority than urgent
 	case asap = "asap"
-}
-
-
-/**
-The kind of request.
-
-URL: http://hl7.org/fhir/request-stage
-ValueSet: http://hl7.org/fhir/ValueSet/request-stage
-*/
-public enum RequestStage: String {
 	
-	/// The request is a proposal
-	case proposal = "proposal"
-	
-	/// The request is a plan
-	case plan = "plan"
-	
-	/// The request is an order.
-	case originalOrder = "original-order"
-	
-	/// Represents an order created by a fulfiller as a representation of the specific action(s) they intend to take to
-	/// fulfill the original order.  Typically these orders are more fully encoded than the original placer order.
-	case encoded = "encoded"
-	
-	/// Represents a separate order created by a fulfiller as result of fulfilment of an order.
-	case reflexOrder = "reflex-order"
+	/// The request should be actioned immediately - highest possible priority.  E.g. an emergency
+	case stat = "stat"
 }
 
 
@@ -5640,6 +5712,29 @@ public enum ResourceVersionPolicy: String {
 	
 	/// VersionId is must be correct for updates (server) or will be specified (If-match header) for updates (client).
 	case versionedUpdate = "versioned-update"
+}
+
+
+/**
+HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response
+to a message.
+
+URL: http://hl7.org/fhir/response-request
+ValueSet: http://hl7.org/fhir/ValueSet/response-request
+*/
+public enum ResponseRequest: String {
+	
+	/// Always respond
+	case AL = "AL"
+	
+	/// Error/reject conditions only
+	case ER = "ER"
+	
+	/// NE
+	case NE = "NE"
+	
+	/// Successful completion only
+	case SU = "SU"
 }
 
 
@@ -6300,6 +6395,25 @@ public enum SubscriptionTag: String {
 
 
 /**
+Substance status
+
+URL: http://hl7.org/fhir/substance-status
+ValueSet: http://hl7.org/fhir/ValueSet/substance-status
+*/
+public enum SubstanceStatus: String {
+	
+	/// The substance is considered for use or reference
+	case active = "active"
+	
+	/// The substance is considered for reference, but not for use
+	case inactive = "inactive"
+	
+	/// The substance was entered in error
+	case enteredInError = "entered-in-error"
+}
+
+
+/**
 Status of the supply delivery.
 
 URL: http://hl7.org/fhir/supplydelivery-status
@@ -6357,6 +6471,10 @@ public enum SupplyRequestStatus: String {
 	
 	/// The orderer of the supply cancelled the request.
 	case cancelled = "cancelled"
+	
+	/// This electronic record should never have existed, though it is possible that real-world decisions were based on
+	/// it. (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -6379,7 +6497,8 @@ public enum SystemVersionProcessingMode: String {
 	/// Use this version of the code system irrespective of which version is specified by a value set. Note that this
 	/// has obvious safety issues, in that it may result in a value set expansion giving a different list of codes that
 	/// is both wrong and unsafe, and implementers should only use this capability reluctantly. It primarily exists to
-	/// deal with situations where specifications have fallen into decay as time passes
+	/// deal with situations where specifications have fallen into decay as time passes. If a  version is override, the
+	/// version used SHALL explicitly be represented in the expansion parameters
 	case override = "override"
 }
 
@@ -6429,13 +6548,13 @@ public enum TaskStatus: String {
 	/// The task is not yet ready to be acted upon.
 	case draft = "draft"
 	
-	/// The task is ready to be acted upon and action is sought
+	/// The task is ready to be acted upon and action is sought.
 	case requested = "requested"
 	
-	/// A potential performer has claimed ownership of the task and is evaluating whether to perform it
+	/// A potential performer has claimed ownership of the task and is evaluating whether to perform it.
 	case received = "received"
 	
-	/// The potential performer has agreed to execute the task but has not yet started work
+	/// The potential performer has agreed to execute the task but has not yet started work.
 	case accepted = "accepted"
 	
 	/// The potential performer who claimed ownership of the task has decided not to execute it prior to performing any
@@ -6446,22 +6565,22 @@ public enum TaskStatus: String {
 	/// requested/received/accepted/rejected when request assignment and acceptance is a given.
 	case ready = "ready"
 	
-	/// the task was not completed (more or less) as requested
+	/// The task was not completed.
 	case cancelled = "cancelled"
 	
 	/// Task has been started but is not yet complete.
 	case inProgress = "in-progress"
 	
-	/// Task has been started but work has been paused
+	/// Task has been started but work has been paused.
 	case onHold = "on-hold"
 	
 	/// The task was attempted but could not be completed due to some error.
 	case failed = "failed"
 	
-	/// The task has been completed (more or less) as requested.
+	/// The task has been completed.
 	case completed = "completed"
 	
-	/// The task should never have existed and is retained only because of the possibility it may have used
+	/// The task should never have existed and is retained only because of the possibility it may have used.
 	case enteredInError = "entered-in-error"
 }
 
@@ -6620,6 +6739,34 @@ public enum TypeDerivationRule: String {
 	
 	/// This definition adds additional rules to an existing concrete type
 	case constraint = "constraint"
+}
+
+
+/**
+Codes to identify how udi data was entered
+
+URL: http://hl7.org/fhir/udi-entry-type
+ValueSet: http://hl7.org/fhir/ValueSet/udi-entry-type
+*/
+public enum UDIEntryType: String {
+	
+	/// A Barcode scanner captured the the data from the device label
+	case barcode = "barcode"
+	
+	/// An RFID chip reader captured the the data from the device label
+	case rfid = "rfid"
+	
+	/// The data was read from the label by a person and manually entered. (e.g.  via a keyboard)
+	case manual = "manual"
+	
+	/// The data orginated from a patient's implant card and read by an operator.
+	case card = "card"
+	
+	/// The data orginated from a patient source and not directly scanned or read from a label or card.
+	case selfReported = "self-reported"
+	
+	/// The method of data capture has not been determined
+	case unknown = "unknown"
 }
 
 

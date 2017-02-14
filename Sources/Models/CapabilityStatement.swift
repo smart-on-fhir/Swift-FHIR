@@ -2,7 +2,7 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -396,7 +396,7 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 		get { return "CapabilityStatementMessagingEndpoint" }
 	}
 	
-	/// Address of end-point.
+	/// Network address or identifier of the end-point.
 	public var address: FHIRURL?
 	
 	/// http | ftp | mllp +.

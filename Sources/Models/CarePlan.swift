@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -79,6 +79,9 @@ open class CarePlan: DomainResource {
 	/// Information considered as part of plan.
 	public var supportingInfo: [Reference]?
 	
+	/// Human-friendly name for the CarePlan.
+	public var title: FHIRString?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(intent: CarePlanIntent, status: CarePlanStatus, subject: Reference) {
@@ -120,6 +123,7 @@ open class CarePlan: DomainResource {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		supportingInfo = try createInstances(of: Reference.self, for: "supportingInfo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingInfo
+		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -155,6 +159,7 @@ open class CarePlan: DomainResource {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		arrayDecorate(json: &json, withKey: "supportingInfo", using: self.supportingInfo, errors: &errors)
+		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 	}
 }
 

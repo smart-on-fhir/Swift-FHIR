@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -70,12 +70,12 @@ class OrganizationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.telecom?[0].value, "022-655 2300")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "V6")
-		XCTAssertEqual(inst.type?.coding?[0].display, "University Medical Hospital")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.1060")
-		XCTAssertEqual(inst.type?.coding?[1].code, "prov")
-		XCTAssertEqual(inst.type?.coding?[1].display, "Healthcare Provider")
-		XCTAssertEqual(inst.type?.coding?[1].system?.absoluteString, "http://hl7.org/fhir/organization-type")
+		XCTAssertEqual(inst.type?[0].coding?[0].code, "V6")
+		XCTAssertEqual(inst.type?[0].coding?[0].display, "University Medical Hospital")
+		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.1060")
+		XCTAssertEqual(inst.type?[0].coding?[1].code, "prov")
+		XCTAssertEqual(inst.type?[0].coding?[1].display, "Healthcare Provider")
+		XCTAssertEqual(inst.type?[0].coding?[1].system?.absoluteString, "http://hl7.org/fhir/organization-type")
 		
 		return inst
 	}
@@ -112,9 +112,9 @@ class OrganizationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.telecom?[0].value, "022-655 2320")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "dept")
-		XCTAssertEqual(inst.type?.coding?[0].display, "Hospital Department")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/organization-type")
+		XCTAssertEqual(inst.type?[0].coding?[0].code, "dept")
+		XCTAssertEqual(inst.type?[0].coding?[0].display, "Hospital Department")
+		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/organization-type")
 		
 		return inst
 	}
@@ -151,9 +151,9 @@ class OrganizationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.telecom?[0].value, "022-655 6780")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "dept")
-		XCTAssertEqual(inst.type?.coding?[0].display, "Hospital Department")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/organization-type")
+		XCTAssertEqual(inst.type?[0].coding?[0].code, "dept")
+		XCTAssertEqual(inst.type?[0].coding?[0].display, "Hospital Department")
+		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/organization-type")
 		
 		return inst
 	}
@@ -200,15 +200,15 @@ class OrganizationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.telecom?[0].value, "+31715269111")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "405608006")
-		XCTAssertEqual(inst.type?.coding?[0].display, "Academic Medical Center")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.type?.coding?[1].code, "V6")
-		XCTAssertEqual(inst.type?.coding?[1].display, "University Medical Hospital")
-		XCTAssertEqual(inst.type?.coding?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.1060")
-		XCTAssertEqual(inst.type?.coding?[2].code, "prov")
-		XCTAssertEqual(inst.type?.coding?[2].display, "Healthcare Provider")
-		XCTAssertEqual(inst.type?.coding?[2].system?.absoluteString, "http://hl7.org/fhir/organization-type")
+		XCTAssertEqual(inst.type?[0].coding?[0].code, "405608006")
+		XCTAssertEqual(inst.type?[0].coding?[0].display, "Academic Medical Center")
+		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type?[0].coding?[1].code, "V6")
+		XCTAssertEqual(inst.type?[0].coding?[1].display, "University Medical Hospital")
+		XCTAssertEqual(inst.type?[0].coding?[1].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.1060")
+		XCTAssertEqual(inst.type?[0].coding?[2].code, "prov")
+		XCTAssertEqual(inst.type?[0].coding?[2].display, "Healthcare Provider")
+		XCTAssertEqual(inst.type?[0].coding?[2].system?.absoluteString, "http://hl7.org/fhir/organization-type")
 		
 		return inst
 	}
@@ -243,11 +243,11 @@ class OrganizationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.telecom?[0].value, "+31107040704")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "405608006")
-		XCTAssertEqual(inst.type?.coding?[0].display, "Academic Medical Center")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.type?.coding?[1].code, "prov")
-		XCTAssertEqual(inst.type?.coding?[1].system?.absoluteString, "http://hl7.org/fhir/organization-type")
+		XCTAssertEqual(inst.type?[0].coding?[0].code, "405608006")
+		XCTAssertEqual(inst.type?[0].coding?[0].display, "Academic Medical Center")
+		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type?[0].coding?[1].code, "prov")
+		XCTAssertEqual(inst.type?[0].coding?[1].system?.absoluteString, "http://hl7.org/fhir/organization-type")
 		
 		return inst
 	}

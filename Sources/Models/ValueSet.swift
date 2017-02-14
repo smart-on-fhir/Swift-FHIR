@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -265,7 +265,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 	/// Additional representations for this concept.
 	public var designation: [ValueSetComposeIncludeConceptDesignation]?
 	
-	/// Text to display for this code for this value set.
+	/// Text to display for this code for this value set in this valueset.
 	public var display: FHIRString?
 	
 	

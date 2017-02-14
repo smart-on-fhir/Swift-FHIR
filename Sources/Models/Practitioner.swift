@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -47,9 +47,6 @@ open class Practitioner: DomainResource {
 	/// Qualifications obtained by training and certification.
 	public var qualification: [PractitionerQualification]?
 	
-	/// Roles/organizations the practitioner is associated with.
-	public var role: [PractitionerPractRole]?
-	
 	/// A contact detail for the practitioner (that apply to all roles).
 	public var telecom: [ContactPoint]?
 	
@@ -66,7 +63,6 @@ open class Practitioner: DomainResource {
 		name = try createInstances(of: HumanName.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
 		photo = try createInstances(of: Attachment.self, for: "photo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? photo
 		qualification = try createInstances(of: PractitionerQualification.self, for: "qualification", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? qualification
-		role = try createInstances(of: PractitionerPractRole.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
 		telecom = try createInstances(of: ContactPoint.self, for: "telecom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? telecom
 		
 		return errors.isEmpty ? nil : errors
@@ -84,77 +80,6 @@ open class Practitioner: DomainResource {
 		arrayDecorate(json: &json, withKey: "name", using: self.name, errors: &errors)
 		arrayDecorate(json: &json, withKey: "photo", using: self.photo, errors: &errors)
 		arrayDecorate(json: &json, withKey: "qualification", using: self.qualification, errors: &errors)
-		arrayDecorate(json: &json, withKey: "role", using: self.role, errors: &errors)
-		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
-	}
-}
-
-
-/**
-Roles/organizations the practitioner is associated with.
-
-The list of roles/organizations that the practitioner is associated with.
-*/
-open class PractitionerPractRole: BackboneElement {
-	override open class var resourceType: String {
-		get { return "PractitionerPractRole" }
-	}
-	
-	/// Roles which this practitioner may perform.
-	public var code: CodeableConcept?
-	
-	/// Technical endpoints providing access to services operated for the PractitonerRole.
-	public var endpoint: [Reference]?
-	
-	/// The list of healthcare services that this worker provides for this role's Organization/Location(s).
-	public var healthcareService: [Reference]?
-	
-	/// Business Identifiers that are specific to a role/location.
-	public var identifier: [Identifier]?
-	
-	/// The location(s) at which this practitioner provides care.
-	public var location: [Reference]?
-	
-	/// Organization where the roles are performed.
-	public var organization: Reference?
-	
-	/// The period during which the practitioner is authorized to perform in these role(s).
-	public var period: Period?
-	
-	/// Specific specialty of the practitioner.
-	public var specialty: [CodeableConcept]?
-	
-	/// Contact details that are specific to the role/location/service.
-	public var telecom: [ContactPoint]?
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		endpoint = try createInstances(of: Reference.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		healthcareService = try createInstances(of: Reference.self, for: "healthcareService", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? healthcareService
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		location = try createInstances(of: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		organization = try createInstance(type: Reference.self, for: "organization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? organization
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		specialty = try createInstances(of: CodeableConcept.self, for: "specialty", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specialty
-		telecom = try createInstances(of: ContactPoint.self, for: "telecom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? telecom
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		arrayDecorate(json: &json, withKey: "endpoint", using: self.endpoint, errors: &errors)
-		arrayDecorate(json: &json, withKey: "healthcareService", using: self.healthcareService, errors: &errors)
-		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		arrayDecorate(json: &json, withKey: "location", using: self.location, errors: &errors)
-		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
-		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
-		arrayDecorate(json: &json, withKey: "specialty", using: self.specialty, errors: &errors)
 		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
 	}
 }

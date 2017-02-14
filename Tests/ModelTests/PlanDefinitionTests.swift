@@ -2,7 +2,7 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -40,12 +40,10 @@ class PlanDefinitionTests: XCTestCase {
 	func runPlanDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example-kdn5-simplified.json")
 		
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].activityDefinition?.reference, "#1111")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].definition?.reference, "#1111")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "Gemcitabine 1250 mg/m² IV over 30 minutes on days 1 and 8")
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].activityDefinition?.reference, "#2222")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].definition?.reference, "#2222")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].textEquivalent, "CARBOplatin AUC 5 IV over 30 minutes on Day 1")
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.system?.absoluteString, "http://example.org/ordertemplates/KDN5")
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.value, "cycle-definition-1")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "21-day cycle for 6 cycles")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.count, 6)
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.duration, "21")
@@ -125,7 +123,7 @@ class PlanDefinitionTests: XCTestCase {
 	func runPlanDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example.json")
 		
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].activityDefinition?.reference, "#referralToMentalHealthCare")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].definition?.reference, "#referralToMentalHealthCare")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].dynamicValue?[0].expression, "Now()")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].dynamicValue?[0].path, "timing.event")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].dynamicValue?[1].expression, "Code '261QM0850X' from SuicideRiskLogic.\"NPI Taxonomy\"")
@@ -144,7 +142,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].groupingBehavior, ActionGroupingBehavior(rawValue: "logical-group")!)
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].selectionBehavior, ActionSelectionBehavior(rawValue: "any")!)
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].title, "Consults and Referrals")
-		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].activityDefinition?.reference, "#citalopramPrescription")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].definition?.reference, "#citalopramPrescription")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].dynamicValue?[0].expression, "'draft'")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].dynamicValue?[0].path, "status")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].dynamicValue?[1].expression, "SuicideRiskLogic.Patient")
@@ -171,6 +169,10 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].actionDefinition?[2].textEquivalent, "Serotonin Norepinephrine Reuptake Inhibitors (Choose a maximum of one or doument reasons for exception)")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].actionDefinition?[3].textEquivalent, "Norepinephrine-Serotonin Modulators (Choose a maximum of one or document reasons for exception)")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].document?.contentType, "text/html")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].document?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/cqif-qualityOfEvidence")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].document?.extension_fhir?[0].valueCodeableConcept?.coding?[0].code, "high")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].document?.extension_fhir?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/evidence-quality")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].document?.extension_fhir?[0].valueCodeableConcept?.text, "High Quality")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].document?.title, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].document?.url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[1].actionDefinition?[0].documentation?[0].type, RelatedArtifactType(rawValue: "justification")!)
@@ -274,9 +276,9 @@ class PlanDefinitionTests: XCTestCase {
 	func runPlanDefinition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-protocol-example.json")
 		
-		XCTAssertEqual(inst.actionDefinition?[0].activityDefinition?.reference, "#procedure")
 		XCTAssertEqual(inst.actionDefinition?[0].condition?[0].expression, "Observation of Obesity or BMI Measured in Past 2 Years")
 		XCTAssertEqual(inst.actionDefinition?[0].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
+		XCTAssertEqual(inst.actionDefinition?[0].definition?.reference, "#procedure")
 		XCTAssertEqual(inst.actionDefinition?[0].label, "Measure BMI")
 		XCTAssertEqual(inst.actionDefinition?[0].title, "Measure, Weight, Height, Waist, Circumference; Calculate BMI")
 		XCTAssertEqual(inst.contained?[0].id, "procedure")

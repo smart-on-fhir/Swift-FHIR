@@ -2,7 +2,7 @@
 //  FamilyMemberHistoryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -84,9 +84,11 @@ class FamilyMemberHistoryTests: XCTestCase {
 		XCTAssertEqual(inst.condition?[0].onsetAge?.unit, "yr")
 		XCTAssertEqual(inst.condition?[0].onsetAge?.value, "74")
 		XCTAssertEqual(inst.date?.description, "2011-03-18")
+		XCTAssertEqual(inst.definition?[0].display, "Family Member History Questionnaire")
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "male")!)
 		XCTAssertEqual(inst.id, "father")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
+		XCTAssertEqual(inst.notDone, false)
 		XCTAssertEqual(inst.patient?.display, "Peter Patient")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.relationship?.coding?[0].code, "father")

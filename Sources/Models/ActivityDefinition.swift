@@ -2,7 +2,7 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -26,8 +26,8 @@ open class ActivityDefinition: DomainResource {
 	/// What part of body to perform on.
 	public var bodySite: [CodeableConcept]?
 	
-	/// High-level categorization of the type of activity.
-	public var category: ActivityDefinitionCategory?
+	/// E.g. Education, Assessment, Treatment, etc.
+	public var category: CodeableConcept?
 	
 	/// Detail type of activity.
 	public var code: CodeableConcept?
@@ -64,6 +64,9 @@ open class ActivityDefinition: DomainResource {
 	
 	/// Intended jurisdiction for activity definition (if applicable).
 	public var jurisdiction: [CodeableConcept]?
+	
+	/// Kind of resource.
+	public var kind: FHIRString?
 	
 	/// Last review date for the activity definition.
 	public var lastReviewDate: FHIRDate?
@@ -141,7 +144,7 @@ open class ActivityDefinition: DomainResource {
 		
 		approvalDate = try createInstance(type: FHIRDate.self, for: "approvalDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? approvalDate
 		bodySite = try createInstances(of: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
-		category = createEnum(type: ActivityDefinitionCategory.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors) ?? category
+		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
 		contributor = try createInstances(of: Contributor.self, for: "contributor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contributor
@@ -154,6 +157,7 @@ open class ActivityDefinition: DomainResource {
 		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
+		kind = try createInstance(type: FHIRString.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? kind
 		lastReviewDate = try createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastReviewDate
 		library = try createInstances(of: Reference.self, for: "library", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? library
 		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
@@ -200,6 +204,7 @@ open class ActivityDefinition: DomainResource {
 		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
+		self.kind?.decorate(json: &json, withKey: "kind", errors: &errors)
 		self.lastReviewDate?.decorate(json: &json, withKey: "lastReviewDate", errors: &errors)
 		arrayDecorate(json: &json, withKey: "library", using: self.library, errors: &errors)
 		self.location?.decorate(json: &json, withKey: "location", errors: &errors)

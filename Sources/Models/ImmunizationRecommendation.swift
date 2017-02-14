@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -99,16 +99,18 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 	/// Patient observations supporting recommendation.
 	public var supportingPatientInformation: [Reference]?
 	
+	/// Disease to be immunized against.
+	public var targetDisease: CodeableConcept?
+	
 	/// Vaccine recommendation applies to.
 	public var vaccineCode: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime, forecastStatus: CodeableConcept, vaccineCode: CodeableConcept) {
+	public convenience init(date: DateTime, forecastStatus: CodeableConcept) {
 		self.init()
 		self.date = date
 		self.forecastStatus = forecastStatus
-		self.vaccineCode = vaccineCode
 	}
 	
 	
@@ -128,10 +130,8 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		protocol_fhir = try createInstance(type: ImmunizationRecommendationRecommendationProtocol.self, for: "protocol", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? protocol_fhir
 		supportingImmunization = try createInstances(of: Reference.self, for: "supportingImmunization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingImmunization
 		supportingPatientInformation = try createInstances(of: Reference.self, for: "supportingPatientInformation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingPatientInformation
+		targetDisease = try createInstance(type: CodeableConcept.self, for: "targetDisease", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? targetDisease
 		vaccineCode = try createInstance(type: CodeableConcept.self, for: "vaccineCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? vaccineCode
-		if nil == vaccineCode && !presentKeys.contains("vaccineCode") {
-			errors.append(FHIRValidationError(missing: "vaccineCode"))
-		}
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -152,10 +152,8 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		self.protocol_fhir?.decorate(json: &json, withKey: "protocol", errors: &errors)
 		arrayDecorate(json: &json, withKey: "supportingImmunization", using: self.supportingImmunization, errors: &errors)
 		arrayDecorate(json: &json, withKey: "supportingPatientInformation", using: self.supportingPatientInformation, errors: &errors)
+		self.targetDisease?.decorate(json: &json, withKey: "targetDisease", errors: &errors)
 		self.vaccineCode?.decorate(json: &json, withKey: "vaccineCode", errors: &errors)
-		if nil == self.vaccineCode {
-			errors.append(FHIRValidationError(missing: "vaccineCode"))
-		}
 	}
 }
 

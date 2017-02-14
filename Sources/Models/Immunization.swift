@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -47,14 +47,17 @@ open class Immunization: DomainResource {
 	/// Vaccine manufacturer.
 	public var manufacturer: Reference?
 	
+	/// Flag for whether immunization was given.
+	public var notGiven: FHIRBool?
+	
 	/// Vaccination notes.
 	public var note: [Annotation]?
 	
 	/// Who was immunized.
 	public var patient: Reference?
 	
-	/// Who administered vaccine.
-	public var performer: Reference?
+	/// Who performed event.
+	public var practitioner: [ImmunizationPractitioner]?
 	
 	/// Indicates context the data was recorded in.
 	public var primarySource: FHIRBool?
@@ -64,9 +67,6 @@ open class Immunization: DomainResource {
 	
 	/// Indicates the source of a secondarily reported record.
 	public var reportOrigin: CodeableConcept?
-	
-	/// Who ordered vaccination.
-	public var requester: Reference?
 	
 	/// How vaccine entered body.
 	public var route: CodeableConcept?
@@ -84,18 +84,15 @@ open class Immunization: DomainResource {
 	/// Vaccine product administered.
 	public var vaccineCode: CodeableConcept?
 	
-	/// Flag for whether immunization was given.
-	public var wasNotGiven: FHIRBool?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, primarySource: FHIRBool, status: MedicationAdministrationStatus, vaccineCode: CodeableConcept, wasNotGiven: FHIRBool) {
+	public convenience init(notGiven: FHIRBool, patient: Reference, primarySource: FHIRBool, status: MedicationAdministrationStatus, vaccineCode: CodeableConcept) {
 		self.init()
+		self.notGiven = notGiven
 		self.patient = patient
 		self.primarySource = primarySource
 		self.status = status
 		self.vaccineCode = vaccineCode
-		self.wasNotGiven = wasNotGiven
 	}
 	
 	
@@ -111,19 +108,22 @@ open class Immunization: DomainResource {
 		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
 		lotNumber = try createInstance(type: FHIRString.self, for: "lotNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lotNumber
 		manufacturer = try createInstance(type: Reference.self, for: "manufacturer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manufacturer
+		notGiven = try createInstance(type: FHIRBool.self, for: "notGiven", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? notGiven
+		if nil == notGiven && !presentKeys.contains("notGiven") {
+			errors.append(FHIRValidationError(missing: "notGiven"))
+		}
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
-		performer = try createInstance(type: Reference.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
+		practitioner = try createInstances(of: ImmunizationPractitioner.self, for: "practitioner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? practitioner
 		primarySource = try createInstance(type: FHIRBool.self, for: "primarySource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? primarySource
 		if nil == primarySource && !presentKeys.contains("primarySource") {
 			errors.append(FHIRValidationError(missing: "primarySource"))
 		}
 		reaction = try createInstances(of: ImmunizationReaction.self, for: "reaction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reaction
 		reportOrigin = try createInstance(type: CodeableConcept.self, for: "reportOrigin", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reportOrigin
-		requester = try createInstance(type: Reference.self, for: "requester", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requester
 		route = try createInstance(type: CodeableConcept.self, for: "route", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? route
 		site = try createInstance(type: CodeableConcept.self, for: "site", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? site
 		status = createEnum(type: MedicationAdministrationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
@@ -134,10 +134,6 @@ open class Immunization: DomainResource {
 		vaccineCode = try createInstance(type: CodeableConcept.self, for: "vaccineCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? vaccineCode
 		if nil == vaccineCode && !presentKeys.contains("vaccineCode") {
 			errors.append(FHIRValidationError(missing: "vaccineCode"))
-		}
-		wasNotGiven = try createInstance(type: FHIRBool.self, for: "wasNotGiven", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? wasNotGiven
-		if nil == wasNotGiven && !presentKeys.contains("wasNotGiven") {
-			errors.append(FHIRValidationError(missing: "wasNotGiven"))
 		}
 		
 		return errors.isEmpty ? nil : errors
@@ -155,19 +151,22 @@ open class Immunization: DomainResource {
 		self.location?.decorate(json: &json, withKey: "location", errors: &errors)
 		self.lotNumber?.decorate(json: &json, withKey: "lotNumber", errors: &errors)
 		self.manufacturer?.decorate(json: &json, withKey: "manufacturer", errors: &errors)
+		self.notGiven?.decorate(json: &json, withKey: "notGiven", errors: &errors)
+		if nil == self.notGiven {
+			errors.append(FHIRValidationError(missing: "notGiven"))
+		}
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		if nil == self.patient {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
-		self.performer?.decorate(json: &json, withKey: "performer", errors: &errors)
+		arrayDecorate(json: &json, withKey: "practitioner", using: self.practitioner, errors: &errors)
 		self.primarySource?.decorate(json: &json, withKey: "primarySource", errors: &errors)
 		if nil == self.primarySource {
 			errors.append(FHIRValidationError(missing: "primarySource"))
 		}
 		arrayDecorate(json: &json, withKey: "reaction", using: self.reaction, errors: &errors)
 		self.reportOrigin?.decorate(json: &json, withKey: "reportOrigin", errors: &errors)
-		self.requester?.decorate(json: &json, withKey: "requester", errors: &errors)
 		self.route?.decorate(json: &json, withKey: "route", errors: &errors)
 		self.site?.decorate(json: &json, withKey: "site", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
@@ -178,10 +177,6 @@ open class Immunization: DomainResource {
 		self.vaccineCode?.decorate(json: &json, withKey: "vaccineCode", errors: &errors)
 		if nil == self.vaccineCode {
 			errors.append(FHIRValidationError(missing: "vaccineCode"))
-		}
-		self.wasNotGiven?.decorate(json: &json, withKey: "wasNotGiven", errors: &errors)
-		if nil == self.wasNotGiven {
-			errors.append(FHIRValidationError(missing: "wasNotGiven"))
 		}
 	}
 }
@@ -218,6 +213,54 @@ open class ImmunizationExplanation: BackboneElement {
 		
 		arrayDecorate(json: &json, withKey: "reason", using: self.reason, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonNotGiven", using: self.reasonNotGiven, errors: &errors)
+	}
+}
+
+
+/**
+Who performed event.
+
+Indicates who or what performed the event.
+*/
+open class ImmunizationPractitioner: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ImmunizationPractitioner" }
+	}
+	
+	/// Individual who was performing.
+	public var actor: Reference?
+	
+	/// What type of performance was done.
+	public var role: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(actor: Reference) {
+		self.init()
+		self.actor = actor
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
+		if nil == actor && !presentKeys.contains("actor") {
+			errors.append(FHIRValidationError(missing: "actor"))
+		}
+		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.actor?.decorate(json: &json, withKey: "actor", errors: &errors)
+		if nil == self.actor {
+			errors.append(FHIRValidationError(missing: "actor"))
+		}
+		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 	}
 }
 

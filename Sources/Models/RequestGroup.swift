@@ -2,7 +2,7 @@
 //  RequestGroup.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -99,7 +99,7 @@ open class RequestGroupAction: BackboneElement {
 	/// Defines whether the action can be selected multiple times.
 	public var cardinalityBehavior: ActionCardinalityBehavior?
 	
-	/// The meaning of the action or its sub-actions.
+	/// Code representing the meaning of the action or sub-actions.
 	public var code: [CodeableConcept]?
 	
 	/// Whether or not the action is applicable.

@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -35,6 +35,9 @@ open class Substance: DomainResource {
 	/// If this describes a specific package/container of the substance.
 	public var instance: [SubstanceInstance]?
 	
+	/// A code to indicate if the substance is actively used.
+	public var status: SubstanceStatus?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(code: CodeableConcept) {
@@ -55,6 +58,7 @@ open class Substance: DomainResource {
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		ingredient = try createInstances(of: SubstanceIngredient.self, for: "ingredient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ingredient
 		instance = try createInstances(of: SubstanceInstance.self, for: "instance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instance
+		status = createEnum(type: SubstanceStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -71,6 +75,7 @@ open class Substance: DomainResource {
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "ingredient", using: self.ingredient, errors: &errors)
 		arrayDecorate(json: &json, withKey: "instance", using: self.instance, errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 	}
 }
 

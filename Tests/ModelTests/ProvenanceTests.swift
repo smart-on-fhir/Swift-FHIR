@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -43,12 +43,11 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].role?.code, "author")
 		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
 		XCTAssertEqual(inst.agent?[0].whoReference?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.entity?[0].reference?.display, "Biocompute example")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.type?.coding?[0].code, "biocompute")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.type?.coding?[0].display, "obj.1001")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.type?.coding?[0].system?.absoluteString, "https://hive.biochemistry.gwu.edu")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.value, "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1")
 		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].code, "biocompute")
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].display, "obj.1001")
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].system?.absoluteString, "https://hive.biochemistry.gwu.edu")
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.value, "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1")
 		XCTAssertEqual(inst.id, "example-biocompute-object")
 		XCTAssertEqual(inst.period?.start?.description, "2017-06-06")
 		XCTAssertEqual(inst.reason?[0].display, "antiviral resistance detection")
@@ -76,12 +75,11 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].role?.code, "author")
 		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
 		XCTAssertEqual(inst.agent?[0].whoReference?.reference, "Patient/example")
-		XCTAssertEqual(inst.entity?[0].reference?.display, "CWL example")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.type?.coding?[0].code, "CWL")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.type?.coding?[0].display, "lobSTR")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.type?.coding?[0].system?.absoluteString, "https://github.com/common-workflow-language/workflows")
-		XCTAssertEqual(inst.entity?[0].reference?.identifier?.value, "https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl")
 		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].code, "CWL")
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].display, "lobSTR")
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].system?.absoluteString, "https://github.com/common-workflow-language/workflows")
+		XCTAssertEqual(inst.entity?[0].whatIdentifier?.value, "https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl")
 		XCTAssertEqual(inst.id, "example-cwl")
 		XCTAssertEqual(inst.period?.start?.description, "2016-11-30")
 		XCTAssertEqual(inst.reason?[0].display, "profiling Short Tandem Repeats (STRs) from high throughput sequencing data.")
@@ -154,9 +152,9 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].role?.code, "DEV")
 		XCTAssertEqual(inst.agent?[1].role?.system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.agent?[1].whoReference?.reference, "Device/software")
-		XCTAssertEqual(inst.entity?[0].reference?.display, "CDA Document in XDS repository")
-		XCTAssertEqual(inst.entity?[0].reference?.reference, "DocumentReference/example")
 		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
+		XCTAssertEqual(inst.entity?[0].whatReference?.display, "CDA Document in XDS repository")
+		XCTAssertEqual(inst.entity?[0].whatReference?.reference, "DocumentReference/example")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.location?.reference, "Location/1")
 		XCTAssertEqual(inst.period?.end?.description, "2015-06-28")

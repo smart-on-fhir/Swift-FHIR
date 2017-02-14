@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -41,13 +41,13 @@ class MessageHeaderTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "messageheader-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.data?[0].reference, "Patient/example")
 		XCTAssertEqual(inst.destination?[0].endpoint?.absoluteString, "llp:10.11.12.14:5432")
 		XCTAssertEqual(inst.destination?[0].name, "Acme Message Gateway")
 		XCTAssertEqual(inst.destination?[0].target?.reference, "Device/example")
 		XCTAssertEqual(inst.enterer?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.event?.code, "admin-update")
+		XCTAssertEqual(inst.event?.code, "admin-notify")
 		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-type")
+		XCTAssertEqual(inst.focus?[0].reference, "Patient/example")
 		XCTAssertEqual(inst.id, "1cbdfb97-5859-48a4-8301-d54eab818d68")
 		XCTAssertEqual(inst.reason?.coding?[0].code, "admit")
 		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/message-reasons-encounter")

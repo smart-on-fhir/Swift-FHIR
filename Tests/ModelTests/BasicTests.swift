@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -73,6 +73,8 @@ class BasicTests: XCTestCase {
 		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://example.org/do-not-use/fhir-extensions/referral#fulfillingEncounter")
 		XCTAssertEqual(inst.extension_fhir?[2].valueReference?.reference, "Encounter/f201")
 		XCTAssertEqual(inst.id, "referral")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealth.org/basic/identifiers")
+		XCTAssertEqual(inst.identifier?[0].value, "19283746")
 		XCTAssertEqual(inst.modifierExtension?[0].url?.absoluteString, "http://example.org/do-not-use/fhir-extensions/referral#referredForService")
 		XCTAssertEqual(inst.modifierExtension?[0].valueCodeableConcept?.coding?[0].code, "11429006")
 		XCTAssertEqual(inst.modifierExtension?[0].valueCodeableConcept?.coding?[0].display, "Consultation")

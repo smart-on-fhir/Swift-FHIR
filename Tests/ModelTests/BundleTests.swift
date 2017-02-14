@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -122,6 +122,56 @@ class BundleTests: XCTestCase {
 	
 	@discardableResult
 	func runBundle3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-hla-genetics-results-example.json")
+		
+		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "urn:uuid:b0a4b18e-94e7-4b1b-8031-c7ae4bdd8db9")
+		XCTAssertEqual(inst.entry?[0].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[0].request?.url?.absoluteString, "DiagnosticReport")
+		XCTAssertEqual(inst.entry?[1].fullUrl?.absoluteString, "urn:uuid:8200dab6-18a2-4550-b913-a7db480c0804")
+		XCTAssertEqual(inst.entry?[1].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[1].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[2].fullUrl?.absoluteString, "urn:uuid:7c393185-f15c-45bc-a714-c0fdbea32675")
+		XCTAssertEqual(inst.entry?[2].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[2].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[3].fullUrl?.absoluteString, "urn:uuid:65c85f14-c3a0-4b72-818f-820e04fcc621")
+		XCTAssertEqual(inst.entry?[3].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[3].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[4].fullUrl?.absoluteString, "urn:uuid:fbba9fe7-0ece-4ec1-9233-a437a8d242a0")
+		XCTAssertEqual(inst.entry?[4].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[4].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[5].fullUrl?.absoluteString, "urn:uuid:cbabf93e-1b4b-46f2-ba1e-d84862670670")
+		XCTAssertEqual(inst.entry?[5].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[5].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[6].fullUrl?.absoluteString, "urn:uuid:c233ad3d-1572-48d6-93da-0a583535e138")
+		XCTAssertEqual(inst.entry?[6].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[6].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[7].fullUrl?.absoluteString, "urn:uuid:05fa52d7-5c67-460a-8722-d3460b24d6fe")
+		XCTAssertEqual(inst.entry?[7].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[7].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[8].fullUrl?.absoluteString, "urn:uuid:db69e549-6267-4777-b4b9-8813f3329309")
+		XCTAssertEqual(inst.entry?[8].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[8].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.entry?[9].fullUrl?.absoluteString, "urn:uuid:bb55c2bc-5ad2-4bc1-8ff3-c407d06b12d0")
+		XCTAssertEqual(inst.entry?[9].request?.method, HTTPVerb(rawValue: "POST")!)
+		XCTAssertEqual(inst.entry?[9].request?.url?.absoluteString, "Sequence")
+		XCTAssertEqual(inst.id, "hla-1")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "transaction")!)
+		
+		return inst
+	}
+	
+	func testBundle4() {
+		do {
+			let instance = try runBundle4()
+			try runBundle4(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runBundle4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "document-example-dischargesummary.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://fhir.healthintersections.com.au/open/Composition/180f219f-97a8-486d-99d9-ed631fe4fc57")
@@ -157,10 +207,10 @@ class BundleTests: XCTestCase {
 		return inst
 	}
 	
-	func testBundle4() {
+	func testBundle5() {
 		do {
-			let instance = try runBundle4()
-			try runBundle4(instance.asJSON())
+			let instance = try runBundle5()
+			try runBundle5(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
@@ -168,7 +218,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
+	func runBundle5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-examples-general-template.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/71")
@@ -198,10 +248,10 @@ class BundleTests: XCTestCase {
 		return inst
 	}
 	
-	func testBundle5() {
+	func testBundle6() {
 		do {
-			let instance = try runBundle5()
-			try runBundle5(instance.asJSON())
+			let instance = try runBundle6()
+			try runBundle6(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
@@ -209,7 +259,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
+	func runBundle6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-cypress-template.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Patient/71")
@@ -249,10 +299,10 @@ class BundleTests: XCTestCase {
 		return inst
 	}
 	
-	func testBundle6() {
+	func testBundle7() {
 		do {
-			let instance = try runBundle6()
-			try runBundle6(instance.asJSON())
+			let instance = try runBundle7()
+			try runBundle7(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
@@ -260,7 +310,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
+	func runBundle7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-general.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Patient/1")
@@ -300,10 +350,10 @@ class BundleTests: XCTestCase {
 		return inst
 	}
 	
-	func testBundle7() {
+	func testBundle8() {
 		do {
-			let instance = try runBundle7()
-			try runBundle7(instance.asJSON())
+			let instance = try runBundle8()
+			try runBundle8(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
@@ -311,7 +361,7 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
+	func runBundle8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-examples-general.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Practitioner/13")
@@ -351,10 +401,10 @@ class BundleTests: XCTestCase {
 		return inst
 	}
 	
-	func testBundle8() {
+	func testBundle9() {
 		do {
-			let instance = try runBundle8()
-			try runBundle8(instance.asJSON())
+			let instance = try runBundle9()
+			try runBundle9(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
@@ -362,7 +412,47 @@ class BundleTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runBundle8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
+	func runBundle9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitionerrole-examples-general.json")
+		
+		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/f003-0")
+		XCTAssertEqual(inst.entry?[0].resource?.id, "f003-0")
+		XCTAssertEqual(inst.entry?[1].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/example-0")
+		XCTAssertEqual(inst.entry?[1].resource?.id, "example-0")
+		XCTAssertEqual(inst.entry?[2].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/example-1")
+		XCTAssertEqual(inst.entry?[2].resource?.id, "example-1")
+		XCTAssertEqual(inst.entry?[3].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/f007-0")
+		XCTAssertEqual(inst.entry?[3].resource?.id, "f007-0")
+		XCTAssertEqual(inst.entry?[4].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/f004-0")
+		XCTAssertEqual(inst.entry?[4].resource?.id, "f004-0")
+		XCTAssertEqual(inst.entry?[5].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/xcda1-0")
+		XCTAssertEqual(inst.entry?[5].resource?.id, "xcda1-0")
+		XCTAssertEqual(inst.entry?[6].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/f202-0")
+		XCTAssertEqual(inst.entry?[6].resource?.id, "f202-0")
+		XCTAssertEqual(inst.entry?[7].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/f201-0")
+		XCTAssertEqual(inst.entry?[7].resource?.id, "f201-0")
+		XCTAssertEqual(inst.entry?[8].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/f203-0")
+		XCTAssertEqual(inst.entry?[8].resource?.id, "f203-0")
+		XCTAssertEqual(inst.entry?[9].fullUrl?.absoluteString, "http://hl7.org/fhir/PractitionerRole/f005-0")
+		XCTAssertEqual(inst.entry?[9].resource?.id, "f005-0")
+		XCTAssertEqual(inst.id, "3ad0687e-f477-468c-afd5-fcc2bf897808")
+		XCTAssertEqual(inst.type, BundleType(rawValue: "collection")!)
+		
+		return inst
+	}
+	
+	func testBundle10() {
+		do {
+			let instance = try runBundle10()
+			try runBundle10(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runBundle10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBundle {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "xds-example.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "urn:uuid:3fdc72f4-a11d-4a9d-9260-a9f745779e1d")

@@ -2,7 +2,7 @@
 //  ImagingManifestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -40,15 +40,15 @@ class ImagingManifestTests: XCTestCase {
 	func runImagingManifest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRImagingManifest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingmanifest-example.json")
 		
-		XCTAssertEqual(inst.author?.reference, "Practitioner/P2")
+		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.authoringTime?.description, "2014-11-20T11:01:20-08:00")
 		XCTAssertEqual(inst.description_fhir, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.patient?.reference, "Patient/dicom")
 		XCTAssertEqual(inst.study?[0].endpoint?[0].reference, "Endpoint/example-iid")
 		XCTAssertEqual(inst.study?[0].endpoint?[1].reference, "Endpoint/example-wadors")
-		XCTAssertEqual(inst.study?[0].imagingStudy?.reference, "ImagingStudy/I3")
-		XCTAssertEqual(inst.study?[0].series?[0].endpoint?[0].reference, "Endpoint/eample-wadors")
+		XCTAssertEqual(inst.study?[0].imagingStudy?.reference, "ImagingStudy/example")
+		XCTAssertEqual(inst.study?[0].series?[0].endpoint?[0].reference, "Endpoint/example-wadors")
 		XCTAssertEqual(inst.study?[0].series?[0].instance?[0].sopClass?.absoluteString, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
 		XCTAssertEqual(inst.study?[0].series?[0].instance?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092902")
 		XCTAssertEqual(inst.study?[0].series?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092901")

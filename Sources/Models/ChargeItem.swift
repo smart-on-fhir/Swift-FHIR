@@ -2,7 +2,7 @@
 //  ChargeItem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -10,7 +10,12 @@ import Foundation
 
 
 /**
-ChargeItem.
+Item containing charge code(s) associated with the provision of healthcare provider products.
+
+The resource ChargeItem describes the provision of healthcare provider products for a certain patient, therefore
+referring not only to the product, but containing in addition details of the provision, like date, time, amounts and
+participating organizations and persons. Main Usage of the ChargeItem is to enable the billing process and internal cost
+allocation.
 */
 open class ChargeItem: DomainResource {
 	override open class var resourceType: String {
@@ -18,19 +23,19 @@ open class ChargeItem: DomainResource {
 	}
 	
 	/// Account to place this charge.
-	public var account: Reference?
+	public var account: [Reference]?
 	
 	/// Anatomical location, if relevant.
 	public var bodysite: [CodeableConcept]?
 	
-	/// Code of the ChargeItem.
+	/// A code that identifies the charge, like a billing code.
 	public var code: CodeableConcept?
 	
 	/// Encounter / Episode associated with event.
 	public var context: Reference?
 	
-	/// Definition of the Charge Item.
-	public var definition: [Reference]?
+	/// Defining information about the code of this charge item.
+	public var definition: [FHIRURL]?
 	
 	/// Date the charge item was entered.
 	public var enteredDate: DateTime?
@@ -74,14 +79,17 @@ open class ChargeItem: DomainResource {
 	/// Quantity of which the charge item has been serviced.
 	public var quantity: Quantity?
 	
-	/// Why was the charged service rendered?.
-	public var reasonCodeableConcept: [CodeableConcept]?
+	/// Why was the charged  service rendered?.
+	public var reason: [CodeableConcept]?
 	
 	/// Organization requesting the charged service.
 	public var requestingOrganization: Reference?
 	
 	/// Which rendered service is being charged?.
 	public var service: [Reference]?
+	
+	/// The current state of the ChargeItem.
+	public var status: ChargeItemStatus?
 	
 	/// Individual service was done for/to.
 	public var subject: Reference?
@@ -91,8 +99,10 @@ open class ChargeItem: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(subject: Reference) {
+	public convenience init(code: CodeableConcept, status: ChargeItemStatus, subject: Reference) {
 		self.init()
+		self.code = code
+		self.status = status
 		self.subject = subject
 	}
 	
@@ -100,11 +110,14 @@ open class ChargeItem: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		account = try createInstance(type: Reference.self, for: "account", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? account
+		account = try createInstances(of: Reference.self, for: "account", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? account
 		bodysite = try createInstances(of: CodeableConcept.self, for: "bodysite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodysite
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		if nil == code && !presentKeys.contains("code") {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		definition = try createInstances(of: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
+		definition = try createInstances(of: FHIRURL.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
 		enteredDate = try createInstance(type: DateTime.self, for: "enteredDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enteredDate
 		enterer = try createInstance(type: Reference.self, for: "enterer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enterer
 		factorOverride = try createInstance(type: FHIRDecimal.self, for: "factorOverride", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? factorOverride
@@ -119,9 +132,13 @@ open class ChargeItem: DomainResource {
 		performingOrganization = try createInstance(type: Reference.self, for: "performingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performingOrganization
 		priceOverride = try createInstance(type: Money.self, for: "priceOverride", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? priceOverride
 		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		reasonCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
+		reason = try createInstances(of: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
 		requestingOrganization = try createInstance(type: Reference.self, for: "requestingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestingOrganization
 		service = try createInstances(of: Reference.self, for: "service", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? service
+		status = createEnum(type: ChargeItemStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		if nil == subject && !presentKeys.contains("subject") {
 			errors.append(FHIRValidationError(missing: "subject"))
@@ -134,9 +151,12 @@ open class ChargeItem: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.account?.decorate(json: &json, withKey: "account", errors: &errors)
+		arrayDecorate(json: &json, withKey: "account", using: self.account, errors: &errors)
 		arrayDecorate(json: &json, withKey: "bodysite", using: self.bodysite, errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		if nil == self.code {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		self.enteredDate?.decorate(json: &json, withKey: "enteredDate", errors: &errors)
@@ -153,9 +173,13 @@ open class ChargeItem: DomainResource {
 		self.performingOrganization?.decorate(json: &json, withKey: "performingOrganization", errors: &errors)
 		self.priceOverride?.decorate(json: &json, withKey: "priceOverride", errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonCodeableConcept", using: self.reasonCodeableConcept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reason", using: self.reason, errors: &errors)
 		self.requestingOrganization?.decorate(json: &json, withKey: "requestingOrganization", errors: &errors)
 		arrayDecorate(json: &json, withKey: "service", using: self.service, errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))

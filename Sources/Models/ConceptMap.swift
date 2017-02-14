@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -173,6 +173,9 @@ open class ConceptMapGroup: BackboneElement {
 	/// Specific version of the  code system.
 	public var targetVersion: FHIRString?
 	
+	/// When no match in the mappings.
+	public var unmapped: ConceptMapGroupUnmapped?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(element: [ConceptMapGroupElement]) {
@@ -192,6 +195,7 @@ open class ConceptMapGroup: BackboneElement {
 		sourceVersion = try createInstance(type: FHIRString.self, for: "sourceVersion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceVersion
 		target = try createInstance(type: FHIRURL.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
 		targetVersion = try createInstance(type: FHIRString.self, for: "targetVersion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? targetVersion
+		unmapped = try createInstance(type: ConceptMapGroupUnmapped.self, for: "unmapped", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? unmapped
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -207,6 +211,7 @@ open class ConceptMapGroup: BackboneElement {
 		self.sourceVersion?.decorate(json: &json, withKey: "sourceVersion", errors: &errors)
 		self.target?.decorate(json: &json, withKey: "target", errors: &errors)
 		self.targetVersion?.decorate(json: &json, withKey: "targetVersion", errors: &errors)
+		self.unmapped?.decorate(json: &json, withKey: "unmapped", errors: &errors)
 	}
 }
 
@@ -224,6 +229,9 @@ open class ConceptMapGroupElement: BackboneElement {
 	/// Identifies element being mapped.
 	public var code: FHIRString?
 	
+	/// Display for the code.
+	public var display: FHIRString?
+	
 	/// Concept in target system for element.
 	public var target: [ConceptMapGroupElementTarget]?
 	
@@ -232,6 +240,7 @@ open class ConceptMapGroupElement: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
 		target = try createInstances(of: ConceptMapGroupElementTarget.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
 		
 		return errors.isEmpty ? nil : errors
@@ -241,6 +250,7 @@ open class ConceptMapGroupElement: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		arrayDecorate(json: &json, withKey: "target", using: self.target, errors: &errors)
 	}
 }
@@ -265,6 +275,12 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 	/// Other elements required for this mapping (from context).
 	public var dependsOn: [ConceptMapGroupElementTargetDependsOn]?
 	
+	/// Display for the code.
+	public var dependsOndisplay: FHIRString?
+	
+	/// Display for the code.
+	public var display: FHIRString?
+	
 	/// The equivalence between the source and target concepts (counting for the dependencies and products). The
 	/// equivalence is read from target to source (e.g. the target is 'wider' than the source).
 	public var equivalence: ConceptMapEquivalence?
@@ -279,6 +295,8 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		comments = try createInstance(type: FHIRString.self, for: "comments", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comments
 		dependsOn = try createInstances(of: ConceptMapGroupElementTargetDependsOn.self, for: "dependsOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dependsOn
+		dependsOndisplay = try createInstance(type: FHIRString.self, for: "dependsOndisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dependsOndisplay
+		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
 		equivalence = createEnum(type: ConceptMapEquivalence.self, for: "equivalence", in: json, presentKeys: &presentKeys, errors: &errors) ?? equivalence
 		product = try createInstances(of: ConceptMapGroupElementTargetDependsOn.self, for: "product", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? product
 		
@@ -291,6 +309,8 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.comments?.decorate(json: &json, withKey: "comments", errors: &errors)
 		arrayDecorate(json: &json, withKey: "dependsOn", using: self.dependsOn, errors: &errors)
+		self.dependsOndisplay?.decorate(json: &json, withKey: "dependsOndisplay", errors: &errors)
+		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		self.equivalence?.decorate(json: &json, withKey: "equivalence", errors: &errors)
 		arrayDecorate(json: &json, withKey: "product", using: self.product, errors: &errors)
 	}
@@ -354,6 +374,66 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 			errors.append(FHIRValidationError(missing: "property"))
 		}
 		self.system?.decorate(json: &json, withKey: "system", errors: &errors)
+	}
+}
+
+
+/**
+When no match in the mappings.
+
+What to do when there is no match in the mappings in the group.
+*/
+open class ConceptMapGroupUnmapped: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ConceptMapGroupUnmapped" }
+	}
+	
+	/// Fixed code when mode = fixed.
+	public var code: FHIRString?
+	
+	/// Display for the code.
+	public var display: FHIRString?
+	
+	/// Defines which action to take if there is no match in the group. One of 3 actions is possible: use the unmapped
+	/// code (this is useful when doing a mapping between versions, and only a few codes have changed), use a fixed code
+	/// (a default code), or alternatively, a reference to a different concept map can be provided (by canonical URL).
+	public var mode: ConceptMapGroupUnmappedMode?
+	
+	/// Canonical URL for other concept map.
+	public var url: FHIRURL?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(mode: ConceptMapGroupUnmappedMode) {
+		self.init()
+		self.mode = mode
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
+		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
+		mode = createEnum(type: ConceptMapGroupUnmappedMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
+		if nil == mode && !presentKeys.contains("mode") {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
+		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
+		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
+		if nil == self.mode {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
+		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
 	}
 }
 

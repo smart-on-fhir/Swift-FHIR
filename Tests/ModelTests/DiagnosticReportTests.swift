@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -58,8 +58,8 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.contained?[7].id, "r8")
 		XCTAssertEqual(inst.contained?[8].id, "r9")
 		XCTAssertEqual(inst.contained?[9].id, "r10")
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
 		XCTAssertEqual(inst.effectiveDateTime?.description, "2011-03-04T08:30:00+11:00")
-		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/lab/reports")
 		XCTAssertEqual(inst.identifier?[0].value, "5234342")
@@ -111,8 +111,6 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.issued?.description, "2008-06-18T09:23:00+10:00")
 		XCTAssertEqual(inst.performer?[0].actor?.display, "Dr Henry Seven")
 		XCTAssertEqual(inst.performer?[0].actor?.reference, "Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809")
-		XCTAssertEqual(inst.performer?[0].onBehalfOf?.display, "Acme Imaging Diagnostics")
-		XCTAssertEqual(inst.performer?[0].onBehalfOf?.reference, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].code, "66862007")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].display, "Radiologist")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -139,6 +137,7 @@ class DiagnosticReportTests: XCTestCase {
 	func runDiagnosticReport3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-f001-bloodexam.json")
 		
+		XCTAssertEqual(inst.basedOn?[0].reference, "#req")
 		XCTAssertEqual(inst.category?.coding?[0].code, "252275004")
 		XCTAssertEqual(inst.category?.coding?[0].display, "Haematology test")
 		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -149,7 +148,6 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.conclusion, "Core lab")
 		XCTAssertEqual(inst.contained?[0].id, "req")
-		XCTAssertEqual(inst.effectiveDateTime?.description, "2013-04-02")
 		XCTAssertEqual(inst.id, "f001")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.bmc.nl/zorgportal/identifiers/reports")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
@@ -157,7 +155,6 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.issued?.description, "2013-05-15T19:32:52+01:00")
 		XCTAssertEqual(inst.performer?[0].actor?.display, "Burgers University Medical Centre")
 		XCTAssertEqual(inst.performer?[0].actor?.reference, "Organization/f001")
-		XCTAssertEqual(inst.request?[0].reference, "#req")
 		XCTAssertEqual(inst.result?[0].reference, "Observation/f001")
 		XCTAssertEqual(inst.result?[1].reference, "Observation/f002")
 		XCTAssertEqual(inst.result?[2].reference, "Observation/f003")
@@ -226,6 +223,7 @@ class DiagnosticReportTests: XCTestCase {
 	func runDiagnosticReport5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-f202-bloodculture.json")
 		
+		XCTAssertEqual(inst.basedOn?[0].reference, "#req")
 		XCTAssertEqual(inst.category?.coding?[0].code, "15220000")
 		XCTAssertEqual(inst.category?.coding?[0].display, "Laboratory test")
 		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -239,12 +237,10 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.codedDiagnosis?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.conclusion, "Blood culture tested positive on staphylococcus aureus")
 		XCTAssertEqual(inst.contained?[0].id, "req")
-		XCTAssertEqual(inst.effectiveDateTime?.description, "2013-03-11T03:45:00+01:00")
 		XCTAssertEqual(inst.id, "f202")
 		XCTAssertEqual(inst.issued?.description, "2013-03-11T10:28:00+01:00")
 		XCTAssertEqual(inst.performer?[0].actor?.display, "AUMC")
 		XCTAssertEqual(inst.performer?[0].actor?.reference, "Organization/f201")
-		XCTAssertEqual(inst.request?[0].reference, "#req")
 		XCTAssertEqual(inst.result?[0].display, "Results for staphylococcus analysis on Roel's blood culture")
 		XCTAssertEqual(inst.result?[0].reference, "Observation/f206")
 		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
@@ -392,6 +388,7 @@ class DiagnosticReportTests: XCTestCase {
 	func runDiagnosticReport9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDiagnosticReport {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-example-pgx.json")
 		
+		XCTAssertEqual(inst.basedOn?[0].reference, "ProcedureRequest/example-pgx")
 		XCTAssertEqual(inst.code?.coding?[0].code, "PGxReport")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Pharmacogenetics Report")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "https://system/PGxReport")
@@ -406,7 +403,6 @@ class DiagnosticReportTests: XCTestCase {
 		XCTAssertEqual(inst.presentedForm?[0].hash, Base64Binary(value: "571ef9c5655840f324e679072ed62b1b95eef8a0"))
 		XCTAssertEqual(inst.presentedForm?[0].language, "en")
 		XCTAssertEqual(inst.presentedForm?[0].title, "Pharmacogenetics Report")
-		XCTAssertEqual(inst.request?[0].reference, "ProcedureRequest/example-pgx")
 		XCTAssertEqual(inst.result?[0].reference, "Observation/example-phenotype")
 		XCTAssertEqual(inst.status, DiagnosticReportStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.display, "Bob Smith")

@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -23,6 +23,9 @@ open class DiagnosticReport: DomainResource {
 		get { return "DiagnosticReport" }
 	}
 	
+	/// What was requested.
+	public var basedOn: [Reference]?
+	
 	/// Service category.
 	public var category: CodeableConcept?
 	
@@ -35,16 +38,16 @@ open class DiagnosticReport: DomainResource {
 	/// Clinical Interpretation of test results.
 	public var conclusion: FHIRString?
 	
+	/// Health care event when test ordered.
+	public var context: Reference?
+	
 	/// Clinically Relevant time/time-period for report.
 	public var effectiveDateTime: DateTime?
 	
 	/// Clinically Relevant time/time-period for report.
 	public var effectivePeriod: Period?
 	
-	/// Health care event when test ordered.
-	public var encounter: Reference?
-	
-	/// Id for external references to this report.
+	/// Business Identifer for report.
 	public var identifier: [Identifier]?
 	
 	/// Key images associated with this report.
@@ -61,9 +64,6 @@ open class DiagnosticReport: DomainResource {
 	
 	/// Entire report as issued.
 	public var presentedForm: [Attachment]?
-	
-	/// What was requested.
-	public var request: [Reference]?
 	
 	/// Observations - simple, or complex nested groups.
 	public var result: [Reference]?
@@ -89,6 +89,7 @@ open class DiagnosticReport: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
 		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		if nil == code && !presentKeys.contains("code") {
@@ -96,16 +97,15 @@ open class DiagnosticReport: DomainResource {
 		}
 		codedDiagnosis = try createInstances(of: CodeableConcept.self, for: "codedDiagnosis", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? codedDiagnosis
 		conclusion = try createInstance(type: FHIRString.self, for: "conclusion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? conclusion
+		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		effectiveDateTime = try createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveDateTime
 		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
-		encounter = try createInstance(type: Reference.self, for: "encounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? encounter
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		image = try createInstances(of: DiagnosticReportImage.self, for: "image", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? image
 		imagingStudy = try createInstances(of: Reference.self, for: "imagingStudy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? imagingStudy
 		issued = try createInstance(type: Instant.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
 		performer = try createInstances(of: DiagnosticReportPerformer.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
 		presentedForm = try createInstances(of: Attachment.self, for: "presentedForm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? presentedForm
-		request = try createInstances(of: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
 		result = try createInstances(of: Reference.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? result
 		specimen = try createInstances(of: Reference.self, for: "specimen", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specimen
 		status = createEnum(type: DiagnosticReportStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
@@ -120,6 +120,7 @@ open class DiagnosticReport: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		if nil == self.code {
@@ -127,16 +128,15 @@ open class DiagnosticReport: DomainResource {
 		}
 		arrayDecorate(json: &json, withKey: "codedDiagnosis", using: self.codedDiagnosis, errors: &errors)
 		self.conclusion?.decorate(json: &json, withKey: "conclusion", errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.effectiveDateTime?.decorate(json: &json, withKey: "effectiveDateTime", errors: &errors)
 		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
-		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "image", using: self.image, errors: &errors)
 		arrayDecorate(json: &json, withKey: "imagingStudy", using: self.imagingStudy, errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
 		arrayDecorate(json: &json, withKey: "performer", using: self.performer, errors: &errors)
 		arrayDecorate(json: &json, withKey: "presentedForm", using: self.presentedForm, errors: &errors)
-		arrayDecorate(json: &json, withKey: "request", using: self.request, errors: &errors)
 		arrayDecorate(json: &json, withKey: "result", using: self.result, errors: &errors)
 		arrayDecorate(json: &json, withKey: "specimen", using: self.specimen, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
@@ -210,9 +210,6 @@ open class DiagnosticReportPerformer: BackboneElement {
 	/// Practitioner or Organization  participant.
 	public var actor: Reference?
 	
-	/// Organization was acting for.
-	public var onBehalfOf: Reference?
-	
 	/// Type of performer.
 	public var role: CodeableConcept?
 	
@@ -231,7 +228,6 @@ open class DiagnosticReportPerformer: BackboneElement {
 		if nil == actor && !presentKeys.contains("actor") {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
-		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
 		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
 		
 		return errors.isEmpty ? nil : errors
@@ -244,7 +240,6 @@ open class DiagnosticReportPerformer: BackboneElement {
 		if nil == self.actor {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
-		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
 		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 	}
 }

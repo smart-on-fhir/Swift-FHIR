@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -56,6 +56,9 @@ open class Device: DomainResource {
 	/// Patient to whom Device is affixed.
 	public var patient: Reference?
 	
+	/// Safety Characteristics of Device.
+	public var safety: [CodeableConcept]?
+	
 	/// Status of the Device availability.
 	public var status: DeviceStatus?
 	
@@ -63,7 +66,7 @@ open class Device: DomainResource {
 	public var type: CodeableConcept?
 	
 	/// Unique Device Identifier (UDI) Barcode string.
-	public var udiCarrier: Identifier?
+	public var udi: DeviceUdi?
 	
 	/// Network address to contact device.
 	public var url: FHIRURL?
@@ -86,9 +89,10 @@ open class Device: DomainResource {
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		owner = try createInstance(type: Reference.self, for: "owner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? owner
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
+		safety = try createInstances(of: CodeableConcept.self, for: "safety", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? safety
 		status = createEnum(type: DeviceStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		udiCarrier = try createInstance(type: Identifier.self, for: "udiCarrier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? udiCarrier
+		udi = try createInstance(type: DeviceUdi.self, for: "udi", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? udi
 		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
 		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
 		
@@ -109,11 +113,72 @@ open class Device: DomainResource {
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.owner?.decorate(json: &json, withKey: "owner", errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
+		arrayDecorate(json: &json, withKey: "safety", using: self.safety, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		self.udiCarrier?.decorate(json: &json, withKey: "udiCarrier", errors: &errors)
+		self.udi?.decorate(json: &json, withKey: "udi", errors: &errors)
 		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
 		self.version?.decorate(json: &json, withKey: "version", errors: &errors)
+	}
+}
+
+
+/**
+Unique Device Identifier (UDI) Barcode string.
+
+[Unique device identifier (UDI)](device.html#5.11.3.2.2) assigned to device label or package.
+*/
+open class DeviceUdi: BackboneElement {
+	override open class var resourceType: String {
+		get { return "DeviceUdi" }
+	}
+	
+	/// UDI Machine Readable Barcode String.
+	public var carrierAIDC: Base64Binary?
+	
+	/// UDI Human Readable Barcode String.
+	public var carrierHRF: FHIRString?
+	
+	/// Mandatory fixed portion of UDI.
+	public var deviceIdentifier: FHIRString?
+	
+	/// A coded entry to indicate how the data was entered.
+	public var entryType: UDIEntryType?
+	
+	/// UDI Issuing Organization.
+	public var issuer: FHIRURL?
+	
+	/// Regional UDI authority.
+	public var jurisdiction: FHIRURL?
+	
+	/// Device Name as appears on UDI label.
+	public var name: FHIRString?
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		carrierAIDC = try createInstance(type: Base64Binary.self, for: "carrierAIDC", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? carrierAIDC
+		carrierHRF = try createInstance(type: FHIRString.self, for: "carrierHRF", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? carrierHRF
+		deviceIdentifier = try createInstance(type: FHIRString.self, for: "deviceIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deviceIdentifier
+		entryType = createEnum(type: UDIEntryType.self, for: "entryType", in: json, presentKeys: &presentKeys, errors: &errors) ?? entryType
+		issuer = try createInstance(type: FHIRURL.self, for: "issuer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issuer
+		jurisdiction = try createInstance(type: FHIRURL.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
+		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.carrierAIDC?.decorate(json: &json, withKey: "carrierAIDC", errors: &errors)
+		self.carrierHRF?.decorate(json: &json, withKey: "carrierHRF", errors: &errors)
+		self.deviceIdentifier?.decorate(json: &json, withKey: "deviceIdentifier", errors: &errors)
+		self.entryType?.decorate(json: &json, withKey: "entryType", errors: &errors)
+		self.issuer?.decorate(json: &json, withKey: "issuer", errors: &errors)
+		self.jurisdiction?.decorate(json: &json, withKey: "jurisdiction", errors: &errors)
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 	}
 }
 

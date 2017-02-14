@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -17,7 +17,7 @@ open class Slot: DomainResource {
 		get { return "Slot" }
 	}
 	
-	/// The style of appointment or patient that has been booked in the slot (not service type).
+	/// The style of appointment or patient that may be booked in the slot (not service type).
 	public var appointmentType: CodeableConcept?
 	
 	/// Comments on the slot to describe any extended information. Such as custom constraints on the slot.

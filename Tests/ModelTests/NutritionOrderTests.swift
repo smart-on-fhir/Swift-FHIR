@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.10959 on 2017-02-01.
+//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
 //  2017, SMART Health IT.
 //
 
@@ -277,7 +277,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.enteralFormula?.additiveProductName, "Acme Lipid Additive")
 		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].code, "lipid")
-		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].display, "Modular lipid enteral formula component")
+		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].display, "Lipid")
 		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/entformula-additive")
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].quantity?.code, "mL")
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].quantity?.system?.absoluteString, "http://unitsofmeasure.org")
@@ -465,7 +465,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.enteralFormula?.additiveProductName, "Acme High Carbohydrate Additive")
 		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].code, "carbohydrate")
-		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].display, "Modular carbohydrate enteral formula component")
+		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].display, "Carbohydrate")
 		XCTAssertEqual(inst.enteralFormula?.additiveType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/entformula-additive")
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].quantity?.code, "[foz_us]")
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].quantity?.system?.absoluteString, "http://unitsofmeasure.org")

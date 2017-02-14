@@ -14,6 +14,7 @@ import ModelTests
 import SwiftFHIR
 #endif
 
+
 /**
 Test how primitives are handled during serialization and deserialization.
 */

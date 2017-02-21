@@ -20,7 +20,7 @@ open class HumanName: Element {
 	}
 	
 	/// Family name (often called 'Surname').
-	public var family: FHIRString?
+	public var family: [FHIRString]?
 	
 	/// Given names (not always 'first'). Includes middle names.
 	public var given: [FHIRString]?

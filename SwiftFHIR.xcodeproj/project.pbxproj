@@ -556,7 +556,6 @@
 		EE723FF21DC14AD300C398BA /* RelatedArtifact.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6D1DC148C200C398BA /* RelatedArtifact.swift */; };
 		EE723FF31DC14AD300C398BA /* ServiceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6E1DC148C200C398BA /* ServiceDefinition.swift */; };
 		EE723FF41DC14AD300C398BA /* TestReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE723F6F1DC148C200C398BA /* TestReport.swift */; };
-		EE7B36991E5344D8007B1D73 /* XCTestCase+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B36951E5344D8007B1D73 /* XCTestCase+Local.swift */; };
 		EE7B369B1E534C79007B1D73 /* GraphDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B369A1E534C79007B1D73 /* GraphDefinition.swift */; };
 		EE7B369C1E534C79007B1D73 /* GraphDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B369A1E534C79007B1D73 /* GraphDefinition.swift */; };
 		EE7B369E1E534C96007B1D73 /* GraphDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B369D1E534C96007B1D73 /* GraphDefinitionTests.swift */; };
@@ -929,7 +928,6 @@
 		EE723F781DC148E100C398BA /* CapabilityStatementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapabilityStatementTests.swift; sourceTree = "<group>"; };
 		EE723F791DC148E100C398BA /* ServiceDefinitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDefinitionTests.swift; sourceTree = "<group>"; };
 		EE723F7A1DC148E100C398BA /* TestReportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestReportTests.swift; sourceTree = "<group>"; };
-		EE7B36951E5344D8007B1D73 /* XCTestCase+Local.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Local.swift"; sourceTree = "<group>"; };
 		EE7B369A1E534C79007B1D73 /* GraphDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDefinition.swift; sourceTree = "<group>"; };
 		EE7B369D1E534C96007B1D73 /* GraphDefinitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDefinitionTests.swift; sourceTree = "<group>"; };
 		EE86F3ED1DF9BDE100922994 /* FHIREnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIREnum.swift; sourceTree = "<group>"; };
@@ -2149,7 +2147,6 @@
 				EE02F7E71ACF259B00179969 /* RelatedPersonTests.swift in Sources */,
 				EE31DC5E1D64AC3600B04BEA /* PlanDefinitionTests.swift in Sources */,
 				EEDB873A1E1BE6CE00E53FD4 /* LocalizationTests.swift in Sources */,
-				EE7B36991E5344D8007B1D73 /* XCTestCase+Local.swift in Sources */,
 				EEEE31171BB1FE32008866E2 /* SupplyRequestTests.swift in Sources */,
 				EE02F7D71ACF259B00179969 /* ProcedureRequestTests.swift in Sources */,
 				EE02F7651ACF259B00179969 /* CommunicationTests.swift in Sources */,

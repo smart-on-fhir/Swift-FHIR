@@ -89,8 +89,13 @@ public extension Resource {
 	Reads the resource with the given id from the given server.
 	
 	Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
+	
+	- parameter id:        The id of the resource to read
+	- parameter server:    The server from which to read
+	- parameter asSummary: If true will request a summary of the resource; false by default
+	- parameter callback:  The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public class func read(_ id: String, server: FHIRServer, callback: @escaping FHIRResourceErrorCallback) {
+	public class func read(_ id: String, server: FHIRServer, asSummary: Bool = false, callback: @escaping FHIRResourceErrorCallback) {
 		let path = "\(resourceType)/\(id)"
 		readFrom(path, server: server, callback: callback)
 	}
@@ -100,12 +105,19 @@ public extension Resource {
 	
 	This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
 	
-	- parameter path: The relative path on the server from which to read resource data from
-	- parameter server: The server to use
-	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	- parameter path:      The relative path on the server from which to read resource data from
+	- parameter server:    The server to use
+	- parameter asSummary: If true will request a summary of the resource; false by default
+	- parameter callback:  The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public class func readFrom(_ path: String, server: FHIRServer, callback: @escaping FHIRResourceErrorCallback) {
-		server.performRequest(.GET, path: path, resource: nil, additionalHeaders: nil) { response in
+	public class func readFrom(_ path: String, server: FHIRServer, asSummary: Bool = false, callback: @escaping FHIRResourceErrorCallback) {
+		guard let handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
+			callback(nil, FHIRServerRequestHandler.noneAvailable(for: .GET).error)
+			return
+		}
+		
+		handler.requestSummary = asSummary
+		server.performRequest(against: path, handler: handler) { response in
 			if let error = response.error {
 				callback(nil, error)
 			}
@@ -146,9 +158,14 @@ public extension Resource {
 			callback(FHIRError.resourceAlreadyHasId)
 			return
 		}
+		guard let handler = server.handlerForRequest(withMethod: .POST, resource: self) else {
+			callback(FHIRServerRequestHandler.noneAvailable(for: .POST).error)
+			return
+		}
 		
 		let headers = FHIRRequestHeaders([.prefer: "return=minimal"])
-		server.performRequest(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
+		handler.add(headers: headers)
+		server.performRequest(against: relativeURLBase(), handler: handler) { response in
 			if nil == response.error {
 				self._server = server
 				do {
@@ -181,9 +198,14 @@ public extension Resource {
 			callback(FHIRError.resourceAlreadyHasId)
 			return
 		}
+		guard let handler = server.handlerForRequest(withMethod: .POST, resource: self) else {
+			callback(FHIRServerRequestHandler.noneAvailable(for: .POST).error)
+			return
+		}
 		
 		let headers = FHIRRequestHeaders([.prefer: "return=representation"])
-		server.performRequest(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
+		handler.add(headers: headers)
+		server.performRequest(against: relativeURLBase(), handler: handler) { response in
 			if nil == response.error {
 				self._server = server
 				do {
@@ -236,8 +258,11 @@ public extension Resource {
 	public func update(callback: @escaping FHIRErrorCallback) {
 		if let server = _server {
 			do {
+				guard let handler = server.handlerForRequest(withMethod: .PUT, resource: self) else {
+					throw FHIRServerRequestHandler.noneAvailable(for: .PUT).error!
+				}
 				let path = try relativeURLPath()
-				server.performRequest(.PUT, path: path, resource: self, additionalHeaders: nil) { response in
+				server.performRequest(against: path, handler: handler) { response in
 					do {
 						try response.applyHeaders(to: self)
 					}
@@ -282,7 +307,11 @@ public extension Resource {
 	This implementation issues a DELETE call against the given path on the given server.
 	*/
 	public class func delete(_ path: String, server: FHIRServer, callback: @escaping FHIRErrorCallback) {
-		server.performRequest(.DELETE, path: path, resource: nil, additionalHeaders: nil) { response in
+		guard let handler = server.handlerForRequest(withMethod: .DELETE, resource: nil) else {
+			callback(FHIRServerRequestHandler.noneAvailable(for: .DELETE).error)
+			return
+		}
+		server.performRequest(against: path, handler: handler) { response in
 			// TODO: should we do some header inspection (response.headers)?
 			callback(response.error)
 		}

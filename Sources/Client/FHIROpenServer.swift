@@ -58,28 +58,6 @@ open class FHIROpenServer: FHIRServer {
 	}
 	
 	
-	// MARK: - FHIRServer
-	
-	/**
-	Perform a request of given type against the given path with the (optional) given resource and headers.
-	
-	- parameter method:            The HTTP method type of the request
-	- parameter path:              The relative path on the server to be interacting against
-	- parameter resource:          The resource to be involved in the request, if any
-	- parameter additonalHeaders:  The headers to set on the request
-	- parameter callback:          A callback, likely called asynchronously, returning a response instance
-	*/
-	open func performRequest(_ method: FHIRRequestMethod, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders? = nil, callback: @escaping ((FHIRServerResponse) -> Void)) {
-		if let handler = handlerForRequest(withMethod: method, resource: resource, headers: additionalHeaders) {
-			performRequest(against: path, handler: handler, callback: callback)
-		}
-		else {
-			let res = FHIRServerRequestHandler.noneAvailable(for: method)
-			callback(res)
-		}
-	}
-	
-	
 	// MARK: - Requests
 	
 	/**
@@ -89,20 +67,20 @@ open class FHIROpenServer: FHIRServer {
 	
 	- parameter method:   The request method (GET, PUT, POST or DELETE)
 	- parameter resource: The resource to be involved in the request, if any
+	
 	- returns:            An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
 	*/
-	open func handlerForRequest(withMethod method: FHIRRequestMethod, resource: Resource?, headers: FHIRRequestHeaders? = nil) -> FHIRServerRequestHandler? {
-		let handler = FHIRServerJSONRequestHandler(method, resource: resource)
-		if let headers = headers {
-			handler.add(headers: headers)
-		}
-		return handler
+	open func handlerForRequest(withMethod method: FHIRRequestMethod, resource: Resource?) -> FHIRServerRequestHandler? {
+		return FHIRServerJSONRequestHandler(method, resource: resource)
 	}
 	
 	/**
 	Pre-prepare a mutable URLRequest that the handler subsequently prepares and performs.
 	
+	This implementation simply creates an `URLRequest` against the given url.
+	
 	- parameter url: The url to use for the request
+	- returns: A URLRequest instance
 	*/
 	open func configurableRequest(for url: URL) -> URLRequest {
 		return URLRequest(url: url)
@@ -214,7 +192,7 @@ open class FHIROpenServer: FHIRServer {
 		}
 		
 		// not yet fetched, fetch it
-		CapabilityStatement.readFrom(cababilityStatementPath(), server: self) { resource, error in
+		CapabilityStatement.readFrom("metadata", server: self, asSummary: true) { resource, error in
 			if let conf = resource as? CapabilityStatement {
 				self.cabability = conf
 				callback(nil)
@@ -223,13 +201,6 @@ open class FHIROpenServer: FHIRServer {
 				callback(error ?? FHIRError.error("CapabilityStatement.readFrom() did not return a CapabilityStatement instance but \(resource)"))
 			}
 		}
-	}
-	
-	/** Return the relative path to the cabability statement. This should be "metadata", we're also adding "_summary=true" to only request
-	the summary, not the entire statement.
-	*/
-	open func cababilityStatementPath() -> String {
-		return "metadata?_summary=true"
 	}
 	
 	

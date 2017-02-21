@@ -139,9 +139,13 @@ open class FHIRSearch
 			callback(nil, nil)
 			return
 		}
+		guard let handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
+			callback(nil, FHIRServerRequestHandler.noneAvailable(for: .GET).error)
+			return
+		}
 		
 		busy = true
-		server.performRequest(.GET, path: queryPath, resource: nil, additionalHeaders: nil) { response in
+		server.performRequest(against: queryPath, handler: handler) { response in
 			self.busy = false
 			
 			if let error = response.error {

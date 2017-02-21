@@ -15,6 +15,9 @@ property carries the only useful information.
 */
 public protocol FHIRServerResponse {
 	
+	/// The handler handling the request provoking this response.
+	var handler: FHIRServerRequestHandler? { get }
+	
 	/// The HTTP status code.
 	var status: Int { get }
 	
@@ -34,12 +37,12 @@ public protocol FHIRServerResponse {
 	/**
 	Instantiate a FHIRServerResponse from an URLResponse, Data and an Error.
 	*/
-	init(response: URLResponse, data: Data?, error: Error?)
+	init(handler: FHIRServerRequestHandler, response: URLResponse, data: Data?, error: Error?)
 	
 	/**
 	Instantiate a response that only represents an error, possibly because it wasn't even sent.
 	*/
-	init(error: Error)
+	init(error: Error, handler: FHIRServerRequestHandler?)
 	
 	
 	// MARK: - Responses
@@ -77,6 +80,6 @@ public protocol FHIRServerResponse {
 	/**
 	Represent a response that was not received.
 	*/
-	static func noneReceived() -> Self
+	static func noneReceived(handler: FHIRServerRequestHandler?) -> Self
 }
 

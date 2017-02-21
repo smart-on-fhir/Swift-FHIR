@@ -36,6 +36,13 @@ open class FHIRServerRequestHandler {
 	/// The receiver may hold on to a resource that supplies the request's body data.
 	open var resource: Resource?
 	
+	/// Whether the request should request only a summary of the resource.
+	open var requestSummary = false
+	
+	
+	/**
+	Designated initializer.
+	*/
 	public init(_ method: FHIRRequestMethod, resource: Resource? = nil) {
 		self.method = method
 		self.headers = type(of: self).defaultHeaders
@@ -70,9 +77,17 @@ open class FHIRServerRequestHandler {
 	/**
 	Give the request type a chance to prepare/alter the URL request.
 	
-	Typically the FHIRRequestMethod instance sets the correct HTTPMethod as well as correct FHIR headers.
+	Typically the FHIRRequestMethod instance sets the correct HTTPMethod as well as correct FHIR headers. It will also add the _summary
+	query if `requestSummary` is true, but it **will not** remove the _summary param if it's in the requests's URL but `requestSummary` is
+	false.
 	*/
 	open func prepare(request: inout URLRequest) throws {
+		if requestSummary, let url = request.url, var comps = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+			var query = (comps.queryItems ?? []).filter() { "_summary" != $0.name }
+			query.append(URLQueryItem(name: "_summary", value: "true"))
+			comps.queryItems = query
+			request.url = comps.url
+		}
 		try prepareData()
 		method.prepare(request: &request, body: data)
 		headers.prepare(request: &request)
@@ -90,19 +105,19 @@ open class FHIRServerRequestHandler {
 	*/
 	open func response(response: URLResponse?, data inData: Data? = nil, error: Error? = nil) -> FHIRServerResponse {
 		if let res = response {
-			return type(of: self).ResponseType.init(response: res, data: inData, error: error)
+			return type(of: self).ResponseType.init(handler: self, response: res, data: inData, error: error)
 		}
 		if let error = error {
-			return type(of: self).ResponseType.init(error: error)
+			return type(of: self).ResponseType.init(error: error, handler: self)
 		}
-		return type(of: self).ResponseType.noneReceived()
+		return type(of: self).ResponseType.noneReceived(handler: self)
 	}
 	
 	/**
 	Convenience method to indicate a request that has not actually been sent.
 	*/
 	open func notSent(_ reason: String) -> FHIRServerResponse {
-		return type(of: self).ResponseType.init(error: FHIRError.requestNotSent(reason))
+		return type(of: self).ResponseType.init(error: FHIRError.requestNotSent(reason), handler: self)
 	}
 	
 	/**
@@ -111,7 +126,7 @@ open class FHIRServerRequestHandler {
 	- parameter method: The request type
 	*/
 	open class func noneAvailable(for method: FHIRRequestMethod) -> FHIRServerResponse {
-		return ResponseType.init(error: FHIRError.noRequestHandlerAvailable(method.rawValue))
+		return ResponseType.init(error: FHIRError.noRequestHandlerAvailable(method.rawValue), handler: nil)
 	}
 }
 

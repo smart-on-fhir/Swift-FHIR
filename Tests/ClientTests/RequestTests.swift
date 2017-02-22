@@ -22,6 +22,8 @@ class RequestTests: XCTestCase {
 	
 	func testJSONGETRequest() {
 		let handler = FHIRServerJSONRequestHandler(.GET)
+		var req = URLRequest(url: URL(string: "https://fhir.smarthealthit.org")!)
+		try! handler.prepare(request: &req)
 		XCTAssertEqual("application/fhir+json", handler.headers[.accept])
 	}
 	

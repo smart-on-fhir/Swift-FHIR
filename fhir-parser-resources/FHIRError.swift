@@ -25,7 +25,7 @@ public enum FHIRError: Error, CustomStringConvertible {
 	case requestCannotPrepareBody
 	case requestNotSent(String)
 	case requestError(Int, String)
-	case noRequestHandlerAvailable(String)
+	case noRequestHandlerAvailable(FHIRRequestMethod)
 	case noResponseReceived
 	
 	/// The "Location" response (1st string) specifies a different type than exected (2nd string).
@@ -72,7 +72,7 @@ public enum FHIRError: Error, CustomStringConvertible {
 		case .requestError(let status, let message):
 			return "\("Error".fhir_localized) \(status): \(message)"
 		case .noRequestHandlerAvailable(let type):
-			return "\("No request handler is available for requests of type".fhir_localized) “\(type)”"
+			return "\("No request handler is available for requests of type".fhir_localized) “\(type.rawValue)”"
 		case .noResponseReceived:
 			return "No response received".fhir_localized
 		case .responseLocationHeaderResourceTypeMismatch(let location, let expectedType):

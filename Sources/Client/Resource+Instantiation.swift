@@ -1,5 +1,5 @@
 //
-//  FHIRElement+Utilities.swift
+//  Resource+Instantiation.swift
 //  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 8/14/15.

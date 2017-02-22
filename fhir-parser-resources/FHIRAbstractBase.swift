@@ -177,7 +177,7 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	
 	- returns: The owning `DomainResource` instance or nil
 	*/
-	open var owningResource: DomainResource? {
+	open var _owningResource: DomainResource? {
 		var owner = _owner
 		while nil != owner {
 			if let owner = owner as? DomainResource {
@@ -193,7 +193,7 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	
 	- returns: The owning `Bundle` instance or nil
 	*/
-	open var owningBundle: Bundle? {
+	open var _owningBundle: Bundle? {
 		var owner = _owner
 		while nil != owner {
 			if let owner = owner as? Bundle {

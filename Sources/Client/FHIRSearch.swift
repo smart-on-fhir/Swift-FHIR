@@ -140,7 +140,7 @@ open class FHIRSearch
 			return
 		}
 		guard let handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
-			callback(nil, FHIRServerRequestHandler.noneAvailable(for: .GET).error)
+			callback(nil, FHIRError.noRequestHandlerAvailable(.GET))
 			return
 		}
 		

@@ -90,10 +90,10 @@ open class FHIROpenServer: FHIRServer {
 	Method to execute a request against a given relative URL with a given request/response handler.
 	
 	- parameter path:     The path, relative to the server's base; may include URL query and URL fragment (!)
-	- parameter handler:  The RequestHandler that prepares the request and processes the response
+	- parameter handler:  The FHIRServerRequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performRequest<R: FHIRServerRequestHandler>(against path: String, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
+	open func performRequest(against path: String, handler: FHIRServerRequestHandler, callback: @escaping ((FHIRServerResponse) -> Void)) {
 		guard let url = absoluteURL(for: path, handler: handler) else {
 			let res = handler.notSent("Failed to parse path «\(path)» relative to server base URL")
 			callback(res)
@@ -110,10 +110,10 @@ open class FHIROpenServer: FHIRServer {
 	request handler and converted into the `FHIRServerResponse` that is delivered to you in the callback.
 	
 	- parameter url:      The full URL; may include query parts and fragment (!)
-	- parameter handler:  The RequestHandler that prepares the request and processes the response
+	- parameter handler:  The FHIRServerRequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performRequest<R: FHIRServerRequestHandler>(on url: URL, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
+	open func performRequest(on url: URL, handler: FHIRServerRequestHandler, callback: @escaping ((FHIRServerResponse) -> Void)) {
 		var request = configurableRequest(for: url)
 		do {
 			try handler.prepare(request: &request)

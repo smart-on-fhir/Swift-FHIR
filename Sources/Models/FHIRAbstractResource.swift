@@ -19,7 +19,7 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	
 	/// If this instance lives on a server, this property represents that server.
 	public var _server: FHIRServer? {
-		get { return __server ?? owningResource?._server }
+		get { return __server ?? _owningResource?._server }
 		set { __server = newValue }
 	}
 	var __server: FHIRServer?
@@ -40,7 +40,7 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	- returns:         If possible the appropriate FHIRAbstractBase subclass, instantiated from the given JSON dictionary, Self otherwise
 	- throws:          FHIRValidationError
 	*/
-	public final override class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?) throws -> Self {
+	override public final class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?) throws -> Self {
 		#if !os(Linux)
 		if let type = json["resourceType"] as? String {
 			return try factory(type, json: json, owner: owner, type: self)

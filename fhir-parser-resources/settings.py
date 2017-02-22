@@ -74,6 +74,7 @@ manual_profiles = [
     ]),
     ('../fhir-parser-resources/FHIREnum.swift', None, []),
     ('../fhir-parser-resources/FHIRServer.swift', None, []),
+    ('../fhir-parser-resources/FHIRServerRequestHandler.swift', None, []),
     ('../fhir-parser-resources/FHIRServerResponse.swift', None, []),
     ('../fhir-parser-resources/FHIRError.swift', None, ['FHIRError']),
     ('../fhir-parser-resources/FHIRValidationError.swift', None, ['FHIRValidationError']),

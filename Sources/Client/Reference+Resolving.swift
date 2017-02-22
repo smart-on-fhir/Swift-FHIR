@@ -41,7 +41,7 @@ extension Reference {
 		}
 		
 		// not yet resolved, let's look at contained resources
-		if let contained = owningResource?.containedResource(refid) {
+		if let contained = _owningResource?.containedResource(refid) {
 			if let contained = contained as? T {
 				return contained
 			}
@@ -51,7 +51,7 @@ extension Reference {
 		
 		// not contained, are we in a bundle and the resource is bundled?
 		let refIsRelative = !refid.contains("://") && !refid.hasPrefix("urn:")
-		var bundle = owningBundle
+		var bundle = _owningBundle
 		while nil != bundle {
 			if let entries = bundle?.entry {
 				var refUrl = refid
@@ -70,7 +70,7 @@ extension Reference {
 					}
 				}
 			}
-			bundle = bundle?.owningBundle
+			bundle = bundle?._owningBundle
 		}
 		
 		return nil
@@ -107,14 +107,14 @@ extension Reference {
 			}
 			
 			// relative URL
-			else if let srv = owningResource?._server {
+			else if let srv = _owningResource?._server {
 				server = srv
 			}
 			
 			if let server = server {
 				T.readFrom(path, server: server) { resource, error in
 					if let res = resource {
-						self.owningResource?.didResolveReference(ref.string, resolved: res)
+						self._owningResource?.didResolveReference(ref.string, resolved: res)
 						callback(res as? T)		// `readFrom()` will always instantiate its own type, so this should never turn into nil
 					}
 					else {

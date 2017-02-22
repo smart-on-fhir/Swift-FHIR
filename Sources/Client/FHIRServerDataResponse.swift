@@ -1,6 +1,6 @@
 //
 //  FHIRServerResponse.swift
-//  SwiftSMART
+//  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 3/31/15.
 //  2015, SMART Platforms.
@@ -69,11 +69,6 @@ extension FHIRServerResponse {
 			resource.meta = resource.meta ?? Meta()
 			resource.meta!.versionId = FHIRString(etag)
 		}
-	}
-	
-	/** Initializes with a no-response error. */
-	public static func noneReceived(handler: FHIRServerRequestHandler? = nil) -> Self {
-		return self.init(error: FHIRError.noResponseReceived, handler: handler)
 	}
 	
 	/// Nicely format status code, response headers and response body (if any).
@@ -171,11 +166,6 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 	
 	open func responseResource<T: Resource>(ofType: T.Type) -> T? {
 		return nil
-	}
-	
-	/** Initializes with a no-response error. */
-	public final class func noneReceived(handler: FHIRServerRequestHandler? = nil) -> Self {
-		return self.init(error: FHIRError.noResponseReceived, handler: handler)
 	}
 	
 	/**

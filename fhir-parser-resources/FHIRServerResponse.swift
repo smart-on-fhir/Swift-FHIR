@@ -31,17 +31,6 @@ public protocol FHIRServerResponse {
 	var error: FHIRError? { get }
 	
 	
-	/**
-	Instantiate a FHIRServerResponse from an URLResponse, Data and an Error.
-	*/
-	init(response: URLResponse, data: Data?, error: Error?)
-	
-	/**
-	Instantiate a response that only represents an error, possibly because it wasn't even sent.
-	*/
-	init(error: Error)
-	
-	
 	// MARK: - Responses
 	
 	/**
@@ -73,10 +62,5 @@ public protocol FHIRServerResponse {
 	- parameter to: The resource to apply response data to
 	*/
 	func applyBody(to: Resource) throws
-	
-	/**
-	Represent a response that was not received.
-	*/
-	static func noneReceived() -> Self
 }
 

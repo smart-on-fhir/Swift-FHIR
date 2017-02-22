@@ -27,7 +27,7 @@ extension DomainResource {
 				}
 			}
 		}
-		return owningResource?.containedResource(refid)
+		return _owningResource?.containedResource(refid)
 	}
 	
 	/**

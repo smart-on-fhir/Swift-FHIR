@@ -112,7 +112,7 @@ public extension Resource {
 	*/
 	public class func readFrom(_ path: String, server: FHIRServer, asSummary: Bool = false, callback: @escaping FHIRResourceErrorCallback) {
 		guard let handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
-			callback(nil, FHIRServerRequestHandler.noneAvailable(for: .GET).error)
+			callback(nil, FHIRError.noRequestHandlerAvailable(.GET))
 			return
 		}
 		
@@ -159,7 +159,7 @@ public extension Resource {
 			return
 		}
 		guard let handler = server.handlerForRequest(withMethod: .POST, resource: self) else {
-			callback(FHIRServerRequestHandler.noneAvailable(for: .POST).error)
+			callback(FHIRError.noRequestHandlerAvailable(.POST))
 			return
 		}
 		
@@ -199,7 +199,7 @@ public extension Resource {
 			return
 		}
 		guard let handler = server.handlerForRequest(withMethod: .POST, resource: self) else {
-			callback(FHIRServerRequestHandler.noneAvailable(for: .POST).error)
+			callback(FHIRError.noRequestHandlerAvailable(.POST))
 			return
 		}
 		
@@ -259,7 +259,7 @@ public extension Resource {
 		if let server = _server {
 			do {
 				guard let handler = server.handlerForRequest(withMethod: .PUT, resource: self) else {
-					throw FHIRServerRequestHandler.noneAvailable(for: .PUT).error!
+					throw FHIRError.noRequestHandlerAvailable(.PUT)
 				}
 				let path = try relativeURLPath()
 				server.performRequest(against: path, handler: handler) { response in
@@ -308,7 +308,7 @@ public extension Resource {
 	*/
 	public class func delete(_ path: String, server: FHIRServer, callback: @escaping FHIRErrorCallback) {
 		guard let handler = server.handlerForRequest(withMethod: .DELETE, resource: nil) else {
-			callback(FHIRServerRequestHandler.noneAvailable(for: .DELETE).error)
+			callback(FHIRError.noRequestHandlerAvailable(.DELETE))
 			return
 		}
 		server.performRequest(against: path, handler: handler) { response in

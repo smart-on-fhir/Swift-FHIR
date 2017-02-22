@@ -1,6 +1,6 @@
 //
-//  FHIRServerRequestHandler.swift
-//  SwiftSMART
+//  FHIRServerBaseRequestHandler.swift
+//  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 3/31/15.
 //  2015, SMART Platforms.
@@ -13,22 +13,15 @@ import Models
 
 
 /**
-Base for different request/response handlers.
-
-Would love to make this a protocol but since it has an associated type which does cannot be used for initialization from subclasses -- the
-associated type of the class that implements the method is always used -- it cannot be used nicely. Hence a class.
+Base implementation of `FHIRServerRequestHandler`.
 */
-open class FHIRServerRequestHandler {
-	
-	open class var defaultHeaders: FHIRRequestHeaders {
-		return FHIRRequestHeaders()
-	}
+open class FHIRServerBaseRequestHandler: FHIRServerRequestHandler {
 	
 	/// The HTTP method of the request.
 	open let method: FHIRRequestMethod
 	
 	/// Headers to be used on the request.
-	open var headers: FHIRRequestHeaders
+	open var headers = FHIRRequestHeaders()
 	
 	/// The data to be used in the request body.
 	open var data: Data?
@@ -43,9 +36,8 @@ open class FHIRServerRequestHandler {
 	/**
 	Designated initializer.
 	*/
-	public init(_ method: FHIRRequestMethod, resource: Resource? = nil) {
+	public required init(_ method: FHIRRequestMethod, resource: Resource? = nil) {
 		self.method = method
-		self.headers = type(of: self).defaultHeaders
 		self.resource = resource
 	}
 	
@@ -61,7 +53,6 @@ open class FHIRServerRequestHandler {
 		var hdrs = headers
 		inHeaders.headers.forEach() { hdrs[$0] = $1 }
 		headers = hdrs
-		
 	}
 	
 	/**
@@ -93,40 +84,27 @@ open class FHIRServerRequestHandler {
 		headers.prepare(request: &request)
 	}
 	
-	open class var ResponseType: FHIRServerResponse.Type {
-		return FHIRServerDataResponse.self
-	}
-	
 	
 	// MARK: - Response
 	
 	/**
-	Instantiate an object of ResponseType-type based on the response and data that we get.
+	Instantiate a FHIRServerResponse based on the response and data that we get.
 	*/
 	open func response(response: URLResponse?, data inData: Data? = nil, error: Error? = nil) -> FHIRServerResponse {
 		if let res = response {
-			return type(of: self).ResponseType.init(handler: self, response: res, data: inData, error: error)
+			return FHIRServerDataResponse(handler: self, response: res, data: inData, error: error)
 		}
 		if let error = error {
-			return type(of: self).ResponseType.init(error: error, handler: self)
+			return FHIRServerDataResponse(error: error, handler: self)
 		}
-		return type(of: self).ResponseType.noneReceived(handler: self)
+		return FHIRServerDataResponse(error: FHIRError.noResponseReceived, handler: self)
 	}
 	
 	/**
 	Convenience method to indicate a request that has not actually been sent.
 	*/
 	open func notSent(_ reason: String) -> FHIRServerResponse {
-		return type(of: self).ResponseType.init(error: FHIRError.requestNotSent(reason), handler: self)
-	}
-	
-	/**
-	Convenience method to indicate that no request handler for the given type is available.
-	
-	- parameter method: The request type
-	*/
-	open class func noneAvailable(for method: FHIRRequestMethod) -> FHIRServerResponse {
-		return ResponseType.init(error: FHIRError.noRequestHandlerAvailable(method.rawValue), handler: nil)
+		return FHIRServerDataResponse(error: FHIRError.requestNotSent(reason), handler: self)
 	}
 }
 
@@ -137,14 +115,9 @@ Prepare and handle a request returning JSON data.
 JSON body data can be greated from the resource, if the receiver holds on to one. The header's content type for PUT and POST will be set to
 "application/fhir+json; charset=utf-8" no matter what.
 */
-open class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
-	
-	override open class var defaultHeaders: FHIRRequestHeaders {
-		return FHIRRequestHeaders([.accept: "application/fhir+json"])
-	}
+open class FHIRServerJSONRequestHandler: FHIRServerBaseRequestHandler {
 	
 	open var json: FHIRJSON?
-	
 	
 	override open func prepareData() throws {
 		guard nil == data else {
@@ -159,6 +132,7 @@ open class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 	}
 	
 	override open func prepare(request: inout URLRequest) throws {
+		headers[.accept] = "application/fhir+json"
 		switch method {
 		case .PUT:
 			headers[.contentType] = "application/fhir+json; charset=utf-8"
@@ -170,8 +144,17 @@ open class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 		try super.prepare(request: &request)
 	}
 	
-	override open class var ResponseType: FHIRServerResponse.Type {
-		return FHIRServerJSONResponse.self
+	/**
+	Instantiate a FHIRServerResponse based on the response and data that we get.
+	*/
+	override open func response(response: URLResponse?, data inData: Data? = nil, error: Error? = nil) -> FHIRServerResponse {
+		if let res = response {
+			return FHIRServerJSONResponse(handler: self, response: res, data: inData, error: error)
+		}
+		if let error = error {
+			return FHIRServerJSONResponse(error: error, handler: self)
+		}
+		return FHIRServerJSONResponse(error: FHIRError.noResponseReceived, handler: self)
 	}
 }
 
@@ -182,13 +165,18 @@ PRELIMINARY! Prepare and handle a request returning some type of data.
 If you use this as PUT/POST, you are responsible for setting the `data` property to an appropriate NSData representation. The "Accept" and
 "Content-Type" headers will be set to the `contentType` property
 */
-open class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
+open class FHIRServerDataRequestHandler: FHIRServerBaseRequestHandler {
 	
 	open let contentType: String
 	
-	init(_ type: FHIRRequestMethod, contentType: String) {
+	init(_ method: FHIRRequestMethod, contentType: String) {
 		self.contentType = contentType
-		super.init(type, resource: nil)
+		super.init(method, resource: nil)
+	}
+	
+	public required init(_ method: FHIRRequestMethod, resource: Resource?) {
+		contentType = ""
+		super.init(method, resource: resource)
 	}
 	
 	override open func prepareData() throws {
@@ -207,10 +195,6 @@ open class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 			break
 		}
 		try super.prepare(request: &request)
-	}
-	
-	override open class var ResponseType: FHIRServerResponse.Type {
-		return FHIRServerDataResponse.self
 	}
 }
 

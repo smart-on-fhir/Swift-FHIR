@@ -165,7 +165,7 @@ open class FHIROperation: CustomStringConvertible {
 	*/
 	open func perform(onServer server: FHIRServer, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) throws {
 		guard let handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
-			throw FHIRServerRequestHandler.noneAvailable(for: .GET).error!
+			throw FHIRError.noRequestHandlerAvailable(.GET)
 		}
 		let path = try serverPath()
 		server.performRequest(against: path, handler: handler, callback: callback)

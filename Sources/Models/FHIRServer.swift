@@ -114,7 +114,7 @@ public protocol FHIRServer {
 	
 	- parameter method:   The HTTP method type of the request
 	- parameter resource: The resource to be involved in the request, if any
-	- returns:            A request handler that can be used with the `performRequest()` method
+	- returns:            A request handler that can be used with the `performRequest(against:handler:callback:)` method
 	*/
 	func handlerForRequest(withMethod method: FHIRRequestMethod, resource: Resource?) -> FHIRServerRequestHandler?
 	
@@ -122,9 +122,9 @@ public protocol FHIRServer {
 	Execute a request against a given relative URL with a given request/response handler.
 	
 	- parameter path:     The path, relative to the server's base; may include URL query and URL fragment (!)
-	- parameter handler:  The RequestHandler that prepares the request and processes the response
+	- parameter handler:  The FHIRServerRequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	func performRequest<R: FHIRServerRequestHandler>(against path: String, handler: R, callback: @escaping ((FHIRServerResponse) -> Void))
+	func performRequest(against path: String, handler: FHIRServerRequestHandler, callback: @escaping ((FHIRServerResponse) -> Void))
 }
 

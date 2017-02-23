@@ -21,13 +21,13 @@ Test how the _summary flag and resource validation interplays.
 class SummaryTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> CapabilityStatement {
-		let json = try Bundle(for: type(of: self)).fhir_json(from: filename, subdirectory: "TestResources")
+		let json = try readJSONFile(filename, directory: testResourcesDirectory)
 		return try CapabilityStatement(json: json)
 	}
 	
 	func testFull() {
 		do {
-			_ = try instantiateFrom(filename: "metadata.full")
+			_ = try instantiateFrom(filename: "metadata.full.json")
 		}
 		catch {
 			XCTAssertNil(error)
@@ -36,7 +36,7 @@ class SummaryTests: XCTestCase {
 	
 	func testSummary() {
 		do {
-			_ = try instantiateFrom(filename: "metadata.summary")
+			_ = try instantiateFrom(filename: "metadata.summary.json")
 		}
 		catch {
 			XCTAssertNil(error)

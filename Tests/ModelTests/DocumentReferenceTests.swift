@@ -2,7 +2,7 @@
 //  DocumentReferenceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -43,7 +43,7 @@ class DocumentReferenceTests: XCTestCase {
 		XCTAssertEqual(inst.`class`?.coding?[0].code, "History and Physical")
 		XCTAssertEqual(inst.`class`?.coding?[0].display, "History and Physical")
 		XCTAssertEqual(inst.`class`?.coding?[0].system?.absoluteString, "http://ihe.net/xds/connectathon/classCodes")
-		XCTAssertEqual(inst.authenticator?.reference, "Organization/organization-example")
+		XCTAssertEqual(inst.authenticator?.reference, "Organization/f001")
 		XCTAssertEqual(inst.author?[0].reference, "Practitioner/xcda1")
 		XCTAssertEqual(inst.author?[1].reference, "#a2")
 		XCTAssertEqual(inst.contained?[0].id, "a2")
@@ -52,9 +52,9 @@ class DocumentReferenceTests: XCTestCase {
 		XCTAssertEqual(inst.content?[0].attachment?.language, "en-US")
 		XCTAssertEqual(inst.content?[0].attachment?.size, 3654)
 		XCTAssertEqual(inst.content?[0].attachment?.url?.absoluteString, "http://example.org/xds/mhd/Binary/07a6483f-732b-461e-86b6-edb665c45510")
-		XCTAssertEqual(inst.content?[0].format?[0].code, "urn:ihe:pcc:handp:2008")
-		XCTAssertEqual(inst.content?[0].format?[0].display, "History and Physical Specification")
-		XCTAssertEqual(inst.content?[0].format?[0].system?.absoluteString, "urn:oid:1.3.6.1.4.1.19376.1.2.3")
+		XCTAssertEqual(inst.content?[0].format?.code, "urn:ihe:pcc:handp:2008")
+		XCTAssertEqual(inst.content?[0].format?.display, "History and Physical Specification")
+		XCTAssertEqual(inst.content?[0].format?.system?.absoluteString, "urn:oid:1.3.6.1.4.1.19376.1.2.3")
 		XCTAssertEqual(inst.context?.encounter?.reference, "Encounter/xcda")
 		XCTAssertEqual(inst.context?.event?[0].coding?[0].code, "T-D8200")
 		XCTAssertEqual(inst.context?.event?[0].coding?[0].display, "Arm")
@@ -72,11 +72,9 @@ class DocumentReferenceTests: XCTestCase {
 		XCTAssertEqual(inst.context?.related?[0].ref?.reference, "Patient/xcda")
 		XCTAssertEqual(inst.context?.sourcePatientInfo?.reference, "Patient/xcda")
 		XCTAssertEqual(inst.created?.description, "2005-12-24T09:35:00+11:00")
-		XCTAssertEqual(inst.custodian?.reference, "Organization/organization-example")
+		XCTAssertEqual(inst.custodian?.reference, "Organization/f001")
 		XCTAssertEqual(inst.description_fhir, "Physical")
-		XCTAssertEqual(inst.docStatus?.coding?[0].code, "preliminary")
-		XCTAssertEqual(inst.docStatus?.coding?[0].display, "preliminary")
-		XCTAssertEqual(inst.docStatus?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/composition-status")
+		XCTAssertEqual(inst.docStatus, CompositionStatus(rawValue: "preliminary")!)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234")

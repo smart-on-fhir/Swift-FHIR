@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -153,7 +153,7 @@ open class PaymentReconciliationDetail: BackboneElement {
 		response = try createInstance(type: Reference.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? response
 		submitter = try createInstance(type: Reference.self, for: "submitter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? submitter
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		

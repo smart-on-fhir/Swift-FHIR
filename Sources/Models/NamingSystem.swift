@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -85,7 +85,7 @@ open class NamingSystem: DomainResource {
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
 		kind = createEnum(type: NamingSystemType.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors) ?? kind
-		if nil == kind && !presentKeys.contains("kind") {
+		if nil == kind && !presentKeys.contains("kind") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "kind"))
 		}
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
@@ -101,7 +101,7 @@ open class NamingSystem: DomainResource {
 		}
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		uniqueId = try createInstances(of: NamingSystemUniqueId.self, for: "uniqueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? uniqueId
-		if (nil == uniqueId || uniqueId!.isEmpty) && !presentKeys.contains("uniqueId") {
+		if (nil == uniqueId || uniqueId!.isEmpty) && !presentKeys.contains("uniqueId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "uniqueId"))
 		}
 		usage = try createInstance(type: FHIRString.self, for: "usage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? usage
@@ -187,11 +187,11 @@ open class NamingSystemUniqueId: BackboneElement {
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
 		preferred = try createInstance(type: FHIRBool.self, for: "preferred", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? preferred
 		type = createEnum(type: NamingSystemIdentifierType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		

@@ -2,7 +2,7 @@
 //  CodeSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -221,7 +221,7 @@ open class CodeSystemConcept: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		concept = try createInstances(of: CodeSystemConcept.self, for: "concept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? concept
@@ -283,7 +283,7 @@ open class CodeSystemConceptDesignation: BackboneElement {
 		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
 		use = try createInstance(type: Coding.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? use
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
@@ -367,7 +367,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean

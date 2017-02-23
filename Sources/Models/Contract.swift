@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-Contract.
+Legal Agreement.
 
 A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
 */
@@ -40,13 +40,19 @@ open class Contract: DomainResource {
 	/// Binding Contract.
 	public var bindingReference: Reference?
 	
+	/// Content derived from the basal information.
+	public var contentDerivative: CodeableConcept?
+	
+	/// Decision by Grantor.
+	public var decisionType: CodeableConcept?
+	
 	/// Domain in which this Contract applies.
 	public var domain: [Reference]?
 	
 	/// Contract Friendly Language.
 	public var friendly: [ContractFriendly]?
 	
-	/// Contract identifier.
+	/// Contract number.
 	public var identifier: Identifier?
 	
 	/// When this Contract was issued.
@@ -58,13 +64,17 @@ open class Contract: DomainResource {
 	/// Computable Contract Language.
 	public var rule: [ContractRule]?
 	
-	/// Contract Signer.
+	/// Security Labels that define affected resources.
+	public var securityLabel: [Coding]?
+	
+	/// Contract Signatory.
 	public var signer: [ContractSigner]?
 	
-	/// active | cancelled | draft | entered-in-error.
+	/// amended | appended | cancelled | disputed | entered-in-error | executable | executed | negotiable | offered |
+	/// policy | rejected | renewed | revoked | resolved | terminated.
 	public var status: FHIRString?
 	
-	/// Contract Subtype.
+	/// Subtype within the context of type.
 	public var subType: [CodeableConcept]?
 	
 	/// Contract Target Entity.
@@ -76,10 +86,10 @@ open class Contract: DomainResource {
 	/// Context of the Contract.
 	public var topic: [Reference]?
 	
-	/// Contract Type.
+	/// Type or form.
 	public var type: CodeableConcept?
 	
-	/// Contract Valued Item.
+	/// Contract Valued Item List.
 	public var valuedItem: [ContractValuedItem]?
 	
 	
@@ -93,12 +103,15 @@ open class Contract: DomainResource {
 		authority = try createInstances(of: Reference.self, for: "authority", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authority
 		bindingAttachment = try createInstance(type: Attachment.self, for: "bindingAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bindingAttachment
 		bindingReference = try createInstance(type: Reference.self, for: "bindingReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bindingReference
+		contentDerivative = try createInstance(type: CodeableConcept.self, for: "contentDerivative", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentDerivative
+		decisionType = try createInstance(type: CodeableConcept.self, for: "decisionType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? decisionType
 		domain = try createInstances(of: Reference.self, for: "domain", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? domain
 		friendly = try createInstances(of: ContractFriendly.self, for: "friendly", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? friendly
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		issued = try createInstance(type: DateTime.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
 		legal = try createInstances(of: ContractLegal.self, for: "legal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? legal
 		rule = try createInstances(of: ContractRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rule
+		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
 		signer = try createInstances(of: ContractSigner.self, for: "signer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? signer
 		status = try createInstance(type: FHIRString.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
 		subType = try createInstances(of: CodeableConcept.self, for: "subType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subType
@@ -121,12 +134,15 @@ open class Contract: DomainResource {
 		arrayDecorate(json: &json, withKey: "authority", using: self.authority, errors: &errors)
 		self.bindingAttachment?.decorate(json: &json, withKey: "bindingAttachment", errors: &errors)
 		self.bindingReference?.decorate(json: &json, withKey: "bindingReference", errors: &errors)
+		self.contentDerivative?.decorate(json: &json, withKey: "contentDerivative", errors: &errors)
+		self.decisionType?.decorate(json: &json, withKey: "decisionType", errors: &errors)
 		arrayDecorate(json: &json, withKey: "domain", using: self.domain, errors: &errors)
 		arrayDecorate(json: &json, withKey: "friendly", using: self.friendly, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
 		arrayDecorate(json: &json, withKey: "legal", using: self.legal, errors: &errors)
 		arrayDecorate(json: &json, withKey: "rule", using: self.rule, errors: &errors)
+		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
 		arrayDecorate(json: &json, withKey: "signer", using: self.signer, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		arrayDecorate(json: &json, withKey: "subType", using: self.subType, errors: &errors)
@@ -168,7 +184,7 @@ open class ContractAgent: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") {
+		if nil == actor && !presentKeys.contains("actor") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
@@ -375,7 +391,7 @@ open class ContractRule: BackboneElement {
 
 
 /**
-Contract Signer.
+Contract Signatory.
 
 Parties with legal standing in the Contract, including the principal parties, the grantor(s) and grantee(s), which are
 any person or organization bound by the contract, and any ancillary parties, which facilitate the execution of the
@@ -392,7 +408,7 @@ open class ContractSigner: BackboneElement {
 	/// Contract Documentation Signature.
 	public var signature: [Signature]?
 	
-	/// Contract Signer Type.
+	/// Contract Signatory Role.
 	public var type: Coding?
 	
 	
@@ -409,15 +425,15 @@ open class ContractSigner: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		party = try createInstance(type: Reference.self, for: "party", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? party
-		if nil == party && !presentKeys.contains("party") {
+		if nil == party && !presentKeys.contains("party") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "party"))
 		}
 		signature = try createInstances(of: Signature.self, for: "signature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? signature
-		if (nil == signature || signature!.isEmpty) && !presentKeys.contains("signature") {
+		if (nil == signature || signature!.isEmpty) && !presentKeys.contains("signature") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "signature"))
 		}
 		type = try createInstance(type: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
@@ -453,10 +469,10 @@ open class ContractTerm: BackboneElement {
 		get { return "ContractTerm" }
 	}
 	
-	/// Contract Term Action.
+	/// Contract Term Activity.
 	public var action: [CodeableConcept]?
 	
-	/// Contract Term Action Reason.
+	/// Purpose for the Contract Term Action.
 	public var actionReason: [CodeableConcept]?
 	
 	/// Contract Term Agent List.
@@ -468,13 +484,16 @@ open class ContractTerm: BackboneElement {
 	/// Nested Contract Term Group.
 	public var group: [ContractTerm]?
 	
-	/// Contract Term identifier.
+	/// Contract Term Number.
 	public var identifier: Identifier?
 	
 	/// Contract Term Issue Date Time.
 	public var issued: DateTime?
 	
-	/// Contract Term Subtype.
+	/// Security Labels that define affected terms.
+	public var securityLabel: [Coding]?
+	
+	/// Contract Term Type specific classification.
 	public var subType: CodeableConcept?
 	
 	/// Human readable Contract term text.
@@ -483,10 +502,10 @@ open class ContractTerm: BackboneElement {
 	/// Context of the Contract term.
 	public var topic: [Reference]?
 	
-	/// Contract Term Type.
+	/// Contract Term Type or Form.
 	public var type: CodeableConcept?
 	
-	/// Contract Term Valued Item.
+	/// Contract Term Valued Item List.
 	public var valuedItem: [ContractTermValuedItem]?
 	
 	
@@ -500,6 +519,7 @@ open class ContractTerm: BackboneElement {
 		group = try createInstances(of: ContractTerm.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		issued = try createInstance(type: DateTime.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
+		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
 		subType = try createInstance(type: CodeableConcept.self, for: "subType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subType
 		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
 		topic = try createInstances(of: Reference.self, for: "topic", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? topic
@@ -519,6 +539,7 @@ open class ContractTerm: BackboneElement {
 		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
+		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
 		self.subType?.decorate(json: &json, withKey: "subType", errors: &errors)
 		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
 		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)
@@ -539,10 +560,10 @@ open class ContractTermAgent: BackboneElement {
 		get { return "ContractTermAgent" }
 	}
 	
-	/// Contract Term Agent List.
+	/// Contract Term Agent Subject.
 	public var actor: Reference?
 	
-	/// Contract Term Agent Role.
+	/// Type of the Contract Term Agent.
 	public var role: [CodeableConcept]?
 	
 	
@@ -557,7 +578,7 @@ open class ContractTermAgent: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") {
+		if nil == actor && !presentKeys.contains("actor") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
@@ -578,7 +599,7 @@ open class ContractTermAgent: BackboneElement {
 
 
 /**
-Contract Term Valued Item.
+Contract Term Valued Item List.
 
 Contract Provision Valued Item List.
 */
@@ -599,7 +620,7 @@ open class ContractTermValuedItem: BackboneElement {
 	/// Contract Term Valued Item Price Scaling Factor.
 	public var factor: FHIRDecimal?
 	
-	/// Contract Term Valued Item Identifier.
+	/// Contract Term Valued Item Number.
 	public var identifier: Identifier?
 	
 	/// Total Contract Term Valued Item Value.
@@ -648,8 +669,6 @@ open class ContractTermValuedItem: BackboneElement {
 
 
 /**
-Contract Valued Item.
-
 Contract Valued Item List.
 */
 open class ContractValuedItem: BackboneElement {
@@ -669,7 +688,7 @@ open class ContractValuedItem: BackboneElement {
 	/// Contract Valued Item Price Scaling Factor.
 	public var factor: FHIRDecimal?
 	
-	/// Contract Valued Item Identifier.
+	/// Contract Valued Item Number.
 	public var identifier: Identifier?
 	
 	/// Total Contract Valued Item Value.

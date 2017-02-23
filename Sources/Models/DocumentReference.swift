@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -11,8 +11,6 @@ import Foundation
 
 /**
 A reference to a document.
-
-A reference to a document .
 */
 open class DocumentReference: DomainResource {
 	override open class var resourceType: String {
@@ -43,8 +41,8 @@ open class DocumentReference: DomainResource {
 	/// Human-readable description (title).
 	public var description_fhir: FHIRString?
 	
-	/// preliminary | final | appended | amended | entered-in-error.
-	public var docStatus: CodeableConcept?
+	/// The status of the underlying document.
+	public var docStatus: CompositionStatus?
 	
 	/// Other identifiers for the document.
 	public var identifier: [Identifier]?
@@ -95,7 +93,7 @@ open class DocumentReference: DomainResource {
 		created = try createInstance(type: DateTime.self, for: "created", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? created
 		custodian = try createInstance(type: Reference.self, for: "custodian", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? custodian
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		docStatus = try createInstance(type: CodeableConcept.self, for: "docStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? docStatus
+		docStatus = createEnum(type: CompositionStatus.self, for: "docStatus", in: json, presentKeys: &presentKeys, errors: &errors) ?? docStatus
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		indexed = try createInstance(type: Instant.self, for: "indexed", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? indexed
 		if nil == indexed && !presentKeys.contains("indexed") {
@@ -167,7 +165,7 @@ open class DocumentReferenceContent: BackboneElement {
 	public var attachment: Attachment?
 	
 	/// Format/content rules for the document.
-	public var format: [Coding]?
+	public var format: Coding?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -184,7 +182,7 @@ open class DocumentReferenceContent: BackboneElement {
 		if nil == attachment && !presentKeys.contains("attachment") {
 			errors.append(FHIRValidationError(missing: "attachment"))
 		}
-		format = try createInstances(of: Coding.self, for: "format", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? format
+		format = try createInstance(type: Coding.self, for: "format", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? format
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -196,7 +194,7 @@ open class DocumentReferenceContent: BackboneElement {
 		if nil == self.attachment {
 			errors.append(FHIRValidationError(missing: "attachment"))
 		}
-		arrayDecorate(json: &json, withKey: "format", using: self.format, errors: &errors)
+		self.format?.decorate(json: &json, withKey: "format", errors: &errors)
 	}
 }
 

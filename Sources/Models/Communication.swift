@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ open class Communication: DomainResource {
 	public var payload: [CommunicationPayload]?
 	
 	/// Indication for message.
-	public var reasonCodeableConcept: [CodeableConcept]?
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Why was communication done?.
 	public var reasonReference: [Reference]?
@@ -102,7 +102,7 @@ open class Communication: DomainResource {
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		payload = try createInstances(of: CommunicationPayload.self, for: "payload", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payload
-		reasonCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
+		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
 		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		received = try createInstance(type: DateTime.self, for: "received", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? received
 		recipient = try createInstances(of: Reference.self, for: "recipient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recipient
@@ -132,7 +132,7 @@ open class Communication: DomainResource {
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		arrayDecorate(json: &json, withKey: "payload", using: self.payload, errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonCodeableConcept", using: self.reasonCodeableConcept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.received?.decorate(json: &json, withKey: "received", errors: &errors)
 		arrayDecorate(json: &json, withKey: "recipient", using: self.recipient, errors: &errors)

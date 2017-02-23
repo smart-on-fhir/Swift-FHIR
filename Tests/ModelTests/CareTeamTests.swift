@@ -2,7 +2,7 @@
 //  CareTeamTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -43,10 +43,11 @@ class CareTeamTests: XCTestCase {
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "encounter")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-team-category")
 		XCTAssertEqual(inst.contained?[0].id, "pr1")
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.managingOrganization?[0].reference, "Organization/f001")
-		XCTAssertEqual(inst.name, "Peter James Charlmers Care Plan for Encounter 123")
+		XCTAssertEqual(inst.name, "Peter James Charlmers Care Plan for Inpatient Encounter")
 		XCTAssertEqual(inst.participant?[0].member?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant?[0].member?.reference, "Patient/example")
 		XCTAssertEqual(inst.participant?[0].role?.text, "responsiblePerson")

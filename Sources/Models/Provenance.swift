@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -69,7 +69,7 @@ open class Provenance: DomainResource {
 		
 		activity = try createInstance(type: Coding.self, for: "activity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? activity
 		agent = try createInstances(of: ProvenanceAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		if (nil == agent || agent!.isEmpty) && !presentKeys.contains("agent") {
+		if (nil == agent || agent!.isEmpty) && !presentKeys.contains("agent") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "agent"))
 		}
 		entity = try createInstances(of: ProvenanceEntity.self, for: "entity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entity
@@ -136,8 +136,8 @@ open class ProvenanceAgent: BackboneElement {
 	/// Type of relationship between agents.
 	public var relatedAgentType: CodeableConcept?
 	
-	/// What the agents involvement was.
-	public var role: Coding?
+	/// What the agents role was.
+	public var role: [CodeableConcept]?
 	
 	/// Who participated.
 	public var whoReference: Reference?
@@ -147,9 +147,8 @@ open class ProvenanceAgent: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(role: Coding, who: Any) {
+	public convenience init(who: Any) {
 		self.init()
-		self.role = role
 		if let value = who as? FHIRURL {
 			self.whoUri = value
 		}
@@ -168,10 +167,7 @@ open class ProvenanceAgent: BackboneElement {
 		onBehalfOfReference = try createInstance(type: Reference.self, for: "onBehalfOfReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOfReference
 		onBehalfOfUri = try createInstance(type: FHIRURL.self, for: "onBehalfOfUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOfUri
 		relatedAgentType = try createInstance(type: CodeableConcept.self, for: "relatedAgentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatedAgentType
-		role = try createInstance(type: Coding.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		if nil == role && !presentKeys.contains("role") {
-			errors.append(FHIRValidationError(missing: "role"))
-		}
+		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
 		whoReference = try createInstance(type: Reference.self, for: "whoReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whoReference
 		whoUri = try createInstance(type: FHIRURL.self, for: "whoUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whoUri
 		
@@ -190,10 +186,7 @@ open class ProvenanceAgent: BackboneElement {
 		self.onBehalfOfReference?.decorate(json: &json, withKey: "onBehalfOfReference", errors: &errors)
 		self.onBehalfOfUri?.decorate(json: &json, withKey: "onBehalfOfUri", errors: &errors)
 		self.relatedAgentType?.decorate(json: &json, withKey: "relatedAgentType", errors: &errors)
-		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
-		if nil == self.role {
-			errors.append(FHIRValidationError(missing: "role"))
-		}
+		arrayDecorate(json: &json, withKey: "role", using: self.role, errors: &errors)
 		self.whoReference?.decorate(json: &json, withKey: "whoReference", errors: &errors)
 		self.whoUri?.decorate(json: &json, withKey: "whoUri", errors: &errors)
 		

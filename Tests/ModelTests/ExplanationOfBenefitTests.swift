@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -46,6 +46,8 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.claimResponse?.reference, "ClaimResponse/R3500")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition, "Claim settled as per contract.")
+		XCTAssertEqual(inst.enterer?.reference, "Practitioner/1")
+		XCTAssertEqual(inst.facility?.reference, "Location/1")
 		XCTAssertEqual(inst.id, "EB3500")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/explanationofbenefit")
 		XCTAssertEqual(inst.identifier?[0].value, "987654321")
@@ -61,6 +63,7 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].adjudication?[2].amount?.value, "96.0")
 		XCTAssertEqual(inst.item?[0].adjudication?[2].category?.coding?[0].code, "benefit")
 		XCTAssertEqual(inst.item?[0].careTeamLinkId?[0], 1)
+		XCTAssertEqual(inst.item?[0].encounter?[0].reference, "Encounter/example")
 		XCTAssertEqual(inst.item?[0].net?.code, "USD")
 		XCTAssertEqual(inst.item?[0].net?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].net?.value, "135.57")
@@ -75,6 +78,10 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
 		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
 		XCTAssertEqual(inst.patient?.reference, "Patient/pat1")
+		XCTAssertEqual(inst.payee?.party?.reference, "Organization/2")
+		XCTAssertEqual(inst.payee?.type?.coding?[0].code, "provider")
+		XCTAssertEqual(inst.payee?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ValueSet/payeetype")
+		XCTAssertEqual(inst.provider?.reference, "Practitioner/1")
 		XCTAssertEqual(inst.status, ExplanationOfBenefitStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ExplanationOfBenefit</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

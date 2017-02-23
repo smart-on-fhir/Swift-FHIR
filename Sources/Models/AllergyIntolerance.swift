@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -197,7 +197,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		exposureRoute = try createInstance(type: CodeableConcept.self, for: "exposureRoute", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? exposureRoute
 		manifestation = try createInstances(of: CodeableConcept.self, for: "manifestation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manifestation
-		if (nil == manifestation || manifestation!.isEmpty) && !presentKeys.contains("manifestation") {
+		if (nil == manifestation || manifestation!.isEmpty) && !presentKeys.contains("manifestation") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "manifestation"))
 		}
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note

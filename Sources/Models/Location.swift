@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -45,6 +45,9 @@ open class Location: DomainResource {
 	/// Name of the location as used by humans.
 	public var name: FHIRString?
 	
+	/// The Operational status of the location (typically only for a bed/room).
+	public var operationalStatus: Coding?
+	
 	/// Another Location this one is physically part of.
 	public var partOf: Reference?
 	
@@ -54,7 +57,8 @@ open class Location: DomainResource {
 	/// The absolute geographic location.
 	public var position: LocationPosition?
 	
-	/// None
+	/// The status property covers the general availability of the resource, not the current value which may be covered
+	/// by the operationStatus, or by a schedule/slots if they are configured for the location.
 	public var status: LocationStatus?
 	
 	/// Contact details of the location.
@@ -75,6 +79,7 @@ open class Location: DomainResource {
 		managingOrganization = try createInstance(type: Reference.self, for: "managingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? managingOrganization
 		mode = createEnum(type: LocationMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
+		operationalStatus = try createInstance(type: Coding.self, for: "operationalStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? operationalStatus
 		partOf = try createInstance(type: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		physicalType = try createInstance(type: CodeableConcept.self, for: "physicalType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? physicalType
 		position = try createInstance(type: LocationPosition.self, for: "position", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? position
@@ -96,6 +101,7 @@ open class Location: DomainResource {
 		self.managingOrganization?.decorate(json: &json, withKey: "managingOrganization", errors: &errors)
 		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		self.operationalStatus?.decorate(json: &json, withKey: "operationalStatus", errors: &errors)
 		self.partOf?.decorate(json: &json, withKey: "partOf", errors: &errors)
 		self.physicalType?.decorate(json: &json, withKey: "physicalType", errors: &errors)
 		self.position?.decorate(json: &json, withKey: "position", errors: &errors)
@@ -140,11 +146,11 @@ open class LocationPosition: BackboneElement {
 		
 		altitude = try createInstance(type: FHIRDecimal.self, for: "altitude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? altitude
 		latitude = try createInstance(type: FHIRDecimal.self, for: "latitude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? latitude
-		if nil == latitude && !presentKeys.contains("latitude") {
+		if nil == latitude && !presentKeys.contains("latitude") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "latitude"))
 		}
 		longitude = try createInstance(type: FHIRDecimal.self, for: "longitude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? longitude
-		if nil == longitude && !presentKeys.contains("longitude") {
+		if nil == longitude && !presentKeys.contains("longitude") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "longitude"))
 		}
 		

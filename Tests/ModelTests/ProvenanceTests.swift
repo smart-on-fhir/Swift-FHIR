@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -40,8 +40,8 @@ class ProvenanceTests: XCTestCase {
 	func runProvenance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProvenance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example-biocompute-object.json")
 		
-		XCTAssertEqual(inst.agent?[0].role?.code, "author")
-		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "AUT")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.agent?[0].whoReference?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
 		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].code, "biocompute")
@@ -72,8 +72,8 @@ class ProvenanceTests: XCTestCase {
 	func runProvenance2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProvenance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example-cwl.json")
 		
-		XCTAssertEqual(inst.agent?[0].role?.code, "author")
-		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "AUT")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.agent?[0].whoReference?.reference, "Patient/example")
 		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
 		XCTAssertEqual(inst.entity?[0].whatIdentifier?.type?.coding?[0].code, "CWL")
@@ -107,8 +107,8 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.activity?.code, "AU")
 		XCTAssertEqual(inst.activity?.display, "authenticated")
 		XCTAssertEqual(inst.activity?.system?.absoluteString, "http://hl7.org/fhir/v3/DocumentCompletion")
-		XCTAssertEqual(inst.agent?[0].role?.code, "verifier")
-		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "VERF")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://www.hl7.org/fhir/contractsignertypecodes")
 		XCTAssertEqual(inst.agent?[0].whoUri?.absoluteString, "mailto://hhd@ssa.gov")
 		XCTAssertEqual(inst.id, "signature")
 		XCTAssertEqual(inst.reason?[0].code, "TREAT")
@@ -145,12 +145,12 @@ class ProvenanceTests: XCTestCase {
 		
 		XCTAssertEqual(inst.agent?[0].onBehalfOfUri?.absoluteString, "#a1")
 		XCTAssertEqual(inst.agent?[0].relatedAgentType?.text, "used")
-		XCTAssertEqual(inst.agent?[0].role?.code, "author")
-		XCTAssertEqual(inst.agent?[0].role?.system?.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "AUT")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.agent?[0].whoReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.agent?[1].id, "a1")
-		XCTAssertEqual(inst.agent?[1].role?.code, "DEV")
-		XCTAssertEqual(inst.agent?[1].role?.system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "DEV")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.agent?[1].whoReference?.reference, "Device/software")
 		XCTAssertEqual(inst.entity?[0].role, ProvenanceEntityRole(rawValue: "source")!)
 		XCTAssertEqual(inst.entity?[0].whatReference?.display, "CDA Document in XDS repository")

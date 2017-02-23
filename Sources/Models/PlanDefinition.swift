@@ -2,7 +2,7 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ open class PlanDefinition: DomainResource {
 	/// Action defined by the plan.
 	public var actionDefinition: [PlanDefinitionActionDefinition]?
 	
-	/// When plan definition approved by publisher.
+	/// When the plan definition was approved by publisher.
 	public var approvalDate: FHIRDate?
 	
 	/// Contact details for the publisher.
@@ -42,13 +42,13 @@ open class PlanDefinition: DomainResource {
 	/// Natural language description of the plan definition.
 	public var description_fhir: FHIRString?
 	
-	/// The effective date range for the plan definition.
+	/// When the plan definition is effective.
 	public var effectivePeriod: Period?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
-	/// Goals of the plan.
+	/// What the plan is trying to accomplish.
 	public var goalDefinition: [PlanDefinitionGoalDefinition]?
 	
 	/// Additional identifier for the plan definition.
@@ -57,7 +57,7 @@ open class PlanDefinition: DomainResource {
 	/// Intended jurisdiction for plan definition (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Last review date for the plan definition.
+	/// When the plan definition was last reviewed.
 	public var lastReviewDate: FHIRDate?
 	
 	/// Logic used by the plan definition.
@@ -81,7 +81,7 @@ open class PlanDefinition: DomainResource {
 	/// Name for this plan definition (Human friendly).
 	public var title: FHIRString?
 	
-	/// Descriptional topics for the asset.
+	/// E.g. Education, Treatment, Assessment, etc.
 	public var topic: [CodeableConcept]?
 	
 	/// order-set | protocol | eca-rule.
@@ -228,8 +228,8 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	/// Output data definition.
 	public var output: [DataRequirement]?
 	
-	/// The type of participant in the action.
-	public var participantType: [ActionParticipantType]?
+	/// Who should participate in the action.
+	public var participant: [PlanDefinitionActionDefinitionParticipant]?
 	
 	/// Defines whether the action should usually be preselected.
 	public var precheckBehavior: ActionPrecheckBehavior?
@@ -293,7 +293,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		input = try createInstances(of: DataRequirement.self, for: "input", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? input
 		label = try createInstance(type: FHIRString.self, for: "label", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? label
 		output = try createInstances(of: DataRequirement.self, for: "output", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? output
-		participantType = createEnums(of: ActionParticipantType.self, for: "participantType", in: json, presentKeys: &presentKeys, errors: &errors) ?? participantType
+		participant = try createInstances(of: PlanDefinitionActionDefinitionParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
 		precheckBehavior = createEnum(type: ActionPrecheckBehavior.self, for: "precheckBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? precheckBehavior
 		reason = try createInstances(of: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
 		relatedAction = try createInstances(of: PlanDefinitionActionDefinitionRelatedAction.self, for: "relatedAction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatedAction
@@ -329,7 +329,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 		arrayDecorate(json: &json, withKey: "input", using: self.input, errors: &errors)
 		self.label?.decorate(json: &json, withKey: "label", errors: &errors)
 		arrayDecorate(json: &json, withKey: "output", using: self.output, errors: &errors)
-		arrayDecorate(json: &json, withKey: "participantType", using: self.participantType, errors: &errors)
+		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
 		self.precheckBehavior?.decorate(json: &json, withKey: "precheckBehavior", errors: &errors)
 		arrayDecorate(json: &json, withKey: "reason", using: self.reason, errors: &errors)
 		arrayDecorate(json: &json, withKey: "relatedAction", using: self.relatedAction, errors: &errors)
@@ -385,7 +385,7 @@ open class PlanDefinitionActionDefinitionCondition: BackboneElement {
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		expression = try createInstance(type: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
 		kind = createEnum(type: ActionConditionKind.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors) ?? kind
-		if nil == kind && !presentKeys.contains("kind") {
+		if nil == kind && !presentKeys.contains("kind") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "kind"))
 		}
 		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
@@ -455,6 +455,54 @@ open class PlanDefinitionActionDefinitionDynamicValue: BackboneElement {
 
 
 /**
+Who should participate in the action.
+
+Indicates who should participate in performing the action described.
+*/
+open class PlanDefinitionActionDefinitionParticipant: BackboneElement {
+	override open class var resourceType: String {
+		get { return "PlanDefinitionActionDefinitionParticipant" }
+	}
+	
+	/// E.g. Nurse, Surgeon, Parent, etc.
+	public var role: CodeableConcept?
+	
+	/// The type of participant in the action.
+	public var type: ActionParticipantType?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: ActionParticipantType) {
+		self.init()
+		self.type = type
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
+		type = createEnum(type: ActionParticipantType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+	}
+}
+
+
+/**
 Relationship to another action.
 
 A relationship to another action such as "before" or "30-60 minutes after start of".
@@ -464,7 +512,7 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		get { return "PlanDefinitionActionDefinitionRelatedAction" }
 	}
 	
-	/// Id of the related action.
+	/// What action is this related to.
 	public var actionId: FHIRString?
 	
 	/// Time offset for the relationship.
@@ -489,13 +537,13 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		actionId = try createInstance(type: FHIRString.self, for: "actionId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionId
-		if nil == actionId && !presentKeys.contains("actionId") {
+		if nil == actionId && !presentKeys.contains("actionId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "actionId"))
 		}
 		offsetDuration = try createInstance(type: Duration.self, for: "offsetDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetDuration
 		offsetRange = try createInstance(type: Range.self, for: "offsetRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetRange
 		relationship = createEnum(type: ActionRelationshipType.self, for: "relationship", in: json, presentKeys: &presentKeys, errors: &errors) ?? relationship
-		if nil == relationship && !presentKeys.contains("relationship") {
+		if nil == relationship && !presentKeys.contains("relationship") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "relationship"))
 		}
 		
@@ -520,7 +568,7 @@ open class PlanDefinitionActionDefinitionRelatedAction: BackboneElement {
 
 
 /**
-Goals of the plan.
+What the plan is trying to accomplish.
 
 Goals that describe what the activities within the plan are intended to achieve. For example, weight loss, restoring an
 activity of daily living, obtaining herd immunity via immunization, meeting a process improvement objective, etc.
@@ -565,7 +613,7 @@ open class PlanDefinitionGoalDefinition: BackboneElement {
 		addresses = try createInstances(of: CodeableConcept.self, for: "addresses", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? addresses
 		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		description_fhir = try createInstance(type: CodeableConcept.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		if nil == description_fhir && !presentKeys.contains("description") {
+		if nil == description_fhir && !presentKeys.contains("description") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "description"))
 		}
 		documentation = try createInstances(of: RelatedArtifact.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation

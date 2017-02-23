@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -293,12 +293,12 @@ open class ImagingStudySeriesInstance: BackboneElement {
 		
 		number = try createInstance(type: FHIRInteger.self, for: "number", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? number
 		sopClass = try createInstance(type: FHIRURL.self, for: "sopClass", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sopClass
-		if nil == sopClass && !presentKeys.contains("sopClass") {
+		if nil == sopClass && !presentKeys.contains("sopClass") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "sopClass"))
 		}
 		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
 		uid = try createInstance(type: FHIRURL.self, for: "uid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? uid
-		if nil == uid && !presentKeys.contains("uid") {
+		if nil == uid && !presentKeys.contains("uid") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "uid"))
 		}
 		

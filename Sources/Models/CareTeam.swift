@@ -2,7 +2,7 @@
 //  CareTeam.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -23,6 +23,9 @@ open class CareTeam: DomainResource {
 	/// Type of team.
 	public var category: [CodeableConcept]?
 	
+	/// Encounter or episode associated with CareTeam.
+	public var context: Reference?
+	
 	/// External Ids for this team.
 	public var identifier: [Identifier]?
 	
@@ -41,6 +44,12 @@ open class CareTeam: DomainResource {
 	/// Time period team covers.
 	public var period: Period?
 	
+	/// Why the care team exists.
+	public var reasonCode: [CodeableConcept]?
+	
+	/// Why the care team exists.
+	public var reasonReference: [Reference]?
+	
 	/// Indicates the current state of the care team.
 	public var status: CareTeamStatus?
 	
@@ -52,12 +61,15 @@ open class CareTeam: DomainResource {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
+		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		managingOrganization = try createInstances(of: Reference.self, for: "managingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? managingOrganization
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		participant = try createInstances(of: CareTeamParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
+		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
+		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		status = createEnum(type: CareTeamStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		
@@ -68,12 +80,15 @@ open class CareTeam: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "managingOrganization", using: self.managingOrganization, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 	}

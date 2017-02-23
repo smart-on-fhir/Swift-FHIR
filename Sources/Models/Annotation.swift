@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -45,7 +45,7 @@ open class Annotation: Element {
 		authorReference = try createInstance(type: Reference.self, for: "authorReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authorReference
 		authorString = try createInstance(type: FHIRString.self, for: "authorString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authorString
 		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		if nil == text && !presentKeys.contains("text") {
+		if nil == text && !presentKeys.contains("text") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "text"))
 		}
 		time = try createInstance(type: DateTime.self, for: "time", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? time

@@ -2,7 +2,7 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -51,6 +51,16 @@ open class DetectedIssue: DomainResource {
 	/// patient.
 	public var severity: DetectedIssueSeverity?
 	
+	/// Indicates the status of the detected issue.
+	public var status: ObservationStatus?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: ObservationStatus) {
+		self.init()
+		self.status = status
+	}
+	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
@@ -65,6 +75,10 @@ open class DetectedIssue: DomainResource {
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		reference = try createInstance(type: FHIRURL.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
 		severity = createEnum(type: DetectedIssueSeverity.self, for: "severity", in: json, presentKeys: &presentKeys, errors: &errors) ?? severity
+		status = createEnum(type: ObservationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -82,6 +96,10 @@ open class DetectedIssue: DomainResource {
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
 		self.severity?.decorate(json: &json, withKey: "severity", errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 	}
 }
 
@@ -119,7 +137,7 @@ open class DetectedIssueMitigation: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		action = try createInstance(type: CodeableConcept.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		if nil == action && !presentKeys.contains("action") {
+		if nil == action && !presentKeys.contains("action") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "action"))
 		}
 		author = try createInstance(type: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author

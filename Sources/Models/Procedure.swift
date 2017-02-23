@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -38,7 +38,7 @@ open class Procedure: DomainResource {
 	/// A condition that is a result of the procedure.
 	public var complicationDetail: [Reference]?
 	
-	/// The encounter associated with the procedure.
+	/// Encounter or episode associated with the procedure.
 	public var context: Reference?
 	
 	/// Instantiates protocol or definition.
@@ -77,14 +77,11 @@ open class Procedure: DomainResource {
 	/// Date/Period the procedure was performed.
 	public var performedPeriod: Period?
 	
-	/// Date/Period the procedure was performed.
-	public var performedTiming: Timing?
-	
 	/// The people who performed the procedure.
 	public var performer: [ProcedurePerformer]?
 	
 	/// Coded reason procedure performed.
-	public var reasonCodeableConcept: [CodeableConcept]?
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Condition that is the reason the procedure performed.
 	public var reasonReference: [Reference]?
@@ -135,9 +132,8 @@ open class Procedure: DomainResource {
 		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		performedDateTime = try createInstance(type: DateTime.self, for: "performedDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performedDateTime
 		performedPeriod = try createInstance(type: Period.self, for: "performedPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performedPeriod
-		performedTiming = try createInstance(type: Timing.self, for: "performedTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performedTiming
 		performer = try createInstances(of: ProcedurePerformer.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
-		reasonCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
+		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
 		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		report = try createInstances(of: Reference.self, for: "report", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? report
 		status = createEnum(type: EventStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
@@ -176,9 +172,8 @@ open class Procedure: DomainResource {
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		self.performedDateTime?.decorate(json: &json, withKey: "performedDateTime", errors: &errors)
 		self.performedPeriod?.decorate(json: &json, withKey: "performedPeriod", errors: &errors)
-		self.performedTiming?.decorate(json: &json, withKey: "performedTiming", errors: &errors)
 		arrayDecorate(json: &json, withKey: "performer", using: self.performer, errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonCodeableConcept", using: self.reasonCodeableConcept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		arrayDecorate(json: &json, withKey: "report", using: self.report, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
@@ -225,7 +220,7 @@ open class ProcedureFocalDevice: BackboneElement {
 		
 		action = try createInstance(type: CodeableConcept.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
 		manipulated = try createInstance(type: Reference.self, for: "manipulated", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manipulated
-		if nil == manipulated && !presentKeys.contains("manipulated") {
+		if nil == manipulated && !presentKeys.contains("manipulated") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "manipulated"))
 		}
 		

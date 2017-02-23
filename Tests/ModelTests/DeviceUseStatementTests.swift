@@ -2,7 +2,7 @@
 //  DeviceUseStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -42,8 +42,8 @@ class DeviceUseStatementTests: XCTestCase {
 		
 		XCTAssertEqual(inst.device?.reference, "Device/example")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.status, DeviceUseStatementStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be filled out at a later time</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

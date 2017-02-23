@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -238,11 +238,11 @@ open class SearchParameterComponent: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		definition = try createInstance(type: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
-		if nil == definition && !presentKeys.contains("definition") {
+		if nil == definition && !presentKeys.contains("definition") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "definition"))
 		}
 		expression = try createInstance(type: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
-		if nil == expression && !presentKeys.contains("expression") {
+		if nil == expression && !presentKeys.contains("expression") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "expression"))
 		}
 		

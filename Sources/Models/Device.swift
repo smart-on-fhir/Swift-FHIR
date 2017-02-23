@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -60,7 +60,7 @@ open class Device: DomainResource {
 	public var safety: [CodeableConcept]?
 	
 	/// Status of the Device availability.
-	public var status: DeviceStatus?
+	public var status: FHIRDeviceStatus?
 	
 	/// What kind of device this is.
 	public var type: CodeableConcept?
@@ -90,7 +90,7 @@ open class Device: DomainResource {
 		owner = try createInstance(type: Reference.self, for: "owner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? owner
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		safety = try createInstances(of: CodeableConcept.self, for: "safety", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? safety
-		status = createEnum(type: DeviceStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		status = createEnum(type: FHIRDeviceStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		udi = try createInstance(type: DeviceUdi.self, for: "udi", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? udi
 		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url

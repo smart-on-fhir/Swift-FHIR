@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -312,7 +312,7 @@ open class CarePlanActivityDetail: BackboneElement {
 		scheduledString = try createInstance(type: FHIRString.self, for: "scheduledString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? scheduledString
 		scheduledTiming = try createInstance(type: Timing.self, for: "scheduledTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? scheduledTiming
 		status = createEnum(type: CarePlanActivityStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
+		if nil == status && !presentKeys.contains("status") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		statusReason = try createInstance(type: FHIRString.self, for: "statusReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusReason

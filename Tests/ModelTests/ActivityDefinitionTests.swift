@@ -2,7 +2,7 @@
 //  ActivityDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -46,9 +46,8 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.description_fhir, "refer to primary care mental-health integrated care program for evaluation and treatment of mental health conditions now")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.kind, "ReferralRequest")
-		XCTAssertEqual(inst.participantType?[0], ActionParticipantType(rawValue: "practitioner")!)
+		XCTAssertEqual(inst.participant?[0].type, ActionParticipantType(rawValue: "practitioner")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Referral definition</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -70,15 +69,15 @@ class ActivityDefinitionTests: XCTestCase {
 		
 		XCTAssertEqual(inst.contained?[0].id, "citalopramMedication")
 		XCTAssertEqual(inst.contained?[1].id, "citalopramSubstance")
-		XCTAssertEqual(inst.dosageInstruction?[0].doseQuantity?.unit, "{tbl}")
-		XCTAssertEqual(inst.dosageInstruction?[0].doseQuantity?.value, "1")
-		XCTAssertEqual(inst.dosageInstruction?[0].route?.coding?[0].code, "26643006")
-		XCTAssertEqual(inst.dosageInstruction?[0].route?.coding?[0].display, "Oral route (qualifier value)")
-		XCTAssertEqual(inst.dosageInstruction?[0].route?.text, "Oral route (qualifier value)")
-		XCTAssertEqual(inst.dosageInstruction?[0].text, "1 tablet oral 1 time daily")
-		XCTAssertEqual(inst.dosageInstruction?[0].timing?.repeat_fhir?.frequency, 1)
-		XCTAssertEqual(inst.dosageInstruction?[0].timing?.repeat_fhir?.period, "1")
-		XCTAssertEqual(inst.dosageInstruction?[0].timing?.repeat_fhir?.periodUnit, "d")
+		XCTAssertEqual(inst.dosage?[0].doseQuantity?.unit, "{tbl}")
+		XCTAssertEqual(inst.dosage?[0].doseQuantity?.value, "1")
+		XCTAssertEqual(inst.dosage?[0].route?.coding?[0].code, "26643006")
+		XCTAssertEqual(inst.dosage?[0].route?.coding?[0].display, "Oral route (qualifier value)")
+		XCTAssertEqual(inst.dosage?[0].route?.text, "Oral route (qualifier value)")
+		XCTAssertEqual(inst.dosage?[0].text, "1 tablet oral 1 time daily")
+		XCTAssertEqual(inst.dosage?[0].timing?.repeat_fhir?.frequency, 1)
+		XCTAssertEqual(inst.dosage?[0].timing?.repeat_fhir?.period, "1")
+		XCTAssertEqual(inst.dosage?[0].timing?.repeat_fhir?.periodUnit, "d")
 		XCTAssertEqual(inst.dynamicValue?[0].expression, "3")
 		XCTAssertEqual(inst.dynamicValue?[0].path, "dispenseRequest.numberOfRepeatsAllowed")
 		XCTAssertEqual(inst.dynamicValue?[1].expression, "30 '{tbl}'")

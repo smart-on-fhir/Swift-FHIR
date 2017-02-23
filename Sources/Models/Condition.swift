@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ open class Condition: DomainResource {
 	/// Identification of the condition, problem or diagnosis.
 	public var code: CodeableConcept?
 	
-	/// Encounter when condition first asserted.
+	/// Encounter or episode when condition first asserted.
 	public var context: Reference?
 	
 	/// Supporting evidence.

@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -18,11 +18,20 @@ open class Media: DomainResource {
 		get { return "Media" }
 	}
 	
+	/// Procedure that caused this media to be created.
+	public var basedOn: [Reference]?
+	
+	/// Body part in media.
+	public var bodySite: CodeableConcept?
+	
 	/// Actual Media - reference or data.
 	public var content: Attachment?
 	
-	/// Name of the device/manufacturer.
-	public var deviceName: FHIRString?
+	/// Encounter / Episode associated with media.
+	public var context: Reference?
+	
+	/// Observing Device.
+	public var device: Reference?
 	
 	/// Length in seconds (audio / video).
 	public var duration: FHIRInteger?
@@ -36,8 +45,20 @@ open class Media: DomainResource {
 	/// Identifier(s) for the image.
 	public var identifier: [Identifier]?
 	
+	/// Comments made about the media.
+	public var note: [Annotation]?
+	
+	/// When Media was collected.
+	public var occurrenceDateTime: DateTime?
+	
+	/// When Media was collected.
+	public var occurrencePeriod: Period?
+	
 	/// The person who generated the image.
 	public var operator_fhir: Reference?
+	
+	/// Why was event performed?.
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Who/What this Media is a record of.
 	public var subject: Reference?
@@ -66,16 +87,23 @@ open class Media: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
+		bodySite = try createInstance(type: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
 		content = try createInstance(type: Attachment.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
-		if nil == content && !presentKeys.contains("content") {
+		if nil == content && !presentKeys.contains("content") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
-		deviceName = try createInstance(type: FHIRString.self, for: "deviceName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deviceName
+		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
+		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
 		duration = try createInstance(type: FHIRInteger.self, for: "duration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? duration
 		frames = try createInstance(type: FHIRInteger.self, for: "frames", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? frames
 		height = try createInstance(type: FHIRInteger.self, for: "height", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? height
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
+		occurrenceDateTime = try createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceDateTime
+		occurrencePeriod = try createInstance(type: Period.self, for: "occurrencePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrencePeriod
 		operator_fhir = try createInstance(type: Reference.self, for: "operator", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? operator_fhir
+		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
 		subtype = try createInstance(type: CodeableConcept.self, for: "subtype", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subtype
 		type = createEnum(type: DigitalMediaType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
@@ -91,16 +119,23 @@ open class Media: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
+		self.bodySite?.decorate(json: &json, withKey: "bodySite", errors: &errors)
 		self.content?.decorate(json: &json, withKey: "content", errors: &errors)
 		if nil == self.content {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
-		self.deviceName?.decorate(json: &json, withKey: "deviceName", errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
+		self.device?.decorate(json: &json, withKey: "device", errors: &errors)
 		self.duration?.decorate(json: &json, withKey: "duration", errors: &errors)
 		self.frames?.decorate(json: &json, withKey: "frames", errors: &errors)
 		self.height?.decorate(json: &json, withKey: "height", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
+		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)
 		self.operator_fhir?.decorate(json: &json, withKey: "operator", errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		self.subtype?.decorate(json: &json, withKey: "subtype", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)

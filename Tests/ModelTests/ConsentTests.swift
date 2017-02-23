@@ -2,7 +2,7 @@
 //  ConsentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -440,7 +440,7 @@ class ConsentTests: XCTestCase {
 		XCTAssertEqual(inst.actor?[0].reference?.reference, "Practitioner/13")
 		XCTAssertEqual(inst.actor?[0].role?.coding?[0].code, "PRCP")
 		XCTAssertEqual(inst.actor?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
-		XCTAssertEqual(inst.category?[0].coding?[0].code, "hipaa")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "HIPAA-Auth")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/consentcategorycodes")
 		XCTAssertEqual(inst.consentingParty?[0].reference, "Patient/72")
 		XCTAssertEqual(inst.dateTime?.description, "2016-05-26T00:41:10-04:00")

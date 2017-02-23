@@ -1,8 +1,8 @@
 //
-//  DosageInstruction.swift
+//  Dosage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/DosageInstruction) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Dosage) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -10,17 +10,17 @@ import Foundation
 
 
 /**
-How medication should be taken.
+How the medication is/was taken or should be taken.
 
-Indicates how the medication is to be used by the patient.
+Indicates how the medication is/was taken or should be taken by the patient.
 */
-open class DosageInstruction: Element {
+open class Dosage: Element {
 	override open class var resourceType: String {
-		get { return "DosageInstruction" }
+		get { return "Dosage" }
 	}
 	
-	/// Supplemental instructions - e.g. "with meals".
-	public var additionalInstructions: [CodeableConcept]?
+	/// Supplemental instruction - e.g. "with meals".
+	public var additionalInstruction: [CodeableConcept]?
 	
 	/// Take "as needed" (for x).
 	public var asNeededBoolean: FHIRBool?
@@ -45,6 +45,9 @@ open class DosageInstruction: Element {
 	
 	/// Technique for administering medication.
 	public var method: CodeableConcept?
+	
+	/// Patient or consumer oriented instructions.
+	public var patientInstruction: FHIRString?
 	
 	/// Amount of medication per unit of time.
 	public var rateQuantity: Quantity?
@@ -74,7 +77,7 @@ open class DosageInstruction: Element {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		additionalInstructions = try createInstances(of: CodeableConcept.self, for: "additionalInstructions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additionalInstructions
+		additionalInstruction = try createInstances(of: CodeableConcept.self, for: "additionalInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additionalInstruction
 		asNeededBoolean = try createInstance(type: FHIRBool.self, for: "asNeededBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asNeededBoolean
 		asNeededCodeableConcept = try createInstance(type: CodeableConcept.self, for: "asNeededCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asNeededCodeableConcept
 		doseQuantity = try createInstance(type: Quantity.self, for: "doseQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseQuantity
@@ -83,6 +86,7 @@ open class DosageInstruction: Element {
 		maxDosePerLifetime = try createInstance(type: Quantity.self, for: "maxDosePerLifetime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerLifetime
 		maxDosePerPeriod = try createInstance(type: Ratio.self, for: "maxDosePerPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerPeriod
 		method = try createInstance(type: CodeableConcept.self, for: "method", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? method
+		patientInstruction = try createInstance(type: FHIRString.self, for: "patientInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patientInstruction
 		rateQuantity = try createInstance(type: Quantity.self, for: "rateQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateQuantity
 		rateRange = try createInstance(type: Range.self, for: "rateRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateRange
 		rateRatio = try createInstance(type: Ratio.self, for: "rateRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateRatio
@@ -98,7 +102,7 @@ open class DosageInstruction: Element {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "additionalInstructions", using: self.additionalInstructions, errors: &errors)
+		arrayDecorate(json: &json, withKey: "additionalInstruction", using: self.additionalInstruction, errors: &errors)
 		self.asNeededBoolean?.decorate(json: &json, withKey: "asNeededBoolean", errors: &errors)
 		self.asNeededCodeableConcept?.decorate(json: &json, withKey: "asNeededCodeableConcept", errors: &errors)
 		self.doseQuantity?.decorate(json: &json, withKey: "doseQuantity", errors: &errors)
@@ -107,6 +111,7 @@ open class DosageInstruction: Element {
 		self.maxDosePerLifetime?.decorate(json: &json, withKey: "maxDosePerLifetime", errors: &errors)
 		self.maxDosePerPeriod?.decorate(json: &json, withKey: "maxDosePerPeriod", errors: &errors)
 		self.method?.decorate(json: &json, withKey: "method", errors: &errors)
+		self.patientInstruction?.decorate(json: &json, withKey: "patientInstruction", errors: &errors)
 		self.rateQuantity?.decorate(json: &json, withKey: "rateQuantity", errors: &errors)
 		self.rateRange?.decorate(json: &json, withKey: "rateRange", errors: &errors)
 		self.rateRatio?.decorate(json: &json, withKey: "rateRatio", errors: &errors)

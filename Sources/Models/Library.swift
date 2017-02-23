@@ -2,7 +2,7 @@
 //  Library.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Library) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Library) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -21,13 +21,13 @@ open class Library: DomainResource {
 		get { return "Library" }
 	}
 	
-	/// When library approved by publisher.
+	/// When the library was approved by publisher.
 	public var approvalDate: FHIRDate?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// The content of the library.
+	/// Contents of the library, either embedded or referenced.
 	public var content: [Attachment]?
 	
 	/// A content contributor.
@@ -36,7 +36,7 @@ open class Library: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Data requirements of the library.
+	/// What data is referenced by this library.
 	public var dataRequirement: [DataRequirement]?
 	
 	/// Date this was last changed.
@@ -45,7 +45,7 @@ open class Library: DomainResource {
 	/// Natural language description of the library.
 	public var description_fhir: FHIRString?
 	
-	/// The effective date range for the library.
+	/// When the library is effective.
 	public var effectivePeriod: Period?
 	
 	/// If for testing purposes, not real usage.
@@ -57,7 +57,7 @@ open class Library: DomainResource {
 	/// Intended jurisdiction for library (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Last review date for the library.
+	/// When the library was last reviewed.
 	public var lastReviewDate: FHIRDate?
 	
 	/// Name for this library (Computer friendly).
@@ -72,7 +72,7 @@ open class Library: DomainResource {
 	/// Why this library is defined.
 	public var purpose: FHIRString?
 	
-	/// Related artifacts for the library.
+	/// Additional documentation, citations, etc..
 	public var relatedArtifact: [RelatedArtifact]?
 	
 	/// The status of this library. Enables tracking the life-cycle of the content.
@@ -81,7 +81,7 @@ open class Library: DomainResource {
 	/// Name for this library (Human friendly).
 	public var title: FHIRString?
 	
-	/// Descriptional topics for the library.
+	/// E.g. Education, Treatment, Assessment, etc.
 	public var topic: [CodeableConcept]?
 	
 	/// logic-library | model-definition | asset-collection | module-definition.

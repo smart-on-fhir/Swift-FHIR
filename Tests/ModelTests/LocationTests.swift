@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -158,6 +158,9 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/f001")
 		XCTAssertEqual(inst.mode, LocationMode(rawValue: "instance")!)
 		XCTAssertEqual(inst.name, "South Wing Neuro OR 1")
+		XCTAssertEqual(inst.operationalStatus?.code, "H")
+		XCTAssertEqual(inst.operationalStatus?.display, "Housekeeping")
+		XCTAssertEqual(inst.operationalStatus?.system?.absoluteString, "http://hl7.org/fhir/v2/0116")
 		XCTAssertEqual(inst.partOf?.reference, "Location/1")
 		XCTAssertEqual(inst.physicalType?.coding?[0].code, "ro")
 		XCTAssertEqual(inst.physicalType?.coding?[0].display, "Room")

@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -39,8 +39,8 @@ open class MedicationDispense: DomainResource {
 	/// Clinical Issue with action.
 	public var detectedIssue: [Reference]?
 	
-	/// Medicine administration instructions to the patient/caregiver.
-	public var dosageInstruction: [DosageInstruction]?
+	/// How the medication is to be used by the patient or administered by the caregiver.
+	public var dosageInstruction: [Dosage]?
 	
 	/// A list of events of interest in the lifecycle.
 	public var eventHistory: [Reference]?
@@ -124,7 +124,7 @@ open class MedicationDispense: DomainResource {
 		daysSupply = try createInstance(type: Quantity.self, for: "daysSupply", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? daysSupply
 		destination = try createInstance(type: Reference.self, for: "destination", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? destination
 		detectedIssue = try createInstances(of: Reference.self, for: "detectedIssue", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detectedIssue
-		dosageInstruction = try createInstances(of: DosageInstruction.self, for: "dosageInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosageInstruction
+		dosageInstruction = try createInstances(of: Dosage.self, for: "dosageInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosageInstruction
 		eventHistory = try createInstances(of: Reference.self, for: "eventHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventHistory
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		medicationCodeableConcept = try createInstance(type: CodeableConcept.self, for: "medicationCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? medicationCodeableConcept
@@ -208,9 +208,6 @@ open class MedicationDispensePerformer: BackboneElement {
 	/// Organization organization was acting for.
 	public var onBehalfOf: Reference?
 	
-	/// What type of role the performer fulfilled.
-	public var role: CodeableConcept?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(actor: Reference) {
@@ -223,11 +220,10 @@ open class MedicationDispensePerformer: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") {
+		if nil == actor && !presentKeys.contains("actor") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
-		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -240,7 +236,6 @@ open class MedicationDispensePerformer: BackboneElement {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
-		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 	}
 }
 
@@ -284,7 +279,7 @@ open class MedicationDispenseSubstitution: BackboneElement {
 		responsibleParty = try createInstances(of: Reference.self, for: "responsibleParty", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? responsibleParty
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		wasSubstituted = try createInstance(type: FHIRBool.self, for: "wasSubstituted", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? wasSubstituted
-		if nil == wasSubstituted && !presentKeys.contains("wasSubstituted") {
+		if nil == wasSubstituted && !presentKeys.contains("wasSubstituted") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "wasSubstituted"))
 		}
 		

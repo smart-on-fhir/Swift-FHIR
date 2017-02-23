@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.location?.display, "Central Supply")
 		XCTAssertEqual(inst.manufactureDate?.description, "2015-08-08")
 		XCTAssertEqual(inst.owner?.reference, "Organization/2.16.840.1.113883.19.5")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, FHIRDeviceStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "25062003")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Feeding tube, device")
@@ -172,7 +172,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.safety?[0].coding?[0].display, "MR Unsafe")
 		XCTAssertEqual(inst.safety?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/device-safety")
 		XCTAssertEqual(inst.safety?[0].text, "MR Unsafe")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, FHIRDeviceStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "468063009")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Coated femoral stem prosthesis, modular")
@@ -211,7 +211,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.manufactureDate?.description, "2013-02-01")
 		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "inactive")!)
+		XCTAssertEqual(inst.status, FHIRDeviceStatus(rawValue: "inactive")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.udi?.deviceIdentifier, "A9999XYZ100T0474")
 		XCTAssertEqual(inst.udi?.issuer?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-other")
@@ -245,7 +245,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
 		XCTAssertEqual(inst.model, "Ultra Implantable")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "inactive")!)
+		XCTAssertEqual(inst.status, FHIRDeviceStatus(rawValue: "inactive")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.udi?.carrierHRF, "+H123PARTNO1234567890120/$$420020216LOT123456789012345/SXYZ456789012345678/16D20130202C")
 		XCTAssertEqual(inst.udi?.entryType, UDIEntryType(rawValue: "manual")!)
@@ -274,7 +274,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.lotNumber, "RZ12345678")
 		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "inactive")!)
+		XCTAssertEqual(inst.status, FHIRDeviceStatus(rawValue: "inactive")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.udi?.carrierHRF, "=)1TE123456A&)RZ12345678")
 		XCTAssertEqual(inst.udi?.issuer?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-blood")
@@ -312,7 +312,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.note?[0].authorReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.note?[0].text, "QA Checked")
 		XCTAssertEqual(inst.note?[0].time?.description, "2015-06-28T14:03:32+10:00")
-		XCTAssertEqual(inst.status, DeviceStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, FHIRDeviceStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "86184003")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Electrocardiographic monitor and recorder")

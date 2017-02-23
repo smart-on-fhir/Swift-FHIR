@@ -2,7 +2,7 @@
 //  ClaimTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -140,6 +140,7 @@ class ClaimTests: XCTestCase {
 		XCTAssertEqual(inst.insurance?[0].sequence, 1)
 		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
 		XCTAssertEqual(inst.item?[0].careTeamLinkId?[0], 1)
+		XCTAssertEqual(inst.item?[0].encounter?[0].reference, "Encounter/example")
 		XCTAssertEqual(inst.item?[0].net?.code, "USD")
 		XCTAssertEqual(inst.item?[0].net?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].net?.value, "125.0")

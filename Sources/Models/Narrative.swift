@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -37,11 +37,11 @@ open class Narrative: Element {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		div = try createInstance(type: FHIRString.self, for: "div", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? div
-		if nil == div && !presentKeys.contains("div") {
+		if nil == div && !presentKeys.contains("div") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "div"))
 		}
 		status = createEnum(type: NarrativeStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
+		if nil == status && !presentKeys.contains("status") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		

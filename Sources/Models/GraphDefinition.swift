@@ -2,7 +2,7 @@
 //  GraphDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -92,7 +92,7 @@ open class GraphDefinition: DomainResource {
 		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
 		purpose = try createInstance(type: FHIRString.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
 		start = try createInstance(type: FHIRString.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
-		if nil == start && !presentKeys.contains("start") {
+		if nil == start && !presentKeys.contains("start") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "start"))
 		}
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
@@ -179,12 +179,12 @@ open class GraphDefinitionLink: BackboneElement {
 		max = try createInstance(type: FHIRString.self, for: "max", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? max
 		min = try createInstance(type: FHIRInteger.self, for: "min", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? min
 		path = try createInstance(type: FHIRString.self, for: "path", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? path
-		if nil == path && !presentKeys.contains("path") {
+		if nil == path && !presentKeys.contains("path") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "path"))
 		}
 		sliceName = try createInstance(type: FHIRString.self, for: "sliceName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sliceName
 		target = try createInstances(of: GraphDefinitionLinkTarget.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		if (nil == target || target!.isEmpty) && !presentKeys.contains("target") {
+		if (nil == target || target!.isEmpty) && !presentKeys.contains("target") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "target"))
 		}
 		
@@ -245,7 +245,7 @@ open class GraphDefinitionLinkTarget: BackboneElement {
 		link = try createInstances(of: GraphDefinitionLink.self, for: "link", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? link
 		profile = try createInstance(type: FHIRURL.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
 		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
@@ -299,13 +299,13 @@ open class GraphDefinitionLinkTargetCompartment: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = createEnum(type: CompartmentType.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		expression = try createInstance(type: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
 		rule = createEnum(type: GraphCompartmentRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors) ?? rule
-		if nil == rule && !presentKeys.contains("rule") {
+		if nil == rule && !presentKeys.contains("rule") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "rule"))
 		}
 		

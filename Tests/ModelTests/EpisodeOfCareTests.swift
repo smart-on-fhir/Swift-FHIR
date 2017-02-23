@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -44,8 +44,11 @@ class EpisodeOfCareTests: XCTestCase {
 		XCTAssertEqual(inst.account?[0].reference, "Account/example")
 		XCTAssertEqual(inst.careManager?.display, "Amanda Assigned")
 		XCTAssertEqual(inst.careManager?.reference, "Practitioner/14")
-		XCTAssertEqual(inst.condition?[0].display, "Severe burn of left ear")
-		XCTAssertEqual(inst.condition?[0].reference, "Condition/example")
+		XCTAssertEqual(inst.diagnosis?[0].condition?.reference, "Condition/stroke")
+		XCTAssertEqual(inst.diagnosis?[0].rank, 1)
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].code, "CC")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Cheif complaint")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/sampleepisodeofcare-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
@@ -68,9 +71,9 @@ class EpisodeOfCareTests: XCTestCase {
 		XCTAssertEqual(inst.team?[0].display, "example care team")
 		XCTAssertEqual(inst.team?[0].reference, "CareTeam/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?[0].coding?[0].code, "HACC")
-		XCTAssertEqual(inst.type?[0].coding?[0].display, "Home and Community Care Package")
-		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://example.org/EpisodeOfCare/Type")
+		XCTAssertEqual(inst.type?[0].coding?[0].code, "hacc")
+		XCTAssertEqual(inst.type?[0].coding?[0].display, "Home and Community Care")
+		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/episodeofcare-type")
 		
 		return inst
 	}

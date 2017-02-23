@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -50,7 +50,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].code, "309068002")
 		XCTAssertEqual(inst.group?[0].element?[1].code, "ACNFLD")
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].code, "119323008")
-		XCTAssertEqual(inst.group?[0].element?[1].target?[0].comments, "HL7 term is a historical term. mapped to Pus")
+		XCTAssertEqual(inst.group?[0].element?[1].target?[0].comment, "HL7 term is a historical term. mapped to Pus")
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].product?[0].code, "47002008")
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].product?[0].property?.absoluteString, "TypeModifier")
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -68,12 +68,12 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[4].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.group?[0].element?[5].code, "ANGI")
 		XCTAssertEqual(inst.group?[0].element?[5].target?[0].code, "119312009")
-		XCTAssertEqual(inst.group?[0].element?[5].target?[0].comments, "TBD in detail")
+		XCTAssertEqual(inst.group?[0].element?[5].target?[0].comment, "TBD in detail")
 		XCTAssertEqual(inst.group?[0].element?[6].code, "ARTC")
 		XCTAssertEqual(inst.group?[0].element?[6].target?[0].code, "119312009")
-		XCTAssertEqual(inst.group?[0].element?[6].target?[0].comments, "TBD in detail")
+		XCTAssertEqual(inst.group?[0].element?[6].target?[0].comment, "TBD in detail")
 		XCTAssertEqual(inst.group?[0].element?[7].code, "ASERU")
-		XCTAssertEqual(inst.group?[0].element?[7].target?[0].comments, "pending")
+		XCTAssertEqual(inst.group?[0].element?[7].target?[0].comment, "pending")
 		XCTAssertEqual(inst.group?[0].element?[7].target?[0].equivalence, ConceptMapEquivalence(rawValue: "unmatched")!)
 		XCTAssertEqual(inst.group?[0].element?[8].code, "ASP")
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].code, "119295008")
@@ -81,7 +81,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].product?[0].property?.absoluteString, "http://snomed.info/id/246380002")
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.group?[0].element?[9].code, "ATTE")
-		XCTAssertEqual(inst.group?[0].element?[9].target?[0].comments, "TBD")
+		XCTAssertEqual(inst.group?[0].element?[9].target?[0].comment, "TBD")
 		XCTAssertEqual(inst.group?[0].element?[9].target?[0].equivalence, ConceptMapEquivalence(rawValue: "unmatched")!)
 		XCTAssertEqual(inst.group?[0].source?.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.group?[0].target?.absoluteString, "http://snomed.info/sct")
@@ -134,7 +134,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[3].code, "old")
 		XCTAssertEqual(inst.group?[0].element?[3].display, "old")
 		XCTAssertEqual(inst.group?[0].element?[3].target?[0].code, "BAD")
-		XCTAssertEqual(inst.group?[0].element?[3].target?[0].comments, "In the HL7 v3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
+		XCTAssertEqual(inst.group?[0].element?[3].target?[0].comment, "In the HL7 v3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
 		XCTAssertEqual(inst.group?[0].element?[3].target?[0].display, "bad address")
 		XCTAssertEqual(inst.group?[0].element?[3].target?[0].equivalence, ConceptMapEquivalence(rawValue: "disjoint")!)
 		XCTAssertEqual(inst.group?[0].source?.absoluteString, "http://hl7.org/fhir/address-use")

@@ -2,7 +2,7 @@
 //  RequestGroup.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -44,7 +44,7 @@ open class RequestGroup: DomainResource {
 	/// Reason for the request group.
 	public var reasonReference: Reference?
 	
-	/// Subject of the request group.
+	/// Who the request group is about.
 	public var subject: Reference?
 	
 	
@@ -93,9 +93,6 @@ open class RequestGroupAction: BackboneElement {
 	/// Sub action.
 	public var action: [RequestGroupAction]?
 	
-	/// Unique identifier.
-	public var actionIdentifier: Identifier?
-	
 	/// Defines whether the action can be selected multiple times.
 	public var cardinalityBehavior: ActionCardinalityBehavior?
 	
@@ -117,7 +114,7 @@ open class RequestGroupAction: BackboneElement {
 	/// User-visible label for the action (e.g. 1. or A.).
 	public var label: FHIRString?
 	
-	/// Participant.
+	/// Who should perform the action.
 	public var participant: [Reference]?
 	
 	/// Defines whether the action should usually be preselected.
@@ -164,7 +161,6 @@ open class RequestGroupAction: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		action = try createInstances(of: RequestGroupAction.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		actionIdentifier = try createInstance(type: Identifier.self, for: "actionIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionIdentifier
 		cardinalityBehavior = createEnum(type: ActionCardinalityBehavior.self, for: "cardinalityBehavior", in: json, presentKeys: &presentKeys, errors: &errors) ?? cardinalityBehavior
 		code = try createInstances(of: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		condition = try createInstances(of: RequestGroupActionCondition.self, for: "condition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? condition
@@ -194,7 +190,6 @@ open class RequestGroupAction: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "action", using: self.action, errors: &errors)
-		self.actionIdentifier?.decorate(json: &json, withKey: "actionIdentifier", errors: &errors)
 		self.cardinalityBehavior?.decorate(json: &json, withKey: "cardinalityBehavior", errors: &errors)
 		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
 		arrayDecorate(json: &json, withKey: "condition", using: self.condition, errors: &errors)
@@ -256,7 +251,7 @@ open class RequestGroupActionCondition: BackboneElement {
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		expression = try createInstance(type: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
 		kind = createEnum(type: ActionConditionKind.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors) ?? kind
-		if nil == kind && !presentKeys.contains("kind") {
+		if nil == kind && !presentKeys.contains("kind") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "kind"))
 		}
 		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
@@ -288,8 +283,8 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 		get { return "RequestGroupActionRelatedAction" }
 	}
 	
-	/// Identifier of the related action.
-	public var actionIdentifier: Identifier?
+	/// What action this is related to.
+	public var actionId: FHIRString?
 	
 	/// Time offset for the relationship.
 	public var offsetDuration: Duration?
@@ -302,9 +297,9 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actionIdentifier: Identifier, relationship: ActionRelationshipType) {
+	public convenience init(actionId: FHIRString, relationship: ActionRelationshipType) {
 		self.init()
-		self.actionIdentifier = actionIdentifier
+		self.actionId = actionId
 		self.relationship = relationship
 	}
 	
@@ -312,14 +307,14 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		actionIdentifier = try createInstance(type: Identifier.self, for: "actionIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionIdentifier
-		if nil == actionIdentifier && !presentKeys.contains("actionIdentifier") {
-			errors.append(FHIRValidationError(missing: "actionIdentifier"))
+		actionId = try createInstance(type: FHIRString.self, for: "actionId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionId
+		if nil == actionId && !presentKeys.contains("actionId") && !_isSummaryResource {
+			errors.append(FHIRValidationError(missing: "actionId"))
 		}
 		offsetDuration = try createInstance(type: Duration.self, for: "offsetDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetDuration
 		offsetRange = try createInstance(type: Range.self, for: "offsetRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offsetRange
 		relationship = createEnum(type: ActionRelationshipType.self, for: "relationship", in: json, presentKeys: &presentKeys, errors: &errors) ?? relationship
-		if nil == relationship && !presentKeys.contains("relationship") {
+		if nil == relationship && !presentKeys.contains("relationship") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "relationship"))
 		}
 		
@@ -329,9 +324,9 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.actionIdentifier?.decorate(json: &json, withKey: "actionIdentifier", errors: &errors)
-		if nil == self.actionIdentifier {
-			errors.append(FHIRValidationError(missing: "actionIdentifier"))
+		self.actionId?.decorate(json: &json, withKey: "actionId", errors: &errors)
+		if nil == self.actionId {
+			errors.append(FHIRValidationError(missing: "actionId"))
 		}
 		self.offsetDuration?.decorate(json: &json, withKey: "offsetDuration", errors: &errors)
 		self.offsetRange?.decorate(json: &json, withKey: "offsetRange", errors: &errors)

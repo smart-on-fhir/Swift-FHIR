@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -51,9 +51,6 @@ open class Observation: DomainResource {
 	
 	/// Clinically relevant time/time-period for observation.
 	public var effectivePeriod: Period?
-	
-	/// Clinically relevant time/time-period for observation.
-	public var effectiveTiming: Timing?
 	
 	/// Business Identifier for observation.
 	public var identifier: [Identifier]?
@@ -144,7 +141,6 @@ open class Observation: DomainResource {
 		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
 		effectiveDateTime = try createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveDateTime
 		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
-		effectiveTiming = try createInstance(type: Timing.self, for: "effectiveTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveTiming
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		interpretation = try createInstance(type: CodeableConcept.self, for: "interpretation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? interpretation
 		issued = try createInstance(type: Instant.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
@@ -190,7 +186,6 @@ open class Observation: DomainResource {
 		self.device?.decorate(json: &json, withKey: "device", errors: &errors)
 		self.effectiveDateTime?.decorate(json: &json, withKey: "effectiveDateTime", errors: &errors)
 		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
-		self.effectiveTiming?.decorate(json: &json, withKey: "effectiveTiming", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.interpretation?.decorate(json: &json, withKey: "interpretation", errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
@@ -413,7 +408,7 @@ open class ObservationRelated: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		target = try createInstance(type: Reference.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		if nil == target && !presentKeys.contains("target") {
+		if nil == target && !presentKeys.contains("target") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "target"))
 		}
 		type = createEnum(type: ObservationRelationshipType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type

@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -53,6 +53,7 @@ class MessageHeaderTests: XCTestCase {
 		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/message-reasons-encounter")
 		XCTAssertEqual(inst.response?.code, ResponseType(rawValue: "ok")!)
 		XCTAssertEqual(inst.response?.identifier, "5015fe84-8e76-4526-89d8-44b322e8d4fb")
+		XCTAssertEqual(inst.sender?.reference, "Organization/1")
 		XCTAssertEqual(inst.source?.contact?.system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.source?.contact?.value, "+1 (555) 123 4567")
 		XCTAssertEqual(inst.source?.endpoint?.absoluteString, "llp:10.11.12.13:5432")

@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -146,7 +146,7 @@ open class QuestionnaireResponseItem: BackboneElement {
 		definition = try createInstance(type: FHIRURL.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
 		item = try createInstances(of: QuestionnaireResponseItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
 		linkId = try createInstance(type: FHIRString.self, for: "linkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? linkId
-		if nil == linkId && !presentKeys.contains("linkId") {
+		if nil == linkId && !presentKeys.contains("linkId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "linkId"))
 		}
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject

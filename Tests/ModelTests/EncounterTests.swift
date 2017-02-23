@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -318,13 +318,14 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.`class`?.code, "AMB")
 		XCTAssertEqual(inst.`class`?.display, "ambulatory")
 		XCTAssertEqual(inst.`class`?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
+		XCTAssertEqual(inst.diagnosis?[0].condition?.display, "Complications from Roel's TPF chemotherapy on January 28th, 2013")
+		XCTAssertEqual(inst.diagnosis?[0].rank, 1)
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].code, "AD")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Admission diagnosis")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
 		XCTAssertEqual(inst.id, "f202")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "temp")!)
 		XCTAssertEqual(inst.identifier?[0].value, "Encounter_Roel_20130128")
-		XCTAssertEqual(inst.indication?[0].display, "Roel's TPF chemotherapy on January 28th, 2013")
-		XCTAssertEqual(inst.indication?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
-		XCTAssertEqual(inst.indication?[0].extension_fhir?[0].valuePositiveInt, 1)
-		XCTAssertEqual(inst.indication?[0].reference, "Procedure/f201")
 		XCTAssertEqual(inst.length?.code, "min")
 		XCTAssertEqual(inst.length?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.length?.unit, "minutes")
@@ -367,16 +368,23 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.`class`?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.account?[0].reference, "Account/example")
 		XCTAssertEqual(inst.appointment?.reference, "Appointment/example")
+		XCTAssertEqual(inst.diagnosis?[0].condition?.reference, "Condition/stroke")
+		XCTAssertEqual(inst.diagnosis?[0].rank, 1)
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].code, "AD")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Admission diagnosis")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
+		XCTAssertEqual(inst.diagnosis?[1].condition?.reference, "Condition/f201")
+		XCTAssertEqual(inst.diagnosis?[1].role?.coding?[0].code, "DD")
+		XCTAssertEqual(inst.diagnosis?[1].role?.coding?[0].display, "Discharge diagnosis")
+		XCTAssertEqual(inst.diagnosis?[1].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
 		XCTAssertEqual(inst.episodeOfCare?[0].reference, "EpisodeOfCare/example")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].code, "309902002")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].display, "Clinical Oncology Department")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.hospitalization?.admittingDiagnosis?[0].reference, "Condition/stroke")
 		XCTAssertEqual(inst.hospitalization?.destination?.reference, "Location/2")
 		XCTAssertEqual(inst.hospitalization?.dietPreference?[0].coding?[0].code, "276026009")
 		XCTAssertEqual(inst.hospitalization?.dietPreference?[0].coding?[0].display, "Fluid balance regulation")
 		XCTAssertEqual(inst.hospitalization?.dietPreference?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.hospitalization?.dischargeDiagnosis?[0].reference, "Condition/f201")
 		XCTAssertEqual(inst.hospitalization?.origin?.reference, "Location/2")
 		XCTAssertEqual(inst.hospitalization?.reAdmission?.coding?[0].display, "readmitted")
 		XCTAssertEqual(inst.hospitalization?.specialArrangement?[0].coding?[0].code, "wheel")

@@ -2,7 +2,7 @@
 //  Consent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Consent) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Consent) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -170,7 +170,7 @@ open class ConsentActor: BackboneElement {
 	/// Resource for the actor (or group, by role).
 	public var reference: Reference?
 	
-	/// How the actor is/was involved.
+	/// How the actor is involved.
 	public var role: CodeableConcept?
 	
 	
@@ -186,11 +186,11 @@ open class ConsentActor: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		if nil == reference && !presentKeys.contains("reference") {
+		if nil == reference && !presentKeys.contains("reference") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "reference"))
 		}
 		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		if nil == role && !presentKeys.contains("role") {
+		if nil == role && !presentKeys.contains("role") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "role"))
 		}
 		
@@ -369,7 +369,7 @@ open class ConsentExceptActor: BackboneElement {
 	/// Resource for the actor (or group, by role).
 	public var reference: Reference?
 	
-	/// How the actor is/was involved.
+	/// How the actor is involved.
 	public var role: CodeableConcept?
 	
 	
@@ -385,11 +385,11 @@ open class ConsentExceptActor: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		if nil == reference && !presentKeys.contains("reference") {
+		if nil == reference && !presentKeys.contains("reference") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "reference"))
 		}
 		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		if nil == role && !presentKeys.contains("role") {
+		if nil == role && !presentKeys.contains("role") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "role"))
 		}
 		

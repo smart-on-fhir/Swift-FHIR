@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -188,7 +188,7 @@ open class ConceptMapGroup: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		element = try createInstances(of: ConceptMapGroupElement.self, for: "element", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? element
-		if (nil == element || element!.isEmpty) && !presentKeys.contains("element") {
+		if (nil == element || element!.isEmpty) && !presentKeys.contains("element") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "element"))
 		}
 		source = try createInstance(type: FHIRURL.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
@@ -270,7 +270,7 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 	public var code: FHIRString?
 	
 	/// Description of status/issues in mapping.
-	public var comments: FHIRString?
+	public var comment: FHIRString?
 	
 	/// Other elements required for this mapping (from context).
 	public var dependsOn: [ConceptMapGroupElementTargetDependsOn]?
@@ -293,7 +293,7 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		comments = try createInstance(type: FHIRString.self, for: "comments", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comments
+		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
 		dependsOn = try createInstances(of: ConceptMapGroupElementTargetDependsOn.self, for: "dependsOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dependsOn
 		dependsOndisplay = try createInstance(type: FHIRString.self, for: "dependsOndisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dependsOndisplay
 		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
@@ -307,7 +307,7 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		self.comments?.decorate(json: &json, withKey: "comments", errors: &errors)
+		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "dependsOn", using: self.dependsOn, errors: &errors)
 		self.dependsOndisplay?.decorate(json: &json, withKey: "dependsOndisplay", errors: &errors)
 		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
@@ -350,11 +350,11 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		property = try createInstance(type: FHIRURL.self, for: "property", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? property
-		if nil == property && !presentKeys.contains("property") {
+		if nil == property && !presentKeys.contains("property") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "property"))
 		}
 		system = try createInstance(type: FHIRURL.self, for: "system", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? system
@@ -416,7 +416,7 @@ open class ConceptMapGroupUnmapped: BackboneElement {
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
 		mode = createEnum(type: ConceptMapGroupUnmappedMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
+		if nil == mode && !presentKeys.contains("mode") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "mode"))
 		}
 		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url

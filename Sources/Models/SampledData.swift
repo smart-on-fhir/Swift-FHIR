@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ open class SampledData: Element {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		data = try createInstance(type: FHIRString.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
-		if nil == data && !presentKeys.contains("data") {
+		if nil == data && !presentKeys.contains("data") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "data"))
 		}
 		dimensions = try createInstance(type: FHIRInteger.self, for: "dimensions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dimensions

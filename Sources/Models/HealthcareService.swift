@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -28,6 +28,9 @@ open class HealthcareService: DomainResource {
 	
 	/// Times the Service Site is available.
 	public var availableTime: [HealthcareServiceAvailableTime]?
+	
+	/// Broad category of service being performed or delivered.
+	public var category: CodeableConcept?
 	
 	/// Collection of characteristics (attributes).
 	public var characteristic: [CodeableConcept]?
@@ -56,6 +59,9 @@ open class HealthcareService: DomainResource {
 	/// Location(s) where service may be provided.
 	public var location: [Reference]?
 	
+	/// Description of service as presented to a consumer while searching.
+	public var name: FHIRString?
+	
 	/// Not available during this time due to provided reason.
 	public var notAvailable: [HealthcareServiceNotAvailable]?
 	
@@ -68,29 +74,20 @@ open class HealthcareService: DomainResource {
 	/// Organization that provides this service.
 	public var providedBy: Reference?
 	
-	/// PKI Public keys to support secure communications.
-	public var publicKey: FHIRString?
-	
 	/// Ways that the service accepts referrals.
 	public var referralMethod: [CodeableConcept]?
 	
-	/// Broad category of service being performed or delivered.
-	public var serviceCategory: CodeableConcept?
-	
-	/// Description of service as presented to a consumer while searching.
-	public var serviceName: FHIRString?
-	
 	/// Conditions under which service is available/offered.
 	public var serviceProvisionCode: [CodeableConcept]?
-	
-	/// Type of service that may be delivered or performed.
-	public var serviceType: [CodeableConcept]?
 	
 	/// Specialties handled by the HealthcareService.
 	public var specialty: [CodeableConcept]?
 	
 	/// Contacts related to the healthcare service.
 	public var telecom: [ContactPoint]?
+	
+	/// Type of service that may be delivered or performed.
+	public var type: [CodeableConcept]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -100,6 +97,7 @@ open class HealthcareService: DomainResource {
 		appointmentRequired = try createInstance(type: FHIRBool.self, for: "appointmentRequired", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? appointmentRequired
 		availabilityExceptions = try createInstance(type: FHIRString.self, for: "availabilityExceptions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? availabilityExceptions
 		availableTime = try createInstances(of: HealthcareServiceAvailableTime.self, for: "availableTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? availableTime
+		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		characteristic = try createInstances(of: CodeableConcept.self, for: "characteristic", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? characteristic
 		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
 		coverageArea = try createInstances(of: Reference.self, for: "coverageArea", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? coverageArea
@@ -109,18 +107,16 @@ open class HealthcareService: DomainResource {
 		extraDetails = try createInstance(type: FHIRString.self, for: "extraDetails", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? extraDetails
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		location = try createInstances(of: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
+		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
 		notAvailable = try createInstances(of: HealthcareServiceNotAvailable.self, for: "notAvailable", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? notAvailable
 		photo = try createInstance(type: Attachment.self, for: "photo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? photo
 		programName = try createInstances(of: FHIRString.self, for: "programName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? programName
 		providedBy = try createInstance(type: Reference.self, for: "providedBy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? providedBy
-		publicKey = try createInstance(type: FHIRString.self, for: "publicKey", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publicKey
 		referralMethod = try createInstances(of: CodeableConcept.self, for: "referralMethod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referralMethod
-		serviceCategory = try createInstance(type: CodeableConcept.self, for: "serviceCategory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? serviceCategory
-		serviceName = try createInstance(type: FHIRString.self, for: "serviceName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? serviceName
 		serviceProvisionCode = try createInstances(of: CodeableConcept.self, for: "serviceProvisionCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? serviceProvisionCode
-		serviceType = try createInstances(of: CodeableConcept.self, for: "serviceType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? serviceType
 		specialty = try createInstances(of: CodeableConcept.self, for: "specialty", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specialty
 		telecom = try createInstances(of: ContactPoint.self, for: "telecom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? telecom
+		type = try createInstances(of: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -132,6 +128,7 @@ open class HealthcareService: DomainResource {
 		self.appointmentRequired?.decorate(json: &json, withKey: "appointmentRequired", errors: &errors)
 		self.availabilityExceptions?.decorate(json: &json, withKey: "availabilityExceptions", errors: &errors)
 		arrayDecorate(json: &json, withKey: "availableTime", using: self.availableTime, errors: &errors)
+		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
 		arrayDecorate(json: &json, withKey: "characteristic", using: self.characteristic, errors: &errors)
 		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "coverageArea", using: self.coverageArea, errors: &errors)
@@ -141,18 +138,16 @@ open class HealthcareService: DomainResource {
 		self.extraDetails?.decorate(json: &json, withKey: "extraDetails", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "location", using: self.location, errors: &errors)
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		arrayDecorate(json: &json, withKey: "notAvailable", using: self.notAvailable, errors: &errors)
 		self.photo?.decorate(json: &json, withKey: "photo", errors: &errors)
 		arrayDecorate(json: &json, withKey: "programName", using: self.programName, errors: &errors)
 		self.providedBy?.decorate(json: &json, withKey: "providedBy", errors: &errors)
-		self.publicKey?.decorate(json: &json, withKey: "publicKey", errors: &errors)
 		arrayDecorate(json: &json, withKey: "referralMethod", using: self.referralMethod, errors: &errors)
-		self.serviceCategory?.decorate(json: &json, withKey: "serviceCategory", errors: &errors)
-		self.serviceName?.decorate(json: &json, withKey: "serviceName", errors: &errors)
 		arrayDecorate(json: &json, withKey: "serviceProvisionCode", using: self.serviceProvisionCode, errors: &errors)
-		arrayDecorate(json: &json, withKey: "serviceType", using: self.serviceType, errors: &errors)
 		arrayDecorate(json: &json, withKey: "specialty", using: self.specialty, errors: &errors)
 		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
+		arrayDecorate(json: &json, withKey: "type", using: self.type, errors: &errors)
 	}
 }
 
@@ -230,7 +225,7 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		if nil == description_fhir && !presentKeys.contains("description") {
+		if nil == description_fhir && !presentKeys.contains("description") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "description"))
 		}
 		during = try createInstance(type: Period.self, for: "during", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? during

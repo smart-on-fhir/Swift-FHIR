@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -577,9 +577,13 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.bodySite?.coding?[0].code, "368209003")
 		XCTAssertEqual(inst.bodySite?.coding?[0].display, "Right arm")
 		XCTAssertEqual(inst.bodySite?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.code?.coding?[0].code, "55284-4")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Blood pressure systolic & diastolic")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "vital-signs")
+		XCTAssertEqual(inst.category?[0].coding?[0].display, "Vital Signs")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/observation-category")
+		XCTAssertEqual(inst.code?.coding?[0].code, "85354-9")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Bood pressure panel with all children optional")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.code?.text, "Blood pressure systolic & diastolic")
 		XCTAssertEqual(inst.comment, "In this example, the blood pressure measurements are not available due to cancellation of the order.  Data absent reason is present for each component")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].code, "8480-6")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].display, "Systolic blood pressure")
@@ -607,7 +611,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.interpretation?.coding?[0].display, "low")
 		XCTAssertEqual(inst.interpretation?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0078")
 		XCTAssertEqual(inst.interpretation?.text, "Below low normal")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2014-01-30T22:35:23+11:00")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/vitalsigns")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
 		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "cancelled")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
@@ -636,9 +640,10 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "vital-signs")
 		XCTAssertEqual(inst.category?[0].coding?[0].display, "Vital Signs")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/observation-category")
-		XCTAssertEqual(inst.code?.coding?[0].code, "55284-4")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Blood pressure systolic & diastolic")
+		XCTAssertEqual(inst.code?.coding?[0].code, "85354-9")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Bood pressure panel with all children optional")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.code?.text, "Blood pressure systolic & diastolic")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].code, "8480-6")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].display, "Systolic blood pressure")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].system?.absoluteString, "http://loinc.org")
@@ -666,6 +671,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.interpretation?.coding?[0].display, "low")
 		XCTAssertEqual(inst.interpretation?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0078")
 		XCTAssertEqual(inst.interpretation?.text, "Below low normal")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/vitalsigns")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
 		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
@@ -696,9 +702,10 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "vital-signs")
 		XCTAssertEqual(inst.category?[0].coding?[0].display, "Vital Signs")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/observation-category")
-		XCTAssertEqual(inst.code?.coding?[0].code, "55284-4")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Blood pressure systolic & diastolic")
+		XCTAssertEqual(inst.code?.coding?[0].code, "85354-9")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Bood pressure panel with all children optional")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.code?.text, "Blood pressure systolic & diastolic")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].code, "8480-6")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].display, "Systolic blood pressure")
 		XCTAssertEqual(inst.component?[0].code?.coding?[0].system?.absoluteString, "http://loinc.org")
@@ -735,6 +742,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.interpretation?.coding?[0].display, "low")
 		XCTAssertEqual(inst.interpretation?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0078")
 		XCTAssertEqual(inst.interpretation?.text, "Below low normal")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/vitalsigns")
 		XCTAssertEqual(inst.performer?[0].reference, "Practitioner/example")
 		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
@@ -802,6 +810,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.code?.text, "BMI")
 		XCTAssertEqual(inst.effectiveDateTime?.description, "1999-07-02")
 		XCTAssertEqual(inst.id, "bmi")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/vitalsigns")
 		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

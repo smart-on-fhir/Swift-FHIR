@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -33,10 +33,17 @@ open class DeviceUseStatement: DomainResource {
 	public var indication: [CodeableConcept]?
 	
 	/// Addition details (comments, instructions).
-	public var notes: [FHIRString]?
+	public var note: [Annotation]?
 	
 	/// When statement was recorded.
 	public var recordedOn: DateTime?
+	
+	/// Who made the statement.
+	public var source: Reference?
+	
+	/// A code representing the patient or other source's judgment about the state of the device used that this
+	/// statement is about.  Generally this will be active or completed.
+	public var status: DeviceUseStatementStatus?
 	
 	/// Patient using device.
 	public var subject: Reference?
@@ -55,9 +62,10 @@ open class DeviceUseStatement: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(device: Reference, subject: Reference) {
+	public convenience init(device: Reference, status: DeviceUseStatementStatus, subject: Reference) {
 		self.init()
 		self.device = device
+		self.status = status
 		self.subject = subject
 	}
 	
@@ -67,15 +75,20 @@ open class DeviceUseStatement: DomainResource {
 		
 		bodySite = try createInstance(type: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
 		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
-		if nil == device && !presentKeys.contains("device") {
+		if nil == device && !presentKeys.contains("device") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "device"))
 		}
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		indication = try createInstances(of: CodeableConcept.self, for: "indication", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? indication
-		notes = try createInstances(of: FHIRString.self, for: "notes", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? notes
+		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		recordedOn = try createInstance(type: DateTime.self, for: "recordedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recordedOn
+		source = try createInstance(type: Reference.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
+		status = createEnum(type: DeviceUseStatementStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
+		if nil == status && !presentKeys.contains("status") {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		if nil == subject && !presentKeys.contains("subject") {
+		if nil == subject && !presentKeys.contains("subject") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		timingDateTime = try createInstance(type: DateTime.self, for: "timingDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingDateTime
@@ -96,8 +109,13 @@ open class DeviceUseStatement: DomainResource {
 		}
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "indication", using: self.indication, errors: &errors)
-		arrayDecorate(json: &json, withKey: "notes", using: self.notes, errors: &errors)
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.recordedOn?.decorate(json: &json, withKey: "recordedOn", errors: &errors)
+		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))

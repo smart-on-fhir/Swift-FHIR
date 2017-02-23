@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -136,7 +136,7 @@ open class ProcessRequestItem: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		sequenceLinkId = try createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") {
+		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 		

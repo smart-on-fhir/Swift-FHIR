@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -114,12 +114,12 @@ open class Immunization: DomainResource {
 		}
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		if nil == patient && !presentKeys.contains("patient") {
+		if nil == patient && !presentKeys.contains("patient") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		practitioner = try createInstances(of: ImmunizationPractitioner.self, for: "practitioner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? practitioner
 		primarySource = try createInstance(type: FHIRBool.self, for: "primarySource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? primarySource
-		if nil == primarySource && !presentKeys.contains("primarySource") {
+		if nil == primarySource && !presentKeys.contains("primarySource") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "primarySource"))
 		}
 		reaction = try createInstances(of: ImmunizationReaction.self, for: "reaction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reaction
@@ -132,7 +132,7 @@ open class Immunization: DomainResource {
 		}
 		vaccinationProtocol = try createInstances(of: ImmunizationVaccinationProtocol.self, for: "vaccinationProtocol", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? vaccinationProtocol
 		vaccineCode = try createInstance(type: CodeableConcept.self, for: "vaccineCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? vaccineCode
-		if nil == vaccineCode && !presentKeys.contains("vaccineCode") {
+		if nil == vaccineCode && !presentKeys.contains("vaccineCode") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "vaccineCode"))
 		}
 		
@@ -355,14 +355,14 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		doseSequence = try createInstance(type: FHIRInteger.self, for: "doseSequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseSequence
 		doseStatus = try createInstance(type: CodeableConcept.self, for: "doseStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseStatus
-		if nil == doseStatus && !presentKeys.contains("doseStatus") {
+		if nil == doseStatus && !presentKeys.contains("doseStatus") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "doseStatus"))
 		}
 		doseStatusReason = try createInstance(type: CodeableConcept.self, for: "doseStatusReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseStatusReason
 		series = try createInstance(type: FHIRString.self, for: "series", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? series
 		seriesDoses = try createInstance(type: FHIRInteger.self, for: "seriesDoses", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? seriesDoses
 		targetDisease = try createInstances(of: CodeableConcept.self, for: "targetDisease", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? targetDisease
-		if (nil == targetDisease || targetDisease!.isEmpty) && !presentKeys.contains("targetDisease") {
+		if (nil == targetDisease || targetDisease!.isEmpty) && !presentKeys.contains("targetDisease") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "targetDisease"))
 		}
 		

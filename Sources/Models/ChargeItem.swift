@@ -2,7 +2,7 @@
 //  ChargeItem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -217,7 +217,7 @@ open class ChargeItemParticipant: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") {
+		if nil == actor && !presentKeys.contains("actor") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role

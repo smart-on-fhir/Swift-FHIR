@@ -2,7 +2,7 @@
 //  MeasureReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -22,7 +22,7 @@ open class MeasureReport: DomainResource {
 	/// Date the report was generated.
 	public var date: DateTime?
 	
-	/// Evaluated Resources.
+	/// What data was evaluated to produce the measure score.
 	public var evaluatedResources: Reference?
 	
 	/// Measure results for each group.
@@ -137,9 +137,6 @@ open class MeasureReportGroup: BackboneElement {
 	/// Stratification results.
 	public var stratifier: [MeasureReportGroupStratifier]?
 	
-	/// Supplemental data elements for the measure.
-	public var supplementalData: [MeasureReportGroupSupplementalData]?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(identifier: Identifier) {
@@ -152,13 +149,12 @@ open class MeasureReportGroup: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
+		if nil == identifier && !presentKeys.contains("identifier") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
 		measureScore = try createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measureScore
 		population = try createInstances(of: MeasureReportGroupPopulation.self, for: "population", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? population
 		stratifier = try createInstances(of: MeasureReportGroupStratifier.self, for: "stratifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? stratifier
-		supplementalData = try createInstances(of: MeasureReportGroupSupplementalData.self, for: "supplementalData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supplementalData
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -173,7 +169,6 @@ open class MeasureReportGroup: BackboneElement {
 		self.measureScore?.decorate(json: &json, withKey: "measureScore", errors: &errors)
 		arrayDecorate(json: &json, withKey: "population", using: self.population, errors: &errors)
 		arrayDecorate(json: &json, withKey: "stratifier", using: self.stratifier, errors: &errors)
-		arrayDecorate(json: &json, withKey: "supplementalData", using: self.supplementalData, errors: &errors)
 	}
 }
 
@@ -188,32 +183,27 @@ open class MeasureReportGroupPopulation: BackboneElement {
 		get { return "MeasureReportGroupPopulation" }
 	}
 	
+	/// initial-population | numerator | numerator-exclusion | denominator | denominator-exclusion | denominator-
+	/// exception | measure-population | measure-population-exclusion | measure-score.
+	public var code: CodeableConcept?
+	
 	/// Size of the population.
 	public var count: FHIRInteger?
 	
+	/// Identifier of the population being reported.
+	public var identifier: Identifier?
+	
 	/// For patient-list reports, the patients in this population.
 	public var patients: Reference?
-	
-	/// The type of the population.
-	public var type: MeasurePopulationType?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: MeasurePopulationType) {
-		self.init()
-		self.type = type
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
-		type = createEnum(type: MeasurePopulationType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -221,12 +211,10 @@ open class MeasureReportGroupPopulation: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.patients?.decorate(json: &json, withKey: "patients", errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		if nil == self.type {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
 	}
 }
 
@@ -242,28 +230,18 @@ open class MeasureReportGroupStratifier: BackboneElement {
 		get { return "MeasureReportGroupStratifier" }
 	}
 	
-	/// Stratum results, one for each unique value in the stratifier.
-	public var group: [MeasureReportGroupStratifierGroup]?
-	
 	/// Identifier of the stratifier.
 	public var identifier: Identifier?
 	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier) {
-		self.init()
-		self.identifier = identifier
-	}
+	/// Stratum results, one for each unique value in the stratifier.
+	public var stratum: [MeasureReportGroupStratifierStratum]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		group = try createInstances(of: MeasureReportGroupStratifierGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
+		stratum = try createInstances(of: MeasureReportGroupStratifierStratum.self, for: "stratum", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? stratum
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -271,11 +249,8 @@ open class MeasureReportGroupStratifier: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
+		arrayDecorate(json: &json, withKey: "stratum", using: self.stratum, errors: &errors)
 	}
 }
 
@@ -286,16 +261,16 @@ Stratum results, one for each unique value in the stratifier.
 This element contains the results for a single stratum within the stratifier. For example, when stratifying on
 administrative gender, there will be four strata, one for each possible gender value.
 */
-open class MeasureReportGroupStratifierGroup: BackboneElement {
+open class MeasureReportGroupStratifierStratum: BackboneElement {
 	override open class var resourceType: String {
-		get { return "MeasureReportGroupStratifierGroup" }
+		get { return "MeasureReportGroupStratifierStratum" }
 	}
 	
-	/// The measure score.
+	/// Score for this stratum.
 	public var measureScore: FHIRDecimal?
 	
 	/// Population results in this stratum.
-	public var population: [MeasureReportGroupStratifierGroupPopulation]?
+	public var population: [MeasureReportGroupStratifierStratumPopulation]?
 	
 	/// The stratum value, e.g. male.
 	public var value: FHIRString?
@@ -312,9 +287,9 @@ open class MeasureReportGroupStratifierGroup: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		measureScore = try createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measureScore
-		population = try createInstances(of: MeasureReportGroupStratifierGroupPopulation.self, for: "population", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? population
+		population = try createInstances(of: MeasureReportGroupStratifierStratumPopulation.self, for: "population", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? population
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
@@ -339,140 +314,32 @@ Population results in this stratum.
 
 The populations that make up the stratum, one for each type of population appropriate to the measure.
 */
-open class MeasureReportGroupStratifierGroupPopulation: BackboneElement {
+open class MeasureReportGroupStratifierStratumPopulation: BackboneElement {
 	override open class var resourceType: String {
-		get { return "MeasureReportGroupStratifierGroupPopulation" }
+		get { return "MeasureReportGroupStratifierStratumPopulation" }
 	}
+	
+	/// initial-population | numerator | numerator-exclusion | denominator | denominator-exclusion | denominator-
+	/// exception | measure-population | measure-population-exclusion | measure-score.
+	public var code: CodeableConcept?
 	
 	/// Size of the population.
 	public var count: FHIRInteger?
 	
-	/// For patient-list reports, the patients in this population.
-	public var patients: Reference?
-	
-	/// The type of the population.
-	public var type: MeasurePopulationType?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: MeasurePopulationType) {
-		self.init()
-		self.type = type
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
-		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
-		type = createEnum(type: MeasurePopulationType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
-		self.patients?.decorate(json: &json, withKey: "patients", errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		if nil == self.type {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
-	}
-}
-
-
-/**
-Supplemental data elements for the measure.
-
-Supplemental data elements for the measure provide additional information requested by the measure for each patient
-involved in the populations.
-*/
-open class MeasureReportGroupSupplementalData: BackboneElement {
-	override open class var resourceType: String {
-		get { return "MeasureReportGroupSupplementalData" }
-	}
-	
-	/// Supplemental data results, one for each unique supplemental data value.
-	public var group: [MeasureReportGroupSupplementalDataGroup]?
-	
-	/// Identifier of the supplemental data element.
+	/// Identifier of the population.
 	public var identifier: Identifier?
 	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier) {
-		self.init()
-		self.identifier = identifier
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		group = try createInstances(of: MeasureReportGroupSupplementalDataGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
-	}
-}
-
-
-/**
-Supplemental data results, one for each unique supplemental data value.
-
-This element contains the results for a single value within the supplemental data. For example, when reporting
-supplemental data for administrative gender, there will be four groups, one for each possible gender value.
-*/
-open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
-	override open class var resourceType: String {
-		get { return "MeasureReportGroupSupplementalDataGroup" }
-	}
-	
-	/// Number of members in the group.
-	public var count: FHIRInteger?
-	
 	/// For patient-list reports, the patients in this population.
 	public var patients: Reference?
 	
-	/// The data value, e.g. male.
-	public var value: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(value: FHIRString) {
-		self.init()
-		self.value = value
-	}
-	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
-		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
-			errors.append(FHIRValidationError(missing: "value"))
-		}
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -480,12 +347,10 @@ open class MeasureReportGroupSupplementalDataGroup: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.count?.decorate(json: &json, withKey: "count", errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.patients?.decorate(json: &json, withKey: "patients", errors: &errors)
-		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
-		if nil == self.value {
-			errors.append(FHIRValidationError(missing: "value"))
-		}
 	}
 }
 

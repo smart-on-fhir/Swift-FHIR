@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -104,9 +104,9 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.prediction?[0].outcome?.coding?[0].code, "249943000:363698007=72098002,260868000=6934004")
 		XCTAssertEqual(inst.prediction?[0].outcome?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.prediction?[0].outcome?.text, "permanent weakness of the left arm")
-		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].code, "moderate")
-		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].display, "moderate likelihood")
-		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/risk-probability")
+		XCTAssertEqual(inst.prediction?[0].qualitativeRisk?.coding?[0].code, "moderate")
+		XCTAssertEqual(inst.prediction?[0].qualitativeRisk?.coding?[0].display, "moderate likelihood")
+		XCTAssertEqual(inst.prediction?[0].qualitativeRisk?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/risk-probability")
 		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		

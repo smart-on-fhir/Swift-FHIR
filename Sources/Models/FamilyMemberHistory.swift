@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -88,7 +88,7 @@ open class FamilyMemberHistory: DomainResource {
 	public var patient: Reference?
 	
 	/// Why was family member history performed?.
-	public var reasonCodeableConcept: [CodeableConcept]?
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Why was family member history performed?.
 	public var reasonReference: [Reference]?
@@ -137,7 +137,7 @@ open class FamilyMemberHistory: DomainResource {
 		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
-		reasonCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
+		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
 		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		relationship = try createInstance(type: CodeableConcept.self, for: "relationship", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relationship
 		if nil == relationship && !presentKeys.contains("relationship") {
@@ -179,7 +179,7 @@ open class FamilyMemberHistory: DomainResource {
 		if nil == self.patient {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
-		arrayDecorate(json: &json, withKey: "reasonCodeableConcept", using: self.reasonCodeableConcept, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.relationship?.decorate(json: &json, withKey: "relationship", errors: &errors)
 		if nil == self.relationship {
@@ -237,7 +237,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note

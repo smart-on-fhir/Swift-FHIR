@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -269,7 +269,7 @@ class ProcedureRequestTests: XCTestCase {
 		XCTAssertEqual(inst.requester?.agent?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.requester?.onBehalfOf?.display, "Good Health Clinic")
 		XCTAssertEqual(inst.requester?.onBehalfOf?.reference, "Organization/2")
-		XCTAssertEqual(inst.status, RequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.status, RequestStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -70,13 +70,13 @@ open class MedicationAdministration: DomainResource {
 	public var prescription: Reference?
 	
 	/// Reason administration performed.
-	public var reasonGivenCodeableConcept: [CodeableConcept]?
-	
-	/// Condition or Observation that supports why the medication was administered.
-	public var reasonGivenReference: [Reference]?
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Reason administration not performed.
 	public var reasonNotGiven: [CodeableConcept]?
+	
+	/// Condition or Observation that supports why the medication was administered.
+	public var reasonReference: [Reference]?
 	
 	/// Will generally be set to show that the administration has been completed.  For some long running administrations
 	/// such as infusions it is possible for an administration to be started but not completed or it may be paused while
@@ -135,9 +135,9 @@ open class MedicationAdministration: DomainResource {
 		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
 		performer = try createInstances(of: MedicationAdministrationPerformer.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
 		prescription = try createInstance(type: Reference.self, for: "prescription", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? prescription
-		reasonGivenCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonGivenCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonGivenCodeableConcept
-		reasonGivenReference = try createInstances(of: Reference.self, for: "reasonGivenReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonGivenReference
+		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
 		reasonNotGiven = try createInstances(of: CodeableConcept.self, for: "reasonNotGiven", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonNotGiven
+		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		status = createEnum(type: MedicationAdministrationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -179,9 +179,9 @@ open class MedicationAdministration: DomainResource {
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		arrayDecorate(json: &json, withKey: "performer", using: self.performer, errors: &errors)
 		self.prescription?.decorate(json: &json, withKey: "prescription", errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonGivenCodeableConcept", using: self.reasonGivenCodeableConcept, errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonGivenReference", using: self.reasonGivenReference, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonNotGiven", using: self.reasonNotGiven, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -279,9 +279,6 @@ open class MedicationAdministrationPerformer: BackboneElement {
 	/// Organization organization was acting for.
 	public var onBehalfOf: Reference?
 	
-	/// Type of performer.
-	public var role: CodeableConcept?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(actor: Reference) {
@@ -298,7 +295,6 @@ open class MedicationAdministrationPerformer: BackboneElement {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
-		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -311,7 +307,6 @@ open class MedicationAdministrationPerformer: BackboneElement {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
 		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
-		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 	}
 }
 

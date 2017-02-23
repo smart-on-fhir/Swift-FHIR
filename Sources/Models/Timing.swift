@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -12,9 +12,9 @@ import Foundation
 /**
 A timing schedule that specifies an event that may occur multiple times.
 
-Specifies an event that may occur multiple times. Timing schedules are used to record when things are expected or
-requested to occur. The most common usage is in dosage instructions for medications. They are also used when planning
-care of various kinds.
+Specifies an event that may occur multiple times. Timing schedules are used to record when things are planned, expected
+or requested to occur. The most common usage is in dosage instructions for medications. They are also used when planning
+care of various kinds, and may be used for reporting the schedule to which past regular activities were carried out.
 */
 open class Timing: Element {
 	override open class var resourceType: String {
@@ -54,7 +54,7 @@ open class Timing: Element {
 /**
 When the event is to occur.
 
-A set of rules that describe when the event should occur.
+A set of rules that describe when the event is scheduled.
 */
 open class TimingRepeat: Element {
 	override open class var resourceType: String {
@@ -110,7 +110,7 @@ open class TimingRepeat: Element {
 	public var timeOfDay: [FHIRTime]?
 	
 	/// Regular life events the event is tied to.
-	public var when: FHIRString?
+	public var when: [FHIRString]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -132,7 +132,7 @@ open class TimingRepeat: Element {
 		periodMax = try createInstance(type: FHIRDecimal.self, for: "periodMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? periodMax
 		periodUnit = try createInstance(type: FHIRString.self, for: "periodUnit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? periodUnit
 		timeOfDay = try createInstances(of: FHIRTime.self, for: "timeOfDay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timeOfDay
-		when = try createInstance(type: FHIRString.self, for: "when", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? when
+		when = try createInstances(of: FHIRString.self, for: "when", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? when
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -156,7 +156,7 @@ open class TimingRepeat: Element {
 		self.periodMax?.decorate(json: &json, withKey: "periodMax", errors: &errors)
 		self.periodUnit?.decorate(json: &json, withKey: "periodUnit", errors: &errors)
 		arrayDecorate(json: &json, withKey: "timeOfDay", using: self.timeOfDay, errors: &errors)
-		self.when?.decorate(json: &json, withKey: "when", errors: &errors)
+		arrayDecorate(json: &json, withKey: "when", using: self.when, errors: &errors)
 	}
 }
 

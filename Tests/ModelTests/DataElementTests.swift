@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -83,7 +83,7 @@ class DataElementTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-labtestmaster-example.json")
 		
 		XCTAssertEqual(inst.element?[0].alias?[0], "Protime, PT")
-		XCTAssertEqual(inst.element?[0].comments, "Used to screen the integrity of the extrinsic and common pathways of coagulation and to monitor warfarin anticoagulation. ")
+		XCTAssertEqual(inst.element?[0].comment, "Used to screen the integrity of the extrinsic and common pathways of coagulation and to monitor warfarin anticoagulation. ")
 		XCTAssertEqual(inst.element?[0].definition, "The PT test evaluates the extrinsic and common pathways of the coagulation cascade.")
 		XCTAssertEqual(inst.element?[0].example?[0].label, "Simple")
 		XCTAssertEqual(inst.element?[0].example?[0].valueDecimal, "10.0")

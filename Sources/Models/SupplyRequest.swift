@@ -2,7 +2,7 @@
 //  SupplyRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -20,22 +20,34 @@ open class SupplyRequest: DomainResource {
 	}
 	
 	/// When the request was made.
-	public var date: DateTime?
+	public var authoredOn: DateTime?
+	
+	/// The kind of supply (central, non-stock, etc.).
+	public var category: CodeableConcept?
 	
 	/// The origin of the supply.
-	public var from: Reference?
+	public var deliverFrom: Reference?
+	
+	/// The destination of the supply.
+	public var deliverTo: Reference?
 	
 	/// Unique identifier.
 	public var identifier: Identifier?
 	
-	/// The kind of supply (central, non-stock, etc.).
-	public var kind: CodeableConcept?
+	/// When the request should be fulfilled.
+	public var occurrenceDateTime: DateTime?
+	
+	/// When the request should be fulfilled.
+	public var occurrencePeriod: Period?
+	
+	/// When the request should be fulfilled.
+	public var occurrenceTiming: Timing?
 	
 	/// The item being requested.
 	public var orderedItem: SupplyRequestOrderedItem?
 	
-	/// Patient for whom the item is supplied.
-	public var patient: Reference?
+	/// Indicates how quickly this SupplyRequest should be addressed with respect to other requests.
+	public var priority: RequestPriority?
 	
 	/// Why the supply item was requested.
 	public var reasonCodeableConcept: CodeableConcept?
@@ -43,8 +55,8 @@ open class SupplyRequest: DomainResource {
 	/// Why the supply item was requested.
 	public var reasonReference: Reference?
 	
-	/// Who initiated this order.
-	public var source: Reference?
+	/// Who/what is requesting service.
+	public var requester: SupplyRequestRequester?
 	
 	/// Status of the supply request.
 	public var status: SupplyRequestStatus?
@@ -52,29 +64,25 @@ open class SupplyRequest: DomainResource {
 	/// Who is intended to fulfill the request.
 	public var supplier: [Reference]?
 	
-	/// The destination of the supply.
-	public var to: Reference?
-	
-	/// When the request should be fulfilled.
-	public var when: SupplyRequestWhen?
-	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		from = try createInstance(type: Reference.self, for: "from", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? from
+		authoredOn = try createInstance(type: DateTime.self, for: "authoredOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authoredOn
+		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
+		deliverFrom = try createInstance(type: Reference.self, for: "deliverFrom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deliverFrom
+		deliverTo = try createInstance(type: Reference.self, for: "deliverTo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deliverTo
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		kind = try createInstance(type: CodeableConcept.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? kind
+		occurrenceDateTime = try createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceDateTime
+		occurrencePeriod = try createInstance(type: Period.self, for: "occurrencePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrencePeriod
+		occurrenceTiming = try createInstance(type: Timing.self, for: "occurrenceTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceTiming
 		orderedItem = try createInstance(type: SupplyRequestOrderedItem.self, for: "orderedItem", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? orderedItem
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
+		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, presentKeys: &presentKeys, errors: &errors) ?? priority
 		reasonCodeableConcept = try createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
 		reasonReference = try createInstance(type: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
-		source = try createInstance(type: Reference.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
+		requester = try createInstance(type: SupplyRequestRequester.self, for: "requester", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requester
 		status = createEnum(type: SupplyRequestStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		supplier = try createInstances(of: Reference.self, for: "supplier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supplier
-		to = try createInstance(type: Reference.self, for: "to", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? to
-		when = try createInstance(type: SupplyRequestWhen.self, for: "when", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? when
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -82,19 +90,21 @@ open class SupplyRequest: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
-		self.from?.decorate(json: &json, withKey: "from", errors: &errors)
+		self.authoredOn?.decorate(json: &json, withKey: "authoredOn", errors: &errors)
+		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		self.deliverFrom?.decorate(json: &json, withKey: "deliverFrom", errors: &errors)
+		self.deliverTo?.decorate(json: &json, withKey: "deliverTo", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		self.kind?.decorate(json: &json, withKey: "kind", errors: &errors)
+		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
+		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)
+		self.occurrenceTiming?.decorate(json: &json, withKey: "occurrenceTiming", errors: &errors)
 		self.orderedItem?.decorate(json: &json, withKey: "orderedItem", errors: &errors)
-		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
+		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		self.reasonCodeableConcept?.decorate(json: &json, withKey: "reasonCodeableConcept", errors: &errors)
 		self.reasonReference?.decorate(json: &json, withKey: "reasonReference", errors: &errors)
-		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
+		self.requester?.decorate(json: &json, withKey: "requester", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		arrayDecorate(json: &json, withKey: "supplier", using: self.supplier, errors: &errors)
-		self.to?.decorate(json: &json, withKey: "to", errors: &errors)
-		self.when?.decorate(json: &json, withKey: "when", errors: &errors)
 	}
 }
 
@@ -151,25 +161,37 @@ open class SupplyRequestOrderedItem: BackboneElement {
 
 
 /**
-When the request should be fulfilled.
+Who/what is requesting service.
+
+The individual who initiated the request and has responsibility for its activation.
 */
-open class SupplyRequestWhen: BackboneElement {
+open class SupplyRequestRequester: BackboneElement {
 	override open class var resourceType: String {
-		get { return "SupplyRequestWhen" }
+		get { return "SupplyRequestRequester" }
 	}
 	
-	/// Fulfilment code.
-	public var code: CodeableConcept?
+	/// Individual making the request.
+	public var agent: Reference?
 	
-	/// Formal fulfillment schedule.
-	public var schedule: Timing?
+	/// Organization agent is acting for.
+	public var onBehalfOf: Reference?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(agent: Reference) {
+		self.init()
+		self.agent = agent
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		schedule = try createInstance(type: Timing.self, for: "schedule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? schedule
+		agent = try createInstance(type: Reference.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
+		if nil == agent && !presentKeys.contains("agent") {
+			errors.append(FHIRValidationError(missing: "agent"))
+		}
+		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -177,8 +199,11 @@ open class SupplyRequestWhen: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		self.schedule?.decorate(json: &json, withKey: "schedule", errors: &errors)
+		self.agent?.decorate(json: &json, withKey: "agent", errors: &errors)
+		if nil == self.agent {
+			errors.append(FHIRValidationError(missing: "agent"))
+		}
+		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
 	}
 }
 

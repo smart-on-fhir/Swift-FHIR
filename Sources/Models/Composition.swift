@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -48,6 +48,9 @@ open class Composition: DomainResource {
 	
 	/// Logical identifier of composition (version-independent).
 	public var identifier: Identifier?
+	
+	/// Relationships to other compositions/documents.
+	public var relatesTo: [CompositionRelatesTo]?
 	
 	/// Composition is broken into sections.
 	public var section: [CompositionSection]?
@@ -96,6 +99,7 @@ open class Composition: DomainResource {
 		encounter = try createInstance(type: Reference.self, for: "encounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? encounter
 		event = try createInstances(of: CompositionEvent.self, for: "event", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? event
 		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
+		relatesTo = try createInstances(of: CompositionRelatesTo.self, for: "relatesTo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatesTo
 		section = try createInstances(of: CompositionSection.self, for: "section", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? section
 		status = createEnum(type: CompositionStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		if nil == status && !presentKeys.contains("status") {
@@ -135,6 +139,7 @@ open class Composition: DomainResource {
 		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "event", using: self.event, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "relatesTo", using: self.relatesTo, errors: &errors)
 		arrayDecorate(json: &json, withKey: "section", using: self.section, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
@@ -245,6 +250,79 @@ open class CompositionEvent: BackboneElement {
 		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
 		arrayDecorate(json: &json, withKey: "detail", using: self.detail, errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+	}
+}
+
+
+/**
+Relationships to other compositions/documents.
+
+Relationships that this composition has with other compositions or documents that already exist.
+*/
+open class CompositionRelatesTo: BackboneElement {
+	override open class var resourceType: String {
+		get { return "CompositionRelatesTo" }
+	}
+	
+	/// The type of relationship that this composition has with anther composition or document.
+	public var code: DocumentRelationshipType?
+	
+	/// Target of the relationship.
+	public var targetIdentifier: Identifier?
+	
+	/// Target of the relationship.
+	public var targetReference: Reference?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(code: DocumentRelationshipType, target: Any) {
+		self.init()
+		self.code = code
+		if let value = target as? Identifier {
+			self.targetIdentifier = value
+		}
+		else if let value = target as? Reference {
+			self.targetReference = value
+		}
+		else {
+			fhir_warn("Type “\(type(of: target))” for property “\(target)” is invalid, ignoring")
+		}
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		code = createEnum(type: DocumentRelationshipType.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
+		if nil == code && !presentKeys.contains("code") {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
+		targetIdentifier = try createInstance(type: Identifier.self, for: "targetIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? targetIdentifier
+		targetReference = try createInstance(type: Reference.self, for: "targetReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? targetReference
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.targetIdentifier && nil == self.targetReference {
+			errors.append(FHIRValidationError(missing: "target[x]"))
+		}
+		
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		if nil == self.code {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
+		self.targetIdentifier?.decorate(json: &json, withKey: "targetIdentifier", errors: &errors)
+		self.targetReference?.decorate(json: &json, withKey: "targetReference", errors: &errors)
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.targetIdentifier && nil == self.targetReference {
+			errors.append(FHIRValidationError(missing: "target[x]"))
+		}
 	}
 }
 

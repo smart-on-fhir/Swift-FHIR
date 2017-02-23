@@ -2,7 +2,7 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -1051,8 +1051,8 @@ public enum CareTeamCategory: String {
 	/// the PICC line team.
 	case event = "event"
 	
-	/// This type of patient-specific team focuses on one specific encounter. The encounter is determined by the context
-	/// of use.  For example, during an inpatient encounter, the nutrition support care team
+	/// This type of team focuses on one specific encounter. The encounter is determined by the context of use.  For
+	/// example, during an inpatient encounter, the nutrition support care team
 	case encounter = "encounter"
 	
 	/// This type of team focuses on one specific episode of care with a defined time period or self-limiting process
@@ -1060,12 +1060,12 @@ public enum CareTeamCategory: String {
 	/// over 9 months.
 	case episode = "episode"
 	
-	/// This type of team focuses on overall care coordination managing one or more conditions across a continuum of
-	/// care ensuring there is a smooth transition of care. The members of the team are determined or selected by an
+	/// This type of team focuses on overall care coordination managing one or more conditions across the continuum of
+	/// care ensuring there are smooth transitions of care. The members of the team are determined or selected by an
 	/// individual or organization. When determined by an organization, the team may be assigned or based on the
-	/// person’s enrollment in a particular program.   For example, disease management team or patient centered medical
+	/// person’s enrollment in a particular program. For example, disease management team or patient centered medical
 	/// home team.
-	case careCoordination = "care-coordination"
+	case longitudinal = "longitudinal"
 	
 	/// This type of team focuses on one specific condition. The condition is determined by the context of use.  For
 	/// example, a disease management team focused on one condition (e.g. diabetes).
@@ -1100,135 +1100,6 @@ public enum CareTeamStatus: String {
 	
 	/// The care team should have never existed.
 	case enteredInError = "entered-in-error"
-}
-
-
-/**
-The current reported status of the catalog content
-
-URL: http://hl7.org/fhir/catalog-content-status
-ValueSet: http://hl7.org/fhir/ValueSet/catalog-content-status
-*/
-public enum CatalogContentStatus: String {
-	
-	/// The catalog is approved
-	case approved = "approved"
-	
-	/// The catalog content is pending some action e.g. confirmation or approval
-	case pending = "pending"
-	
-	/// The catalog is discontinued
-	case discontinued = "discontinued"
-	
-	/// The catalog content is considered official
-	case official = "official"
-}
-
-
-/**
-The type of the catalog content
-
-URL: http://hl7.org/fhir/catalog-content-type
-ValueSet: http://hl7.org/fhir/ValueSet/catalog-content-type
-*/
-public enum CatalogContentType: String {
-	
-	/// This is a product submission
-	case singleSubmission = "single-submission"
-	
-	/// This is a resubmission of a previously submitted item
-	case resubmission = "resubmission"
-	
-	/// This is a full catalog transfer
-	case fullCatalog = "full-catalog"
-	
-	/// This is a differential update
-	case catalogUpdate = "catalog-update"
-	
-	/// This is a response to a request for catalog information
-	case catalogResponse = "catalog-response"
-}
-
-
-/**
-The type of relation from the main entry to the related entry
-
-URL: http://hl7.org/fhir/catalog-item-relation-type
-ValueSet: http://hl7.org/fhir/ValueSet/catalog-item-relation-type
-*/
-public enum CatalogEntryRelatedItemRelationtype: String {
-	
-	/// The entry is a package that contains the related entry
-	case pkgContains = "pkg-contains"
-	
-	/// The entry is contained in the related entry
-	case pkgIsContainedIn = "pkg-is-contained-in"
-	
-	/// The entry contains the related entry as a substance
-	case containsSbst = "contains-sbst"
-	
-	/// The entry combines with the related entry
-	case combinesWith = "combines-with"
-	
-	/// The entry requires the related entry for use
-	case requires = "requires"
-}
-
-
-/**
-The type of the related entry
-
-URL: http://hl7.org/fhir/catalog-entry-type
-ValueSet: http://hl7.org/fhir/ValueSet/catalog-entry-type
-*/
-public enum CatalogEntryRelatedItemType: String {
-	
-	/// This is a medication
-	case medication = "medication"
-	
-	/// This is a device
-	case device = "device"
-}
-
-
-/**
-The status of the entry that is mentioned in the catalog
-
-URL: http://hl7.org/fhir/catalog-entry-status
-ValueSet: http://hl7.org/fhir/ValueSet/catalog-entry-status
-*/
-public enum CatalogEntryStatus: String {
-	
-	/// The entry is approved for use
-	case approved = "approved"
-	
-	/// The entry is pending some action e.g. confirmation or approval
-	case pending = "pending"
-	
-	/// The catalog entry is discontinued
-	case discontinued = "discontinued"
-	
-	/// The catalog entry is considered official
-	case official = "official"
-}
-
-
-/**
-The update mode for processing the catalog content
-
-URL: http://hl7.org/fhir/catalog-update-mode
-ValueSet: http://hl7.org/fhir/ValueSet/catalog-update-mode
-*/
-public enum CatalogUpdateMode: String {
-	
-	/// This is a product submission
-	case update = "update"
-	
-	/// The catalog content is expected to be replacing the existing entries
-	case replace = "replace"
-	
-	/// The catalog content is expected to update the entries, and if not existing, insert the entry
-	case upsert = "upsert"
 }
 
 
@@ -1284,6 +1155,28 @@ public enum ChoiceListOrientation: String {
 
 
 /**
+The type of Claim payee Resource
+
+URL: http://hl7.org/fhir/ex-payee-resource-type
+ValueSet: http://hl7.org/fhir/ValueSet/ex-payee-resource-type
+*/
+public enum ClaimPayeeResourceType: String {
+	
+	/// Organization resource
+	case organization = "organization"
+	
+	/// Patient resource
+	case patient = "patient"
+	
+	/// Practitioner resource
+	case practitioner = "practitioner"
+	
+	/// RelatedPerson resource
+	case relatedperson = "relatedperson"
+}
+
+
+/**
 Identifies whether a useContext represents a context or classification for the element
 
 URL: http://hl7.org/fhir/classification-or-context
@@ -1331,7 +1224,7 @@ public enum CodeSystemContentMode: String {
 	case notPresent = "not-present"
 	
 	/// A few representative concepts are included in the code system resource
-	case examplar = "examplar"
+	case example = "example"
 	
 	/// A subset of the code system concepts are included in the code system resource
 	case fragment = "fragment"
@@ -2034,8 +1927,8 @@ public enum DataType: String {
 	/// A length - a value with a unit that is a physical distance.
 	case distance = "Distance"
 	
-	/// Indicates how the medication is to be used by the patient.
-	case dosageInstruction = "DosageInstruction"
+	/// Indicates how the medication is/was taken or should be taken by the patient.
+	case dosage = "Dosage"
 	
 	/// A length of time.
 	case duration = "Duration"
@@ -2101,9 +1994,10 @@ public enum DataType: String {
 	/// simpleQuantity
 	case simpleQuantity = "SimpleQuantity"
 	
-	/// Specifies an event that may occur multiple times. Timing schedules are used to record when things are expected
-	/// or requested to occur. The most common usage is in dosage instructions for medications. They are also used when
-	/// planning care of various kinds.
+	/// Specifies an event that may occur multiple times. Timing schedules are used to record when things are planned,
+	/// expected or requested to occur. The most common usage is in dosage instructions for medications. They are also
+	/// used when planning care of various kinds, and may be used for reporting the schedule to which past regular
+	/// activities were carried out.
 	case timing = "Timing"
 	
 	/// A description of a triggering event.
@@ -2229,6 +2123,25 @@ public enum DefinitionStatus: String {
 	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
 	/// which one.
 	case unknown = "unknown"
+}
+
+
+/**
+High-level categorization of the definition, used for searching, sorting, and filtering
+
+URL: http://hl7.org/fhir/definition-topic
+ValueSet: http://hl7.org/fhir/ValueSet/definition-topic
+*/
+public enum DefinitionTopic: String {
+	
+	/// The definition is related to treatment of the patient
+	case treatment = "treatment"
+	
+	/// The definition is related to education of the patient
+	case education = "education"
+	
+	/// The definition is related to assessment of the patient
+	case assessment = "assessment"
 }
 
 
@@ -2373,67 +2286,31 @@ public enum DeviceMetricOperationalStatus: String {
 
 
 /**
-Codes used to identify medical devices safety characterics. These codes are derived in part from the [United States Food
-and Drug Administration recommendations](http://www.fda.gov/downloads/medicaldevices/deviceregulationandguidance/guidanc
-edocuments/ucm107708.pdf) and are provided here as a suggestive example.
+A coded concept indicating the current status of a the Device Usage
 
-URL: http://hl7.org/fhir/device-safety
-ValueSet: http://hl7.org/fhir/ValueSet/device-safety
+URL: http://hl7.org/fhir/device-statement-status
+ValueSet: http://hl7.org/fhir/ValueSet/device-statement-status
 */
-public enum DeviceSafety: String {
+public enum DeviceUseStatementStatus: String {
 	
-	/// Indicates that the device or packaging contains natural rubber that contacts humans
-	case containsLatex = "contains-latex"
-	
-	/// Indicates that natural rubber latex was not used as materials in the manufacture of the medical product and
-	/// container and the device labeling contains this information.
-	case latexFree = "latex-free"
-	
-	/// Indicates that whether the device or packaging contains natural rubber that contacts humans is not indicated on
-	/// the label Not all medical products that are NOT made with natural rubber latex will be marked
-	case latexUnknown = "latex-unknown"
-	
-	/// The device, when used in the MRI environment, has been demonstrated to present no additional risk to the patient
-	/// or other individual, but may affect the quality of the diagnostic information. The MRI conditions in which the
-	/// device was tested should be specified in conjunction with the term MR safe since a device which is safe under
-	/// one set of conditions may not be found to be so under more extreme MRI conditions.
-	case mrSafe = "mr-safe"
-	
-	/// An item that is known to pose hazards in all MRI environments. MR Unsafe items include magnetic items such as a
-	/// pair of ferromagnetic scissors.
-	case mrUnsafe = "mr-unsafe"
-	
-	/// An item that has been demonstrated to pose no known hazards in a specified MRI environment with specified
-	/// conditions of use. Field conditions that define the MRI environment include, for instance, static magnetic field
-	/// or specific absorption rate (SAR).
-	case mrConditional = "mr-conditional"
-	
-	/// Labeling does not contain MRI Safety information
-	case mrUnknown = "mr-unknown"
-}
-
-
-/**
-The availability status of the device.
-
-URL: http://hl7.org/fhir/device-status
-ValueSet: http://hl7.org/fhir/ValueSet/device-status
-*/
-public enum DeviceStatus: String {
-	
-	/// The Device is available for use.  Note: This means for *implanted devices*  the device is implanted in the
-	/// patient.
+	/// The device is still being used.
 	case active = "active"
 	
-	/// The Device is no longer available for use (e.g. lost, expired, damaged).  Note: This means for *implanted
-	/// devices*  the device has been removed from the patient.
-	case inactive = "inactive"
+	/// The device is no longer being used.
+	case completed = "completed"
 	
-	/// The Device was entered in error and voided.
+	/// The statement was recorded incorrectly.
 	case enteredInError = "entered-in-error"
 	
-	/// The status of the device has not been determined.
-	case unknown = "unknown"
+	/// The device may be used at some time in the future.
+	case intended = "intended"
+	
+	/// Actions implied by the statement have been permanently halted, before all of them occurred.
+	case stopped = "stopped"
+	
+	/// Actions implied by the statement have been temporarily halted, but are expected to continue later. May also be
+	/// called "suspended".
+	case onHold = "on-hold"
 }
 
 
@@ -2503,6 +2380,32 @@ public enum DigitalMediaType: String {
 	
 	/// The media consists of a sound recording
 	case audio = "audio"
+}
+
+
+/**
+How an element value is interpreted when discrimination is evaluated
+
+URL: http://hl7.org/fhir/discriminator-type
+ValueSet: http://hl7.org/fhir/ValueSet/discriminator-type
+*/
+public enum DiscriminatorType: String {
+	
+	/// The slices have different values in the nominated element
+	case value = "value"
+	
+	/// The slices are differentiated by the presence or absence of the nominated element
+	case exists = "exists"
+	
+	/// The slices have different values in the nominated element, as determined by testing them against the applicable
+	/// ElementDefinition.pattern[x]
+	case pattern = "pattern"
+	
+	/// The slices are differentiated by type of the nominated element to a specifed profile
+	case type = "type"
+	
+	/// The slices are differentiated by conformance of the nominated element to a specifed profile
+	case profile = "profile"
 }
 
 
@@ -2763,6 +2666,9 @@ public enum EventTiming: String {
 	
 	/// event occurs during the night
 	case NIGHT = "NIGHT"
+	
+	/// event occurs [offset] after subject goes to sleep
+	case PHS = "PHS"
 }
 
 
@@ -2841,6 +2747,30 @@ public enum FHIRDefinedConceptProperties: String {
 
 
 /**
+The availability status of the device.
+
+URL: http://hl7.org/fhir/device-status
+ValueSet: http://hl7.org/fhir/ValueSet/device-status
+*/
+public enum FHIRDeviceStatus: String {
+	
+	/// The Device is available for use.  Note: This means for *implanted devices*  the device is implanted in the
+	/// patient.
+	case active = "active"
+	
+	/// The Device is no longer available for use (e.g. lost, expired, damaged).  Note: This means for *implanted
+	/// devices*  the device has been removed from the patient.
+	case inactive = "inactive"
+	
+	/// The Device was entered in error and voided.
+	case enteredInError = "entered-in-error"
+	
+	/// The status of the device has not been determined.
+	case unknown = "unknown"
+}
+
+
+/**
 The set of interactions defined by the RESTful part of the FHIR specification.
 
 URL: http://hl7.org/fhir/restful-interaction
@@ -2898,6 +2828,25 @@ public enum FHIRRestfulInteractions: String {
 	
 	/// Perform an operation as defined by an OperationDefinition.
 	case operation = "operation"
+}
+
+
+/**
+A code to indicate if the substance is actively used
+
+URL: http://hl7.org/fhir/substance-status
+ValueSet: http://hl7.org/fhir/ValueSet/substance-status
+*/
+public enum FHIRSubstanceStatus: String {
+	
+	/// The substance is considered for use or reference
+	case active = "active"
+	
+	/// The substance is considered for reference, but not for use
+	case inactive = "inactive"
+	
+	/// The substance was entered in error
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -3177,6 +3126,9 @@ public enum GuidanceResponseStatus: String {
 	
 	/// The request was not processed successfully
 	case failure = "failure"
+	
+	/// The response was entered in error
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -3674,7 +3626,12 @@ public enum LinkType: String {
 	
 	/// The patient resource containing this link must no longer be used. The link points forward to another patient
 	/// resource that must be used in lieu of the patient resource that contains this link.
-	case replace = "replace"
+	case replacedBy = "replaced-by"
+	
+	/// The patient resource containing this link is the current active patient record. The link points back to an
+	/// inactive patient resource that has been merged into this resource, and should be consulted to retrieve
+	/// additional referenced information.
+	case replaces = "replaces"
 	
 	/// The patient resource containing this link is in use and valid but not considered the main source of information
 	/// about a patient. The link points forward to another patient resource that should be consulted to retrieve
@@ -3916,31 +3873,51 @@ ValueSet: http://hl7.org/fhir/ValueSet/measure-population
 */
 public enum MeasurePopulationType: String {
 	
-	/// The initial population for the measure
+	/// The initial population refers to all patients or events to be evaluated by a quality measure involving patients
+	/// who share a common set of specified characterstics. All patients or events counted (for example, as numerator,
+	/// as denominator) are drawn from the initial population
 	case initialPopulation = "initial-population"
 	
-	/// The numerator for the measure
+	/// The upper portion of a fraction used to calculate a rate, proportion, or ratio. Also called the measure focus,
+	/// it is the target process, condition, event, or outcome. Numerator criteria are the processes or outcomes
+	/// expected for each patient, or event defined in the denominator. A numerator statement describes the clinical
+	/// action that satisfies the conditions of the measure
 	case numerator = "numerator"
 	
-	/// The numerator exclusion for the measure
+	/// Numerator exclusion criteria define patients or events to be removed from the numerator. Numerator exclusions
+	/// are used in proportion and ratio measures to help narrow the numerator (for inverted measures)
 	case numeratorExclusion = "numerator-exclusion"
 	
-	/// The denominator for the measure
+	/// The lower portion of a fraction used to calculate a rate, proportion, or ratio. The denominator can be the same
+	/// as the initial population, or a subset of the initial population to further constrain the population for the
+	/// purpose of the measure
 	case denominator = "denominator"
 	
-	/// The denominator exclusion for the measure
+	/// Denominator exclusion criteria define patients or events that should be removed from the denominator before
+	/// determining if numerator criteria are met. Denominator exclusions are used in proportion and ratio measures to
+	/// help narrow the denominator. For example, patients with bilateral lower extremity amputations would be listed as
+	/// a denominator exclusion for a measure requiring foot exams
 	case denominatorExclusion = "denominator-exclusion"
 	
-	/// The denominator exception for the measure
+	/// Denominator exceptions are conditions that should remove a patient or event from the denominator of a measure
+	/// only if the numerator criteria are not met. Denominator exception allows for adjustment of the calculated score
+	/// for those providers with higher risk populations. Denominator exception criteria are only used in proportion
+	/// measures
 	case denominatorException = "denominator-exception"
 	
-	/// The measure population for the measure
+	/// Measure population criteria define the patients or events for which the individual observation for the measure
+	/// should be taken. Measure populations are used for continuous variable measures rather than numerator and
+	/// denominator criteria
 	case measurePopulation = "measure-population"
 	
-	/// The measure population exclusion for the measure
+	/// Measure population criteria define the patients or events that should be removed from the measure population
+	/// before determining the outcome of one or more continuous variables defined for the measure observation. Measure
+	/// population exclusion criteria are used within continuous variable measures to help narrow the measure population
 	case measurePopulationExclusion = "measure-population-exclusion"
 	
-	/// The measure observation for the measure
+	/// Defines the individual observation to be performed for each patient or event in the measure population. Measure
+	/// observations for each case in the population are aggregated to determine the overall measure score for the
+	/// population
 	case measureObservation = "measure-observation"
 }
 
@@ -4081,6 +4058,41 @@ public enum MedicationAdministrationStatus: String {
 	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
 	/// which one.
 	case unknown = "unknown"
+}
+
+
+/**
+A coded concept defining the kind of container a medication package is packaged in
+
+URL: http://hl7.org/fhir/medication-package-form
+ValueSet: http://hl7.org/fhir/ValueSet/medication-package-form
+*/
+public enum MedicationContainer: String {
+	
+	/// A sealed glass capsule containing a liquid
+	case ampoule = "ampoule"
+	
+	/// A container, typically made of glass or plastic and with a narrow neck, used for storing liquids.
+	case bottle = "bottle"
+	
+	/// A container with a flat base and sides, typically square or rectangular and having a lid.
+	case box = "box"
+	
+	/// A device of various configuration and composition used with a syringe for the application of anesthetic or other
+	/// materials to a patient.
+	case cartridge = "cartridge"
+	
+	/// A package intended to store pharmaceuticals.
+	case container = "container"
+	
+	/// A long, hollow cylinder of metal, plastic, glass, etc., for holding medications, typically creams or ointments
+	case tube = "tube"
+	
+	/// A dose of medicine prepared in an individual package for convenience, safety or monitoring.
+	case unitdose = "unitdose"
+	
+	/// A small container, typically cylindrical and made of glass, used especially for holding liquid medications.
+	case vial = "vial"
 }
 
 
@@ -4421,6 +4433,29 @@ public enum MessageTransport: String {
 	
 	/// The application sends or receives messages using HL7's Minimal Lower Level Protocol.
 	case mllp = "mllp"
+}
+
+
+/**
+HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response
+to a message.
+
+URL: http://hl7.org/fhir/messageheader-response-request
+ValueSet: http://hl7.org/fhir/ValueSet/messageheader-response-request
+*/
+public enum MessageheaderResponseRequest: String {
+	
+	/// initiator expects a response for this message
+	case always = "always"
+	
+	/// initiator expects a response only if in error
+	case onError = "on-error"
+	
+	/// initiator does not expect a response
+	case never = "never"
+	
+	/// initiator expects a response only if successful
+	case onSuccess = "on-success"
 }
 
 
@@ -4987,28 +5022,6 @@ public enum ParticipationStatus: String {
 
 
 /**
-The type of payee Resource
-
-URL: http://hl7.org/fhir/ex-payee-resource-type
-ValueSet: http://hl7.org/fhir/ValueSet/ex-payee-resource-type
-*/
-public enum PayeeResourceType: String {
-	
-	/// Organization resource
-	case organization = "organization"
-	
-	/// Patient resource
-	case patient = "patient"
-	
-	/// Practitioner resource
-	case practitioner = "practitioner"
-	
-	/// RelatedPerson resource
-	case relatedperson = "relatedperson"
-}
-
-
-/**
 The type of PlanDefinition
 
 URL: http://hl7.org/fhir/plan-definition-type
@@ -5050,7 +5063,7 @@ public enum ProcedureRelationshipType: String {
 
 
 /**
-How a property is represented on the wire.
+How a property is represented when serialized.
 
 URL: http://hl7.org/fhir/property-representation
 ValueSet: http://hl7.org/fhir/ValueSet/property-representation
@@ -5716,29 +5729,6 @@ public enum ResourceVersionPolicy: String {
 
 
 /**
-HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response
-to a message.
-
-URL: http://hl7.org/fhir/response-request
-ValueSet: http://hl7.org/fhir/ValueSet/response-request
-*/
-public enum ResponseRequest: String {
-	
-	/// Always respond
-	case AL = "AL"
-	
-	/// Error/reject conditions only
-	case ER = "ER"
-	
-	/// NE
-	case NE = "NE"
-	
-	/// Successful completion only
-	case SU = "SU"
-}
-
-
-/**
 The kind of response to a message
 
 URL: http://hl7.org/fhir/response-code
@@ -6395,25 +6385,6 @@ public enum SubscriptionTag: String {
 
 
 /**
-Substance status
-
-URL: http://hl7.org/fhir/substance-status
-ValueSet: http://hl7.org/fhir/ValueSet/substance-status
-*/
-public enum SubstanceStatus: String {
-	
-	/// The substance is considered for use or reference
-	case active = "active"
-	
-	/// The substance is considered for reference, but not for use
-	case inactive = "inactive"
-	
-	/// The substance was entered in error
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
 Status of the supply delivery.
 
 URL: http://hl7.org/fhir/supplydelivery-status
@@ -6460,21 +6431,30 @@ ValueSet: http://hl7.org/fhir/ValueSet/supplyrequest-status
 */
 public enum SupplyRequestStatus: String {
 	
-	/// Supply has been requested, but not dispensed.
-	case requested = "requested"
+	/// The request has been created but is not yet complete or ready for action
+	case draft = "draft"
 	
-	/// Supply has been received by the requestor.
-	case completed = "completed"
+	/// The request is ready to be acted upon
+	case active = "active"
 	
-	/// The supply will not be completed because the supplier was unable or unwilling to supply the item.
-	case failed = "failed"
+	/// The authorization/request to act has been temporarily withdrawn but is expected to resume in the future
+	case suspended = "suspended"
 	
-	/// The orderer of the supply cancelled the request.
+	/// The authorization/request to act has been terminated prior to the full completion of the intended actions.  No
+	/// further activity should occur.
 	case cancelled = "cancelled"
 	
+	/// Activity against the request has been sufficiently completed to the satisfaction of the requester
+	case completed = "completed"
+	
 	/// This electronic record should never have existed, though it is possible that real-world decisions were based on
-	/// it. (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
+	/// it.  (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".)
 	case enteredInError = "entered-in-error"
+	
+	/// The authoring system does not know which of the status values currently applies for this request.  Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
+	case unknown = "unknown"
 }
 
 
@@ -6670,6 +6650,34 @@ public enum TestReportStatus: String {
 	
 	/// This test report was entered or created in error
 	case enteredInError = "entered-in-error"
+}
+
+
+/**
+The allowable request method or HTTP operation codes.
+
+URL: http://hl7.org/fhir/http-operations
+ValueSet: http://hl7.org/fhir/ValueSet/http-operations
+*/
+public enum TestScriptRequestMethodCode: String {
+	
+	/// HTTP DELETE operation
+	case delete = "delete"
+	
+	/// HTTP GET operation
+	case get = "get"
+	
+	/// HTTP OPTIONS operation
+	case options = "options"
+	
+	/// HTTP PATCH operation
+	case patch = "patch"
+	
+	/// HTTP POST operation
+	case post = "post"
+	
+	/// HTTP PUT operation
+	case put = "put"
 }
 
 

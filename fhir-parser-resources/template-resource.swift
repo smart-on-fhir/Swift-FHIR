@@ -85,7 +85,8 @@ open class {{ klass.name }}: {{ klass.superclass.name|default('FHIRAbstractBase'
 		{%- endif %}{% endif %}
 		
 		{%- if prop.nonoptional and not prop.one_of_many %}
-		if {% if prop.is_array %}({% endif %}nil == {{ prop.name }}{% if prop.is_array %} || {{ prop.name }}!.isEmpty){% endif %} && !presentKeys.contains("{{ prop.orig_name }}") {
+		if {% if prop.is_array %}({% endif %}nil == {{ prop.name }}{% if prop.is_array %} || {{ prop.name }}!.isEmpty){% endif %} && !presentKeys.contains("{{ prop.orig_name }}")
+			{%- if not prop.is_summary %} && !_isSummaryResource{% endif %} {
 			errors.append(FHIRValidationError(missing: "{{ prop.orig_name }}"))
 		}
 		{%- endif %}

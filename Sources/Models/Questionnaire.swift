@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -118,7 +118,7 @@ open class QuestionnaireItem: BackboneElement {
 		get { return "QuestionnaireItem" }
 	}
 	
-	/// Concept that represents this item within in a questionnaire.
+	/// Corresponding Concept for this item in a terminology.
 	public var code: [Coding]?
 	
 	/// ElementDefinition - details for the item.
@@ -226,7 +226,7 @@ open class QuestionnaireItem: BackboneElement {
 		initialUri = try createInstance(type: FHIRURL.self, for: "initialUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialUri
 		item = try createInstances(of: QuestionnaireItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
 		linkId = try createInstance(type: FHIRString.self, for: "linkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? linkId
-		if nil == linkId && !presentKeys.contains("linkId") {
+		if nil == linkId && !presentKeys.contains("linkId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "linkId"))
 		}
 		maxLength = try createInstance(type: FHIRInteger.self, for: "maxLength", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxLength
@@ -238,7 +238,7 @@ open class QuestionnaireItem: BackboneElement {
 		required = try createInstance(type: FHIRBool.self, for: "required", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? required
 		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
 		type = createEnum(type: QuestionnaireItemType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		
@@ -362,7 +362,7 @@ open class QuestionnaireItemEnableWhen: BackboneElement {
 		answerUri = try createInstance(type: FHIRURL.self, for: "answerUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerUri
 		hasAnswer = try createInstance(type: FHIRBool.self, for: "hasAnswer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? hasAnswer
 		question = try createInstance(type: FHIRString.self, for: "question", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? question
-		if nil == question && !presentKeys.contains("question") {
+		if nil == question && !presentKeys.contains("question") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "question"))
 		}
 		

@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ class MediaTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "application/dicom")
-		XCTAssertEqual(inst.deviceName, "G.E. Medical Systems")
+		XCTAssertEqual(inst.device?.display, "G.E. Medical Systems")
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://nema.org/fhir/extensions#0002-0010")
 		XCTAssertEqual(inst.extension_fhir?[0].valueUri?.absoluteString, "urn:oid:1.2.840.10008.1.2.1")
 		XCTAssertEqual(inst.height, 480)
@@ -117,7 +117,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.content?.contentType, "image/gif")
 		XCTAssertEqual(inst.content?.creation?.description, "2009-09-03")
 		XCTAssertEqual(inst.content?.id, "a1")
-		XCTAssertEqual(inst.deviceName, "Acme Camera")
+		XCTAssertEqual(inst.device?.display, "Acme Camera")
 		XCTAssertEqual(inst.frames, 1)
 		XCTAssertEqual(inst.height, 145)
 		XCTAssertEqual(inst.id, "example")

@@ -2,7 +2,7 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -44,6 +44,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "Gemcitabine 1250 mg/m² IV over 30 minutes on days 1 and 8")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].definition?.reference, "#2222")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].textEquivalent, "CARBOplatin AUC 5 IV over 30 minutes on Day 1")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].id, "cycle-definition-1")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "21-day cycle for 6 cycles")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.count, 6)
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.duration, "21")
@@ -217,16 +218,15 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.publisher, "Motive Medical Intelligence")
 		XCTAssertEqual(inst.purpose, "This order set helps ensure consistent application of appropriate orders for the care of low suicide risk patients.")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Low Suicide Risk Order Set...</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Low Suicide Risk Order Set")
 		XCTAssertEqual(inst.topic?[0].text, "Suicide risk assessment")
 		XCTAssertEqual(inst.usage, "This order set should be applied after assessing a patient for suicide risk, when the findings of that assessment indicate the patient has low suicide risk.")
-		XCTAssertEqual(inst.useContext?[0].code?.code, "gender")
+		XCTAssertEqual(inst.useContext?[0].code?.code, "age")
 		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")
-		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].code, "133936004")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].code, "D000328")
 		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].display, "Adult")
-		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "https://meshb.nlm.nih.gov")
 		XCTAssertEqual(inst.useContext?[1].code?.code, "focus")
 		XCTAssertEqual(inst.useContext?[1].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")
 		XCTAssertEqual(inst.useContext?[1].valueCodeableConcept?.coding?[0].code, "87512008")

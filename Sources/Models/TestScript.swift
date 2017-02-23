@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -221,11 +221,11 @@ open class TestScriptDestination: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		index = try createInstance(type: FHIRInteger.self, for: "index", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? index
-		if nil == index && !presentKeys.contains("index") {
+		if nil == index && !presentKeys.contains("index") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "index"))
 		}
 		profile = try createInstance(type: Coding.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
-		if nil == profile && !presentKeys.contains("profile") {
+		if nil == profile && !presentKeys.contains("profile") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "profile"))
 		}
 		
@@ -315,7 +315,7 @@ open class TestScriptMetadata: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		capability = try createInstances(of: TestScriptMetadataCapability.self, for: "capability", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? capability
-		if (nil == capability || capability!.isEmpty) && !presentKeys.contains("capability") {
+		if (nil == capability || capability!.isEmpty) && !presentKeys.contains("capability") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "capability"))
 		}
 		link = try createInstances(of: TestScriptMetadataLink.self, for: "link", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? link
@@ -378,7 +378,7 @@ open class TestScriptMetadataCapability: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		capabilities = try createInstance(type: Reference.self, for: "capabilities", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? capabilities
-		if nil == capabilities && !presentKeys.contains("capabilities") {
+		if nil == capabilities && !presentKeys.contains("capabilities") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "capabilities"))
 		}
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
@@ -437,7 +437,7 @@ open class TestScriptMetadataLink: BackboneElement {
 		
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
+		if nil == url && !presentKeys.contains("url") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "url"))
 		}
 		
@@ -485,11 +485,11 @@ open class TestScriptOrigin: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		index = try createInstance(type: FHIRInteger.self, for: "index", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? index
-		if nil == index && !presentKeys.contains("index") {
+		if nil == index && !presentKeys.contains("index") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "index"))
 		}
 		profile = try createInstance(type: Coding.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
-		if nil == profile && !presentKeys.contains("profile") {
+		if nil == profile && !presentKeys.contains("profile") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "profile"))
 		}
 		
@@ -540,7 +540,7 @@ open class TestScriptRule: BackboneElement {
 		
 		param = try createInstances(of: TestScriptRuleParam.self, for: "param", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? param
 		resource = try createInstance(type: Reference.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
-		if nil == resource && !presentKeys.contains("resource") {
+		if nil == resource && !presentKeys.contains("resource") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "resource"))
 		}
 		
@@ -587,7 +587,7 @@ open class TestScriptRuleParam: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
@@ -637,11 +637,11 @@ open class TestScriptRuleset: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		resource = try createInstance(type: Reference.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
-		if nil == resource && !presentKeys.contains("resource") {
+		if nil == resource && !presentKeys.contains("resource") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "resource"))
 		}
 		rule = try createInstances(of: TestScriptRulesetRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rule
-		if (nil == rule || rule!.isEmpty) && !presentKeys.contains("rule") {
+		if (nil == rule || rule!.isEmpty) && !presentKeys.contains("rule") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "rule"))
 		}
 		
@@ -692,7 +692,7 @@ open class TestScriptRulesetRule: BackboneElement {
 		
 		param = try createInstances(of: TestScriptRulesetRuleParam.self, for: "param", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? param
 		ruleId = try createInstance(type: FHIRString.self, for: "ruleId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ruleId
-		if nil == ruleId && !presentKeys.contains("ruleId") {
+		if nil == ruleId && !presentKeys.contains("ruleId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "ruleId"))
 		}
 		
@@ -739,7 +739,7 @@ open class TestScriptRulesetRuleParam: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
@@ -782,7 +782,7 @@ open class TestScriptSetup: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		action = try createInstances(of: TestScriptSetupAction.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !presentKeys.contains("action") {
+		if (nil == action || action!.isEmpty) && !presentKeys.contains("action") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "action"))
 		}
 		
@@ -884,6 +884,9 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// XPath or JSONPath expression.
 	public var path: FHIRString?
 	
+	/// The request method or HTTP operation code to compare against that used by the client system under test.
+	public var requestMethod: TestScriptRequestMethodCode?
+	
 	/// Request URL comparison value.
 	public var requestURL: FHIRString?
 	
@@ -931,6 +934,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		navigationLinks = try createInstance(type: FHIRBool.self, for: "navigationLinks", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? navigationLinks
 		operator_fhir = createEnum(type: AssertionOperatorType.self, for: "operator", in: json, presentKeys: &presentKeys, errors: &errors) ?? operator_fhir
 		path = try createInstance(type: FHIRString.self, for: "path", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? path
+		requestMethod = createEnum(type: TestScriptRequestMethodCode.self, for: "requestMethod", in: json, presentKeys: &presentKeys, errors: &errors) ?? requestMethod
 		requestURL = try createInstance(type: FHIRString.self, for: "requestURL", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestURL
 		resource = try createInstance(type: FHIRString.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
 		response = createEnum(type: AssertionResponseTypes.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors) ?? response
@@ -961,6 +965,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		self.navigationLinks?.decorate(json: &json, withKey: "navigationLinks", errors: &errors)
 		self.operator_fhir?.decorate(json: &json, withKey: "operator", errors: &errors)
 		self.path?.decorate(json: &json, withKey: "path", errors: &errors)
+		self.requestMethod?.decorate(json: &json, withKey: "requestMethod", errors: &errors)
 		self.requestURL?.decorate(json: &json, withKey: "requestURL", errors: &errors)
 		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
 		self.response?.decorate(json: &json, withKey: "response", errors: &errors)
@@ -1004,7 +1009,7 @@ open class TestScriptSetupActionAssertRule: BackboneElement {
 		
 		param = try createInstances(of: TestScriptSetupActionAssertRuleParam.self, for: "param", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? param
 		ruleId = try createInstance(type: FHIRString.self, for: "ruleId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ruleId
-		if nil == ruleId && !presentKeys.contains("ruleId") {
+		if nil == ruleId && !presentKeys.contains("ruleId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "ruleId"))
 		}
 		
@@ -1052,11 +1057,11 @@ open class TestScriptSetupActionAssertRuleParam: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
@@ -1107,7 +1112,7 @@ open class TestScriptSetupActionAssertRuleset: BackboneElement {
 		
 		rule = try createInstances(of: TestScriptSetupActionAssertRulesetRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rule
 		rulesetId = try createInstance(type: FHIRString.self, for: "rulesetId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rulesetId
-		if nil == rulesetId && !presentKeys.contains("rulesetId") {
+		if nil == rulesetId && !presentKeys.contains("rulesetId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "rulesetId"))
 		}
 		
@@ -1155,7 +1160,7 @@ open class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 		
 		param = try createInstances(of: TestScriptSetupActionAssertRulesetRuleParam.self, for: "param", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? param
 		ruleId = try createInstance(type: FHIRString.self, for: "ruleId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ruleId
-		if nil == ruleId && !presentKeys.contains("ruleId") {
+		if nil == ruleId && !presentKeys.contains("ruleId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "ruleId"))
 		}
 		
@@ -1203,11 +1208,11 @@ open class TestScriptSetupActionAssertRulesetRuleParam: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
@@ -1363,11 +1368,11 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		field = try createInstance(type: FHIRString.self, for: "field", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? field
-		if nil == field && !presentKeys.contains("field") {
+		if nil == field && !presentKeys.contains("field") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "field"))
 		}
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
@@ -1414,7 +1419,7 @@ open class TestScriptTeardown: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		action = try createInstances(of: TestScriptTeardownAction.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !presentKeys.contains("action") {
+		if (nil == action || action!.isEmpty) && !presentKeys.contains("action") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "action"))
 		}
 		
@@ -1457,7 +1462,7 @@ open class TestScriptTeardownAction: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		operation = try createInstance(type: TestScriptSetupActionOperation.self, for: "operation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? operation
-		if nil == operation && !presentKeys.contains("operation") {
+		if nil == operation && !presentKeys.contains("operation") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "operation"))
 		}
 		
@@ -1504,7 +1509,7 @@ open class TestScriptTest: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		action = try createInstances(of: TestScriptTestAction.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !presentKeys.contains("action") {
+		if (nil == action || action!.isEmpty) && !presentKeys.contains("action") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "action"))
 		}
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
@@ -1612,7 +1617,7 @@ open class TestScriptVariable: BackboneElement {
 		headerField = try createInstance(type: FHIRString.self, for: "headerField", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? headerField
 		hint = try createInstance(type: FHIRString.self, for: "hint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? hint
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		path = try createInstance(type: FHIRString.self, for: "path", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? path

@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -52,6 +52,9 @@ open class ClaimResponse: DomainResource {
 	/// complete | error | partial.
 	public var outcome: CodeableConcept?
 	
+	/// The subject of the Products and Services.
+	public var patient: Reference?
+	
 	/// Party to be paid any benefits payable.
 	public var payeeType: CodeableConcept?
 	
@@ -100,6 +103,7 @@ open class ClaimResponse: DomainResource {
 		insurer = try createInstance(type: Reference.self, for: "insurer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? insurer
 		item = try createInstances(of: ClaimResponseItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
 		outcome = try createInstance(type: CodeableConcept.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
+		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		payeeType = try createInstance(type: CodeableConcept.self, for: "payeeType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payeeType
 		payment = try createInstance(type: ClaimResponsePayment.self, for: "payment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payment
 		processNote = try createInstances(of: ClaimResponseProcessNote.self, for: "processNote", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? processNote
@@ -129,6 +133,7 @@ open class ClaimResponse: DomainResource {
 		self.insurer?.decorate(json: &json, withKey: "insurer", errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
+		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		self.payeeType?.decorate(json: &json, withKey: "payeeType", errors: &errors)
 		self.payment?.decorate(json: &json, withKey: "payment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "processNote", using: self.processNote, errors: &errors)
@@ -308,7 +313,7 @@ open class ClaimResponseError: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		detailSequenceLinkId = try createInstance(type: FHIRInteger.self, for: "detailSequenceLinkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detailSequenceLinkId
@@ -376,16 +381,16 @@ open class ClaimResponseInsurance: BackboneElement {
 		businessArrangement = try createInstance(type: FHIRString.self, for: "businessArrangement", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? businessArrangement
 		claimResponse = try createInstance(type: Reference.self, for: "claimResponse", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? claimResponse
 		coverage = try createInstance(type: Reference.self, for: "coverage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? coverage
-		if nil == coverage && !presentKeys.contains("coverage") {
+		if nil == coverage && !presentKeys.contains("coverage") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "coverage"))
 		}
 		focal = try createInstance(type: FHIRBool.self, for: "focal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focal
-		if nil == focal && !presentKeys.contains("focal") {
+		if nil == focal && !presentKeys.contains("focal") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "focal"))
 		}
 		preAuthRef = try createInstances(of: FHIRString.self, for: "preAuthRef", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? preAuthRef
 		sequence = try createInstance(type: FHIRInteger.self, for: "sequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequence
-		if nil == sequence && !presentKeys.contains("sequence") {
+		if nil == sequence && !presentKeys.contains("sequence") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "sequence"))
 		}
 		
@@ -451,7 +456,7 @@ open class ClaimResponseItem: BackboneElement {
 		detail = try createInstances(of: ClaimResponseItemDetail.self, for: "detail", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detail
 		noteNumber = try createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? noteNumber
 		sequenceLinkId = try createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") {
+		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 		
@@ -507,7 +512,7 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 		
 		amount = try createInstance(type: Money.self, for: "amount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? amount
 		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		if nil == category && !presentKeys.contains("category") {
+		if nil == category && !presentKeys.contains("category") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "category"))
 		}
 		reason = try createInstance(type: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
@@ -566,7 +571,7 @@ open class ClaimResponseItemDetail: BackboneElement {
 		adjudication = try createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? adjudication
 		noteNumber = try createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? noteNumber
 		sequenceLinkId = try createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") {
+		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 		subDetail = try createInstances(of: ClaimResponseItemDetailSubDetail.self, for: "subDetail", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subDetail
@@ -621,7 +626,7 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		adjudication = try createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? adjudication
 		noteNumber = try createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? noteNumber
 		sequenceLinkId = try createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") {
+		if nil == sequenceLinkId && !presentKeys.contains("sequenceLinkId") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 		

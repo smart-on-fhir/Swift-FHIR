@@ -2,7 +2,7 @@
 //  Linkage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -18,6 +18,9 @@ open class Linkage: DomainResource {
 	override open class var resourceType: String {
 		get { return "Linkage" }
 	}
+	
+	/// Whether this linkage assertion is active or not.
+	public var active: FHIRBool?
 	
 	/// Who is responsible for linkages.
 	public var author: Reference?
@@ -36,6 +39,7 @@ open class Linkage: DomainResource {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		active = try createInstance(type: FHIRBool.self, for: "active", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? active
 		author = try createInstance(type: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author
 		item = try createInstances(of: LinkageItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
 		if (nil == item || item!.isEmpty) && !presentKeys.contains("item") {
@@ -48,6 +52,7 @@ open class Linkage: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.active?.decorate(json: &json, withKey: "active", errors: &errors)
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
 		if nil == item || self.item!.isEmpty {

@@ -2,7 +2,7 @@
 //  ClaimResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -64,6 +64,7 @@ class ClaimResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].sequenceLinkId, 1)
 		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
 		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
+		XCTAssertEqual(inst.patient?.reference, "Patient/1")
 		XCTAssertEqual(inst.payeeType?.coding?[0].code, "provider")
 		XCTAssertEqual(inst.payeeType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/payeetype")
 		XCTAssertEqual(inst.payment?.amount?.code, "USD")
@@ -76,6 +77,7 @@ class ClaimResponseTests: XCTestCase {
 		XCTAssertEqual(inst.payment?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ValueSet/ex-paymenttype")
 		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
 		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
+		XCTAssertEqual(inst.requestProvider?.reference, "Practitioner/1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ClaimResponse</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

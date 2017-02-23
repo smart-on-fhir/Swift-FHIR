@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -19,9 +19,6 @@ open class Medication: DomainResource {
 	override open class var resourceType: String {
 		get { return "Medication" }
 	}
-	
-	/// Identifies a single production run.
-	public var batch: [MedicationBatch]?
 	
 	/// Codes that identify this medication.
 	public var code: CodeableConcept?
@@ -47,14 +44,13 @@ open class Medication: DomainResource {
 	/// Details about packaged medications.
 	public var package: MedicationPackage?
 	
-	/// A code to iindicate if the medication is in active use.
+	/// A code to indicate if the medication is in active use.
 	public var status: MedicationStatus?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
-		batch = try createInstances(of: MedicationBatch.self, for: "batch", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? batch
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		form = try createInstance(type: CodeableConcept.self, for: "form", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? form
 		image = try createInstances(of: Attachment.self, for: "image", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? image
@@ -71,7 +67,6 @@ open class Medication: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "batch", using: self.batch, errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.form?.decorate(json: &json, withKey: "form", errors: &errors)
 		arrayDecorate(json: &json, withKey: "image", using: self.image, errors: &errors)
@@ -81,41 +76,6 @@ open class Medication: DomainResource {
 		self.manufacturer?.decorate(json: &json, withKey: "manufacturer", errors: &errors)
 		self.package?.decorate(json: &json, withKey: "package", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
-	}
-}
-
-
-/**
-Identifies a single production run.
-
-Information about a group of medication produced or packaged from one production run.
-*/
-open class MedicationBatch: BackboneElement {
-	override open class var resourceType: String {
-		get { return "MedicationBatch" }
-	}
-	
-	/// When batch will expire.
-	public var expirationDate: DateTime?
-	
-	/// Identifier assigned to batch.
-	public var lotNumber: FHIRString?
-	
-	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
-		
-		expirationDate = try createInstance(type: DateTime.self, for: "expirationDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expirationDate
-		lotNumber = try createInstance(type: FHIRString.self, for: "lotNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lotNumber
-		
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.expirationDate?.decorate(json: &json, withKey: "expirationDate", errors: &errors)
-		self.lotNumber?.decorate(json: &json, withKey: "lotNumber", errors: &errors)
 	}
 }
 
@@ -201,6 +161,9 @@ open class MedicationPackage: BackboneElement {
 		get { return "MedicationPackage" }
 	}
 	
+	/// Identifies a single production run.
+	public var batch: [MedicationPackageBatch]?
+	
 	/// E.g. box, vial, blister-pack.
 	public var container: CodeableConcept?
 	
@@ -211,6 +174,7 @@ open class MedicationPackage: BackboneElement {
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
+		batch = try createInstances(of: MedicationPackageBatch.self, for: "batch", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? batch
 		container = try createInstance(type: CodeableConcept.self, for: "container", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? container
 		content = try createInstances(of: MedicationPackageContent.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
 		
@@ -220,8 +184,44 @@ open class MedicationPackage: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "batch", using: self.batch, errors: &errors)
 		self.container?.decorate(json: &json, withKey: "container", errors: &errors)
 		arrayDecorate(json: &json, withKey: "content", using: self.content, errors: &errors)
+	}
+}
+
+
+/**
+Identifies a single production run.
+
+Information about a group of medication produced or packaged from one production run.
+*/
+open class MedicationPackageBatch: BackboneElement {
+	override open class var resourceType: String {
+		get { return "MedicationPackageBatch" }
+	}
+	
+	/// When batch will expire.
+	public var expirationDate: DateTime?
+	
+	/// Identifier assigned to batch.
+	public var lotNumber: FHIRString?
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		expirationDate = try createInstance(type: DateTime.self, for: "expirationDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expirationDate
+		lotNumber = try createInstance(type: FHIRString.self, for: "lotNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lotNumber
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.expirationDate?.decorate(json: &json, withKey: "expirationDate", errors: &errors)
+		self.lotNumber?.decorate(json: &json, withKey: "lotNumber", errors: &errors)
 	}
 }
 

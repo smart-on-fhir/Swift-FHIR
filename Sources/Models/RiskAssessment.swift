@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -101,7 +101,7 @@ open class RiskAssessment: DomainResource {
 		reasonCodeableConcept = try createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
 		reasonReference = try createInstance(type: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		status = createEnum(type: ObservationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
+		if nil == status && !presentKeys.contains("status") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
@@ -151,13 +151,13 @@ open class RiskAssessmentPrediction: BackboneElement {
 	public var outcome: CodeableConcept?
 	
 	/// Likelihood of specified outcome.
-	public var probabilityCodeableConcept: CodeableConcept?
-	
-	/// Likelihood of specified outcome.
 	public var probabilityDecimal: FHIRDecimal?
 	
 	/// Likelihood of specified outcome.
 	public var probabilityRange: Range?
+	
+	/// Likelihood of specified outcome as a qualitative value.
+	public var qualitativeRisk: CodeableConcept?
 	
 	/// Explanation of prediction.
 	public var rationale: FHIRString?
@@ -183,12 +183,12 @@ open class RiskAssessmentPrediction: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		outcome = try createInstance(type: CodeableConcept.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
-		if nil == outcome && !presentKeys.contains("outcome") {
+		if nil == outcome && !presentKeys.contains("outcome") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "outcome"))
 		}
-		probabilityCodeableConcept = try createInstance(type: CodeableConcept.self, for: "probabilityCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? probabilityCodeableConcept
 		probabilityDecimal = try createInstance(type: FHIRDecimal.self, for: "probabilityDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? probabilityDecimal
 		probabilityRange = try createInstance(type: Range.self, for: "probabilityRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? probabilityRange
+		qualitativeRisk = try createInstance(type: CodeableConcept.self, for: "qualitativeRisk", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? qualitativeRisk
 		rationale = try createInstance(type: FHIRString.self, for: "rationale", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rationale
 		relativeRisk = try createInstance(type: FHIRDecimal.self, for: "relativeRisk", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relativeRisk
 		whenPeriod = try createInstance(type: Period.self, for: "whenPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whenPeriod
@@ -204,9 +204,9 @@ open class RiskAssessmentPrediction: BackboneElement {
 		if nil == self.outcome {
 			errors.append(FHIRValidationError(missing: "outcome"))
 		}
-		self.probabilityCodeableConcept?.decorate(json: &json, withKey: "probabilityCodeableConcept", errors: &errors)
 		self.probabilityDecimal?.decorate(json: &json, withKey: "probabilityDecimal", errors: &errors)
 		self.probabilityRange?.decorate(json: &json, withKey: "probabilityRange", errors: &errors)
+		self.qualitativeRisk?.decorate(json: &json, withKey: "qualitativeRisk", errors: &errors)
 		self.rationale?.decorate(json: &json, withKey: "rationale", errors: &errors)
 		self.relativeRisk?.decorate(json: &json, withKey: "relativeRisk", errors: &errors)
 		self.whenPeriod?.decorate(json: &json, withKey: "whenPeriod", errors: &errors)

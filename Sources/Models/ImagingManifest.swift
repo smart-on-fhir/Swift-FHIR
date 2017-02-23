@@ -2,7 +2,7 @@
 //  ImagingManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -29,14 +29,14 @@ open class ImagingManifest: DomainResource {
 	/// Description text.
 	public var description_fhir: FHIRString?
 	
+	/// SOP Instance UID.
+	public var identifier: Identifier?
+	
 	/// Patient of the selected objects.
 	public var patient: Reference?
 	
 	/// Study identity of the selected instances.
 	public var study: [ImagingManifestStudy]?
-	
-	/// SOP Instance UID.
-	public var uid: FHIRURL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -53,6 +53,7 @@ open class ImagingManifest: DomainResource {
 		author = try createInstance(type: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author
 		authoringTime = try createInstance(type: DateTime.self, for: "authoringTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authoringTime
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
+		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
 		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		if nil == patient && !presentKeys.contains("patient") {
 			errors.append(FHIRValidationError(missing: "patient"))
@@ -61,7 +62,6 @@ open class ImagingManifest: DomainResource {
 		if (nil == study || study!.isEmpty) && !presentKeys.contains("study") {
 			errors.append(FHIRValidationError(missing: "study"))
 		}
-		uid = try createInstance(type: FHIRURL.self, for: "uid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? uid
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -72,6 +72,7 @@ open class ImagingManifest: DomainResource {
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
 		self.authoringTime?.decorate(json: &json, withKey: "authoringTime", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		if nil == self.patient {
 			errors.append(FHIRValidationError(missing: "patient"))
@@ -80,7 +81,6 @@ open class ImagingManifest: DomainResource {
 		if nil == study || self.study!.isEmpty {
 			errors.append(FHIRValidationError(missing: "study"))
 		}
-		self.uid?.decorate(json: &json, withKey: "uid", errors: &errors)
 	}
 }
 

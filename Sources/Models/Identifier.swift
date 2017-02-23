@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -25,7 +25,7 @@ open class Identifier: Element {
 	/// Time period when id is/was valid for use.
 	public var period: Period?
 	
-	/// The namespace for the identifier.
+	/// The namespace for the identifier value.
 	public var system: FHIRURL?
 	
 	/// Description of identifier.

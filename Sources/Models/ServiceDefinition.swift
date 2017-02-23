@@ -2,7 +2,7 @@
 //  ServiceDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ServiceDefinition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ServiceDefinition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -20,7 +20,7 @@ open class ServiceDefinition: DomainResource {
 		get { return "ServiceDefinition" }
 	}
 	
-	/// When service definition approved by publisher.
+	/// When the service definition was approved by publisher.
 	public var approvalDate: FHIRDate?
 	
 	/// Contact details for the publisher.
@@ -32,7 +32,7 @@ open class ServiceDefinition: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Data requirements for the module.
+	/// What data is used by the module.
 	public var dataRequirement: [DataRequirement]?
 	
 	/// Date this was last changed.
@@ -41,7 +41,7 @@ open class ServiceDefinition: DomainResource {
 	/// Natural language description of the service definition.
 	public var description_fhir: FHIRString?
 	
-	/// The effective date range for the service definition.
+	/// When the service definition is effective.
 	public var effectivePeriod: Period?
 	
 	/// If for testing purposes, not real usage.
@@ -53,7 +53,7 @@ open class ServiceDefinition: DomainResource {
 	/// Intended jurisdiction for service definition (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Last review date for the service definition.
+	/// When the service definition was last reviewed.
 	public var lastReviewDate: FHIRDate?
 	
 	/// Name for this service definition (Computer friendly).
@@ -68,7 +68,7 @@ open class ServiceDefinition: DomainResource {
 	/// Why this service definition is defined.
 	public var purpose: FHIRString?
 	
-	/// Related resources for the module.
+	/// Additional documentation, citations, etc.
 	public var relatedArtifact: [RelatedArtifact]?
 	
 	/// The status of this service definition. Enables tracking the life-cycle of the content.
@@ -77,7 +77,7 @@ open class ServiceDefinition: DomainResource {
 	/// Name for this service definition (Human friendly).
 	public var title: FHIRString?
 	
-	/// Descriptional topics for the module.
+	/// E.g. Education, Treatment, Assessment, etc.
 	public var topic: [CodeableConcept]?
 	
 	/// "when" the module should be invoked.

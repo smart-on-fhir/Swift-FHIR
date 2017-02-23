@@ -73,6 +73,7 @@ manual_profiles = [
         'integer', 'positiveInt', 'unsignedInt',
     ]),
     ('../fhir-parser-resources/FHIREnum.swift', None, []),
+    ('../fhir-parser-resources/Resource+Meta.swift', None, []),
     ('../fhir-parser-resources/FHIRRequest.swift', None, []),
     ('../fhir-parser-resources/FHIRRequestHandler.swift', None, []),
     ('../fhir-parser-resources/FHIRServer.swift', None, ['FHIRServer']),

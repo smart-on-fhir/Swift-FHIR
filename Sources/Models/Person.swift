@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -111,7 +111,7 @@ open class PersonLink: BackboneElement {
 		
 		assurance = createEnum(type: IdentityAssuranceLevel.self, for: "assurance", in: json, presentKeys: &presentKeys, errors: &errors) ?? assurance
 		target = try createInstance(type: Reference.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		if nil == target && !presentKeys.contains("target") {
+		if nil == target && !presentKeys.contains("target") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "target"))
 		}
 		

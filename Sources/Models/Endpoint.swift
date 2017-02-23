@@ -2,7 +2,7 @@
 //  Endpoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -20,7 +20,7 @@ open class Endpoint: DomainResource {
 		get { return "Endpoint" }
 	}
 	
-	/// The technical address for conneccting to this endpoint.
+	/// The technical base address for connecting to this endpoint.
 	public var address: FHIRURL?
 	
 	/// Protocol/Profile/Standard to be used with this endpoint connection.

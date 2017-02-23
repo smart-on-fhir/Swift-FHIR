@@ -1,0 +1,1186 @@
+{
+	"resourceType": "CapabilityStatement",
+	"id": "FhirServer",
+	"extension": [
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "urn:iso:std:iso:3166"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/20611000087101/version/20161031"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/11000201108/version/20161102"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/731000124108/version/20160901"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://www.nlm.nih.gov/research/umls/rxnorm"
+				},
+				{
+					"url": "version",
+					"valueString": "??"
+				},
+				{
+					"url": "name",
+					"valueString": "RxNorm"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/32506021000036107/version/20161031"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://fdasis.nlm.nih.gov"
+				},
+				{
+					"url": "name",
+					"valueString": "UNII"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "urn:ietf:rfc:3986"
+				},
+				{
+					"url": "version",
+					"valueString": "n/a"
+				},
+				{
+					"url": "name",
+					"valueString": "Internal URI services"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "https://www.usps.com/"
+				},
+				{
+					"url": "name",
+					"valueString": "United States Postal Codes"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://loinc.org"
+				},
+				{
+					"url": "version",
+					"valueString": "2.56"
+				},
+				{
+					"url": "name",
+					"valueString": "LOINC"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "urn:ietf:bcp:47"
+				},
+				{
+					"url": "name",
+					"valueString": "IETF langauge"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/32506021000036107/version/20161031"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/20611000087101/version/20161031"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "urn:oid:1.2.36.1.2001.1005.17"
+				},
+				{
+					"url": "name",
+					"valueString": "ACIR"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/900000000000207008/version/20160731"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/900000000000207008/version/20160731"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/731000124108/version/20160901"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://unitsofmeasure.org"
+				},
+				{
+					"url": "version",
+					"valueString": "2.0.1"
+				},
+				{
+					"url": "name",
+					"valueString": "UCUM"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://snomed.info/sct"
+				},
+				{
+					"url": "version",
+					"valueString": "http://snomed.info/sct/11000201108/version/20161102"
+				},
+				{
+					"url": "name",
+					"valueString": "SNOMED CT"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		},
+		{
+			"extension": [
+				{
+					"url": "system",
+					"valueUri": "http://hl7.org/fhir/sid/cvx"
+				},
+				{
+					"url": "name",
+					"valueString": "CVX"
+				}
+			],
+			"url": "http://hl7.org/fhir/StructureDefinition/conformance-common-supported-system"
+		}
+	],
+	"url": "http://fhir3.healthintersections.com.au:80/open/metadata",
+	"version": "1.9.0-1.0.118",
+	"name": "Health Intersections FHIR Server Conformance Statement",
+	"status": "active",
+	"kind": "capability",
+	"experimental": false,
+	"date": "2017-02-23T14:06:54Z",
+	"publisher": "Health Intersections",
+	"contact": [
+		{
+			"telecom": [
+				{
+					"system": "other",
+					"value": "http://healthintersections.com.au/"
+				}
+			]
+		}
+	],
+	"description": "Standard Conformance Statement for the open source Reference FHIR Server provided by Health Intersections",
+	"instantiates": [
+		"http://hl7.org/fhir/Conformance/terminology-server"
+	],
+	"software": {
+		"name": "Reference Server",
+		"version": "1.0.118.",
+		"releaseDate": "2017-02-21"
+	},
+	"implementation": {
+		"description": "FHIR Server running at http://fhir3.healthintersections.com.au:80/open",
+		"url": "http://fhir3.healthintersections.com.au:80/open"
+	},
+	"fhirVersion": "1.9.0",
+	"acceptUnknown": "both",
+	"format": [
+		"application/fhir+xml",
+		"application/fhir+json"
+	],
+	"rest": [
+		{
+			"extension": [
+				{
+					"url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-websocket",
+					"valueString": "http://fhir3.healthintersections.com.au/open/websockets"
+				},
+				{
+					"extension": [
+						{
+							"url": "name",
+							"valueString": "Fetch Patient Alerts"
+						},
+						{
+							"url": "activity",
+							"valueCoding": {
+								"system": "http://cds-hooks.smarthealthit.org/activity",
+								"code": "patient-view",
+								"display": "Provide any important information about a patient"
+							}
+						},
+						{
+							"url": "preFetchOptional",
+							"valueString": "Patient/{{Patient.id}}"
+						}
+					],
+					"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/cds-activity"
+				},
+				{
+					"extension": [
+						{
+							"url": "name",
+							"valueString": "Get Terminology Information"
+						},
+						{
+							"url": "activity",
+							"valueCoding": {
+								"system": "http://cds-hooks.smarthealthit.org/activity",
+								"code": "code-view",
+								"display": "Provide any available information about a Coding/CodeableConcept"
+							}
+						}
+					],
+					"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/cds-activity"
+				},
+				{
+					"extension": [
+						{
+							"url": "name",
+							"valueString": "Get identifier Information"
+						},
+						{
+							"url": "activity",
+							"valueCoding": {
+								"system": "http://cds-hooks.smarthealthit.org/activity",
+								"code": "identifier-view",
+								"display": "Provide any available information about an Identifier"
+							}
+						}
+					],
+					"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/cds-activity"
+				}
+			],
+			"mode": "server",
+			"resource": [
+				{
+					"type": "Account",
+					"profile": {
+						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/account"
+					},
+					"interaction": [
+						{
+							"code": "read"
+						},
+						{
+							"code": "vread"
+						},
+						{
+							"code": "search-type"
+						},
+						{
+							"code": "update"
+						},
+						{
+							"code": "history-type"
+						},
+						{
+							"code": "create"
+						},
+						{
+							"code": "delete"
+						},
+						{
+							"code": "history-instance"
+						}
+					],
+					"readHistory": true,
+					"searchParam": [
+						{
+							"name": "_content",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-_content",
+							"type": "string",
+							"documentation": "Search on the entire content of the resource"
+						},
+						{
+							"name": "_id",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-_id",
+							"type": "token",
+							"documentation": "Logical id of this artifact"
+						},
+						{
+							"name": "_lastUpdated",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-_lastUpdated",
+							"type": "date",
+							"documentation": "When the resource version last changed"
+						},
+						{
+							"name": "_profile",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-_profile",
+							"type": "uri",
+							"documentation": "Profiles this resource claims to conform to"
+						},
+						{
+							"name": "_security",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-_security",
+							"type": "token",
+							"documentation": "Security Labels applied to this resource"
+						},
+						{
+							"name": "_tag",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-_tag",
+							"type": "token",
+							"documentation": "Tags applied to this resource"
+						},
+						{
+							"name": "_text",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-_text",
+							"type": "string",
+							"documentation": "Search on the narrative of the resource"
+						},
+						{
+							"name": "balance",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-balance",
+							"type": "quantity",
+							"documentation": "How much is in account?"
+						},
+						{
+							"name": "identifier",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-identifier",
+							"type": "token",
+							"documentation": "Account number"
+						},
+						{
+							"name": "name",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-name",
+							"type": "string",
+							"documentation": "Human-readable label"
+						},
+						{
+							"name": "owner",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-owner",
+							"type": "reference",
+							"documentation": "Who is responsible?"
+						},
+						{
+							"name": "patient",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-patient",
+							"type": "reference",
+							"documentation": "What is account tied to?"
+						},
+						{
+							"name": "period",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-period",
+							"type": "date",
+							"documentation": "Transaction window"
+						},
+						{
+							"name": "status",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-status",
+							"type": "token",
+							"documentation": "active | inactive | entered-in-error"
+						},
+						{
+							"name": "subject",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-subject",
+							"type": "reference",
+							"documentation": "What is account tied to?"
+						},
+						{
+							"name": "type",
+							"definition": "http://hl7.org/fhir/SearchParameter/Account-type",
+							"type": "token",
+							"documentation": "E.g. patient, expense, depreciation"
+						},
+						{
+							"name": "_text",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "string",
+							"documentation": "General Text Search of the narrative portion"
+						},
+						{
+							"name": "_profile",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "reference",
+							"documentation": "Search for resources that conform to a profile"
+						},
+						{
+							"name": "_security",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "reference",
+							"documentation": "Search for resources that have a particular security tag"
+						},
+						{
+							"name": "_sort",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Specify one or more other parameters to use as the sort order"
+						},
+						{
+							"name": "_count",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "number",
+							"documentation": "Number of records to return"
+						},
+						{
+							"name": "_summary",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "number",
+							"documentation": "Return just a summary for resources that define a summary view"
+						},
+						{
+							"name": "_include",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Additional resources to return - other resources that matching resources refer to"
+						},
+						{
+							"name": "_reverseInclude",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Additional resources to return - other resources that refer to matching resources (this is trialing an extension to the specification)"
+						},
+						{
+							"name": "_filter",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "filter parameter as documented in the specification"
+						}
+					]
+				},
+				{
+					"type": "ActivityDefinition",
+					"profile": {
+						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/activitydefinition"
+					},
+					"interaction": [
+						{
+							"code": "read"
+						},
+						{
+							"code": "vread"
+						},
+						{
+							"code": "search-type"
+						},
+						{
+							"code": "update"
+						},
+						{
+							"code": "history-type"
+						},
+						{
+							"code": "create"
+						},
+						{
+							"code": "delete"
+						},
+						{
+							"code": "history-instance"
+						}
+					],
+					"readHistory": true,
+					"searchParam": [
+						{
+							"name": "_content",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-_content",
+							"type": "string",
+							"documentation": "Search on the entire content of the resource"
+						},
+						{
+							"name": "_id",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-_id",
+							"type": "token",
+							"documentation": "Logical id of this artifact"
+						},
+						{
+							"name": "_lastUpdated",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-_lastUpdated",
+							"type": "date",
+							"documentation": "When the resource version last changed"
+						},
+						{
+							"name": "_profile",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-_profile",
+							"type": "uri",
+							"documentation": "Profiles this resource claims to conform to"
+						},
+						{
+							"name": "_security",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-_security",
+							"type": "token",
+							"documentation": "Security Labels applied to this resource"
+						},
+						{
+							"name": "_tag",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-_tag",
+							"type": "token",
+							"documentation": "Tags applied to this resource"
+						},
+						{
+							"name": "_text",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-_text",
+							"type": "string",
+							"documentation": "Search on the narrative of the resource"
+						},
+						{
+							"name": "date",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-date",
+							"type": "date",
+							"documentation": "The activity definition publication date"
+						},
+						{
+							"name": "description",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-description",
+							"type": "string",
+							"documentation": "Text search against the description of the activity definition"
+						},
+						{
+							"name": "effective",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-effective",
+							"type": "date",
+							"documentation": "Effective time associated with the activity definition"
+						},
+						{
+							"name": "identifier",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-identifier",
+							"type": "token",
+							"documentation": "External identifiers for the activity definition"
+						},
+						{
+							"name": "jurisdiction",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-jurisdiction",
+							"type": "token",
+							"documentation": "Intended jurisdiction for activity definition"
+						},
+						{
+							"name": "name",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-name",
+							"type": "string",
+							"documentation": "Name of the activity definition"
+						},
+						{
+							"name": "publisher",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-publisher",
+							"type": "string",
+							"documentation": "Name of the publisher of the activity definition"
+						},
+						{
+							"name": "status",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-status",
+							"type": "token",
+							"documentation": "The current status of the activity definition"
+						},
+						{
+							"name": "title",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-title",
+							"type": "string",
+							"documentation": "Text search against the title of the activity definition"
+						},
+						{
+							"name": "topic",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-topic",
+							"type": "token",
+							"documentation": "Topics associated with the module"
+						},
+						{
+							"name": "url",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-url",
+							"type": "uri",
+							"documentation": "The uri that identifies the activity definition"
+						},
+						{
+							"name": "version",
+							"definition": "http://hl7.org/fhir/SearchParameter/ActivityDefinition-version",
+							"type": "token",
+							"documentation": "The business version of the activity definition"
+						},
+						{
+							"name": "_text",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "string",
+							"documentation": "General Text Search of the narrative portion"
+						},
+						{
+							"name": "_profile",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "reference",
+							"documentation": "Search for resources that conform to a profile"
+						},
+						{
+							"name": "_security",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "reference",
+							"documentation": "Search for resources that have a particular security tag"
+						},
+						{
+							"name": "_sort",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Specify one or more other parameters to use as the sort order"
+						},
+						{
+							"name": "_count",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "number",
+							"documentation": "Number of records to return"
+						},
+						{
+							"name": "_summary",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "number",
+							"documentation": "Return just a summary for resources that define a summary view"
+						},
+						{
+							"name": "_include",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Additional resources to return - other resources that matching resources refer to"
+						},
+						{
+							"name": "_reverseInclude",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Additional resources to return - other resources that refer to matching resources (this is trialing an extension to the specification)"
+						},
+						{
+							"name": "_filter",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "filter parameter as documented in the specification"
+						}
+					]
+				},
+				{
+					"type": "AdverseEvent",
+					"profile": {
+						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/adverseevent"
+					},
+					"interaction": [
+						{
+							"code": "read"
+						},
+						{
+							"code": "vread"
+						},
+						{
+							"code": "search-type"
+						},
+						{
+							"code": "update"
+						},
+						{
+							"code": "history-type"
+						},
+						{
+							"code": "create"
+						},
+						{
+							"code": "delete"
+						},
+						{
+							"code": "history-instance"
+						}
+					],
+					"readHistory": true,
+					"searchParam": [
+						{
+							"name": "_content",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-_content",
+							"type": "string",
+							"documentation": "Search on the entire content of the resource"
+						},
+						{
+							"name": "_id",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-_id",
+							"type": "token",
+							"documentation": "Logical id of this artifact"
+						},
+						{
+							"name": "_lastUpdated",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-_lastUpdated",
+							"type": "date",
+							"documentation": "When the resource version last changed"
+						},
+						{
+							"name": "_profile",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-_profile",
+							"type": "uri",
+							"documentation": "Profiles this resource claims to conform to"
+						},
+						{
+							"name": "_security",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-_security",
+							"type": "token",
+							"documentation": "Security Labels applied to this resource"
+						},
+						{
+							"name": "_tag",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-_tag",
+							"type": "token",
+							"documentation": "Tags applied to this resource"
+						},
+						{
+							"name": "_text",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-_text",
+							"type": "string",
+							"documentation": "Search on the narrative of the resource"
+						},
+						{
+							"name": "category",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-category",
+							"type": "token",
+							"documentation": "AE | PAE  An adverse event is an event that caused harm to a patient,  an adverse reaction is a something that is a subject-specific event that is a result of an exposure to a medication, food, device or environmental substance, a potential adverse event is something that occurred and that could have caused harm to a patient but did not"
+						},
+						{
+							"name": "date",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-date",
+							"type": "date",
+							"documentation": "AdverseEvent.date"
+						},
+						{
+							"name": "location",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-location",
+							"type": "reference",
+							"documentation": "AdverseEvent.location"
+						},
+						{
+							"name": "reaction",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-reaction",
+							"type": "reference",
+							"documentation": "Adverse Reaction Events linked to exposure to substance"
+						},
+						{
+							"name": "recorder",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-recorder",
+							"type": "reference",
+							"documentation": "AdverseEvent.recorder"
+						},
+						{
+							"name": "seriousness",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-seriousness",
+							"type": "token",
+							"documentation": "Mild | Moderate | Severe"
+						},
+						{
+							"name": "study",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-study",
+							"type": "reference",
+							"documentation": "AdverseEvent.study"
+						},
+						{
+							"name": "subject",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-subject",
+							"type": "reference",
+							"documentation": "Subject or group impacted by event"
+						},
+						{
+							"name": "substance",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-substance",
+							"type": "reference",
+							"documentation": "AdverseEvent.suspectEntity.instance"
+						},
+						{
+							"name": "type",
+							"definition": "http://hl7.org/fhir/SearchParameter/AdverseEvent-type",
+							"type": "token",
+							"documentation": "actual | potential"
+						},
+						{
+							"name": "_text",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "string",
+							"documentation": "General Text Search of the narrative portion"
+						},
+						{
+							"name": "_profile",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "reference",
+							"documentation": "Search for resources that conform to a profile"
+						},
+						{
+							"name": "_security",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "reference",
+							"documentation": "Search for resources that have a particular security tag"
+						},
+						{
+							"name": "_sort",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Specify one or more other parameters to use as the sort order"
+						},
+						{
+							"name": "_count",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "number",
+							"documentation": "Number of records to return"
+						},
+						{
+							"name": "_summary",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "number",
+							"documentation": "Return just a summary for resources that define a summary view"
+						},
+						{
+							"name": "_include",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Additional resources to return - other resources that matching resources refer to"
+						},
+						{
+							"name": "_reverseInclude",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "Additional resources to return - other resources that refer to matching resources (this is trialing an extension to the specification)"
+						},
+						{
+							"name": "_filter",
+							"definition": "http://hl7.org/fhir/search",
+							"type": "token",
+							"documentation": "filter parameter as documented in the specification"
+						}
+					]
+				}
+			],
+			"interaction": [
+				{
+					"code": "transaction"
+				},
+				{
+					"code": "search-system"
+				},
+				{
+					"code": "history-system"
+				}
+			],
+			"operation": [
+				{
+					"name": "expand",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"
+					}
+				},
+				{
+					"name": "lookup",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-lookup"
+					}
+				},
+				{
+					"name": "validate-code",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-validate"
+					}
+				},
+				{
+					"name": "translate",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"
+					}
+				},
+				{
+					"name": "closure",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ConceptMap-closure"
+					}
+				},
+				{
+					"name": "validate",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code"
+					}
+				},
+				{
+					"name": "document",
+					"definition": {
+						"reference": "OperationDefinition/fso-document"
+					}
+				},
+				{
+					"name": "everything",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Patient-everything"
+					}
+				},
+				{
+					"name": "qa-edit",
+					"definition": {
+						"reference": "OperationDefinition/fso-qa-edit"
+					}
+				},
+				{
+					"name": "qa-post",
+					"definition": {
+						"reference": "OperationDefinition/fso-qa-post"
+					}
+				},
+				{
+					"name": "questionnaire",
+					"definition": {
+						"reference": "OperationDefinition/fso-questionnaire"
+					}
+				},
+				{
+					"name": "process",
+					"definition": {
+						"reference": "OperationDefinition/fso-process"
+					}
+				},
+				{
+					"name": "current",
+					"definition": {
+						"reference": "OperationDefinition/fso-current"
+					}
+				},
+				{
+					"name": "snapshot",
+					"definition": {
+						"reference": "OperationDefinition/fso-snapshot"
+					}
+				},
+				{
+					"name": "cds-hook",
+					"definition": {
+						"reference": "OperationDefinition/fso-cds-hook"
+					}
+				},
+				{
+					"name": "generate-template",
+					"definition": {
+						"reference": "OperationDefinition/fso-generate-template"
+					}
+				},
+				{
+					"name": "generate-narrative",
+					"definition": {
+						"reference": "OperationDefinition/fso-generate-narrative"
+					}
+				},
+				{
+					"name": "suggest-keywords",
+					"definition": {
+						"reference": "OperationDefinition/fso-suggest-keywords"
+					}
+				},
+				{
+					"name": "meta",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta"
+					}
+				},
+				{
+					"name": "meta-add",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
+					}
+				},
+				{
+					"name": "meta-delete",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
+					}
+				},
+				{
+					"name": "diff",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-diff"
+					}
+				},
+				{
+					"name": "transform",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/StructureMap-transform"
+					}
+				},
+				{
+					"name": "activate",
+					"definition": {
+						"reference": "not done yet"
+					}
+				},
+				{
+					"name": "subsumes",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes"
+					}
+				},
+				{
+					"name": "compose",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-compose"
+					}
+				},
+				{
+					"name": "stats",
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Observation-Stats"
+					}
+				}
+			]
+		}
+	]
+}

@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ open class Binary: Resource {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		content = try createInstance(type: Base64Binary.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
-		if nil == content && !presentKeys.contains("content") {
+		if nil == content && !presentKeys.contains("content") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
 		contentType = try createInstance(type: FHIRString.self, for: "contentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentType

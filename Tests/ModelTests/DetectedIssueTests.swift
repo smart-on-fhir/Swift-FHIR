@@ -2,7 +2,7 @@
 //  DetectedIssueTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -41,6 +41,7 @@ class DetectedIssueTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-allergy.json")
 		
 		XCTAssertEqual(inst.id, "allergy")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -72,6 +73,7 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.implicated?[0].reference, "ProcedureRequest/di")
 		XCTAssertEqual(inst.implicated?[1].display, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
 		XCTAssertEqual(inst.implicated?[1].reference, "ImagingStudy/example")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -92,6 +94,7 @@ class DetectedIssueTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-lab.json")
 		
 		XCTAssertEqual(inst.id, "lab")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -130,6 +133,7 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.mitigation?[0].author?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.mitigation?[0].date?.description, "2014-01-05")
 		XCTAssertEqual(inst.severity, DetectedIssueSeverity(rawValue: "high")!)
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

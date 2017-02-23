@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -212,7 +212,7 @@ open class PatientCommunication: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		language = try createInstance(type: CodeableConcept.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
-		if nil == language && !presentKeys.contains("language") {
+		if nil == language && !presentKeys.contains("language") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "language"))
 		}
 		preferred = try createInstance(type: FHIRBool.self, for: "preferred", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? preferred

@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -47,14 +47,11 @@ open class ReferralRequest: DomainResource {
 	/// Comments made about referral request.
 	public var note: [Annotation]?
 	
-	/// Requested service(s) fulfillment time.
+	/// When the service(s) requested in the referral should occur.
 	public var occurrenceDateTime: DateTime?
 	
-	/// Requested service(s) fulfillment time.
+	/// When the service(s) requested in the referral should occur.
 	public var occurrencePeriod: Period?
-	
-	/// Patient referred to care or transfer.
-	public var patient: Reference?
 	
 	/// An indication of the urgency of referral (or where applicable the type of transfer of care) request.
 	public var priority: RequestPriority?
@@ -86,6 +83,9 @@ open class ReferralRequest: DomainResource {
 	/// The status of the authorization/intention reflected by the referral request record.
 	public var status: RequestStatus?
 	
+	/// Patient referred to care or transfer.
+	public var subject: Reference?
+	
 	/// Additonal information to support referral or transfer of care request.
 	public var supportingInfo: [Reference]?
 	
@@ -94,10 +94,11 @@ open class ReferralRequest: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(intent: RequestIntent, status: RequestStatus) {
+	public convenience init(intent: RequestIntent, status: RequestStatus, subject: Reference) {
 		self.init()
 		self.intent = intent
 		self.status = status
+		self.subject = subject
 	}
 	
 	
@@ -118,7 +119,6 @@ open class ReferralRequest: DomainResource {
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		occurrenceDateTime = try createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceDateTime
 		occurrencePeriod = try createInstance(type: Period.self, for: "occurrencePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrencePeriod
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
 		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, presentKeys: &presentKeys, errors: &errors) ?? priority
 		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
 		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
@@ -131,6 +131,10 @@ open class ReferralRequest: DomainResource {
 		status = createEnum(type: RequestStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
+		}
+		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
+		if nil == subject && !presentKeys.contains("subject") {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		supportingInfo = try createInstances(of: Reference.self, for: "supportingInfo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingInfo
 		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
@@ -155,7 +159,6 @@ open class ReferralRequest: DomainResource {
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
 		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)
-		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
@@ -168,6 +171,10 @@ open class ReferralRequest: DomainResource {
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
+		}
+		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
+		if nil == self.subject {
+			errors.append(FHIRValidationError(missing: "subject"))
 		}
 		arrayDecorate(json: &json, withKey: "supportingInfo", using: self.supportingInfo, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)

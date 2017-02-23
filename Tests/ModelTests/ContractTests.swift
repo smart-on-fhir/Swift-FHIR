@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -41,6 +41,8 @@ class ContractTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id, "C-123")
+		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://happyvalley.com/contract")
+		XCTAssertEqual(inst.identifier?.value, "12347")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the contract</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -185,6 +187,7 @@ class ContractTests: XCTestCase {
 	func runContract5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRContract {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "pcd-example-notThem.json")
 		
+		XCTAssertEqual(inst.agent?[0].actor?.reference, "Patient/f001")
 		XCTAssertEqual(inst.authority?[0].display, "Canada Infoway")
 		XCTAssertEqual(inst.authority?[0].reference, "Organization/Infoway")
 		XCTAssertEqual(inst.domain?[0].display, "Canada Infoway")
@@ -193,6 +196,13 @@ class ContractTests: XCTestCase {
 		XCTAssertEqual(inst.id, "pcd-example-notThem")
 		XCTAssertEqual(inst.issued?.description, "2015-11-18")
 		XCTAssertEqual(inst.legal?[0].contentAttachment?.title, "The terms of the consent in lawyer speak.")
+		XCTAssertEqual(inst.signer?[0].party?.reference, "Patient/f001")
+		XCTAssertEqual(inst.signer?[0].signature?[0].type?[0].code, "1.2.840.10065.1.12.1.1")
+		XCTAssertEqual(inst.signer?[0].signature?[0].type?[0].system?.absoluteString, "urn:iso-astm:E1762-95:2013")
+		XCTAssertEqual(inst.signer?[0].signature?[0].when?.description, "2013-06-08T10:57:34-07:00")
+		XCTAssertEqual(inst.signer?[0].signature?[0].whoReference?.reference, "Patient/f001")
+		XCTAssertEqual(inst.signer?[0].type?.code, "COVPTY")
+		XCTAssertEqual(inst.signer?[0].type?.system?.absoluteString, "http://www.hl7.org/fhir/contractsignertypecodes")
 		XCTAssertEqual(inst.subType?[0].coding?[0].code, "Opt-In")
 		XCTAssertEqual(inst.subType?[0].coding?[0].display, "Default Authorization with exceptions.")
 		XCTAssertEqual(inst.subType?[0].coding?[0].system?.absoluteString, "http://www.infoway-inforoute.ca.org/Consent-subtype-codes")

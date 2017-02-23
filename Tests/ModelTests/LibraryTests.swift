@@ -2,7 +2,7 @@
 //  LibraryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -91,7 +91,6 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.relatedArtifact?[0].resource?.reference, "Library/library-quick-model-definition")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "depends-on")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">CMS 146 Logic</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Appropriate Testing for Children with Pharyngitis")
 		XCTAssertEqual(inst.type?.coding?[0].code, "logic-library")
@@ -127,7 +126,6 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.relatedArtifact?[0].resource?.reference, "Library/library-quick-model-definition")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "depends-on")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Chlamydia Screening Common Library</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Chlamydia Screening Common Library")
 		XCTAssertEqual(inst.topic?[0].text, "Chlamydia Screening")

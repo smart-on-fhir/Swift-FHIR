@@ -2,7 +2,7 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -20,14 +20,11 @@ open class ActivityDefinition: DomainResource {
 		get { return "ActivityDefinition" }
 	}
 	
-	/// When activity definition approved by publisher.
+	/// When the activity definition was approved by publisher.
 	public var approvalDate: FHIRDate?
 	
 	/// What part of body to perform on.
 	public var bodySite: [CodeableConcept]?
-	
-	/// E.g. Education, Assessment, Treatment, etc.
-	public var category: CodeableConcept?
 	
 	/// Detail type of activity.
 	public var code: CodeableConcept?
@@ -48,12 +45,12 @@ open class ActivityDefinition: DomainResource {
 	public var description_fhir: FHIRString?
 	
 	/// Detailed dosage instructions.
-	public var dosageInstruction: [DosageInstruction]?
+	public var dosage: [Dosage]?
 	
 	/// Dynamic aspects of the definition.
 	public var dynamicValue: [ActivityDefinitionDynamicValue]?
 	
-	/// The effective date range for the activity definition.
+	/// When the activity definition is effective.
 	public var effectivePeriod: Period?
 	
 	/// If for testing purposes, not real usage.
@@ -68,7 +65,7 @@ open class ActivityDefinition: DomainResource {
 	/// Kind of resource.
 	public var kind: FHIRString?
 	
-	/// Last review date for the activity definition.
+	/// When the activity definition was last reviewed.
 	public var lastReviewDate: FHIRDate?
 	
 	/// Logic used by the asset.
@@ -80,8 +77,8 @@ open class ActivityDefinition: DomainResource {
 	/// Name for this activity definition (Computer friendly).
 	public var name: FHIRString?
 	
-	/// The type of participant in the action.
-	public var participantType: [ActionParticipantType]?
+	/// Who should participate in the action.
+	public var participant: [ActivityDefinitionParticipant]?
 	
 	/// What's administered/supplied.
 	public var productCodeableConcept: CodeableConcept?
@@ -98,7 +95,7 @@ open class ActivityDefinition: DomainResource {
 	/// How much is administered/consumed/supplied.
 	public var quantity: Quantity?
 	
-	/// Related artifacts for the asset.
+	/// Additional documentation, citations, etc.
 	public var relatedArtifact: [RelatedArtifact]?
 	
 	/// The status of this activity definition. Enables tracking the life-cycle of the content.
@@ -113,7 +110,7 @@ open class ActivityDefinition: DomainResource {
 	/// Name for this activity definition (Human friendly).
 	public var title: FHIRString?
 	
-	/// Descriptional topics for the asset.
+	/// E.g. Education, Treatment, Assessment, etc.
 	public var topic: [CodeableConcept]?
 	
 	/// Transform to apply the template.
@@ -144,14 +141,13 @@ open class ActivityDefinition: DomainResource {
 		
 		approvalDate = try createInstance(type: FHIRDate.self, for: "approvalDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? approvalDate
 		bodySite = try createInstances(of: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
-		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
 		contributor = try createInstances(of: Contributor.self, for: "contributor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contributor
 		copyright = try createInstance(type: FHIRString.self, for: "copyright", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? copyright
 		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		dosageInstruction = try createInstances(of: DosageInstruction.self, for: "dosageInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosageInstruction
+		dosage = try createInstances(of: Dosage.self, for: "dosage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosage
 		dynamicValue = try createInstances(of: ActivityDefinitionDynamicValue.self, for: "dynamicValue", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dynamicValue
 		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
 		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
@@ -162,7 +158,7 @@ open class ActivityDefinition: DomainResource {
 		library = try createInstances(of: Reference.self, for: "library", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? library
 		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		participantType = createEnums(of: ActionParticipantType.self, for: "participantType", in: json, presentKeys: &presentKeys, errors: &errors) ?? participantType
+		participant = try createInstances(of: ActivityDefinitionParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
 		productCodeableConcept = try createInstance(type: CodeableConcept.self, for: "productCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? productCodeableConcept
 		productReference = try createInstance(type: Reference.self, for: "productReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? productReference
 		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
@@ -191,14 +187,13 @@ open class ActivityDefinition: DomainResource {
 		
 		self.approvalDate?.decorate(json: &json, withKey: "approvalDate", errors: &errors)
 		arrayDecorate(json: &json, withKey: "bodySite", using: self.bodySite, errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		arrayDecorate(json: &json, withKey: "contact", using: self.contact, errors: &errors)
 		arrayDecorate(json: &json, withKey: "contributor", using: self.contributor, errors: &errors)
 		self.copyright?.decorate(json: &json, withKey: "copyright", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
-		arrayDecorate(json: &json, withKey: "dosageInstruction", using: self.dosageInstruction, errors: &errors)
+		arrayDecorate(json: &json, withKey: "dosage", using: self.dosage, errors: &errors)
 		arrayDecorate(json: &json, withKey: "dynamicValue", using: self.dynamicValue, errors: &errors)
 		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
 		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
@@ -209,7 +204,7 @@ open class ActivityDefinition: DomainResource {
 		arrayDecorate(json: &json, withKey: "library", using: self.library, errors: &errors)
 		self.location?.decorate(json: &json, withKey: "location", errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		arrayDecorate(json: &json, withKey: "participantType", using: self.participantType, errors: &errors)
+		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
 		self.productCodeableConcept?.decorate(json: &json, withKey: "productCodeableConcept", errors: &errors)
 		self.productReference?.decorate(json: &json, withKey: "productReference", errors: &errors)
 		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
@@ -276,6 +271,54 @@ open class ActivityDefinitionDynamicValue: BackboneElement {
 		self.expression?.decorate(json: &json, withKey: "expression", errors: &errors)
 		self.language?.decorate(json: &json, withKey: "language", errors: &errors)
 		self.path?.decorate(json: &json, withKey: "path", errors: &errors)
+	}
+}
+
+
+/**
+Who should participate in the action.
+
+Indicates who should participate in performing the action described.
+*/
+open class ActivityDefinitionParticipant: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ActivityDefinitionParticipant" }
+	}
+	
+	/// E.g. Nurse, Surgeon, Parent, etc.
+	public var role: CodeableConcept?
+	
+	/// The type of participant in the action.
+	public var type: ActionParticipantType?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: ActionParticipantType) {
+		self.init()
+		self.type = type
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
+		type = createEnum(type: ActionParticipantType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 	}
 }
 

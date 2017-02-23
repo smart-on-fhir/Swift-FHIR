@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -21,7 +21,7 @@ open class Schedule: DomainResource {
 	public var active: FHIRBool?
 	
 	/// The resource this Schedule resource is providing availability information for. These are expected to usually be
-	/// one of HealthcareService, Location, Practitioner, Device, Patient or RelatedPerson.
+	/// one of HealthcareService, Location, Practitioner, PractitionerRole, Device, Patient or RelatedPerson.
 	public var actor: [Reference]?
 	
 	/// Comments on the availability to describe any extended information. Such as custom constraints on the slots that

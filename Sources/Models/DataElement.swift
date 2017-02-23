@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -170,7 +170,7 @@ open class DataElementMapping: BackboneElement {
 		
 		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
 		identity = try createInstance(type: FHIRString.self, for: "identity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identity
-		if nil == identity && !presentKeys.contains("identity") {
+		if nil == identity && !presentKeys.contains("identity") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "identity"))
 		}
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name

@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -66,7 +66,7 @@ open class AuditEvent: DomainResource {
 		
 		action = createEnum(type: AuditEventAction.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors) ?? action
 		agent = try createInstances(of: AuditEventAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		if (nil == agent || agent!.isEmpty) && !presentKeys.contains("agent") {
+		if (nil == agent || agent!.isEmpty) && !presentKeys.contains("agent") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "agent"))
 		}
 		entity = try createInstances(of: AuditEventEntity.self, for: "entity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entity
@@ -78,7 +78,7 @@ open class AuditEvent: DomainResource {
 			errors.append(FHIRValidationError(missing: "recorded"))
 		}
 		source = try createInstance(type: AuditEventSource.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		if nil == source && !presentKeys.contains("source") {
+		if nil == source && !presentKeys.contains("source") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "source"))
 		}
 		subtype = try createInstances(of: Coding.self, for: "subtype", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subtype
@@ -182,7 +182,7 @@ open class AuditEventAgent: BackboneElement {
 		purposeOfUse = try createInstances(of: CodeableConcept.self, for: "purposeOfUse", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purposeOfUse
 		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
 		requestor = try createInstance(type: FHIRBool.self, for: "requestor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestor
-		if nil == requestor && !presentKeys.contains("requestor") {
+		if nil == requestor && !presentKeys.contains("requestor") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "requestor"))
 		}
 		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
@@ -349,11 +349,11 @@ open class AuditEventEntityDetail: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		value = try createInstance(type: Base64Binary.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		

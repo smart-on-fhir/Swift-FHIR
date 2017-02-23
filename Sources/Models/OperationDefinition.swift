@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -108,7 +108,7 @@ open class OperationDefinition: DomainResource {
 		
 		base = try createInstance(type: Reference.self, for: "base", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? base
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
@@ -118,12 +118,12 @@ open class OperationDefinition: DomainResource {
 		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
 		idempotent = try createInstance(type: FHIRBool.self, for: "idempotent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? idempotent
 		instance = try createInstance(type: FHIRBool.self, for: "instance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instance
-		if nil == instance && !presentKeys.contains("instance") {
+		if nil == instance && !presentKeys.contains("instance") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "instance"))
 		}
 		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
 		kind = createEnum(type: OperationKind.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors) ?? kind
-		if nil == kind && !presentKeys.contains("kind") {
+		if nil == kind && !presentKeys.contains("kind") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "kind"))
 		}
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
@@ -140,11 +140,11 @@ open class OperationDefinition: DomainResource {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		system = try createInstance(type: FHIRBool.self, for: "system", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? system
-		if nil == system && !presentKeys.contains("system") {
+		if nil == system && !presentKeys.contains("system") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "system"))
 		}
 		type = try createInstance(type: FHIRBool.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
@@ -297,15 +297,15 @@ open class OperationDefinitionParameter: BackboneElement {
 		binding = try createInstance(type: OperationDefinitionParameterBinding.self, for: "binding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? binding
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		max = try createInstance(type: FHIRString.self, for: "max", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? max
-		if nil == max && !presentKeys.contains("max") {
+		if nil == max && !presentKeys.contains("max") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "max"))
 		}
 		min = try createInstance(type: FHIRInteger.self, for: "min", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? min
-		if nil == min && !presentKeys.contains("min") {
+		if nil == min && !presentKeys.contains("min") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "min"))
 		}
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		part = try createInstances(of: OperationDefinitionParameter.self, for: "part", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? part
@@ -313,7 +313,7 @@ open class OperationDefinitionParameter: BackboneElement {
 		searchType = createEnum(type: SearchParamType.self, for: "searchType", in: json, presentKeys: &presentKeys, errors: &errors) ?? searchType
 		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
 		use = createEnum(type: OperationParameterUse.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors) ?? use
-		if nil == use && !presentKeys.contains("use") {
+		if nil == use && !presentKeys.contains("use") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "use"))
 		}
 		
@@ -390,7 +390,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		strength = createEnum(type: BindingStrength.self, for: "strength", in: json, presentKeys: &presentKeys, errors: &errors) ?? strength
-		if nil == strength && !presentKeys.contains("strength") {
+		if nil == strength && !presentKeys.contains("strength") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "strength"))
 		}
 		valueSetReference = try createInstance(type: Reference.self, for: "valueSetReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSetReference

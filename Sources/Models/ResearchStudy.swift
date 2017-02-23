@@ -2,7 +2,7 @@
 //  ResearchStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -184,7 +184,7 @@ open class ResearchStudyArm: BackboneElement {
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		

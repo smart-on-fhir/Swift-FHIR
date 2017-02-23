@@ -2,7 +2,7 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -252,7 +252,7 @@ open class CapabilityStatementDocument: BackboneElement {
 		
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		mode = createEnum(type: DocumentMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
+		if nil == mode && !presentKeys.contains("mode") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "mode"))
 		}
 		profile = try createInstance(type: Reference.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
@@ -350,12 +350,8 @@ open class CapabilityStatementMessaging: BackboneElement {
 	/// Reliable Message Cache Length (min).
 	public var reliableCache: FHIRInteger?
 	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: [CapabilityStatementMessagingEvent]) {
-		self.init()
-		self.event = event
-	}
+	/// Messages supported by this system.
+	public var supportedMessage: [CapabilityStatementMessagingSupportedMessage]?
 	
 	
 	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
@@ -364,10 +360,8 @@ open class CapabilityStatementMessaging: BackboneElement {
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		endpoint = try createInstances(of: CapabilityStatementMessagingEndpoint.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
 		event = try createInstances(of: CapabilityStatementMessagingEvent.self, for: "event", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? event
-		if (nil == event || event!.isEmpty) && !presentKeys.contains("event") {
-			errors.append(FHIRValidationError(missing: "event"))
-		}
 		reliableCache = try createInstance(type: FHIRInteger.self, for: "reliableCache", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reliableCache
+		supportedMessage = try createInstances(of: CapabilityStatementMessagingSupportedMessage.self, for: "supportedMessage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportedMessage
 		
 		return errors.isEmpty ? nil : errors
 	}
@@ -378,10 +372,8 @@ open class CapabilityStatementMessaging: BackboneElement {
 		self.documentation?.decorate(json: &json, withKey: "documentation", errors: &errors)
 		arrayDecorate(json: &json, withKey: "endpoint", using: self.endpoint, errors: &errors)
 		arrayDecorate(json: &json, withKey: "event", using: self.event, errors: &errors)
-		if nil == event || self.event!.isEmpty {
-			errors.append(FHIRValidationError(missing: "event"))
-		}
 		self.reliableCache?.decorate(json: &json, withKey: "reliableCache", errors: &errors)
+		arrayDecorate(json: &json, withKey: "supportedMessage", using: self.supportedMessage, errors: &errors)
 	}
 }
 
@@ -415,11 +407,11 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		address = try createInstance(type: FHIRURL.self, for: "address", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? address
-		if nil == address && !presentKeys.contains("address") {
+		if nil == address && !presentKeys.contains("address") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "address"))
 		}
 		protocol_fhir = try createInstance(type: Coding.self, for: "protocol", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? protocol_fhir
-		if nil == protocol_fhir && !presentKeys.contains("protocol") {
+		if nil == protocol_fhir && !presentKeys.contains("protocol") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "protocol"))
 		}
 		
@@ -494,11 +486,11 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		}
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		focus = try createInstance(type: FHIRString.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
-		if nil == focus && !presentKeys.contains("focus") {
+		if nil == focus && !presentKeys.contains("focus") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "focus"))
 		}
 		mode = createEnum(type: EventCapabilityMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
+		if nil == mode && !presentKeys.contains("mode") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "mode"))
 		}
 		request = try createInstance(type: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
@@ -537,6 +529,61 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 		self.response?.decorate(json: &json, withKey: "response", errors: &errors)
 		if nil == self.response {
 			errors.append(FHIRValidationError(missing: "response"))
+		}
+	}
+}
+
+
+/**
+Messages supported by this system.
+
+References to message definitions for messages this system can send or receive.
+*/
+open class CapabilityStatementMessagingSupportedMessage: BackboneElement {
+	override open class var resourceType: String {
+		get { return "CapabilityStatementMessagingSupportedMessage" }
+	}
+	
+	/// Definition of supported message.
+	public var definition: Reference?
+	
+	/// The mode of this event declaration - whether application is sender or receiver.
+	public var mode: EventCapabilityMode?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(definition: Reference, mode: EventCapabilityMode) {
+		self.init()
+		self.definition = definition
+		self.mode = mode
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		definition = try createInstance(type: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
+		if nil == definition && !presentKeys.contains("definition") {
+			errors.append(FHIRValidationError(missing: "definition"))
+		}
+		mode = createEnum(type: EventCapabilityMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
+		if nil == mode && !presentKeys.contains("mode") {
+			errors.append(FHIRValidationError(missing: "mode"))
+		}
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
+		if nil == self.definition {
+			errors.append(FHIRValidationError(missing: "definition"))
+		}
+		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
+		if nil == self.mode {
+			errors.append(FHIRValidationError(missing: "mode"))
 		}
 	}
 }
@@ -650,7 +697,7 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
@@ -703,7 +750,7 @@ open class CapabilityStatementRestOperation: BackboneElement {
 			errors.append(FHIRValidationError(missing: "definition"))
 		}
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		
@@ -801,7 +848,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 		conditionalUpdate = try createInstance(type: FHIRBool.self, for: "conditionalUpdate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? conditionalUpdate
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		interaction = try createInstances(of: CapabilityStatementRestResourceInteraction.self, for: "interaction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? interaction
-		if (nil == interaction || interaction!.isEmpty) && !presentKeys.contains("interaction") {
+		if (nil == interaction || interaction!.isEmpty) && !presentKeys.contains("interaction") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "interaction"))
 		}
 		profile = try createInstance(type: Reference.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
@@ -877,7 +924,7 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
@@ -935,11 +982,11 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		definition = try createInstance(type: FHIRURL.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
 		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		type = createEnum(type: SearchParamType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
+		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
 		

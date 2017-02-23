@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -191,7 +191,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.periodUnit, "h")
 		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.duration, "1")
 		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.durationUnit, "h")
-		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.when, "HS")
+		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.when?[0], "HS")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].code, "443051000124104")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].display, "Adult diabetes specialty formula")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -537,7 +537,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].quantity?.unit, "scoop")
 		XCTAssertEqual(inst.supplement?[0].quantity?.value, "1")
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.boundsPeriod?.start?.description, "2015-02-10")
-		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.when, "C")
+		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.when?[0], "C")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].code, "442991000124104")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].display, "Adult high protein formula")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")

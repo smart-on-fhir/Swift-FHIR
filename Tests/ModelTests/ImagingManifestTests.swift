@@ -2,7 +2,7 @@
 //  ImagingManifestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -44,6 +44,7 @@ class ImagingManifestTests: XCTestCase {
 		XCTAssertEqual(inst.authoringTime?.description, "2014-11-20T11:01:20-08:00")
 		XCTAssertEqual(inst.description_fhir, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
 		XCTAssertEqual(inst.patient?.reference, "Patient/dicom")
 		XCTAssertEqual(inst.study?[0].endpoint?[0].reference, "Endpoint/example-iid")
 		XCTAssertEqual(inst.study?[0].endpoint?[1].reference, "Endpoint/example-wadors")
@@ -60,7 +61,6 @@ class ImagingManifestTests: XCTestCase {
 		XCTAssertEqual(inst.study?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A set of images to share accompanying an report document, including one SC image and two CT image</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
 		
 		return inst
 	}

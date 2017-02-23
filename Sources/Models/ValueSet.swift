@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -280,7 +280,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		designation = try createInstances(of: ValueSetComposeIncludeConceptDesignation.self, for: "designation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? designation
@@ -336,7 +336,7 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
 		use = try createInstance(type: Coding.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? use
 		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") {
+		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
 		
@@ -373,7 +373,7 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 	/// A property defined by the code system.
 	public var property: FHIRString?
 	
-	/// Code from the system, or regex criteria.
+	/// Code from the system, or regex criteria, or boolean value for exists.
 	public var value: FHIRString?
 	
 	
@@ -467,13 +467,13 @@ open class ValueSetExpansion: BackboneElement {
 		
 		contains = try createInstances(of: ValueSetExpansionContains.self, for: "contains", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contains
 		identifier = try createInstance(type: FHIRURL.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
+		if nil == identifier && !presentKeys.contains("identifier") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "identifier"))
 		}
 		offset = try createInstance(type: FHIRInteger.self, for: "offset", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offset
 		parameter = try createInstances(of: ValueSetExpansionParameter.self, for: "parameter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parameter
 		timestamp = try createInstance(type: DateTime.self, for: "timestamp", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timestamp
-		if nil == timestamp && !presentKeys.contains("timestamp") {
+		if nil == timestamp && !presentKeys.contains("timestamp") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "timestamp"))
 		}
 		total = try createInstance(type: FHIRInteger.self, for: "total", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? total
@@ -609,7 +609,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
+		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean

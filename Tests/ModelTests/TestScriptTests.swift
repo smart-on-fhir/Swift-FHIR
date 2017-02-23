@@ -2,7 +2,7 @@
 //  TestScriptTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -206,20 +206,22 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.resource, "Patient")
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.type?.code, "read")
 		XCTAssertEqual(inst.test?[0].action?[0].operation?.type?.system?.absoluteString, "http://hl7.org/fhir/testscript-operation-codes")
-		XCTAssertEqual(inst.test?[0].action?[1].assert?.description_fhir, "Confirm that the client requested an Accept of xml.")
-		XCTAssertEqual(inst.test?[0].action?[1].assert?.direction, AssertionDirectionType(rawValue: "request")!)
-		XCTAssertEqual(inst.test?[0].action?[1].assert?.headerField, "Accept")
-		XCTAssertEqual(inst.test?[0].action?[1].assert?.operator_fhir, AssertionOperatorType(rawValue: "contains")!)
-		XCTAssertEqual(inst.test?[0].action?[1].assert?.value, "xml")
-		XCTAssertEqual(inst.test?[0].action?[2].assert?.description_fhir, "Confirm that the returned HTTP status is 200(OK).")
-		XCTAssertEqual(inst.test?[0].action?[2].assert?.direction, AssertionDirectionType(rawValue: "response")!)
-		XCTAssertEqual(inst.test?[0].action?[2].assert?.response, AssertionResponseTypes(rawValue: "okay")!)
-		XCTAssertEqual(inst.test?[0].action?[3].assert?.contentType, ContentType(rawValue: "xml")!)
-		XCTAssertEqual(inst.test?[0].action?[3].assert?.description_fhir, "Confirm that the returned format is XML.")
+		XCTAssertEqual(inst.test?[0].action?[1].assert?.description_fhir, "Confirm that the request method GET was sent by the client system under test.")
+		XCTAssertEqual(inst.test?[0].action?[1].assert?.requestMethod, TestScriptRequestMethodCode(rawValue: "get")!)
+		XCTAssertEqual(inst.test?[0].action?[2].assert?.description_fhir, "Confirm that the client requested an Accept of xml.")
+		XCTAssertEqual(inst.test?[0].action?[2].assert?.direction, AssertionDirectionType(rawValue: "request")!)
+		XCTAssertEqual(inst.test?[0].action?[2].assert?.headerField, "Accept")
+		XCTAssertEqual(inst.test?[0].action?[2].assert?.operator_fhir, AssertionOperatorType(rawValue: "contains")!)
+		XCTAssertEqual(inst.test?[0].action?[2].assert?.value, "xml")
+		XCTAssertEqual(inst.test?[0].action?[3].assert?.description_fhir, "Confirm that the returned HTTP status is 200(OK).")
 		XCTAssertEqual(inst.test?[0].action?[3].assert?.direction, AssertionDirectionType(rawValue: "response")!)
-		XCTAssertEqual(inst.test?[0].action?[4].assert?.description_fhir, "Confirm that the returned resource type is Patient.")
+		XCTAssertEqual(inst.test?[0].action?[3].assert?.response, AssertionResponseTypes(rawValue: "okay")!)
+		XCTAssertEqual(inst.test?[0].action?[4].assert?.contentType, ContentType(rawValue: "xml")!)
+		XCTAssertEqual(inst.test?[0].action?[4].assert?.description_fhir, "Confirm that the returned format is XML.")
 		XCTAssertEqual(inst.test?[0].action?[4].assert?.direction, AssertionDirectionType(rawValue: "response")!)
-		XCTAssertEqual(inst.test?[0].action?[4].assert?.resource, "Patient")
+		XCTAssertEqual(inst.test?[0].action?[5].assert?.description_fhir, "Confirm that the returned resource type is Patient.")
+		XCTAssertEqual(inst.test?[0].action?[5].assert?.direction, AssertionDirectionType(rawValue: "response")!)
+		XCTAssertEqual(inst.test?[0].action?[5].assert?.resource, "Patient")
 		XCTAssertEqual(inst.test?[0].description_fhir, "Read a Patient from the first destination test system using the user defined dynamic variable ${Dest1PatientResourceId}. Perform basic validation.")
 		XCTAssertEqual(inst.test?[0].id, "01-ReadPatient-Destination1")
 		XCTAssertEqual(inst.test?[0].name, "ReadPatient-Destination1")

@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -63,9 +63,9 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.participant?[2].required, ParticipantRequired(rawValue: "required")!)
 		XCTAssertEqual(inst.participant?[2].status, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.priority, 5)
-		XCTAssertEqual(inst.reason?.coding?[0].code, "413095006")
-		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason?.text, "Clinical Review")
+		XCTAssertEqual(inst.reason?[0].coding?[0].code, "413095006")
+		XCTAssertEqual(inst.reason?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reason?[0].text, "Clinical Review")
 		XCTAssertEqual(inst.requestedPeriod?[0].end?.description, "2016-06-09")
 		XCTAssertEqual(inst.requestedPeriod?[0].start?.description, "2016-06-02")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "gp")
@@ -104,6 +104,9 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.description_fhir, "Discussion on the results of your recent MRI")
 		XCTAssertEqual(inst.end?.description, "2013-12-10T11:00:00Z")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.incomingReferral?[0].reference, "ReferralRequest/example")
+		XCTAssertEqual(inst.indication?[0].display, "Severe burn of left ear")
+		XCTAssertEqual(inst.indication?[0].reference, "Condition/example")
 		XCTAssertEqual(inst.participant?[0].actor?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant?[0].actor?.reference, "Patient/example")
 		XCTAssertEqual(inst.participant?[0].required, ParticipantRequired(rawValue: "required")!)
@@ -182,6 +185,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.start?.description, "2013-12-09T09:00:00Z")
 		XCTAssertEqual(inst.status, AppointmentStatus(rawValue: "booked")!)
+		XCTAssertEqual(inst.supportingInformation?[0].reference, "DiagnosticReport/ultrasound")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

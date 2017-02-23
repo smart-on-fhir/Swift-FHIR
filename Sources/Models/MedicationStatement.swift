@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -48,13 +48,13 @@ open class MedicationStatement: DomainResource {
 	/// Additional supporting information.
 	public var derivedFrom: [Reference]?
 	
-	/// Details of how medication was taken.
-	public var dosage: [DosageInstruction]?
+	/// Details of how medication is/was taken or should be taken.
+	public var dosage: [Dosage]?
 	
-	/// Over what period was medication consumed?.
+	/// The date/time or interval when the medication was taken.
 	public var effectiveDateTime: DateTime?
 	
-	/// Over what period was medication consumed?.
+	/// The date/time or interval when the medication was taken.
 	public var effectivePeriod: Period?
 	
 	/// External identifier.
@@ -76,13 +76,13 @@ open class MedicationStatement: DomainResource {
 	public var partOf: [Reference]?
 	
 	/// Reason for why the medication is being/was taken.
-	public var reasonForUseCodeableConcept: [CodeableConcept]?
-	
-	/// Condition or observation that supports why the medication is being/was taken.
-	public var reasonForUseReference: [Reference]?
+	public var reasonCode: [CodeableConcept]?
 	
 	/// True if asserting medication was not given.
 	public var reasonNotTaken: [CodeableConcept]?
+	
+	/// Condition or observation that supports why the medication is being/was taken.
+	public var reasonReference: [Reference]?
 	
 	/// A code representing the patient or other source's judgment about the state of the medication used that this
 	/// statement is about.  Generally this will be active or completed.
@@ -121,7 +121,7 @@ open class MedicationStatement: DomainResource {
 		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
 		dateAsserted = try createInstance(type: DateTime.self, for: "dateAsserted", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateAsserted
 		derivedFrom = try createInstances(of: Reference.self, for: "derivedFrom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? derivedFrom
-		dosage = try createInstances(of: DosageInstruction.self, for: "dosage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosage
+		dosage = try createInstances(of: Dosage.self, for: "dosage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosage
 		effectiveDateTime = try createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveDateTime
 		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
 		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
@@ -130,9 +130,9 @@ open class MedicationStatement: DomainResource {
 		medicationReference = try createInstance(type: Reference.self, for: "medicationReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? medicationReference
 		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
 		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
-		reasonForUseCodeableConcept = try createInstances(of: CodeableConcept.self, for: "reasonForUseCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonForUseCodeableConcept
-		reasonForUseReference = try createInstances(of: Reference.self, for: "reasonForUseReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonForUseReference
+		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
 		reasonNotTaken = try createInstances(of: CodeableConcept.self, for: "reasonNotTaken", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonNotTaken
+		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
 		status = createEnum(type: MedicationStatementStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
 		if nil == status && !presentKeys.contains("status") {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -172,9 +172,9 @@ open class MedicationStatement: DomainResource {
 		self.medicationReference?.decorate(json: &json, withKey: "medicationReference", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonForUseCodeableConcept", using: self.reasonForUseCodeableConcept, errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonForUseReference", using: self.reasonForUseReference, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonNotTaken", using: self.reasonNotTaken, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))

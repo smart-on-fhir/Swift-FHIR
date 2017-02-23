@@ -1,0 +1,269 @@
+{
+	"resourceType": "CapabilityStatement",
+	"id": "FhirServer",
+	"url": "http://fhir3.healthintersections.com.au:80/open/metadata",
+	"version": "1.9.0-1.0.118",
+	"meta": {
+		"tag": [{
+			"system": "http://hl7.org/fhir/v3/ObservationValue",
+			"code": "SUBSETTED"
+		}]
+	},
+	"name": "Health Intersections FHIR Server Conformance Statement",
+	"status": "active",
+	"kind": "capability",
+	"experimental": false,
+	"date": "2017-02-23T14:07:07Z",
+	"publisher": "Health Intersections",
+	"contact": [
+		{
+			"telecom": [
+				{
+					"system": "other",
+					"value": "http://healthintersections.com.au/"
+				}
+			]
+		}
+	],
+	"instantiates": [
+		"http://hl7.org/fhir/Conformance/terminology-server"
+	],
+	"software": {
+		"name": "Reference Server",
+		"version": "1.0.118.",
+		"releaseDate": "2017-02-21"
+	},
+	"implementation": {
+		"description": "FHIR Server running at http://fhir3.healthintersections.com.au:80/open",
+		"url": "http://fhir3.healthintersections.com.au:80/open"
+	},
+	"fhirVersion": "1.9.0",
+	"acceptUnknown": "both",
+	"format": [
+		"application/fhir+xml",
+		"application/fhir+json"
+	],
+	"rest": [
+		{
+			"extension": [
+				{
+					"url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-websocket",
+					"valueString": "http://fhir3.healthintersections.com.au/open/websockets"
+				},
+				{
+					"extension": [
+						{
+							"url": "name",
+							"valueString": "Fetch Patient Alerts"
+						},
+						{
+							"url": "activity",
+							"valueCoding": {
+								"system": "http://cds-hooks.smarthealthit.org/activity",
+								"code": "patient-view",
+								"display": "Provide any important information about a patient"
+							}
+						},
+						{
+							"url": "preFetchOptional",
+							"valueString": "Patient/{{Patient.id}}"
+						}
+					],
+					"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/cds-activity"
+				},
+				{
+					"extension": [
+						{
+							"url": "name",
+							"valueString": "Get Terminology Information"
+						},
+						{
+							"url": "activity",
+							"valueCoding": {
+								"system": "http://cds-hooks.smarthealthit.org/activity",
+								"code": "code-view",
+								"display": "Provide any available information about a Coding/CodeableConcept"
+							}
+						}
+					],
+					"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/cds-activity"
+				},
+				{
+					"extension": [
+						{
+							"url": "name",
+							"valueString": "Get identifier Information"
+						},
+						{
+							"url": "activity",
+							"valueCoding": {
+								"system": "http://cds-hooks.smarthealthit.org/activity",
+								"code": "identifier-view",
+								"display": "Provide any available information about an Identifier"
+							}
+						}
+					],
+					"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/cds-activity"
+				}
+			],
+			"mode": "server",
+			"resource": [
+				{
+					"type": "Account",
+					"profile": {
+						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/account"
+					}
+				},
+				{
+					"type": "ActivityDefinition",
+					"profile": {
+						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/activitydefinition"
+					}
+				},
+				{
+					"type": "AdverseEvent",
+					"profile": {
+						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/adverseevent"
+					}
+				}
+			],
+			"operation": [
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-lookup"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-validate"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ConceptMap-closure"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-document"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Patient-everything"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-qa-edit"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-qa-post"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-questionnaire"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-process"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-current"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-snapshot"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-cds-hook"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-generate-template"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-generate-narrative"
+					}
+				},
+				{
+					"definition": {
+						"reference": "OperationDefinition/fso-suggest-keywords"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-diff"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/StructureMap-transform"
+					}
+				},
+				{
+					"definition": {
+						"reference": "not done yet"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-compose"
+					}
+				},
+				{
+					"definition": {
+						"reference": "http://hl7.org/fhir/OperationDefinition/Observation-Stats"
+					}
+				}
+			]
+		}
+	]
+}

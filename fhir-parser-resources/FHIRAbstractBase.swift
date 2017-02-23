@@ -27,6 +27,14 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	/// Resolved references.
 	var _resolved: [String: Resource]?
 	
+	/// Whether this element/resource is (part of) a subsetted/summarized resource.
+	public var _isSummaryResource: Bool {
+		if let this = self as? Resource {
+			return this._isSummary
+		}
+		return _owningResource?._isSummary ?? false
+	}
+	
 	
 	/**
 	The default initializer, made “required” so instantiation with a metatype is possible.

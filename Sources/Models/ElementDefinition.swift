@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -28,11 +28,11 @@ open class ElementDefinition: Element {
 	/// ValueSet details if this is coded.
 	public var binding: ElementDefinitionBinding?
 	
-	/// Defining code.
+	/// Corresponding codes in terminologies.
 	public var code: [Coding]?
 	
 	/// Comments about the use of this element.
-	public var comments: FHIRString?
+	public var comment: FHIRString?
 	
 	/// Reference to invariant about presence.
 	public var condition: [FHIRString]?
@@ -358,6 +358,9 @@ open class ElementDefinition: Element {
 	/// If the element must supported.
 	public var mustSupport: FHIRBool?
 	
+	/// What the order of the elements means.
+	public var orderMeaning: FHIRString?
+	
 	/// Path of the element in the heirarchy of elements.
 	public var path: FHIRString?
 	
@@ -508,7 +511,7 @@ open class ElementDefinition: Element {
 		base = try createInstance(type: ElementDefinitionBase.self, for: "base", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? base
 		binding = try createInstance(type: ElementDefinitionBinding.self, for: "binding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? binding
 		code = try createInstances(of: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		comments = try createInstance(type: FHIRString.self, for: "comments", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comments
+		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
 		condition = try createInstances(of: FHIRString.self, for: "condition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? condition
 		constraint = try createInstances(of: ElementDefinitionConstraint.self, for: "constraint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? constraint
 		contentReference = try createInstance(type: FHIRURL.self, for: "contentReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentReference
@@ -617,6 +620,7 @@ open class ElementDefinition: Element {
 		minValueTime = try createInstance(type: FHIRTime.self, for: "minValueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? minValueTime
 		minValueUnsignedInt = try createInstance(type: FHIRInteger.self, for: "minValueUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? minValueUnsignedInt
 		mustSupport = try createInstance(type: FHIRBool.self, for: "mustSupport", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? mustSupport
+		orderMeaning = try createInstance(type: FHIRString.self, for: "orderMeaning", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? orderMeaning
 		path = try createInstance(type: FHIRString.self, for: "path", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? path
 		if nil == path && !presentKeys.contains("path") {
 			errors.append(FHIRValidationError(missing: "path"))
@@ -676,7 +680,7 @@ open class ElementDefinition: Element {
 		self.base?.decorate(json: &json, withKey: "base", errors: &errors)
 		self.binding?.decorate(json: &json, withKey: "binding", errors: &errors)
 		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
-		self.comments?.decorate(json: &json, withKey: "comments", errors: &errors)
+		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "condition", using: self.condition, errors: &errors)
 		arrayDecorate(json: &json, withKey: "constraint", using: self.constraint, errors: &errors)
 		self.contentReference?.decorate(json: &json, withKey: "contentReference", errors: &errors)
@@ -785,6 +789,7 @@ open class ElementDefinition: Element {
 		self.minValueTime?.decorate(json: &json, withKey: "minValueTime", errors: &errors)
 		self.minValueUnsignedInt?.decorate(json: &json, withKey: "minValueUnsignedInt", errors: &errors)
 		self.mustSupport?.decorate(json: &json, withKey: "mustSupport", errors: &errors)
+		self.orderMeaning?.decorate(json: &json, withKey: "orderMeaning", errors: &errors)
 		self.path?.decorate(json: &json, withKey: "path", errors: &errors)
 		if nil == self.path {
 			errors.append(FHIRValidationError(missing: "path"))
@@ -910,7 +915,8 @@ open class ElementDefinitionBase: Element {
 /**
 ValueSet details if this is coded.
 
-Binds to a value set if this element is coded (code, Coding, CodeableConcept).
+Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string,
+uri).
 */
 open class ElementDefinitionBinding: Element {
 	override open class var resourceType: String {
@@ -1500,7 +1506,7 @@ open class ElementDefinitionSlicing: Element {
 	public var description_fhir: FHIRString?
 	
 	/// Element values that are used to distinguish the slices.
-	public var discriminator: [FHIRString]?
+	public var discriminator: [ElementDefinitionSlicingDiscriminator]?
 	
 	/// If elements must be in same order as slices.
 	public var ordered: FHIRBool?
@@ -1521,7 +1527,7 @@ open class ElementDefinitionSlicing: Element {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		discriminator = try createInstances(of: FHIRString.self, for: "discriminator", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? discriminator
+		discriminator = try createInstances(of: ElementDefinitionSlicingDiscriminator.self, for: "discriminator", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? discriminator
 		ordered = try createInstance(type: FHIRBool.self, for: "ordered", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ordered
 		rules = createEnum(type: SlicingRules.self, for: "rules", in: json, presentKeys: &presentKeys, errors: &errors) ?? rules
 		if nil == rules && !presentKeys.contains("rules") {
@@ -1540,6 +1546,63 @@ open class ElementDefinitionSlicing: Element {
 		self.rules?.decorate(json: &json, withKey: "rules", errors: &errors)
 		if nil == self.rules {
 			errors.append(FHIRValidationError(missing: "rules"))
+		}
+	}
+}
+
+
+/**
+Element values that are used to distinguish the slices.
+
+Designates which child elements are used to discriminate between the slices when processing an instance. If one or more
+discriminators are provided, the value of the child elements in the instance data SHALL completely distinguish which
+slice the element in the resource matches based on the allowed values for those elements in each of the slices.
+*/
+open class ElementDefinitionSlicingDiscriminator: Element {
+	override open class var resourceType: String {
+		get { return "ElementDefinitionSlicingDiscriminator" }
+	}
+	
+	/// Path to element value.
+	public var path: FHIRString?
+	
+	/// How the element value is interpreted when discrimination is evaluated.
+	public var type: DiscriminatorType?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(path: FHIRString, type: DiscriminatorType) {
+		self.init()
+		self.path = path
+		self.type = type
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		
+		path = try createInstance(type: FHIRString.self, for: "path", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? path
+		if nil == path && !presentKeys.contains("path") {
+			errors.append(FHIRValidationError(missing: "path"))
+		}
+		type = createEnum(type: DiscriminatorType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
+		if nil == type && !presentKeys.contains("type") {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.path?.decorate(json: &json, withKey: "path", errors: &errors)
+		if nil == self.path {
+			errors.append(FHIRValidationError(missing: "path"))
+		}
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 	}
 }

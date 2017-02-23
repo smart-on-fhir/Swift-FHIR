@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11157 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-14.
+//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-23.
 //  2017, SMART Health IT.
 //
 
@@ -160,11 +160,11 @@ open class GroupCharacteristic: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
+		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		exclude = try createInstance(type: FHIRBool.self, for: "exclude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? exclude
-		if nil == exclude && !presentKeys.contains("exclude") {
+		if nil == exclude && !presentKeys.contains("exclude") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "exclude"))
 		}
 		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
@@ -238,7 +238,7 @@ open class GroupMember: BackboneElement {
 		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
 		
 		entity = try createInstance(type: Reference.self, for: "entity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entity
-		if nil == entity && !presentKeys.contains("entity") {
+		if nil == entity && !presentKeys.contains("entity") && !_isSummaryResource {
 			errors.append(FHIRValidationError(missing: "entity"))
 		}
 		inactive = try createInstance(type: FHIRBool.self, for: "inactive", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? inactive

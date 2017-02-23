@@ -192,7 +192,7 @@ class LocalPatientServer: FHIROpenServer {
 	
 	var lastPostedResource: Resource?
 	
-	override func performRequest(on url: URL, handler: FHIRServerRequestHandler, callback: (@escaping (FHIRServerResponse) -> Void)) {
+	override func performRequest(on url: URL, handler: FHIRRequestHandler, callback: (@escaping (FHIRServerResponse) -> Void)) {
 		var request = configurableRequest(for: url)
 		guard let path = request.url?.path, "/Patient" == path || path.hasPrefix("/Patient/") else {
 			let res = handler.notSent("Only supports Patient resources, trying to access «\(request.url?.path ?? "nil")»")
@@ -215,7 +215,7 @@ class LocalPatientServer: FHIROpenServer {
 				pat.meta?.versionId = FHIRString("\(version+1)")
 				pat.name = [try! HumanName(json: ["family": "POST"])]
 				
-				let req = FHIRServerJSONRequestHandler(.POST)
+				let req = FHIRJSONRequestHandler(.POST)
 				req.resource = pat
 				try! req.prepareData()
 				
@@ -234,11 +234,12 @@ class LocalPatientServer: FHIROpenServer {
 				
 				last.name = [try! HumanName(json: ["family": "GET"])]
 				last.meta = nil
-				var myHandler = handler
-				myHandler.resource = last
-				try! myHandler.prepareData()
 				
-				callback(handler.response(response: http, data: myHandler.data, error: nil))
+				let req = FHIRJSONRequestHandler(.GET)
+				req.resource = last
+				try! req.prepareData()
+				
+				callback(handler.response(response: http, data: req.data, error: nil))
 			}
 			else {
 				callback(handler.notSent("\(request.httpMethod) without preceding “POST” is not supported"))

@@ -103,7 +103,7 @@ public extension Resource {
 	/**
 	Reads the resource from the given path on the given server.
 	
-	This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
+	This method creates a FHIRJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
 	
 	- parameter path:      The relative path on the server from which to read resource data from
 	- parameter server:    The server to use
@@ -111,12 +111,15 @@ public extension Resource {
 	- parameter callback:  The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
 	public class func readFrom(_ path: String, server: FHIRServer, asSummary: Bool = false, callback: @escaping FHIRResourceErrorCallback) {
-		guard let handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
+		guard var handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
 			callback(nil, FHIRError.noRequestHandlerAvailable(.GET))
 			return
 		}
 		
-		handler.requestSummary = asSummary
+		// handle options and perform request
+		if asSummary {
+			handler.options = [.summary: FHIRRequestOption.Summary.true.rawValue]
+		}
 		server.performRequest(against: path, handler: handler) { response in
 			if let error = response.error {
 				callback(nil, error)

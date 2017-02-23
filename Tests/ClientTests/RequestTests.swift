@@ -21,14 +21,14 @@ Test request generation.
 class RequestTests: XCTestCase {
 	
 	func testJSONGETRequest() {
-		let handler = FHIRServerJSONRequestHandler(.GET)
+		let handler = FHIRJSONRequestHandler(.GET)
 		var req = URLRequest(url: URL(string: "https://fhir.smarthealthit.org")!)
 		try! handler.prepare(request: &req)
 		XCTAssertEqual("application/fhir+json", handler.headers[.accept])
 	}
 	
 	func testJSONPUTRequest() {
-		let handler = FHIRServerJSONRequestHandler(.PUT)
+		let handler = FHIRJSONRequestHandler(.PUT)
 		var req = URLRequest(url: URL(string: "https://fhir.smarthealthit.org")!)
 		try! handler.prepare(request: &req)
 		XCTAssertEqual("application/fhir+json", handler.headers[.accept])
@@ -48,7 +48,7 @@ class RequestTests: XCTestCase {
 	}
 	
 	func testJSONPOSTRequest() {
-		let handler = FHIRServerJSONRequestHandler(.POST)
+		let handler = FHIRJSONRequestHandler(.POST)
 		var req = URLRequest(url: URL(string: "https://fhir.smarthealthit.org")!)
 		try! handler.prepare(request: &req)
 		XCTAssertEqual("application/fhir+json", handler.headers[.accept])
@@ -62,11 +62,11 @@ class RequestTests: XCTestCase {
 	
 	func testRequestPreparation() {
 		var request = URLRequest(url: URL(string: "https://fhir.smarthealthit.org")!)
-		let handler = FHIRServerJSONRequestHandler(.GET)
+		let handler = FHIRJSONRequestHandler(.GET)
 		try? handler.prepare(request: &request)
 		XCTAssertEqual("https://fhir.smarthealthit.org", request.url?.absoluteString ?? "nil")
 		
-		handler.requestSummary = true
+		handler.options = [.summary: FHIRRequestOption.Summary.true.rawValue]
 		try? handler.prepare(request: &request)
 		XCTAssertEqual("https://fhir.smarthealthit.org?_summary=true", request.url?.absoluteString ?? "nil")
 		
@@ -77,6 +77,11 @@ class RequestTests: XCTestCase {
 		request = URLRequest(url: URL(string: "https://fhir.smarthealthit.org/Patient/123?_summary=true")!)
 		try? handler.prepare(request: &request)
 		XCTAssertEqual("https://fhir.smarthealthit.org/Patient/123?_summary=true", request.url?.absoluteString ?? "nil")
+		
+		handler.options = [.elements: "name,address"]
+		request = URLRequest(url: URL(string: "https://fhir.smarthealthit.org/Patient/123")!)
+		try? handler.prepare(request: &request)
+		XCTAssertEqual("https://fhir.smarthealthit.org/Patient/123?_elements=name,address", request.url?.absoluteString ?? "nil")
 	}
 }
 

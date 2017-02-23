@@ -90,7 +90,7 @@ property carries the only useful information.
 open class FHIRServerDataResponse: FHIRServerResponse {
 	
 	/// The handler handling the request provoking this response.
-	public internal(set) var handler: FHIRServerRequestHandler?
+	public internal(set) var handler: FHIRRequestHandler?
 	
 	/// The HTTP status code.
 	open let status: Int
@@ -110,7 +110,7 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 	/**
 	Instantiate a FHIRServerResponse from a (HTTP)URLResponse, Data and an optional Error.
 	*/
-	public required init(handler: FHIRServerRequestHandler, response: URLResponse, data: Data?, error: Error?) {
+	public required init(handler: FHIRRequestHandler, response: URLResponse, data: Data?, error: Error?) {
 		var status = 0
 		var headers = [String: String]()
 		
@@ -146,7 +146,7 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 		self.body = data
 	}
 	
-	public required init(error: Error, handler: FHIRServerRequestHandler? = nil) {
+	public required init(error: Error, handler: FHIRRequestHandler? = nil) {
 		self.handler = handler
 		self.status = 0
 		self.headers = [String: String]()
@@ -193,7 +193,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 	/**
 	If the status is >= 400, the response body is checked for an OperationOutcome and its first issue item is turned into an error message.
 	*/
-	public required init(handler: FHIRServerRequestHandler, response: URLResponse, data inData: Data?, error: Error?) {
+	public required init(handler: FHIRRequestHandler, response: URLResponse, data inData: Data?, error: Error?) {
 		super.init(handler: handler, response: response, data: inData, error: error)
 		
 		// parse data as JSON
@@ -227,7 +227,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		}
 	}
 	
-	public required init(error: Error, handler: FHIRServerRequestHandler? = nil) {
+	public required init(error: Error, handler: FHIRRequestHandler? = nil) {
 		super.init(error: error, handler: handler)
 	}
 	

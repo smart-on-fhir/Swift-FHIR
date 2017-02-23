@@ -1,5 +1,5 @@
 //
-//  FHIRServerRequestHandler.swift
+//  FHIRRequestHandler.swift
 //  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 3/31/15.
@@ -14,7 +14,7 @@ Protocol for different request/response handlers.
 
 TODO: should add `ResponseType` associated type as soon as those can be constrained (SE-0142 – Swift 4?).
 */
-public protocol FHIRServerRequestHandler {
+public protocol FHIRRequestHandler {
 	
 	//associatedtype ResponseType: FHIRServerResponse
 	
@@ -24,11 +24,11 @@ public protocol FHIRServerRequestHandler {
 	/// Headers to be used on the request.
 	var headers: FHIRRequestHeaders { get }
 	
+	/// Request options to pass along.
+	var options: [FHIRRequestOption: String]? { get set }
+	
 	/// The receiver may hold on to a resource that supplies the request's body data.
 	var resource: Resource? { get set }
-	
-	/// The data to be used in the request body. Usually in interplay with `resource`.
-	var data: Data? { get set }
 	
 	
 	/**
@@ -47,14 +47,9 @@ public protocol FHIRServerRequestHandler {
 	func add(headers inHeaders: FHIRRequestHeaders)
 	
 	/**
-	Prepare body data for the request.
-	*/
-	func prepareData() throws
-	
-	/**
 	Give the receiver a chance to prepare/alter the URL request.
 	
-	Typically, this method for example will tell the FHIRRequestMethod instance to set the correct HTTPMethod as well as FHIR headers.
+	For example, this method will tell the FHIRRequestMethod instance to set the correct HTTPMethod as well as FHIR headers.
 	
 	- parameter request: The request to decorate
 	*/

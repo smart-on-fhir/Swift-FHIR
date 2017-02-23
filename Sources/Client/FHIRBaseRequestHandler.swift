@@ -1,5 +1,5 @@
 //
-//  FHIRServerBaseRequestHandler.swift
+//  FHIRBaseRequestHandler.swift
 //  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 3/31/15.
@@ -13,9 +13,9 @@ import Models
 
 
 /**
-Base implementation of `FHIRServerRequestHandler`.
+Base implementation of `FHIRRequestHandler`.
 */
-open class FHIRServerBaseRequestHandler: FHIRServerRequestHandler {
+open class FHIRBaseRequestHandler: FHIRRequestHandler {
 	
 	/// The HTTP method of the request.
 	open let method: FHIRRequestMethod
@@ -23,14 +23,14 @@ open class FHIRServerBaseRequestHandler: FHIRServerRequestHandler {
 	/// Headers to be used on the request.
 	open var headers = FHIRRequestHeaders()
 	
+	/// Which options to apply.
+	open var options: [FHIRRequestOption: String]?
+	
 	/// The data to be used in the request body.
 	open var data: Data?
 	
 	/// The receiver may hold on to a resource that supplies the request's body data.
 	open var resource: Resource?
-	
-	/// Whether the request should request only a summary of the resource.
-	open var requestSummary = false
 	
 	
 	/**
@@ -68,17 +68,20 @@ open class FHIRServerBaseRequestHandler: FHIRServerRequestHandler {
 	/**
 	Give the request type a chance to prepare/alter the URL request.
 	
-	Typically the FHIRRequestMethod instance sets the correct HTTPMethod as well as correct FHIR headers. It will also add the _summary
-	query if `requestSummary` is true, but it **will not** remove the _summary param if it's in the requests's URL but `requestSummary` is
-	false.
+	Typically the FHIRRequestMethod instance sets the correct HTTPMethod as well as correct FHIR headers. It will also inspect the `options`
+	property and add appropriate query params.
 	*/
 	open func prepare(request: inout URLRequest) throws {
-		if requestSummary, let url = request.url, var comps = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-			var query = (comps.queryItems ?? []).filter() { "_summary" != $0.name }
-			query.append(URLQueryItem(name: "_summary", value: "true"))
+		if let options = options, let url = request.url, var comps = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+			var query = comps.queryItems ?? []
+			for (param, value) in options {
+				query = query.filter() { param.rawValue != $0.name }
+				query.append(URLQueryItem(name: param.rawValue, value: value))
+			}
 			comps.queryItems = query
 			request.url = comps.url
 		}
+		
 		try prepareData()
 		method.prepare(request: &request, body: data)
 		headers.prepare(request: &request)
@@ -115,7 +118,7 @@ Prepare and handle a request returning JSON data.
 JSON body data can be greated from the resource, if the receiver holds on to one. The header's content type for PUT and POST will be set to
 "application/fhir+json; charset=utf-8" no matter what.
 */
-open class FHIRServerJSONRequestHandler: FHIRServerBaseRequestHandler {
+open class FHIRJSONRequestHandler: FHIRBaseRequestHandler {
 	
 	open var json: FHIRJSON?
 	
@@ -165,7 +168,7 @@ PRELIMINARY! Prepare and handle a request returning some type of data.
 If you use this as PUT/POST, you are responsible for setting the `data` property to an appropriate NSData representation. The "Accept" and
 "Content-Type" headers will be set to the `contentType` property
 */
-open class FHIRServerDataRequestHandler: FHIRServerBaseRequestHandler {
+open class FHIRDataRequestHandler: FHIRBaseRequestHandler {
 	
 	open let contentType: String
 	

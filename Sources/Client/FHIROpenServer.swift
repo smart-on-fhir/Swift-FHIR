@@ -19,7 +19,7 @@ It knows its base URL, can fetch and hold on to the cabability statement and per
 
 These methods are of interest to you when you create a subclass:
 
-- `handlerForRequest(withMethod:resource:)`: what kind of handler your server wants to use. Returns `FHIRServerJSONRequestHandler`.
+- `handlerForRequest(withMethod:resource:)`: what kind of handler your server wants to use. Returns `FHIRJSONRequestHandler`.
 - `configurableRequest(for:)`: the SMART framework returns a request that already has an Authorization headers set, if needed.
 */
 open class FHIROpenServer: FHIRServer {
@@ -53,7 +53,7 @@ open class FHIROpenServer: FHIRServer {
 	
 	- parameter for: The path in the absolute URL
 	*/
-	open func absoluteURL(for path: String, handler: FHIRServerRequestHandler) -> URL? {
+	open func absoluteURL(for path: String, handler: FHIRRequestHandler) -> URL? {
 		return URL(string: path, relativeTo: baseURL)
 	}
 	
@@ -68,10 +68,10 @@ open class FHIROpenServer: FHIRServer {
 	- parameter method:   The request method (GET, PUT, POST or DELETE)
 	- parameter resource: The resource to be involved in the request, if any
 	
-	- returns:            An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
+	- returns:            An appropriate `FHIRRequestHandler`, for example a _FHIRJSONRequestHandler_ if sending and receiving JSON
 	*/
-	open func handlerForRequest(withMethod method: FHIRRequestMethod, resource: Resource?) -> FHIRServerRequestHandler? {
-		return FHIRServerJSONRequestHandler(method, resource: resource)
+	open func handlerForRequest(withMethod method: FHIRRequestMethod, resource: Resource?) -> FHIRRequestHandler? {
+		return FHIRJSONRequestHandler(method, resource: resource)
 	}
 	
 	/**
@@ -90,10 +90,10 @@ open class FHIROpenServer: FHIRServer {
 	Method to execute a request against a given relative URL with a given request/response handler.
 	
 	- parameter path:     The path, relative to the server's base; may include URL query and URL fragment (!)
-	- parameter handler:  The FHIRServerRequestHandler that prepares the request and processes the response
+	- parameter handler:  The FHIRRequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performRequest(against path: String, handler: FHIRServerRequestHandler, callback: @escaping ((FHIRServerResponse) -> Void)) {
+	open func performRequest(against path: String, handler: FHIRRequestHandler, callback: @escaping ((FHIRServerResponse) -> Void)) {
 		guard let url = absoluteURL(for: path, handler: handler) else {
 			let res = handler.notSent("Failed to parse path «\(path)» relative to server base URL")
 			callback(res)
@@ -110,10 +110,10 @@ open class FHIROpenServer: FHIRServer {
 	request handler and converted into the `FHIRServerResponse` that is delivered to you in the callback.
 	
 	- parameter url:      The full URL; may include query parts and fragment (!)
-	- parameter handler:  The FHIRServerRequestHandler that prepares the request and processes the response
+	- parameter handler:  The FHIRRequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performRequest(on url: URL, handler: FHIRServerRequestHandler, callback: @escaping ((FHIRServerResponse) -> Void)) {
+	open func performRequest(on url: URL, handler: FHIRRequestHandler, callback: @escaping ((FHIRServerResponse) -> Void)) {
 		var request = configurableRequest(for: url)
 		do {
 			try handler.prepare(request: &request)

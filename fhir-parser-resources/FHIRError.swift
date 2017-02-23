@@ -66,7 +66,7 @@ public enum FHIRError: Error, CustomStringConvertible {
 			return "A resource cannot contain itself".fhir_localized
 		
 		case .requestCannotPrepareBody:
-			return "`FHIRServerRequestHandler` cannot prepare request body data".fhir_localized
+			return "`FHIRRequestHandler` cannot prepare request body data".fhir_localized
 		case .requestNotSent(let reason):
 			return "\("Request not sent".fhir_localized): \(reason)"
 		case .requestError(let status, let message):

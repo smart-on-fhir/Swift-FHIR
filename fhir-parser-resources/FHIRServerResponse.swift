@@ -37,9 +37,10 @@ public protocol FHIRServerResponse {
 	Extract the resource of the given type from the response, if possible.
 	
 	- parameter ofType: The type of resource to extract
-	- returns:          The resource that was found in the response if it is of the desired type, nil otherwise
+	- returns:          The resource that was found in the response if it is of the desired type
+	- throws:           Errors if there was no response, if it was of a different type or if there were errors in the data
 	*/
-	func responseResource<T: Resource>(ofType: T.Type) -> T?
+	func responseResource<T: Resource>(ofType: T.Type) throws -> T
 	
 	/**
 	The response should inspect response headers and update resource data like `id` and `meta` accordingly.
@@ -52,7 +53,7 @@ public protocol FHIRServerResponse {
 	func applyHeaders(to: Resource) throws
 	
 	/**
-	The response should apply response body data to the given resource. It should throw `FHIRError.ResponseNoResourceReceived` if there was
+	The response should apply response body data to the given resource. It should throw `FHIRError.responseNoResourceReceived` if there was
 	no response data.
 	
 	This method must not be called if the response has a non-nil error.

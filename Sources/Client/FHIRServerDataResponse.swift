@@ -164,8 +164,14 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 	
 	// MARK: - Responses
 	
-	open func responseResource<T: Resource>(ofType: T.Type) -> T? {
-		return nil
+	/**
+	The base method does not know how to extract a response resource, so this will throw `FHIRError.responseNoResourceReceived`.
+	
+	- parameter type: The response resource's type
+	- returns: An instance of the expected type
+	*/
+	open func responseResource<T: Resource>(ofType: T.Type) throws -> T {
+		throw FHIRError.responseNoResourceReceived
 	}
 	
 	/**
@@ -201,10 +207,17 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 			do {
 				let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
 				self.json = json
-				self.outcome = responseResource(ofType: OperationOutcome.self)
+				do {
+					// TODO: be smarter as to when to expect an operation outcome
+					self.outcome = try responseResource(ofType: OperationOutcome.self)
+				}
+				catch {  }
 				
 				// inspect OperationOutcome if there was an error
 				if status >= 400 {
+					if nil == outcome {
+						fhir_warn("No OperationOutcome available")
+					}
 					if let erritem = self.outcome?.issue?.first {
 						let errstr = "[\(erritem.severity?.rawValue ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
 						self.error = FHIRError.requestError(status, errstr)
@@ -232,19 +245,17 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 	}
 	
 	/**
-	Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that resource if it is indeed of
-	the expected type.
+	Uses FHIRElement's factory method to instantiate the resource of the given type from the response.
+	
+	- parameter ofType: The type of resource to extract
+	- returns:          The resource that was found in the response if it is of the desired type
+	- throws:           Errors if there was no response, if it was of a different type or if there were errors in the data
 	*/
-	override open func responseResource<T: Resource>(ofType: T.Type) -> T? {
-		if let json = json {
-			do {
-				return try T.instantiate(from: json, owner: nil)
-			}
-			catch let error {
-				fhir_warn("\(error)")
-			}
+	override open func responseResource<T: Resource>(ofType: T.Type) throws -> T {
+		guard let json = json else {
+			throw FHIRError.responseNoResourceReceived
 		}
-		return nil
+		return try T.instantiate(from: json, owner: nil)
 	}
 	
 	/**

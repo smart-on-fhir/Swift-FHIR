@@ -124,21 +124,19 @@ public extension Resource {
 			if let error = response.error {
 				callback(nil, error)
 			}
-			else if let resource = response.responseResource(ofType: Resource.self) {
-				resource._server = server
-				do {
-					try response.applyHeaders(to: resource)
-				}
-				catch let error {
-					fhir_warn("Error applying response headers after `read` call: \(error)")
-				}
-				if nil == resource.id, let lpc = URL(string: path) {
-					resource.id = FHIRString(lpc.lastPathComponent)
-				}
-				callback(resource, nil)
-			}
 			else {
-				callback(nil, FHIRError.resourceFailedToInstantiate(path))
+				do {
+					let resource = try response.responseResource(ofType: Resource.self)
+					resource._server = server
+					try response.applyHeaders(to: resource)
+					if nil == resource.id, let lpc = URL(string: path) {
+						resource.id = FHIRString(lpc.lastPathComponent)
+					}
+					callback(resource, nil)
+				}
+				catch {
+					callback(nil, error.asFHIRError)
+				}
 			}
 		}
 	}
@@ -378,9 +376,17 @@ public extension Resource {
 				callback(nil, error)
 			}
 			else {
-				let resource = response.responseResource(ofType: Resource.self)
-				resource?._server = server
-				callback(resource, nil)
+				do {
+					let resource = try response.responseResource(ofType: Resource.self)
+					resource._server = server
+					callback(resource, nil)
+				}
+				catch FHIRError.noResponseReceived {
+					callback(nil, nil)
+				}
+				catch {
+					callback(nil, error.asFHIRError)
+				}
 			}
 		}
 	}

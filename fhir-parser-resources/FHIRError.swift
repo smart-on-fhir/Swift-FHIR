@@ -19,7 +19,12 @@ public enum FHIRError: Error, CustomStringConvertible {
 	case resourceWithoutServer
 	case resourceWithoutId
 	case resourceAlreadyHasId
-	case resourceFailedToInstantiate(String)
+	
+	/// The resource at path (1st string) could not be instantiated because of error (2nd string).
+	case resourceFailedToInstantiate(String, String)
+	
+	/// The resource failed validation
+	case resourceFailedToValidate(FHIRValidationError)
 	case resourceCannotContainItself
 	
 	case requestCannotPrepareBody
@@ -60,8 +65,10 @@ public enum FHIRError: Error, CustomStringConvertible {
 			return "The resource does not have an id, cannot proceed".fhir_localized
 		case .resourceAlreadyHasId:
 			return "The resource already have an id, cannot proceed".fhir_localized
-		case .resourceFailedToInstantiate(let path):
-			return "\("Failed to instantiate resource when trying to read from".fhir_localized): «\(path)»"
+		case .resourceFailedToInstantiate(let path, let error):
+			return "\("Failed to instantiate resource when trying to read from".fhir_localized) «\(path)»: \(error)"
+		case .resourceFailedToValidate(let error):
+			return "\("Failed to validate resource".fhir_localized): \(error)"
 		case .resourceCannotContainItself:
 			return "A resource cannot contain itself".fhir_localized
 		
@@ -106,6 +113,9 @@ extension Error {
 	public var asFHIRError: FHIRError {
 		if let ferr = self as? FHIRError {
 			return ferr
+		}
+		if let verr = self as? FHIRValidationError {
+			return FHIRError.resourceFailedToValidate(verr)
 		}
 		return FHIRError.error("\(localizedDescription)")
 	}

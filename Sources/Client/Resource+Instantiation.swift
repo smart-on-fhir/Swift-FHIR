@@ -71,9 +71,9 @@ public extension Foundation.Bundle {
 			if let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON {
 				return json
 			}
-			throw FHIRError.resourceFailedToInstantiate(url.description)
+			throw FHIRError.resourceFailedToInstantiate(url.description, "Invalid JSON")
 		}
-		throw FHIRError.resourceFailedToInstantiate((nil == subdirectory) ? "\(name).json" : "\(subdirectory!)/\(name).json")
+		throw FHIRError.resourceFailedToInstantiate((nil == subdirectory) ? "\(name).json" : "\(subdirectory!)/\(name).json", "Resource not found in \(self)")
 	}
 }
 

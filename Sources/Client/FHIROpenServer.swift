@@ -198,7 +198,7 @@ open class FHIROpenServer: FHIRServer {
 				callback(nil)
 			}
 			else {
-				callback(error ?? FHIRError.error("CapabilityStatement.readFrom() did not return a CapabilityStatement instance but \(resource)"))
+				callback(error ?? FHIRError.error("CapabilityStatement.readFrom() did not return a CapabilityStatement instance but \(resource?.description ?? "nil")"))
 			}
 		}
 	}

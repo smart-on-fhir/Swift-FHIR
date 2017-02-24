@@ -207,14 +207,14 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 			do {
 				let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
 				self.json = json
-				do {
-					// TODO: be smarter as to when to expect an operation outcome
-					self.outcome = try responseResource(ofType: OperationOutcome.self)
-				}
-				catch {  }
 				
 				// inspect OperationOutcome if there was an error
 				if status >= 400 {
+					do {
+						// TODO: be smarter as to when to expect an operation outcome; may also be returned if < 400
+						self.outcome = try responseResource(ofType: OperationOutcome.self)
+					}
+					catch {  }
 					if nil == outcome {
 						fhir_warn("No OperationOutcome available")
 					}

@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -67,32 +67,30 @@ open class MessageHeader: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		author = try createInstance(type: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author
-		destination = try createInstances(of: MessageHeaderDestination.self, for: "destination", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? destination
-		enterer = try createInstance(type: Reference.self, for: "enterer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enterer
-		event = try createInstance(type: Coding.self, for: "event", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? event
-		if nil == event && !presentKeys.contains("event") {
-			errors.append(FHIRValidationError(missing: "event"))
+		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
+		destination = createInstances(of: MessageHeaderDestination.self, for: "destination", in: json, context: &instCtx, owner: self) ?? destination
+		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer
+		event = createInstance(type: Coding.self, for: "event", in: json, context: &instCtx, owner: self) ?? event
+		if nil == event && !instCtx.containsKey("event") {
+			instCtx.addError(FHIRValidationError(missing: "event"))
 		}
-		focus = try createInstances(of: Reference.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
-		reason = try createInstance(type: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
-		receiver = try createInstance(type: Reference.self, for: "receiver", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? receiver
-		response = try createInstance(type: MessageHeaderResponse.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? response
-		responsible = try createInstance(type: Reference.self, for: "responsible", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? responsible
-		sender = try createInstance(type: Reference.self, for: "sender", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sender
-		source = try createInstance(type: MessageHeaderSource.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		if nil == source && !presentKeys.contains("source") {
-			errors.append(FHIRValidationError(missing: "source"))
+		focus = createInstances(of: Reference.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
+		reason = createInstance(type: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
+		receiver = createInstance(type: Reference.self, for: "receiver", in: json, context: &instCtx, owner: self) ?? receiver
+		response = createInstance(type: MessageHeaderResponse.self, for: "response", in: json, context: &instCtx, owner: self) ?? response
+		responsible = createInstance(type: Reference.self, for: "responsible", in: json, context: &instCtx, owner: self) ?? responsible
+		sender = createInstance(type: Reference.self, for: "sender", in: json, context: &instCtx, owner: self) ?? sender
+		source = createInstance(type: MessageHeaderSource.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		if nil == source && !instCtx.containsKey("source") {
+			instCtx.addError(FHIRValidationError(missing: "source"))
 		}
-		timestamp = try createInstance(type: Instant.self, for: "timestamp", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timestamp
-		if nil == timestamp && !presentKeys.contains("timestamp") {
-			errors.append(FHIRValidationError(missing: "timestamp"))
+		timestamp = createInstance(type: Instant.self, for: "timestamp", in: json, context: &instCtx, owner: self) ?? timestamp
+		if nil == timestamp && !instCtx.containsKey("timestamp") {
+			instCtx.addError(FHIRValidationError(missing: "timestamp"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -150,17 +148,15 @@ open class MessageHeaderDestination: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		endpoint = try createInstance(type: FHIRURL.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		if nil == endpoint && !presentKeys.contains("endpoint") {
-			errors.append(FHIRValidationError(missing: "endpoint"))
+		endpoint = createInstance(type: FHIRURL.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
+		if nil == endpoint && !instCtx.containsKey("endpoint") {
+			instCtx.addError(FHIRValidationError(missing: "endpoint"))
 		}
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		target = try createInstance(type: Reference.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		
-		return errors.isEmpty ? nil : errors
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		target = createInstance(type: Reference.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -205,20 +201,18 @@ open class MessageHeaderResponse: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = createEnum(type: ResponseType.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
+		code = createEnum(type: ResponseType.self, for: "code", in: json, context: &instCtx) ?? code
+		if nil == code && !instCtx.containsKey("code") {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		details = try createInstance(type: Reference.self, for: "details", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? details
-		identifier = try createInstance(type: FHIRString.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
-			errors.append(FHIRValidationError(missing: "identifier"))
+		details = createInstance(type: Reference.self, for: "details", in: json, context: &instCtx, owner: self) ?? details
+		identifier = createInstance(type: FHIRString.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		if nil == identifier && !instCtx.containsKey("identifier") {
+			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -270,19 +264,17 @@ open class MessageHeaderSource: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contact = try createInstance(type: ContactPoint.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		endpoint = try createInstance(type: FHIRURL.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		if nil == endpoint && !presentKeys.contains("endpoint") {
-			errors.append(FHIRValidationError(missing: "endpoint"))
+		contact = createInstance(type: ContactPoint.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		endpoint = createInstance(type: FHIRURL.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
+		if nil == endpoint && !instCtx.containsKey("endpoint") {
+			instCtx.addError(FHIRValidationError(missing: "endpoint"))
 		}
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		software = try createInstance(type: FHIRString.self, for: "software", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? software
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		software = createInstance(type: FHIRString.self, for: "software", in: json, context: &instCtx, owner: self) ?? software
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

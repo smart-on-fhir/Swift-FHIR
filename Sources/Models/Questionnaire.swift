@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -64,26 +64,24 @@ open class Questionnaire: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstances(of: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		item = try createInstances(of: QuestionnaireItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
-		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
-		status = createEnum(type: QuestionnaireStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		code = createInstances(of: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		item = createInstances(of: QuestionnaireItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
+		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
+		status = createEnum(type: QuestionnaireStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		subjectType = try createInstances(of: FHIRString.self, for: "subjectType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subjectType
-		telecom = try createInstances(of: ContactPoint.self, for: "telecom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? telecom
-		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		useContext = try createInstances(of: CodeableConcept.self, for: "useContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? useContext
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		subjectType = createInstances(of: FHIRString.self, for: "subjectType", in: json, context: &instCtx, owner: self) ?? subjectType
+		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
+		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		useContext = createInstances(of: CodeableConcept.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -206,43 +204,41 @@ open class QuestionnaireItem: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstances(of: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		definition = try createInstance(type: FHIRURL.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
-		enableWhen = try createInstances(of: QuestionnaireItemEnableWhen.self, for: "enableWhen", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enableWhen
-		initialAttachment = try createInstance(type: Attachment.self, for: "initialAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialAttachment
-		initialBoolean = try createInstance(type: FHIRBool.self, for: "initialBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialBoolean
-		initialCoding = try createInstance(type: Coding.self, for: "initialCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialCoding
-		initialDate = try createInstance(type: FHIRDate.self, for: "initialDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialDate
-		initialDateTime = try createInstance(type: DateTime.self, for: "initialDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialDateTime
-		initialDecimal = try createInstance(type: FHIRDecimal.self, for: "initialDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialDecimal
-		initialInteger = try createInstance(type: FHIRInteger.self, for: "initialInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialInteger
-		initialQuantity = try createInstance(type: Quantity.self, for: "initialQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialQuantity
-		initialReference = try createInstance(type: Reference.self, for: "initialReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialReference
-		initialString = try createInstance(type: FHIRString.self, for: "initialString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialString
-		initialTime = try createInstance(type: FHIRTime.self, for: "initialTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialTime
-		initialUri = try createInstance(type: FHIRURL.self, for: "initialUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? initialUri
-		item = try createInstances(of: QuestionnaireItem.self, for: "item", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? item
-		linkId = try createInstance(type: FHIRString.self, for: "linkId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? linkId
-		if nil == linkId && !presentKeys.contains("linkId") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "linkId"))
+		code = createInstances(of: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		enableWhen = createInstances(of: QuestionnaireItemEnableWhen.self, for: "enableWhen", in: json, context: &instCtx, owner: self) ?? enableWhen
+		initialAttachment = createInstance(type: Attachment.self, for: "initialAttachment", in: json, context: &instCtx, owner: self) ?? initialAttachment
+		initialBoolean = createInstance(type: FHIRBool.self, for: "initialBoolean", in: json, context: &instCtx, owner: self) ?? initialBoolean
+		initialCoding = createInstance(type: Coding.self, for: "initialCoding", in: json, context: &instCtx, owner: self) ?? initialCoding
+		initialDate = createInstance(type: FHIRDate.self, for: "initialDate", in: json, context: &instCtx, owner: self) ?? initialDate
+		initialDateTime = createInstance(type: DateTime.self, for: "initialDateTime", in: json, context: &instCtx, owner: self) ?? initialDateTime
+		initialDecimal = createInstance(type: FHIRDecimal.self, for: "initialDecimal", in: json, context: &instCtx, owner: self) ?? initialDecimal
+		initialInteger = createInstance(type: FHIRInteger.self, for: "initialInteger", in: json, context: &instCtx, owner: self) ?? initialInteger
+		initialQuantity = createInstance(type: Quantity.self, for: "initialQuantity", in: json, context: &instCtx, owner: self) ?? initialQuantity
+		initialReference = createInstance(type: Reference.self, for: "initialReference", in: json, context: &instCtx, owner: self) ?? initialReference
+		initialString = createInstance(type: FHIRString.self, for: "initialString", in: json, context: &instCtx, owner: self) ?? initialString
+		initialTime = createInstance(type: FHIRTime.self, for: "initialTime", in: json, context: &instCtx, owner: self) ?? initialTime
+		initialUri = createInstance(type: FHIRURL.self, for: "initialUri", in: json, context: &instCtx, owner: self) ?? initialUri
+		item = createInstances(of: QuestionnaireItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
+		linkId = createInstance(type: FHIRString.self, for: "linkId", in: json, context: &instCtx, owner: self) ?? linkId
+		if nil == linkId && !instCtx.containsKey("linkId") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "linkId"))
 		}
-		maxLength = try createInstance(type: FHIRInteger.self, for: "maxLength", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxLength
-		option = try createInstances(of: QuestionnaireItemOption.self, for: "option", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? option
-		options = try createInstance(type: Reference.self, for: "options", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? options
-		prefix = try createInstance(type: FHIRString.self, for: "prefix", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? prefix
-		readOnly = try createInstance(type: FHIRBool.self, for: "readOnly", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? readOnly
-		repeats = try createInstance(type: FHIRBool.self, for: "repeats", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? repeats
-		required = try createInstance(type: FHIRBool.self, for: "required", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? required
-		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		type = createEnum(type: QuestionnaireItemType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "type"))
+		maxLength = createInstance(type: FHIRInteger.self, for: "maxLength", in: json, context: &instCtx, owner: self) ?? maxLength
+		option = createInstances(of: QuestionnaireItemOption.self, for: "option", in: json, context: &instCtx, owner: self) ?? option
+		options = createInstance(type: Reference.self, for: "options", in: json, context: &instCtx, owner: self) ?? options
+		prefix = createInstance(type: FHIRString.self, for: "prefix", in: json, context: &instCtx, owner: self) ?? prefix
+		readOnly = createInstance(type: FHIRBool.self, for: "readOnly", in: json, context: &instCtx, owner: self) ?? readOnly
+		repeats = createInstance(type: FHIRBool.self, for: "repeats", in: json, context: &instCtx, owner: self) ?? repeats
+		required = createInstance(type: FHIRBool.self, for: "required", in: json, context: &instCtx, owner: self) ?? required
+		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
+		type = createEnum(type: QuestionnaireItemType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -345,28 +341,26 @@ open class QuestionnaireItemEnableWhen: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		answerAttachment = try createInstance(type: Attachment.self, for: "answerAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerAttachment
-		answerBoolean = try createInstance(type: FHIRBool.self, for: "answerBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerBoolean
-		answerCoding = try createInstance(type: Coding.self, for: "answerCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerCoding
-		answerDate = try createInstance(type: FHIRDate.self, for: "answerDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerDate
-		answerDateTime = try createInstance(type: DateTime.self, for: "answerDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerDateTime
-		answerDecimal = try createInstance(type: FHIRDecimal.self, for: "answerDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerDecimal
-		answerInteger = try createInstance(type: FHIRInteger.self, for: "answerInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerInteger
-		answerQuantity = try createInstance(type: Quantity.self, for: "answerQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerQuantity
-		answerReference = try createInstance(type: Reference.self, for: "answerReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerReference
-		answerString = try createInstance(type: FHIRString.self, for: "answerString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerString
-		answerTime = try createInstance(type: FHIRTime.self, for: "answerTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerTime
-		answerUri = try createInstance(type: FHIRURL.self, for: "answerUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? answerUri
-		hasAnswer = try createInstance(type: FHIRBool.self, for: "hasAnswer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? hasAnswer
-		question = try createInstance(type: FHIRString.self, for: "question", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? question
-		if nil == question && !presentKeys.contains("question") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "question"))
+		answerAttachment = createInstance(type: Attachment.self, for: "answerAttachment", in: json, context: &instCtx, owner: self) ?? answerAttachment
+		answerBoolean = createInstance(type: FHIRBool.self, for: "answerBoolean", in: json, context: &instCtx, owner: self) ?? answerBoolean
+		answerCoding = createInstance(type: Coding.self, for: "answerCoding", in: json, context: &instCtx, owner: self) ?? answerCoding
+		answerDate = createInstance(type: FHIRDate.self, for: "answerDate", in: json, context: &instCtx, owner: self) ?? answerDate
+		answerDateTime = createInstance(type: DateTime.self, for: "answerDateTime", in: json, context: &instCtx, owner: self) ?? answerDateTime
+		answerDecimal = createInstance(type: FHIRDecimal.self, for: "answerDecimal", in: json, context: &instCtx, owner: self) ?? answerDecimal
+		answerInteger = createInstance(type: FHIRInteger.self, for: "answerInteger", in: json, context: &instCtx, owner: self) ?? answerInteger
+		answerQuantity = createInstance(type: Quantity.self, for: "answerQuantity", in: json, context: &instCtx, owner: self) ?? answerQuantity
+		answerReference = createInstance(type: Reference.self, for: "answerReference", in: json, context: &instCtx, owner: self) ?? answerReference
+		answerString = createInstance(type: FHIRString.self, for: "answerString", in: json, context: &instCtx, owner: self) ?? answerString
+		answerTime = createInstance(type: FHIRTime.self, for: "answerTime", in: json, context: &instCtx, owner: self) ?? answerTime
+		answerUri = createInstance(type: FHIRURL.self, for: "answerUri", in: json, context: &instCtx, owner: self) ?? answerUri
+		hasAnswer = createInstance(type: FHIRBool.self, for: "hasAnswer", in: json, context: &instCtx, owner: self) ?? hasAnswer
+		question = createInstance(type: FHIRString.self, for: "question", in: json, context: &instCtx, owner: self) ?? question
+		if nil == question && !instCtx.containsKey("question") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "question"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -443,22 +437,20 @@ open class QuestionnaireItemOption: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		valueCoding = try createInstance(type: Coding.self, for: "valueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCoding
-		valueDate = try createInstance(type: FHIRDate.self, for: "valueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDate
-		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
-		valueString = try createInstance(type: FHIRString.self, for: "valueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueString
-		valueTime = try createInstance(type: FHIRTime.self, for: "valueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTime
+		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
+		valueDate = createInstance(type: FHIRDate.self, for: "valueDate", in: json, context: &instCtx, owner: self) ?? valueDate
+		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
+		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
+		valueTime = createInstance(type: FHIRTime.self, for: "valueTime", in: json, context: &instCtx, owner: self) ?? valueTime
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueInteger && nil == self.valueDate && nil == self.valueTime && nil == self.valueString && nil == self.valueCoding {
-			errors.append(FHIRValidationError(missing: "value[x]"))
+			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

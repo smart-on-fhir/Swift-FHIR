@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -31,14 +31,12 @@ open class Timing: Element {
 	public var repeat_fhir: TimingRepeat?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		event = try createInstances(of: DateTime.self, for: "event", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? event
-		repeat_fhir = try createInstance(type: TimingRepeat.self, for: "repeat", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? repeat_fhir
-		
-		return errors.isEmpty ? nil : errors
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		event = createInstances(of: DateTime.self, for: "event", in: json, context: &instCtx, owner: self) ?? event
+		repeat_fhir = createInstance(type: TimingRepeat.self, for: "repeat", in: json, context: &instCtx, owner: self) ?? repeat_fhir
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -113,28 +111,26 @@ open class TimingRepeat: Element {
 	public var when: [FHIRString]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		boundsDuration = try createInstance(type: Duration.self, for: "boundsDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? boundsDuration
-		boundsPeriod = try createInstance(type: Period.self, for: "boundsPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? boundsPeriod
-		boundsRange = try createInstance(type: Range.self, for: "boundsRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? boundsRange
-		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
-		countMax = try createInstance(type: FHIRInteger.self, for: "countMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? countMax
-		dayOfWeek = createEnums(of: DaysOfWeek.self, for: "dayOfWeek", in: json, presentKeys: &presentKeys, errors: &errors) ?? dayOfWeek
-		duration = try createInstance(type: FHIRDecimal.self, for: "duration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? duration
-		durationMax = try createInstance(type: FHIRDecimal.self, for: "durationMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? durationMax
-		durationUnit = try createInstance(type: FHIRString.self, for: "durationUnit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? durationUnit
-		frequency = try createInstance(type: FHIRInteger.self, for: "frequency", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? frequency
-		frequencyMax = try createInstance(type: FHIRInteger.self, for: "frequencyMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? frequencyMax
-		offset = try createInstance(type: FHIRInteger.self, for: "offset", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? offset
-		period = try createInstance(type: FHIRDecimal.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		periodMax = try createInstance(type: FHIRDecimal.self, for: "periodMax", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? periodMax
-		periodUnit = try createInstance(type: FHIRString.self, for: "periodUnit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? periodUnit
-		timeOfDay = try createInstances(of: FHIRTime.self, for: "timeOfDay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timeOfDay
-		when = try createInstances(of: FHIRString.self, for: "when", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? when
-		
-		return errors.isEmpty ? nil : errors
+		boundsDuration = createInstance(type: Duration.self, for: "boundsDuration", in: json, context: &instCtx, owner: self) ?? boundsDuration
+		boundsPeriod = createInstance(type: Period.self, for: "boundsPeriod", in: json, context: &instCtx, owner: self) ?? boundsPeriod
+		boundsRange = createInstance(type: Range.self, for: "boundsRange", in: json, context: &instCtx, owner: self) ?? boundsRange
+		count = createInstance(type: FHIRInteger.self, for: "count", in: json, context: &instCtx, owner: self) ?? count
+		countMax = createInstance(type: FHIRInteger.self, for: "countMax", in: json, context: &instCtx, owner: self) ?? countMax
+		dayOfWeek = createEnums(of: DaysOfWeek.self, for: "dayOfWeek", in: json, context: &instCtx) ?? dayOfWeek
+		duration = createInstance(type: FHIRDecimal.self, for: "duration", in: json, context: &instCtx, owner: self) ?? duration
+		durationMax = createInstance(type: FHIRDecimal.self, for: "durationMax", in: json, context: &instCtx, owner: self) ?? durationMax
+		durationUnit = createInstance(type: FHIRString.self, for: "durationUnit", in: json, context: &instCtx, owner: self) ?? durationUnit
+		frequency = createInstance(type: FHIRInteger.self, for: "frequency", in: json, context: &instCtx, owner: self) ?? frequency
+		frequencyMax = createInstance(type: FHIRInteger.self, for: "frequencyMax", in: json, context: &instCtx, owner: self) ?? frequencyMax
+		offset = createInstance(type: FHIRInteger.self, for: "offset", in: json, context: &instCtx, owner: self) ?? offset
+		period = createInstance(type: FHIRDecimal.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		periodMax = createInstance(type: FHIRDecimal.self, for: "periodMax", in: json, context: &instCtx, owner: self) ?? periodMax
+		periodUnit = createInstance(type: FHIRString.self, for: "periodUnit", in: json, context: &instCtx, owner: self) ?? periodUnit
+		timeOfDay = createInstances(of: FHIRTime.self, for: "timeOfDay", in: json, context: &instCtx, owner: self) ?? timeOfDay
+		when = createInstances(of: FHIRString.self, for: "when", in: json, context: &instCtx, owner: self) ?? when
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

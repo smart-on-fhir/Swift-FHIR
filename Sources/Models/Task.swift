@@ -2,7 +2,7 @@
 //  Task.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Task) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Task) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -111,45 +111,43 @@ open class Task: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		authoredOn = try createInstance(type: DateTime.self, for: "authoredOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authoredOn
-		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
-		businessStatus = try createInstance(type: CodeableConcept.self, for: "businessStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? businessStatus
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		definitionReference = try createInstance(type: Reference.self, for: "definitionReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definitionReference
-		definitionUri = try createInstance(type: FHIRURL.self, for: "definitionUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definitionUri
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		executionPeriod = try createInstance(type: Period.self, for: "executionPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? executionPeriod
-		focus = try createInstance(type: Reference.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
-		for_fhir = try createInstance(type: Reference.self, for: "for", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? for_fhir
-		groupIdentifier = try createInstance(type: Identifier.self, for: "groupIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? groupIdentifier
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		input = try createInstances(of: TaskInput.self, for: "input", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? input
-		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, presentKeys: &presentKeys, errors: &errors) ?? intent
-		if nil == intent && !presentKeys.contains("intent") {
-			errors.append(FHIRValidationError(missing: "intent"))
+		authoredOn = createInstance(type: DateTime.self, for: "authoredOn", in: json, context: &instCtx, owner: self) ?? authoredOn
+		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
+		businessStatus = createInstance(type: CodeableConcept.self, for: "businessStatus", in: json, context: &instCtx, owner: self) ?? businessStatus
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		definitionReference = createInstance(type: Reference.self, for: "definitionReference", in: json, context: &instCtx, owner: self) ?? definitionReference
+		definitionUri = createInstance(type: FHIRURL.self, for: "definitionUri", in: json, context: &instCtx, owner: self) ?? definitionUri
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		executionPeriod = createInstance(type: Period.self, for: "executionPeriod", in: json, context: &instCtx, owner: self) ?? executionPeriod
+		focus = createInstance(type: Reference.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
+		for_fhir = createInstance(type: Reference.self, for: "for", in: json, context: &instCtx, owner: self) ?? for_fhir
+		groupIdentifier = createInstance(type: Identifier.self, for: "groupIdentifier", in: json, context: &instCtx, owner: self) ?? groupIdentifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		input = createInstances(of: TaskInput.self, for: "input", in: json, context: &instCtx, owner: self) ?? input
+		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
+		if nil == intent && !instCtx.containsKey("intent") {
+			instCtx.addError(FHIRValidationError(missing: "intent"))
 		}
-		lastModified = try createInstance(type: DateTime.self, for: "lastModified", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastModified
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		output = try createInstances(of: TaskOutput.self, for: "output", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? output
-		owner = try createInstance(type: Reference.self, for: "owner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? owner
-		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
-		performerType = try createInstances(of: CodeableConcept.self, for: "performerType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performerType
-		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, presentKeys: &presentKeys, errors: &errors) ?? priority
-		reason = try createInstance(type: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
-		relevantHistory = try createInstances(of: Reference.self, for: "relevantHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relevantHistory
-		requester = try createInstance(type: TaskRequester.self, for: "requester", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requester
-		restriction = try createInstance(type: TaskRestriction.self, for: "restriction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? restriction
-		status = createEnum(type: TaskStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		lastModified = createInstance(type: DateTime.self, for: "lastModified", in: json, context: &instCtx, owner: self) ?? lastModified
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		output = createInstances(of: TaskOutput.self, for: "output", in: json, context: &instCtx, owner: self) ?? output
+		owner = createInstance(type: Reference.self, for: "owner", in: json, context: &instCtx, owner: self) ?? owner
+		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		performerType = createInstances(of: CodeableConcept.self, for: "performerType", in: json, context: &instCtx, owner: self) ?? performerType
+		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
+		reason = createInstance(type: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
+		relevantHistory = createInstances(of: Reference.self, for: "relevantHistory", in: json, context: &instCtx, owner: self) ?? relevantHistory
+		requester = createInstance(type: TaskRequester.self, for: "requester", in: json, context: &instCtx, owner: self) ?? requester
+		restriction = createInstance(type: TaskRestriction.self, for: "restriction", in: json, context: &instCtx, owner: self) ?? restriction
+		status = createEnum(type: TaskStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		statusReason = try createInstance(type: CodeableConcept.self, for: "statusReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusReason
-		
-		return errors.isEmpty ? nil : errors
+		statusReason = createInstance(type: CodeableConcept.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -445,59 +443,57 @@ open class TaskInput: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "type"))
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		valueAddress = try createInstance(type: Address.self, for: "valueAddress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAddress
-		valueAge = try createInstance(type: Age.self, for: "valueAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAge
-		valueAnnotation = try createInstance(type: Annotation.self, for: "valueAnnotation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAnnotation
-		valueAttachment = try createInstance(type: Attachment.self, for: "valueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAttachment
-		valueBase64Binary = try createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBase64Binary
-		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
-		valueCode = try createInstance(type: FHIRString.self, for: "valueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCode
-		valueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
-		valueCoding = try createInstance(type: Coding.self, for: "valueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCoding
-		valueContactPoint = try createInstance(type: ContactPoint.self, for: "valueContactPoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueContactPoint
-		valueCount = try createInstance(type: Count.self, for: "valueCount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCount
-		valueDate = try createInstance(type: FHIRDate.self, for: "valueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDate
-		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
-		valueDecimal = try createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDecimal
-		valueDistance = try createInstance(type: Distance.self, for: "valueDistance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDistance
-		valueDuration = try createInstance(type: Duration.self, for: "valueDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDuration
-		valueHumanName = try createInstance(type: HumanName.self, for: "valueHumanName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueHumanName
-		valueId = try createInstance(type: FHIRString.self, for: "valueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueId
-		valueIdentifier = try createInstance(type: Identifier.self, for: "valueIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueIdentifier
-		valueInstant = try createInstance(type: Instant.self, for: "valueInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInstant
-		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
-		valueMarkdown = try createInstance(type: FHIRString.self, for: "valueMarkdown", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMarkdown
-		valueMeta = try createInstance(type: Meta.self, for: "valueMeta", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMeta
-		valueMoney = try createInstance(type: Money.self, for: "valueMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMoney
-		valueOid = try createInstance(type: FHIRURL.self, for: "valueOid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueOid
-		valuePeriod = try createInstance(type: Period.self, for: "valuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePeriod
-		valuePositiveInt = try createInstance(type: FHIRInteger.self, for: "valuePositiveInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePositiveInt
-		valueQuantity = try createInstance(type: Quantity.self, for: "valueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueQuantity
-		valueRange = try createInstance(type: Range.self, for: "valueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRange
-		valueRatio = try createInstance(type: Ratio.self, for: "valueRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRatio
-		valueReference = try createInstance(type: Reference.self, for: "valueReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueReference
-		valueSampledData = try createInstance(type: SampledData.self, for: "valueSampledData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSampledData
-		valueSignature = try createInstance(type: Signature.self, for: "valueSignature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSignature
-		valueString = try createInstance(type: FHIRString.self, for: "valueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueString
-		valueTime = try createInstance(type: FHIRTime.self, for: "valueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTime
-		valueTiming = try createInstance(type: Timing.self, for: "valueTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTiming
-		valueUnsignedInt = try createInstance(type: FHIRInteger.self, for: "valueUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUnsignedInt
-		valueUri = try createInstance(type: FHIRURL.self, for: "valueUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUri
+		valueAddress = createInstance(type: Address.self, for: "valueAddress", in: json, context: &instCtx, owner: self) ?? valueAddress
+		valueAge = createInstance(type: Age.self, for: "valueAge", in: json, context: &instCtx, owner: self) ?? valueAge
+		valueAnnotation = createInstance(type: Annotation.self, for: "valueAnnotation", in: json, context: &instCtx, owner: self) ?? valueAnnotation
+		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
+		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
+		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
+		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
+		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
+		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
+		valueContactPoint = createInstance(type: ContactPoint.self, for: "valueContactPoint", in: json, context: &instCtx, owner: self) ?? valueContactPoint
+		valueCount = createInstance(type: Count.self, for: "valueCount", in: json, context: &instCtx, owner: self) ?? valueCount
+		valueDate = createInstance(type: FHIRDate.self, for: "valueDate", in: json, context: &instCtx, owner: self) ?? valueDate
+		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
+		valueDecimal = createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, context: &instCtx, owner: self) ?? valueDecimal
+		valueDistance = createInstance(type: Distance.self, for: "valueDistance", in: json, context: &instCtx, owner: self) ?? valueDistance
+		valueDuration = createInstance(type: Duration.self, for: "valueDuration", in: json, context: &instCtx, owner: self) ?? valueDuration
+		valueHumanName = createInstance(type: HumanName.self, for: "valueHumanName", in: json, context: &instCtx, owner: self) ?? valueHumanName
+		valueId = createInstance(type: FHIRString.self, for: "valueId", in: json, context: &instCtx, owner: self) ?? valueId
+		valueIdentifier = createInstance(type: Identifier.self, for: "valueIdentifier", in: json, context: &instCtx, owner: self) ?? valueIdentifier
+		valueInstant = createInstance(type: Instant.self, for: "valueInstant", in: json, context: &instCtx, owner: self) ?? valueInstant
+		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
+		valueMarkdown = createInstance(type: FHIRString.self, for: "valueMarkdown", in: json, context: &instCtx, owner: self) ?? valueMarkdown
+		valueMeta = createInstance(type: Meta.self, for: "valueMeta", in: json, context: &instCtx, owner: self) ?? valueMeta
+		valueMoney = createInstance(type: Money.self, for: "valueMoney", in: json, context: &instCtx, owner: self) ?? valueMoney
+		valueOid = createInstance(type: FHIRURL.self, for: "valueOid", in: json, context: &instCtx, owner: self) ?? valueOid
+		valuePeriod = createInstance(type: Period.self, for: "valuePeriod", in: json, context: &instCtx, owner: self) ?? valuePeriod
+		valuePositiveInt = createInstance(type: FHIRInteger.self, for: "valuePositiveInt", in: json, context: &instCtx, owner: self) ?? valuePositiveInt
+		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
+		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
+		valueRatio = createInstance(type: Ratio.self, for: "valueRatio", in: json, context: &instCtx, owner: self) ?? valueRatio
+		valueReference = createInstance(type: Reference.self, for: "valueReference", in: json, context: &instCtx, owner: self) ?? valueReference
+		valueSampledData = createInstance(type: SampledData.self, for: "valueSampledData", in: json, context: &instCtx, owner: self) ?? valueSampledData
+		valueSignature = createInstance(type: Signature.self, for: "valueSignature", in: json, context: &instCtx, owner: self) ?? valueSignature
+		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
+		valueTime = createInstance(type: FHIRTime.self, for: "valueTime", in: json, context: &instCtx, owner: self) ?? valueTime
+		valueTiming = createInstance(type: Timing.self, for: "valueTiming", in: json, context: &instCtx, owner: self) ?? valueTiming
+		valueUnsignedInt = createInstance(type: FHIRInteger.self, for: "valueUnsignedInt", in: json, context: &instCtx, owner: self) ?? valueUnsignedInt
+		valueUri = createInstance(type: FHIRURL.self, for: "valueUri", in: json, context: &instCtx, owner: self) ?? valueUri
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
-			errors.append(FHIRValidationError(missing: "value[x]"))
+			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -806,59 +802,57 @@ open class TaskOutput: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "type"))
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		valueAddress = try createInstance(type: Address.self, for: "valueAddress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAddress
-		valueAge = try createInstance(type: Age.self, for: "valueAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAge
-		valueAnnotation = try createInstance(type: Annotation.self, for: "valueAnnotation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAnnotation
-		valueAttachment = try createInstance(type: Attachment.self, for: "valueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueAttachment
-		valueBase64Binary = try createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBase64Binary
-		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
-		valueCode = try createInstance(type: FHIRString.self, for: "valueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCode
-		valueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
-		valueCoding = try createInstance(type: Coding.self, for: "valueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCoding
-		valueContactPoint = try createInstance(type: ContactPoint.self, for: "valueContactPoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueContactPoint
-		valueCount = try createInstance(type: Count.self, for: "valueCount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCount
-		valueDate = try createInstance(type: FHIRDate.self, for: "valueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDate
-		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
-		valueDecimal = try createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDecimal
-		valueDistance = try createInstance(type: Distance.self, for: "valueDistance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDistance
-		valueDuration = try createInstance(type: Duration.self, for: "valueDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDuration
-		valueHumanName = try createInstance(type: HumanName.self, for: "valueHumanName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueHumanName
-		valueId = try createInstance(type: FHIRString.self, for: "valueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueId
-		valueIdentifier = try createInstance(type: Identifier.self, for: "valueIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueIdentifier
-		valueInstant = try createInstance(type: Instant.self, for: "valueInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInstant
-		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
-		valueMarkdown = try createInstance(type: FHIRString.self, for: "valueMarkdown", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMarkdown
-		valueMeta = try createInstance(type: Meta.self, for: "valueMeta", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMeta
-		valueMoney = try createInstance(type: Money.self, for: "valueMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueMoney
-		valueOid = try createInstance(type: FHIRURL.self, for: "valueOid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueOid
-		valuePeriod = try createInstance(type: Period.self, for: "valuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePeriod
-		valuePositiveInt = try createInstance(type: FHIRInteger.self, for: "valuePositiveInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePositiveInt
-		valueQuantity = try createInstance(type: Quantity.self, for: "valueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueQuantity
-		valueRange = try createInstance(type: Range.self, for: "valueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRange
-		valueRatio = try createInstance(type: Ratio.self, for: "valueRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRatio
-		valueReference = try createInstance(type: Reference.self, for: "valueReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueReference
-		valueSampledData = try createInstance(type: SampledData.self, for: "valueSampledData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSampledData
-		valueSignature = try createInstance(type: Signature.self, for: "valueSignature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSignature
-		valueString = try createInstance(type: FHIRString.self, for: "valueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueString
-		valueTime = try createInstance(type: FHIRTime.self, for: "valueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTime
-		valueTiming = try createInstance(type: Timing.self, for: "valueTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueTiming
-		valueUnsignedInt = try createInstance(type: FHIRInteger.self, for: "valueUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUnsignedInt
-		valueUri = try createInstance(type: FHIRURL.self, for: "valueUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueUri
+		valueAddress = createInstance(type: Address.self, for: "valueAddress", in: json, context: &instCtx, owner: self) ?? valueAddress
+		valueAge = createInstance(type: Age.self, for: "valueAge", in: json, context: &instCtx, owner: self) ?? valueAge
+		valueAnnotation = createInstance(type: Annotation.self, for: "valueAnnotation", in: json, context: &instCtx, owner: self) ?? valueAnnotation
+		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
+		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
+		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
+		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
+		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
+		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
+		valueContactPoint = createInstance(type: ContactPoint.self, for: "valueContactPoint", in: json, context: &instCtx, owner: self) ?? valueContactPoint
+		valueCount = createInstance(type: Count.self, for: "valueCount", in: json, context: &instCtx, owner: self) ?? valueCount
+		valueDate = createInstance(type: FHIRDate.self, for: "valueDate", in: json, context: &instCtx, owner: self) ?? valueDate
+		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
+		valueDecimal = createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, context: &instCtx, owner: self) ?? valueDecimal
+		valueDistance = createInstance(type: Distance.self, for: "valueDistance", in: json, context: &instCtx, owner: self) ?? valueDistance
+		valueDuration = createInstance(type: Duration.self, for: "valueDuration", in: json, context: &instCtx, owner: self) ?? valueDuration
+		valueHumanName = createInstance(type: HumanName.self, for: "valueHumanName", in: json, context: &instCtx, owner: self) ?? valueHumanName
+		valueId = createInstance(type: FHIRString.self, for: "valueId", in: json, context: &instCtx, owner: self) ?? valueId
+		valueIdentifier = createInstance(type: Identifier.self, for: "valueIdentifier", in: json, context: &instCtx, owner: self) ?? valueIdentifier
+		valueInstant = createInstance(type: Instant.self, for: "valueInstant", in: json, context: &instCtx, owner: self) ?? valueInstant
+		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
+		valueMarkdown = createInstance(type: FHIRString.self, for: "valueMarkdown", in: json, context: &instCtx, owner: self) ?? valueMarkdown
+		valueMeta = createInstance(type: Meta.self, for: "valueMeta", in: json, context: &instCtx, owner: self) ?? valueMeta
+		valueMoney = createInstance(type: Money.self, for: "valueMoney", in: json, context: &instCtx, owner: self) ?? valueMoney
+		valueOid = createInstance(type: FHIRURL.self, for: "valueOid", in: json, context: &instCtx, owner: self) ?? valueOid
+		valuePeriod = createInstance(type: Period.self, for: "valuePeriod", in: json, context: &instCtx, owner: self) ?? valuePeriod
+		valuePositiveInt = createInstance(type: FHIRInteger.self, for: "valuePositiveInt", in: json, context: &instCtx, owner: self) ?? valuePositiveInt
+		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
+		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
+		valueRatio = createInstance(type: Ratio.self, for: "valueRatio", in: json, context: &instCtx, owner: self) ?? valueRatio
+		valueReference = createInstance(type: Reference.self, for: "valueReference", in: json, context: &instCtx, owner: self) ?? valueReference
+		valueSampledData = createInstance(type: SampledData.self, for: "valueSampledData", in: json, context: &instCtx, owner: self) ?? valueSampledData
+		valueSignature = createInstance(type: Signature.self, for: "valueSignature", in: json, context: &instCtx, owner: self) ?? valueSignature
+		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
+		valueTime = createInstance(type: FHIRTime.self, for: "valueTime", in: json, context: &instCtx, owner: self) ?? valueTime
+		valueTiming = createInstance(type: Timing.self, for: "valueTiming", in: json, context: &instCtx, owner: self) ?? valueTiming
+		valueUnsignedInt = createInstance(type: FHIRInteger.self, for: "valueUnsignedInt", in: json, context: &instCtx, owner: self) ?? valueUnsignedInt
+		valueUri = createInstance(type: FHIRURL.self, for: "valueUri", in: json, context: &instCtx, owner: self) ?? valueUri
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
-			errors.append(FHIRValidationError(missing: "value[x]"))
+			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -939,16 +933,14 @@ open class TaskRequester: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		agent = try createInstance(type: Reference.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		if nil == agent && !presentKeys.contains("agent") {
-			errors.append(FHIRValidationError(missing: "agent"))
+		agent = createInstance(type: Reference.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
+		if nil == agent && !instCtx.containsKey("agent") {
+			instCtx.addError(FHIRValidationError(missing: "agent"))
 		}
-		onBehalfOf = try createInstance(type: Reference.self, for: "onBehalfOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOf
-		
-		return errors.isEmpty ? nil : errors
+		onBehalfOf = createInstance(type: Reference.self, for: "onBehalfOf", in: json, context: &instCtx, owner: self) ?? onBehalfOf
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -984,14 +976,12 @@ open class TaskRestriction: BackboneElement {
 	public var repetitions: FHIRInteger?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		recipient = try createInstances(of: Reference.self, for: "recipient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recipient
-		repetitions = try createInstance(type: FHIRInteger.self, for: "repetitions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? repetitions
-		
-		return errors.isEmpty ? nil : errors
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		recipient = createInstances(of: Reference.self, for: "recipient", in: json, context: &instCtx, owner: self) ?? recipient
+		repetitions = createInstance(type: FHIRInteger.self, for: "repetitions", in: json, context: &instCtx, owner: self) ?? repetitions
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

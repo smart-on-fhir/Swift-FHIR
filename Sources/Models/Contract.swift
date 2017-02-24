@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -93,35 +93,33 @@ open class Contract: DomainResource {
 	public var valuedItem: [ContractValuedItem]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		action = try createInstances(of: CodeableConcept.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		actionReason = try createInstances(of: CodeableConcept.self, for: "actionReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionReason
-		agent = try createInstances(of: ContractAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		applies = try createInstance(type: Period.self, for: "applies", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? applies
-		authority = try createInstances(of: Reference.self, for: "authority", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authority
-		bindingAttachment = try createInstance(type: Attachment.self, for: "bindingAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bindingAttachment
-		bindingReference = try createInstance(type: Reference.self, for: "bindingReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bindingReference
-		contentDerivative = try createInstance(type: CodeableConcept.self, for: "contentDerivative", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentDerivative
-		decisionType = try createInstance(type: CodeableConcept.self, for: "decisionType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? decisionType
-		domain = try createInstances(of: Reference.self, for: "domain", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? domain
-		friendly = try createInstances(of: ContractFriendly.self, for: "friendly", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? friendly
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		issued = try createInstance(type: DateTime.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
-		legal = try createInstances(of: ContractLegal.self, for: "legal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? legal
-		rule = try createInstances(of: ContractRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rule
-		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
-		signer = try createInstances(of: ContractSigner.self, for: "signer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? signer
-		status = try createInstance(type: FHIRString.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
-		subType = try createInstances(of: CodeableConcept.self, for: "subType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subType
-		subject = try createInstances(of: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		term = try createInstances(of: ContractTerm.self, for: "term", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? term
-		topic = try createInstances(of: Reference.self, for: "topic", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? topic
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		valuedItem = try createInstances(of: ContractValuedItem.self, for: "valuedItem", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuedItem
-		
-		return errors.isEmpty ? nil : errors
+		action = createInstances(of: CodeableConcept.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
+		actionReason = createInstances(of: CodeableConcept.self, for: "actionReason", in: json, context: &instCtx, owner: self) ?? actionReason
+		agent = createInstances(of: ContractAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
+		applies = createInstance(type: Period.self, for: "applies", in: json, context: &instCtx, owner: self) ?? applies
+		authority = createInstances(of: Reference.self, for: "authority", in: json, context: &instCtx, owner: self) ?? authority
+		bindingAttachment = createInstance(type: Attachment.self, for: "bindingAttachment", in: json, context: &instCtx, owner: self) ?? bindingAttachment
+		bindingReference = createInstance(type: Reference.self, for: "bindingReference", in: json, context: &instCtx, owner: self) ?? bindingReference
+		contentDerivative = createInstance(type: CodeableConcept.self, for: "contentDerivative", in: json, context: &instCtx, owner: self) ?? contentDerivative
+		decisionType = createInstance(type: CodeableConcept.self, for: "decisionType", in: json, context: &instCtx, owner: self) ?? decisionType
+		domain = createInstances(of: Reference.self, for: "domain", in: json, context: &instCtx, owner: self) ?? domain
+		friendly = createInstances(of: ContractFriendly.self, for: "friendly", in: json, context: &instCtx, owner: self) ?? friendly
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		issued = createInstance(type: DateTime.self, for: "issued", in: json, context: &instCtx, owner: self) ?? issued
+		legal = createInstances(of: ContractLegal.self, for: "legal", in: json, context: &instCtx, owner: self) ?? legal
+		rule = createInstances(of: ContractRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
+		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		signer = createInstances(of: ContractSigner.self, for: "signer", in: json, context: &instCtx, owner: self) ?? signer
+		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
+		subType = createInstances(of: CodeableConcept.self, for: "subType", in: json, context: &instCtx, owner: self) ?? subType
+		subject = createInstances(of: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		term = createInstances(of: ContractTerm.self, for: "term", in: json, context: &instCtx, owner: self) ?? term
+		topic = createInstances(of: Reference.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		valuedItem = createInstances(of: ContractValuedItem.self, for: "valuedItem", in: json, context: &instCtx, owner: self) ?? valuedItem
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -180,16 +178,14 @@ open class ContractAgent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "actor"))
+		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
+		if nil == actor && !instCtx.containsKey("actor") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
-		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		
-		return errors.isEmpty ? nil : errors
+		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -239,19 +235,17 @@ open class ContractFriendly: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contentAttachment = try createInstance(type: Attachment.self, for: "contentAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentAttachment
-		contentReference = try createInstance(type: Reference.self, for: "contentReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentReference
+		contentAttachment = createInstance(type: Attachment.self, for: "contentAttachment", in: json, context: &instCtx, owner: self) ?? contentAttachment
+		contentReference = createInstance(type: Reference.self, for: "contentReference", in: json, context: &instCtx, owner: self) ?? contentReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.contentAttachment && nil == self.contentReference {
-			errors.append(FHIRValidationError(missing: "content[x]"))
+			instCtx.addError(FHIRValidationError(missing: "content[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -300,19 +294,17 @@ open class ContractLegal: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contentAttachment = try createInstance(type: Attachment.self, for: "contentAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentAttachment
-		contentReference = try createInstance(type: Reference.self, for: "contentReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentReference
+		contentAttachment = createInstance(type: Attachment.self, for: "contentAttachment", in: json, context: &instCtx, owner: self) ?? contentAttachment
+		contentReference = createInstance(type: Reference.self, for: "contentReference", in: json, context: &instCtx, owner: self) ?? contentReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.contentAttachment && nil == self.contentReference {
-			errors.append(FHIRValidationError(missing: "content[x]"))
+			instCtx.addError(FHIRValidationError(missing: "content[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -361,19 +353,17 @@ open class ContractRule: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contentAttachment = try createInstance(type: Attachment.self, for: "contentAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentAttachment
-		contentReference = try createInstance(type: Reference.self, for: "contentReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentReference
+		contentAttachment = createInstance(type: Attachment.self, for: "contentAttachment", in: json, context: &instCtx, owner: self) ?? contentAttachment
+		contentReference = createInstance(type: Reference.self, for: "contentReference", in: json, context: &instCtx, owner: self) ?? contentReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.contentAttachment && nil == self.contentReference {
-			errors.append(FHIRValidationError(missing: "content[x]"))
+			instCtx.addError(FHIRValidationError(missing: "content[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -421,23 +411,21 @@ open class ContractSigner: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		party = try createInstance(type: Reference.self, for: "party", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? party
-		if nil == party && !presentKeys.contains("party") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "party"))
+		party = createInstance(type: Reference.self, for: "party", in: json, context: &instCtx, owner: self) ?? party
+		if nil == party && !instCtx.containsKey("party") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "party"))
 		}
-		signature = try createInstances(of: Signature.self, for: "signature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? signature
-		if (nil == signature || signature!.isEmpty) && !presentKeys.contains("signature") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "signature"))
+		signature = createInstances(of: Signature.self, for: "signature", in: json, context: &instCtx, owner: self) ?? signature
+		if (nil == signature || signature!.isEmpty) && !instCtx.containsKey("signature") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "signature"))
 		}
-		type = try createInstance(type: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "type"))
+		type = createInstance(type: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -509,24 +497,22 @@ open class ContractTerm: BackboneElement {
 	public var valuedItem: [ContractTermValuedItem]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		action = try createInstances(of: CodeableConcept.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		actionReason = try createInstances(of: CodeableConcept.self, for: "actionReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actionReason
-		agent = try createInstances(of: ContractTermAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		applies = try createInstance(type: Period.self, for: "applies", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? applies
-		group = try createInstances(of: ContractTerm.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		issued = try createInstance(type: DateTime.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
-		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
-		subType = try createInstance(type: CodeableConcept.self, for: "subType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subType
-		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		topic = try createInstances(of: Reference.self, for: "topic", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? topic
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		valuedItem = try createInstances(of: ContractTermValuedItem.self, for: "valuedItem", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuedItem
-		
-		return errors.isEmpty ? nil : errors
+		action = createInstances(of: CodeableConcept.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
+		actionReason = createInstances(of: CodeableConcept.self, for: "actionReason", in: json, context: &instCtx, owner: self) ?? actionReason
+		agent = createInstances(of: ContractTermAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
+		applies = createInstance(type: Period.self, for: "applies", in: json, context: &instCtx, owner: self) ?? applies
+		group = createInstances(of: ContractTerm.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		issued = createInstance(type: DateTime.self, for: "issued", in: json, context: &instCtx, owner: self) ?? issued
+		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		subType = createInstance(type: CodeableConcept.self, for: "subType", in: json, context: &instCtx, owner: self) ?? subType
+		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
+		topic = createInstances(of: Reference.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		valuedItem = createInstances(of: ContractTermValuedItem.self, for: "valuedItem", in: json, context: &instCtx, owner: self) ?? valuedItem
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -574,16 +560,14 @@ open class ContractTermAgent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "actor"))
+		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
+		if nil == actor && !instCtx.containsKey("actor") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
-		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		
-		return errors.isEmpty ? nil : errors
+		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -636,20 +620,18 @@ open class ContractTermValuedItem: BackboneElement {
 	public var unitPrice: Money?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		effectiveTime = try createInstance(type: DateTime.self, for: "effectiveTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveTime
-		entityCodeableConcept = try createInstance(type: CodeableConcept.self, for: "entityCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entityCodeableConcept
-		entityReference = try createInstance(type: Reference.self, for: "entityReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entityReference
-		factor = try createInstance(type: FHIRDecimal.self, for: "factor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? factor
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		net = try createInstance(type: Money.self, for: "net", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? net
-		points = try createInstance(type: FHIRDecimal.self, for: "points", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? points
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		unitPrice = try createInstance(type: Money.self, for: "unitPrice", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? unitPrice
-		
-		return errors.isEmpty ? nil : errors
+		effectiveTime = createInstance(type: DateTime.self, for: "effectiveTime", in: json, context: &instCtx, owner: self) ?? effectiveTime
+		entityCodeableConcept = createInstance(type: CodeableConcept.self, for: "entityCodeableConcept", in: json, context: &instCtx, owner: self) ?? entityCodeableConcept
+		entityReference = createInstance(type: Reference.self, for: "entityReference", in: json, context: &instCtx, owner: self) ?? entityReference
+		factor = createInstance(type: FHIRDecimal.self, for: "factor", in: json, context: &instCtx, owner: self) ?? factor
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		net = createInstance(type: Money.self, for: "net", in: json, context: &instCtx, owner: self) ?? net
+		points = createInstance(type: FHIRDecimal.self, for: "points", in: json, context: &instCtx, owner: self) ?? points
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		unitPrice = createInstance(type: Money.self, for: "unitPrice", in: json, context: &instCtx, owner: self) ?? unitPrice
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -704,20 +686,18 @@ open class ContractValuedItem: BackboneElement {
 	public var unitPrice: Money?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		effectiveTime = try createInstance(type: DateTime.self, for: "effectiveTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveTime
-		entityCodeableConcept = try createInstance(type: CodeableConcept.self, for: "entityCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entityCodeableConcept
-		entityReference = try createInstance(type: Reference.self, for: "entityReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entityReference
-		factor = try createInstance(type: FHIRDecimal.self, for: "factor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? factor
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		net = try createInstance(type: Money.self, for: "net", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? net
-		points = try createInstance(type: FHIRDecimal.self, for: "points", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? points
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		unitPrice = try createInstance(type: Money.self, for: "unitPrice", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? unitPrice
-		
-		return errors.isEmpty ? nil : errors
+		effectiveTime = createInstance(type: DateTime.self, for: "effectiveTime", in: json, context: &instCtx, owner: self) ?? effectiveTime
+		entityCodeableConcept = createInstance(type: CodeableConcept.self, for: "entityCodeableConcept", in: json, context: &instCtx, owner: self) ?? entityCodeableConcept
+		entityReference = createInstance(type: Reference.self, for: "entityReference", in: json, context: &instCtx, owner: self) ?? entityReference
+		factor = createInstance(type: FHIRDecimal.self, for: "factor", in: json, context: &instCtx, owner: self) ?? factor
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		net = createInstance(type: Money.self, for: "net", in: json, context: &instCtx, owner: self) ?? net
+		points = createInstance(type: FHIRDecimal.self, for: "points", in: json, context: &instCtx, owner: self) ?? points
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		unitPrice = createInstance(type: Money.self, for: "unitPrice", in: json, context: &instCtx, owner: self) ?? unitPrice
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

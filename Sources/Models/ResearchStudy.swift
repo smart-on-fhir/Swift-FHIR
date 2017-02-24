@@ -2,7 +2,7 @@
 //  ResearchStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -90,34 +90,32 @@ open class ResearchStudy: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		arm = try createInstances(of: ResearchStudyArm.self, for: "arm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? arm
-		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		enrollment = try createInstances(of: Reference.self, for: "enrollment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enrollment
-		focus = try createInstances(of: CodeableConcept.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
-		keyword = try createInstances(of: CodeableConcept.self, for: "keyword", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? keyword
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		principalInvestigator = try createInstance(type: Reference.self, for: "principalInvestigator", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? principalInvestigator
-		protocol_fhir = try createInstances(of: Reference.self, for: "protocol", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? protocol_fhir
-		reasonStopped = try createInstance(type: CodeableConcept.self, for: "reasonStopped", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonStopped
-		relatedArtifact = try createInstances(of: RelatedArtifact.self, for: "relatedArtifact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatedArtifact
-		site = try createInstances(of: Reference.self, for: "site", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? site
-		sponsor = try createInstance(type: Reference.self, for: "sponsor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sponsor
-		status = createEnum(type: ResearchStudyStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		arm = createInstances(of: ResearchStudyArm.self, for: "arm", in: json, context: &instCtx, owner: self) ?? arm
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		enrollment = createInstances(of: Reference.self, for: "enrollment", in: json, context: &instCtx, owner: self) ?? enrollment
+		focus = createInstances(of: CodeableConcept.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
+		keyword = createInstances(of: CodeableConcept.self, for: "keyword", in: json, context: &instCtx, owner: self) ?? keyword
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		principalInvestigator = createInstance(type: Reference.self, for: "principalInvestigator", in: json, context: &instCtx, owner: self) ?? principalInvestigator
+		protocol_fhir = createInstances(of: Reference.self, for: "protocol", in: json, context: &instCtx, owner: self) ?? protocol_fhir
+		reasonStopped = createInstance(type: CodeableConcept.self, for: "reasonStopped", in: json, context: &instCtx, owner: self) ?? reasonStopped
+		relatedArtifact = createInstances(of: RelatedArtifact.self, for: "relatedArtifact", in: json, context: &instCtx, owner: self) ?? relatedArtifact
+		site = createInstances(of: Reference.self, for: "site", in: json, context: &instCtx, owner: self) ?? site
+		sponsor = createInstance(type: Reference.self, for: "sponsor", in: json, context: &instCtx, owner: self) ?? sponsor
+		status = createEnum(type: ResearchStudyStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
-		
-		return errors.isEmpty ? nil : errors
+		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -178,17 +176,15 @@ open class ResearchStudyArm: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "name"))
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -68,26 +68,24 @@ open class Location: DomainResource {
 	public var type: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		address = try createInstance(type: Address.self, for: "address", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? address
-		alias = try createInstances(of: FHIRString.self, for: "alias", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? alias
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		endpoint = try createInstances(of: Reference.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		managingOrganization = try createInstance(type: Reference.self, for: "managingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? managingOrganization
-		mode = createEnum(type: LocationMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		operationalStatus = try createInstance(type: Coding.self, for: "operationalStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? operationalStatus
-		partOf = try createInstance(type: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
-		physicalType = try createInstance(type: CodeableConcept.self, for: "physicalType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? physicalType
-		position = try createInstance(type: LocationPosition.self, for: "position", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? position
-		status = createEnum(type: LocationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		telecom = try createInstances(of: ContactPoint.self, for: "telecom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? telecom
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		address = createInstance(type: Address.self, for: "address", in: json, context: &instCtx, owner: self) ?? address
+		alias = createInstances(of: FHIRString.self, for: "alias", in: json, context: &instCtx, owner: self) ?? alias
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		endpoint = createInstances(of: Reference.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		managingOrganization = createInstance(type: Reference.self, for: "managingOrganization", in: json, context: &instCtx, owner: self) ?? managingOrganization
+		mode = createEnum(type: LocationMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		operationalStatus = createInstance(type: Coding.self, for: "operationalStatus", in: json, context: &instCtx, owner: self) ?? operationalStatus
+		partOf = createInstance(type: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		physicalType = createInstance(type: CodeableConcept.self, for: "physicalType", in: json, context: &instCtx, owner: self) ?? physicalType
+		position = createInstance(type: LocationPosition.self, for: "position", in: json, context: &instCtx, owner: self) ?? position
+		status = createEnum(type: LocationStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -141,20 +139,18 @@ open class LocationPosition: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		altitude = try createInstance(type: FHIRDecimal.self, for: "altitude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? altitude
-		latitude = try createInstance(type: FHIRDecimal.self, for: "latitude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? latitude
-		if nil == latitude && !presentKeys.contains("latitude") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "latitude"))
+		altitude = createInstance(type: FHIRDecimal.self, for: "altitude", in: json, context: &instCtx, owner: self) ?? altitude
+		latitude = createInstance(type: FHIRDecimal.self, for: "latitude", in: json, context: &instCtx, owner: self) ?? latitude
+		if nil == latitude && !instCtx.containsKey("latitude") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "latitude"))
 		}
-		longitude = try createInstance(type: FHIRDecimal.self, for: "longitude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? longitude
-		if nil == longitude && !presentKeys.contains("longitude") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "longitude"))
+		longitude = createInstance(type: FHIRDecimal.self, for: "longitude", in: json, context: &instCtx, owner: self) ?? longitude
+		if nil == longitude && !instCtx.containsKey("longitude") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "longitude"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

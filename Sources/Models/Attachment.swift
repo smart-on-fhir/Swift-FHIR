@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -44,19 +44,17 @@ open class Attachment: Element {
 	public var url: FHIRURL?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contentType = try createInstance(type: FHIRString.self, for: "contentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentType
-		creation = try createInstance(type: DateTime.self, for: "creation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? creation
-		data = try createInstance(type: Base64Binary.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
-		hash = try createInstance(type: Base64Binary.self, for: "hash", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? hash
-		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
-		size = try createInstance(type: FHIRInteger.self, for: "size", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? size
-		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		
-		return errors.isEmpty ? nil : errors
+		contentType = createInstance(type: FHIRString.self, for: "contentType", in: json, context: &instCtx, owner: self) ?? contentType
+		creation = createInstance(type: DateTime.self, for: "creation", in: json, context: &instCtx, owner: self) ?? creation
+		data = createInstance(type: Base64Binary.self, for: "data", in: json, context: &instCtx, owner: self) ?? data
+		hash = createInstance(type: Base64Binary.self, for: "hash", in: json, context: &instCtx, owner: self) ?? hash
+		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
+		size = createInstance(type: FHIRInteger.self, for: "size", in: json, context: &instCtx, owner: self) ?? size
+		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

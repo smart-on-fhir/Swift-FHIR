@@ -33,7 +33,7 @@ class ValidationTests: XCTestCase {
 		}
 		catch let error as FHIRValidationError {
 			let lines = error.description.components(separatedBy: CharacterSet.newlines)
-			print(lines.joined(separator: "\n"))
+			//print(lines.joined(separator: "\n"))
 			XCTAssertEqual(6, lines.count)
 			XCTAssertTrue(lines[0].hasPrefix("Questionnaire.resourceType: "), lines[0])
 			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.1.item.0.linkId: "), lines[1])
@@ -55,14 +55,15 @@ class ValidationTests: XCTestCase {
 		}
 		catch let error as FHIRValidationError {
 			let lines = error.description.components(separatedBy: CharacterSet.newlines)
+			//print(lines.joined(separator: "\n"))
 			XCTAssertEqual(7, lines.count)
-			XCTAssertTrue(lines[0].hasPrefix("Questionnaire.item.1.item.0.type: "), lines[0])
-			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.1.item.1.type: "), lines[1])
-			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.2.option.0.value[x]: "), lines[2])
-			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.option.0.valueNumber: "), lines[3])
-			XCTAssertTrue(lines[4].hasPrefix("Questionnaire.item.2.option.1.valueCoding.code: "), lines[4])
-			XCTAssertTrue(lines[5].hasPrefix("Questionnaire.status: "), lines[5])
-			XCTAssertTrue(lines[6].hasPrefix("Questionnaire.versino: "), lines[6])
+			XCTAssertTrue(lines[0].hasPrefix("Questionnaire.item.1.item.0.type: "), lines[0])                 // expecting property “type” to be `String`, but is `__NSSingleObjectArrayI`
+			XCTAssertTrue(lines[1].hasPrefix("Questionnaire.item.1.item.1.type: "), lines[1])                 // problem with property “type”: “invalid” is not valid
+			XCTAssertTrue(lines[2].hasPrefix("Questionnaire.item.2.option.0.value[x]: "), lines[2])           // mandatory property “value[x]” is missing
+			XCTAssertTrue(lines[3].hasPrefix("Questionnaire.item.2.option.0.valueNumber: "), lines[3])        // superfluous property “valueNumber” of type `__NSCFString`
+			XCTAssertTrue(lines[4].hasPrefix("Questionnaire.item.2.option.1.valueCoding.code: "), lines[4])   // expecting property “code” to be `String`, but is `__NSCFNumber`
+			XCTAssertTrue(lines[5].hasPrefix("Questionnaire.status: "), lines[5])                             // problem with property “status”: “punished” is not valid
+			XCTAssertTrue(lines[6].hasPrefix("Questionnaire.versino: "), lines[6])                            // superfluous property “versino” of type `NSTaggedPointerString`
 		}
 		catch let error {
 			XCTAssertNil(error, "Should not have gotten this error")

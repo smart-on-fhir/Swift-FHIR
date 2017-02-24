@@ -24,8 +24,11 @@ public protocol FHIRRequestHandler {
 	/// Headers to be used on the request.
 	var headers: FHIRRequestHeaders { get }
 	
+	/// Request parameters to pass along.
+	var parameters: FHIRRequestParameters { get set }
+	
 	/// Request options to pass along.
-	var options: [FHIRRequestOption: String]? { get set }
+	var options: FHIRRequestOption { get set }
 	
 	/// The receiver may hold on to a resource that supplies the request's body data.
 	var resource: Resource? { get set }

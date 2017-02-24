@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -30,15 +30,13 @@ open class OperationOutcome: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		issue = try createInstances(of: OperationOutcomeIssue.self, for: "issue", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issue
-		if (nil == issue || issue!.isEmpty) && !presentKeys.contains("issue") {
-			errors.append(FHIRValidationError(missing: "issue"))
+		issue = createInstances(of: OperationOutcomeIssue.self, for: "issue", in: json, context: &instCtx, owner: self) ?? issue
+		if (nil == issue || issue!.isEmpty) && !instCtx.containsKey("issue") {
+			instCtx.addError(FHIRValidationError(missing: "issue"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -90,23 +88,21 @@ open class OperationOutcomeIssue: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = createEnum(type: IssueType.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
+		code = createEnum(type: IssueType.self, for: "code", in: json, context: &instCtx) ?? code
+		if nil == code && !instCtx.containsKey("code") {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		details = try createInstance(type: CodeableConcept.self, for: "details", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? details
-		diagnostics = try createInstance(type: FHIRString.self, for: "diagnostics", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? diagnostics
-		expression = try createInstances(of: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
-		location = try createInstances(of: FHIRString.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		severity = createEnum(type: IssueSeverity.self, for: "severity", in: json, presentKeys: &presentKeys, errors: &errors) ?? severity
-		if nil == severity && !presentKeys.contains("severity") {
-			errors.append(FHIRValidationError(missing: "severity"))
+		details = createInstance(type: CodeableConcept.self, for: "details", in: json, context: &instCtx, owner: self) ?? details
+		diagnostics = createInstance(type: FHIRString.self, for: "diagnostics", in: json, context: &instCtx, owner: self) ?? diagnostics
+		expression = createInstances(of: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
+		location = createInstances(of: FHIRString.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
+		severity = createEnum(type: IssueSeverity.self, for: "severity", in: json, context: &instCtx) ?? severity
+		if nil == severity && !instCtx.containsKey("severity") {
+			instCtx.addError(FHIRValidationError(missing: "severity"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

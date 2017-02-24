@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -113,46 +113,44 @@ open class MedicationStatement: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
-		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		dateAsserted = try createInstance(type: DateTime.self, for: "dateAsserted", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateAsserted
-		derivedFrom = try createInstances(of: Reference.self, for: "derivedFrom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? derivedFrom
-		dosage = try createInstances(of: Dosage.self, for: "dosage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dosage
-		effectiveDateTime = try createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveDateTime
-		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		informationSource = try createInstance(type: Reference.self, for: "informationSource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? informationSource
-		medicationCodeableConcept = try createInstance(type: CodeableConcept.self, for: "medicationCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? medicationCodeableConcept
-		medicationReference = try createInstance(type: Reference.self, for: "medicationReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? medicationReference
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
-		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
-		reasonNotTaken = try createInstances(of: CodeableConcept.self, for: "reasonNotTaken", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonNotTaken
-		reasonReference = try createInstances(of: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
-		status = createEnum(type: MedicationStatementStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
+		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		dateAsserted = createInstance(type: DateTime.self, for: "dateAsserted", in: json, context: &instCtx, owner: self) ?? dateAsserted
+		derivedFrom = createInstances(of: Reference.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
+		dosage = createInstances(of: Dosage.self, for: "dosage", in: json, context: &instCtx, owner: self) ?? dosage
+		effectiveDateTime = createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, context: &instCtx, owner: self) ?? effectiveDateTime
+		effectivePeriod = createInstance(type: Period.self, for: "effectivePeriod", in: json, context: &instCtx, owner: self) ?? effectivePeriod
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		informationSource = createInstance(type: Reference.self, for: "informationSource", in: json, context: &instCtx, owner: self) ?? informationSource
+		medicationCodeableConcept = createInstance(type: CodeableConcept.self, for: "medicationCodeableConcept", in: json, context: &instCtx, owner: self) ?? medicationCodeableConcept
+		medicationReference = createInstance(type: Reference.self, for: "medicationReference", in: json, context: &instCtx, owner: self) ?? medicationReference
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
+		reasonNotTaken = createInstances(of: CodeableConcept.self, for: "reasonNotTaken", in: json, context: &instCtx, owner: self) ?? reasonNotTaken
+		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
+		status = createEnum(type: MedicationStatementStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		if nil == subject && !presentKeys.contains("subject") {
-			errors.append(FHIRValidationError(missing: "subject"))
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		if nil == subject && !instCtx.containsKey("subject") {
+			instCtx.addError(FHIRValidationError(missing: "subject"))
 		}
-		taken = createEnum(type: MedicationStatementTaken.self, for: "taken", in: json, presentKeys: &presentKeys, errors: &errors) ?? taken
-		if nil == taken && !presentKeys.contains("taken") {
-			errors.append(FHIRValidationError(missing: "taken"))
+		taken = createEnum(type: MedicationStatementTaken.self, for: "taken", in: json, context: &instCtx) ?? taken
+		if nil == taken && !instCtx.containsKey("taken") {
+			instCtx.addError(FHIRValidationError(missing: "taken"))
 		}
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.medicationCodeableConcept && nil == self.medicationReference {
-			errors.append(FHIRValidationError(missing: "medication[x]"))
+			instCtx.addError(FHIRValidationError(missing: "medication[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

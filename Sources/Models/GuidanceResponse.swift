@@ -2,7 +2,7 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -79,32 +79,30 @@ open class GuidanceResponse: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		dataRequirement = try createInstances(of: DataRequirement.self, for: "dataRequirement", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dataRequirement
-		evaluationMessage = try createInstances(of: Reference.self, for: "evaluationMessage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? evaluationMessage
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		module = try createInstance(type: Reference.self, for: "module", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? module
-		if nil == module && !presentKeys.contains("module") {
-			errors.append(FHIRValidationError(missing: "module"))
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		dataRequirement = createInstances(of: DataRequirement.self, for: "dataRequirement", in: json, context: &instCtx, owner: self) ?? dataRequirement
+		evaluationMessage = createInstances(of: Reference.self, for: "evaluationMessage", in: json, context: &instCtx, owner: self) ?? evaluationMessage
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		module = createInstance(type: Reference.self, for: "module", in: json, context: &instCtx, owner: self) ?? module
+		if nil == module && !instCtx.containsKey("module") {
+			instCtx.addError(FHIRValidationError(missing: "module"))
 		}
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		occurrenceDateTime = try createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceDateTime
-		outputParameters = try createInstance(type: Reference.self, for: "outputParameters", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outputParameters
-		performer = try createInstance(type: Reference.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
-		reasonCodeableConcept = try createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
-		reasonReference = try createInstance(type: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
-		requestId = try createInstance(type: FHIRString.self, for: "requestId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestId
-		result = try createInstance(type: Reference.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? result
-		status = createEnum(type: GuidanceResponseStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
+		outputParameters = createInstance(type: Reference.self, for: "outputParameters", in: json, context: &instCtx, owner: self) ?? outputParameters
+		performer = createInstance(type: Reference.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
+		reasonCodeableConcept = createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, context: &instCtx, owner: self) ?? reasonCodeableConcept
+		reasonReference = createInstance(type: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
+		requestId = createInstance(type: FHIRString.self, for: "requestId", in: json, context: &instCtx, owner: self) ?? requestId
+		result = createInstance(type: Reference.self, for: "result", in: json, context: &instCtx, owner: self) ?? result
+		status = createEnum(type: GuidanceResponseStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		
-		return errors.isEmpty ? nil : errors
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

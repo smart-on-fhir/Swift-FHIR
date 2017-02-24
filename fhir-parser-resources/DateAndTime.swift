@@ -93,7 +93,11 @@ public struct FHIRDate: DateAndTime {
 	- parameter string: The string to parse the date from
 	*/
 	public init?(string: String) {
-		do { try self.init(json: string) }
+		do {
+			var ctx = FHIRInstantiationContext()
+			self.init(json: string, owner: nil, context: &ctx)
+			try ctx.validate()
+		}
 		catch let error {
 			fhir_logIfDebug("\(error)")
 			return nil
@@ -105,13 +109,16 @@ public struct FHIRDate: DateAndTime {
 	
 	public typealias JSONType = String
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
-		guard let date = DateAndTimeParser.shared.parse(string: json).date else {
-			throw FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))")
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
+		if let date = DateAndTimeParser.shared.parse(string: json).date {
+			year = date.year
+			month = date.month
+			day = date.day
 		}
-		year = date.year
-		month = date.month
-		day = date.day
+		else {
+			context.addError(FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))"))
+			year = 0
+		}
 		_owner = owner
 	}
 	
@@ -279,7 +286,11 @@ public struct FHIRTime: DateAndTime {
 	Will fail unless the string contains at least hour and minute.
 	*/
 	public init?(string: String) {
-		do { try self.init(json: string) }
+		do {
+			var ctx = FHIRInstantiationContext()
+			self.init(json: string, owner: nil, context: &ctx)
+			try ctx.validate()
+		}
 		catch let error {
 			fhir_logIfDebug("\(error)")
 			return nil
@@ -291,14 +302,18 @@ public struct FHIRTime: DateAndTime {
 	
 	public typealias JSONType = String
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
-		guard let time = DateAndTimeParser.shared.parse(string: json, isTimeOnly: true).time else {
-			throw FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))")
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
+		if let time = DateAndTimeParser.shared.parse(string: json, isTimeOnly: true).time {
+			hour = time.hour
+			minute = time.minute
+			second = time.second
+			tookSecondsFromString = time.tookSecondsFromString
 		}
-		hour = time.hour
-		minute = time.minute
-		second = time.second
-		tookSecondsFromString = time.tookSecondsFromString
+		else {
+			context.addError(FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))"))
+			hour = 0
+			minute = 0
+		}
 		_owner = owner
 	}
 	
@@ -432,7 +447,11 @@ public struct DateTime: DateAndTime {
 	- parameter string: The string the date-time is parsed from
 	*/
 	public init?(string: String) {
-		do { try self.init(json: string) }
+		do {
+			var ctx = FHIRInstantiationContext()
+			self.init(json: string, owner: nil, context: &ctx)
+			try ctx.validate()
+		}
 		catch let error {
 			fhir_logIfDebug("\(error)")
 			return nil
@@ -444,16 +463,19 @@ public struct DateTime: DateAndTime {
 	
 	public typealias JSONType = String
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
 		let dt = DateAndTimeParser.shared.parse(string: json)
-		guard let date = dt.date else {
-			throw FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))")
+		if let date = dt.date {
+			self.date = date
+			if let time = dt.time {
+				self.time = time
+				self.timeZone = dt.tz ?? TimeZone.current
+				self.timeZoneString = dt.tzString
+			}
 		}
-		self.date = date
-		if let time = dt.time {
-			self.time = time
-			self.timeZone = dt.tz ?? TimeZone.current
-			self.timeZoneString = dt.tzString
+		else {
+			context.addError(FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))"))
+			date = FHIRDate(year: 0, month: nil, day: nil)
 		}
 		_owner = owner
 	}
@@ -579,7 +601,11 @@ public struct Instant: DateAndTime {
 	- parameter string: The string to parse the instant from
 	*/
 	public init?(string: String) {
-		do { try self.init(json: string) }
+		do {
+			var ctx = FHIRInstantiationContext()
+			self.init(json: string, owner: nil, context: &ctx)
+			try ctx.validate()
+		}
 		catch let error {
 			fhir_logIfDebug("\(error)")
 			return nil
@@ -591,15 +617,20 @@ public struct Instant: DateAndTime {
 	
 	public typealias JSONType = String
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
 		let dt = DateAndTimeParser.shared.parse(string: json)
-		guard let date = dt.date, let time = dt.time, let tz = dt.tz, let tzString = dt.tzString, nil != date.month, nil != date.day, nil != time.second else {
-			throw FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))")
+		if let date = dt.date, let time = dt.time, let tz = dt.tz, let tzString = dt.tzString, nil != date.month, nil != date.day, nil != time.second {
+			self.date = date
+			self.time = time
+			self.timeZone = tz
+			self.timeZoneString = tzString
 		}
-		self.date = date
-		self.time = time
-		self.timeZone = tz
-		self.timeZoneString = tzString
+		else {
+			date = FHIRDate(year: 0, month: nil, day: nil)
+			time = FHIRTime(hour: 0, minute: 0, second: nil)
+			timeZone = TimeZone(secondsFromGMT: 0)!
+			context.addError(FHIRValidationError(key: "", problem: "the string “\(json)” could not be parsed into a \(type(of: self))"))
+		}
 		_owner = owner
 	}
 	

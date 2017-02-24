@@ -2,7 +2,7 @@
 //  Range.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -26,13 +26,11 @@ open class Range: Element {
 	public var low: Quantity?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		high = try createInstance(type: Quantity.self, for: "high", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? high
-		low = try createInstance(type: Quantity.self, for: "low", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? low
-		
-		return errors.isEmpty ? nil : errors
+		high = createInstance(type: Quantity.self, for: "high", in: json, context: &instCtx, owner: self) ?? high
+		low = createInstance(type: Quantity.self, for: "low", in: json, context: &instCtx, owner: self) ?? low
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

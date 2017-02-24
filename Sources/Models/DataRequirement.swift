@@ -2,7 +2,7 @@
 //  DataRequirement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -43,19 +43,17 @@ open class DataRequirement: Element {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		codeFilter = try createInstances(of: DataRequirementCodeFilter.self, for: "codeFilter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? codeFilter
-		dateFilter = try createInstances(of: DataRequirementDateFilter.self, for: "dateFilter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateFilter
-		mustSupport = try createInstances(of: FHIRString.self, for: "mustSupport", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? mustSupport
-		profile = try createInstances(of: FHIRURL.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		codeFilter = createInstances(of: DataRequirementCodeFilter.self, for: "codeFilter", in: json, context: &instCtx, owner: self) ?? codeFilter
+		dateFilter = createInstances(of: DataRequirementDateFilter.self, for: "dateFilter", in: json, context: &instCtx, owner: self) ?? dateFilter
+		mustSupport = createInstances(of: FHIRString.self, for: "mustSupport", in: json, context: &instCtx, owner: self) ?? mustSupport
+		profile = createInstances(of: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -110,20 +108,18 @@ open class DataRequirementCodeFilter: Element {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		path = try createInstance(type: FHIRString.self, for: "path", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? path
-		if nil == path && !presentKeys.contains("path") {
-			errors.append(FHIRValidationError(missing: "path"))
+		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path
+		if nil == path && !instCtx.containsKey("path") {
+			instCtx.addError(FHIRValidationError(missing: "path"))
 		}
-		valueCode = try createInstances(of: FHIRString.self, for: "valueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCode
-		valueCodeableConcept = try createInstances(of: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
-		valueCoding = try createInstances(of: Coding.self, for: "valueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCoding
-		valueSetReference = try createInstance(type: Reference.self, for: "valueSetReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSetReference
-		valueSetString = try createInstance(type: FHIRString.self, for: "valueSetString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueSetString
-		
-		return errors.isEmpty ? nil : errors
+		valueCode = createInstances(of: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
+		valueCodeableConcept = createInstances(of: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
+		valueCoding = createInstances(of: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
+		valueSetReference = createInstance(type: Reference.self, for: "valueSetReference", in: json, context: &instCtx, owner: self) ?? valueSetReference
+		valueSetString = createInstance(type: FHIRString.self, for: "valueSetString", in: json, context: &instCtx, owner: self) ?? valueSetString
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -172,18 +168,16 @@ open class DataRequirementDateFilter: Element {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		path = try createInstance(type: FHIRString.self, for: "path", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? path
-		if nil == path && !presentKeys.contains("path") {
-			errors.append(FHIRValidationError(missing: "path"))
+		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path
+		if nil == path && !instCtx.containsKey("path") {
+			instCtx.addError(FHIRValidationError(missing: "path"))
 		}
-		valueDateTime = try createInstance(type: DateTime.self, for: "valueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDateTime
-		valueDuration = try createInstance(type: Duration.self, for: "valueDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDuration
-		valuePeriod = try createInstance(type: Period.self, for: "valuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valuePeriod
-		
-		return errors.isEmpty ? nil : errors
+		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
+		valueDuration = createInstance(type: Duration.self, for: "valueDuration", in: json, context: &instCtx, owner: self) ?? valueDuration
+		valuePeriod = createInstance(type: Period.self, for: "valuePeriod", in: json, context: &instCtx, owner: self) ?? valuePeriod
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

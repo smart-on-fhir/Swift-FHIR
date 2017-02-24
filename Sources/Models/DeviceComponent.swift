@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -59,30 +59,28 @@ open class DeviceComponent: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
-			errors.append(FHIRValidationError(missing: "identifier"))
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		if nil == identifier && !instCtx.containsKey("identifier") {
+			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
-		languageCode = try createInstance(type: CodeableConcept.self, for: "languageCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? languageCode
-		lastSystemChange = try createInstance(type: Instant.self, for: "lastSystemChange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastSystemChange
-		if nil == lastSystemChange && !presentKeys.contains("lastSystemChange") {
-			errors.append(FHIRValidationError(missing: "lastSystemChange"))
+		languageCode = createInstance(type: CodeableConcept.self, for: "languageCode", in: json, context: &instCtx, owner: self) ?? languageCode
+		lastSystemChange = createInstance(type: Instant.self, for: "lastSystemChange", in: json, context: &instCtx, owner: self) ?? lastSystemChange
+		if nil == lastSystemChange && !instCtx.containsKey("lastSystemChange") {
+			instCtx.addError(FHIRValidationError(missing: "lastSystemChange"))
 		}
-		measurementPrinciple = createEnum(type: MeasmntPrinciple.self, for: "measurementPrinciple", in: json, presentKeys: &presentKeys, errors: &errors) ?? measurementPrinciple
-		operationalStatus = try createInstances(of: CodeableConcept.self, for: "operationalStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? operationalStatus
-		parameterGroup = try createInstance(type: CodeableConcept.self, for: "parameterGroup", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parameterGroup
-		parent = try createInstance(type: Reference.self, for: "parent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parent
-		productionSpecification = try createInstances(of: DeviceComponentProductionSpecification.self, for: "productionSpecification", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? productionSpecification
-		source = try createInstance(type: Reference.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		measurementPrinciple = createEnum(type: MeasmntPrinciple.self, for: "measurementPrinciple", in: json, context: &instCtx) ?? measurementPrinciple
+		operationalStatus = createInstances(of: CodeableConcept.self, for: "operationalStatus", in: json, context: &instCtx, owner: self) ?? operationalStatus
+		parameterGroup = createInstance(type: CodeableConcept.self, for: "parameterGroup", in: json, context: &instCtx, owner: self) ?? parameterGroup
+		parent = createInstance(type: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
+		productionSpecification = createInstances(of: DeviceComponentProductionSpecification.self, for: "productionSpecification", in: json, context: &instCtx, owner: self) ?? productionSpecification
+		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -131,14 +129,12 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 	public var specType: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		componentId = try createInstance(type: Identifier.self, for: "componentId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? componentId
-		productionSpec = try createInstance(type: FHIRString.self, for: "productionSpec", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? productionSpec
-		specType = try createInstance(type: CodeableConcept.self, for: "specType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specType
-		
-		return errors.isEmpty ? nil : errors
+		componentId = createInstance(type: Identifier.self, for: "componentId", in: json, context: &instCtx, owner: self) ?? componentId
+		productionSpec = createInstance(type: FHIRString.self, for: "productionSpec", in: json, context: &instCtx, owner: self) ?? productionSpec
+		specType = createInstance(type: CodeableConcept.self, for: "specType", in: json, context: &instCtx, owner: self) ?? specType
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

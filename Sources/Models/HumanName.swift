@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -41,18 +41,16 @@ open class HumanName: Element {
 	public var use: NameUse?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		family = try createInstance(type: FHIRString.self, for: "family", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? family
-		given = try createInstances(of: FHIRString.self, for: "given", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? given
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		prefix = try createInstances(of: FHIRString.self, for: "prefix", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? prefix
-		suffix = try createInstances(of: FHIRString.self, for: "suffix", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? suffix
-		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		use = createEnum(type: NameUse.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors) ?? use
-		
-		return errors.isEmpty ? nil : errors
+		family = createInstance(type: FHIRString.self, for: "family", in: json, context: &instCtx, owner: self) ?? family
+		given = createInstances(of: FHIRString.self, for: "given", in: json, context: &instCtx, owner: self) ?? given
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		prefix = createInstances(of: FHIRString.self, for: "prefix", in: json, context: &instCtx, owner: self) ?? prefix
+		suffix = createInstances(of: FHIRString.self, for: "suffix", in: json, context: &instCtx, owner: self) ?? suffix
+		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
+		use = createEnum(type: NameUse.self, for: "use", in: json, context: &instCtx) ?? use
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

@@ -2,7 +2,7 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -115,56 +115,54 @@ open class CapabilityStatement: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		acceptUnknown = createEnum(type: UnknownContentCode.self, for: "acceptUnknown", in: json, presentKeys: &presentKeys, errors: &errors) ?? acceptUnknown
-		if nil == acceptUnknown && !presentKeys.contains("acceptUnknown") {
-			errors.append(FHIRValidationError(missing: "acceptUnknown"))
+		acceptUnknown = createEnum(type: UnknownContentCode.self, for: "acceptUnknown", in: json, context: &instCtx) ?? acceptUnknown
+		if nil == acceptUnknown && !instCtx.containsKey("acceptUnknown") {
+			instCtx.addError(FHIRValidationError(missing: "acceptUnknown"))
 		}
-		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		copyright = try createInstance(type: FHIRString.self, for: "copyright", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? copyright
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		if nil == date && !presentKeys.contains("date") {
-			errors.append(FHIRValidationError(missing: "date"))
+		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		copyright = createInstance(type: FHIRString.self, for: "copyright", in: json, context: &instCtx, owner: self) ?? copyright
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		if nil == date && !instCtx.containsKey("date") {
+			instCtx.addError(FHIRValidationError(missing: "date"))
 		}
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		document = try createInstances(of: CapabilityStatementDocument.self, for: "document", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? document
-		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
-		fhirVersion = try createInstance(type: FHIRString.self, for: "fhirVersion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fhirVersion
-		if nil == fhirVersion && !presentKeys.contains("fhirVersion") {
-			errors.append(FHIRValidationError(missing: "fhirVersion"))
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		document = createInstances(of: CapabilityStatementDocument.self, for: "document", in: json, context: &instCtx, owner: self) ?? document
+		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
+		fhirVersion = createInstance(type: FHIRString.self, for: "fhirVersion", in: json, context: &instCtx, owner: self) ?? fhirVersion
+		if nil == fhirVersion && !instCtx.containsKey("fhirVersion") {
+			instCtx.addError(FHIRValidationError(missing: "fhirVersion"))
 		}
-		format = try createInstances(of: FHIRString.self, for: "format", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? format
-		if (nil == format || format!.isEmpty) && !presentKeys.contains("format") {
-			errors.append(FHIRValidationError(missing: "format"))
+		format = createInstances(of: FHIRString.self, for: "format", in: json, context: &instCtx, owner: self) ?? format
+		if (nil == format || format!.isEmpty) && !instCtx.containsKey("format") {
+			instCtx.addError(FHIRValidationError(missing: "format"))
 		}
-		implementation = try createInstance(type: CapabilityStatementImplementation.self, for: "implementation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? implementation
-		implementationGuide = try createInstances(of: FHIRURL.self, for: "implementationGuide", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? implementationGuide
-		instantiates = try createInstances(of: FHIRURL.self, for: "instantiates", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instantiates
-		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
-		kind = createEnum(type: CapabilityStatementKind.self, for: "kind", in: json, presentKeys: &presentKeys, errors: &errors) ?? kind
-		if nil == kind && !presentKeys.contains("kind") {
-			errors.append(FHIRValidationError(missing: "kind"))
+		implementation = createInstance(type: CapabilityStatementImplementation.self, for: "implementation", in: json, context: &instCtx, owner: self) ?? implementation
+		implementationGuide = createInstances(of: FHIRURL.self, for: "implementationGuide", in: json, context: &instCtx, owner: self) ?? implementationGuide
+		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
+		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
+		kind = createEnum(type: CapabilityStatementKind.self, for: "kind", in: json, context: &instCtx) ?? kind
+		if nil == kind && !instCtx.containsKey("kind") {
+			instCtx.addError(FHIRValidationError(missing: "kind"))
 		}
-		messaging = try createInstances(of: CapabilityStatementMessaging.self, for: "messaging", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? messaging
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		patchFormat = try createInstances(of: FHIRString.self, for: "patchFormat", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patchFormat
-		profile = try createInstances(of: Reference.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
-		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
-		purpose = try createInstance(type: FHIRString.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
-		rest = try createInstances(of: CapabilityStatementRest.self, for: "rest", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rest
-		software = try createInstance(type: CapabilityStatementSoftware.self, for: "software", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? software
-		status = createEnum(type: PublicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		messaging = createInstances(of: CapabilityStatementMessaging.self, for: "messaging", in: json, context: &instCtx, owner: self) ?? messaging
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		patchFormat = createInstances(of: FHIRString.self, for: "patchFormat", in: json, context: &instCtx, owner: self) ?? patchFormat
+		profile = createInstances(of: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
+		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
+		rest = createInstances(of: CapabilityStatementRest.self, for: "rest", in: json, context: &instCtx, owner: self) ?? rest
+		software = createInstance(type: CapabilityStatementSoftware.self, for: "software", in: json, context: &instCtx, owner: self) ?? software
+		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		useContext = try createInstances(of: UsageContext.self, for: "useContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? useContext
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -247,20 +245,18 @@ open class CapabilityStatementDocument: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		mode = createEnum(type: DocumentMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "mode"))
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		mode = createEnum(type: DocumentMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		profile = try createInstance(type: Reference.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
-		if nil == profile && !presentKeys.contains("profile") {
-			errors.append(FHIRValidationError(missing: "profile"))
+		profile = createInstance(type: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		if nil == profile && !instCtx.containsKey("profile") {
+			instCtx.addError(FHIRValidationError(missing: "profile"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -304,16 +300,14 @@ open class CapabilityStatementImplementation: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		if nil == description_fhir && !presentKeys.contains("description") {
-			errors.append(FHIRValidationError(missing: "description"))
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		if nil == description_fhir && !instCtx.containsKey("description") {
+			instCtx.addError(FHIRValidationError(missing: "description"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		
-		return errors.isEmpty ? nil : errors
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -354,16 +348,14 @@ open class CapabilityStatementMessaging: BackboneElement {
 	public var supportedMessage: [CapabilityStatementMessagingSupportedMessage]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		endpoint = try createInstances(of: CapabilityStatementMessagingEndpoint.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		event = try createInstances(of: CapabilityStatementMessagingEvent.self, for: "event", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? event
-		reliableCache = try createInstance(type: FHIRInteger.self, for: "reliableCache", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reliableCache
-		supportedMessage = try createInstances(of: CapabilityStatementMessagingSupportedMessage.self, for: "supportedMessage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportedMessage
-		
-		return errors.isEmpty ? nil : errors
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		endpoint = createInstances(of: CapabilityStatementMessagingEndpoint.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
+		event = createInstances(of: CapabilityStatementMessagingEvent.self, for: "event", in: json, context: &instCtx, owner: self) ?? event
+		reliableCache = createInstance(type: FHIRInteger.self, for: "reliableCache", in: json, context: &instCtx, owner: self) ?? reliableCache
+		supportedMessage = createInstances(of: CapabilityStatementMessagingSupportedMessage.self, for: "supportedMessage", in: json, context: &instCtx, owner: self) ?? supportedMessage
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -403,19 +395,17 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		address = try createInstance(type: FHIRURL.self, for: "address", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? address
-		if nil == address && !presentKeys.contains("address") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "address"))
+		address = createInstance(type: FHIRURL.self, for: "address", in: json, context: &instCtx, owner: self) ?? address
+		if nil == address && !instCtx.containsKey("address") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "address"))
 		}
-		protocol_fhir = try createInstance(type: Coding.self, for: "protocol", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? protocol_fhir
-		if nil == protocol_fhir && !presentKeys.contains("protocol") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "protocol"))
+		protocol_fhir = createInstance(type: Coding.self, for: "protocol", in: json, context: &instCtx, owner: self) ?? protocol_fhir
+		if nil == protocol_fhir && !instCtx.containsKey("protocol") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "protocol"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -476,33 +466,31 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		category = createEnum(type: MessageSignificanceCategory.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors) ?? category
-		code = try createInstance(type: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
+		category = createEnum(type: MessageSignificanceCategory.self, for: "category", in: json, context: &instCtx) ?? category
+		code = createInstance(type: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		if nil == code && !instCtx.containsKey("code") {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		focus = try createInstance(type: FHIRString.self, for: "focus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? focus
-		if nil == focus && !presentKeys.contains("focus") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "focus"))
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		focus = createInstance(type: FHIRString.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
+		if nil == focus && !instCtx.containsKey("focus") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "focus"))
 		}
-		mode = createEnum(type: EventCapabilityMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "mode"))
+		mode = createEnum(type: EventCapabilityMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		request = try createInstance(type: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
-		if nil == request && !presentKeys.contains("request") {
-			errors.append(FHIRValidationError(missing: "request"))
+		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
+		if nil == request && !instCtx.containsKey("request") {
+			instCtx.addError(FHIRValidationError(missing: "request"))
 		}
-		response = try createInstance(type: Reference.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? response
-		if nil == response && !presentKeys.contains("response") {
-			errors.append(FHIRValidationError(missing: "response"))
+		response = createInstance(type: Reference.self, for: "response", in: json, context: &instCtx, owner: self) ?? response
+		if nil == response && !instCtx.containsKey("response") {
+			instCtx.addError(FHIRValidationError(missing: "response"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -559,19 +547,17 @@ open class CapabilityStatementMessagingSupportedMessage: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		definition = try createInstance(type: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
-		if nil == definition && !presentKeys.contains("definition") {
-			errors.append(FHIRValidationError(missing: "definition"))
+		definition = createInstance(type: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		if nil == definition && !instCtx.containsKey("definition") {
+			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}
-		mode = createEnum(type: EventCapabilityMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
-			errors.append(FHIRValidationError(missing: "mode"))
+		mode = createEnum(type: EventCapabilityMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") {
+			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -632,22 +618,20 @@ open class CapabilityStatementRest: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		compartment = try createInstances(of: FHIRURL.self, for: "compartment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? compartment
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		interaction = try createInstances(of: CapabilityStatementRestInteraction.self, for: "interaction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? interaction
-		mode = createEnum(type: RestfulCapabilityMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
-			errors.append(FHIRValidationError(missing: "mode"))
+		compartment = createInstances(of: FHIRURL.self, for: "compartment", in: json, context: &instCtx, owner: self) ?? compartment
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		interaction = createInstances(of: CapabilityStatementRestInteraction.self, for: "interaction", in: json, context: &instCtx, owner: self) ?? interaction
+		mode = createEnum(type: RestfulCapabilityMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") {
+			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		operation = try createInstances(of: CapabilityStatementRestOperation.self, for: "operation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? operation
-		resource = try createInstances(of: CapabilityStatementRestResource.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
-		searchParam = try createInstances(of: CapabilityStatementRestResourceSearchParam.self, for: "searchParam", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? searchParam
-		security = try createInstance(type: CapabilityStatementRestSecurity.self, for: "security", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? security
-		
-		return errors.isEmpty ? nil : errors
+		operation = createInstances(of: CapabilityStatementRestOperation.self, for: "operation", in: json, context: &instCtx, owner: self) ?? operation
+		resource = createInstances(of: CapabilityStatementRestResource.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
+		searchParam = createInstances(of: CapabilityStatementRestResourceSearchParam.self, for: "searchParam", in: json, context: &instCtx, owner: self) ?? searchParam
+		security = createInstance(type: CapabilityStatementRestSecurity.self, for: "security", in: json, context: &instCtx, owner: self) ?? security
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -693,16 +677,14 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "code"))
+		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, context: &instCtx) ?? code
+		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		
-		return errors.isEmpty ? nil : errors
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -742,19 +724,17 @@ open class CapabilityStatementRestOperation: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		definition = try createInstance(type: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
-		if nil == definition && !presentKeys.contains("definition") {
-			errors.append(FHIRValidationError(missing: "definition"))
+		definition = createInstance(type: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		if nil == definition && !instCtx.containsKey("definition") {
+			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "name"))
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -839,32 +819,30 @@ open class CapabilityStatementRestResource: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		conditionalCreate = try createInstance(type: FHIRBool.self, for: "conditionalCreate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? conditionalCreate
-		conditionalDelete = createEnum(type: ConditionalDeleteStatus.self, for: "conditionalDelete", in: json, presentKeys: &presentKeys, errors: &errors) ?? conditionalDelete
-		conditionalRead = createEnum(type: ConditionalReadStatus.self, for: "conditionalRead", in: json, presentKeys: &presentKeys, errors: &errors) ?? conditionalRead
-		conditionalUpdate = try createInstance(type: FHIRBool.self, for: "conditionalUpdate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? conditionalUpdate
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		interaction = try createInstances(of: CapabilityStatementRestResourceInteraction.self, for: "interaction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? interaction
-		if (nil == interaction || interaction!.isEmpty) && !presentKeys.contains("interaction") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "interaction"))
+		conditionalCreate = createInstance(type: FHIRBool.self, for: "conditionalCreate", in: json, context: &instCtx, owner: self) ?? conditionalCreate
+		conditionalDelete = createEnum(type: ConditionalDeleteStatus.self, for: "conditionalDelete", in: json, context: &instCtx) ?? conditionalDelete
+		conditionalRead = createEnum(type: ConditionalReadStatus.self, for: "conditionalRead", in: json, context: &instCtx) ?? conditionalRead
+		conditionalUpdate = createInstance(type: FHIRBool.self, for: "conditionalUpdate", in: json, context: &instCtx, owner: self) ?? conditionalUpdate
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		interaction = createInstances(of: CapabilityStatementRestResourceInteraction.self, for: "interaction", in: json, context: &instCtx, owner: self) ?? interaction
+		if (nil == interaction || interaction!.isEmpty) && !instCtx.containsKey("interaction") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "interaction"))
 		}
-		profile = try createInstance(type: Reference.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
-		readHistory = try createInstance(type: FHIRBool.self, for: "readHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? readHistory
-		referencePolicy = createEnums(of: ReferenceHandlingPolicy.self, for: "referencePolicy", in: json, presentKeys: &presentKeys, errors: &errors) ?? referencePolicy
-		searchInclude = try createInstances(of: FHIRString.self, for: "searchInclude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? searchInclude
-		searchParam = try createInstances(of: CapabilityStatementRestResourceSearchParam.self, for: "searchParam", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? searchParam
-		searchRevInclude = try createInstances(of: FHIRString.self, for: "searchRevInclude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? searchRevInclude
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		profile = createInstance(type: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		readHistory = createInstance(type: FHIRBool.self, for: "readHistory", in: json, context: &instCtx, owner: self) ?? readHistory
+		referencePolicy = createEnums(of: ReferenceHandlingPolicy.self, for: "referencePolicy", in: json, context: &instCtx) ?? referencePolicy
+		searchInclude = createInstances(of: FHIRString.self, for: "searchInclude", in: json, context: &instCtx, owner: self) ?? searchInclude
+		searchParam = createInstances(of: CapabilityStatementRestResourceSearchParam.self, for: "searchParam", in: json, context: &instCtx, owner: self) ?? searchParam
+		searchRevInclude = createInstances(of: FHIRString.self, for: "searchRevInclude", in: json, context: &instCtx, owner: self) ?? searchRevInclude
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		updateCreate = try createInstance(type: FHIRBool.self, for: "updateCreate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? updateCreate
-		versioning = createEnum(type: ResourceVersionPolicy.self, for: "versioning", in: json, presentKeys: &presentKeys, errors: &errors) ?? versioning
-		
-		return errors.isEmpty ? nil : errors
+		updateCreate = createInstance(type: FHIRBool.self, for: "updateCreate", in: json, context: &instCtx, owner: self) ?? updateCreate
+		versioning = createEnum(type: ResourceVersionPolicy.self, for: "versioning", in: json, context: &instCtx) ?? versioning
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -920,16 +898,14 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors) ?? code
-		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "code"))
+		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, context: &instCtx) ?? code
+		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		
-		return errors.isEmpty ? nil : errors
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -976,21 +952,19 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		definition = try createInstance(type: FHIRURL.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "name"))
+		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		type = createEnum(type: SearchParamType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "type"))
+		type = createEnum(type: SearchParamType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -1033,15 +1007,13 @@ open class CapabilityStatementRestSecurity: BackboneElement {
 	public var service: [CodeableConcept]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		certificate = try createInstances(of: CapabilityStatementRestSecurityCertificate.self, for: "certificate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? certificate
-		cors = try createInstance(type: FHIRBool.self, for: "cors", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? cors
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		service = try createInstances(of: CodeableConcept.self, for: "service", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? service
-		
-		return errors.isEmpty ? nil : errors
+		certificate = createInstances(of: CapabilityStatementRestSecurityCertificate.self, for: "certificate", in: json, context: &instCtx, owner: self) ?? certificate
+		cors = createInstance(type: FHIRBool.self, for: "cors", in: json, context: &instCtx, owner: self) ?? cors
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		service = createInstances(of: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -1070,13 +1042,11 @@ open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 	public var type: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		blob = try createInstance(type: Base64Binary.self, for: "blob", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? blob
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		blob = createInstance(type: Base64Binary.self, for: "blob", in: json, context: &instCtx, owner: self) ?? blob
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -1116,17 +1086,15 @@ open class CapabilityStatementSoftware: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
-			errors.append(FHIRValidationError(missing: "name"))
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		releaseDate = try createInstance(type: DateTime.self, for: "releaseDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? releaseDate
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		releaseDate = createInstance(type: DateTime.self, for: "releaseDate", in: json, context: &instCtx, owner: self) ?? releaseDate
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

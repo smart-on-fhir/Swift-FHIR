@@ -23,8 +23,11 @@ open class FHIRBaseRequestHandler: FHIRRequestHandler {
 	/// Headers to be used on the request.
 	open var headers = FHIRRequestHeaders()
 	
+	/// Request parameters to pass along.
+	open var parameters = FHIRRequestParameters()
+	
 	/// Which options to apply.
-	open var options: [FHIRRequestOption: String]?
+	open var options: FHIRRequestOption
 	
 	/// The data to be used in the request body.
 	open var data: Data?
@@ -38,6 +41,7 @@ open class FHIRBaseRequestHandler: FHIRRequestHandler {
 	*/
 	public required init(_ method: FHIRRequestMethod, resource: Resource? = nil) {
 		self.method = method
+		self.options = []
 		self.resource = resource
 	}
 	
@@ -72,19 +76,15 @@ open class FHIRBaseRequestHandler: FHIRRequestHandler {
 	property and add appropriate query params.
 	*/
 	open func prepare(request: inout URLRequest) throws {
-		if let options = options, let url = request.url, var comps = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-			var query = comps.queryItems ?? []
-			for (param, value) in options {
-				query = query.filter() { param.rawValue != $0.name }
-				query.append(URLQueryItem(name: param.rawValue, value: value))
-			}
-			comps.queryItems = query
-			request.url = comps.url
+		var params = parameters
+		if options.contains(.summary) {
+			params[.summary] = FHIRRequestParameterField.Summary.true.rawValue
 		}
 		
 		try prepareData()
 		method.prepare(request: &request, body: data)
 		headers.prepare(request: &request)
+		params.prepare(request: &request)
 	}
 	
 	

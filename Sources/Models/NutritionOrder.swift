@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -64,29 +64,27 @@ open class NutritionOrder: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		allergyIntolerance = try createInstances(of: Reference.self, for: "allergyIntolerance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? allergyIntolerance
-		dateTime = try createInstance(type: DateTime.self, for: "dateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateTime
-		if nil == dateTime && !presentKeys.contains("dateTime") {
-			errors.append(FHIRValidationError(missing: "dateTime"))
+		allergyIntolerance = createInstances(of: Reference.self, for: "allergyIntolerance", in: json, context: &instCtx, owner: self) ?? allergyIntolerance
+		dateTime = createInstance(type: DateTime.self, for: "dateTime", in: json, context: &instCtx, owner: self) ?? dateTime
+		if nil == dateTime && !instCtx.containsKey("dateTime") {
+			instCtx.addError(FHIRValidationError(missing: "dateTime"))
 		}
-		encounter = try createInstance(type: Reference.self, for: "encounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? encounter
-		enteralFormula = try createInstance(type: NutritionOrderEnteralFormula.self, for: "enteralFormula", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enteralFormula
-		excludeFoodModifier = try createInstances(of: CodeableConcept.self, for: "excludeFoodModifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? excludeFoodModifier
-		foodPreferenceModifier = try createInstances(of: CodeableConcept.self, for: "foodPreferenceModifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? foodPreferenceModifier
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		oralDiet = try createInstance(type: NutritionOrderOralDiet.self, for: "oralDiet", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? oralDiet
-		orderer = try createInstance(type: Reference.self, for: "orderer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? orderer
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		if nil == patient && !presentKeys.contains("patient") {
-			errors.append(FHIRValidationError(missing: "patient"))
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
+		enteralFormula = createInstance(type: NutritionOrderEnteralFormula.self, for: "enteralFormula", in: json, context: &instCtx, owner: self) ?? enteralFormula
+		excludeFoodModifier = createInstances(of: CodeableConcept.self, for: "excludeFoodModifier", in: json, context: &instCtx, owner: self) ?? excludeFoodModifier
+		foodPreferenceModifier = createInstances(of: CodeableConcept.self, for: "foodPreferenceModifier", in: json, context: &instCtx, owner: self) ?? foodPreferenceModifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		oralDiet = createInstance(type: NutritionOrderOralDiet.self, for: "oralDiet", in: json, context: &instCtx, owner: self) ?? oralDiet
+		orderer = createInstance(type: Reference.self, for: "orderer", in: json, context: &instCtx, owner: self) ?? orderer
+		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		if nil == patient && !instCtx.containsKey("patient") {
+			instCtx.addError(FHIRValidationError(missing: "patient"))
 		}
-		status = createEnum(type: NutritionOrderStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		supplement = try createInstances(of: NutritionOrderSupplement.self, for: "supplement", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supplement
-		
-		return errors.isEmpty ? nil : errors
+		status = createEnum(type: NutritionOrderStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		supplement = createInstances(of: NutritionOrderSupplement.self, for: "supplement", in: json, context: &instCtx, owner: self) ?? supplement
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -153,20 +151,18 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 	public var routeofAdministration: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		additiveProductName = try createInstance(type: FHIRString.self, for: "additiveProductName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additiveProductName
-		additiveType = try createInstance(type: CodeableConcept.self, for: "additiveType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additiveType
-		administration = try createInstances(of: NutritionOrderEnteralFormulaAdministration.self, for: "administration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? administration
-		administrationInstruction = try createInstance(type: FHIRString.self, for: "administrationInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? administrationInstruction
-		baseFormulaProductName = try createInstance(type: FHIRString.self, for: "baseFormulaProductName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? baseFormulaProductName
-		baseFormulaType = try createInstance(type: CodeableConcept.self, for: "baseFormulaType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? baseFormulaType
-		caloricDensity = try createInstance(type: Quantity.self, for: "caloricDensity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? caloricDensity
-		maxVolumeToDeliver = try createInstance(type: Quantity.self, for: "maxVolumeToDeliver", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxVolumeToDeliver
-		routeofAdministration = try createInstance(type: CodeableConcept.self, for: "routeofAdministration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? routeofAdministration
-		
-		return errors.isEmpty ? nil : errors
+		additiveProductName = createInstance(type: FHIRString.self, for: "additiveProductName", in: json, context: &instCtx, owner: self) ?? additiveProductName
+		additiveType = createInstance(type: CodeableConcept.self, for: "additiveType", in: json, context: &instCtx, owner: self) ?? additiveType
+		administration = createInstances(of: NutritionOrderEnteralFormulaAdministration.self, for: "administration", in: json, context: &instCtx, owner: self) ?? administration
+		administrationInstruction = createInstance(type: FHIRString.self, for: "administrationInstruction", in: json, context: &instCtx, owner: self) ?? administrationInstruction
+		baseFormulaProductName = createInstance(type: FHIRString.self, for: "baseFormulaProductName", in: json, context: &instCtx, owner: self) ?? baseFormulaProductName
+		baseFormulaType = createInstance(type: CodeableConcept.self, for: "baseFormulaType", in: json, context: &instCtx, owner: self) ?? baseFormulaType
+		caloricDensity = createInstance(type: Quantity.self, for: "caloricDensity", in: json, context: &instCtx, owner: self) ?? caloricDensity
+		maxVolumeToDeliver = createInstance(type: Quantity.self, for: "maxVolumeToDeliver", in: json, context: &instCtx, owner: self) ?? maxVolumeToDeliver
+		routeofAdministration = createInstance(type: CodeableConcept.self, for: "routeofAdministration", in: json, context: &instCtx, owner: self) ?? routeofAdministration
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -210,15 +206,13 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 	public var schedule: Timing?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		rateQuantity = try createInstance(type: Quantity.self, for: "rateQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateQuantity
-		rateRatio = try createInstance(type: Ratio.self, for: "rateRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateRatio
-		schedule = try createInstance(type: Timing.self, for: "schedule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? schedule
-		
-		return errors.isEmpty ? nil : errors
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		rateQuantity = createInstance(type: Quantity.self, for: "rateQuantity", in: json, context: &instCtx, owner: self) ?? rateQuantity
+		rateRatio = createInstance(type: Ratio.self, for: "rateRatio", in: json, context: &instCtx, owner: self) ?? rateRatio
+		schedule = createInstance(type: Timing.self, for: "schedule", in: json, context: &instCtx, owner: self) ?? schedule
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -261,17 +255,15 @@ open class NutritionOrderOralDiet: BackboneElement {
 	public var type: [CodeableConcept]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		fluidConsistencyType = try createInstances(of: CodeableConcept.self, for: "fluidConsistencyType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fluidConsistencyType
-		instruction = try createInstance(type: FHIRString.self, for: "instruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instruction
-		nutrient = try createInstances(of: NutritionOrderOralDietNutrient.self, for: "nutrient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? nutrient
-		schedule = try createInstances(of: Timing.self, for: "schedule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? schedule
-		texture = try createInstances(of: NutritionOrderOralDietTexture.self, for: "texture", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? texture
-		type = try createInstances(of: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		fluidConsistencyType = createInstances(of: CodeableConcept.self, for: "fluidConsistencyType", in: json, context: &instCtx, owner: self) ?? fluidConsistencyType
+		instruction = createInstance(type: FHIRString.self, for: "instruction", in: json, context: &instCtx, owner: self) ?? instruction
+		nutrient = createInstances(of: NutritionOrderOralDietNutrient.self, for: "nutrient", in: json, context: &instCtx, owner: self) ?? nutrient
+		schedule = createInstances(of: Timing.self, for: "schedule", in: json, context: &instCtx, owner: self) ?? schedule
+		texture = createInstances(of: NutritionOrderOralDietTexture.self, for: "texture", in: json, context: &instCtx, owner: self) ?? texture
+		type = createInstances(of: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -305,13 +297,11 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 	public var modifier: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		amount = try createInstance(type: Quantity.self, for: "amount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? amount
-		modifier = try createInstance(type: CodeableConcept.self, for: "modifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modifier
-		
-		return errors.isEmpty ? nil : errors
+		amount = createInstance(type: Quantity.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
+		modifier = createInstance(type: CodeableConcept.self, for: "modifier", in: json, context: &instCtx, owner: self) ?? modifier
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -340,13 +330,11 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 	public var modifier: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		foodType = try createInstance(type: CodeableConcept.self, for: "foodType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? foodType
-		modifier = try createInstance(type: CodeableConcept.self, for: "modifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modifier
-		
-		return errors.isEmpty ? nil : errors
+		foodType = createInstance(type: CodeableConcept.self, for: "foodType", in: json, context: &instCtx, owner: self) ?? foodType
+		modifier = createInstance(type: CodeableConcept.self, for: "modifier", in: json, context: &instCtx, owner: self) ?? modifier
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -384,16 +372,14 @@ open class NutritionOrderSupplement: BackboneElement {
 	public var type: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		instruction = try createInstance(type: FHIRString.self, for: "instruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instruction
-		productName = try createInstance(type: FHIRString.self, for: "productName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? productName
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		schedule = try createInstances(of: Timing.self, for: "schedule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? schedule
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		instruction = createInstance(type: FHIRString.self, for: "instruction", in: json, context: &instCtx, owner: self) ?? instruction
+		productName = createInstance(type: FHIRString.self, for: "productName", in: json, context: &instCtx, owner: self) ?? productName
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		schedule = createInstances(of: Timing.self, for: "schedule", in: json, context: &instCtx, owner: self) ?? schedule
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -51,21 +51,19 @@ open class PaymentNotice: DomainResource {
 	public var target: Reference?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		created = try createInstance(type: DateTime.self, for: "created", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? created
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		organization = try createInstance(type: Reference.self, for: "organization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? organization
-		paymentStatus = try createInstance(type: CodeableConcept.self, for: "paymentStatus", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? paymentStatus
-		provider = try createInstance(type: Reference.self, for: "provider", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? provider
-		request = try createInstance(type: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
-		response = try createInstance(type: Reference.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? response
-		status = try createInstance(type: FHIRString.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
-		statusDate = try createInstance(type: FHIRDate.self, for: "statusDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? statusDate
-		target = try createInstance(type: Reference.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		
-		return errors.isEmpty ? nil : errors
+		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
+		paymentStatus = createInstance(type: CodeableConcept.self, for: "paymentStatus", in: json, context: &instCtx, owner: self) ?? paymentStatus
+		provider = createInstance(type: Reference.self, for: "provider", in: json, context: &instCtx, owner: self) ?? provider
+		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
+		response = createInstance(type: Reference.self, for: "response", in: json, context: &instCtx, owner: self) ?? response
+		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
+		statusDate = createInstance(type: FHIRDate.self, for: "statusDate", in: json, context: &instCtx, owner: self) ?? statusDate
+		target = createInstance(type: Reference.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

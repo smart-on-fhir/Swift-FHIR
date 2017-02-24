@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -61,33 +61,31 @@ open class AuditEvent: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		action = createEnum(type: AuditEventAction.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors) ?? action
-		agent = try createInstances(of: AuditEventAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		if (nil == agent || agent!.isEmpty) && !presentKeys.contains("agent") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "agent"))
+		action = createEnum(type: AuditEventAction.self, for: "action", in: json, context: &instCtx) ?? action
+		agent = createInstances(of: AuditEventAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
+		if (nil == agent || agent!.isEmpty) && !instCtx.containsKey("agent") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "agent"))
 		}
-		entity = try createInstances(of: AuditEventEntity.self, for: "entity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entity
-		outcome = try createInstance(type: FHIRString.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
-		outcomeDesc = try createInstance(type: FHIRString.self, for: "outcomeDesc", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcomeDesc
-		purposeOfEvent = try createInstances(of: CodeableConcept.self, for: "purposeOfEvent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purposeOfEvent
-		recorded = try createInstance(type: Instant.self, for: "recorded", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recorded
-		if nil == recorded && !presentKeys.contains("recorded") {
-			errors.append(FHIRValidationError(missing: "recorded"))
+		entity = createInstances(of: AuditEventEntity.self, for: "entity", in: json, context: &instCtx, owner: self) ?? entity
+		outcome = createInstance(type: FHIRString.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		outcomeDesc = createInstance(type: FHIRString.self, for: "outcomeDesc", in: json, context: &instCtx, owner: self) ?? outcomeDesc
+		purposeOfEvent = createInstances(of: CodeableConcept.self, for: "purposeOfEvent", in: json, context: &instCtx, owner: self) ?? purposeOfEvent
+		recorded = createInstance(type: Instant.self, for: "recorded", in: json, context: &instCtx, owner: self) ?? recorded
+		if nil == recorded && !instCtx.containsKey("recorded") {
+			instCtx.addError(FHIRValidationError(missing: "recorded"))
 		}
-		source = try createInstance(type: AuditEventSource.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		if nil == source && !presentKeys.contains("source") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "source"))
+		source = createInstance(type: AuditEventSource.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		if nil == source && !instCtx.containsKey("source") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "source"))
 		}
-		subtype = try createInstances(of: Coding.self, for: "subtype", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subtype
-		type = try createInstance(type: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		subtype = createInstances(of: Coding.self, for: "subtype", in: json, context: &instCtx, owner: self) ?? subtype
+		type = createInstance(type: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -170,25 +168,23 @@ open class AuditEventAgent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		altId = try createInstance(type: FHIRString.self, for: "altId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? altId
-		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		media = try createInstance(type: Coding.self, for: "media", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? media
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		network = try createInstance(type: AuditEventAgentNetwork.self, for: "network", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? network
-		policy = try createInstances(of: FHIRURL.self, for: "policy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policy
-		purposeOfUse = try createInstances(of: CodeableConcept.self, for: "purposeOfUse", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purposeOfUse
-		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		requestor = try createInstance(type: FHIRBool.self, for: "requestor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestor
-		if nil == requestor && !presentKeys.contains("requestor") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "requestor"))
+		altId = createInstance(type: FHIRString.self, for: "altId", in: json, context: &instCtx, owner: self) ?? altId
+		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
+		media = createInstance(type: Coding.self, for: "media", in: json, context: &instCtx, owner: self) ?? media
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		network = createInstance(type: AuditEventAgentNetwork.self, for: "network", in: json, context: &instCtx, owner: self) ?? network
+		policy = createInstances(of: FHIRURL.self, for: "policy", in: json, context: &instCtx, owner: self) ?? policy
+		purposeOfUse = createInstances(of: CodeableConcept.self, for: "purposeOfUse", in: json, context: &instCtx, owner: self) ?? purposeOfUse
+		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+		requestor = createInstance(type: FHIRBool.self, for: "requestor", in: json, context: &instCtx, owner: self) ?? requestor
+		if nil == requestor && !instCtx.containsKey("requestor") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "requestor"))
 		}
-		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		userId = try createInstance(type: Identifier.self, for: "userId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? userId
-		
-		return errors.isEmpty ? nil : errors
+		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		userId = createInstance(type: Identifier.self, for: "userId", in: json, context: &instCtx, owner: self) ?? userId
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -229,13 +225,11 @@ open class AuditEventAgentNetwork: BackboneElement {
 	public var type: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		address = try createInstance(type: FHIRString.self, for: "address", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? address
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		address = createInstance(type: FHIRString.self, for: "address", in: json, context: &instCtx, owner: self) ?? address
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -288,21 +282,19 @@ open class AuditEventEntity: BackboneElement {
 	public var type: Coding?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		detail = try createInstances(of: AuditEventEntityDetail.self, for: "detail", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? detail
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		lifecycle = try createInstance(type: Coding.self, for: "lifecycle", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lifecycle
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		query = try createInstance(type: Base64Binary.self, for: "query", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? query
-		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		role = try createInstance(type: Coding.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
-		type = try createInstance(type: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		detail = createInstances(of: AuditEventEntityDetail.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		lifecycle = createInstance(type: Coding.self, for: "lifecycle", in: json, context: &instCtx, owner: self) ?? lifecycle
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		query = createInstance(type: Base64Binary.self, for: "query", in: json, context: &instCtx, owner: self) ?? query
+		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+		role = createInstance(type: Coding.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		type = createInstance(type: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -345,19 +337,17 @@ open class AuditEventEntityDetail: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "type"))
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		value = try createInstance(type: Base64Binary.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "value"))
+		value = createInstance(type: Base64Binary.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
+		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -402,17 +392,15 @@ open class AuditEventSource: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
-			errors.append(FHIRValidationError(missing: "identifier"))
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		if nil == identifier && !instCtx.containsKey("identifier") {
+			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
-		site = try createInstance(type: FHIRString.self, for: "site", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? site
-		type = try createInstances(of: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		site = createInstance(type: FHIRString.self, for: "site", in: json, context: &instCtx, owner: self) ?? site
+		type = createInstances(of: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

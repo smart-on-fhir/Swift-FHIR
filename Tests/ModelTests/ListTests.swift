@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -243,6 +243,8 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[5].item?.reference, "#6")
 		XCTAssertEqual(inst.entry?[6].item?.reference, "#7")
 		XCTAssertEqual(inst.entry?[7].item?.reference, "#8")
+		XCTAssertEqual(inst.entry?[8].item?.display, "Family history of cancer of colon")
+		XCTAssertEqual(inst.entry?[8].item?.reference, "Condition/family-history")
 		XCTAssertEqual(inst.id, "genetic")
 		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
 		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)

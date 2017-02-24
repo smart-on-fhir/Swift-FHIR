@@ -2,7 +2,7 @@
 //  SupplyRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -54,30 +54,10 @@ class SupplyRequestTests: XCTestCase {
 		XCTAssertEqual(inst.priority, RequestPriority(rawValue: "asap")!)
 		XCTAssertEqual(inst.reasonCodeableConcept?.coding?[0].code, "stock_low")
 		XCTAssertEqual(inst.reasonCodeableConcept?.coding?[0].display, "Refill due to low stock")
-		XCTAssertEqual(inst.requester?.agent?.display, "Purchasing Dept")
+		XCTAssertEqual(inst.requester?.agent?.display, "Henry Seven")
+		XCTAssertEqual(inst.requester?.onBehalfOf?.display, "Purchasing Dept")
 		XCTAssertEqual(inst.status, SupplyRequestStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.supplier?[0].display, "Vendor1")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testSupplyRequest2() {
-		do {
-			let instance = try runSupplyRequest2()
-			try runSupplyRequest2(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test SupplyRequest successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runSupplyRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSupplyRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "supplyrequest-example.json")
-		
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

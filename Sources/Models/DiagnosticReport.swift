@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -86,35 +86,33 @@ open class DiagnosticReport: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
-		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
+		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
+		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		if nil == code && !instCtx.containsKey("code") {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		codedDiagnosis = try createInstances(of: CodeableConcept.self, for: "codedDiagnosis", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? codedDiagnosis
-		conclusion = try createInstance(type: FHIRString.self, for: "conclusion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? conclusion
-		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		effectiveDateTime = try createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectiveDateTime
-		effectivePeriod = try createInstance(type: Period.self, for: "effectivePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? effectivePeriod
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		image = try createInstances(of: DiagnosticReportImage.self, for: "image", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? image
-		imagingStudy = try createInstances(of: Reference.self, for: "imagingStudy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? imagingStudy
-		issued = try createInstance(type: Instant.self, for: "issued", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issued
-		performer = try createInstances(of: DiagnosticReportPerformer.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
-		presentedForm = try createInstances(of: Attachment.self, for: "presentedForm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? presentedForm
-		result = try createInstances(of: Reference.self, for: "result", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? result
-		specimen = try createInstances(of: Reference.self, for: "specimen", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specimen
-		status = createEnum(type: DiagnosticReportStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		codedDiagnosis = createInstances(of: CodeableConcept.self, for: "codedDiagnosis", in: json, context: &instCtx, owner: self) ?? codedDiagnosis
+		conclusion = createInstance(type: FHIRString.self, for: "conclusion", in: json, context: &instCtx, owner: self) ?? conclusion
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		effectiveDateTime = createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, context: &instCtx, owner: self) ?? effectiveDateTime
+		effectivePeriod = createInstance(type: Period.self, for: "effectivePeriod", in: json, context: &instCtx, owner: self) ?? effectivePeriod
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		image = createInstances(of: DiagnosticReportImage.self, for: "image", in: json, context: &instCtx, owner: self) ?? image
+		imagingStudy = createInstances(of: Reference.self, for: "imagingStudy", in: json, context: &instCtx, owner: self) ?? imagingStudy
+		issued = createInstance(type: Instant.self, for: "issued", in: json, context: &instCtx, owner: self) ?? issued
+		performer = createInstances(of: DiagnosticReportPerformer.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
+		presentedForm = createInstances(of: Attachment.self, for: "presentedForm", in: json, context: &instCtx, owner: self) ?? presentedForm
+		result = createInstances(of: Reference.self, for: "result", in: json, context: &instCtx, owner: self) ?? result
+		specimen = createInstances(of: Reference.self, for: "specimen", in: json, context: &instCtx, owner: self) ?? specimen
+		status = createEnum(type: DiagnosticReportStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		
-		return errors.isEmpty ? nil : errors
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -173,16 +171,14 @@ open class DiagnosticReportImage: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
-		link = try createInstance(type: Reference.self, for: "link", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? link
-		if nil == link && !presentKeys.contains("link") {
-			errors.append(FHIRValidationError(missing: "link"))
+		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
+		link = createInstance(type: Reference.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
+		if nil == link && !instCtx.containsKey("link") {
+			instCtx.addError(FHIRValidationError(missing: "link"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -221,16 +217,14 @@ open class DiagnosticReportPerformer: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") {
-			errors.append(FHIRValidationError(missing: "actor"))
+		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
+		if nil == actor && !instCtx.containsKey("actor") {
+			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
-		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		
-		return errors.isEmpty ? nil : errors
+		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

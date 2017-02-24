@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -63,34 +63,32 @@ open class Slot: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		appointmentType = try createInstance(type: CodeableConcept.self, for: "appointmentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? appointmentType
-		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
-		end = try createInstance(type: Instant.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
-		if nil == end && !presentKeys.contains("end") {
-			errors.append(FHIRValidationError(missing: "end"))
+		appointmentType = createInstance(type: CodeableConcept.self, for: "appointmentType", in: json, context: &instCtx, owner: self) ?? appointmentType
+		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
+		end = createInstance(type: Instant.self, for: "end", in: json, context: &instCtx, owner: self) ?? end
+		if nil == end && !instCtx.containsKey("end") {
+			instCtx.addError(FHIRValidationError(missing: "end"))
 		}
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		overbooked = try createInstance(type: FHIRBool.self, for: "overbooked", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? overbooked
-		schedule = try createInstance(type: Reference.self, for: "schedule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? schedule
-		if nil == schedule && !presentKeys.contains("schedule") {
-			errors.append(FHIRValidationError(missing: "schedule"))
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		overbooked = createInstance(type: FHIRBool.self, for: "overbooked", in: json, context: &instCtx, owner: self) ?? overbooked
+		schedule = createInstance(type: Reference.self, for: "schedule", in: json, context: &instCtx, owner: self) ?? schedule
+		if nil == schedule && !instCtx.containsKey("schedule") {
+			instCtx.addError(FHIRValidationError(missing: "schedule"))
 		}
-		serviceCategory = try createInstance(type: CodeableConcept.self, for: "serviceCategory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? serviceCategory
-		serviceType = try createInstances(of: CodeableConcept.self, for: "serviceType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? serviceType
-		specialty = try createInstances(of: CodeableConcept.self, for: "specialty", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specialty
-		start = try createInstance(type: Instant.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
-		if nil == start && !presentKeys.contains("start") {
-			errors.append(FHIRValidationError(missing: "start"))
+		serviceCategory = createInstance(type: CodeableConcept.self, for: "serviceCategory", in: json, context: &instCtx, owner: self) ?? serviceCategory
+		serviceType = createInstances(of: CodeableConcept.self, for: "serviceType", in: json, context: &instCtx, owner: self) ?? serviceType
+		specialty = createInstances(of: CodeableConcept.self, for: "specialty", in: json, context: &instCtx, owner: self) ?? specialty
+		start = createInstance(type: Instant.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
+		if nil == start && !instCtx.containsKey("start") {
+			instCtx.addError(FHIRValidationError(missing: "start"))
 		}
-		status = createEnum(type: SlotStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		status = createEnum(type: SlotStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

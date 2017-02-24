@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -63,30 +63,28 @@ open class DeviceMetric: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		calibration = try createInstances(of: DeviceMetricCalibration.self, for: "calibration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? calibration
-		category = createEnum(type: DeviceMetricCategory.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors) ?? category
-		if nil == category && !presentKeys.contains("category") {
-			errors.append(FHIRValidationError(missing: "category"))
+		calibration = createInstances(of: DeviceMetricCalibration.self, for: "calibration", in: json, context: &instCtx, owner: self) ?? calibration
+		category = createEnum(type: DeviceMetricCategory.self, for: "category", in: json, context: &instCtx) ?? category
+		if nil == category && !instCtx.containsKey("category") {
+			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
-		color = createEnum(type: DeviceMetricColor.self, for: "color", in: json, presentKeys: &presentKeys, errors: &errors) ?? color
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") {
-			errors.append(FHIRValidationError(missing: "identifier"))
+		color = createEnum(type: DeviceMetricColor.self, for: "color", in: json, context: &instCtx) ?? color
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		if nil == identifier && !instCtx.containsKey("identifier") {
+			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
-		measurementPeriod = try createInstance(type: Timing.self, for: "measurementPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measurementPeriod
-		operationalStatus = createEnum(type: DeviceMetricOperationalStatus.self, for: "operationalStatus", in: json, presentKeys: &presentKeys, errors: &errors) ?? operationalStatus
-		parent = try createInstance(type: Reference.self, for: "parent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parent
-		source = try createInstance(type: Reference.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		measurementPeriod = createInstance(type: Timing.self, for: "measurementPeriod", in: json, context: &instCtx, owner: self) ?? measurementPeriod
+		operationalStatus = createEnum(type: DeviceMetricOperationalStatus.self, for: "operationalStatus", in: json, context: &instCtx) ?? operationalStatus
+		parent = createInstance(type: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
+		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		unit = try createInstance(type: CodeableConcept.self, for: "unit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? unit
-		
-		return errors.isEmpty ? nil : errors
+		unit = createInstance(type: CodeableConcept.self, for: "unit", in: json, context: &instCtx, owner: self) ?? unit
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -133,14 +131,12 @@ open class DeviceMetricCalibration: BackboneElement {
 	public var type: DeviceMetricCalibrationType?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		state = createEnum(type: DeviceMetricCalibrationState.self, for: "state", in: json, presentKeys: &presentKeys, errors: &errors) ?? state
-		time = try createInstance(type: Instant.self, for: "time", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? time
-		type = createEnum(type: DeviceMetricCalibrationType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		state = createEnum(type: DeviceMetricCalibrationState.self, for: "state", in: json, context: &instCtx) ?? state
+		time = createInstance(type: Instant.self, for: "time", in: json, context: &instCtx, owner: self) ?? time
+		type = createEnum(type: DeviceMetricCalibrationType.self, for: "type", in: json, context: &instCtx) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

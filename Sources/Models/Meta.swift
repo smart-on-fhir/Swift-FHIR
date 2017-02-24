@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -36,16 +36,14 @@ open class Meta: Element {
 	public var versionId: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		lastUpdated = try createInstance(type: Instant.self, for: "lastUpdated", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastUpdated
-		profile = try createInstances(of: FHIRURL.self, for: "profile", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? profile
-		security = try createInstances(of: Coding.self, for: "security", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? security
-		tag = try createInstances(of: Coding.self, for: "tag", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? tag
-		versionId = try createInstance(type: FHIRString.self, for: "versionId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? versionId
-		
-		return errors.isEmpty ? nil : errors
+		lastUpdated = createInstance(type: Instant.self, for: "lastUpdated", in: json, context: &instCtx, owner: self) ?? lastUpdated
+		profile = createInstances(of: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		security = createInstances(of: Coding.self, for: "security", in: json, context: &instCtx, owner: self) ?? security
+		tag = createInstances(of: Coding.self, for: "tag", in: json, context: &instCtx, owner: self) ?? tag
+		versionId = createInstance(type: FHIRString.self, for: "versionId", in: json, context: &instCtx, owner: self) ?? versionId
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

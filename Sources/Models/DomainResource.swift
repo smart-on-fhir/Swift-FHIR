@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -32,15 +32,13 @@ open class DomainResource: Resource {
 	public var text: Narrative?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contained = try createInstances(of: Resource.self, for: "contained", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contained
-		extension_fhir = try createInstances(of: Extension.self, for: "extension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? extension_fhir
-		modifierExtension = try createInstances(of: Extension.self, for: "modifierExtension", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? modifierExtension
-		text = try createInstance(type: Narrative.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		
-		return errors.isEmpty ? nil : errors
+		contained = createInstances(of: Resource.self, for: "contained", in: json, context: &instCtx, owner: self) ?? contained
+		extension_fhir = createInstances(of: Extension.self, for: "extension", in: json, context: &instCtx, owner: self) ?? extension_fhir
+		modifierExtension = createInstances(of: Extension.self, for: "modifierExtension", in: json, context: &instCtx, owner: self) ?? modifierExtension
+		text = createInstance(type: Narrative.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

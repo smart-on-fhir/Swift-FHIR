@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -45,20 +45,18 @@ open class Bundle: Resource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		entry = try createInstances(of: BundleEntry.self, for: "entry", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entry
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		link = try createInstances(of: BundleLink.self, for: "link", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? link
-		signature = try createInstance(type: Signature.self, for: "signature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? signature
-		total = try createInstance(type: FHIRInteger.self, for: "total", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? total
-		type = createEnum(type: BundleType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		entry = createInstances(of: BundleEntry.self, for: "entry", in: json, context: &instCtx, owner: self) ?? entry
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		link = createInstances(of: BundleLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
+		signature = createInstance(type: Signature.self, for: "signature", in: json, context: &instCtx, owner: self) ?? signature
+		total = createInstance(type: FHIRInteger.self, for: "total", in: json, context: &instCtx, owner: self) ?? total
+		type = createEnum(type: BundleType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -107,17 +105,15 @@ open class BundleEntry: BackboneElement {
 	public var search: BundleEntrySearch?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		fullUrl = try createInstance(type: FHIRURL.self, for: "fullUrl", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fullUrl
-		link = try createInstances(of: BundleLink.self, for: "link", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? link
-		request = try createInstance(type: BundleEntryRequest.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
-		resource = try createInstance(type: Resource.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
-		response = try createInstance(type: BundleEntryResponse.self, for: "response", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? response
-		search = try createInstance(type: BundleEntrySearch.self, for: "search", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? search
-		
-		return errors.isEmpty ? nil : errors
+		fullUrl = createInstance(type: FHIRURL.self, for: "fullUrl", in: json, context: &instCtx, owner: self) ?? fullUrl
+		link = createInstances(of: BundleLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
+		request = createInstance(type: BundleEntryRequest.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
+		resource = createInstance(type: Resource.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
+		response = createInstance(type: BundleEntryResponse.self, for: "response", in: json, context: &instCtx, owner: self) ?? response
+		search = createInstance(type: BundleEntrySearch.self, for: "search", in: json, context: &instCtx, owner: self) ?? search
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -170,23 +166,21 @@ open class BundleEntryRequest: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		ifMatch = try createInstance(type: FHIRString.self, for: "ifMatch", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ifMatch
-		ifModifiedSince = try createInstance(type: Instant.self, for: "ifModifiedSince", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ifModifiedSince
-		ifNoneExist = try createInstance(type: FHIRString.self, for: "ifNoneExist", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ifNoneExist
-		ifNoneMatch = try createInstance(type: FHIRString.self, for: "ifNoneMatch", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ifNoneMatch
-		method = createEnum(type: HTTPVerb.self, for: "method", in: json, presentKeys: &presentKeys, errors: &errors) ?? method
-		if nil == method && !presentKeys.contains("method") {
-			errors.append(FHIRValidationError(missing: "method"))
+		ifMatch = createInstance(type: FHIRString.self, for: "ifMatch", in: json, context: &instCtx, owner: self) ?? ifMatch
+		ifModifiedSince = createInstance(type: Instant.self, for: "ifModifiedSince", in: json, context: &instCtx, owner: self) ?? ifModifiedSince
+		ifNoneExist = createInstance(type: FHIRString.self, for: "ifNoneExist", in: json, context: &instCtx, owner: self) ?? ifNoneExist
+		ifNoneMatch = createInstance(type: FHIRString.self, for: "ifNoneMatch", in: json, context: &instCtx, owner: self) ?? ifNoneMatch
+		method = createEnum(type: HTTPVerb.self, for: "method", in: json, context: &instCtx) ?? method
+		if nil == method && !instCtx.containsKey("method") {
+			instCtx.addError(FHIRValidationError(missing: "method"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
-			errors.append(FHIRValidationError(missing: "url"))
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		if nil == url && !instCtx.containsKey("url") {
+			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -241,19 +235,17 @@ open class BundleEntryResponse: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		etag = try createInstance(type: FHIRString.self, for: "etag", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? etag
-		lastModified = try createInstance(type: Instant.self, for: "lastModified", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastModified
-		location = try createInstance(type: FHIRURL.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		outcome = try createInstance(type: Resource.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
-		status = try createInstance(type: FHIRString.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		etag = createInstance(type: FHIRString.self, for: "etag", in: json, context: &instCtx, owner: self) ?? etag
+		lastModified = createInstance(type: Instant.self, for: "lastModified", in: json, context: &instCtx, owner: self) ?? lastModified
+		location = createInstance(type: FHIRURL.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
+		outcome = createInstance(type: Resource.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -288,13 +280,11 @@ open class BundleEntrySearch: BackboneElement {
 	public var score: FHIRDecimal?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		mode = createEnum(type: SearchEntryMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		score = try createInstance(type: FHIRDecimal.self, for: "score", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? score
-		
-		return errors.isEmpty ? nil : errors
+		mode = createEnum(type: SearchEntryMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		score = createInstance(type: FHIRDecimal.self, for: "score", in: json, context: &instCtx, owner: self) ?? score
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -331,19 +321,17 @@ open class BundleLink: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		relation = try createInstance(type: FHIRString.self, for: "relation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relation
-		if nil == relation && !presentKeys.contains("relation") {
-			errors.append(FHIRValidationError(missing: "relation"))
+		relation = createInstance(type: FHIRString.self, for: "relation", in: json, context: &instCtx, owner: self) ?? relation
+		if nil == relation && !instCtx.containsKey("relation") {
+			instCtx.addError(FHIRValidationError(missing: "relation"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
-			errors.append(FHIRValidationError(missing: "url"))
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		if nil == url && !instCtx.containsKey("url") {
+			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

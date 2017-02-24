@@ -2,7 +2,7 @@
 //  Endpoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -65,34 +65,32 @@ open class Endpoint: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		address = try createInstance(type: FHIRURL.self, for: "address", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? address
-		if nil == address && !presentKeys.contains("address") {
-			errors.append(FHIRValidationError(missing: "address"))
+		address = createInstance(type: FHIRURL.self, for: "address", in: json, context: &instCtx, owner: self) ?? address
+		if nil == address && !instCtx.containsKey("address") {
+			instCtx.addError(FHIRValidationError(missing: "address"))
 		}
-		connectionType = try createInstance(type: Coding.self, for: "connectionType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? connectionType
-		if nil == connectionType && !presentKeys.contains("connectionType") {
-			errors.append(FHIRValidationError(missing: "connectionType"))
+		connectionType = createInstance(type: Coding.self, for: "connectionType", in: json, context: &instCtx, owner: self) ?? connectionType
+		if nil == connectionType && !instCtx.containsKey("connectionType") {
+			instCtx.addError(FHIRValidationError(missing: "connectionType"))
 		}
-		contact = try createInstances(of: ContactPoint.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		header = try createInstances(of: FHIRString.self, for: "header", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? header
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		managingOrganization = try createInstance(type: Reference.self, for: "managingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? managingOrganization
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		payloadMimeType = try createInstances(of: FHIRString.self, for: "payloadMimeType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payloadMimeType
-		payloadType = try createInstances(of: CodeableConcept.self, for: "payloadType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payloadType
-		if (nil == payloadType || payloadType!.isEmpty) && !presentKeys.contains("payloadType") {
-			errors.append(FHIRValidationError(missing: "payloadType"))
+		contact = createInstances(of: ContactPoint.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		header = createInstances(of: FHIRString.self, for: "header", in: json, context: &instCtx, owner: self) ?? header
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		managingOrganization = createInstance(type: Reference.self, for: "managingOrganization", in: json, context: &instCtx, owner: self) ?? managingOrganization
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		payloadMimeType = createInstances(of: FHIRString.self, for: "payloadMimeType", in: json, context: &instCtx, owner: self) ?? payloadMimeType
+		payloadType = createInstances(of: CodeableConcept.self, for: "payloadType", in: json, context: &instCtx, owner: self) ?? payloadType
+		if (nil == payloadType || payloadType!.isEmpty) && !instCtx.containsKey("payloadType") {
+			instCtx.addError(FHIRValidationError(missing: "payloadType"))
 		}
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		status = createEnum(type: EndpointStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		status = createEnum(type: EndpointStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

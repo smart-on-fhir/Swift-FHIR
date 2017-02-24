@@ -2,7 +2,7 @@
 //  Dosage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Dosage) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Dosage) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -74,29 +74,27 @@ open class Dosage: Element {
 	public var timing: Timing?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		additionalInstruction = try createInstances(of: CodeableConcept.self, for: "additionalInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additionalInstruction
-		asNeededBoolean = try createInstance(type: FHIRBool.self, for: "asNeededBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asNeededBoolean
-		asNeededCodeableConcept = try createInstance(type: CodeableConcept.self, for: "asNeededCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asNeededCodeableConcept
-		doseQuantity = try createInstance(type: Quantity.self, for: "doseQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseQuantity
-		doseRange = try createInstance(type: Range.self, for: "doseRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? doseRange
-		maxDosePerAdministration = try createInstance(type: Quantity.self, for: "maxDosePerAdministration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerAdministration
-		maxDosePerLifetime = try createInstance(type: Quantity.self, for: "maxDosePerLifetime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerLifetime
-		maxDosePerPeriod = try createInstance(type: Ratio.self, for: "maxDosePerPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? maxDosePerPeriod
-		method = try createInstance(type: CodeableConcept.self, for: "method", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? method
-		patientInstruction = try createInstance(type: FHIRString.self, for: "patientInstruction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patientInstruction
-		rateQuantity = try createInstance(type: Quantity.self, for: "rateQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateQuantity
-		rateRange = try createInstance(type: Range.self, for: "rateRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateRange
-		rateRatio = try createInstance(type: Ratio.self, for: "rateRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rateRatio
-		route = try createInstance(type: CodeableConcept.self, for: "route", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? route
-		sequence = try createInstance(type: FHIRInteger.self, for: "sequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequence
-		site = try createInstance(type: CodeableConcept.self, for: "site", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? site
-		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		timing = try createInstance(type: Timing.self, for: "timing", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timing
-		
-		return errors.isEmpty ? nil : errors
+		additionalInstruction = createInstances(of: CodeableConcept.self, for: "additionalInstruction", in: json, context: &instCtx, owner: self) ?? additionalInstruction
+		asNeededBoolean = createInstance(type: FHIRBool.self, for: "asNeededBoolean", in: json, context: &instCtx, owner: self) ?? asNeededBoolean
+		asNeededCodeableConcept = createInstance(type: CodeableConcept.self, for: "asNeededCodeableConcept", in: json, context: &instCtx, owner: self) ?? asNeededCodeableConcept
+		doseQuantity = createInstance(type: Quantity.self, for: "doseQuantity", in: json, context: &instCtx, owner: self) ?? doseQuantity
+		doseRange = createInstance(type: Range.self, for: "doseRange", in: json, context: &instCtx, owner: self) ?? doseRange
+		maxDosePerAdministration = createInstance(type: Quantity.self, for: "maxDosePerAdministration", in: json, context: &instCtx, owner: self) ?? maxDosePerAdministration
+		maxDosePerLifetime = createInstance(type: Quantity.self, for: "maxDosePerLifetime", in: json, context: &instCtx, owner: self) ?? maxDosePerLifetime
+		maxDosePerPeriod = createInstance(type: Ratio.self, for: "maxDosePerPeriod", in: json, context: &instCtx, owner: self) ?? maxDosePerPeriod
+		method = createInstance(type: CodeableConcept.self, for: "method", in: json, context: &instCtx, owner: self) ?? method
+		patientInstruction = createInstance(type: FHIRString.self, for: "patientInstruction", in: json, context: &instCtx, owner: self) ?? patientInstruction
+		rateQuantity = createInstance(type: Quantity.self, for: "rateQuantity", in: json, context: &instCtx, owner: self) ?? rateQuantity
+		rateRange = createInstance(type: Range.self, for: "rateRange", in: json, context: &instCtx, owner: self) ?? rateRange
+		rateRatio = createInstance(type: Ratio.self, for: "rateRatio", in: json, context: &instCtx, owner: self) ?? rateRatio
+		route = createInstance(type: CodeableConcept.self, for: "route", in: json, context: &instCtx, owner: self) ?? route
+		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
+		site = createInstance(type: CodeableConcept.self, for: "site", in: json, context: &instCtx, owner: self) ?? site
+		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
+		timing = createInstance(type: Timing.self, for: "timing", in: json, context: &instCtx, owner: self) ?? timing
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

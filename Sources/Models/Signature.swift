@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -63,31 +63,29 @@ open class Signature: Element {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		blob = try createInstance(type: Base64Binary.self, for: "blob", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? blob
-		contentType = try createInstance(type: FHIRString.self, for: "contentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentType
-		onBehalfOfReference = try createInstance(type: Reference.self, for: "onBehalfOfReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOfReference
-		onBehalfOfUri = try createInstance(type: FHIRURL.self, for: "onBehalfOfUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOfUri
-		type = try createInstances(of: Coding.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		if (nil == type || type!.isEmpty) && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		blob = createInstance(type: Base64Binary.self, for: "blob", in: json, context: &instCtx, owner: self) ?? blob
+		contentType = createInstance(type: FHIRString.self, for: "contentType", in: json, context: &instCtx, owner: self) ?? contentType
+		onBehalfOfReference = createInstance(type: Reference.self, for: "onBehalfOfReference", in: json, context: &instCtx, owner: self) ?? onBehalfOfReference
+		onBehalfOfUri = createInstance(type: FHIRURL.self, for: "onBehalfOfUri", in: json, context: &instCtx, owner: self) ?? onBehalfOfUri
+		type = createInstances(of: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if (nil == type || type!.isEmpty) && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		when = try createInstance(type: Instant.self, for: "when", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? when
-		if nil == when && !presentKeys.contains("when") {
-			errors.append(FHIRValidationError(missing: "when"))
+		when = createInstance(type: Instant.self, for: "when", in: json, context: &instCtx, owner: self) ?? when
+		if nil == when && !instCtx.containsKey("when") {
+			instCtx.addError(FHIRValidationError(missing: "when"))
 		}
-		whoReference = try createInstance(type: Reference.self, for: "whoReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whoReference
-		whoUri = try createInstance(type: FHIRURL.self, for: "whoUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whoUri
+		whoReference = createInstance(type: Reference.self, for: "whoReference", in: json, context: &instCtx, owner: self) ?? whoReference
+		whoUri = createInstance(type: FHIRURL.self, for: "whoUri", in: json, context: &instCtx, owner: self) ?? whoUri
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.whoUri && nil == self.whoReference {
-			errors.append(FHIRValidationError(missing: "who[x]"))
+			instCtx.addError(FHIRValidationError(missing: "who[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

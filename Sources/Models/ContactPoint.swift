@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -36,16 +36,14 @@ open class ContactPoint: Element {
 	public var value: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		rank = try createInstance(type: FHIRInteger.self, for: "rank", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rank
-		system = createEnum(type: ContactPointSystem.self, for: "system", in: json, presentKeys: &presentKeys, errors: &errors) ?? system
-		use = createEnum(type: ContactPointUse.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors) ?? use
-		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		
-		return errors.isEmpty ? nil : errors
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		rank = createInstance(type: FHIRInteger.self, for: "rank", in: json, context: &instCtx, owner: self) ?? rank
+		system = createEnum(type: ContactPointSystem.self, for: "system", in: json, context: &instCtx) ?? system
+		use = createEnum(type: ContactPointUse.self, for: "use", in: json, context: &instCtx) ?? use
+		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

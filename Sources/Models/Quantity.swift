@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -37,16 +37,14 @@ open class Quantity: Element {
 	public var value: FHIRDecimal?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		comparator = createEnum(type: QuantityComparator.self, for: "comparator", in: json, presentKeys: &presentKeys, errors: &errors) ?? comparator
-		system = try createInstance(type: FHIRURL.self, for: "system", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? system
-		unit = try createInstance(type: FHIRString.self, for: "unit", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? unit
-		value = try createInstance(type: FHIRDecimal.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		
-		return errors.isEmpty ? nil : errors
+		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		comparator = createEnum(type: QuantityComparator.self, for: "comparator", in: json, context: &instCtx) ?? comparator
+		system = createInstance(type: FHIRURL.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
+		unit = createInstance(type: FHIRString.self, for: "unit", in: json, context: &instCtx, owner: self) ?? unit
+		value = createInstance(type: FHIRDecimal.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

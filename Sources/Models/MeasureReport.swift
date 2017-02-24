@@ -2,7 +2,7 @@
 //  MeasureReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -59,32 +59,30 @@ open class MeasureReport: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		evaluatedResources = try createInstance(type: Reference.self, for: "evaluatedResources", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? evaluatedResources
-		group = try createInstances(of: MeasureReportGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
-		measure = try createInstance(type: Reference.self, for: "measure", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measure
-		if nil == measure && !presentKeys.contains("measure") {
-			errors.append(FHIRValidationError(missing: "measure"))
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		evaluatedResources = createInstance(type: Reference.self, for: "evaluatedResources", in: json, context: &instCtx, owner: self) ?? evaluatedResources
+		group = createInstances(of: MeasureReportGroup.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
+		measure = createInstance(type: Reference.self, for: "measure", in: json, context: &instCtx, owner: self) ?? measure
+		if nil == measure && !instCtx.containsKey("measure") {
+			instCtx.addError(FHIRValidationError(missing: "measure"))
 		}
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		if nil == period && !presentKeys.contains("period") {
-			errors.append(FHIRValidationError(missing: "period"))
+		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		if nil == period && !instCtx.containsKey("period") {
+			instCtx.addError(FHIRValidationError(missing: "period"))
 		}
-		reportingOrganization = try createInstance(type: Reference.self, for: "reportingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reportingOrganization
-		status = createEnum(type: MeasureReportStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		reportingOrganization = createInstance(type: Reference.self, for: "reportingOrganization", in: json, context: &instCtx, owner: self) ?? reportingOrganization
+		status = createEnum(type: MeasureReportStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		type = createEnum(type: MeasureReportType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		type = createEnum(type: MeasureReportType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -145,18 +143,16 @@ open class MeasureReportGroup: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		if nil == identifier && !presentKeys.contains("identifier") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "identifier"))
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		if nil == identifier && !instCtx.containsKey("identifier") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
-		measureScore = try createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measureScore
-		population = try createInstances(of: MeasureReportGroupPopulation.self, for: "population", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? population
-		stratifier = try createInstances(of: MeasureReportGroupStratifier.self, for: "stratifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? stratifier
-		
-		return errors.isEmpty ? nil : errors
+		measureScore = createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, context: &instCtx, owner: self) ?? measureScore
+		population = createInstances(of: MeasureReportGroupPopulation.self, for: "population", in: json, context: &instCtx, owner: self) ?? population
+		stratifier = createInstances(of: MeasureReportGroupStratifier.self, for: "stratifier", in: json, context: &instCtx, owner: self) ?? stratifier
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -197,15 +193,13 @@ open class MeasureReportGroupPopulation: BackboneElement {
 	public var patients: Reference?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
-		
-		return errors.isEmpty ? nil : errors
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		count = createInstance(type: FHIRInteger.self, for: "count", in: json, context: &instCtx, owner: self) ?? count
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		patients = createInstance(type: Reference.self, for: "patients", in: json, context: &instCtx, owner: self) ?? patients
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -237,13 +231,11 @@ open class MeasureReportGroupStratifier: BackboneElement {
 	public var stratum: [MeasureReportGroupStratifierStratum]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		stratum = try createInstances(of: MeasureReportGroupStratifierStratum.self, for: "stratum", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? stratum
-		
-		return errors.isEmpty ? nil : errors
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		stratum = createInstances(of: MeasureReportGroupStratifierStratum.self, for: "stratum", in: json, context: &instCtx, owner: self) ?? stratum
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -283,17 +275,15 @@ open class MeasureReportGroupStratifierStratum: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		measureScore = try createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? measureScore
-		population = try createInstances(of: MeasureReportGroupStratifierStratumPopulation.self, for: "population", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? population
-		value = try createInstance(type: FHIRString.self, for: "value", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? value
-		if nil == value && !presentKeys.contains("value") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "value"))
+		measureScore = createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, context: &instCtx, owner: self) ?? measureScore
+		population = createInstances(of: MeasureReportGroupStratifierStratumPopulation.self, for: "population", in: json, context: &instCtx, owner: self) ?? population
+		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
+		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -333,15 +323,13 @@ open class MeasureReportGroupStratifierStratumPopulation: BackboneElement {
 	public var patients: Reference?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		count = try createInstance(type: FHIRInteger.self, for: "count", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? count
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		patients = try createInstance(type: Reference.self, for: "patients", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patients
-		
-		return errors.isEmpty ? nil : errors
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		count = createInstance(type: FHIRInteger.self, for: "count", in: json, context: &instCtx, owner: self) ?? count
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		patients = createInstance(type: Reference.self, for: "patients", in: json, context: &instCtx, owner: self) ?? patients
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

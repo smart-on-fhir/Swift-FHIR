@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -87,36 +87,34 @@ open class AllergyIntolerance: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		assertedDate = try createInstance(type: DateTime.self, for: "assertedDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? assertedDate
-		asserter = try createInstance(type: Reference.self, for: "asserter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? asserter
-		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		clinicalStatus = createEnum(type: AllergyIntoleranceClinicalStatus.self, for: "clinicalStatus", in: json, presentKeys: &presentKeys, errors: &errors) ?? clinicalStatus
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		criticality = createEnum(type: AllergyIntoleranceCriticality.self, for: "criticality", in: json, presentKeys: &presentKeys, errors: &errors) ?? criticality
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		lastOccurrence = try createInstance(type: DateTime.self, for: "lastOccurrence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lastOccurrence
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		onsetAge = try createInstance(type: Age.self, for: "onsetAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetAge
-		onsetDateTime = try createInstance(type: DateTime.self, for: "onsetDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetDateTime
-		onsetPeriod = try createInstance(type: Period.self, for: "onsetPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetPeriod
-		onsetRange = try createInstance(type: Range.self, for: "onsetRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetRange
-		onsetString = try createInstance(type: FHIRString.self, for: "onsetString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onsetString
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		if nil == patient && !presentKeys.contains("patient") {
-			errors.append(FHIRValidationError(missing: "patient"))
+		assertedDate = createInstance(type: DateTime.self, for: "assertedDate", in: json, context: &instCtx, owner: self) ?? assertedDate
+		asserter = createInstance(type: Reference.self, for: "asserter", in: json, context: &instCtx, owner: self) ?? asserter
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		clinicalStatus = createEnum(type: AllergyIntoleranceClinicalStatus.self, for: "clinicalStatus", in: json, context: &instCtx) ?? clinicalStatus
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		criticality = createEnum(type: AllergyIntoleranceCriticality.self, for: "criticality", in: json, context: &instCtx) ?? criticality
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		lastOccurrence = createInstance(type: DateTime.self, for: "lastOccurrence", in: json, context: &instCtx, owner: self) ?? lastOccurrence
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		onsetAge = createInstance(type: Age.self, for: "onsetAge", in: json, context: &instCtx, owner: self) ?? onsetAge
+		onsetDateTime = createInstance(type: DateTime.self, for: "onsetDateTime", in: json, context: &instCtx, owner: self) ?? onsetDateTime
+		onsetPeriod = createInstance(type: Period.self, for: "onsetPeriod", in: json, context: &instCtx, owner: self) ?? onsetPeriod
+		onsetRange = createInstance(type: Range.self, for: "onsetRange", in: json, context: &instCtx, owner: self) ?? onsetRange
+		onsetString = createInstance(type: FHIRString.self, for: "onsetString", in: json, context: &instCtx, owner: self) ?? onsetString
+		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		if nil == patient && !instCtx.containsKey("patient") {
+			instCtx.addError(FHIRValidationError(missing: "patient"))
 		}
-		reaction = try createInstances(of: AllergyIntoleranceReaction.self, for: "reaction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reaction
-		recorder = try createInstance(type: Reference.self, for: "recorder", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recorder
-		type = createEnum(type: AllergyIntoleranceType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		verificationStatus = createEnum(type: AllergyIntoleranceVerificationStatus.self, for: "verificationStatus", in: json, presentKeys: &presentKeys, errors: &errors) ?? verificationStatus
-		if nil == verificationStatus && !presentKeys.contains("verificationStatus") {
-			errors.append(FHIRValidationError(missing: "verificationStatus"))
+		reaction = createInstances(of: AllergyIntoleranceReaction.self, for: "reaction", in: json, context: &instCtx, owner: self) ?? reaction
+		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
+		type = createEnum(type: AllergyIntoleranceType.self, for: "type", in: json, context: &instCtx) ?? type
+		verificationStatus = createEnum(type: AllergyIntoleranceVerificationStatus.self, for: "verificationStatus", in: json, context: &instCtx) ?? verificationStatus
+		if nil == verificationStatus && !instCtx.containsKey("verificationStatus") {
+			instCtx.addError(FHIRValidationError(missing: "verificationStatus"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -191,21 +189,19 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		exposureRoute = try createInstance(type: CodeableConcept.self, for: "exposureRoute", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? exposureRoute
-		manifestation = try createInstances(of: CodeableConcept.self, for: "manifestation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manifestation
-		if (nil == manifestation || manifestation!.isEmpty) && !presentKeys.contains("manifestation") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "manifestation"))
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		exposureRoute = createInstance(type: CodeableConcept.self, for: "exposureRoute", in: json, context: &instCtx, owner: self) ?? exposureRoute
+		manifestation = createInstances(of: CodeableConcept.self, for: "manifestation", in: json, context: &instCtx, owner: self) ?? manifestation
+		if (nil == manifestation || manifestation!.isEmpty) && !instCtx.containsKey("manifestation") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "manifestation"))
 		}
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		onset = try createInstance(type: DateTime.self, for: "onset", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onset
-		severity = createEnum(type: AllergyIntoleranceSeverity.self, for: "severity", in: json, presentKeys: &presentKeys, errors: &errors) ?? severity
-		substance = try createInstance(type: CodeableConcept.self, for: "substance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? substance
-		
-		return errors.isEmpty ? nil : errors
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		onset = createInstance(type: DateTime.self, for: "onset", in: json, context: &instCtx, owner: self) ?? onset
+		severity = createEnum(type: AllergyIntoleranceSeverity.self, for: "severity", in: json, context: &instCtx) ?? severity
+		substance = createInstance(type: CodeableConcept.self, for: "substance", in: json, context: &instCtx, owner: self) ?? substance
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

@@ -2,7 +2,7 @@
 //  Period.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Period) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Period) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -26,13 +26,11 @@ open class Period: Element {
 	public var start: DateTime?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		end = try createInstance(type: DateTime.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
-		start = try createInstance(type: DateTime.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
-		
-		return errors.isEmpty ? nil : errors
+		end = createInstance(type: DateTime.self, for: "end", in: json, context: &instCtx, owner: self) ?? end
+		start = createInstance(type: DateTime.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -82,6 +82,29 @@ class ProcedureTests: XCTestCase {
 	
 	@discardableResult
 	func runProcedure2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-appendectomy-narrative.json")
+		
+		XCTAssertEqual(inst.id, "appendectomy-narrative")
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Routine Appendectomy in April 2013 performed by Dr Cecil Surgeon</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		
+		return inst
+	}
+	
+	func testProcedure3() {
+		do {
+			let instance = try runProcedure3()
+			try runProcedure3(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runProcedure3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-biopsy.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "368225008")
@@ -119,10 +142,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure3() {
+	func testProcedure4() {
 		do {
-			let instance = try runProcedure3()
-			try runProcedure3(instance.asJSON())
+			let instance = try runProcedure4()
+			try runProcedure4(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -130,7 +153,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-colon-biopsy.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "76164006")
@@ -154,10 +177,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure4() {
+	func testProcedure5() {
 		do {
-			let instance = try runProcedure4()
-			try runProcedure4(instance.asJSON())
+			let instance = try runProcedure5()
+			try runProcedure5(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -165,7 +188,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-colonoscopy.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "73761001")
@@ -189,10 +212,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure5() {
+	func testProcedure6() {
 		do {
-			let instance = try runProcedure5()
-			try runProcedure5(instance.asJSON())
+			let instance = try runProcedure6()
+			try runProcedure6(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -200,7 +223,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "17401000")
@@ -232,10 +255,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure6() {
+	func testProcedure7() {
 		do {
-			let instance = try runProcedure6()
-			try runProcedure6(instance.asJSON())
+			let instance = try runProcedure7()
+			try runProcedure7(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -243,7 +266,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "39607008")
@@ -275,10 +298,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure7() {
+	func testProcedure8() {
 		do {
-			let instance = try runProcedure7()
-			try runProcedure7(instance.asJSON())
+			let instance = try runProcedure8()
+			try runProcedure8(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -286,7 +309,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "83030008")
@@ -318,10 +341,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure8() {
+	func testProcedure9() {
 		do {
-			let instance = try runProcedure8()
-			try runProcedure8(instance.asJSON())
+			let instance = try runProcedure9()
+			try runProcedure9(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -329,7 +352,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f004-tracheotomy.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "83030008")
@@ -361,10 +384,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure9() {
+	func testProcedure10() {
 		do {
-			let instance = try runProcedure9()
-			try runProcedure9(instance.asJSON())
+			let instance = try runProcedure10()
+			try runProcedure10(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -372,7 +395,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f201-tpf.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "272676008")
@@ -396,41 +419,6 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testProcedure10() {
-		do {
-			let instance = try runProcedure10()
-			try runProcedure10(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runProcedure10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-implant.json")
-		
-		XCTAssertEqual(inst.code?.coding?[0].code, "25267002")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Insertion of intracardiac pacemaker (procedure)")
-		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.code?.text, "Implant Pacemaker")
-		XCTAssertEqual(inst.focalDevice?[0].action?.coding?[0].code, "implanted")
-		XCTAssertEqual(inst.focalDevice?[0].action?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/device-action")
-		XCTAssertEqual(inst.focalDevice?[0].manipulated?.reference, "Device/example-pacemaker")
-		XCTAssertEqual(inst.followUp?[0].text, "ROS 5 days  - 2013-04-10")
-		XCTAssertEqual(inst.id, "example-implant")
-		XCTAssertEqual(inst.note?[0].text, "Routine Appendectomy. Appendix was inflamed and in retro-caecal position")
-		XCTAssertEqual(inst.performedDateTime?.description, "2015-04-05")
-		XCTAssertEqual(inst.performer?[0].actor?.display, "Dr Cecil Surgeon")
-		XCTAssertEqual(inst.performer?[0].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.reasonCode?[0].text, "Bradycardia")
-		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

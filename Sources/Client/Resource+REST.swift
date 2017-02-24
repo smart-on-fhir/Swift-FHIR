@@ -90,14 +90,14 @@ public extension Resource {
 	
 	Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
 	
-	- parameter id:        The id of the resource to read
-	- parameter server:    The server from which to read
-	- parameter asSummary: If true will request a summary of the resource; false by default
-	- parameter callback:  The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	- parameter id:       The id of the resource to read
+	- parameter server:   The server from which to read
+	- parameter options:  Options to use when executing this request, if any
+	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public class func read(_ id: String, server: FHIRServer, asSummary: Bool = false, callback: @escaping FHIRResourceErrorCallback) {
+	public class func read(_ id: String, server: FHIRServer, options: FHIRRequestOption = [], callback: @escaping FHIRResourceErrorCallback) {
 		let path = "\(resourceType)/\(id)"
-		readFrom(path, server: server, callback: callback)
+		readFrom(path, server: server, options: options, callback: callback)
 	}
 	
 	/**
@@ -105,21 +105,17 @@ public extension Resource {
 	
 	This method creates a FHIRJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
 	
-	- parameter path:      The relative path on the server from which to read resource data from
-	- parameter server:    The server to use
-	- parameter asSummary: If true will request a summary of the resource; false by default
-	- parameter callback:  The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	- parameter path:     The relative path on the server from which to read resource data from
+	- parameter server:   The server to use
+	- parameter options:  Options to use when executing this request, if any
+	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public class func readFrom(_ path: String, server: FHIRServer, asSummary: Bool = false, callback: @escaping FHIRResourceErrorCallback) {
+	public class func readFrom(_ path: String, server: FHIRServer, options: FHIRRequestOption = [], callback: @escaping FHIRResourceErrorCallback) {
 		guard var handler = server.handlerForRequest(withMethod: .GET, resource: nil) else {
 			callback(nil, FHIRError.noRequestHandlerAvailable(.GET))
 			return
 		}
-		
-		// handle options and perform request
-		if asSummary {
-			handler.options = [.summary: FHIRRequestOption.Summary.true.rawValue]
-		}
+		handler.options = options
 		server.performRequest(against: path, handler: handler) { response in
 			if let error = response.error {
 				callback(nil, error)
@@ -220,7 +216,9 @@ public extension Resource {
 						type(of: self).read(id, server: server) { resource, error in
 							if let resource = resource {
 								do {
-									try self.populate(from: try resource.asJSON())
+									var context = FHIRInstantiationContext()
+									self.initialize(from: try resource.asJSON(), context: &context)
+									try context.validate()
 								}
 								catch let error {
 									callback(error.asFHIRError)

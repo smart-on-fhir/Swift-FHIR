@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -47,20 +47,18 @@ open class VisionPrescription: DomainResource {
 	public var status: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		dateWritten = try createInstance(type: DateTime.self, for: "dateWritten", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateWritten
-		dispense = try createInstances(of: VisionPrescriptionDispense.self, for: "dispense", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dispense
-		encounter = try createInstance(type: Reference.self, for: "encounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? encounter
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		prescriber = try createInstance(type: Reference.self, for: "prescriber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? prescriber
-		reasonCodeableConcept = try createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCodeableConcept
-		reasonReference = try createInstance(type: Reference.self, for: "reasonReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonReference
-		status = try createInstance(type: FHIRString.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
-		
-		return errors.isEmpty ? nil : errors
+		dateWritten = createInstance(type: DateTime.self, for: "dateWritten", in: json, context: &instCtx, owner: self) ?? dateWritten
+		dispense = createInstances(of: VisionPrescriptionDispense.self, for: "dispense", in: json, context: &instCtx, owner: self) ?? dispense
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		prescriber = createInstance(type: Reference.self, for: "prescriber", in: json, context: &instCtx, owner: self) ?? prescriber
+		reasonCodeableConcept = createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, context: &instCtx, owner: self) ?? reasonCodeableConcept
+		reasonReference = createInstance(type: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
+		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -135,26 +133,24 @@ open class VisionPrescriptionDispense: BackboneElement {
 	public var sphere: FHIRDecimal?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		add = try createInstance(type: FHIRDecimal.self, for: "add", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? add
-		axis = try createInstance(type: FHIRInteger.self, for: "axis", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? axis
-		backCurve = try createInstance(type: FHIRDecimal.self, for: "backCurve", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? backCurve
-		base = createEnum(type: VisionBase.self, for: "base", in: json, presentKeys: &presentKeys, errors: &errors) ?? base
-		brand = try createInstance(type: FHIRString.self, for: "brand", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? brand
-		color = try createInstance(type: FHIRString.self, for: "color", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? color
-		cylinder = try createInstance(type: FHIRDecimal.self, for: "cylinder", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? cylinder
-		diameter = try createInstance(type: FHIRDecimal.self, for: "diameter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? diameter
-		duration = try createInstance(type: Quantity.self, for: "duration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? duration
-		eye = createEnum(type: VisionEyes.self, for: "eye", in: json, presentKeys: &presentKeys, errors: &errors) ?? eye
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		power = try createInstance(type: FHIRDecimal.self, for: "power", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? power
-		prism = try createInstance(type: FHIRDecimal.self, for: "prism", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? prism
-		product = try createInstance(type: CodeableConcept.self, for: "product", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? product
-		sphere = try createInstance(type: FHIRDecimal.self, for: "sphere", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sphere
-		
-		return errors.isEmpty ? nil : errors
+		add = createInstance(type: FHIRDecimal.self, for: "add", in: json, context: &instCtx, owner: self) ?? add
+		axis = createInstance(type: FHIRInteger.self, for: "axis", in: json, context: &instCtx, owner: self) ?? axis
+		backCurve = createInstance(type: FHIRDecimal.self, for: "backCurve", in: json, context: &instCtx, owner: self) ?? backCurve
+		base = createEnum(type: VisionBase.self, for: "base", in: json, context: &instCtx) ?? base
+		brand = createInstance(type: FHIRString.self, for: "brand", in: json, context: &instCtx, owner: self) ?? brand
+		color = createInstance(type: FHIRString.self, for: "color", in: json, context: &instCtx, owner: self) ?? color
+		cylinder = createInstance(type: FHIRDecimal.self, for: "cylinder", in: json, context: &instCtx, owner: self) ?? cylinder
+		diameter = createInstance(type: FHIRDecimal.self, for: "diameter", in: json, context: &instCtx, owner: self) ?? diameter
+		duration = createInstance(type: Quantity.self, for: "duration", in: json, context: &instCtx, owner: self) ?? duration
+		eye = createEnum(type: VisionEyes.self, for: "eye", in: json, context: &instCtx) ?? eye
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		power = createInstance(type: FHIRDecimal.self, for: "power", in: json, context: &instCtx, owner: self) ?? power
+		prism = createInstance(type: FHIRDecimal.self, for: "prism", in: json, context: &instCtx, owner: self) ?? prism
+		product = createInstance(type: CodeableConcept.self, for: "product", in: json, context: &instCtx, owner: self) ?? product
+		sphere = createInstance(type: FHIRDecimal.self, for: "sphere", in: json, context: &instCtx, owner: self) ?? sphere
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

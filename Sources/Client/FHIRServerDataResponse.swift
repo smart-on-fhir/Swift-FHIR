@@ -255,7 +255,10 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		guard let json = json else {
 			throw FHIRError.responseNoResourceReceived
 		}
-		return try T.instantiate(from: json, owner: nil)
+		var context = FHIRInstantiationContext()
+		let resource = T.instantiate(from: json, owner: nil, context: &context)
+		try context.validate()
+		return resource
 	}
 	
 	/**
@@ -274,7 +277,9 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		if let resourceType = json["resourceType"] as? String, resourceType != type(of: resource).resourceType {
 			throw FHIRError.responseResourceTypeMismatch(resourceType, type(of: resource).resourceType)
 		}
-		try resource.populate(from: json)
+		var context = FHIRInstantiationContext()
+		resource.populate(from: json, context: &context)
+		try context.validate()
 	}
 }
 

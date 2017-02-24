@@ -22,8 +22,8 @@ public protocol FHIRPrimitive: FHIRJSONType {
 
 extension FHIRPrimitive {
 	
-	public static func instantiate(from json: JSONType, owner: FHIRAbstractBase?) throws -> Self {
-		return try self.init(json: json, owner: owner)
+	public static func instantiate(from json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) -> Self {
+		return self.init(json: json, owner: owner, context: &context)
 	}
 	
 	/**
@@ -31,19 +31,17 @@ extension FHIRPrimitive {
 	
 	- note: Values that the instance alreay possesses and are not in the JSON should be left alone.
 	
-	- parameter json:        The JSON element to use to populate the receiver
-	- parameter presentKeys: An in-out parameter being filled with key names used.
-	- returns:               An optional array of errors reporting missing mandatory keys or keys containing values of the wrong type
-	- throws:                If anything besides a `FHIRValidationError` happens
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter context: The instantiation context to use
+	- returns:           An optional array of errors reporting missing mandatory keys or keys containing values of the wrong type
+	- throws:            If anything besides a `FHIRValidationError` happens
 	*/
-	public mutating func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = [FHIRValidationError]()
+	public mutating func populate(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
 		if let id = json["id"] as? String {
-			presentKeys.insert("id")
+			context.insertKey("id")
 			self.id = id
 		}
-		extension_fhir = try createInstances(of: Extension.self, for: "extension", in: json, presentKeys: &presentKeys, errors: &errors, owner: _owner) ?? extension_fhir
-		return errors.isEmpty ? nil : errors
+		extension_fhir = createInstances(of: Extension.self, for: "extension", in: json, context: &context, owner: _owner) ?? extension_fhir
 	}
 	
 	public func asExtraJSON(errors: inout [FHIRValidationError]) -> FHIRJSON? {

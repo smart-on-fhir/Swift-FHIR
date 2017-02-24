@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -48,20 +48,18 @@ open class Medication: DomainResource {
 	public var status: MedicationStatus?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		form = try createInstance(type: CodeableConcept.self, for: "form", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? form
-		image = try createInstances(of: Attachment.self, for: "image", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? image
-		ingredient = try createInstances(of: MedicationIngredient.self, for: "ingredient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ingredient
-		isBrand = try createInstance(type: FHIRBool.self, for: "isBrand", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? isBrand
-		isOverTheCounter = try createInstance(type: FHIRBool.self, for: "isOverTheCounter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? isOverTheCounter
-		manufacturer = try createInstance(type: Reference.self, for: "manufacturer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manufacturer
-		package = try createInstance(type: MedicationPackage.self, for: "package", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? package
-		status = createEnum(type: MedicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		
-		return errors.isEmpty ? nil : errors
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		form = createInstance(type: CodeableConcept.self, for: "form", in: json, context: &instCtx, owner: self) ?? form
+		image = createInstances(of: Attachment.self, for: "image", in: json, context: &instCtx, owner: self) ?? image
+		ingredient = createInstances(of: MedicationIngredient.self, for: "ingredient", in: json, context: &instCtx, owner: self) ?? ingredient
+		isBrand = createInstance(type: FHIRBool.self, for: "isBrand", in: json, context: &instCtx, owner: self) ?? isBrand
+		isOverTheCounter = createInstance(type: FHIRBool.self, for: "isOverTheCounter", in: json, context: &instCtx, owner: self) ?? isOverTheCounter
+		manufacturer = createInstance(type: Reference.self, for: "manufacturer", in: json, context: &instCtx, owner: self) ?? manufacturer
+		package = createInstance(type: MedicationPackage.self, for: "package", in: json, context: &instCtx, owner: self) ?? package
+		status = createEnum(type: MedicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -118,21 +116,19 @@ open class MedicationIngredient: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		amount = try createInstance(type: Ratio.self, for: "amount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? amount
-		isActive = try createInstance(type: FHIRBool.self, for: "isActive", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? isActive
-		itemCodeableConcept = try createInstance(type: CodeableConcept.self, for: "itemCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? itemCodeableConcept
-		itemReference = try createInstance(type: Reference.self, for: "itemReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? itemReference
+		amount = createInstance(type: Ratio.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
+		isActive = createInstance(type: FHIRBool.self, for: "isActive", in: json, context: &instCtx, owner: self) ?? isActive
+		itemCodeableConcept = createInstance(type: CodeableConcept.self, for: "itemCodeableConcept", in: json, context: &instCtx, owner: self) ?? itemCodeableConcept
+		itemReference = createInstance(type: Reference.self, for: "itemReference", in: json, context: &instCtx, owner: self) ?? itemReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.itemCodeableConcept && nil == self.itemReference {
-			errors.append(FHIRValidationError(missing: "item[x]"))
+			instCtx.addError(FHIRValidationError(missing: "item[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -171,14 +167,12 @@ open class MedicationPackage: BackboneElement {
 	public var content: [MedicationPackageContent]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		batch = try createInstances(of: MedicationPackageBatch.self, for: "batch", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? batch
-		container = try createInstance(type: CodeableConcept.self, for: "container", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? container
-		content = try createInstances(of: MedicationPackageContent.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
-		
-		return errors.isEmpty ? nil : errors
+		batch = createInstances(of: MedicationPackageBatch.self, for: "batch", in: json, context: &instCtx, owner: self) ?? batch
+		container = createInstance(type: CodeableConcept.self, for: "container", in: json, context: &instCtx, owner: self) ?? container
+		content = createInstances(of: MedicationPackageContent.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -208,13 +202,11 @@ open class MedicationPackageBatch: BackboneElement {
 	public var lotNumber: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		expirationDate = try createInstance(type: DateTime.self, for: "expirationDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expirationDate
-		lotNumber = try createInstance(type: FHIRString.self, for: "lotNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lotNumber
-		
-		return errors.isEmpty ? nil : errors
+		expirationDate = createInstance(type: DateTime.self, for: "expirationDate", in: json, context: &instCtx, owner: self) ?? expirationDate
+		lotNumber = createInstance(type: FHIRString.self, for: "lotNumber", in: json, context: &instCtx, owner: self) ?? lotNumber
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -261,20 +253,18 @@ open class MedicationPackageContent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		amount = try createInstance(type: Quantity.self, for: "amount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? amount
-		itemCodeableConcept = try createInstance(type: CodeableConcept.self, for: "itemCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? itemCodeableConcept
-		itemReference = try createInstance(type: Reference.self, for: "itemReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? itemReference
+		amount = createInstance(type: Quantity.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
+		itemCodeableConcept = createInstance(type: CodeableConcept.self, for: "itemCodeableConcept", in: json, context: &instCtx, owner: self) ?? itemCodeableConcept
+		itemReference = createInstance(type: Reference.self, for: "itemReference", in: json, context: &instCtx, owner: self) ?? itemReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.itemCodeableConcept && nil == self.itemReference {
-			errors.append(FHIRValidationError(missing: "item[x]"))
+			instCtx.addError(FHIRValidationError(missing: "item[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

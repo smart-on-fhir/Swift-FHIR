@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -73,29 +73,27 @@ open class Sequence: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		coordinateSystem = try createInstance(type: FHIRInteger.self, for: "coordinateSystem", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? coordinateSystem
-		if nil == coordinateSystem && !presentKeys.contains("coordinateSystem") {
-			errors.append(FHIRValidationError(missing: "coordinateSystem"))
+		coordinateSystem = createInstance(type: FHIRInteger.self, for: "coordinateSystem", in: json, context: &instCtx, owner: self) ?? coordinateSystem
+		if nil == coordinateSystem && !instCtx.containsKey("coordinateSystem") {
+			instCtx.addError(FHIRValidationError(missing: "coordinateSystem"))
 		}
-		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		observedSeq = try createInstance(type: FHIRString.self, for: "observedSeq", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? observedSeq
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		performer = try createInstance(type: Reference.self, for: "performer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performer
-		pointer = try createInstances(of: Reference.self, for: "pointer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? pointer
-		quality = try createInstances(of: SequenceQuality.self, for: "quality", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quality
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		readCoverage = try createInstance(type: FHIRInteger.self, for: "readCoverage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? readCoverage
-		referenceSeq = try createInstance(type: SequenceReferenceSeq.self, for: "referenceSeq", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referenceSeq
-		repository = try createInstances(of: SequenceRepository.self, for: "repository", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? repository
-		specimen = try createInstance(type: Reference.self, for: "specimen", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specimen
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		variant = try createInstances(of: SequenceVariant.self, for: "variant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variant
-		
-		return errors.isEmpty ? nil : errors
+		device = createInstance(type: Reference.self, for: "device", in: json, context: &instCtx, owner: self) ?? device
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		observedSeq = createInstance(type: FHIRString.self, for: "observedSeq", in: json, context: &instCtx, owner: self) ?? observedSeq
+		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		performer = createInstance(type: Reference.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
+		pointer = createInstances(of: Reference.self, for: "pointer", in: json, context: &instCtx, owner: self) ?? pointer
+		quality = createInstances(of: SequenceQuality.self, for: "quality", in: json, context: &instCtx, owner: self) ?? quality
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		readCoverage = createInstance(type: FHIRInteger.self, for: "readCoverage", in: json, context: &instCtx, owner: self) ?? readCoverage
+		referenceSeq = createInstance(type: SequenceReferenceSeq.self, for: "referenceSeq", in: json, context: &instCtx, owner: self) ?? referenceSeq
+		repository = createInstances(of: SequenceRepository.self, for: "repository", in: json, context: &instCtx, owner: self) ?? repository
+		specimen = createInstance(type: Reference.self, for: "specimen", in: json, context: &instCtx, owner: self) ?? specimen
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		variant = createInstances(of: SequenceVariant.self, for: "variant", in: json, context: &instCtx, owner: self) ?? variant
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -184,28 +182,26 @@ open class SequenceQuality: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		end = try createInstance(type: FHIRInteger.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
-		fScore = try createInstance(type: FHIRDecimal.self, for: "fScore", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fScore
-		gtFP = try createInstance(type: FHIRDecimal.self, for: "gtFP", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? gtFP
-		method = try createInstance(type: CodeableConcept.self, for: "method", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? method
-		precision = try createInstance(type: FHIRDecimal.self, for: "precision", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? precision
-		queryFP = try createInstance(type: FHIRDecimal.self, for: "queryFP", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? queryFP
-		queryTP = try createInstance(type: FHIRDecimal.self, for: "queryTP", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? queryTP
-		recall = try createInstance(type: FHIRDecimal.self, for: "recall", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recall
-		score = try createInstance(type: Quantity.self, for: "score", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? score
-		standardSequence = try createInstance(type: CodeableConcept.self, for: "standardSequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? standardSequence
-		start = try createInstance(type: FHIRInteger.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
-		truthFN = try createInstance(type: FHIRDecimal.self, for: "truthFN", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? truthFN
-		truthTP = try createInstance(type: FHIRDecimal.self, for: "truthTP", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? truthTP
-		type = createEnum(type: QualityType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		end = createInstance(type: FHIRInteger.self, for: "end", in: json, context: &instCtx, owner: self) ?? end
+		fScore = createInstance(type: FHIRDecimal.self, for: "fScore", in: json, context: &instCtx, owner: self) ?? fScore
+		gtFP = createInstance(type: FHIRDecimal.self, for: "gtFP", in: json, context: &instCtx, owner: self) ?? gtFP
+		method = createInstance(type: CodeableConcept.self, for: "method", in: json, context: &instCtx, owner: self) ?? method
+		precision = createInstance(type: FHIRDecimal.self, for: "precision", in: json, context: &instCtx, owner: self) ?? precision
+		queryFP = createInstance(type: FHIRDecimal.self, for: "queryFP", in: json, context: &instCtx, owner: self) ?? queryFP
+		queryTP = createInstance(type: FHIRDecimal.self, for: "queryTP", in: json, context: &instCtx, owner: self) ?? queryTP
+		recall = createInstance(type: FHIRDecimal.self, for: "recall", in: json, context: &instCtx, owner: self) ?? recall
+		score = createInstance(type: Quantity.self, for: "score", in: json, context: &instCtx, owner: self) ?? score
+		standardSequence = createInstance(type: CodeableConcept.self, for: "standardSequence", in: json, context: &instCtx, owner: self) ?? standardSequence
+		start = createInstance(type: FHIRInteger.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
+		truthFN = createInstance(type: FHIRDecimal.self, for: "truthFN", in: json, context: &instCtx, owner: self) ?? truthFN
+		truthTP = createInstance(type: FHIRDecimal.self, for: "truthTP", in: json, context: &instCtx, owner: self) ?? truthTP
+		type = createEnum(type: QualityType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -275,25 +271,23 @@ open class SequenceReferenceSeq: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		chromosome = try createInstance(type: CodeableConcept.self, for: "chromosome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? chromosome
-		genomeBuild = try createInstance(type: FHIRString.self, for: "genomeBuild", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? genomeBuild
-		referenceSeqId = try createInstance(type: CodeableConcept.self, for: "referenceSeqId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referenceSeqId
-		referenceSeqPointer = try createInstance(type: Reference.self, for: "referenceSeqPointer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referenceSeqPointer
-		referenceSeqString = try createInstance(type: FHIRString.self, for: "referenceSeqString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referenceSeqString
-		strand = try createInstance(type: FHIRInteger.self, for: "strand", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? strand
-		windowEnd = try createInstance(type: FHIRInteger.self, for: "windowEnd", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? windowEnd
-		if nil == windowEnd && !presentKeys.contains("windowEnd") {
-			errors.append(FHIRValidationError(missing: "windowEnd"))
+		chromosome = createInstance(type: CodeableConcept.self, for: "chromosome", in: json, context: &instCtx, owner: self) ?? chromosome
+		genomeBuild = createInstance(type: FHIRString.self, for: "genomeBuild", in: json, context: &instCtx, owner: self) ?? genomeBuild
+		referenceSeqId = createInstance(type: CodeableConcept.self, for: "referenceSeqId", in: json, context: &instCtx, owner: self) ?? referenceSeqId
+		referenceSeqPointer = createInstance(type: Reference.self, for: "referenceSeqPointer", in: json, context: &instCtx, owner: self) ?? referenceSeqPointer
+		referenceSeqString = createInstance(type: FHIRString.self, for: "referenceSeqString", in: json, context: &instCtx, owner: self) ?? referenceSeqString
+		strand = createInstance(type: FHIRInteger.self, for: "strand", in: json, context: &instCtx, owner: self) ?? strand
+		windowEnd = createInstance(type: FHIRInteger.self, for: "windowEnd", in: json, context: &instCtx, owner: self) ?? windowEnd
+		if nil == windowEnd && !instCtx.containsKey("windowEnd") {
+			instCtx.addError(FHIRValidationError(missing: "windowEnd"))
 		}
-		windowStart = try createInstance(type: FHIRInteger.self, for: "windowStart", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? windowStart
-		if nil == windowStart && !presentKeys.contains("windowStart") {
-			errors.append(FHIRValidationError(missing: "windowStart"))
+		windowStart = createInstance(type: FHIRInteger.self, for: "windowStart", in: json, context: &instCtx, owner: self) ?? windowStart
+		if nil == windowStart && !instCtx.containsKey("windowStart") {
+			instCtx.addError(FHIRValidationError(missing: "windowStart"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -354,20 +348,18 @@ open class SequenceRepository: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		datasetId = try createInstance(type: FHIRString.self, for: "datasetId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? datasetId
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		readsetId = try createInstance(type: FHIRString.self, for: "readsetId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? readsetId
-		type = createEnum(type: RepositoryType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		datasetId = createInstance(type: FHIRString.self, for: "datasetId", in: json, context: &instCtx, owner: self) ?? datasetId
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		readsetId = createInstance(type: FHIRString.self, for: "readsetId", in: json, context: &instCtx, owner: self) ?? readsetId
+		type = createEnum(type: RepositoryType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		variantsetId = try createInstance(type: FHIRString.self, for: "variantsetId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variantsetId
-		
-		return errors.isEmpty ? nil : errors
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		variantsetId = createInstance(type: FHIRString.self, for: "variantsetId", in: json, context: &instCtx, owner: self) ?? variantsetId
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -418,17 +410,15 @@ open class SequenceVariant: BackboneElement {
 	public var variantPointer: Reference?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		cigar = try createInstance(type: FHIRString.self, for: "cigar", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? cigar
-		end = try createInstance(type: FHIRInteger.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
-		observedAllele = try createInstance(type: FHIRString.self, for: "observedAllele", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? observedAllele
-		referenceAllele = try createInstance(type: FHIRString.self, for: "referenceAllele", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referenceAllele
-		start = try createInstance(type: FHIRInteger.self, for: "start", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? start
-		variantPointer = try createInstance(type: Reference.self, for: "variantPointer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variantPointer
-		
-		return errors.isEmpty ? nil : errors
+		cigar = createInstance(type: FHIRString.self, for: "cigar", in: json, context: &instCtx, owner: self) ?? cigar
+		end = createInstance(type: FHIRInteger.self, for: "end", in: json, context: &instCtx, owner: self) ?? end
+		observedAllele = createInstance(type: FHIRString.self, for: "observedAllele", in: json, context: &instCtx, owner: self) ?? observedAllele
+		referenceAllele = createInstance(type: FHIRString.self, for: "referenceAllele", in: json, context: &instCtx, owner: self) ?? referenceAllele
+		start = createInstance(type: FHIRInteger.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
+		variantPointer = createInstance(type: Reference.self, for: "variantPointer", in: json, context: &instCtx, owner: self) ?? variantPointer
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

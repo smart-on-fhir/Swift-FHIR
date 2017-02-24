@@ -2,7 +2,7 @@
 //  RelatedArtifact.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -45,20 +45,18 @@ open class RelatedArtifact: Element {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		citation = try createInstance(type: FHIRString.self, for: "citation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? citation
-		display = try createInstance(type: FHIRString.self, for: "display", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? display
-		document = try createInstance(type: Attachment.self, for: "document", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? document
-		resource = try createInstance(type: Reference.self, for: "resource", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? resource
-		type = createEnum(type: RelatedArtifactType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		citation = createInstance(type: FHIRString.self, for: "citation", in: json, context: &instCtx, owner: self) ?? citation
+		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
+		document = createInstance(type: Attachment.self, for: "document", in: json, context: &instCtx, owner: self) ?? document
+		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
+		type = createEnum(type: RelatedArtifactType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		
-		return errors.isEmpty ? nil : errors
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

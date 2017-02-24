@@ -2,7 +2,7 @@
 //  DeviceRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -63,6 +63,7 @@ class DeviceRequestTests: XCTestCase {
 		XCTAssertEqual(inst.relevantHistory?[0].display, "Request for unspecified device")
 		XCTAssertEqual(inst.requester?.agent?.display, "Dr. Adam Careful")
 		XCTAssertEqual(inst.requester?.agent?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.requester?.onBehalfOf?.reference, "Organization/2.16.840.1.113883.19.5")
 		XCTAssertEqual(inst.status, RequestStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/dicom")
 		XCTAssertEqual(inst.supportingInfo?[0].display, "Previous results")
@@ -90,7 +91,6 @@ class DeviceRequestTests: XCTestCase {
 		XCTAssertEqual(inst.intent?.coding?[0].code, "original-order")
 		XCTAssertEqual(inst.status, RequestStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be filled out at a later time</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

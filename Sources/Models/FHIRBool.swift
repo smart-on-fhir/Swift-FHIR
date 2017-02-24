@@ -41,7 +41,7 @@ public struct FHIRBool: FHIRPrimitive, LosslessStringConvertible, ExpressibleByB
 	
 	public typealias JSONType = Bool
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
 		self.init(json)
 		_owner = owner
 	}

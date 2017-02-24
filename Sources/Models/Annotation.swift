@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -39,18 +39,16 @@ open class Annotation: Element {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		authorReference = try createInstance(type: Reference.self, for: "authorReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authorReference
-		authorString = try createInstance(type: FHIRString.self, for: "authorString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authorString
-		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		if nil == text && !presentKeys.contains("text") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "text"))
+		authorReference = createInstance(type: Reference.self, for: "authorReference", in: json, context: &instCtx, owner: self) ?? authorReference
+		authorString = createInstance(type: FHIRString.self, for: "authorString", in: json, context: &instCtx, owner: self) ?? authorString
+		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
+		if nil == text && !instCtx.containsKey("text") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "text"))
 		}
-		time = try createInstance(type: DateTime.self, for: "time", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? time
-		
-		return errors.isEmpty ? nil : errors
+		time = createInstance(type: DateTime.self, for: "time", in: json, context: &instCtx, owner: self) ?? time
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

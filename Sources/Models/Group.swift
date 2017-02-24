@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -57,26 +57,24 @@ open class Group: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		active = try createInstance(type: FHIRBool.self, for: "active", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? active
-		actual = try createInstance(type: FHIRBool.self, for: "actual", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actual
-		if nil == actual && !presentKeys.contains("actual") {
-			errors.append(FHIRValidationError(missing: "actual"))
+		active = createInstance(type: FHIRBool.self, for: "active", in: json, context: &instCtx, owner: self) ?? active
+		actual = createInstance(type: FHIRBool.self, for: "actual", in: json, context: &instCtx, owner: self) ?? actual
+		if nil == actual && !instCtx.containsKey("actual") {
+			instCtx.addError(FHIRValidationError(missing: "actual"))
 		}
-		characteristic = try createInstances(of: GroupCharacteristic.self, for: "characteristic", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? characteristic
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		member = try createInstances(of: GroupMember.self, for: "member", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? member
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		quantity = try createInstance(type: FHIRInteger.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		type = createEnum(type: GroupType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		characteristic = createInstances(of: GroupCharacteristic.self, for: "characteristic", in: json, context: &instCtx, owner: self) ?? characteristic
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		member = createInstances(of: GroupMember.self, for: "member", in: json, context: &instCtx, owner: self) ?? member
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		quantity = createInstance(type: FHIRInteger.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		type = createEnum(type: GroupType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -156,30 +154,28 @@ open class GroupCharacteristic: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "code"))
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		exclude = try createInstance(type: FHIRBool.self, for: "exclude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? exclude
-		if nil == exclude && !presentKeys.contains("exclude") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "exclude"))
+		exclude = createInstance(type: FHIRBool.self, for: "exclude", in: json, context: &instCtx, owner: self) ?? exclude
+		if nil == exclude && !instCtx.containsKey("exclude") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "exclude"))
 		}
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
-		valueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueCodeableConcept
-		valueQuantity = try createInstance(type: Quantity.self, for: "valueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueQuantity
-		valueRange = try createInstance(type: Range.self, for: "valueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueRange
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
+		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
+		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
+		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueCodeableConcept && nil == self.valueBoolean && nil == self.valueQuantity && nil == self.valueRange {
-			errors.append(FHIRValidationError(missing: "value[x]"))
+			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -234,17 +230,15 @@ open class GroupMember: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		entity = try createInstance(type: Reference.self, for: "entity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entity
-		if nil == entity && !presentKeys.contains("entity") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "entity"))
+		entity = createInstance(type: Reference.self, for: "entity", in: json, context: &instCtx, owner: self) ?? entity
+		if nil == entity && !instCtx.containsKey("entity") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "entity"))
 		}
-		inactive = try createInstance(type: FHIRBool.self, for: "inactive", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? inactive
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		
-		return errors.isEmpty ? nil : errors
+		inactive = createInstance(type: FHIRBool.self, for: "inactive", in: json, context: &instCtx, owner: self) ?? inactive
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

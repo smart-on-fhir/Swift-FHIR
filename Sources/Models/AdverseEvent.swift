@@ -2,7 +2,7 @@
 //  AdverseEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -69,27 +69,25 @@ open class AdverseEvent: DomainResource {
 	public var type: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		category = createEnum(type: AdverseEventCategory.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors) ?? category
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		eventParticipant = try createInstance(type: Reference.self, for: "eventParticipant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eventParticipant
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		outcome = try createInstance(type: CodeableConcept.self, for: "outcome", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? outcome
-		reaction = try createInstances(of: Reference.self, for: "reaction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reaction
-		recorder = try createInstance(type: Reference.self, for: "recorder", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recorder
-		referenceDocument = try createInstances(of: Reference.self, for: "referenceDocument", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referenceDocument
-		seriousness = try createInstance(type: CodeableConcept.self, for: "seriousness", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? seriousness
-		study = try createInstances(of: Reference.self, for: "study", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? study
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		subjectMedicalHistory = try createInstances(of: Reference.self, for: "subjectMedicalHistory", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subjectMedicalHistory
-		suspectEntity = try createInstances(of: AdverseEventSuspectEntity.self, for: "suspectEntity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? suspectEntity
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		category = createEnum(type: AdverseEventCategory.self, for: "category", in: json, context: &instCtx) ?? category
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		eventParticipant = createInstance(type: Reference.self, for: "eventParticipant", in: json, context: &instCtx, owner: self) ?? eventParticipant
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
+		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		reaction = createInstances(of: Reference.self, for: "reaction", in: json, context: &instCtx, owner: self) ?? reaction
+		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
+		referenceDocument = createInstances(of: Reference.self, for: "referenceDocument", in: json, context: &instCtx, owner: self) ?? referenceDocument
+		seriousness = createInstance(type: CodeableConcept.self, for: "seriousness", in: json, context: &instCtx, owner: self) ?? seriousness
+		study = createInstances(of: Reference.self, for: "study", in: json, context: &instCtx, owner: self) ?? study
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		subjectMedicalHistory = createInstances(of: Reference.self, for: "subjectMedicalHistory", in: json, context: &instCtx, owner: self) ?? subjectMedicalHistory
+		suspectEntity = createInstances(of: AdverseEventSuspectEntity.self, for: "suspectEntity", in: json, context: &instCtx, owner: self) ?? suspectEntity
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -152,21 +150,19 @@ open class AdverseEventSuspectEntity: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		causality = createEnum(type: AdverseEventCausality.self, for: "causality", in: json, presentKeys: &presentKeys, errors: &errors) ?? causality
-		causalityAssessment = try createInstance(type: CodeableConcept.self, for: "causalityAssessment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? causalityAssessment
-		causalityAuthor = try createInstance(type: Reference.self, for: "causalityAuthor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? causalityAuthor
-		causalityMethod = try createInstance(type: CodeableConcept.self, for: "causalityMethod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? causalityMethod
-		causalityProductRelatedness = try createInstance(type: FHIRString.self, for: "causalityProductRelatedness", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? causalityProductRelatedness
-		causalityResult = try createInstance(type: CodeableConcept.self, for: "causalityResult", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? causalityResult
-		instance = try createInstance(type: Reference.self, for: "instance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instance
-		if nil == instance && !presentKeys.contains("instance") {
-			errors.append(FHIRValidationError(missing: "instance"))
+		causality = createEnum(type: AdverseEventCausality.self, for: "causality", in: json, context: &instCtx) ?? causality
+		causalityAssessment = createInstance(type: CodeableConcept.self, for: "causalityAssessment", in: json, context: &instCtx, owner: self) ?? causalityAssessment
+		causalityAuthor = createInstance(type: Reference.self, for: "causalityAuthor", in: json, context: &instCtx, owner: self) ?? causalityAuthor
+		causalityMethod = createInstance(type: CodeableConcept.self, for: "causalityMethod", in: json, context: &instCtx, owner: self) ?? causalityMethod
+		causalityProductRelatedness = createInstance(type: FHIRString.self, for: "causalityProductRelatedness", in: json, context: &instCtx, owner: self) ?? causalityProductRelatedness
+		causalityResult = createInstance(type: CodeableConcept.self, for: "causalityResult", in: json, context: &instCtx, owner: self) ?? causalityResult
+		instance = createInstance(type: Reference.self, for: "instance", in: json, context: &instCtx, owner: self) ?? instance
+		if nil == instance && !instCtx.containsKey("instance") {
+			instCtx.addError(FHIRValidationError(missing: "instance"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

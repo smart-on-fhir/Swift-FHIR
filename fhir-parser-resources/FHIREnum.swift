@@ -12,31 +12,34 @@ import Foundation
 /**
 Attempt to create an enum for the given key in the given dictionary, filling presentKeys and errors along the way.
 
-- parameter type:   The enum type to create (as an array)
-- parameter key:    The JSON key to look at in `json`
-- parameter json:   The JSON dictionary to inspect
-- parameter presentKeys: The keys in json found and handled
-- parameter errors: Validation errors encountered are put into this array
-- returns:          An array of enums, or nil
+- parameter type:    The enum type to create (as an array)
+- parameter key:     The JSON key to look at in `json`
+- parameter json:    The JSON dictionary to inspect
+- parameter context: The instantiation context to use
+- returns:           An array of enums, or nil
 */
-public func createEnum<E: RawRepresentable>(type: E.Type, for key: String, in json: FHIRJSON, presentKeys: inout Set<String>, errors: inout [FHIRValidationError]) -> E? {
+public func createEnum<E: RawRepresentable>(type: E.Type, for key: String, in json: FHIRJSON, context: inout FHIRInstantiationContext) -> E? {
 	guard let exist = json[key] else {
 		return nil
 	}
-	presentKeys.insert(key)
+	context.insertKey(key)
 	
 	// correct type?
 	guard let value = exist as? E.RawValue else {
-		errors.append(FHIRValidationError(key: key, wants: E.RawValue.self, has: type(of: exist)))
+		context.addError(FHIRValidationError(key: key, wants: E.RawValue.self, has: type(of: exist)))
 		return nil
 	}
 	
 	// create enum
 	guard let enumval = E(rawValue: value) else {
-		errors.append(FHIRValidationError(key: key, problem: "“\(value)” is not valid"))
+		context.addError(FHIRValidationError(key: key, problem: "“\(value)” is not valid"))
 		return nil
 	}
-	// TODO: look at "_key"
+	if let _ = json["_\(key)"] as? FHIRJSON {
+		context.insertKey("_\(key)")
+		// TODO: populate from "_key"
+		fhir_warn("Not implemented: extension for enums for key “_\(key)”")
+	}
 	return enumval
 }
 
@@ -44,22 +47,21 @@ public func createEnum<E: RawRepresentable>(type: E.Type, for key: String, in js
 /**
 Attempt to create an array of enums for the given key in the given dictionary, populating presentKeys and errors appropriately.
 
-- parameter type:   The enum type to create (as an array)
-- parameter key:    The JSON key to look at in `json`
-- parameter json:   The JSON dictionary to inspect
-- parameter presentKeys: The keys in json found and handled
-- parameter errors: Validation errors encountered are put into this array
-- returns:          An array of enums, or nil
+- parameter type:    The enum type to create (as an array)
+- parameter key:     The JSON key to look at in `json`
+- parameter json:    The JSON dictionary to inspect
+- parameter context: The instantiation context to use
+- returns:           An array of enums, or nil
 */
-public func createEnums<E: RawRepresentable>(of type: E.Type, for key: String, in json: FHIRJSON, presentKeys: inout Set<String>, errors: inout [FHIRValidationError]) -> [E]? {
+public func createEnums<E: RawRepresentable>(of type: E.Type, for key: String, in json: FHIRJSON, context: inout FHIRInstantiationContext) -> [E]? {
 	guard let exist = json[key] else {
 		return nil
 	}
-	presentKeys.insert(key)
+	context.insertKey(key)
 	
 	// correct type?
 	guard let val = exist as? [E.RawValue] else {
-		errors.append(FHIRValidationError(key: key, wants: Array<E.RawValue>.self, has: type(of: exist)))
+		context.addError(FHIRValidationError(key: key, wants: Array<E.RawValue>.self, has: type(of: exist)))
 		return nil
 	}
 	
@@ -67,12 +69,16 @@ public func createEnums<E: RawRepresentable>(of type: E.Type, for key: String, i
 	var enums = [E]()
 	for (i, value) in val.enumerated() {
 		guard let enumval = E(rawValue: value) else {
-			errors.append(FHIRValidationError(key: "\(key).\(i)", problem: "“\(value)” is not valid"))
+			context.addError(FHIRValidationError(key: "\(key).\(i)", problem: "“\(value)” is not valid"))
 			continue
 		}
 		enums.append(enumval)
 	}
-	// TODO: look at "_key"
+	if let _ = json["_\(key)"] as? FHIRJSON {
+		context.insertKey("_\(key)")
+		// TODO: populate from "_key"
+		fhir_warn("Not implemented: extension for enums for key “_\(key)”")
+	}
 	return enums
 }
 

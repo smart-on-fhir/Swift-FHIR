@@ -2,7 +2,7 @@
 //  TaskTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -41,6 +41,7 @@ class TaskTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "task-example1.json")
 		
 		XCTAssertEqual(inst.authoredOn?.description, "2016-10-31T08:25:05+10:00")
+		XCTAssertEqual(inst.basedOn?[0].display, "General Wellness Careplan")
 		XCTAssertEqual(inst.businessStatus?.text, "waiting for specimen")
 		XCTAssertEqual(inst.code?.text, "Lipid Panel")
 		XCTAssertEqual(inst.contained?[0].id, "signature")

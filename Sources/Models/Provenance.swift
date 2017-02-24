@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -64,30 +64,28 @@ open class Provenance: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		activity = try createInstance(type: Coding.self, for: "activity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? activity
-		agent = try createInstances(of: ProvenanceAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		if (nil == agent || agent!.isEmpty) && !presentKeys.contains("agent") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "agent"))
+		activity = createInstance(type: Coding.self, for: "activity", in: json, context: &instCtx, owner: self) ?? activity
+		agent = createInstances(of: ProvenanceAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
+		if (nil == agent || agent!.isEmpty) && !instCtx.containsKey("agent") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "agent"))
 		}
-		entity = try createInstances(of: ProvenanceEntity.self, for: "entity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? entity
-		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		policy = try createInstances(of: FHIRURL.self, for: "policy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policy
-		reason = try createInstances(of: Coding.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
-		recorded = try createInstance(type: Instant.self, for: "recorded", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recorded
-		if nil == recorded && !presentKeys.contains("recorded") {
-			errors.append(FHIRValidationError(missing: "recorded"))
+		entity = createInstances(of: ProvenanceEntity.self, for: "entity", in: json, context: &instCtx, owner: self) ?? entity
+		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		policy = createInstances(of: FHIRURL.self, for: "policy", in: json, context: &instCtx, owner: self) ?? policy
+		reason = createInstances(of: Coding.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
+		recorded = createInstance(type: Instant.self, for: "recorded", in: json, context: &instCtx, owner: self) ?? recorded
+		if nil == recorded && !instCtx.containsKey("recorded") {
+			instCtx.addError(FHIRValidationError(missing: "recorded"))
 		}
-		signature = try createInstances(of: Signature.self, for: "signature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? signature
-		target = try createInstances(of: Reference.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		if (nil == target || target!.isEmpty) && !presentKeys.contains("target") {
-			errors.append(FHIRValidationError(missing: "target"))
+		signature = createInstances(of: Signature.self, for: "signature", in: json, context: &instCtx, owner: self) ?? signature
+		target = createInstances(of: Reference.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
+		if (nil == target || target!.isEmpty) && !instCtx.containsKey("target") {
+			instCtx.addError(FHIRValidationError(missing: "target"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -161,23 +159,21 @@ open class ProvenanceAgent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		onBehalfOfReference = try createInstance(type: Reference.self, for: "onBehalfOfReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOfReference
-		onBehalfOfUri = try createInstance(type: FHIRURL.self, for: "onBehalfOfUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? onBehalfOfUri
-		relatedAgentType = try createInstance(type: CodeableConcept.self, for: "relatedAgentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relatedAgentType
-		role = try createInstances(of: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		whoReference = try createInstance(type: Reference.self, for: "whoReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whoReference
-		whoUri = try createInstance(type: FHIRURL.self, for: "whoUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whoUri
+		onBehalfOfReference = createInstance(type: Reference.self, for: "onBehalfOfReference", in: json, context: &instCtx, owner: self) ?? onBehalfOfReference
+		onBehalfOfUri = createInstance(type: FHIRURL.self, for: "onBehalfOfUri", in: json, context: &instCtx, owner: self) ?? onBehalfOfUri
+		relatedAgentType = createInstance(type: CodeableConcept.self, for: "relatedAgentType", in: json, context: &instCtx, owner: self) ?? relatedAgentType
+		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		whoReference = createInstance(type: Reference.self, for: "whoReference", in: json, context: &instCtx, owner: self) ?? whoReference
+		whoUri = createInstance(type: FHIRURL.self, for: "whoUri", in: json, context: &instCtx, owner: self) ?? whoUri
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.whoUri && nil == self.whoReference {
-			errors.append(FHIRValidationError(missing: "who[x]"))
+			instCtx.addError(FHIRValidationError(missing: "who[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -241,25 +237,23 @@ open class ProvenanceEntity: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		agent = try createInstances(of: ProvenanceAgent.self, for: "agent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? agent
-		role = createEnum(type: ProvenanceEntityRole.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors) ?? role
-		if nil == role && !presentKeys.contains("role") {
-			errors.append(FHIRValidationError(missing: "role"))
+		agent = createInstances(of: ProvenanceAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
+		role = createEnum(type: ProvenanceEntityRole.self, for: "role", in: json, context: &instCtx) ?? role
+		if nil == role && !instCtx.containsKey("role") {
+			instCtx.addError(FHIRValidationError(missing: "role"))
 		}
-		whatIdentifier = try createInstance(type: Identifier.self, for: "whatIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whatIdentifier
-		whatReference = try createInstance(type: Reference.self, for: "whatReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whatReference
-		whatUri = try createInstance(type: FHIRURL.self, for: "whatUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whatUri
+		whatIdentifier = createInstance(type: Identifier.self, for: "whatIdentifier", in: json, context: &instCtx, owner: self) ?? whatIdentifier
+		whatReference = createInstance(type: Reference.self, for: "whatReference", in: json, context: &instCtx, owner: self) ?? whatReference
+		whatUri = createInstance(type: FHIRURL.self, for: "whatUri", in: json, context: &instCtx, owner: self) ?? whatUri
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.whatUri && nil == self.whatReference && nil == self.whatIdentifier {
-			errors.append(FHIRValidationError(missing: "what[x]"))
+			instCtx.addError(FHIRValidationError(missing: "what[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

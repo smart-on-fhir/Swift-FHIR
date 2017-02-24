@@ -2,7 +2,7 @@
 //  Consent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Consent) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Consent) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -90,37 +90,35 @@ open class Consent: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		action = try createInstances(of: CodeableConcept.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		actor = try createInstances(of: ConsentActor.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		consentingParty = try createInstances(of: Reference.self, for: "consentingParty", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? consentingParty
-		data = try createInstances(of: ConsentData.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
-		dataPeriod = try createInstance(type: Period.self, for: "dataPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dataPeriod
-		dateTime = try createInstance(type: DateTime.self, for: "dateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dateTime
-		except = try createInstances(of: ConsentExcept.self, for: "except", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? except
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		organization = try createInstances(of: Reference.self, for: "organization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? organization
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		if nil == patient && !presentKeys.contains("patient") {
-			errors.append(FHIRValidationError(missing: "patient"))
+		action = createInstances(of: CodeableConcept.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
+		actor = createInstances(of: ConsentActor.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		consentingParty = createInstances(of: Reference.self, for: "consentingParty", in: json, context: &instCtx, owner: self) ?? consentingParty
+		data = createInstances(of: ConsentData.self, for: "data", in: json, context: &instCtx, owner: self) ?? data
+		dataPeriod = createInstance(type: Period.self, for: "dataPeriod", in: json, context: &instCtx, owner: self) ?? dataPeriod
+		dateTime = createInstance(type: DateTime.self, for: "dateTime", in: json, context: &instCtx, owner: self) ?? dateTime
+		except = createInstances(of: ConsentExcept.self, for: "except", in: json, context: &instCtx, owner: self) ?? except
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		organization = createInstances(of: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
+		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		if nil == patient && !instCtx.containsKey("patient") {
+			instCtx.addError(FHIRValidationError(missing: "patient"))
 		}
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		policy = try createInstances(of: ConsentPolicy.self, for: "policy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policy
-		policyRule = try createInstance(type: FHIRURL.self, for: "policyRule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policyRule
-		purpose = try createInstances(of: Coding.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
-		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
-		sourceAttachment = try createInstance(type: Attachment.self, for: "sourceAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceAttachment
-		sourceIdentifier = try createInstance(type: Identifier.self, for: "sourceIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceIdentifier
-		sourceReference = try createInstance(type: Reference.self, for: "sourceReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sourceReference
-		status = createEnum(type: ConsentState.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		policy = createInstances(of: ConsentPolicy.self, for: "policy", in: json, context: &instCtx, owner: self) ?? policy
+		policyRule = createInstance(type: FHIRURL.self, for: "policyRule", in: json, context: &instCtx, owner: self) ?? policyRule
+		purpose = createInstances(of: Coding.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
+		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		sourceAttachment = createInstance(type: Attachment.self, for: "sourceAttachment", in: json, context: &instCtx, owner: self) ?? sourceAttachment
+		sourceIdentifier = createInstance(type: Identifier.self, for: "sourceIdentifier", in: json, context: &instCtx, owner: self) ?? sourceIdentifier
+		sourceReference = createInstance(type: Reference.self, for: "sourceReference", in: json, context: &instCtx, owner: self) ?? sourceReference
+		status = createEnum(type: ConsentState.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -182,19 +180,17 @@ open class ConsentActor: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		if nil == reference && !presentKeys.contains("reference") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "reference"))
+		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+		if nil == reference && !instCtx.containsKey("reference") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "reference"))
 		}
-		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		if nil == role && !presentKeys.contains("role") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "role"))
+		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		if nil == role && !instCtx.containsKey("role") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "role"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -237,19 +233,17 @@ open class ConsentData: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		meaning = createEnum(type: ConsentDataMeaning.self, for: "meaning", in: json, presentKeys: &presentKeys, errors: &errors) ?? meaning
-		if nil == meaning && !presentKeys.contains("meaning") {
-			errors.append(FHIRValidationError(missing: "meaning"))
+		meaning = createEnum(type: ConsentDataMeaning.self, for: "meaning", in: json, context: &instCtx) ?? meaning
+		if nil == meaning && !instCtx.containsKey("meaning") {
+			instCtx.addError(FHIRValidationError(missing: "meaning"))
 		}
-		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		if nil == reference && !presentKeys.contains("reference") {
-			errors.append(FHIRValidationError(missing: "reference"))
+		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+		if nil == reference && !instCtx.containsKey("reference") {
+			instCtx.addError(FHIRValidationError(missing: "reference"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -315,24 +309,22 @@ open class ConsentExcept: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		`class` = try createInstances(of: Coding.self, for: "class", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? `class`
-		action = try createInstances(of: CodeableConcept.self, for: "action", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? action
-		actor = try createInstances(of: ConsentExceptActor.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		code = try createInstances(of: Coding.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		data = try createInstances(of: ConsentExceptData.self, for: "data", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? data
-		dataPeriod = try createInstance(type: Period.self, for: "dataPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dataPeriod
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		purpose = try createInstances(of: Coding.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
-		securityLabel = try createInstances(of: Coding.self, for: "securityLabel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityLabel
-		type = createEnum(type: ConsentExceptType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		`class` = createInstances(of: Coding.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
+		action = createInstances(of: CodeableConcept.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
+		actor = createInstances(of: ConsentExceptActor.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
+		code = createInstances(of: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		data = createInstances(of: ConsentExceptData.self, for: "data", in: json, context: &instCtx, owner: self) ?? data
+		dataPeriod = createInstance(type: Period.self, for: "dataPeriod", in: json, context: &instCtx, owner: self) ?? dataPeriod
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		purpose = createInstances(of: Coding.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
+		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		type = createEnum(type: ConsentExceptType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -381,19 +373,17 @@ open class ConsentExceptActor: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		if nil == reference && !presentKeys.contains("reference") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "reference"))
+		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+		if nil == reference && !instCtx.containsKey("reference") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "reference"))
 		}
-		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		if nil == role && !presentKeys.contains("role") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "role"))
+		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		if nil == role && !instCtx.containsKey("role") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "role"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -436,19 +426,17 @@ open class ConsentExceptData: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		meaning = createEnum(type: ConsentDataMeaning.self, for: "meaning", in: json, presentKeys: &presentKeys, errors: &errors) ?? meaning
-		if nil == meaning && !presentKeys.contains("meaning") {
-			errors.append(FHIRValidationError(missing: "meaning"))
+		meaning = createEnum(type: ConsentDataMeaning.self, for: "meaning", in: json, context: &instCtx) ?? meaning
+		if nil == meaning && !instCtx.containsKey("meaning") {
+			instCtx.addError(FHIRValidationError(missing: "meaning"))
 		}
-		reference = try createInstance(type: Reference.self, for: "reference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reference
-		if nil == reference && !presentKeys.contains("reference") {
-			errors.append(FHIRValidationError(missing: "reference"))
+		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+		if nil == reference && !instCtx.containsKey("reference") {
+			instCtx.addError(FHIRValidationError(missing: "reference"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -484,13 +472,11 @@ open class ConsentPolicy: BackboneElement {
 	public var uri: FHIRURL?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		authority = try createInstance(type: FHIRURL.self, for: "authority", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? authority
-		uri = try createInstance(type: FHIRURL.self, for: "uri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? uri
-		
-		return errors.isEmpty ? nil : errors
+		authority = createInstance(type: FHIRURL.self, for: "authority", in: json, context: &instCtx, owner: self) ?? authority
+		uri = createInstance(type: FHIRURL.self, for: "uri", in: json, context: &instCtx, owner: self) ?? uri
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

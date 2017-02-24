@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -32,15 +32,13 @@ open class Resource: FHIRAbstractResource {
 	public var meta: Meta?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		id = try createInstance(type: FHIRString.self, for: "id", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? id
-		implicitRules = try createInstance(type: FHIRURL.self, for: "implicitRules", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? implicitRules
-		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
-		meta = try createInstance(type: Meta.self, for: "meta", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? meta
-		
-		return errors.isEmpty ? nil : errors
+		id = createInstance(type: FHIRString.self, for: "id", in: json, context: &instCtx, owner: self) ?? id
+		implicitRules = createInstance(type: FHIRURL.self, for: "implicitRules", in: json, context: &instCtx, owner: self) ?? implicitRules
+		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
+		meta = createInstance(type: Meta.self, for: "meta", in: json, context: &instCtx, owner: self) ?? meta
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

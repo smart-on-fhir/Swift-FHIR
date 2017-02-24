@@ -53,7 +53,10 @@ public extension Foundation.Bundle {
 	*/
 	public func fhir_bundledResource<T: Resource>(_ name: String, subdirectory: String?, type: T.Type) throws -> T {
 		let json = try fhir_json(from: name, subdirectory: subdirectory)
-		return try T.instantiate(from: json, owner: nil)
+		var context = FHIRInstantiationContext()
+		let resource = T.instantiate(from: json, owner: nil, context: &context)
+		try context.validate()
+		return resource
 	}
 	
 	/**

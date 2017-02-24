@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -57,31 +57,29 @@ open class Subscription: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		channel = try createInstance(type: SubscriptionChannel.self, for: "channel", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? channel
-		if nil == channel && !presentKeys.contains("channel") {
-			errors.append(FHIRValidationError(missing: "channel"))
+		channel = createInstance(type: SubscriptionChannel.self, for: "channel", in: json, context: &instCtx, owner: self) ?? channel
+		if nil == channel && !instCtx.containsKey("channel") {
+			instCtx.addError(FHIRValidationError(missing: "channel"))
 		}
-		contact = try createInstances(of: ContactPoint.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		criteria = try createInstance(type: FHIRString.self, for: "criteria", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? criteria
-		if nil == criteria && !presentKeys.contains("criteria") {
-			errors.append(FHIRValidationError(missing: "criteria"))
+		contact = createInstances(of: ContactPoint.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		criteria = createInstance(type: FHIRString.self, for: "criteria", in: json, context: &instCtx, owner: self) ?? criteria
+		if nil == criteria && !instCtx.containsKey("criteria") {
+			instCtx.addError(FHIRValidationError(missing: "criteria"))
 		}
-		end = try createInstance(type: Instant.self, for: "end", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? end
-		error = try createInstance(type: FHIRString.self, for: "error", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? error
-		reason = try createInstance(type: FHIRString.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
-		if nil == reason && !presentKeys.contains("reason") {
-			errors.append(FHIRValidationError(missing: "reason"))
+		end = createInstance(type: Instant.self, for: "end", in: json, context: &instCtx, owner: self) ?? end
+		error = createInstance(type: FHIRString.self, for: "error", in: json, context: &instCtx, owner: self) ?? error
+		reason = createInstance(type: FHIRString.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
+		if nil == reason && !instCtx.containsKey("reason") {
+			instCtx.addError(FHIRValidationError(missing: "reason"))
 		}
-		status = createEnum(type: SubscriptionStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		status = createEnum(type: SubscriptionStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		tag = try createInstances(of: Coding.self, for: "tag", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? tag
-		
-		return errors.isEmpty ? nil : errors
+		tag = createInstances(of: Coding.self, for: "tag", in: json, context: &instCtx, owner: self) ?? tag
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -141,18 +139,16 @@ open class SubscriptionChannel: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		endpoint = try createInstance(type: FHIRURL.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		header = try createInstances(of: FHIRString.self, for: "header", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? header
-		payload = try createInstance(type: FHIRString.self, for: "payload", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payload
-		type = createEnum(type: SubscriptionChannelType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		endpoint = createInstance(type: FHIRURL.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
+		header = createInstances(of: FHIRString.self, for: "header", in: json, context: &instCtx, owner: self) ?? header
+		payload = createInstance(type: FHIRString.self, for: "payload", in: json, context: &instCtx, owner: self) ?? payload
+		type = createEnum(type: SubscriptionChannelType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

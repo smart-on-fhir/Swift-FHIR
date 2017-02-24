@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -117,9 +117,11 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.container?[0].specimenQuantity?.value, "10")
 		XCTAssertEqual(inst.container?[0].type?.text, "Non-sterile specimen container")
 		XCTAssertEqual(inst.id, "vma-urine")
+		XCTAssertEqual(inst.processing?[0].additive?[0].display, "6 N HCl")
 		XCTAssertEqual(inst.processing?[0].description_fhir, "Acidify to pH < 3.0 with 6 N HCl.")
 		XCTAssertEqual(inst.processing?[0].procedure?.coding?[0].code, "ACID")
 		XCTAssertEqual(inst.processing?[0].procedure?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0373")
+		XCTAssertEqual(inst.processing?[0].timeDateTime?.description, "2015-08-18T08:10:00Z")
 		XCTAssertEqual(inst.receivedTime?.description, "2015-08-18T07:03:00Z")
 		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")

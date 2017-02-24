@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -70,33 +70,31 @@ open class DeviceUseStatement: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		bodySite = try createInstance(type: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
-		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
-		if nil == device && !presentKeys.contains("device") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "device"))
+		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
+		device = createInstance(type: Reference.self, for: "device", in: json, context: &instCtx, owner: self) ?? device
+		if nil == device && !instCtx.containsKey("device") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "device"))
 		}
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		indication = try createInstances(of: CodeableConcept.self, for: "indication", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? indication
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		recordedOn = try createInstance(type: DateTime.self, for: "recordedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recordedOn
-		source = try createInstance(type: Reference.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		status = createEnum(type: DeviceUseStatementStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		indication = createInstances(of: CodeableConcept.self, for: "indication", in: json, context: &instCtx, owner: self) ?? indication
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		recordedOn = createInstance(type: DateTime.self, for: "recordedOn", in: json, context: &instCtx, owner: self) ?? recordedOn
+		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		status = createEnum(type: DeviceUseStatementStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		if nil == subject && !presentKeys.contains("subject") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "subject"))
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		if nil == subject && !instCtx.containsKey("subject") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "subject"))
 		}
-		timingDateTime = try createInstance(type: DateTime.self, for: "timingDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingDateTime
-		timingPeriod = try createInstance(type: Period.self, for: "timingPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingPeriod
-		timingTiming = try createInstance(type: Timing.self, for: "timingTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timingTiming
-		whenUsed = try createInstance(type: Period.self, for: "whenUsed", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? whenUsed
-		
-		return errors.isEmpty ? nil : errors
+		timingDateTime = createInstance(type: DateTime.self, for: "timingDateTime", in: json, context: &instCtx, owner: self) ?? timingDateTime
+		timingPeriod = createInstance(type: Period.self, for: "timingPeriod", in: json, context: &instCtx, owner: self) ?? timingPeriod
+		timingTiming = createInstance(type: Timing.self, for: "timingTiming", in: json, context: &instCtx, owner: self) ?? timingTiming
+		whenUsed = createInstance(type: Period.self, for: "whenUsed", in: json, context: &instCtx, owner: self) ?? whenUsed
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

@@ -58,11 +58,14 @@ public struct FHIRURL: FHIRPrimitive, CustomStringConvertible {
 	
 	public typealias JSONType = String
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
-		guard let url = URL(string: json) else {
-			throw FHIRValidationError(key: "", problem: "“\(json)” is not a valid URI")
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
+		if let url = URL(string: json) {
+			self.url = url
 		}
-		self.url = url
+		else {
+			context.addError(FHIRValidationError(key: "", problem: "“\(json)” is not a valid URI"))
+			url = URL(string: "")!
+		}
 		_owner = owner
 	}
 	

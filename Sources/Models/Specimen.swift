@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -63,26 +63,24 @@ open class Specimen: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		accessionIdentifier = try createInstance(type: Identifier.self, for: "accessionIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? accessionIdentifier
-		collection = try createInstance(type: SpecimenCollection.self, for: "collection", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? collection
-		container = try createInstances(of: SpecimenContainer.self, for: "container", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? container
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		parent = try createInstances(of: Reference.self, for: "parent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parent
-		processing = try createInstances(of: SpecimenProcessing.self, for: "processing", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? processing
-		receivedTime = try createInstance(type: DateTime.self, for: "receivedTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? receivedTime
-		request = try createInstances(of: Reference.self, for: "request", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? request
-		status = createEnum(type: SpecimenStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		if nil == subject && !presentKeys.contains("subject") {
-			errors.append(FHIRValidationError(missing: "subject"))
+		accessionIdentifier = createInstance(type: Identifier.self, for: "accessionIdentifier", in: json, context: &instCtx, owner: self) ?? accessionIdentifier
+		collection = createInstance(type: SpecimenCollection.self, for: "collection", in: json, context: &instCtx, owner: self) ?? collection
+		container = createInstances(of: SpecimenContainer.self, for: "container", in: json, context: &instCtx, owner: self) ?? container
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		parent = createInstances(of: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
+		processing = createInstances(of: SpecimenProcessing.self, for: "processing", in: json, context: &instCtx, owner: self) ?? processing
+		receivedTime = createInstance(type: DateTime.self, for: "receivedTime", in: json, context: &instCtx, owner: self) ?? receivedTime
+		request = createInstances(of: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
+		status = createEnum(type: SpecimenStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		if nil == subject && !instCtx.containsKey("subject") {
+			instCtx.addError(FHIRValidationError(missing: "subject"))
 		}
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -136,17 +134,15 @@ open class SpecimenCollection: BackboneElement {
 	public var quantity: Quantity?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		bodySite = try createInstance(type: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
-		collectedDateTime = try createInstance(type: DateTime.self, for: "collectedDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? collectedDateTime
-		collectedPeriod = try createInstance(type: Period.self, for: "collectedPeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? collectedPeriod
-		collector = try createInstance(type: Reference.self, for: "collector", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? collector
-		method = try createInstance(type: CodeableConcept.self, for: "method", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? method
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		
-		return errors.isEmpty ? nil : errors
+		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
+		collectedDateTime = createInstance(type: DateTime.self, for: "collectedDateTime", in: json, context: &instCtx, owner: self) ?? collectedDateTime
+		collectedPeriod = createInstance(type: Period.self, for: "collectedPeriod", in: json, context: &instCtx, owner: self) ?? collectedPeriod
+		collector = createInstance(type: Reference.self, for: "collector", in: json, context: &instCtx, owner: self) ?? collector
+		method = createInstance(type: CodeableConcept.self, for: "method", in: json, context: &instCtx, owner: self) ?? method
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -195,18 +191,16 @@ open class SpecimenContainer: BackboneElement {
 	public var type: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		additiveCodeableConcept = try createInstance(type: CodeableConcept.self, for: "additiveCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additiveCodeableConcept
-		additiveReference = try createInstance(type: Reference.self, for: "additiveReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additiveReference
-		capacity = try createInstance(type: Quantity.self, for: "capacity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? capacity
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		specimenQuantity = try createInstance(type: Quantity.self, for: "specimenQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specimenQuantity
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		additiveCodeableConcept = createInstance(type: CodeableConcept.self, for: "additiveCodeableConcept", in: json, context: &instCtx, owner: self) ?? additiveCodeableConcept
+		additiveReference = createInstance(type: Reference.self, for: "additiveReference", in: json, context: &instCtx, owner: self) ?? additiveReference
+		capacity = createInstance(type: Quantity.self, for: "capacity", in: json, context: &instCtx, owner: self) ?? capacity
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		specimenQuantity = createInstance(type: Quantity.self, for: "specimenQuantity", in: json, context: &instCtx, owner: self) ?? specimenQuantity
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -249,16 +243,14 @@ open class SpecimenProcessing: BackboneElement {
 	public var timePeriod: Period?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		additive = try createInstances(of: Reference.self, for: "additive", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? additive
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		procedure = try createInstance(type: CodeableConcept.self, for: "procedure", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? procedure
-		timeDateTime = try createInstance(type: DateTime.self, for: "timeDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timeDateTime
-		timePeriod = try createInstance(type: Period.self, for: "timePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? timePeriod
-		
-		return errors.isEmpty ? nil : errors
+		additive = createInstances(of: Reference.self, for: "additive", in: json, context: &instCtx, owner: self) ?? additive
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		procedure = createInstance(type: CodeableConcept.self, for: "procedure", in: json, context: &instCtx, owner: self) ?? procedure
+		timeDateTime = createInstance(type: DateTime.self, for: "timeDateTime", in: json, context: &instCtx, owner: self) ?? timeDateTime
+		timePeriod = createInstance(type: Period.self, for: "timePeriod", in: json, context: &instCtx, owner: self) ?? timePeriod
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

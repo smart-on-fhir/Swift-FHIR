@@ -2,7 +2,7 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -82,41 +82,39 @@ open class StructureMap: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		copyright = try createInstance(type: FHIRString.self, for: "copyright", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? copyright
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
-		group = try createInstances(of: StructureMapGroup.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
-		if (nil == group || group!.isEmpty) && !presentKeys.contains("group") {
-			errors.append(FHIRValidationError(missing: "group"))
+		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		copyright = createInstance(type: FHIRString.self, for: "copyright", in: json, context: &instCtx, owner: self) ?? copyright
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
+		group = createInstances(of: StructureMapGroup.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
+		if (nil == group || group!.isEmpty) && !instCtx.containsKey("group") {
+			instCtx.addError(FHIRValidationError(missing: "group"))
 		}
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		import_fhir = try createInstances(of: FHIRURL.self, for: "import", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? import_fhir
-		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
-			errors.append(FHIRValidationError(missing: "name"))
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		import_fhir = createInstances(of: FHIRURL.self, for: "import", in: json, context: &instCtx, owner: self) ?? import_fhir
+		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
-		purpose = try createInstance(type: FHIRString.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
-		status = createEnum(type: PublicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
+		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
+		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		structure = try createInstances(of: StructureMapStructure.self, for: "structure", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? structure
-		title = try createInstance(type: FHIRString.self, for: "title", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? title
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
-			errors.append(FHIRValidationError(missing: "url"))
+		structure = createInstances(of: StructureMapStructure.self, for: "structure", in: json, context: &instCtx, owner: self) ?? structure
+		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		if nil == url && !instCtx.containsKey("url") {
+			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
-		useContext = try createInstances(of: UsageContext.self, for: "useContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? useContext
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -193,29 +191,27 @@ open class StructureMapGroup: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		extends = try createInstance(type: FHIRString.self, for: "extends", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? extends
-		input = try createInstances(of: StructureMapGroupInput.self, for: "input", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? input
-		if (nil == input || input!.isEmpty) && !presentKeys.contains("input") {
-			errors.append(FHIRValidationError(missing: "input"))
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		extends = createInstance(type: FHIRString.self, for: "extends", in: json, context: &instCtx, owner: self) ?? extends
+		input = createInstances(of: StructureMapGroupInput.self, for: "input", in: json, context: &instCtx, owner: self) ?? input
+		if (nil == input || input!.isEmpty) && !instCtx.containsKey("input") {
+			instCtx.addError(FHIRValidationError(missing: "input"))
 		}
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
-			errors.append(FHIRValidationError(missing: "name"))
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		rule = try createInstances(of: StructureMapGroupRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rule
-		if (nil == rule || rule!.isEmpty) && !presentKeys.contains("rule") {
-			errors.append(FHIRValidationError(missing: "rule"))
+		rule = createInstances(of: StructureMapGroupRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
+		if (nil == rule || rule!.isEmpty) && !instCtx.containsKey("rule") {
+			instCtx.addError(FHIRValidationError(missing: "rule"))
 		}
-		typeMode = createEnum(type: StructureMapGroupTypeMode.self, for: "typeMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? typeMode
-		if nil == typeMode && !presentKeys.contains("typeMode") {
-			errors.append(FHIRValidationError(missing: "typeMode"))
+		typeMode = createEnum(type: StructureMapGroupTypeMode.self, for: "typeMode", in: json, context: &instCtx) ?? typeMode
+		if nil == typeMode && !instCtx.containsKey("typeMode") {
+			instCtx.addError(FHIRValidationError(missing: "typeMode"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -274,21 +270,19 @@ open class StructureMapGroupInput: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		mode = createEnum(type: StructureMapInputMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
-			errors.append(FHIRValidationError(missing: "mode"))
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		mode = createEnum(type: StructureMapInputMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") {
+			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
-			errors.append(FHIRValidationError(missing: "name"))
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -343,23 +337,21 @@ open class StructureMapGroupRule: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		dependent = try createInstances(of: StructureMapGroupRuleDependent.self, for: "dependent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dependent
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
-			errors.append(FHIRValidationError(missing: "name"))
+		dependent = createInstances(of: StructureMapGroupRuleDependent.self, for: "dependent", in: json, context: &instCtx, owner: self) ?? dependent
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		rule = try createInstances(of: StructureMapGroupRule.self, for: "rule", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? rule
-		source = try createInstances(of: StructureMapGroupRuleSource.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		if (nil == source || source!.isEmpty) && !presentKeys.contains("source") {
-			errors.append(FHIRValidationError(missing: "source"))
+		rule = createInstances(of: StructureMapGroupRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
+		source = createInstances(of: StructureMapGroupRuleSource.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		if (nil == source || source!.isEmpty) && !instCtx.containsKey("source") {
+			instCtx.addError(FHIRValidationError(missing: "source"))
 		}
-		target = try createInstances(of: StructureMapGroupRuleTarget.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		
-		return errors.isEmpty ? nil : errors
+		target = createInstances(of: StructureMapGroupRuleTarget.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -404,19 +396,17 @@ open class StructureMapGroupRuleDependent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
-			errors.append(FHIRValidationError(missing: "name"))
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		variable = try createInstances(of: FHIRString.self, for: "variable", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variable
-		if (nil == variable || variable!.isEmpty) && !presentKeys.contains("variable") {
-			errors.append(FHIRValidationError(missing: "variable"))
+		variable = createInstances(of: FHIRString.self, for: "variable", in: json, context: &instCtx, owner: self) ?? variable
+		if (nil == variable || variable!.isEmpty) && !instCtx.containsKey("variable") {
+			instCtx.addError(FHIRValidationError(missing: "variable"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -591,61 +581,59 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		check = try createInstance(type: FHIRString.self, for: "check", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? check
-		condition = try createInstance(type: FHIRString.self, for: "condition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? condition
-		context = try createInstance(type: FHIRString.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		if nil == context && !presentKeys.contains("context") {
-			errors.append(FHIRValidationError(missing: "context"))
+		check = createInstance(type: FHIRString.self, for: "check", in: json, context: &instCtx, owner: self) ?? check
+		condition = createInstance(type: FHIRString.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
+		context = createInstance(type: FHIRString.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		if nil == context && !instCtx.containsKey("context") {
+			instCtx.addError(FHIRValidationError(missing: "context"))
 		}
-		defaultValueAddress = try createInstance(type: Address.self, for: "defaultValueAddress", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAddress
-		defaultValueAge = try createInstance(type: Age.self, for: "defaultValueAge", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAge
-		defaultValueAnnotation = try createInstance(type: Annotation.self, for: "defaultValueAnnotation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAnnotation
-		defaultValueAttachment = try createInstance(type: Attachment.self, for: "defaultValueAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueAttachment
-		defaultValueBase64Binary = try createInstance(type: Base64Binary.self, for: "defaultValueBase64Binary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueBase64Binary
-		defaultValueBoolean = try createInstance(type: FHIRBool.self, for: "defaultValueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueBoolean
-		defaultValueCode = try createInstance(type: FHIRString.self, for: "defaultValueCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCode
-		defaultValueCodeableConcept = try createInstance(type: CodeableConcept.self, for: "defaultValueCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCodeableConcept
-		defaultValueCoding = try createInstance(type: Coding.self, for: "defaultValueCoding", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCoding
-		defaultValueContactPoint = try createInstance(type: ContactPoint.self, for: "defaultValueContactPoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueContactPoint
-		defaultValueCount = try createInstance(type: Count.self, for: "defaultValueCount", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueCount
-		defaultValueDate = try createInstance(type: FHIRDate.self, for: "defaultValueDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDate
-		defaultValueDateTime = try createInstance(type: DateTime.self, for: "defaultValueDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDateTime
-		defaultValueDecimal = try createInstance(type: FHIRDecimal.self, for: "defaultValueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDecimal
-		defaultValueDistance = try createInstance(type: Distance.self, for: "defaultValueDistance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDistance
-		defaultValueDuration = try createInstance(type: Duration.self, for: "defaultValueDuration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueDuration
-		defaultValueHumanName = try createInstance(type: HumanName.self, for: "defaultValueHumanName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueHumanName
-		defaultValueId = try createInstance(type: FHIRString.self, for: "defaultValueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueId
-		defaultValueIdentifier = try createInstance(type: Identifier.self, for: "defaultValueIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueIdentifier
-		defaultValueInstant = try createInstance(type: Instant.self, for: "defaultValueInstant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueInstant
-		defaultValueInteger = try createInstance(type: FHIRInteger.self, for: "defaultValueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueInteger
-		defaultValueMarkdown = try createInstance(type: FHIRString.self, for: "defaultValueMarkdown", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueMarkdown
-		defaultValueMeta = try createInstance(type: Meta.self, for: "defaultValueMeta", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueMeta
-		defaultValueMoney = try createInstance(type: Money.self, for: "defaultValueMoney", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueMoney
-		defaultValueOid = try createInstance(type: FHIRURL.self, for: "defaultValueOid", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueOid
-		defaultValuePeriod = try createInstance(type: Period.self, for: "defaultValuePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValuePeriod
-		defaultValuePositiveInt = try createInstance(type: FHIRInteger.self, for: "defaultValuePositiveInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValuePositiveInt
-		defaultValueQuantity = try createInstance(type: Quantity.self, for: "defaultValueQuantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueQuantity
-		defaultValueRange = try createInstance(type: Range.self, for: "defaultValueRange", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueRange
-		defaultValueRatio = try createInstance(type: Ratio.self, for: "defaultValueRatio", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueRatio
-		defaultValueReference = try createInstance(type: Reference.self, for: "defaultValueReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueReference
-		defaultValueSampledData = try createInstance(type: SampledData.self, for: "defaultValueSampledData", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueSampledData
-		defaultValueSignature = try createInstance(type: Signature.self, for: "defaultValueSignature", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueSignature
-		defaultValueString = try createInstance(type: FHIRString.self, for: "defaultValueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueString
-		defaultValueTime = try createInstance(type: FHIRTime.self, for: "defaultValueTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueTime
-		defaultValueTiming = try createInstance(type: Timing.self, for: "defaultValueTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueTiming
-		defaultValueUnsignedInt = try createInstance(type: FHIRInteger.self, for: "defaultValueUnsignedInt", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueUnsignedInt
-		defaultValueUri = try createInstance(type: FHIRURL.self, for: "defaultValueUri", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? defaultValueUri
-		element = try createInstance(type: FHIRString.self, for: "element", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? element
-		listMode = createEnum(type: StructureMapSourceListMode.self, for: "listMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? listMode
-		max = try createInstance(type: FHIRString.self, for: "max", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? max
-		min = try createInstance(type: FHIRInteger.self, for: "min", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? min
-		type = try createInstance(type: FHIRString.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		variable = try createInstance(type: FHIRString.self, for: "variable", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variable
-		
-		return errors.isEmpty ? nil : errors
+		defaultValueAddress = createInstance(type: Address.self, for: "defaultValueAddress", in: json, context: &instCtx, owner: self) ?? defaultValueAddress
+		defaultValueAge = createInstance(type: Age.self, for: "defaultValueAge", in: json, context: &instCtx, owner: self) ?? defaultValueAge
+		defaultValueAnnotation = createInstance(type: Annotation.self, for: "defaultValueAnnotation", in: json, context: &instCtx, owner: self) ?? defaultValueAnnotation
+		defaultValueAttachment = createInstance(type: Attachment.self, for: "defaultValueAttachment", in: json, context: &instCtx, owner: self) ?? defaultValueAttachment
+		defaultValueBase64Binary = createInstance(type: Base64Binary.self, for: "defaultValueBase64Binary", in: json, context: &instCtx, owner: self) ?? defaultValueBase64Binary
+		defaultValueBoolean = createInstance(type: FHIRBool.self, for: "defaultValueBoolean", in: json, context: &instCtx, owner: self) ?? defaultValueBoolean
+		defaultValueCode = createInstance(type: FHIRString.self, for: "defaultValueCode", in: json, context: &instCtx, owner: self) ?? defaultValueCode
+		defaultValueCodeableConcept = createInstance(type: CodeableConcept.self, for: "defaultValueCodeableConcept", in: json, context: &instCtx, owner: self) ?? defaultValueCodeableConcept
+		defaultValueCoding = createInstance(type: Coding.self, for: "defaultValueCoding", in: json, context: &instCtx, owner: self) ?? defaultValueCoding
+		defaultValueContactPoint = createInstance(type: ContactPoint.self, for: "defaultValueContactPoint", in: json, context: &instCtx, owner: self) ?? defaultValueContactPoint
+		defaultValueCount = createInstance(type: Count.self, for: "defaultValueCount", in: json, context: &instCtx, owner: self) ?? defaultValueCount
+		defaultValueDate = createInstance(type: FHIRDate.self, for: "defaultValueDate", in: json, context: &instCtx, owner: self) ?? defaultValueDate
+		defaultValueDateTime = createInstance(type: DateTime.self, for: "defaultValueDateTime", in: json, context: &instCtx, owner: self) ?? defaultValueDateTime
+		defaultValueDecimal = createInstance(type: FHIRDecimal.self, for: "defaultValueDecimal", in: json, context: &instCtx, owner: self) ?? defaultValueDecimal
+		defaultValueDistance = createInstance(type: Distance.self, for: "defaultValueDistance", in: json, context: &instCtx, owner: self) ?? defaultValueDistance
+		defaultValueDuration = createInstance(type: Duration.self, for: "defaultValueDuration", in: json, context: &instCtx, owner: self) ?? defaultValueDuration
+		defaultValueHumanName = createInstance(type: HumanName.self, for: "defaultValueHumanName", in: json, context: &instCtx, owner: self) ?? defaultValueHumanName
+		defaultValueId = createInstance(type: FHIRString.self, for: "defaultValueId", in: json, context: &instCtx, owner: self) ?? defaultValueId
+		defaultValueIdentifier = createInstance(type: Identifier.self, for: "defaultValueIdentifier", in: json, context: &instCtx, owner: self) ?? defaultValueIdentifier
+		defaultValueInstant = createInstance(type: Instant.self, for: "defaultValueInstant", in: json, context: &instCtx, owner: self) ?? defaultValueInstant
+		defaultValueInteger = createInstance(type: FHIRInteger.self, for: "defaultValueInteger", in: json, context: &instCtx, owner: self) ?? defaultValueInteger
+		defaultValueMarkdown = createInstance(type: FHIRString.self, for: "defaultValueMarkdown", in: json, context: &instCtx, owner: self) ?? defaultValueMarkdown
+		defaultValueMeta = createInstance(type: Meta.self, for: "defaultValueMeta", in: json, context: &instCtx, owner: self) ?? defaultValueMeta
+		defaultValueMoney = createInstance(type: Money.self, for: "defaultValueMoney", in: json, context: &instCtx, owner: self) ?? defaultValueMoney
+		defaultValueOid = createInstance(type: FHIRURL.self, for: "defaultValueOid", in: json, context: &instCtx, owner: self) ?? defaultValueOid
+		defaultValuePeriod = createInstance(type: Period.self, for: "defaultValuePeriod", in: json, context: &instCtx, owner: self) ?? defaultValuePeriod
+		defaultValuePositiveInt = createInstance(type: FHIRInteger.self, for: "defaultValuePositiveInt", in: json, context: &instCtx, owner: self) ?? defaultValuePositiveInt
+		defaultValueQuantity = createInstance(type: Quantity.self, for: "defaultValueQuantity", in: json, context: &instCtx, owner: self) ?? defaultValueQuantity
+		defaultValueRange = createInstance(type: Range.self, for: "defaultValueRange", in: json, context: &instCtx, owner: self) ?? defaultValueRange
+		defaultValueRatio = createInstance(type: Ratio.self, for: "defaultValueRatio", in: json, context: &instCtx, owner: self) ?? defaultValueRatio
+		defaultValueReference = createInstance(type: Reference.self, for: "defaultValueReference", in: json, context: &instCtx, owner: self) ?? defaultValueReference
+		defaultValueSampledData = createInstance(type: SampledData.self, for: "defaultValueSampledData", in: json, context: &instCtx, owner: self) ?? defaultValueSampledData
+		defaultValueSignature = createInstance(type: Signature.self, for: "defaultValueSignature", in: json, context: &instCtx, owner: self) ?? defaultValueSignature
+		defaultValueString = createInstance(type: FHIRString.self, for: "defaultValueString", in: json, context: &instCtx, owner: self) ?? defaultValueString
+		defaultValueTime = createInstance(type: FHIRTime.self, for: "defaultValueTime", in: json, context: &instCtx, owner: self) ?? defaultValueTime
+		defaultValueTiming = createInstance(type: Timing.self, for: "defaultValueTiming", in: json, context: &instCtx, owner: self) ?? defaultValueTiming
+		defaultValueUnsignedInt = createInstance(type: FHIRInteger.self, for: "defaultValueUnsignedInt", in: json, context: &instCtx, owner: self) ?? defaultValueUnsignedInt
+		defaultValueUri = createInstance(type: FHIRURL.self, for: "defaultValueUri", in: json, context: &instCtx, owner: self) ?? defaultValueUri
+		element = createInstance(type: FHIRString.self, for: "element", in: json, context: &instCtx, owner: self) ?? element
+		listMode = createEnum(type: StructureMapSourceListMode.self, for: "listMode", in: json, context: &instCtx) ?? listMode
+		max = createInstance(type: FHIRString.self, for: "max", in: json, context: &instCtx, owner: self) ?? max
+		min = createInstance(type: FHIRInteger.self, for: "min", in: json, context: &instCtx, owner: self) ?? min
+		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		variable = createInstance(type: FHIRString.self, for: "variable", in: json, context: &instCtx, owner: self) ?? variable
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -738,19 +726,17 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 	public var variable: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		context = try createInstance(type: FHIRString.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		contextType = createEnum(type: StructureMapContextType.self, for: "contextType", in: json, presentKeys: &presentKeys, errors: &errors) ?? contextType
-		element = try createInstance(type: FHIRString.self, for: "element", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? element
-		listMode = createEnums(of: StructureMapTargetListMode.self, for: "listMode", in: json, presentKeys: &presentKeys, errors: &errors) ?? listMode
-		listRuleId = try createInstance(type: FHIRString.self, for: "listRuleId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? listRuleId
-		parameter = try createInstances(of: StructureMapGroupRuleTargetParameter.self, for: "parameter", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? parameter
-		transform = createEnum(type: StructureMapTransform.self, for: "transform", in: json, presentKeys: &presentKeys, errors: &errors) ?? transform
-		variable = try createInstance(type: FHIRString.self, for: "variable", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? variable
-		
-		return errors.isEmpty ? nil : errors
+		context = createInstance(type: FHIRString.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		contextType = createEnum(type: StructureMapContextType.self, for: "contextType", in: json, context: &instCtx) ?? contextType
+		element = createInstance(type: FHIRString.self, for: "element", in: json, context: &instCtx, owner: self) ?? element
+		listMode = createEnums(of: StructureMapTargetListMode.self, for: "listMode", in: json, context: &instCtx) ?? listMode
+		listRuleId = createInstance(type: FHIRString.self, for: "listRuleId", in: json, context: &instCtx, owner: self) ?? listRuleId
+		parameter = createInstances(of: StructureMapGroupRuleTargetParameter.self, for: "parameter", in: json, context: &instCtx, owner: self) ?? parameter
+		transform = createEnum(type: StructureMapTransform.self, for: "transform", in: json, context: &instCtx) ?? transform
+		variable = createInstance(type: FHIRString.self, for: "variable", in: json, context: &instCtx, owner: self) ?? variable
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -816,22 +802,20 @@ open class StructureMapGroupRuleTargetParameter: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		valueBoolean = try createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueBoolean
-		valueDecimal = try createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueDecimal
-		valueId = try createInstance(type: FHIRString.self, for: "valueId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueId
-		valueInteger = try createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueInteger
-		valueString = try createInstance(type: FHIRString.self, for: "valueString", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? valueString
+		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
+		valueDecimal = createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, context: &instCtx, owner: self) ?? valueDecimal
+		valueId = createInstance(type: FHIRString.self, for: "valueId", in: json, context: &instCtx, owner: self) ?? valueId
+		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
+		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.valueId && nil == self.valueString && nil == self.valueBoolean && nil == self.valueInteger && nil == self.valueDecimal {
-			errors.append(FHIRValidationError(missing: "value[x]"))
+			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -883,21 +867,19 @@ open class StructureMapStructure: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		alias = try createInstance(type: FHIRString.self, for: "alias", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? alias
-		documentation = try createInstance(type: FHIRString.self, for: "documentation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? documentation
-		mode = createEnum(type: StructureMapModelMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
-			errors.append(FHIRValidationError(missing: "mode"))
+		alias = createInstance(type: FHIRString.self, for: "alias", in: json, context: &instCtx, owner: self) ?? alias
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		mode = createEnum(type: StructureMapModelMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") {
+			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
-			errors.append(FHIRValidationError(missing: "url"))
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		if nil == url && !instCtx.containsKey("url") {
+			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

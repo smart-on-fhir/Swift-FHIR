@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -62,29 +62,27 @@ open class DocumentManifest: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		author = try createInstances(of: Reference.self, for: "author", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? author
-		content = try createInstances(of: DocumentManifestContent.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
-		if (nil == content || content!.isEmpty) && !presentKeys.contains("content") {
-			errors.append(FHIRValidationError(missing: "content"))
+		author = createInstances(of: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
+		content = createInstances(of: DocumentManifestContent.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
+		if (nil == content || content!.isEmpty) && !instCtx.containsKey("content") {
+			instCtx.addError(FHIRValidationError(missing: "content"))
 		}
-		created = try createInstance(type: DateTime.self, for: "created", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? created
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		masterIdentifier = try createInstance(type: Identifier.self, for: "masterIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? masterIdentifier
-		recipient = try createInstances(of: Reference.self, for: "recipient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? recipient
-		related = try createInstances(of: DocumentManifestRelated.self, for: "related", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? related
-		source = try createInstance(type: FHIRURL.self, for: "source", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? source
-		status = createEnum(type: DocumentReferenceStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		masterIdentifier = createInstance(type: Identifier.self, for: "masterIdentifier", in: json, context: &instCtx, owner: self) ?? masterIdentifier
+		recipient = createInstances(of: Reference.self, for: "recipient", in: json, context: &instCtx, owner: self) ?? recipient
+		related = createInstances(of: DocumentManifestRelated.self, for: "related", in: json, context: &instCtx, owner: self) ?? related
+		source = createInstance(type: FHIRURL.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		status = createEnum(type: DocumentReferenceStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -144,19 +142,17 @@ open class DocumentManifestContent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		pAttachment = try createInstance(type: Attachment.self, for: "pAttachment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? pAttachment
-		pReference = try createInstance(type: Reference.self, for: "pReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? pReference
+		pAttachment = createInstance(type: Attachment.self, for: "pAttachment", in: json, context: &instCtx, owner: self) ?? pAttachment
+		pReference = createInstance(type: Reference.self, for: "pReference", in: json, context: &instCtx, owner: self) ?? pReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.pAttachment && nil == self.pReference {
-			errors.append(FHIRValidationError(missing: "p[x]"))
+			instCtx.addError(FHIRValidationError(missing: "p[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -190,13 +186,11 @@ open class DocumentManifestRelated: BackboneElement {
 	public var ref: Reference?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		ref = try createInstance(type: Reference.self, for: "ref", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ref
-		
-		return errors.isEmpty ? nil : errors
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		ref = createInstance(type: Reference.self, for: "ref", in: json, context: &instCtx, owner: self) ?? ref
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

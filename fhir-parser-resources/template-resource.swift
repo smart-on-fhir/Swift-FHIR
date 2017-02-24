@@ -68,26 +68,26 @@ open class {{ klass.name }}: {{ klass.superclass.name|default('FHIRAbstractBase'
 	
 	{% if klass.properties %}
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		{% for prop in klass.properties %}
 		
 		{%- if prop.enum %}{% if prop.is_array %}
-		{{ prop.name }} = createEnums(of: {{ prop.enum.name }}.self, for: "{{ prop.orig_name }}", in: json, presentKeys: &presentKeys, errors: &errors) ?? {{ prop.name }}
+		{{ prop.name }} = createEnums(of: {{ prop.enum.name }}.self, for: "{{ prop.orig_name }}", in: json, context: &instCtx) ?? {{ prop.name }}
 		{%- else %}
-		{{ prop.name }} = createEnum(type: {{ prop.enum.name }}.self, for: "{{ prop.orig_name }}", in: json, presentKeys: &presentKeys, errors: &errors) ?? {{ prop.name }}
+		{{ prop.name }} = createEnum(type: {{ prop.enum.name }}.self, for: "{{ prop.orig_name }}", in: json, context: &instCtx) ?? {{ prop.name }}
 		{%- endif %}{% else %}
 		
 		{%- if prop.is_array %}
-		{{ prop.name }} = try createInstances(of: {{ prop.class_name }}.self, for: "{{ prop.orig_name }}", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? {{ prop.name }}
+		{{ prop.name }} = createInstances(of: {{ prop.class_name }}.self, for: "{{ prop.orig_name }}", in: json, context: &instCtx, owner: self) ?? {{ prop.name }}
 		{%- else %}
-		{{ prop.name }} = try createInstance(type: {{ prop.class_name }}.self, for: "{{ prop.orig_name }}", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? {{ prop.name }}
+		{{ prop.name }} = createInstance(type: {{ prop.class_name }}.self, for: "{{ prop.orig_name }}", in: json, context: &instCtx, owner: self) ?? {{ prop.name }}
 		{%- endif %}{% endif %}
 		
 		{%- if prop.nonoptional and not prop.one_of_many %}
-		if {% if prop.is_array %}({% endif %}nil == {{ prop.name }}{% if prop.is_array %} || {{ prop.name }}!.isEmpty){% endif %} && !presentKeys.contains("{{ prop.orig_name }}")
+		if {% if prop.is_array %}({% endif %}nil == {{ prop.name }}{% if prop.is_array %} || {{ prop.name }}!.isEmpty){% endif %} && !instCtx.containsKey("{{ prop.orig_name }}")
 			{%- if not prop.is_summary %} && !_isSummaryResource{% endif %} {
-			errors.append(FHIRValidationError(missing: "{{ prop.orig_name }}"))
+			instCtx.addError(FHIRValidationError(missing: "{{ prop.orig_name }}"))
 		}
 		{%- endif %}
 		{%- endfor %}
@@ -97,12 +97,10 @@ open class {{ klass.name }}: {{ klass.superclass.name|default('FHIRAbstractBase'
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		{%- for exp, props in klass.sorted_nonoptionals %}
 		if {% for prop in props %}nil == self.{{ prop.name }}{% if not loop.last %} && {% endif %}{% endfor %} {
-			errors.append(FHIRValidationError(missing: "{{ exp }}[x]"))
+			instCtx.addError(FHIRValidationError(missing: "{{ exp }}[x]"))
 		}
 		{%- endfor %}
 		{% endif %}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

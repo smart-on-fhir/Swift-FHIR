@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -105,56 +105,54 @@ open class SearchParameter: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		base = try createInstances(of: FHIRString.self, for: "base", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? base
-		if (nil == base || base!.isEmpty) && !presentKeys.contains("base") {
-			errors.append(FHIRValidationError(missing: "base"))
+		base = createInstances(of: FHIRString.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
+		if (nil == base || base!.isEmpty) && !instCtx.containsKey("base") {
+			instCtx.addError(FHIRValidationError(missing: "base"))
 		}
-		chain = try createInstances(of: FHIRString.self, for: "chain", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? chain
-		code = try createInstance(type: FHIRString.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
+		chain = createInstances(of: FHIRString.self, for: "chain", in: json, context: &instCtx, owner: self) ?? chain
+		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		if nil == code && !instCtx.containsKey("code") {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		comparator = createEnums(of: SearchComparator.self, for: "comparator", in: json, presentKeys: &presentKeys, errors: &errors) ?? comparator
-		component = try createInstances(of: SearchParameterComponent.self, for: "component", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? component
-		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		derivedFrom = try createInstance(type: FHIRURL.self, for: "derivedFrom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? derivedFrom
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		if nil == description_fhir && !presentKeys.contains("description") {
-			errors.append(FHIRValidationError(missing: "description"))
+		comparator = createEnums(of: SearchComparator.self, for: "comparator", in: json, context: &instCtx) ?? comparator
+		component = createInstances(of: SearchParameterComponent.self, for: "component", in: json, context: &instCtx, owner: self) ?? component
+		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		derivedFrom = createInstance(type: FHIRURL.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		if nil == description_fhir && !instCtx.containsKey("description") {
+			instCtx.addError(FHIRValidationError(missing: "description"))
 		}
-		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
-		expression = try createInstance(type: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
-		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
-		modifier = createEnums(of: SearchModifierCode.self, for: "modifier", in: json, presentKeys: &presentKeys, errors: &errors) ?? modifier
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		if nil == name && !presentKeys.contains("name") {
-			errors.append(FHIRValidationError(missing: "name"))
+		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
+		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
+		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
+		modifier = createEnums(of: SearchModifierCode.self, for: "modifier", in: json, context: &instCtx) ?? modifier
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
-		purpose = try createInstance(type: FHIRString.self, for: "purpose", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? purpose
-		status = createEnum(type: PublicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
+		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
+		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		target = try createInstances(of: FHIRString.self, for: "target", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? target
-		type = createEnum(type: SearchParamType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		target = createInstances(of: FHIRString.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
+		type = createEnum(type: SearchParamType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		if nil == url && !presentKeys.contains("url") {
-			errors.append(FHIRValidationError(missing: "url"))
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		if nil == url && !instCtx.containsKey("url") {
+			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
-		useContext = try createInstances(of: UsageContext.self, for: "useContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? useContext
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		xpath = try createInstance(type: FHIRString.self, for: "xpath", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? xpath
-		xpathUsage = createEnum(type: XPathUsageType.self, for: "xpathUsage", in: json, presentKeys: &presentKeys, errors: &errors) ?? xpathUsage
-		
-		return errors.isEmpty ? nil : errors
+		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
+		xpath = createInstance(type: FHIRString.self, for: "xpath", in: json, context: &instCtx, owner: self) ?? xpath
+		xpathUsage = createEnum(type: XPathUsageType.self, for: "xpathUsage", in: json, context: &instCtx) ?? xpathUsage
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -234,19 +232,17 @@ open class SearchParameterComponent: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		definition = try createInstance(type: Reference.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
-		if nil == definition && !presentKeys.contains("definition") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "definition"))
+		definition = createInstance(type: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		if nil == definition && !instCtx.containsKey("definition") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}
-		expression = try createInstance(type: FHIRString.self, for: "expression", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expression
-		if nil == expression && !presentKeys.contains("expression") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "expression"))
+		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
+		if nil == expression && !instCtx.containsKey("expression") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "expression"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

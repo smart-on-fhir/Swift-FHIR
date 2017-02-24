@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -75,28 +75,26 @@ open class Device: DomainResource {
 	public var version: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		contact = try createInstances(of: ContactPoint.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		expirationDate = try createInstance(type: DateTime.self, for: "expirationDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expirationDate
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		location = try createInstance(type: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		lotNumber = try createInstance(type: FHIRString.self, for: "lotNumber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? lotNumber
-		manufactureDate = try createInstance(type: DateTime.self, for: "manufactureDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manufactureDate
-		manufacturer = try createInstance(type: FHIRString.self, for: "manufacturer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? manufacturer
-		model = try createInstance(type: FHIRString.self, for: "model", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? model
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		owner = try createInstance(type: Reference.self, for: "owner", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? owner
-		patient = try createInstance(type: Reference.self, for: "patient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? patient
-		safety = try createInstances(of: CodeableConcept.self, for: "safety", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? safety
-		status = createEnum(type: FHIRDeviceStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		udi = try createInstance(type: DeviceUdi.self, for: "udi", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? udi
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		contact = createInstances(of: ContactPoint.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		expirationDate = createInstance(type: DateTime.self, for: "expirationDate", in: json, context: &instCtx, owner: self) ?? expirationDate
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
+		lotNumber = createInstance(type: FHIRString.self, for: "lotNumber", in: json, context: &instCtx, owner: self) ?? lotNumber
+		manufactureDate = createInstance(type: DateTime.self, for: "manufactureDate", in: json, context: &instCtx, owner: self) ?? manufactureDate
+		manufacturer = createInstance(type: FHIRString.self, for: "manufacturer", in: json, context: &instCtx, owner: self) ?? manufacturer
+		model = createInstance(type: FHIRString.self, for: "model", in: json, context: &instCtx, owner: self) ?? model
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		owner = createInstance(type: Reference.self, for: "owner", in: json, context: &instCtx, owner: self) ?? owner
+		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		safety = createInstances(of: CodeableConcept.self, for: "safety", in: json, context: &instCtx, owner: self) ?? safety
+		status = createEnum(type: FHIRDeviceStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		udi = createInstance(type: DeviceUdi.self, for: "udi", in: json, context: &instCtx, owner: self) ?? udi
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -155,18 +153,16 @@ open class DeviceUdi: BackboneElement {
 	public var name: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		carrierAIDC = try createInstance(type: Base64Binary.self, for: "carrierAIDC", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? carrierAIDC
-		carrierHRF = try createInstance(type: FHIRString.self, for: "carrierHRF", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? carrierHRF
-		deviceIdentifier = try createInstance(type: FHIRString.self, for: "deviceIdentifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? deviceIdentifier
-		entryType = createEnum(type: UDIEntryType.self, for: "entryType", in: json, presentKeys: &presentKeys, errors: &errors) ?? entryType
-		issuer = try createInstance(type: FHIRURL.self, for: "issuer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? issuer
-		jurisdiction = try createInstance(type: FHIRURL.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		
-		return errors.isEmpty ? nil : errors
+		carrierAIDC = createInstance(type: Base64Binary.self, for: "carrierAIDC", in: json, context: &instCtx, owner: self) ?? carrierAIDC
+		carrierHRF = createInstance(type: FHIRString.self, for: "carrierHRF", in: json, context: &instCtx, owner: self) ?? carrierHRF
+		deviceIdentifier = createInstance(type: FHIRString.self, for: "deviceIdentifier", in: json, context: &instCtx, owner: self) ?? deviceIdentifier
+		entryType = createEnum(type: UDIEntryType.self, for: "entryType", in: json, context: &instCtx) ?? entryType
+		issuer = createInstance(type: FHIRURL.self, for: "issuer", in: json, context: &instCtx, owner: self) ?? issuer
+		jurisdiction = createInstance(type: FHIRURL.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

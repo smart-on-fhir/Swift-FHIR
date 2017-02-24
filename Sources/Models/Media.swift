@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -84,36 +84,34 @@ open class Media: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		basedOn = try createInstances(of: Reference.self, for: "basedOn", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? basedOn
-		bodySite = try createInstance(type: CodeableConcept.self, for: "bodySite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodySite
-		content = try createInstance(type: Attachment.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
-		if nil == content && !presentKeys.contains("content") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "content"))
+		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
+		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
+		content = createInstance(type: Attachment.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
+		if nil == content && !instCtx.containsKey("content") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "content"))
 		}
-		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		device = try createInstance(type: Reference.self, for: "device", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? device
-		duration = try createInstance(type: FHIRInteger.self, for: "duration", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? duration
-		frames = try createInstance(type: FHIRInteger.self, for: "frames", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? frames
-		height = try createInstance(type: FHIRInteger.self, for: "height", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? height
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		occurrenceDateTime = try createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceDateTime
-		occurrencePeriod = try createInstance(type: Period.self, for: "occurrencePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrencePeriod
-		operator_fhir = try createInstance(type: Reference.self, for: "operator", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? operator_fhir
-		reasonCode = try createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reasonCode
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		subtype = try createInstance(type: CodeableConcept.self, for: "subtype", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subtype
-		type = createEnum(type: DigitalMediaType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		if nil == type && !presentKeys.contains("type") {
-			errors.append(FHIRValidationError(missing: "type"))
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		device = createInstance(type: Reference.self, for: "device", in: json, context: &instCtx, owner: self) ?? device
+		duration = createInstance(type: FHIRInteger.self, for: "duration", in: json, context: &instCtx, owner: self) ?? duration
+		frames = createInstance(type: FHIRInteger.self, for: "frames", in: json, context: &instCtx, owner: self) ?? frames
+		height = createInstance(type: FHIRInteger.self, for: "height", in: json, context: &instCtx, owner: self) ?? height
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
+		occurrencePeriod = createInstance(type: Period.self, for: "occurrencePeriod", in: json, context: &instCtx, owner: self) ?? occurrencePeriod
+		operator_fhir = createInstance(type: Reference.self, for: "operator", in: json, context: &instCtx, owner: self) ?? operator_fhir
+		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		subtype = createInstance(type: CodeableConcept.self, for: "subtype", in: json, context: &instCtx, owner: self) ?? subtype
+		type = createEnum(type: DigitalMediaType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		view = try createInstance(type: CodeableConcept.self, for: "view", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? view
-		width = try createInstance(type: FHIRInteger.self, for: "width", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? width
-		
-		return errors.isEmpty ? nil : errors
+		view = createInstance(type: CodeableConcept.self, for: "view", in: json, context: &instCtx, owner: self) ?? view
+		width = createInstance(type: FHIRInteger.self, for: "width", in: json, context: &instCtx, owner: self) ?? width
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

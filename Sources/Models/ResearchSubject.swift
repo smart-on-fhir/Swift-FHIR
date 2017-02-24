@@ -2,7 +2,7 @@
 //  ResearchSubject.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -56,28 +56,26 @@ open class ResearchSubject: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		actualArm = try createInstance(type: FHIRString.self, for: "actualArm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actualArm
-		assignedArm = try createInstance(type: FHIRString.self, for: "assignedArm", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? assignedArm
-		consent = try createInstance(type: Reference.self, for: "consent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? consent
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		individual = try createInstance(type: Reference.self, for: "individual", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? individual
-		if nil == individual && !presentKeys.contains("individual") {
-			errors.append(FHIRValidationError(missing: "individual"))
+		actualArm = createInstance(type: FHIRString.self, for: "actualArm", in: json, context: &instCtx, owner: self) ?? actualArm
+		assignedArm = createInstance(type: FHIRString.self, for: "assignedArm", in: json, context: &instCtx, owner: self) ?? assignedArm
+		consent = createInstance(type: Reference.self, for: "consent", in: json, context: &instCtx, owner: self) ?? consent
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		individual = createInstance(type: Reference.self, for: "individual", in: json, context: &instCtx, owner: self) ?? individual
+		if nil == individual && !instCtx.containsKey("individual") {
+			instCtx.addError(FHIRValidationError(missing: "individual"))
 		}
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		status = createEnum(type: ResearchSubjectStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		status = createEnum(type: ResearchSubjectStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		study = try createInstance(type: Reference.self, for: "study", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? study
-		if nil == study && !presentKeys.contains("study") {
-			errors.append(FHIRValidationError(missing: "study"))
+		study = createInstance(type: Reference.self, for: "study", in: json, context: &instCtx, owner: self) ?? study
+		if nil == study && !instCtx.containsKey("study") {
+			instCtx.addError(FHIRValidationError(missing: "study"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

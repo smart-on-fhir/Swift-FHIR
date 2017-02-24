@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -90,35 +90,33 @@ open class HealthcareService: DomainResource {
 	public var type: [CodeableConcept]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		active = try createInstance(type: FHIRBool.self, for: "active", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? active
-		appointmentRequired = try createInstance(type: FHIRBool.self, for: "appointmentRequired", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? appointmentRequired
-		availabilityExceptions = try createInstance(type: FHIRString.self, for: "availabilityExceptions", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? availabilityExceptions
-		availableTime = try createInstances(of: HealthcareServiceAvailableTime.self, for: "availableTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? availableTime
-		category = try createInstance(type: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		characteristic = try createInstances(of: CodeableConcept.self, for: "characteristic", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? characteristic
-		comment = try createInstance(type: FHIRString.self, for: "comment", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? comment
-		coverageArea = try createInstances(of: Reference.self, for: "coverageArea", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? coverageArea
-		eligibility = try createInstance(type: CodeableConcept.self, for: "eligibility", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eligibility
-		eligibilityNote = try createInstance(type: FHIRString.self, for: "eligibilityNote", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? eligibilityNote
-		endpoint = try createInstances(of: Reference.self, for: "endpoint", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? endpoint
-		extraDetails = try createInstance(type: FHIRString.self, for: "extraDetails", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? extraDetails
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		location = try createInstances(of: Reference.self, for: "location", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? location
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		notAvailable = try createInstances(of: HealthcareServiceNotAvailable.self, for: "notAvailable", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? notAvailable
-		photo = try createInstance(type: Attachment.self, for: "photo", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? photo
-		programName = try createInstances(of: FHIRString.self, for: "programName", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? programName
-		providedBy = try createInstance(type: Reference.self, for: "providedBy", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? providedBy
-		referralMethod = try createInstances(of: CodeableConcept.self, for: "referralMethod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? referralMethod
-		serviceProvisionCode = try createInstances(of: CodeableConcept.self, for: "serviceProvisionCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? serviceProvisionCode
-		specialty = try createInstances(of: CodeableConcept.self, for: "specialty", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? specialty
-		telecom = try createInstances(of: ContactPoint.self, for: "telecom", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? telecom
-		type = try createInstances(of: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		active = createInstance(type: FHIRBool.self, for: "active", in: json, context: &instCtx, owner: self) ?? active
+		appointmentRequired = createInstance(type: FHIRBool.self, for: "appointmentRequired", in: json, context: &instCtx, owner: self) ?? appointmentRequired
+		availabilityExceptions = createInstance(type: FHIRString.self, for: "availabilityExceptions", in: json, context: &instCtx, owner: self) ?? availabilityExceptions
+		availableTime = createInstances(of: HealthcareServiceAvailableTime.self, for: "availableTime", in: json, context: &instCtx, owner: self) ?? availableTime
+		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		characteristic = createInstances(of: CodeableConcept.self, for: "characteristic", in: json, context: &instCtx, owner: self) ?? characteristic
+		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
+		coverageArea = createInstances(of: Reference.self, for: "coverageArea", in: json, context: &instCtx, owner: self) ?? coverageArea
+		eligibility = createInstance(type: CodeableConcept.self, for: "eligibility", in: json, context: &instCtx, owner: self) ?? eligibility
+		eligibilityNote = createInstance(type: FHIRString.self, for: "eligibilityNote", in: json, context: &instCtx, owner: self) ?? eligibilityNote
+		endpoint = createInstances(of: Reference.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
+		extraDetails = createInstance(type: FHIRString.self, for: "extraDetails", in: json, context: &instCtx, owner: self) ?? extraDetails
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		location = createInstances(of: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		notAvailable = createInstances(of: HealthcareServiceNotAvailable.self, for: "notAvailable", in: json, context: &instCtx, owner: self) ?? notAvailable
+		photo = createInstance(type: Attachment.self, for: "photo", in: json, context: &instCtx, owner: self) ?? photo
+		programName = createInstances(of: FHIRString.self, for: "programName", in: json, context: &instCtx, owner: self) ?? programName
+		providedBy = createInstance(type: Reference.self, for: "providedBy", in: json, context: &instCtx, owner: self) ?? providedBy
+		referralMethod = createInstances(of: CodeableConcept.self, for: "referralMethod", in: json, context: &instCtx, owner: self) ?? referralMethod
+		serviceProvisionCode = createInstances(of: CodeableConcept.self, for: "serviceProvisionCode", in: json, context: &instCtx, owner: self) ?? serviceProvisionCode
+		specialty = createInstances(of: CodeableConcept.self, for: "specialty", in: json, context: &instCtx, owner: self) ?? specialty
+		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
+		type = createInstances(of: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -175,15 +173,13 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 	public var daysOfWeek: [DaysOfWeek]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		allDay = try createInstance(type: FHIRBool.self, for: "allDay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? allDay
-		availableEndTime = try createInstance(type: FHIRTime.self, for: "availableEndTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? availableEndTime
-		availableStartTime = try createInstance(type: FHIRTime.self, for: "availableStartTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? availableStartTime
-		daysOfWeek = createEnums(of: DaysOfWeek.self, for: "daysOfWeek", in: json, presentKeys: &presentKeys, errors: &errors) ?? daysOfWeek
-		
-		return errors.isEmpty ? nil : errors
+		allDay = createInstance(type: FHIRBool.self, for: "allDay", in: json, context: &instCtx, owner: self) ?? allDay
+		availableEndTime = createInstance(type: FHIRTime.self, for: "availableEndTime", in: json, context: &instCtx, owner: self) ?? availableEndTime
+		availableStartTime = createInstance(type: FHIRTime.self, for: "availableStartTime", in: json, context: &instCtx, owner: self) ?? availableStartTime
+		daysOfWeek = createEnums(of: DaysOfWeek.self, for: "daysOfWeek", in: json, context: &instCtx) ?? daysOfWeek
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -221,16 +217,14 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		if nil == description_fhir && !presentKeys.contains("description") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "description"))
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		if nil == description_fhir && !instCtx.containsKey("description") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "description"))
 		}
-		during = try createInstance(type: Period.self, for: "during", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? during
-		
-		return errors.isEmpty ? nil : errors
+		during = createInstance(type: Period.self, for: "during", in: json, context: &instCtx, owner: self) ?? during
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

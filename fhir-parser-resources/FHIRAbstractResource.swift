@@ -35,36 +35,36 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	`self.init(json:owner:)` instead.
 	- todo: Disabled factory use on Linux for now since it crashes the compiler as of Swift 3.0.1
 	
-	- parameter json:  A FHIRJSON decoded from a JSON response
-	- parameter owner: The FHIRAbstractBase owning the new instance, if appropriate
-	- returns:         If possible the appropriate FHIRAbstractBase subclass, instantiated from the given JSON dictionary, Self otherwise
-	- throws:          FHIRValidationError
+	- parameter json:    A FHIRJSON decoded from a JSON response
+	- parameter owner:   The FHIRAbstractBase owning the new instance, if appropriate
+	- parameter context: An in-out parameter for the instantiation context
+	- returns:           If possible the appropriate FHIRAbstractBase subclass, instantiated from the given JSON dictionary, Self otherwise
+	- throws:            FHIRValidationError
 	*/
-	override public final class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?) throws -> Self {
+	override public final class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) -> Self {
 		#if !os(Linux)
 		if let type = json["resourceType"] as? String {
-			return try factory(type, json: json, owner: owner, type: self)
+			return factory(type, json: json, owner: owner, type: self, context: &context)
 		}
 		#endif
-		return try self.init(json: json, owner: owner)		// must use 'required' init with dynamic type
+		return self.init(json: json, owner: owner, context: &context)    // must use 'required' init with dynamic type
 	}
 	
 	/**
 	The Resource, in contrast to the base element, definitely wants "resourceType" to be present. Will return an error complaining about it
 	missing if it's not present.
 	*/
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &context)
 		if let type = json["resourceType"] as? String {
-			presentKeys.insert("resourceType")
+			context.insertKey("resourceType")
 			if type != type(of: self).resourceType {
-				errors.append(FHIRValidationError(key: "resourceType", problem: "should be “\(type(of: self).resourceType)” but is “\(type)”"))
+				context.addError(FHIRValidationError(key: "resourceType", problem: "should be “\(type(of: self).resourceType)” but is “\(type)”"))
 			}
 		}
 		else {
-			errors.append(FHIRValidationError(missing: "resourceType"))
+			context.addError(FHIRValidationError(missing: "resourceType"))
 		}
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

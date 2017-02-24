@@ -94,11 +94,49 @@ public enum FHIRRequestHeaderField: String {
 
 
 /**
-Options to pass along when making a request.
+Parameters to pass along when making a request.
 */
-public enum FHIRRequestOption: String {
+public struct FHIRRequestParameters {
 	
-	/// Request a summary; you probably want `Summary.true` as its value.
+	private var parameters: [FHIRRequestParameterField: String]
+	
+	/** Designated initializer. */
+	public init(_ params: [FHIRRequestParameterField: String]? = nil) {
+		parameters = params ?? [FHIRRequestParameterField: String]()
+	}
+	
+	public subscript(key: FHIRRequestParameterField) -> String? {
+		get { return parameters[key] }
+		set { parameters[key] = newValue }
+	}
+	
+	
+	/**
+	Prepare a given mutable URL request with the receiver's parameters.
+	*/
+	public func prepare(request: inout URLRequest) {
+		guard parameters.count > 0 else {
+			return
+		}
+		if let url = request.url, var comps = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+			var query = comps.queryItems ?? []
+			for (param, value) in parameters {
+				query = query.filter() { param.rawValue != $0.name }
+				query.append(URLQueryItem(name: param.rawValue, value: value))
+			}
+			comps.queryItems = query
+			request.url = comps.url
+		}
+	}
+}
+
+
+/**
+Describe valid (and supported) FHIR request query parameters.
+*/
+public enum FHIRRequestParameterField: String {
+	
+	/// Request a summary; you probably want `Summary.true.rawValue` as its value.
 	case summary = "_summary"
 	
 	/// Include only the listed top-level elements; provide a comma-separated list of element names as value.
@@ -115,5 +153,24 @@ public enum FHIRRequestOption: String {
 		case data    = "data"
 		case count   = "count"
 	}
+}
+
+
+/**
+Options to pass along to request handlers.
+*/
+public struct FHIRRequestOption: OptionSet {
+	public let rawValue: Int
+	
+	/** Designated initializer. Without this, Swift 3.0 compiler wants to insert a million `public struct` and will still complain... */
+	public init(rawValue: Int) {
+		self.rawValue = rawValue
+	}
+	
+	/// Add a `_summary=true` parameter to only receive a summary of the resource.
+	public static let summary = FHIRRequestOption(rawValue: 1)
+	
+	/// Tolerate JSON validation errors when receiving a response, i.e. don't throw upon instantiation, use what's provided.
+	public static let lenient = FHIRRequestOption(rawValue: 2)
 }
 

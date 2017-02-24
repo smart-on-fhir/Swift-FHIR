@@ -46,7 +46,7 @@ public struct FHIRString: FHIRPrimitive, CustomStringConvertible, ExpressibleByS
 	
 	public typealias JSONType = String
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
 		self.init(json)
 		_owner = owner
 	}

@@ -192,7 +192,7 @@ open class FHIROpenServer: FHIRServer {
 		}
 		
 		// not yet fetched, fetch it
-		CapabilityStatement.readFrom("metadata", server: self, asSummary: true) { resource, error in
+		CapabilityStatement.readFrom("metadata", server: self, options: [.summary, .lenient]) { resource, error in
 			if let conf = resource as? CapabilityStatement {
 				self.cabability = conf
 				callback(nil)

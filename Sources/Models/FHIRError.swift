@@ -121,3 +121,18 @@ extension Error {
 	}
 }
 
+extension String {
+	/**
+	Convenience getter using `NSLocalizedString()` with no comment.
+	
+	TODO: On Linux this currently simply returns self
+	*/
+	public var fhir_localized: String {
+		#if os(Linux)
+			return self
+		#else
+			return NSLocalizedString(self, comment: "")
+		#endif
+	}
+}
+

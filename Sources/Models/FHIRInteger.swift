@@ -49,7 +49,7 @@ public struct FHIRInteger: FHIRPrimitive, LosslessStringConvertible, Expressible
 	public typealias JSONType = NSNumber
 	#endif
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
 		#if os(Linux)
 		self.init(Int32(json))
 		#else

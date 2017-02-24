@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -392,22 +392,19 @@ class ConditionTests: XCTestCase {
 	
 	@discardableResult
 	func runCondition9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-stroke.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-family-history.json")
 		
-		XCTAssertEqual(inst.category?[0].coding?[0].code, "encounter-diagnosis")
-		XCTAssertEqual(inst.category?[0].coding?[0].display, "Encounter Diagnosis")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "problem-list-item")
+		XCTAssertEqual(inst.category?[0].coding?[0].display, "Problem List Item")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/condition-category")
 		XCTAssertEqual(inst.clinicalStatus, "active")
-		XCTAssertEqual(inst.code?.coding?[0].code, "422504002")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Ischemic stroke (disorder)")
+		XCTAssertEqual(inst.code?.coding?[0].code, "312824007")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Family history of cancer of colon")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.code?.text, "Stroke")
-		XCTAssertEqual(inst.id, "stroke")
-		XCTAssertEqual(inst.onsetDateTime?.description, "2010-07-18")
+		XCTAssertEqual(inst.id, "family-history")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Ischemic stroke, July 18, 2010</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Family history of cancer of colon</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		
 		return inst
 	}
@@ -424,30 +421,20 @@ class ConditionTests: XCTestCase {
 	
 	@discardableResult
 	func runCondition10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCondition {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-stroke.json")
 		
-		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "49521004")
-		XCTAssertEqual(inst.bodySite?[0].coding?[0].display, "Left external ear structure")
-		XCTAssertEqual(inst.bodySite?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.bodySite?[0].text, "Left Ear")
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "encounter-diagnosis")
 		XCTAssertEqual(inst.category?[0].coding?[0].display, "Encounter Diagnosis")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/condition-category")
-		XCTAssertEqual(inst.category?[0].coding?[1].code, "439401001")
-		XCTAssertEqual(inst.category?[0].coding?[1].display, "Diagnosis")
-		XCTAssertEqual(inst.category?[0].coding?[1].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.clinicalStatus, "active")
-		XCTAssertEqual(inst.code?.coding?[0].code, "39065001")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Burn of ear")
+		XCTAssertEqual(inst.code?.coding?[0].code, "422504002")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Ischemic stroke (disorder)")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.code?.text, "Burnt Ear")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.onsetDateTime?.description, "2012-05-24")
-		XCTAssertEqual(inst.severity?.coding?[0].code, "24484000")
-		XCTAssertEqual(inst.severity?.coding?[0].display, "Severe")
-		XCTAssertEqual(inst.severity?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.code?.text, "Stroke")
+		XCTAssertEqual(inst.id, "stroke")
+		XCTAssertEqual(inst.onsetDateTime?.description, "2010-07-18")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Severe burn of left ear (Date: 24-May 2012)</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Ischemic stroke, July 18, 2010</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.verificationStatus, ConditionVerificationStatus(rawValue: "confirmed")!)
 		

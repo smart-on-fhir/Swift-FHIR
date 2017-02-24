@@ -41,7 +41,7 @@ public struct Base64Binary: FHIRPrimitive, FHIRJSONType, ExpressibleByStringLite
 	
 	public typealias JSONType = String
 	
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
 		self.init(value: json)
 		_owner = owner
 	}

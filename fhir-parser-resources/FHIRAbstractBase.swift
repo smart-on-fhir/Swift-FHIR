@@ -37,16 +37,33 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	
 	
 	/**
-	The default initializer, made “required” so instantiation with a metatype is possible.
+	Throwing initializer, made “required” so instantiation with a metatype is possible.
 	
-	Forwards to `populate(from:)`.
+	Forwards to `populate(from:context:)` and then validates the instantiation, throwing on error.
 	
 	- parameter json:  The JSON element to use to populate the receiver
 	- parameter owner: If the receiver is an element or a resource in another resource, this references that "owner"
+	- throws:          FHIRValidationError, if any
 	*/
 	public required init(json: FHIRJSON, owner: FHIRAbstractBase? = nil) throws {
 		_owner = owner
-		try populate(from: json)
+		var context = FHIRInstantiationContext()
+		initialize(from: json, context: &context)
+		try context.validate()
+	}
+	
+	/**
+	Designated initializer, made “required” so instantiation with a metatype is possible.
+	
+	Forwards to `populate(from:context:)`. You can then validate the instantiation yourself by calling `try context.validate()`.
+	
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter owner:   If the receiver is an element or a resource in another resource, this references that "owner"
+	- parameter context: An in-out parameter for the instantiation context
+	*/
+	public required init(json: FHIRJSON, owner: FHIRAbstractBase? = nil, context: inout FHIRInstantiationContext) {
+		_owner = owner
+		initialize(from: json, context: &context)
 	}
 	
 	/**
@@ -65,56 +82,42 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	FHIRAbstractBase simply forwards to `self.init(json:owner:)`. Use `FHIRAbstractResource`'s implementation if you wish to inspect the
 	json for `resourceType`, which will then use the factory method.
 	
-	- parameter json:  A FHIRJSON decoded from a JSON response
-	- parameter owner: The FHIRAbstractBase owning the new instance, if appropriate
-	- returns:         An instance of self, instantiated from the given JSON dictionary
-	- throws:          FHIRValidationError
+	- parameter json:    A FHIRJSON decoded from a JSON response
+	- parameter owner:   The FHIRAbstractBase owning the new instance, if appropriate
+	- parameter context: An in-out parameter for the instantiation context
+	- returns:           An instance of self, instantiated from the given JSON dictionary
 	*/
-	public class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?) throws -> Self {
-		return try self.init(json: json, owner: owner)		// must use 'required' init with dynamic type
+	public class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) -> Self {
+		return self.init(json: json, owner: owner, context: &context)   // must use 'required' init with dynamic type
 	}
 	
 	/**
-	Will populate instance variables - overriding existing ones - with values found in the supplied JSON.
+	Will populate instance variables - overriding existing ones - with values found in the supplied JSON. Calls `populate(json:context:)`,
+	which is what you should override instead.
 	
-	- parameter json: The JSON element to use to populate the receiver
-	- returns:        An optional array of errors reporting missing (when nonoptional) and superfluous properties and properties of the
-	                  wrong type
-	- throws:         FHIRValidationError (it's theoretically possible that it throws something else)
+	This is an exact copy of what's implemented as an extension to `FHIRJSONType` but is needed to be picked up by the classes.
+	
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter context: An in-out parameter being filled with key names used.
 	*/
-	public final func populate(from json: FHIRJSON) throws {
-		var present = Set<String>()
-		present.insert("fhir_comments")
-		var errors = try populate(from: json, presentKeys: &present) ?? [FHIRValidationError]()
+	public final func initialize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
+		context.insertKey("fhir_comments")
+		populate(from: json, context: &context)
 		
-		// superfluous JSON entries? Ignore "fhir_comments" and "_xy".
-		let superfluous = json.keys.filter() { !present.contains($0) }
-		if !superfluous.isEmpty {
-			for sup in superfluous {
-				if let first = sup.characters.first, "_" != first {
-					errors.append(FHIRValidationError(unknown: sup, ofType: type(of: json[sup]!)))
-				}
-			}
-		}
-		
-		if !errors.isEmpty {
-			if nil == _owner {
-				errors = errors.map() { $0.prefixed(with: type(of: self).resourceType) }
-			}
-			throw (1 == errors.count) ? errors[0] : FHIRValidationError(errors: errors)
+		// finalize
+		context.finalize(for: json)
+		if nil == _owner {
+			context.prefixErrors(with: "\(type(of: self))")
 		}
 	}
 	
 	/**
 	The main function to perform the actual JSON parsing, to be overridden by subclasses.
 	 
-	- parameter json:        The JSON element to use to populate the receiver
-	- parameter presentKeys: An in-out parameter being filled with key names used.
-	- returns:               An optional array of errors reporting missing mandatory keys or keys containing values of the wrong type
-	- throws:                If anything besides a `FHIRValidationError` happens
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter context: The instantiation context to use
 	*/
-	open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		return nil
+	public func populate(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
 	}
 	
 	/**

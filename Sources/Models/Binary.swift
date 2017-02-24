@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -37,20 +37,18 @@ open class Binary: Resource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		content = try createInstance(type: Base64Binary.self, for: "content", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? content
-		if nil == content && !presentKeys.contains("content") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "content"))
+		content = createInstance(type: Base64Binary.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
+		if nil == content && !instCtx.containsKey("content") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "content"))
 		}
-		contentType = try createInstance(type: FHIRString.self, for: "contentType", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contentType
-		if nil == contentType && !presentKeys.contains("contentType") {
-			errors.append(FHIRValidationError(missing: "contentType"))
+		contentType = createInstance(type: FHIRString.self, for: "contentType", in: json, context: &instCtx, owner: self) ?? contentType
+		if nil == contentType && !instCtx.containsKey("contentType") {
+			instCtx.addError(FHIRValidationError(missing: "contentType"))
 		}
-		securityContext = try createInstance(type: Reference.self, for: "securityContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? securityContext
-		
-		return errors.isEmpty ? nil : errors
+		securityContext = createInstance(type: Reference.self, for: "securityContext", in: json, context: &instCtx, owner: self) ?? securityContext
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

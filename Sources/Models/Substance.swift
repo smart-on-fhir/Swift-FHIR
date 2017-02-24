@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -46,21 +46,19 @@ open class Substance: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		category = try createInstances(of: CodeableConcept.self, for: "category", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? category
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		if nil == code && !instCtx.containsKey("code") {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		ingredient = try createInstances(of: SubstanceIngredient.self, for: "ingredient", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? ingredient
-		instance = try createInstances(of: SubstanceInstance.self, for: "instance", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? instance
-		status = createEnum(type: FHIRSubstanceStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		
-		return errors.isEmpty ? nil : errors
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		ingredient = createInstances(of: SubstanceIngredient.self, for: "ingredient", in: json, context: &instCtx, owner: self) ?? ingredient
+		instance = createInstances(of: SubstanceInstance.self, for: "instance", in: json, context: &instCtx, owner: self) ?? instance
+		status = createEnum(type: FHIRSubstanceStatus.self, for: "status", in: json, context: &instCtx) ?? status
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -115,20 +113,18 @@ open class SubstanceIngredient: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		quantity = try createInstance(type: Ratio.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		substanceCodeableConcept = try createInstance(type: CodeableConcept.self, for: "substanceCodeableConcept", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? substanceCodeableConcept
-		substanceReference = try createInstance(type: Reference.self, for: "substanceReference", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? substanceReference
+		quantity = createInstance(type: Ratio.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		substanceCodeableConcept = createInstance(type: CodeableConcept.self, for: "substanceCodeableConcept", in: json, context: &instCtx, owner: self) ?? substanceCodeableConcept
+		substanceReference = createInstance(type: Reference.self, for: "substanceReference", in: json, context: &instCtx, owner: self) ?? substanceReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
 		if nil == self.substanceCodeableConcept && nil == self.substanceReference {
-			errors.append(FHIRValidationError(missing: "substance[x]"))
+			instCtx.addError(FHIRValidationError(missing: "substance[x]"))
 		}
 		
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -166,14 +162,12 @@ open class SubstanceInstance: BackboneElement {
 	public var quantity: Quantity?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		expiry = try createInstance(type: DateTime.self, for: "expiry", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? expiry
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		
-		return errors.isEmpty ? nil : errors
+		expiry = createInstance(type: DateTime.self, for: "expiry", in: json, context: &instCtx, owner: self) ?? expiry
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

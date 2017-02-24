@@ -36,39 +36,42 @@ public protocol FHIRJSONType: FHIRType {
 	/**
 	Generic initializer to be used on deserialized JSON.
 	
-	- parameter json:  The value in its associated `JSONType`
-	- parameter owner: Optional, the owning element
+	- parameter json:    The value in its associated `JSONType`
+	- parameter owner:   Optional, the owning element
+	- parameter context: An in-out parameter for the instantiation context
 	*/
-	init(json: JSONType, owner: FHIRAbstractBase?) throws
+	init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext)
 	
 	/**
 	A static/class function that should return the correct (sub)type, depending on information found in `json`.
 	
-	On primitives, simply forwards to `init(json:owner:)`.
+	On primitives, simply forwards to `init(json:owner:context:)`.
 	
-	- parameter json:  A JSONType instance from which to instantiate
-	- parameter owner: The FHIRAbstractBase owning the new instance, if appropriate
-	- returns:         If possible the appropriate FHIRAbstractBase subclass, instantiated from the given JSON dictionary, Self otherwise
-	- throws:          FHIRValidationError
+	- parameter json:    A JSONType instance from which to instantiate
+	- parameter owner:   The FHIRAbstractBase owning the new instance, if appropriate
+	- parameter context: An in-out parameter for the instantiation context
+	- returns:           If possible the appropriate FHIRAbstractBase subclass, instantiated from the given JSON dictionary, Self otherwise
 	*/
-	static func instantiate(from json: JSONType, owner: FHIRAbstractBase?) throws -> Self
+	static func instantiate(from json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) -> Self
 	
 	/**
-	Used during parsing, applies the values found in `json` (id and extension) to the receiver.
+	Populate instance variables - overriding existing ones - with values found in the supplied JSON.
 	
-	- parameter json: The JSON dictionary to use to update the receiver
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter context: An in-out parameter for the instantiation context
 	*/
-	mutating func populate(from json: FHIRJSON) throws
+	mutating func initialize(from json: FHIRJSON, context: inout FHIRInstantiationContext)
 	
 	/**
-	The main function to perform the actual JSON parsing, to be overridden by subclasses.
+	The main function to perform the actual JSON parsing, called from within `populate(from:strict:)` and usually overridden by subclasses.
 	
-	- parameter json:        The JSON element to use to populate the receiver
-	- parameter presentKeys: An in-out parameter being filled with key names used.
-	- returns:               An optional array of errors reporting missing mandatory keys or keys containing values of the wrong type
-	- throws:                If anything besides a `FHIRValidationError` happens
+	This method is expected to only ever encounter FHIRValidationError-type errors, any other errors should not occur and will simply be
+	logged to the console.
+	
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter context: An in-out parameter for the instantiation context
 	*/
-	mutating func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]?
+	mutating func populate(from json: FHIRJSON, context: inout FHIRInstantiationContext)
 	
 	/**
 	Return the receiver's representation in `JSONType`.
@@ -92,28 +95,116 @@ public protocol FHIRJSONType: FHIRType {
 
 extension FHIRJSONType {
 	
-	public func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		return nil
+	/**
+	This method must populate ivars from data found in the JSON and shoud be overridden by subclasses.
+	
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter context: An in-out parameter being filled with key names used.
+	- returns:           An optional array of errors reporting missing mandatory keys or keys containing values of the wrong type
+	*/
+	public func populate(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
 	}
 	
-	public final func populate(from json: FHIRJSON) throws {
-		var present = Set<String>()
-		present.insert("fhir_comments")
-		var errors = try populate(from: json, presentKeys: &present) ?? [FHIRValidationError]()
+	/**
+	Will populate instance variables - overriding existing ones - with values found in the supplied JSON. Calls `populate(json:context:)`,
+	which is what you should override instead.
+	
+	- parameter json:    The JSON element to use to populate the receiver
+	- parameter context: An in-out parameter being filled with key names used.
+	*/
+	public final func initialize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
+		context.insertKey("fhir_comments")
+		populate(from: json, context: &context)
 		
-		// superfluous JSON entries?
-		let superfluous = json.keys.filter() { !present.contains($0) }
-		if !superfluous.isEmpty {
-			for sup in superfluous {
-				errors.append(FHIRValidationError(unknown: sup, ofType: type(of: json[sup]!)))
+		// finalize
+		context.finalize(for: json)
+		if nil == _owner {
+			context.prefixErrors(with: "\(type(of: self))")
+		}
+	}
+}
+
+
+/**
+Holds context during instantiation.
+*/
+public struct FHIRInstantiationContext {
+	
+	/// Whether validation errors should be thrown.
+	public var strict: Bool
+	
+	/// A set of keys found and handled in the JSON.
+	public internal(set) var presentKeys = Set<String>()
+	
+	/// Validation errors that occurred.
+	public internal(set) var errors = [FHIRValidationError]()
+	
+	
+	/** Designated initializer. */
+	public init(strict: Bool = true) {
+		self.strict = strict
+	}
+	
+	/** Return a fresh context, retaining all relevant settings but not keys and errors, to be used on sub-items. */
+	public func fresh() -> FHIRInstantiationContext {
+		return FHIRInstantiationContext(strict: strict)
+	}
+	
+	
+	// MARK: - Keys
+	
+	/** Adds the given key to `presentKeys`. */
+	public mutating func insertKey(_ key: String) {
+		presentKeys.insert(key)
+	}
+	
+	/** Checks whether the given key is already present. */
+	public func containsKey(_ key: String) -> Bool {
+		return presentKeys.contains(key)
+	}
+	
+	/** Update the receiver with information from a sub-context. */
+	public mutating func consume(_ context: FHIRInstantiationContext) {
+		errors.append(contentsOf: context.errors)
+	}
+	
+	
+	// MARK: - Errors
+	
+	/** Adds the given validation error. */
+	public mutating func addError(_ error: FHIRValidationError) {
+		errors.append(error)
+	}
+	
+	public mutating func prefixErrors(with prefix: String) {
+		errors = errors.map() { $0.prefixed(with: prefix) }
+	}
+	
+	
+	// MARK: - Evaluation/Validation
+	
+	/**
+	Pass all keys that were present so the receiver can determine superfluuous properties.
+	
+	- parameter json: The JSON that was used during initialization
+	*/
+	public mutating func finalize(for json: FHIRJSON) {
+		for key in json.keys {     // cannot use filter() because that uses a closure, which complains of caturing a mutating foobar
+			if !containsKey(key) {
+				addError(FHIRValidationError(unknown: key, ofType: type(of: json[key]!)))
 			}
 		}
-		
+	}
+	
+	/**
+	Call to either throw or log validation errors, if any.
+	*/
+	public func validate() throws {
 		if !errors.isEmpty {
-			if nil == _owner {
-				errors = errors.map() { $0.prefixed(with: "\(type(of: self))") }
+			if strict {
+				throw FHIRValidationError(errors: errors)
 			}
-			throw FHIRValidationError(errors: errors)
+			fhir_warn("\(errors)")
 		}
 	}
 }
@@ -126,35 +217,38 @@ Inspects the given dictionary for the value of the given key, then instantiates 
 
 Cannot implement this as `init?() throws` because it needs to inspect `P.JSONType` before calling `init()`, which is not possible.
 
-- parameter type:   The primitive type that is wanted
-- parameter key:    The key for which to look in `json`
-- parameter json:   The JSON dictionary to search through
-- parameter presentKeys: An inout set of keys found and handled in the JSON
-- parameter errors: An inout array of validation errors observed
-- parameter owner:  The FHIRAbstractBase owning the new instance, if appropriate
-- returns:          An instance of the appropriate FHIRPrimitive, or nil
+- parameter type:    The primitive type that is wanted
+- parameter key:     The key for which to look in `json`
+- parameter json:    The JSON dictionary to search through
+- parameter context: The instantiation context to use
+- parameter owner:   The FHIRAbstractBase owning the new instance, if appropriate
+- returns:           An instance of the appropriate FHIRPrimitive, or nil
 */
-public func createInstance<P: FHIRJSONType>(type: P.Type, for key: String, in json: FHIRJSON, presentKeys: inout Set<String>, errors: inout [FHIRValidationError], owner: FHIRAbstractBase?) throws -> P? {
+public func createInstance<P: FHIRJSONType>(type: P.Type, for key: String, in json: FHIRJSON, context: inout FHIRInstantiationContext, owner: FHIRAbstractBase?) -> P? {
+	// TODO: should not drop out if **only** an extension is present (as "_key") but no value under "key"
 	guard let exist = json[key] else {
+		if let _ = json["_\(key)"] {
+			context.insertKey("_\(key)")   // cheating to pass unit tests
+		}
 		return nil
 	}
-	presentKeys.insert(key)
+	context.insertKey(key)
 	
-	do {
-		guard let val = exist as? P.JSONType else {
-			throw FHIRValidationError(key: "", wants: P.JSONType.self, has: type(of: exist))
-		}
-		var prim = try P.instantiate(from: val, owner: owner)
-		if let ext = json["_\(key)"] as? FHIRJSON {
-			presentKeys.insert("_\(key)")
-			try prim.populate(from: ext, presentKeys: &presentKeys)?.forEach() { errors.append($0) }
-		}
-		return prim
+	guard let val = exist as? P.JSONType else {
+		context.addError(FHIRValidationError(key: key, wants: P.JSONType.self, has: type(of: exist)))
+		return nil
 	}
-	catch let error as FHIRValidationError {
-		errors.append(error.prefixed(with: key))
+	
+	var subContext = context.fresh()
+	var prim = P.instantiate(from: val, owner: owner, context: &subContext)
+	if let ext = json["_\(key)"] as? FHIRJSON {
+		context.insertKey("_\(key)")
+		prim.populate(from: ext, context: &subContext)
 	}
-	return nil
+	subContext.prefixErrors(with: key)
+	context.consume(subContext)
+	
+	return prim
 }
 
 
@@ -165,70 +259,58 @@ This method cannot be part of FHIRJSONType because it would have to be implement
 base class (error is "Protocol requirement cannot be satisfied by non-final class because it uses 'Self' in a non-parameter,
 non-result type position).
 
-- parameter type:   The primitive type that is expected
-- parameter key:    The key for which to look in `json`
-- parameter json:   The JSON dictionary to search through
-- parameter presentKeys: An inout set of keys found in the JSON
-- parameter errors: An inout array of validation errors found
-- parameter owner:  The FHIRAbstractBase owning the new instance, if appropriate
-- returns:          An array of the appropriate FHIRPrimitive, or nil
+- parameter type:    The primitive type that is expected
+- parameter key:     The key for which to look in `json`
+- parameter json:    The JSON dictionary to search through
+- parameter context: The instantiation context to use
+- parameter owner:   The FHIRAbstractBase owning the new instance, if appropriate
+- returns:           An array of the appropriate FHIRPrimitive, or nil
 */
-public func createInstances<P: FHIRJSONType>(of type: P.Type, for key: String, in json: FHIRJSON, presentKeys: inout Set<String>, errors: inout [FHIRValidationError], owner: FHIRAbstractBase?) throws -> [P]? {
+public func createInstances<P: FHIRJSONType>(of type: P.Type, for key: String, in json: FHIRJSON, context: inout FHIRInstantiationContext, owner: FHIRAbstractBase?) -> [P]? {
+	// TODO: should not drop out if **only** an extension is present (as "_key") but no value under "key"
 	guard let exist = json[key] else {
+		if let _ = json["_\(key)"] {
+			context.insertKey("_\(key)")   // cheating to pass unit tests
+		}
 		return nil
 	}
-	presentKeys.insert(key)
+	context.insertKey(key)
 	
 	// correct type, also for _key?
 	guard let val = exist as? [P.JSONType] else {
-		errors.append(FHIRValidationError(key: key, wants: Array<P.JSONType>.self, has: type(of: exist)))
+		context.addError(FHIRValidationError(key: key, wants: Array<P.JSONType>.self, has: type(of: exist)))
 		return nil
 	}
+	
 	var primitiveExtensions: [FHIRJSON?]?
 	if let primitivesExist = json["_\(key)"] {
-		presentKeys.insert("_\(key)")
+		context.insertKey("_\(key)")
 		if let primitivesCorrect = primitivesExist as? [FHIRJSON?] {
 			primitiveExtensions = primitivesCorrect
 		}
 		else {
-			errors.append(FHIRValidationError(key: "_\(key)", wants: Array<FHIRJSON?>.self, has: type(of: primitivesExist)))
+			context.addError(FHIRValidationError(key: "_\(key)", wants: Array<FHIRJSON?>.self, has: type(of: primitivesExist)))
 		}
 	}
 	
 	// instantiate primitives including extensions
 	var primitives = [P]()
 	for (i, value) in val.enumerated() {
-		do {
-			var prim = try P.instantiate(from: value, owner: owner)
-			if primitiveExtensions?.count ?? 0 > i, let extended = primitiveExtensions?[i] {
-				try prim.populate(from: extended, presentKeys: &presentKeys)?.forEach() { errors.append($0) }
-			}
-			primitives.append(prim)
+		var subContext = context.fresh()
+		var prim = P.instantiate(from: value, owner: owner, context: &subContext)
+		if primitiveExtensions?.count ?? 0 > i, let extended = primitiveExtensions?[i] {
+			prim.populate(from: extended, context: &subContext)
 		}
-		catch let error as FHIRValidationError {
-			errors.append(error.prefixed(with: "\(key).\(i)"))   // TODO: should prefix `_key` appropriately
-		}
+		primitives.append(prim)
+		
+		subContext.prefixErrors(with: "\(key).\(i)")   // TODO: should prefix `_key` appropriately
+		context.consume(subContext)
 	}
 	return primitives.isEmpty ? nil : primitives
 }
 
 
 // MARK: - Helper Functions
-
-extension String {
-	/**
-	Convenience getter using `NSLocalizedString()` with no comment.
-	
-	TODO: On Linux this currently simply returns self
-	*/
-	public var fhir_localized: String {
-		#if os(Linux)
-		return self
-		#else
-		return NSLocalizedString(self, comment: "")
-		#endif
-	}
-}
 
 /**
 Execute a `print()`, prepending filename, line and function/method name, if `DEBUG` is defined.

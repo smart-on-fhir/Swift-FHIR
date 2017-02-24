@@ -55,7 +55,7 @@ public struct FHIRDecimal: FHIRPrimitive, LosslessStringConvertible, Expressible
 
 	TODO: replace JSONSerialization with a different parser?
 	*/
-	public init(json: JSONType, owner: FHIRAbstractBase? = nil) throws {
+	public init(json: JSONType, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) {
 		#if os(Linux)
 		self.init(Decimal(json))
 		#else

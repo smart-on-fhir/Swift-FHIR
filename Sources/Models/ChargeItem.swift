@@ -2,7 +2,7 @@
 //  ChargeItem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -107,45 +107,43 @@ open class ChargeItem: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		account = try createInstances(of: Reference.self, for: "account", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? account
-		bodysite = try createInstances(of: CodeableConcept.self, for: "bodysite", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? bodysite
-		code = try createInstance(type: CodeableConcept.self, for: "code", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? code
-		if nil == code && !presentKeys.contains("code") {
-			errors.append(FHIRValidationError(missing: "code"))
+		account = createInstances(of: Reference.self, for: "account", in: json, context: &instCtx, owner: self) ?? account
+		bodysite = createInstances(of: CodeableConcept.self, for: "bodysite", in: json, context: &instCtx, owner: self) ?? bodysite
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		if nil == code && !instCtx.containsKey("code") {
+			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		context = try createInstance(type: Reference.self, for: "context", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? context
-		definition = try createInstances(of: FHIRURL.self, for: "definition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? definition
-		enteredDate = try createInstance(type: DateTime.self, for: "enteredDate", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enteredDate
-		enterer = try createInstance(type: Reference.self, for: "enterer", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? enterer
-		factorOverride = try createInstance(type: FHIRDecimal.self, for: "factorOverride", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? factorOverride
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		note = try createInstances(of: Annotation.self, for: "note", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? note
-		occurrenceDateTime = try createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceDateTime
-		occurrencePeriod = try createInstance(type: Period.self, for: "occurrencePeriod", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrencePeriod
-		occurrenceTiming = try createInstance(type: Timing.self, for: "occurrenceTiming", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? occurrenceTiming
-		overrideReason = try createInstance(type: FHIRString.self, for: "overrideReason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? overrideReason
-		partOf = try createInstances(of: Reference.self, for: "partOf", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? partOf
-		participant = try createInstances(of: ChargeItemParticipant.self, for: "participant", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? participant
-		performingOrganization = try createInstance(type: Reference.self, for: "performingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? performingOrganization
-		priceOverride = try createInstance(type: Money.self, for: "priceOverride", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? priceOverride
-		quantity = try createInstance(type: Quantity.self, for: "quantity", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? quantity
-		reason = try createInstances(of: CodeableConcept.self, for: "reason", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? reason
-		requestingOrganization = try createInstance(type: Reference.self, for: "requestingOrganization", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? requestingOrganization
-		service = try createInstances(of: Reference.self, for: "service", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? service
-		status = createEnum(type: ChargeItemStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		definition = createInstances(of: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		enteredDate = createInstance(type: DateTime.self, for: "enteredDate", in: json, context: &instCtx, owner: self) ?? enteredDate
+		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer
+		factorOverride = createInstance(type: FHIRDecimal.self, for: "factorOverride", in: json, context: &instCtx, owner: self) ?? factorOverride
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
+		occurrencePeriod = createInstance(type: Period.self, for: "occurrencePeriod", in: json, context: &instCtx, owner: self) ?? occurrencePeriod
+		occurrenceTiming = createInstance(type: Timing.self, for: "occurrenceTiming", in: json, context: &instCtx, owner: self) ?? occurrenceTiming
+		overrideReason = createInstance(type: FHIRString.self, for: "overrideReason", in: json, context: &instCtx, owner: self) ?? overrideReason
+		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		participant = createInstances(of: ChargeItemParticipant.self, for: "participant", in: json, context: &instCtx, owner: self) ?? participant
+		performingOrganization = createInstance(type: Reference.self, for: "performingOrganization", in: json, context: &instCtx, owner: self) ?? performingOrganization
+		priceOverride = createInstance(type: Money.self, for: "priceOverride", in: json, context: &instCtx, owner: self) ?? priceOverride
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		reason = createInstances(of: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
+		requestingOrganization = createInstance(type: Reference.self, for: "requestingOrganization", in: json, context: &instCtx, owner: self) ?? requestingOrganization
+		service = createInstances(of: Reference.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
+		status = createEnum(type: ChargeItemStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		subject = try createInstance(type: Reference.self, for: "subject", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subject
-		if nil == subject && !presentKeys.contains("subject") {
-			errors.append(FHIRValidationError(missing: "subject"))
+		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		if nil == subject && !instCtx.containsKey("subject") {
+			instCtx.addError(FHIRValidationError(missing: "subject"))
 		}
-		supportingInformation = try createInstances(of: Reference.self, for: "supportingInformation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? supportingInformation
-		
-		return errors.isEmpty ? nil : errors
+		supportingInformation = createInstances(of: Reference.self, for: "supportingInformation", in: json, context: &instCtx, owner: self) ?? supportingInformation
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -213,16 +211,14 @@ open class ChargeItemParticipant: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		actor = try createInstance(type: Reference.self, for: "actor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? actor
-		if nil == actor && !presentKeys.contains("actor") && !_isSummaryResource {
-			errors.append(FHIRValidationError(missing: "actor"))
+		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
+		if nil == actor && !instCtx.containsKey("actor") && !_isSummaryResource {
+			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
-		role = try createInstance(type: CodeableConcept.self, for: "role", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? role
-		
-		return errors.isEmpty ? nil : errors
+		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

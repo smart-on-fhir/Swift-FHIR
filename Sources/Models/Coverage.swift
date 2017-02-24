@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -68,27 +68,25 @@ open class Coverage: DomainResource {
 	public var type: CodeableConcept?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		beneficiary = try createInstance(type: Reference.self, for: "beneficiary", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? beneficiary
-		contract = try createInstances(of: Reference.self, for: "contract", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contract
-		dependent = try createInstance(type: FHIRString.self, for: "dependent", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? dependent
-		grouping = try createInstance(type: CoverageGrouping.self, for: "grouping", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? grouping
-		identifier = try createInstances(of: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		network = try createInstance(type: FHIRString.self, for: "network", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? network
-		order = try createInstance(type: FHIRInteger.self, for: "order", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? order
-		payor = try createInstances(of: Reference.self, for: "payor", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? payor
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		policyHolder = try createInstance(type: Reference.self, for: "policyHolder", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? policyHolder
-		relationship = try createInstance(type: CodeableConcept.self, for: "relationship", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? relationship
-		sequence = try createInstance(type: FHIRString.self, for: "sequence", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? sequence
-		status = try createInstance(type: FHIRString.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? status
-		subscriber = try createInstance(type: Reference.self, for: "subscriber", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subscriber
-		subscriberId = try createInstance(type: FHIRString.self, for: "subscriberId", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subscriberId
-		type = try createInstance(type: CodeableConcept.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? type
-		
-		return errors.isEmpty ? nil : errors
+		beneficiary = createInstance(type: Reference.self, for: "beneficiary", in: json, context: &instCtx, owner: self) ?? beneficiary
+		contract = createInstances(of: Reference.self, for: "contract", in: json, context: &instCtx, owner: self) ?? contract
+		dependent = createInstance(type: FHIRString.self, for: "dependent", in: json, context: &instCtx, owner: self) ?? dependent
+		grouping = createInstance(type: CoverageGrouping.self, for: "grouping", in: json, context: &instCtx, owner: self) ?? grouping
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		network = createInstance(type: FHIRString.self, for: "network", in: json, context: &instCtx, owner: self) ?? network
+		order = createInstance(type: FHIRInteger.self, for: "order", in: json, context: &instCtx, owner: self) ?? order
+		payor = createInstances(of: Reference.self, for: "payor", in: json, context: &instCtx, owner: self) ?? payor
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		policyHolder = createInstance(type: Reference.self, for: "policyHolder", in: json, context: &instCtx, owner: self) ?? policyHolder
+		relationship = createInstance(type: CodeableConcept.self, for: "relationship", in: json, context: &instCtx, owner: self) ?? relationship
+		sequence = createInstance(type: FHIRString.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
+		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
+		subscriber = createInstance(type: Reference.self, for: "subscriber", in: json, context: &instCtx, owner: self) ?? subscriber
+		subscriberId = createInstance(type: FHIRString.self, for: "subscriberId", in: json, context: &instCtx, owner: self) ?? subscriberId
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -162,23 +160,21 @@ open class CoverageGrouping: BackboneElement {
 	public var subPlanDisplay: FHIRString?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		`class` = try createInstance(type: FHIRString.self, for: "class", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? `class`
-		classDisplay = try createInstance(type: FHIRString.self, for: "classDisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? classDisplay
-		group = try createInstance(type: FHIRString.self, for: "group", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? group
-		groupDisplay = try createInstance(type: FHIRString.self, for: "groupDisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? groupDisplay
-		plan = try createInstance(type: FHIRString.self, for: "plan", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? plan
-		planDisplay = try createInstance(type: FHIRString.self, for: "planDisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? planDisplay
-		subClass = try createInstance(type: FHIRString.self, for: "subClass", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subClass
-		subClassDisplay = try createInstance(type: FHIRString.self, for: "subClassDisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subClassDisplay
-		subGroup = try createInstance(type: FHIRString.self, for: "subGroup", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subGroup
-		subGroupDisplay = try createInstance(type: FHIRString.self, for: "subGroupDisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subGroupDisplay
-		subPlan = try createInstance(type: FHIRString.self, for: "subPlan", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subPlan
-		subPlanDisplay = try createInstance(type: FHIRString.self, for: "subPlanDisplay", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? subPlanDisplay
-		
-		return errors.isEmpty ? nil : errors
+		`class` = createInstance(type: FHIRString.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
+		classDisplay = createInstance(type: FHIRString.self, for: "classDisplay", in: json, context: &instCtx, owner: self) ?? classDisplay
+		group = createInstance(type: FHIRString.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
+		groupDisplay = createInstance(type: FHIRString.self, for: "groupDisplay", in: json, context: &instCtx, owner: self) ?? groupDisplay
+		plan = createInstance(type: FHIRString.self, for: "plan", in: json, context: &instCtx, owner: self) ?? plan
+		planDisplay = createInstance(type: FHIRString.self, for: "planDisplay", in: json, context: &instCtx, owner: self) ?? planDisplay
+		subClass = createInstance(type: FHIRString.self, for: "subClass", in: json, context: &instCtx, owner: self) ?? subClass
+		subClassDisplay = createInstance(type: FHIRString.self, for: "subClassDisplay", in: json, context: &instCtx, owner: self) ?? subClassDisplay
+		subGroup = createInstance(type: FHIRString.self, for: "subGroup", in: json, context: &instCtx, owner: self) ?? subGroup
+		subGroupDisplay = createInstance(type: FHIRString.self, for: "subGroupDisplay", in: json, context: &instCtx, owner: self) ?? subGroupDisplay
+		subPlan = createInstance(type: FHIRString.self, for: "subPlan", in: json, context: &instCtx, owner: self) ?? subPlan
+		subPlanDisplay = createInstance(type: FHIRString.self, for: "subPlanDisplay", in: json, context: &instCtx, owner: self) ?? subPlanDisplay
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

@@ -2,7 +2,7 @@
 //  ExpansionProfile.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -96,37 +96,35 @@ open class ExpansionProfile: DomainResource {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		activeOnly = try createInstance(type: FHIRBool.self, for: "activeOnly", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? activeOnly
-		contact = try createInstances(of: ContactDetail.self, for: "contact", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? contact
-		date = try createInstance(type: DateTime.self, for: "date", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? date
-		description_fhir = try createInstance(type: FHIRString.self, for: "description", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? description_fhir
-		designation = try createInstance(type: ExpansionProfileDesignation.self, for: "designation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? designation
-		displayLanguage = try createInstance(type: FHIRString.self, for: "displayLanguage", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? displayLanguage
-		excludeNested = try createInstance(type: FHIRBool.self, for: "excludeNested", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? excludeNested
-		excludeNotForUI = try createInstance(type: FHIRBool.self, for: "excludeNotForUI", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? excludeNotForUI
-		excludePostCoordinated = try createInstance(type: FHIRBool.self, for: "excludePostCoordinated", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? excludePostCoordinated
-		excludedSystem = try createInstance(type: ExpansionProfileExcludedSystem.self, for: "excludedSystem", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? excludedSystem
-		experimental = try createInstance(type: FHIRBool.self, for: "experimental", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? experimental
-		fixedVersion = try createInstances(of: ExpansionProfileFixedVersion.self, for: "fixedVersion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? fixedVersion
-		identifier = try createInstance(type: Identifier.self, for: "identifier", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? identifier
-		includeDefinition = try createInstance(type: FHIRBool.self, for: "includeDefinition", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? includeDefinition
-		includeDesignations = try createInstance(type: FHIRBool.self, for: "includeDesignations", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? includeDesignations
-		jurisdiction = try createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? jurisdiction
-		limitedExpansion = try createInstance(type: FHIRBool.self, for: "limitedExpansion", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? limitedExpansion
-		name = try createInstance(type: FHIRString.self, for: "name", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? name
-		publisher = try createInstance(type: FHIRString.self, for: "publisher", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? publisher
-		status = createEnum(type: PublicationStatus.self, for: "status", in: json, presentKeys: &presentKeys, errors: &errors) ?? status
-		if nil == status && !presentKeys.contains("status") {
-			errors.append(FHIRValidationError(missing: "status"))
+		activeOnly = createInstance(type: FHIRBool.self, for: "activeOnly", in: json, context: &instCtx, owner: self) ?? activeOnly
+		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		designation = createInstance(type: ExpansionProfileDesignation.self, for: "designation", in: json, context: &instCtx, owner: self) ?? designation
+		displayLanguage = createInstance(type: FHIRString.self, for: "displayLanguage", in: json, context: &instCtx, owner: self) ?? displayLanguage
+		excludeNested = createInstance(type: FHIRBool.self, for: "excludeNested", in: json, context: &instCtx, owner: self) ?? excludeNested
+		excludeNotForUI = createInstance(type: FHIRBool.self, for: "excludeNotForUI", in: json, context: &instCtx, owner: self) ?? excludeNotForUI
+		excludePostCoordinated = createInstance(type: FHIRBool.self, for: "excludePostCoordinated", in: json, context: &instCtx, owner: self) ?? excludePostCoordinated
+		excludedSystem = createInstance(type: ExpansionProfileExcludedSystem.self, for: "excludedSystem", in: json, context: &instCtx, owner: self) ?? excludedSystem
+		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
+		fixedVersion = createInstances(of: ExpansionProfileFixedVersion.self, for: "fixedVersion", in: json, context: &instCtx, owner: self) ?? fixedVersion
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		includeDefinition = createInstance(type: FHIRBool.self, for: "includeDefinition", in: json, context: &instCtx, owner: self) ?? includeDefinition
+		includeDesignations = createInstance(type: FHIRBool.self, for: "includeDesignations", in: json, context: &instCtx, owner: self) ?? includeDesignations
+		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
+		limitedExpansion = createInstance(type: FHIRBool.self, for: "limitedExpansion", in: json, context: &instCtx, owner: self) ?? limitedExpansion
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
+		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		url = try createInstance(type: FHIRURL.self, for: "url", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? url
-		useContext = try createInstances(of: UsageContext.self, for: "useContext", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? useContext
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -180,13 +178,11 @@ open class ExpansionProfileDesignation: BackboneElement {
 	public var include: ExpansionProfileDesignationInclude?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		exclude = try createInstance(type: ExpansionProfileDesignationExclude.self, for: "exclude", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? exclude
-		include = try createInstance(type: ExpansionProfileDesignationInclude.self, for: "include", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? include
-		
-		return errors.isEmpty ? nil : errors
+		exclude = createInstance(type: ExpansionProfileDesignationExclude.self, for: "exclude", in: json, context: &instCtx, owner: self) ?? exclude
+		include = createInstance(type: ExpansionProfileDesignationInclude.self, for: "include", in: json, context: &instCtx, owner: self) ?? include
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -210,12 +206,10 @@ open class ExpansionProfileDesignationExclude: BackboneElement {
 	public var designation: [ExpansionProfileDesignationExcludeDesignation]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		designation = try createInstances(of: ExpansionProfileDesignationExcludeDesignation.self, for: "designation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? designation
-		
-		return errors.isEmpty ? nil : errors
+		designation = createInstances(of: ExpansionProfileDesignationExcludeDesignation.self, for: "designation", in: json, context: &instCtx, owner: self) ?? designation
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -243,13 +237,11 @@ open class ExpansionProfileDesignationExcludeDesignation: BackboneElement {
 	public var use: Coding?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
-		use = try createInstance(type: Coding.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? use
-		
-		return errors.isEmpty ? nil : errors
+		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
+		use = createInstance(type: Coding.self, for: "use", in: json, context: &instCtx, owner: self) ?? use
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -273,12 +265,10 @@ open class ExpansionProfileDesignationInclude: BackboneElement {
 	public var designation: [ExpansionProfileDesignationIncludeDesignation]?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		designation = try createInstances(of: ExpansionProfileDesignationIncludeDesignation.self, for: "designation", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? designation
-		
-		return errors.isEmpty ? nil : errors
+		designation = createInstances(of: ExpansionProfileDesignationIncludeDesignation.self, for: "designation", in: json, context: &instCtx, owner: self) ?? designation
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -306,13 +296,11 @@ open class ExpansionProfileDesignationIncludeDesignation: BackboneElement {
 	public var use: Coding?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		language = try createInstance(type: FHIRString.self, for: "language", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? language
-		use = try createInstance(type: Coding.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? use
-		
-		return errors.isEmpty ? nil : errors
+		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
+		use = createInstance(type: Coding.self, for: "use", in: json, context: &instCtx, owner: self) ?? use
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -348,16 +336,14 @@ open class ExpansionProfileExcludedSystem: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		system = try createInstance(type: FHIRURL.self, for: "system", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? system
-		if nil == system && !presentKeys.contains("system") {
-			errors.append(FHIRValidationError(missing: "system"))
+		system = createInstance(type: FHIRURL.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
+		if nil == system && !instCtx.containsKey("system") {
+			instCtx.addError(FHIRValidationError(missing: "system"))
 		}
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		
-		return errors.isEmpty ? nil : errors
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -402,23 +388,21 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 	}
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		mode = createEnum(type: SystemVersionProcessingMode.self, for: "mode", in: json, presentKeys: &presentKeys, errors: &errors) ?? mode
-		if nil == mode && !presentKeys.contains("mode") {
-			errors.append(FHIRValidationError(missing: "mode"))
+		mode = createEnum(type: SystemVersionProcessingMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") {
+			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		system = try createInstance(type: FHIRURL.self, for: "system", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? system
-		if nil == system && !presentKeys.contains("system") {
-			errors.append(FHIRValidationError(missing: "system"))
+		system = createInstance(type: FHIRURL.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
+		if nil == system && !instCtx.containsKey("system") {
+			instCtx.addError(FHIRValidationError(missing: "system"))
 		}
-		version = try createInstance(type: FHIRString.self, for: "version", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? version
-		if nil == version && !presentKeys.contains("version") {
-			errors.append(FHIRValidationError(missing: "version"))
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
+		if nil == version && !instCtx.containsKey("version") {
+			instCtx.addError(FHIRValidationError(missing: "version"))
 		}
-		
-		return errors.isEmpty ? nil : errors
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

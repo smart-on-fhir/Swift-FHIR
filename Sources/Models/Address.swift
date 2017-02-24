@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11362 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-02-23.
+//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-02-24.
 //  2017, SMART Health IT.
 //
 
@@ -53,21 +53,19 @@ open class Address: Element {
 	public var use: AddressUse?
 	
 	
-	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
-		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
 		
-		city = try createInstance(type: FHIRString.self, for: "city", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? city
-		country = try createInstance(type: FHIRString.self, for: "country", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? country
-		district = try createInstance(type: FHIRString.self, for: "district", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? district
-		line = try createInstances(of: FHIRString.self, for: "line", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? line
-		period = try createInstance(type: Period.self, for: "period", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? period
-		postalCode = try createInstance(type: FHIRString.self, for: "postalCode", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? postalCode
-		state = try createInstance(type: FHIRString.self, for: "state", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? state
-		text = try createInstance(type: FHIRString.self, for: "text", in: json, presentKeys: &presentKeys, errors: &errors, owner: self) ?? text
-		type = createEnum(type: AddressType.self, for: "type", in: json, presentKeys: &presentKeys, errors: &errors) ?? type
-		use = createEnum(type: AddressUse.self, for: "use", in: json, presentKeys: &presentKeys, errors: &errors) ?? use
-		
-		return errors.isEmpty ? nil : errors
+		city = createInstance(type: FHIRString.self, for: "city", in: json, context: &instCtx, owner: self) ?? city
+		country = createInstance(type: FHIRString.self, for: "country", in: json, context: &instCtx, owner: self) ?? country
+		district = createInstance(type: FHIRString.self, for: "district", in: json, context: &instCtx, owner: self) ?? district
+		line = createInstances(of: FHIRString.self, for: "line", in: json, context: &instCtx, owner: self) ?? line
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		postalCode = createInstance(type: FHIRString.self, for: "postalCode", in: json, context: &instCtx, owner: self) ?? postalCode
+		state = createInstance(type: FHIRString.self, for: "state", in: json, context: &instCtx, owner: self) ?? state
+		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
+		type = createEnum(type: AddressType.self, for: "type", in: json, context: &instCtx) ?? type
+		use = createEnum(type: AddressUse.self, for: "use", in: json, context: &instCtx) ?? use
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

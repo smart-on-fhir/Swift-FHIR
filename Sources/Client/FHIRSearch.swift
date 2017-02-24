@@ -36,8 +36,8 @@ open class FHIRSearch
 	/// The query construct used to describe the search
 	let query: FHIRSearchConstruct
 	
-	/// The sorting to request. Use tuples with the value followed by "asc" or "desc": [("given", "asc"), ("family", "asc")].
-	open var sort: [(String, String)]?
+	/// The sorting to request, in FHIR-format ("family,-birthdate").
+	open var sort: String?
 	
 	/// The number of results to return per page; leave nil to let the server decide.
 	open var pageCount: Int?
@@ -79,10 +79,8 @@ open class FHIRSearch
 		if let count = pageCount {
 			extra.append(FHIRURLParam(name: "_count", value: "\(count)"))
 		}
-		if let sorters = sort {
-			for (val, ord) in sorters {
-				extra.append(FHIRURLParam(name: "_sort:\(ord)", value: val))
-			}
+		if let sort = sort {
+			extra.append(FHIRURLParam(name: "_sort", value: sort))
 		}
 		
 		// expand
@@ -152,13 +150,8 @@ open class FHIRSearch
 				callback(nil, error)
 			}
 			else {
-				let jsonres = response as! FHIRServerJSONResponse
 				do {
-					#if !NO_MODEL_IMPORT
-					let bundle = try Models.Bundle(json: jsonres.json ?? FHIRJSON())
-					#else
-					let bundle = try Bundle(json: jsonres.json ?? FHIRJSON())
-					#endif
+					let bundle = try response.responseResource(ofType: Bundle.self)
 					bundle._server = server
 					if let entries = bundle.entry {
 						for entry in entries {

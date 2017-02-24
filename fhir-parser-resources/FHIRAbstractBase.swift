@@ -48,7 +48,7 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	public required init(json: FHIRJSON, owner: FHIRAbstractBase? = nil) throws {
 		_owner = owner
 		var context = FHIRInstantiationContext()
-		initialize(from: json, context: &context)
+		populateAndFinalize(from: json, context: &context)
 		try context.validate()
 	}
 	
@@ -63,7 +63,7 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	*/
 	public required init(json: FHIRJSON, owner: FHIRAbstractBase? = nil, context: inout FHIRInstantiationContext) {
 		_owner = owner
-		initialize(from: json, context: &context)
+		populateAndFinalize(from: json, context: &context)
 	}
 	
 	/**
@@ -100,7 +100,7 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	- parameter json:    The JSON element to use to populate the receiver
 	- parameter context: An in-out parameter being filled with key names used.
 	*/
-	public final func initialize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
+	public final func populateAndFinalize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
 		context.insertKey("fhir_comments")
 		populate(from: json, context: &context)
 		

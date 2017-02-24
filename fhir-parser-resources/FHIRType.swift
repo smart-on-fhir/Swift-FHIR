@@ -60,7 +60,7 @@ public protocol FHIRJSONType: FHIRType {
 	- parameter json:    The JSON element to use to populate the receiver
 	- parameter context: An in-out parameter for the instantiation context
 	*/
-	mutating func initialize(from json: FHIRJSON, context: inout FHIRInstantiationContext)
+	mutating func populateAndFinalize(from json: FHIRJSON, context: inout FHIRInstantiationContext)
 	
 	/**
 	The main function to perform the actual JSON parsing, called from within `populate(from:strict:)` and usually overridden by subclasses.
@@ -107,12 +107,12 @@ extension FHIRJSONType {
 	
 	/**
 	Will populate instance variables - overriding existing ones - with values found in the supplied JSON. Calls `populate(json:context:)`,
-	which is what you should override instead.
+	which is what you should override instead, and then calls `finalize()` on the context.
 	
 	- parameter json:    The JSON element to use to populate the receiver
 	- parameter context: An in-out parameter being filled with key names used.
 	*/
-	public final func initialize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
+	public final func populateAndFinalize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
 		context.insertKey("fhir_comments")
 		populate(from: json, context: &context)
 		
@@ -202,7 +202,7 @@ public struct FHIRInstantiationContext {
 	public func validate() throws {
 		if !errors.isEmpty {
 			if strict {
-				throw FHIRValidationError(errors: errors)
+				throw (1 == errors.count) ? errors[0] : FHIRValidationError(errors: errors)
 			}
 			fhir_warn("\(errors)")
 		}

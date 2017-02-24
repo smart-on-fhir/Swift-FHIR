@@ -216,8 +216,8 @@ public extension Resource {
 						type(of: self).read(id, server: server) { resource, error in
 							if let resource = resource {
 								do {
-									var context = FHIRInstantiationContext()
-									self.initialize(from: try resource.asJSON(), context: &context)
+									var context = FHIRInstantiationContext(strict: !handler.options.contains(.lenient))
+									self.populateAndFinalize(from: try resource.asJSON(), context: &context)
 									try context.validate()
 								}
 								catch let error {

@@ -225,6 +225,9 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 					else if let errstr = json?["error"] as? String {
 						self.error = FHIRError.requestError(status, errstr)
 					}
+					else {
+						self.error = FHIRError.requestError(status, (response as? HTTPURLResponse)?.statusString ?? "Error")
+					}
 				}
 			}
 			catch let error as NSError {
@@ -255,7 +258,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		guard let json = json else {
 			throw FHIRError.responseNoResourceReceived
 		}
-		var context = FHIRInstantiationContext()
+		var context = FHIRInstantiationContext(strict: !(handler?.options.contains(.lenient) ?? false))
 		let resource = T.instantiate(from: json, owner: nil, context: &context)
 		try context.validate()
 		return resource
@@ -273,11 +276,10 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		guard let json = json else {
 			throw FHIRError.responseNoResourceReceived
 		}
-		
 		if let resourceType = json["resourceType"] as? String, resourceType != type(of: resource).resourceType {
 			throw FHIRError.responseResourceTypeMismatch(resourceType, type(of: resource).resourceType)
 		}
-		var context = FHIRInstantiationContext()
+		var context = FHIRInstantiationContext(strict: !(handler?.options.contains(.lenient) ?? false))
 		resource.populate(from: json, context: &context)
 		try context.validate()
 	}

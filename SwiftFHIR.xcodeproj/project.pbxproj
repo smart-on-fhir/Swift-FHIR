@@ -593,6 +593,67 @@
 		EEB430331DF973010040415A /* FHIRInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB4302F1DF973010040415A /* FHIRInteger.swift */; };
 		EEB830571E67239C0084E030 /* FHIRMinimalServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB830561E67239C0084E030 /* FHIRMinimalServer.swift */; };
 		EEB830581E67239C0084E030 /* FHIRMinimalServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB830561E67239C0084E030 /* FHIRMinimalServer.swift */; };
+		EEB830AD1E67278C0084E030 /* FHIRMinimalServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB830561E67239C0084E030 /* FHIRMinimalServer.swift */; };
+		EEB830BA1E67278C0084E030 /* DomainResource+Containment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F96F1C58F6AB003AEA7E /* DomainResource+Containment.swift */; };
+		EEB830BB1E67278C0084E030 /* FHIRString+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB87351E1BE44400E53FD4 /* FHIRString+Localization.swift */; };
+		EEB830C81E67278C0084E030 /* Resource+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310CE1C1B5EE500D9DAE7 /* Resource+Instantiation.swift */; };
+		EEB830D11E67278C0084E030 /* Element+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */; };
+		EEB830D51E67278C0084E030 /* FHIRServerDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310D91C1B681500D9DAE7 /* FHIRServerDataResponse.swift */; };
+		EEB831121E67278C0084E030 /* Resource+REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */; };
+		EEB831141E67278C0084E030 /* FHIRBaseRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310D61C1B608E00D9DAE7 /* FHIRBaseRequestHandler.swift */; };
+		EEB831C01E6729C90084E030 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5911ACF252000179969 /* Address.swift */; };
+		EEB831C11E6729CE0084E030 /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5921ACF252000179969 /* Age.swift */; };
+		EEB831C21E6729D20084E030 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE30E11BB1FD94008866E2 /* Annotation.swift */; };
+		EEB831C31E6729D70084E030 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5961ACF252000179969 /* Attachment.swift */; };
+		EEB831C41E6729DD0084E030 /* BackboneElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310AF1C1B435300D9DAE7 /* BackboneElement.swift */; };
+		EEB831C51E6729DF0084E030 /* Base64Binary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CED1DF8012900DB1774 /* Base64Binary.swift */; };
+		EEB831C61E6729F00084E030 /* CodeableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5A01ACF252000179969 /* CodeableConcept.swift */; };
+		EEB831C71E6729FD0084E030 /* CodeSystems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4EE4AC1DCCE969005F8CEB /* CodeSystems.swift */; };
+		EEB831C81E672A010084E030 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5A11ACF252000179969 /* Coding.swift */; };
+		EEB831CA1E672A100084E030 /* ContactPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5A81ACF252000179969 /* ContactPoint.swift */; };
+		EEB831CC1E672A190084E030 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5AB1ACF252000179969 /* Count.swift */; };
+		EEB831CE1E672A210084E030 /* DateAndTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310B01C1B435300D9DAE7 /* DateAndTime.swift */; };
+		EEB831CF1E672A2C0084E030 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B51ACF252000179969 /* Distance.swift */; };
+		EEB831D11E672A370084E030 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B91ACF252000179969 /* Duration.swift */; };
+		EEB831D21E672A3B0084E030 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310B11C1B435300D9DAE7 /* Element.swift */; };
+		EEB831D31E672A510084E030 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5C21ACF252000179969 /* Extension.swift */; };
+		EEB831D41E672A590084E030 /* FHIRAbstractBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310B21C1B435300D9DAE7 /* FHIRAbstractBase.swift */; };
+		EEB831D61E672A5E0084E030 /* FHIRAbstractResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310B41C1B435300D9DAE7 /* FHIRAbstractResource.swift */; };
+		EEB831D71E672A5E0084E030 /* FHIRBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED291A1DF94619007ADD02 /* FHIRBool.swift */; };
+		EEB831D81E672A5E0084E030 /* FHIRDecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB4302E1DF973010040415A /* FHIRDecimal.swift */; };
+		EEB831D91E672A5E0084E030 /* FHIREnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F3ED1DF9BDE100922994 /* FHIREnum.swift */; };
+		EEB831DA1E672A5E0084E030 /* FHIRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310D01C1B602B00D9DAE7 /* FHIRError.swift */; };
+		EEB831DB1E672A5E0084E030 /* FHIRInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB4302F1DF973010040415A /* FHIRInteger.swift */; };
+		EEB831DC1E672A5E0084E030 /* FHIRPrimitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CE71DF7549E00DB1774 /* FHIRPrimitive.swift */; };
+		EEB831DD1E672A5E0084E030 /* FHIRRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4720971E5F13AA008E3BB6 /* FHIRRequest.swift */; };
+		EEB831DE1E672A5E0084E030 /* FHIRRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10703E1E5DCED100250586 /* FHIRRequestHandler.swift */; };
+		EEB831DF1E672A5E0084E030 /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310CA1C1B5ACC00D9DAE7 /* FHIRServer.swift */; };
+		EEB831E01E672A5E0084E030 /* FHIRServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310CB1C1B5ACC00D9DAE7 /* FHIRServerResponse.swift */; };
+		EEB831E11E672A5E0084E030 /* FHIRString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CE41DF709A500DB1774 /* FHIRString.swift */; };
+		EEB831E21E672A5E0084E030 /* FHIRType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1310B51C1B435300D9DAE7 /* FHIRType.swift */; };
+		EEB831E31E672A5F0084E030 /* FHIRURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE109CF01DF81BE300DB1774 /* FHIRURL.swift */; };
+		EEB831E41E672A5F0084E030 /* FHIRValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE07585F1DCB5E4300E33FAF /* FHIRValidationError.swift */; };
+		EEB831E51E672A690084E030 /* HumanName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5C81ACF252000179969 /* HumanName.swift */; };
+		EEB831E61E672A6C0084E030 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5C91ACF252000179969 /* Identifier.swift */; };
+		EEB831E71E672A800084E030 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5D71ACF252000179969 /* Meta.swift */; };
+		EEB831E81E672A840084E030 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5D81ACF252000179969 /* Money.swift */; };
+		EEB831E91E672A890084E030 /* Narrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5DA1ACF252000179969 /* Narrative.swift */; };
+		EEB831EB1E672AA00084E030 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5E61ACF252000179969 /* Period.swift */; };
+		EEB831EC1E672AAD0084E030 /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5EE1ACF252000179969 /* Quantity.swift */; };
+		EEB831ED1E672AB20084E030 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5F11ACF252000179969 /* Range.swift */; };
+		EEB831EE1E672AB50084E030 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5F21ACF252000179969 /* Ratio.swift */; };
+		EEB831EF1E672AB80084E030 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5F31ACF252000179969 /* Reference.swift */; };
+		EEB831F11E672ACB0084E030 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5F61ACF252000179969 /* Resource.swift */; };
+		EEB831F21E672ACF0084E030 /* Resource+Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4720A01E5F2C86008E3BB6 /* Resource+Meta.swift */; };
+		EEB831F31E672AD80084E030 /* SampledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5F81ACF252000179969 /* SampledData.swift */; };
+		EEB831F41E672AE00084E030 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5FB1ACF252000179969 /* Signature.swift */; };
+		EEB831F51E672AF00084E030 /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F6021ACF252000179969 /* Timing.swift */; };
+		EEB831F81E672BCF0084E030 /* DomainResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5B81ACF252000179969 /* DomainResource.swift */; };
+		EEB831FA1E672C490084E030 /* Resource+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB831F91E672C490084E030 /* Resource+Operation.swift */; };
+		EEB831FB1E672C490084E030 /* Resource+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB831F91E672C490084E030 /* Resource+Operation.swift */; };
+		EEB831FC1E672D1B0084E030 /* OperationOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5DE1ACF252000179969 /* OperationOutcome.swift */; };
+		EEB831FD1E672FDB0084E030 /* Reference+Resolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */; };
+		EEB831FE1E67301A0084E030 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F59B1ACF252000179969 /* Bundle.swift */; };
 		EEDB87361E1BE44400E53FD4 /* FHIRString+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB87351E1BE44400E53FD4 /* FHIRString+Localization.swift */; };
 		EEDB87371E1BE44400E53FD4 /* FHIRString+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB87351E1BE44400E53FD4 /* FHIRString+Localization.swift */; };
 		EEDB87391E1BE6CE00E53FD4 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB87381E1BE6CE00E53FD4 /* LocalizationTests.swift */; };
@@ -956,6 +1017,8 @@
 		EEB4302E1DF973010040415A /* FHIRDecimal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRDecimal.swift; sourceTree = "<group>"; };
 		EEB4302F1DF973010040415A /* FHIRInteger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRInteger.swift; sourceTree = "<group>"; };
 		EEB830561E67239C0084E030 /* FHIRMinimalServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRMinimalServer.swift; sourceTree = "<group>"; };
+		EEB831201E67278C0084E030 /* SwiftFHIRMin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIRMin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEB831F91E672C490084E030 /* Resource+Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Resource+Operation.swift"; sourceTree = "<group>"; };
 		EEDB87351E1BE44400E53FD4 /* FHIRString+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRString+Localization.swift"; sourceTree = "<group>"; };
 		EEDB87381E1BE6CE00E53FD4 /* LocalizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearchTests.swift; sourceTree = "<group>"; };
@@ -1017,6 +1080,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEB8311A1E67278C0084E030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1039,6 +1109,7 @@
 				EE684C2919A789BA00B5A2C0 /* SwiftFHIR-macOSTests.xctest */,
 				EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */,
 				EE6DA85D1A5D4B3A00E00708 /* SwiftFHIR-iOSTests.xctest */,
+				EEB831201E67278C0084E030 /* SwiftFHIRMin.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1066,7 +1137,6 @@
 		EE684C4219A78AEE00B5A2C0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EE4720A01E5F2C86008E3BB6 /* Resource+Meta.swift */,
 				EEEE30E01BB1FD94008866E2 /* Account.swift */,
 				EE31DC5F1D64AC6200B04BEA /* ActivityDefinition.swift */,
 				EE02F5911ACF252000179969 /* Address.swift */,
@@ -1219,6 +1289,7 @@
 				EE109CCF1DF6AE3800DB1774 /* ResearchStudy.swift */,
 				EE109CD01DF6AE3800DB1774 /* ResearchSubject.swift */,
 				EE02F5F61ACF252000179969 /* Resource.swift */,
+				EE4720A01E5F2C86008E3BB6 /* Resource+Meta.swift */,
 				EE02F5F71ACF252000179969 /* RiskAssessment.swift */,
 				EE02F5F81ACF252000179969 /* SampledData.swift */,
 				EE02F5F91ACF252000179969 /* Schedule.swift */,
@@ -1275,6 +1346,7 @@
 				EEDB87351E1BE44400E53FD4 /* FHIRString+Localization.swift */,
 				EEF90D831E43425D00A545AE /* ValueSet+Localization.swift */,
 				EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */,
+				EEB831F91E672C490084E030 /* Resource+Operation.swift */,
 				EE1310CE1C1B5EE500D9DAE7 /* Resource+Instantiation.swift */,
 				EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */,
 				EE01F96F1C58F6AB003AEA7E /* DomainResource+Containment.swift */,
@@ -1436,6 +1508,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEB8311B1E67278C0084E030 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1511,6 +1590,24 @@
 			productReference = EE6DA85D1A5D4B3A00E00708 /* SwiftFHIR-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EEB830591E67278C0084E030 /* SwiftFHIR-min-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEB8311D1E67278C0084E030 /* Build configuration list for PBXNativeTarget "SwiftFHIR-min-iOS" */;
+			buildPhases = (
+				EEB8305A1E67278C0084E030 /* Sources */,
+				EEB8311A1E67278C0084E030 /* Frameworks */,
+				EEB8311B1E67278C0084E030 /* Headers */,
+				EEB8311C1E67278C0084E030 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftFHIR-min-iOS";
+			productName = SwiftFHIR;
+			productReference = EEB831201E67278C0084E030 /* SwiftFHIRMin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1556,6 +1653,7 @@
 				EE684C2819A789BA00B5A2C0 /* SwiftFHIR-macOSTests */,
 				EE6DA7CD1A5D4B1000E00708 /* SwiftFHIR-iOS */,
 				EE6DA85C1A5D4B3A00E00708 /* SwiftFHIR-iOSTests */,
+				EEB830591E67278C0084E030 /* SwiftFHIR-min-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1588,6 +1686,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE1F49E01C0D1BB40095BF0F /* TestResources in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEB8311C1E67278C0084E030 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1685,6 +1790,7 @@
 				EE02F6B11ACF252000179969 /* Person.swift in Sources */,
 				EE02F6631ACF252000179969 /* EpisodeOfCare.swift in Sources */,
 				EE31DC7A1D64AC6300B04BEA /* PlanDefinition.swift in Sources */,
+				EEB831FA1E672C490084E030 /* Resource+Operation.swift in Sources */,
 				EE6C88E01CB39A6A00ADFF94 /* TriggerDefinition.swift in Sources */,
 				EE02F6111ACF252000179969 /* AuditEvent.swift in Sources */,
 				EE1F49D21C0D11060095BF0F /* FHIRBaseServer.swift in Sources */,
@@ -2012,6 +2118,7 @@
 				EE65DB811CB39FFD00E25C72 /* TriggerDefinition.swift in Sources */,
 				EE02F6641ACF252000179969 /* EpisodeOfCare.swift in Sources */,
 				EE02F6121ACF252000179969 /* AuditEvent.swift in Sources */,
+				EEB831FB1E672C490084E030 /* Resource+Operation.swift in Sources */,
 				EE1F49D31C0D11060095BF0F /* FHIRBaseServer.swift in Sources */,
 				EE02F6601ACF252000179969 /* EnrollmentRequest.swift in Sources */,
 				EE723FF11DC14AD300C398BA /* MetadataResource.swift in Sources */,
@@ -2245,6 +2352,72 @@
 				EE02F7D31ACF259B00179969 /* PersonTests.swift in Sources */,
 				EE31DC581D64AC3600B04BEA /* EndpointTests.swift in Sources */,
 				EE65DB5D1CB39FE200E25C72 /* ExpansionProfileTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEB8305A1E67278C0084E030 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEB831DF1E672A5E0084E030 /* FHIRServer.swift in Sources */,
+				EEB831CE1E672A210084E030 /* DateAndTime.swift in Sources */,
+				EEB831C71E6729FD0084E030 /* CodeSystems.swift in Sources */,
+				EEB831EE1E672AB50084E030 /* Ratio.swift in Sources */,
+				EEB831F21E672ACF0084E030 /* Resource+Meta.swift in Sources */,
+				EEB831DC1E672A5E0084E030 /* FHIRPrimitive.swift in Sources */,
+				EEB831D81E672A5E0084E030 /* FHIRDecimal.swift in Sources */,
+				EEB831C81E672A010084E030 /* Coding.swift in Sources */,
+				EEB831E21E672A5E0084E030 /* FHIRType.swift in Sources */,
+				EEB831E51E672A690084E030 /* HumanName.swift in Sources */,
+				EEB831E61E672A6C0084E030 /* Identifier.swift in Sources */,
+				EEB831F11E672ACB0084E030 /* Resource.swift in Sources */,
+				EEB831E41E672A5F0084E030 /* FHIRValidationError.swift in Sources */,
+				EEB831DD1E672A5E0084E030 /* FHIRRequest.swift in Sources */,
+				EEB830AD1E67278C0084E030 /* FHIRMinimalServer.swift in Sources */,
+				EEB831FD1E672FDB0084E030 /* Reference+Resolving.swift in Sources */,
+				EEB831E31E672A5F0084E030 /* FHIRURL.swift in Sources */,
+				EEB831F81E672BCF0084E030 /* DomainResource.swift in Sources */,
+				EEB831F51E672AF00084E030 /* Timing.swift in Sources */,
+				EEB831CA1E672A100084E030 /* ContactPoint.swift in Sources */,
+				EEB831DB1E672A5E0084E030 /* FHIRInteger.swift in Sources */,
+				EEB830BA1E67278C0084E030 /* DomainResource+Containment.swift in Sources */,
+				EEB831C51E6729DF0084E030 /* Base64Binary.swift in Sources */,
+				EEB831ED1E672AB20084E030 /* Range.swift in Sources */,
+				EEB831E01E672A5E0084E030 /* FHIRServerResponse.swift in Sources */,
+				EEB831F41E672AE00084E030 /* Signature.swift in Sources */,
+				EEB831D11E672A370084E030 /* Duration.swift in Sources */,
+				EEB831DA1E672A5E0084E030 /* FHIRError.swift in Sources */,
+				EEB831D61E672A5E0084E030 /* FHIRAbstractResource.swift in Sources */,
+				EEB831C11E6729CE0084E030 /* Age.swift in Sources */,
+				EEB831CC1E672A190084E030 /* Count.swift in Sources */,
+				EEB831CF1E672A2C0084E030 /* Distance.swift in Sources */,
+				EEB831E81E672A840084E030 /* Money.swift in Sources */,
+				EEB830BB1E67278C0084E030 /* FHIRString+Localization.swift in Sources */,
+				EEB831FE1E67301A0084E030 /* Bundle.swift in Sources */,
+				EEB831D41E672A590084E030 /* FHIRAbstractBase.swift in Sources */,
+				EEB831F31E672AD80084E030 /* SampledData.swift in Sources */,
+				EEB830C81E67278C0084E030 /* Resource+Instantiation.swift in Sources */,
+				EEB831D71E672A5E0084E030 /* FHIRBool.swift in Sources */,
+				EEB831FC1E672D1B0084E030 /* OperationOutcome.swift in Sources */,
+				EEB830D11E67278C0084E030 /* Element+Extensions.swift in Sources */,
+				EEB830D51E67278C0084E030 /* FHIRServerDataResponse.swift in Sources */,
+				EEB831D91E672A5E0084E030 /* FHIREnum.swift in Sources */,
+				EEB831121E67278C0084E030 /* Resource+REST.swift in Sources */,
+				EEB831C01E6729C90084E030 /* Address.swift in Sources */,
+				EEB831C21E6729D20084E030 /* Annotation.swift in Sources */,
+				EEB831D21E672A3B0084E030 /* Element.swift in Sources */,
+				EEB831EC1E672AAD0084E030 /* Quantity.swift in Sources */,
+				EEB831EF1E672AB80084E030 /* Reference.swift in Sources */,
+				EEB831E11E672A5E0084E030 /* FHIRString.swift in Sources */,
+				EEB831141E67278C0084E030 /* FHIRBaseRequestHandler.swift in Sources */,
+				EEB831E71E672A800084E030 /* Meta.swift in Sources */,
+				EEB831D31E672A510084E030 /* Extension.swift in Sources */,
+				EEB831DE1E672A5E0084E030 /* FHIRRequestHandler.swift in Sources */,
+				EEB831C31E6729D70084E030 /* Attachment.swift in Sources */,
+				EEB831C41E6729DD0084E030 /* BackboneElement.swift in Sources */,
+				EEB831E91E672A890084E030 /* Narrative.swift in Sources */,
+				EEB831EB1E672AA00084E030 /* Period.swift in Sources */,
+				EEB831C61E6729F00084E030 /* CodeableConcept.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2506,6 +2679,51 @@
 			};
 			name = Release;
 		};
+		EEB8311E1E67278C0084E030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT -DBUILD_MINIMAL";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = SwiftFHIRMin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EEB8311F1E67278C0084E030 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DNO_MODEL_IMPORT -DBUILD_MINIMAL";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = SwiftFHIRMin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2550,6 +2768,15 @@
 			buildConfigurations = (
 				EE6DA8671A5D4B3A00E00708 /* Debug */,
 				EE6DA8681A5D4B3A00E00708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEB8311D1E67278C0084E030 /* Build configuration list for PBXNativeTarget "SwiftFHIR-min-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB8311E1E67278C0084E030 /* Debug */,
+				EEB8311F1E67278C0084E030 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

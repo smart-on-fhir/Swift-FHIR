@@ -42,7 +42,7 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	- throws:            FHIRValidationError
 	*/
 	override public final class func instantiate(from json: FHIRJSON, owner: FHIRAbstractBase?, context: inout FHIRInstantiationContext) -> Self {
-		#if !os(Linux)
+		#if !os(Linux) && !BUILD_MINIMAL
 		if let type = json["resourceType"] as? String {
 			return factory(type, json: json, owner: owner, type: self, context: &context)
 		}

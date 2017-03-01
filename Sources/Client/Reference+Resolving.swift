@@ -99,7 +99,7 @@ extension Reference {
 				if let url = URL(string: ref.string) {
 					let base = url.deletingLastPathComponent().deletingLastPathComponent()
 					path = (url.absoluteString.replacingOccurrences(of: base.absoluteString, with: ""))
-					server = FHIRBaseServer(baseURL: base, auth: nil)		// TODO: what if it's protected?
+					server = FHIRMinimalServer(baseURL: base, auth: nil)		// TODO: what if it's protected?
 				}
 				else {
 					fhir_warn("Unable to construct NSURL from absolute reference «\(ref)»")

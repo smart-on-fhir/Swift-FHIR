@@ -1590,9 +1590,9 @@
 			productReference = EE6DA85D1A5D4B3A00E00708 /* SwiftFHIR-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EEB830591E67278C0084E030 /* SwiftFHIR-min-iOS */ = {
+		EEB830591E67278C0084E030 /* SwiftFHIRMin-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EEB8311D1E67278C0084E030 /* Build configuration list for PBXNativeTarget "SwiftFHIR-min-iOS" */;
+			buildConfigurationList = EEB8311D1E67278C0084E030 /* Build configuration list for PBXNativeTarget "SwiftFHIRMin-iOS" */;
 			buildPhases = (
 				EEB8305A1E67278C0084E030 /* Sources */,
 				EEB8311A1E67278C0084E030 /* Frameworks */,
@@ -1603,7 +1603,7 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftFHIR-min-iOS";
+			name = "SwiftFHIRMin-iOS";
 			productName = SwiftFHIR;
 			productReference = EEB831201E67278C0084E030 /* SwiftFHIRMin.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1653,7 +1653,7 @@
 				EE684C2819A789BA00B5A2C0 /* SwiftFHIR-macOSTests */,
 				EE6DA7CD1A5D4B1000E00708 /* SwiftFHIR-iOS */,
 				EE6DA85C1A5D4B3A00E00708 /* SwiftFHIR-iOSTests */,
-				EEB830591E67278C0084E030 /* SwiftFHIR-min-iOS */,
+				EEB830591E67278C0084E030 /* SwiftFHIRMin-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -2772,7 +2772,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEB8311D1E67278C0084E030 /* Build configuration list for PBXNativeTarget "SwiftFHIR-min-iOS" */ = {
+		EEB8311D1E67278C0084E030 /* Build configuration list for PBXNativeTarget "SwiftFHIRMin-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EEB8311E1E67278C0084E030 /* Debug */,

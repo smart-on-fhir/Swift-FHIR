@@ -226,7 +226,11 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 						self.error = FHIRError.requestError(status, errstr)
 					}
 					else {
-						self.error = FHIRError.requestError(status, (response as? HTTPURLResponse)?.statusString ?? "Error")
+						var errstr = "Error"
+						if let urlResponse = response as? HTTPURLResponse {
+							errstr = HTTPURLResponse.localizedString(forStatusCode: urlResponse.statusCode)
+						}
+						self.error = FHIRError.requestError(status, errstr)
 					}
 				}
 			}

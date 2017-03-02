@@ -1,7 +1,7 @@
 FHIR Swift Classes
 ==================
 
-These are [Swift][] classes representing data models of [🔥 FHIR][fhir] resource profiles, compatible with **iOS 7** and **OS X 10.9** and later.
+These are [Swift][] classes representing data models of [🔥 FHIR][fhir] elements and resources, compatible with **iOS 7** and **OS X 10.9** and later.
 Building _Swift 3_ frameworks requires Xcode 8 or later, using frameworks on iOS requires **iOS 8**.
 
 This work is [Apache licensed](LICENSE.txt).
@@ -52,9 +52,11 @@ Progress
 Here's a rough list of what still needs to be done.
 
 ```
+[ ] Remove _isSummaryResource workaround to STU-3's nMin/isSummary errors
 [ ] More convenience methods to working with resources in code
-[x] Create enums for `code` type properties
 [ ] Nice support for simple PATCH operations
+[ ] Separate resource models from base models; needs untangling of
+    _owningResource, _owningBundle (easy), _resolved etc.
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Update/modernize FHIRSearch
@@ -77,6 +79,7 @@ Working, at least to some extent:
     + Refuses to serialize incomplete elements
 - Resolve contained/bundled/relative/absolute resource references
 - Contain resources
+- Create enums for `code` type properties
 - Construct searches with NoSQL-like statements (cf. [fhir.js][])
 - Perform operations
 - Use example resources for auto-created class unit tests
@@ -89,14 +92,14 @@ Naming Convention
 
 Standard Swift naming conventions apply.
 Tabs are used for indentation and spaces for alignment – the best of both worlds.
-Classes representing FHIR profiles do not have a prefix.
-Custom classes and protocols start with `FHIR` to not make them clash with profile classes and make them easily distinguishable.
+Classes representing FHIR resources do not have a prefix.
+Custom classes and protocols start with `FHIR` to not make them clash with element or resource classes and make them easily distinguishable.
 
 
-FHIR Profile Data Models
-------------------------
+FHIR Data Models
+----------------
 
-Classes are generated from FHIR profiles with our [Python FHIR parser][fhir-parser].
+Classes are generated from FHIR resource definitions with our [Python FHIR parser][fhir-parser].
 
 ### Verbousness
 
@@ -157,6 +160,17 @@ If search is restricted to a reference property, this applies:
     `GET {base-url}/Thing?referenced:InstanceType={id}`
 - If the search token does contain a forward slash it is assumed to be an absolute reference and no `:InstanceType` will be appended:  
     `GET {base-url}/Thing?referenced={uri}`
+
+
+Packaging
+---------
+
+The full build of the framework will include all FHIR resources, which will result in a rather large binary.
+Take a look at the `package.py` script: provide one or more resource names when invoking the script from command line and it will output all the elements and resources that are needed for the desired resources.
+You may then be able to remove unnecessary resources, which unfortunately is a tedious task and requires fumbling with the factory.
+
+There is an experimental `SwiftFHIRMin-iOS` build target which only includes a minimal set of resources.
+The problem here is that the factory is excluded and hence dereferencing, bundles and contained resources won't be properly instantiated.
 
 
 [swift]: https://developer.apple.com/swift/

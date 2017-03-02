@@ -1,0 +1,576 @@
+{
+	"Account": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRBool","FHIRInteger","FHIRString","Identifier","Money","Period","Reference"],
+		"references": ["Coverage","Device","HealthcareService","Location","Organization","Patient","Practitioner","RelatedPerson"]
+	},
+	"ActivityDefinition": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","Contributor","DateTime","DomainResource","Dosage","FHIRBool","FHIRDate","FHIRString","FHIRURL","Identifier","Period","Quantity","Reference","RelatedArtifact","Timing","UsageContext"],
+		"references": ["Library","Location","Medication","StructureMap","Substance"]
+	},
+	"Address": {
+		"dependencies": ["Element","FHIRString","Period"]
+	},
+	"AdverseEvent": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Reference"],
+		"references": ["AllergyIntolerance","Condition","Device","DocumentReference","FamilyMemberHistory","Immunization","Location","Medication","MedicationAdministration","MedicationStatement","Observation","Patient","Practitioner","PractitionerRole","Procedure","RelatedPerson","ResearchStudy","ResearchSubject","Substance"]
+	},
+	"Age": {
+		"dependencies": ["Quantity"]
+	},
+	"AllergyIntolerance": {
+		"dependencies": ["Age","Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Range","Reference"],
+		"references": ["Patient","Practitioner","RelatedPerson"]
+	},
+	"Annotation": {
+		"dependencies": ["DateTime","Element","FHIRString","Reference"],
+		"references": ["Patient","Practitioner","RelatedPerson"]
+	},
+	"Appointment": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRInteger","FHIRString","Identifier","Instant","Period","Reference"],
+		"references": ["Condition","Device","HealthcareService","Location","Patient","Practitioner","Procedure","ReferralRequest","RelatedPerson","Resource","Slot"]
+	},
+	"AppointmentResponse": {
+		"dependencies": ["CodeableConcept","DomainResource","FHIRString","Identifier","Instant","Reference"],
+		"references": ["Appointment","Device","HealthcareService","Location","Patient","Practitioner","RelatedPerson"]
+	},
+	"Attachment": {
+		"dependencies": ["Base64Binary","DateTime","Element","FHIRInteger","FHIRString","FHIRURL"]
+	},
+	"AuditEvent": {
+		"dependencies": ["BackboneElement","Base64Binary","CodeableConcept","Coding","DomainResource","FHIRBool","FHIRString","FHIRURL","Identifier","Instant","Reference"],
+		"references": ["Device","Location","Organization","Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"BackboneElement": {
+		"dependencies": ["Element","Extension"]
+	},
+	"Basic": {
+		"dependencies": ["CodeableConcept","DomainResource","FHIRDate","Identifier","Reference"],
+		"references": ["Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"Binary": {
+		"dependencies": ["Base64Binary","FHIRString","Reference","Resource"],
+		"references": ["Resource"]
+	},
+	"BodySite": {
+		"dependencies": ["Attachment","CodeableConcept","DomainResource","FHIRBool","FHIRString","Identifier","Reference"],
+		"references": ["Patient"]
+	},
+	"Bundle": {
+		"dependencies": ["BackboneElement","FHIRDecimal","FHIRInteger","FHIRString","FHIRURL","Identifier","Instant","Resource","Signature"]
+	},
+	"CapabilityStatement": {
+		"dependencies": ["BackboneElement","Base64Binary","CodeableConcept","Coding","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","FHIRURL","Reference","UsageContext"],
+		"references": ["MessageDefinition","OperationDefinition","StructureDefinition"]
+	},
+	"CarePlan": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DomainResource","FHIRBool","FHIRString","Identifier","Period","Quantity","Reference","Timing"],
+		"references": ["ActivityDefinition","Appointment","CareTeam","CommunicationRequest","Condition","DeviceRequest","Encounter","EpisodeOfCare","Goal","Group","Location","Medication","MedicationRequest","NutritionOrder","Organization","Patient","PlanDefinition","Practitioner","ProcessRequest","Questionnaire","ReferralRequest","RelatedPerson","RequestGroup","Resource","Substance","Task","VisionPrescription"]
+	},
+	"CareTeam": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DomainResource","FHIRString","Identifier","Period","Reference"],
+		"references": ["Condition","Encounter","EpisodeOfCare","Group","Organization","Patient","Practitioner","RelatedPerson"]
+	},
+	"ChargeItem": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRDecimal","FHIRString","FHIRURL","Identifier","Money","Period","Quantity","Reference","Timing"],
+		"references": ["Account","Device","DiagnosticReport","Encounter","EpisodeOfCare","Group","ImagingStudy","Immunization","MedicationAdministration","MedicationDispense","Observation","Organization","Patient","Practitioner","Procedure","RelatedPerson","Resource","SupplyDelivery"]
+	},
+	"Claim": {
+		"dependencies": ["Address","Attachment","BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","Identifier","Money","Period","Quantity","Reference"],
+		"references": ["ClaimResponse","Condition","Coverage","Device","Encounter","Location","MedicationRequest","Organization","Patient","Practitioner","Procedure","ReferralRequest","RelatedPerson","Resource","VisionPrescription"]
+	},
+	"ClaimResponse": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","Identifier","Money","Reference"],
+		"references": ["Claim","CommunicationRequest","Coverage","Organization","Patient","Practitioner"]
+	},
+	"ClinicalImpression": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Period","Reference"],
+		"references": ["AllergyIntolerance","Appointment","Condition","DiagnosticReport","Encounter","EpisodeOfCare","FamilyMemberHistory","Group","ImagingStudy","MedicationRequest","Observation","Patient","Practitioner","Procedure","ProcedureRequest","QuestionnaireResponse","ReferralRequest","RiskAssessment"]
+	},
+	"CodeSystem": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","FHIRURL","Identifier","UsageContext"]
+	},
+	"CodeableConcept": {
+		"dependencies": ["Coding","Element","FHIRString"]
+	},
+	"Coding": {
+		"dependencies": ["Element","FHIRBool","FHIRString","FHIRURL"]
+	},
+	"Communication": {
+		"dependencies": ["Annotation","Attachment","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","Identifier","Reference"],
+		"references": ["ActivityDefinition","Condition","Device","Encounter","EpisodeOfCare","Group","Observation","Organization","Patient","PlanDefinition","Practitioner","RelatedPerson","Resource"]
+	},
+	"CommunicationRequest": {
+		"dependencies": ["Annotation","Attachment","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Reference"],
+		"references": ["CareTeam","Condition","Device","Encounter","EpisodeOfCare","Group","Observation","Organization","Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"CompartmentDefinition": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","FHIRURL","UsageContext"]
+	},
+	"Composition": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Narrative","Period","Reference"],
+		"references": ["Device","Encounter","Organization","Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"ConceptMap": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","FHIRURL","Identifier","Reference","UsageContext"],
+		"references": ["ValueSet"]
+	},
+	"Condition": {
+		"dependencies": ["Age","Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","Identifier","Period","Range","Reference"],
+		"references": ["ClinicalImpression","DiagnosticReport","Encounter","EpisodeOfCare","Group","Observation","Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"Consent": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Period","Reference"],
+		"references": ["CareTeam","Contract","Device","DocumentReference","Group","Organization","Patient","Practitioner","QuestionnaireResponse","RelatedPerson","Resource"]
+	},
+	"ContactDetail": {
+		"dependencies": ["ContactPoint","Element","FHIRString"]
+	},
+	"ContactPoint": {
+		"dependencies": ["Element","FHIRInteger","FHIRString","Period"]
+	},
+	"Contract": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","FHIRDecimal","FHIRString","Identifier","Money","Period","Quantity","Reference","Signature"],
+		"references": ["Composition","Device","DocumentReference","Group","Location","Organization","Patient","Practitioner","QuestionnaireResponse","RelatedPerson","Resource","Substance"]
+	},
+	"Contributor": {
+		"dependencies": ["ContactDetail","Element","FHIRString"]
+	},
+	"Count": {
+		"dependencies": ["Quantity"]
+	},
+	"Coverage": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRInteger","FHIRString","Identifier","Period","Reference"],
+		"references": ["Contract","Organization","Patient","RelatedPerson"]
+	},
+	"DataElement": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","ElementDefinition","FHIRBool","FHIRString","FHIRURL","Identifier","UsageContext"]
+	},
+	"DataRequirement": {
+		"dependencies": ["CodeableConcept","Coding","DateTime","Duration","Element","FHIRString","FHIRURL","Period","Reference"],
+		"references": ["ValueSet"]
+	},
+	"DetectedIssue": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Reference"],
+		"references": ["Device","Patient","Practitioner","Resource"]
+	},
+	"Device": {
+		"dependencies": ["Annotation","BackboneElement","Base64Binary","CodeableConcept","ContactPoint","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Reference"],
+		"references": ["Location","Organization","Patient"]
+	},
+	"DeviceComponent": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRString","Identifier","Instant","Reference"],
+		"references": ["Device"]
+	},
+	"DeviceMetric": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRString","Identifier","Instant","Reference","Timing"],
+		"references": ["Device","DeviceComponent"]
+	},
+	"DeviceRequest": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Reference","Timing"],
+		"references": ["ActivityDefinition","Device","Encounter","EpisodeOfCare","Group","HealthcareService","Location","Organization","Patient","PlanDefinition","Practitioner","Provenance","RelatedPerson","Resource"]
+	},
+	"DeviceUseStatement": {
+		"dependencies": ["Annotation","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Reference","Timing"],
+		"references": ["Device","Group","Patient","Practitioner","RelatedPerson"]
+	},
+	"DiagnosticReport": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Instant","Period","Reference"],
+		"references": ["CarePlan","Device","Encounter","EpisodeOfCare","Group","ImagingManifest","ImagingStudy","ImmunizationRecommendation","Location","Media","MedicationRequest","NutritionOrder","Observation","Organization","Patient","Practitioner","ProcedureRequest","ReferralRequest","Specimen"]
+	},
+	"Distance": {
+		"dependencies": ["Quantity"]
+	},
+	"DocumentManifest": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Reference"],
+		"references": ["Device","Group","Organization","Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"DocumentReference": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","FHIRString","Identifier","Instant","Period","Reference"],
+		"references": ["Device","Encounter","Group","Organization","Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"DomainResource": {
+		"dependencies": ["Extension","Narrative","Resource"]
+	},
+	"Dosage": {
+		"dependencies": ["CodeableConcept","Element","FHIRBool","FHIRInteger","FHIRString","Quantity","Range","Ratio","Timing"]
+	},
+	"Duration": {
+		"dependencies": ["Quantity"]
+	},
+	"Element": {
+		"dependencies": ["Extension","FHIRAbstractBase","FHIRString"]
+	},
+	"ElementDefinition": {
+		"dependencies": ["Address","Age","Annotation","Attachment","Base64Binary","CodeableConcept","Coding","ContactPoint","Count","DateTime","Distance","Duration","Element","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","HumanName","Identifier","Instant","Meta","Money","Period","Quantity","Range","Ratio","Reference","SampledData","Signature","Timing"],
+		"references": ["ValueSet"]
+	},
+	"EligibilityRequest": {
+		"dependencies": ["CodeableConcept","DateTime","DomainResource","FHIRDate","FHIRString","Identifier","Period","Reference"],
+		"references": ["Coverage","Location","Organization","Patient","Practitioner"]
+	},
+	"EligibilityResponse": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","Identifier","Money","Reference"],
+		"references": ["Contract","Coverage","EligibilityRequest","Organization","Practitioner"]
+	},
+	"Encounter": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","DomainResource","Duration","FHIRInteger","FHIRString","Identifier","Period","Reference"],
+		"references": ["Account","Appointment","Condition","EpisodeOfCare","Group","Location","Organization","Patient","Practitioner","Procedure","ReferralRequest","RelatedPerson"]
+	},
+	"Endpoint": {
+		"dependencies": ["CodeableConcept","Coding","ContactPoint","DomainResource","FHIRString","FHIRURL","Identifier","Period","Reference"],
+		"references": ["Organization"]
+	},
+	"EnrollmentRequest": {
+		"dependencies": ["DateTime","DomainResource","FHIRString","Identifier","Reference"],
+		"references": ["Coverage","Organization","Patient","Practitioner"]
+	},
+	"EnrollmentResponse": {
+		"dependencies": ["CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Reference"],
+		"references": ["EnrollmentRequest","Organization","Practitioner"]
+	},
+	"EpisodeOfCare": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRInteger","FHIRString","Identifier","Period","Reference"],
+		"references": ["Account","CareTeam","Condition","Organization","Patient","Practitioner","ReferralRequest"]
+	},
+	"ExpansionProfile": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","FHIRURL","Identifier","UsageContext"]
+	},
+	"ExplanationOfBenefit": {
+		"dependencies": ["Address","Attachment","BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","Identifier","Money","Period","Quantity","Reference"],
+		"references": ["Claim","ClaimResponse","Condition","Coverage","Device","Encounter","Location","MedicationRequest","Organization","Patient","Practitioner","Procedure","ReferralRequest","RelatedPerson","Resource","VisionPrescription"]
+	},
+	"Extension": {
+		"dependencies": ["Address","Age","Annotation","Attachment","Base64Binary","CodeableConcept","Coding","ContactPoint","Count","DateTime","Distance","Duration","Element","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","HumanName","Identifier","Instant","Meta","Money","Period","Quantity","Range","Ratio","Reference","SampledData","Signature","Timing"]
+	},
+	"FamilyMemberHistory": {
+		"dependencies": ["Age","Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRString","Identifier","Period","Range","Reference"],
+		"references": ["AllergyIntolerance","Condition","Observation","Patient","PlanDefinition","Questionnaire","QuestionnaireResponse"]
+	},
+	"Flag": {
+		"dependencies": ["CodeableConcept","DomainResource","FHIRString","Identifier","Period","Reference"],
+		"references": ["Device","Encounter","Group","Location","Medication","Organization","Patient","PlanDefinition","Practitioner","Procedure"]
+	},
+	"Goal": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DomainResource","Duration","FHIRDate","FHIRString","Identifier","Quantity","Range","Reference"],
+		"references": ["Condition","Group","MedicationStatement","NutritionOrder","Observation","Organization","Patient","Practitioner","ProcedureRequest","RelatedPerson","RiskAssessment"]
+	},
+	"GraphDefinition": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","FHIRURL","UsageContext"]
+	},
+	"Group": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRBool","FHIRInteger","FHIRString","Identifier","Period","Quantity","Range","Reference"],
+		"references": ["Device","Medication","Patient","Practitioner","Substance"]
+	},
+	"GuidanceResponse": {
+		"dependencies": ["Annotation","CodeableConcept","DataRequirement","DateTime","DomainResource","FHIRString","Identifier","Reference"],
+		"references": ["CarePlan","Device","Encounter","EpisodeOfCare","Group","OperationOutcome","Parameters","Patient","RequestGroup","Resource","ServiceDefinition"]
+	},
+	"HealthcareService": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","ContactPoint","DomainResource","FHIRBool","FHIRString","FHIRTime","Identifier","Period","Reference"],
+		"references": ["Endpoint","Location","Organization"]
+	},
+	"HumanName": {
+		"dependencies": ["Element","FHIRString","Period"]
+	},
+	"Identifier": {
+		"dependencies": ["CodeableConcept","Element","FHIRString","FHIRURL","Period","Reference"],
+		"references": ["Organization"]
+	},
+	"ImagingManifest": {
+		"dependencies": ["BackboneElement","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Reference"],
+		"references": ["Device","Endpoint","ImagingStudy","Organization","Patient","Practitioner","RelatedPerson"]
+	},
+	"ImagingStudy": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","FHIRInteger","FHIRString","FHIRURL","Identifier","Reference"],
+		"references": ["CarePlan","Encounter","Endpoint","EpisodeOfCare","Patient","Practitioner","Procedure","ProcedureRequest","ReferralRequest"]
+	},
+	"Immunization": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRInteger","FHIRString","Identifier","Quantity","Reference"],
+		"references": ["Encounter","Location","Observation","Organization","Patient","Practitioner"]
+	},
+	"ImmunizationRecommendation": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRInteger","FHIRString","Identifier","Reference"],
+		"references": ["AllergyIntolerance","Immunization","Observation","Organization","Patient"]
+	},
+	"ImplementationGuide": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","FHIRURL","Reference","UsageContext"],
+		"references": ["Resource","StructureDefinition"]
+	},
+	"Library": {
+		"dependencies": ["Attachment","CodeableConcept","ContactDetail","Contributor","DataRequirement","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRString","FHIRURL","Identifier","ParameterDefinition","Period","RelatedArtifact","UsageContext"]
+	},
+	"Linkage": {
+		"dependencies": ["BackboneElement","DomainResource","FHIRBool","FHIRString","Reference"],
+		"references": ["Organization","Practitioner"]
+	},
+	"List": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","Identifier","Reference"],
+		"references": ["Device","Encounter","Group","Location","Patient","Practitioner","Resource"]
+	},
+	"Location": {
+		"dependencies": ["Address","BackboneElement","CodeableConcept","Coding","ContactPoint","DomainResource","FHIRDecimal","FHIRString","Identifier","Reference"],
+		"references": ["Endpoint","Organization"]
+	},
+	"Measure": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","Contributor","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRString","FHIRURL","Identifier","Period","Reference","RelatedArtifact","UsageContext"],
+		"references": ["Library"]
+	},
+	"MeasureReport": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRDecimal","FHIRInteger","FHIRString","Identifier","Period","Reference"],
+		"references": ["Bundle","List","Measure","Organization","Patient"]
+	},
+	"Media": {
+		"dependencies": ["Annotation","Attachment","CodeableConcept","DateTime","DomainResource","FHIRInteger","FHIRString","Identifier","Period","Reference"],
+		"references": ["Device","DeviceMetric","Encounter","EpisodeOfCare","Group","Patient","Practitioner","ProcedureRequest","Specimen"]
+	},
+	"Medication": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","Quantity","Ratio","Reference"],
+		"references": ["Organization","Substance"]
+	},
+	"MedicationAdministration": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","Identifier","Period","Quantity","Ratio","Reference"],
+		"references": ["ActivityDefinition","Condition","Device","Encounter","EpisodeOfCare","Group","Medication","MedicationRequest","Observation","Organization","Patient","PlanDefinition","Practitioner","Procedure","Provenance","RelatedPerson","Resource"]
+	},
+	"MedicationDispense": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","Dosage","FHIRBool","FHIRString","Identifier","Quantity","Reference"],
+		"references": ["DetectedIssue","Device","Encounter","EpisodeOfCare","Group","Location","Medication","MedicationRequest","Organization","Patient","Practitioner","Procedure","Provenance","RelatedPerson","Resource"]
+	},
+	"MedicationRequest": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","Dosage","Duration","FHIRBool","FHIRInteger","FHIRString","Identifier","Period","Quantity","Reference"],
+		"references": ["ActivityDefinition","CarePlan","Condition","DetectedIssue","Device","Encounter","EpisodeOfCare","Group","Medication","Observation","Organization","Patient","PlanDefinition","Practitioner","ProcedureRequest","Provenance","ReferralRequest","RelatedPerson","Resource"]
+	},
+	"MedicationStatement": {
+		"dependencies": ["Annotation","CodeableConcept","DateTime","DomainResource","Dosage","FHIRString","Identifier","Period","Reference"],
+		"references": ["CarePlan","Condition","Encounter","EpisodeOfCare","Group","Medication","MedicationAdministration","MedicationDispense","MedicationRequest","Observation","Organization","Patient","Practitioner","Procedure","ProcedureRequest","ReferralRequest","RelatedPerson","Resource"]
+	},
+	"MessageDefinition": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","FHIRURL","Identifier","Reference","UsageContext"],
+		"references": ["ActivityDefinition","PlanDefinition","StructureDefinition"]
+	},
+	"MessageHeader": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactPoint","DomainResource","FHIRString","FHIRURL","Instant","Reference"],
+		"references": ["Device","OperationOutcome","Organization","Practitioner","Resource"]
+	},
+	"Meta": {
+		"dependencies": ["Coding","Element","FHIRString","FHIRURL","Instant"]
+	},
+	"MetadataResource": {
+		"dependencies": ["CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","FHIRURL","UsageContext"]
+	},
+	"Money": {
+		"dependencies": ["Quantity"]
+	},
+	"NamingSystem": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","Period","Reference","UsageContext"]
+	},
+	"Narrative": {
+		"dependencies": ["Element","FHIRString"]
+	},
+	"NutritionOrder": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Quantity","Ratio","Reference","Timing"],
+		"references": ["AllergyIntolerance","Encounter","Patient","Practitioner"]
+	},
+	"Observation": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","FHIRTime","Identifier","Instant","Period","Quantity","Range","Ratio","Reference","SampledData"],
+		"references": ["CarePlan","Device","DeviceMetric","DeviceRequest","Encounter","EpisodeOfCare","Group","ImmunizationRecommendation","Location","MedicationRequest","NutritionOrder","Organization","Patient","Practitioner","ProcedureRequest","QuestionnaireResponse","ReferralRequest","RelatedPerson","Sequence","Specimen"]
+	},
+	"OperationDefinition": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","FHIRURL","Reference","UsageContext"],
+		"references": ["StructureDefinition","ValueSet"]
+	},
+	"OperationOutcome": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRString"]
+	},
+	"Organization": {
+		"dependencies": ["Address","BackboneElement","CodeableConcept","ContactPoint","DomainResource","FHIRBool","FHIRString","HumanName","Identifier","Reference"],
+		"references": ["Endpoint"]
+	},
+	"ParameterDefinition": {
+		"dependencies": ["Element","FHIRInteger","FHIRString","Reference"],
+		"references": ["StructureDefinition"]
+	},
+	"Parameters": {
+		"dependencies": ["Address","Age","Annotation","Attachment","BackboneElement","Base64Binary","CodeableConcept","Coding","ContactPoint","Count","DateTime","Distance","Duration","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","HumanName","Identifier","Instant","Meta","Money","Period","Quantity","Range","Ratio","Reference","Resource","SampledData","Signature","Timing"]
+	},
+	"Patient": {
+		"dependencies": ["Address","Attachment","BackboneElement","CodeableConcept","ContactPoint","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRInteger","FHIRString","HumanName","Identifier","Period","Reference"],
+		"references": ["Organization","Practitioner","RelatedPerson"]
+	},
+	"PaymentNotice": {
+		"dependencies": ["CodeableConcept","DateTime","DomainResource","FHIRDate","FHIRString","Identifier","Reference"],
+		"references": ["Organization","Practitioner","Resource"]
+	},
+	"PaymentReconciliation": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRDate","FHIRString","Identifier","Money","Period","Reference"],
+		"references": ["Organization","Practitioner","ProcessRequest","Resource"]
+	},
+	"Period": {
+		"dependencies": ["DateTime","Element"]
+	},
+	"Person": {
+		"dependencies": ["Address","Attachment","BackboneElement","ContactPoint","DomainResource","FHIRBool","FHIRDate","FHIRString","HumanName","Identifier","Reference"],
+		"references": ["Organization","Patient","Practitioner","RelatedPerson"]
+	},
+	"PlanDefinition": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactDetail","Contributor","DataRequirement","DateTime","DomainResource","Duration","FHIRBool","FHIRDate","FHIRString","FHIRURL","Identifier","Period","Quantity","Range","Reference","RelatedArtifact","Timing","TriggerDefinition","UsageContext"],
+		"references": ["ActivityDefinition","Library","StructureMap"]
+	},
+	"Practitioner": {
+		"dependencies": ["Address","Attachment","BackboneElement","CodeableConcept","ContactPoint","DomainResource","FHIRBool","FHIRDate","FHIRString","HumanName","Identifier","Period","Reference"],
+		"references": ["Organization"]
+	},
+	"PractitionerRole": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactPoint","DomainResource","FHIRBool","FHIRString","FHIRTime","Identifier","Period","Reference"],
+		"references": ["Endpoint","HealthcareService","Location","Organization","Practitioner"]
+	},
+	"Procedure": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","Identifier","Period","Reference"],
+		"references": ["ActivityDefinition","CarePlan","Condition","Device","DiagnosticReport","Encounter","EpisodeOfCare","Group","HealthcareService","Location","Medication","MedicationAdministration","Observation","Organization","Patient","PlanDefinition","Practitioner","ProcedureRequest","ReferralRequest","RelatedPerson","Substance"]
+	},
+	"ProcedureRequest": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRString","Identifier","Period","Reference","Timing"],
+		"references": ["ActivityDefinition","Condition","Device","Encounter","EpisodeOfCare","Group","HealthcareService","Location","Observation","Organization","Patient","PlanDefinition","Practitioner","Provenance","RelatedPerson","Resource","Specimen"]
+	},
+	"ProcessRequest": {
+		"dependencies": ["BackboneElement","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","Identifier","Period","Reference"],
+		"references": ["Organization","Practitioner","Resource"]
+	},
+	"ProcessResponse": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Reference"],
+		"references": ["CommunicationRequest","Organization","Practitioner","Resource"]
+	},
+	"Provenance": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","DomainResource","FHIRString","FHIRURL","Identifier","Instant","Period","Reference","Signature"],
+		"references": ["Device","Location","Organization","Patient","Practitioner","RelatedPerson","Resource"]
+	},
+	"Quantity": {
+		"dependencies": ["Element","FHIRDecimal","FHIRString","FHIRURL"]
+	},
+	"Questionnaire": {
+		"dependencies": ["Attachment","BackboneElement","CodeableConcept","Coding","ContactPoint","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","Identifier","Quantity","Reference"],
+		"references": ["Resource","ValueSet"]
+	},
+	"QuestionnaireResponse": {
+		"dependencies": ["Attachment","BackboneElement","Coding","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","Identifier","Quantity","Reference"],
+		"references": ["CarePlan","Device","Encounter","EpisodeOfCare","Observation","Patient","Practitioner","Procedure","Questionnaire","ReferralRequest","RelatedPerson","Resource"]
+	},
+	"Range": {
+		"dependencies": ["Element","Quantity"]
+	},
+	"Ratio": {
+		"dependencies": ["Element","Quantity"]
+	},
+	"Reference": {
+		"dependencies": ["Element","FHIRString","Identifier"]
+	},
+	"ReferralRequest": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Reference"],
+		"references": ["ActivityDefinition","CarePlan","Condition","Device","Encounter","EpisodeOfCare","Group","HealthcareService","Observation","Organization","Patient","PlanDefinition","Practitioner","ProcedureRequest","Provenance","RelatedPerson","Resource"]
+	},
+	"RelatedArtifact": {
+		"dependencies": ["Attachment","Element","FHIRString","FHIRURL","Reference"],
+		"references": ["Resource"]
+	},
+	"RelatedPerson": {
+		"dependencies": ["Address","Attachment","CodeableConcept","ContactPoint","DomainResource","FHIRBool","FHIRDate","FHIRString","HumanName","Identifier","Period","Reference"],
+		"references": ["Patient"]
+	},
+	"RequestGroup": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","Coding","DateTime","DomainResource","Duration","FHIRString","Identifier","Period","Range","Reference","RelatedArtifact","Timing"],
+		"references": ["Device","Encounter","EpisodeOfCare","Group","Patient","Person","Practitioner","RelatedPerson","Resource"]
+	},
+	"ResearchStudy": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","ContactDetail","DomainResource","FHIRString","Identifier","Period","Reference","RelatedArtifact"],
+		"references": ["Group","Location","Organization","PlanDefinition","Practitioner"]
+	},
+	"ResearchSubject": {
+		"dependencies": ["DomainResource","FHIRString","Identifier","Period","Reference"],
+		"references": ["Consent","Patient","ResearchStudy"]
+	},
+	"Resource": {
+		"dependencies": ["FHIRAbstractResource","FHIRString","FHIRURL","Meta"]
+	},
+	"RiskAssessment": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRDecimal","FHIRString","Identifier","Period","Range","Reference"],
+		"references": ["Condition","Device","Encounter","EpisodeOfCare","Group","Patient","Practitioner","Resource"]
+	},
+	"SampledData": {
+		"dependencies": ["Element","FHIRDecimal","FHIRInteger","FHIRString","Quantity"]
+	},
+	"Schedule": {
+		"dependencies": ["CodeableConcept","DomainResource","FHIRBool","FHIRString","Identifier","Period","Reference"],
+		"references": ["Device","HealthcareService","Location","Patient","Practitioner","PractitionerRole","RelatedPerson"]
+	},
+	"SearchParameter": {
+		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","FHIRURL","Reference","UsageContext"]
+	},
+	"Sequence": {
+		"dependencies": ["BackboneElement","CodeableConcept","DomainResource","FHIRDecimal","FHIRInteger","FHIRString","FHIRURL","Identifier","Quantity","Reference"],
+		"references": ["Device","Observation","Organization","Patient","Specimen"]
+	},
+	"ServiceDefinition": {
+		"dependencies": ["CodeableConcept","ContactDetail","Contributor","DataRequirement","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRString","FHIRURL","Identifier","Period","Reference","RelatedArtifact","TriggerDefinition","UsageContext"],
+		"references": ["OperationDefinition"]
+	},
+	"Signature": {
+		"dependencies": ["Base64Binary","Coding","Element","FHIRString","FHIRURL","Instant","Reference"],
+		"references": ["Device","Organization","Patient","Practitioner","RelatedPerson"]
+	},
+	"Slot": {
+		"dependencies": ["CodeableConcept","DomainResource","FHIRBool","FHIRString","Identifier","Instant","Reference"],
+		"references": ["Schedule"]
+	},
+	"Specimen": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Quantity","Reference"],
+		"references": ["Device","Group","Patient","Practitioner","ProcedureRequest","Substance"]
+	},
+	"StructureDefinition": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactDetail","DateTime","DomainResource","ElementDefinition","FHIRBool","FHIRString","FHIRURL","Identifier","UsageContext"]
+	},
+	"StructureMap": {
+		"dependencies": ["Address","Age","Annotation","Attachment","BackboneElement","Base64Binary","CodeableConcept","Coding","ContactDetail","ContactPoint","Count","DateTime","Distance","DomainResource","Duration","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","HumanName","Identifier","Instant","Meta","Money","Period","Quantity","Range","Ratio","Reference","SampledData","Signature","Timing","UsageContext"]
+	},
+	"Subscription": {
+		"dependencies": ["BackboneElement","Coding","ContactPoint","DomainResource","FHIRString","FHIRURL","Instant"]
+	},
+	"Substance": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Quantity","Ratio","Reference"]
+	},
+	"SupplyDelivery": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Quantity","Reference","Timing"],
+		"references": ["Contract","Device","Location","Medication","Organization","Patient","Practitioner","Substance","SupplyRequest"]
+	},
+	"SupplyRequest": {
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","Identifier","Period","Quantity","Reference","Timing"],
+		"references": ["Device","Location","Medication","Organization","Patient","Practitioner","RelatedPerson","Resource","Substance"]
+	},
+	"Task": {
+		"dependencies": ["Address","Age","Annotation","Attachment","BackboneElement","Base64Binary","CodeableConcept","Coding","ContactPoint","Count","DateTime","Distance","DomainResource","Duration","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","HumanName","Identifier","Instant","Meta","Money","Period","Quantity","Range","Ratio","Reference","SampledData","Signature","Timing"],
+		"references": ["ActivityDefinition","Device","Encounter","EpisodeOfCare","Group","Organization","Patient","Practitioner","Provenance","RelatedPerson","Resource"]
+	},
+	"TestReport": {
+		"dependencies": ["BackboneElement","DateTime","DomainResource","FHIRDecimal","FHIRString","FHIRURL","Identifier","Reference"],
+		"references": ["TestScript"]
+	},
+	"TestScript": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRInteger","FHIRString","FHIRURL","Identifier","Reference","UsageContext"],
+		"references": ["CapabilityStatement","Resource"]
+	},
+	"Timing": {
+		"dependencies": ["CodeableConcept","DateTime","Duration","Element","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","Period","Range"]
+	},
+	"TriggerDefinition": {
+		"dependencies": ["DataRequirement","DateTime","Element","FHIRDate","FHIRString","Reference","Timing"],
+		"references": ["Schedule"]
+	},
+	"UsageContext": {
+		"dependencies": ["CodeableConcept","Coding","Element","Quantity","Range"]
+	},
+	"ValueSet": {
+		"dependencies": ["BackboneElement","CodeableConcept","Coding","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRURL","Identifier","UsageContext"]
+	},
+	"VisionPrescription": {
+		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRDecimal","FHIRInteger","FHIRString","Identifier","Quantity","Reference"],
+		"references": ["Condition","Encounter","Patient","Practitioner"]
+	}
+}

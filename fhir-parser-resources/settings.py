@@ -24,6 +24,9 @@ tpl_codesystems_target_name = 'CodeSystems.swift'        # the filename to use f
 write_factory = write_resources
 tpl_factory_source = 'template-elementfactory.swift'                       # the template to use for factory generation
 tpl_factory_target = '../Sources/Models/FHIRAbstractBase+Factory.swift'    # where to write the generated factory to
+write_dependencies = write_resources
+tpl_dependencies_source = 'template-dependencies.json'   # template used to render the JSON dependency graph
+tpl_dependencies_target = '../dependencies.json'         # write dependency JSON to project root
 
 # Whether and where to write unit tests
 write_unittests = True

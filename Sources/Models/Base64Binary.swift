@@ -15,7 +15,7 @@ Data encoded as a base-64 string.
 public struct Base64Binary: FHIRPrimitive, FHIRJSONType, ExpressibleByStringLiteral, CustomStringConvertible {
 	
 	/// The base-64 string.
-	var value: String
+	public var value: String
 	
 	/// An optional id of the element.
 	public var id: String?

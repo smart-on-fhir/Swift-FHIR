@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -1428,6 +1428,9 @@ open class ElementDefinitionMapping: Element {
 		get { return "ElementDefinitionMapping" }
 	}
 	
+	/// Comments about the mapping or it's use.
+	public var comment: FHIRString?
+	
 	/// Reference to mapping declaration.
 	public var identity: FHIRString?
 	
@@ -1449,6 +1452,7 @@ open class ElementDefinitionMapping: Element {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		identity = createInstance(type: FHIRString.self, for: "identity", in: json, context: &instCtx, owner: self) ?? identity
 		if nil == identity && !instCtx.containsKey("identity") {
 			instCtx.addError(FHIRValidationError(missing: "identity"))
@@ -1463,6 +1467,7 @@ open class ElementDefinitionMapping: Element {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		self.identity?.decorate(json: &json, withKey: "identity", errors: &errors)
 		if nil == self.identity {
 			errors.append(FHIRValidationError(missing: "identity"))

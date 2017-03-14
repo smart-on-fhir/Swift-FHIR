@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -50,7 +50,7 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.primarySource, false)
 		XCTAssertEqual(inst.reportOrigin?.coding?[0].code, "record")
-		XCTAssertEqual(inst.reportOrigin?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/vaccination-origin")
+		XCTAssertEqual(inst.reportOrigin?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/immunization-origin")
 		XCTAssertEqual(inst.reportOrigin?.text, "Written Record")
 		XCTAssertEqual(inst.status, MedicationAdministrationStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -125,10 +125,10 @@ class ImmunizationTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.practitioner?[0].actor?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.practitioner?[0].role?.coding?[0].code, "OP")
-		XCTAssertEqual(inst.practitioner?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/vaccination-practitioner-role")
+		XCTAssertEqual(inst.practitioner?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0443")
 		XCTAssertEqual(inst.practitioner?[1].actor?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.practitioner?[1].role?.coding?[0].code, "AP")
-		XCTAssertEqual(inst.practitioner?[1].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/vaccination-practitioner-role")
+		XCTAssertEqual(inst.practitioner?[1].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0443")
 		XCTAssertEqual(inst.primarySource, true)
 		XCTAssertEqual(inst.reaction?[0].date?.description, "2013-01-10")
 		XCTAssertEqual(inst.reaction?[0].detail?.reference, "Observation/example")

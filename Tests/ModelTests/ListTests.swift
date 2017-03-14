@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -93,7 +93,7 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.mode, ListMode(rawValue: "snapshot")!)
 		XCTAssertEqual(inst.status, ListStatus(rawValue: "current")!)
 		XCTAssertEqual(inst.subject?.display, "Pam Taylor")
-		XCTAssertEqual(inst.subject?.reference, "Patient/147051")
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -119,7 +119,7 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.signature?[0].contentType, "application/signature+xml")
 		XCTAssertEqual(inst.signature?[0].type?[0].code, "1.2.840.10065.1.12.1.5")
 		XCTAssertEqual(inst.signature?[0].type?[0].display, "Verification Signature")
-		XCTAssertEqual(inst.signature?[0].type?[0].system?.absoluteString, "http://hl7.org/fhir/valueset-signature-type")
+		XCTAssertEqual(inst.signature?[0].type?[0].system?.absoluteString, "urn:iso-astm:E1762-95:2013")
 		XCTAssertEqual(inst.signature?[0].when?.description, "2015-08-27T08:39:24+10:00")
 		XCTAssertEqual(inst.signature?[0].whoReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.target?[0].reference, "DocumentReference/example")

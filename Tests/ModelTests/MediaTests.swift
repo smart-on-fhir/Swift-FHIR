@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -61,7 +61,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[3].value, "urn:oid:1.2.840.113619.2.21.3408.700.0.757923840.3.0")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.subtype?.coding?[0].code, "US")
-		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
 		XCTAssertEqual(inst.view?.coding?[0].code, "399067008")
@@ -112,6 +112,46 @@ class MediaTests: XCTestCase {
 	
 	@discardableResult
 	func runMedia3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-xray.json")
+		
+		XCTAssertEqual(inst.basedOn?[0].identifier?.assigner?.display, "XYZ Medical Clinic")
+		XCTAssertEqual(inst.basedOn?[0].identifier?.system?.absoluteString, "http://someclinic.org/fhir/NamingSystem/imaging-orders")
+		XCTAssertEqual(inst.basedOn?[0].identifier?.value, "111222")
+		XCTAssertEqual(inst.bodySite?.coding?[0].code, "85151006")
+		XCTAssertEqual(inst.bodySite?.coding?[0].display, "Structure of left hand (body structure)")
+		XCTAssertEqual(inst.bodySite?.coding?[0].system?.absoluteString, "http://snomed.info.sct")
+		XCTAssertEqual(inst.content?.contentType, "image/jpeg")
+		XCTAssertEqual(inst.content?.creation?.description, "2016-03-15")
+		XCTAssertEqual(inst.content?.id, "a1")
+		XCTAssertEqual(inst.content?.url?.absoluteString, "http://someimagingcenter.org/fhir/Binary/A12345")
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
+		XCTAssertEqual(inst.height, 432)
+		XCTAssertEqual(inst.id, "xray")
+		XCTAssertEqual(inst.occurrenceDateTime?.description, "2016-03-15")
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.subtype?.coding?[0].code, "39714003")
+		XCTAssertEqual(inst.subtype?.coding?[0].display, "Skeletal X-ray of wrist and hand")
+		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Xray of left hand for Patient Henry Levin (MRN 12345) 2016-03-15</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
+		XCTAssertEqual(inst.width, 640)
+		
+		return inst
+	}
+	
+	func testMedia4() {
+		do {
+			let instance = try runMedia4()
+			try runMedia4(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runMedia4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "image/gif")
@@ -124,7 +164,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
 		XCTAssertEqual(inst.subtype?.coding?[0].code, "diagram")
-		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/media-method")
+		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/media-subtype")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagram for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)

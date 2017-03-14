@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -47,8 +47,8 @@ class EpisodeOfCareTests: XCTestCase {
 		XCTAssertEqual(inst.diagnosis?[0].condition?.reference, "Condition/stroke")
 		XCTAssertEqual(inst.diagnosis?[0].rank, 1)
 		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].code, "CC")
-		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Cheif complaint")
-		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Chief complaint")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/diagnosis-role")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/sampleepisodeofcare-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "123")

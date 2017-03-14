@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -128,6 +128,7 @@ class RiskAssessmentTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis?[0].reference, "List/prognosis")
+		XCTAssertEqual(inst.comment?.text, "High degree of certainty")
 		XCTAssertEqual(inst.id, "genetic")
 		XCTAssertEqual(inst.method?.coding?[0].code, "BRCAPRO")
 		XCTAssertEqual(inst.occurrenceDateTime?.description, "2006-01-13T23:01:00Z")

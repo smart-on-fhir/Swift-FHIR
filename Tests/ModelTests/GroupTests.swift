@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -80,6 +80,8 @@ class GroupTests: XCTestCase {
 		XCTAssertEqual(inst.characteristic?[1].valueCodeableConcept?.text, "John Smith")
 		XCTAssertEqual(inst.code?.text, "Horse")
 		XCTAssertEqual(inst.id, "101")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://someveterinarianclinic.org/fhir/NamingSystem/herds")
+		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.name, "John's herd")
 		XCTAssertEqual(inst.quantity, 25)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)

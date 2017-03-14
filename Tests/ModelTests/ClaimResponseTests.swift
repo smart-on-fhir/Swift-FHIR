@@ -2,7 +2,7 @@
 //  ClaimResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -74,7 +74,7 @@ class ClaimResponseTests: XCTestCase {
 		XCTAssertEqual(inst.payment?.identifier?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/paymentidentifier")
 		XCTAssertEqual(inst.payment?.identifier?.value, "201408-2-1569478")
 		XCTAssertEqual(inst.payment?.type?.coding?[0].code, "complete")
-		XCTAssertEqual(inst.payment?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ValueSet/ex-paymenttype")
+		XCTAssertEqual(inst.payment?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ex-paymenttype")
 		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
 		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
 		XCTAssertEqual(inst.requestProvider?.reference, "Practitioner/1")

@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -95,7 +95,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.expansion?.total, 8)
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example-expansion")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "FHIR Project team")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -118,6 +118,54 @@ class ValueSetTests: XCTestCase {
 	
 	@discardableResult
 	func runValueSet2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-inactive.json")
+		
+		XCTAssertEqual(inst.compose?.inactive, true)
+		XCTAssertEqual(inst.compose?.include?[0].filter?[0].op, FilterOperator(rawValue: "descendent-of")!)
+		XCTAssertEqual(inst.compose?.include?[0].filter?[0].property, "concept")
+		XCTAssertEqual(inst.compose?.include?[0].filter?[0].value, "_ActMoodPredicate")
+		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActMood")
+		XCTAssertEqual(inst.description_fhir, "HL7 v3 ActMood Prdicate codes, including inactive codes")
+		XCTAssertEqual(inst.expansion?.contains?[0].code, "CRT")
+		XCTAssertEqual(inst.expansion?.contains?[0].display, "criterion")
+		XCTAssertEqual(inst.expansion?.contains?[0].inactive, true)
+		XCTAssertEqual(inst.expansion?.contains?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActMood")
+		XCTAssertEqual(inst.expansion?.contains?[1].code, "EXPEC")
+		XCTAssertEqual(inst.expansion?.contains?[1].contains?[0].code, "GOL")
+		XCTAssertEqual(inst.expansion?.contains?[1].contains?[0].display, "goal")
+		XCTAssertEqual(inst.expansion?.contains?[1].contains?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActMood")
+		XCTAssertEqual(inst.expansion?.contains?[1].contains?[1].code, "RSK")
+		XCTAssertEqual(inst.expansion?.contains?[1].contains?[1].display, "risk")
+		XCTAssertEqual(inst.expansion?.contains?[1].contains?[1].system?.absoluteString, "http://hl7.org/fhir/v3/ActMood")
+		XCTAssertEqual(inst.expansion?.contains?[1].display, "expectation")
+		XCTAssertEqual(inst.expansion?.contains?[1].system?.absoluteString, "http://hl7.org/fhir/v3/ActMood")
+		XCTAssertEqual(inst.expansion?.contains?[2].code, "OPT")
+		XCTAssertEqual(inst.expansion?.contains?[2].display, "option")
+		XCTAssertEqual(inst.expansion?.contains?[2].system?.absoluteString, "http://hl7.org/fhir/v3/ActMood")
+		XCTAssertEqual(inst.expansion?.identifier?.absoluteString, "urn:uuid:46c00b3f-003a-4f31-9d4b-ea2de58b2a99")
+		XCTAssertEqual(inst.expansion?.timestamp?.description, "2017-02-26T10:00:00Z")
+		XCTAssertEqual(inst.id, "inactive")
+		XCTAssertEqual(inst.name, "Example-inactive")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.title, "Example with inactive codes")
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/inactive")
+		
+		return inst
+	}
+	
+	func testValueSet3() {
+		do {
+			let instance = try runValueSet3()
+			try runValueSet3(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runValueSet3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-intensional.json")
 		
 		XCTAssertEqual(inst.compose?.exclude?[0].concept?[0].code, "5932-9")
@@ -137,7 +185,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example-intensional")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
 		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-ext")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -148,10 +196,10 @@ class ValueSetTests: XCTestCase {
 		return inst
 	}
 	
-	func testValueSet3() {
+	func testValueSet4() {
 		do {
-			let instance = try runValueSet3()
-			try runValueSet3(instance.asJSON())
+			let instance = try runValueSet4()
+			try runValueSet4(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
@@ -159,7 +207,7 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+	func runValueSet4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-yesnodontknow.json")
 		
 		XCTAssertEqual(inst.compose?.include?[0].valueSet?[0].absoluteString, "http://hl7.org/fhir/ValueSet/v2-0136")
@@ -187,10 +235,10 @@ class ValueSetTests: XCTestCase {
 		return inst
 	}
 	
-	func testValueSet4() {
+	func testValueSet5() {
 		do {
-			let instance = try runValueSet4()
-			try runValueSet4(instance.asJSON())
+			let instance = try runValueSet5()
+			try runValueSet5(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
@@ -198,9 +246,10 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+	func runValueSet5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example.json")
 		
+		XCTAssertEqual(inst.compose?.inactive, true)
 		XCTAssertEqual(inst.compose?.include?[0].concept?[0].code, "14647-2")
 		XCTAssertEqual(inst.compose?.include?[0].concept?[0].display, "Cholesterol [Moles/Volume]")
 		XCTAssertEqual(inst.compose?.include?[0].concept?[1].code, "2093-3")
@@ -215,14 +264,14 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.copyright, "This content from LOINCÂ® is copyright Â© 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use.")
+		XCTAssertEqual(inst.copyright, "This content from LOINC ® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use.")
 		XCTAssertEqual(inst.date?.description, "2015-06-22")
 		XCTAssertEqual(inst.description_fhir, "This is an example value set that includes all the LOINC codes for serum/plasma cholesterol from v2.36.")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example-extensional")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
 		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-int")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -233,10 +282,10 @@ class ValueSetTests: XCTestCase {
 		return inst
 	}
 	
-	func testValueSet5() {
+	func testValueSet6() {
 		do {
-			let instance = try runValueSet5()
-			try runValueSet5(instance.asJSON())
+			let instance = try runValueSet6()
+			try runValueSet6(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
@@ -244,21 +293,21 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+	func runValueSet6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-list-example-codes.json")
 		
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.date?.description, "2017-02-24T14:45:13+00:00")
+		XCTAssertEqual(inst.date?.description, "2017-03-14T06:25:31+00:00")
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
-		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.2.173")
+		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.3.307")
 		XCTAssertEqual(inst.immutable, true)
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-02-24T14:45:13.708+00:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-03-14T06:25:31.015+00:00")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)

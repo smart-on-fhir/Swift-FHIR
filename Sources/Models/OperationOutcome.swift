@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -73,7 +73,7 @@ open class OperationOutcomeIssue: BackboneElement {
 	/// FHIRPath of element(s) related to issue.
 	public var expression: [FHIRString]?
 	
-	/// XPath of element(s) related to issue.
+	/// Path of element(s) related to issue.
 	public var location: [FHIRString]?
 	
 	/// Indicates whether the issue indicates a variation from successful processing.

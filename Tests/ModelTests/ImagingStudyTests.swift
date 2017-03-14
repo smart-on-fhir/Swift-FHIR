@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ class ImagingStudyTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "55551234")
 		XCTAssertEqual(inst.interpreter?[0].reference, "Practitioner/example")
 		XCTAssertEqual(inst.modalityList?[0].code, "DX")
-		XCTAssertEqual(inst.modalityList?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.modalityList?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.numberOfInstances, 2)
 		XCTAssertEqual(inst.numberOfSeries, 1)
 		XCTAssertEqual(inst.patient?.reference, "Patient/dicom")
@@ -67,7 +67,7 @@ class ImagingStudyTests: XCTestCase {
 		XCTAssertEqual(inst.procedureReference?[0].reference, "Procedure/example")
 		XCTAssertEqual(inst.reason?.coding?[0].code, "357009")
 		XCTAssertEqual(inst.reason?.coding?[0].display, "Closed fracture of trapezoidal bone of wrist")
-		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ValueSet/procedure-reason")
+		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.referrer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.series?[0].availability, "ONLINE")
 		XCTAssertEqual(inst.series?[0].bodySite?.code, "T-15460")
@@ -87,7 +87,7 @@ class ImagingStudyTests: XCTestCase {
 		XCTAssertEqual(inst.series?[0].laterality?.display, "Unilateral left")
 		XCTAssertEqual(inst.series?[0].laterality?.system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.series?[0].modality?.code, "DX")
-		XCTAssertEqual(inst.series?[0].modality?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.series?[0].modality?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.series?[0].number, 3)
 		XCTAssertEqual(inst.series?[0].numberOfInstances, 2)
 		XCTAssertEqual(inst.series?[0].performer?[0].reference, "Practitioner/example")
@@ -127,7 +127,7 @@ class ImagingStudyTests: XCTestCase {
 		XCTAssertEqual(inst.series?[0].instance?[0].sopClass?.absoluteString, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst.series?[0].instance?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
 		XCTAssertEqual(inst.series?[0].modality?.code, "CT")
-		XCTAssertEqual(inst.series?[0].modality?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.series?[0].modality?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.series?[0].number, 3)
 		XCTAssertEqual(inst.series?[0].numberOfInstances, 1)
 		XCTAssertEqual(inst.series?[0].uid?.absoluteString, "urn:oid:2.16.124.113543.6003.2588828330.45298.17418.2723805630")

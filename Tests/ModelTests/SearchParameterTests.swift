@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -122,7 +122,7 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2013-10-23")
-		XCTAssertEqual(inst.derivedFrom?.absoluteString, "http://hl7.org/fhir/SearchParameter/base")
+		XCTAssertEqual(inst.derivedFrom?.absoluteString, "http://hl7.org/fhir/SearchParameter/Resource-id")
 		XCTAssertEqual(inst.description_fhir, "Search by resource identifier - e.g. same as the read interaction, but can return included resources")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.expression, "id")

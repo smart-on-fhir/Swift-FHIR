@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -258,6 +258,9 @@ class ProcedureRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].type?.text, "Placer")
 		XCTAssertEqual(inst.identifier?[0].value, "20170201-0001")
 		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "order")!)
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.duration, "15")
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.durationMax, "25")
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.durationUnit, "min")
 		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.frequency, 1)
 		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.frequencyMax, 4)
 		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.period, "1")
@@ -322,6 +325,38 @@ class ProcedureRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcedureRequest9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedureRequest {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedurerequest-example4.json")
+		
+		XCTAssertEqual(inst.code?.coding?[0].code, "229115003")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Bench Press (regime/therapy) ")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id, "benchpress")
+		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "plan")!)
+		XCTAssertEqual(inst.note?[0].text, "Start with 30kg and increase in increments of 5kg when you feel ready")
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.count, 20)
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.countMax, 30)
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.frequency, 3)
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.period, "1")
+		XCTAssertEqual(inst.occurrenceTiming?.repeat_fhir?.periodUnit, "wk")
+		XCTAssertEqual(inst.status, RequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testProcedureRequest10() {
+		do {
+			let instance = try runProcedureRequest10()
+			try runProcedureRequest10(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runProcedureRequest10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedureRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedurerequest-genetics-example-1.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "49874-1")

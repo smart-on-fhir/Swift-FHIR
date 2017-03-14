@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -198,9 +198,14 @@ class QuestionnaireResponseTests: XCTestCase {
 		
 		XCTAssertEqual(inst.author?.reference, "#questauth")
 		XCTAssertEqual(inst.authored?.description, "2013-02-19T14:15:00-05:00")
+		XCTAssertEqual(inst.basedOn?[0].reference, "#order")
 		XCTAssertEqual(inst.contained?[0].id, "patsub")
-		XCTAssertEqual(inst.contained?[1].id, "questauth")
+		XCTAssertEqual(inst.contained?[1].id, "order")
+		XCTAssertEqual(inst.contained?[2].id, "questauth")
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "3141")
+		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://example.org/fhir/NamingSystem/questionnaire-ids")
+		XCTAssertEqual(inst.identifier?.value, "Q12349876")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].answer?[0].valueCoding?.code, "1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].linkId, "1.1.1.1")
@@ -216,6 +221,7 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")
 		XCTAssertEqual(inst.item?[0].item?[0].linkId, "1.1")
 		XCTAssertEqual(inst.item?[0].linkId, "1")
+		XCTAssertEqual(inst.parent?[0].reference, "Procedure/f201")
 		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "#patsub")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

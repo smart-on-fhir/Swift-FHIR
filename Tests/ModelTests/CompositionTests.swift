@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -65,6 +65,9 @@ class CompositionTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?.value, "1")
 		XCTAssertEqual(inst.relatesTo?[0].code, DocumentRelationshipType(rawValue: "replaces")!)
 		XCTAssertEqual(inst.relatesTo?[0].targetReference?.reference, "Composition/old-example")
+		XCTAssertEqual(inst.relatesTo?[1].code, DocumentRelationshipType(rawValue: "appends")!)
+		XCTAssertEqual(inst.relatesTo?[1].targetIdentifier?.system?.absoluteString, "http://example.org/fhir/NamingSystem/document-ids")
+		XCTAssertEqual(inst.relatesTo?[1].targetIdentifier?.value, "ABC123")
 		XCTAssertEqual(inst.section?[0].code?.coding?[0].code, "11348-0")
 		XCTAssertEqual(inst.section?[0].code?.coding?[0].display, "History of past illness Narrative")
 		XCTAssertEqual(inst.section?[0].code?.coding?[0].system?.absoluteString, "http://loinc.org")

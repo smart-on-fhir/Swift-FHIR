@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -43,26 +43,39 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.contained?[0].id, "2179414")
 		XCTAssertEqual(inst.contained?[1].id, "2179414-permitted")
 		XCTAssertEqual(inst.contained?[2].id, "2179414-cm")
+		XCTAssertEqual(inst.date?.description, "2016-01-01")
 		XCTAssertEqual(inst.element?[0].binding?.strength, BindingStrength(rawValue: "required")!)
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].valueReference?.reference, "#2179414-permitted")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[1].valueReference?.reference, "#2179414-cm")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.reference, "#2179414")
+		XCTAssertEqual(inst.element?[0].code?[0].code, "46098-0")
+		XCTAssertEqual(inst.element?[0].code?[0].display, "Sex")
+		XCTAssertEqual(inst.element?[0].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.element?[0].definition, "The code representing the gender of a person.")
 		XCTAssertEqual(inst.element?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/minLength")
 		XCTAssertEqual(inst.element?[0].extension_fhir?[0].valueInteger, 1)
 		XCTAssertEqual(inst.element?[0].extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/elementdefinition-question")
 		XCTAssertEqual(inst.element?[0].extension_fhir?[1].valueString, "Gender")
+		XCTAssertEqual(inst.element?[0].mapping?[0].identity, "fhir")
+		XCTAssertEqual(inst.element?[0].mapping?[0].language, "application/xquery")
+		XCTAssertEqual(inst.element?[0].mapping?[0].map, "return f:/Patient/f:gender")
 		XCTAssertEqual(inst.element?[0].maxLength, 13)
 		XCTAssertEqual(inst.element?[0].path, "Gender")
 		XCTAssertEqual(inst.element?[0].type?[0].code?.absoluteString, "CodeableConcept")
 		XCTAssertEqual(inst.id, "gender")
 		XCTAssertEqual(inst.identifier?[0].value, "2179650")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
+		XCTAssertEqual(inst.mapping?[0].identity, "fhir")
+		XCTAssertEqual(inst.mapping?[0].name, "Fast Healthcare Interoperable Resources (FHIR)")
+		XCTAssertEqual(inst.mapping?[0].uri?.absoluteString, "http://hl7.org/fhir/api")
 		XCTAssertEqual(inst.name, "Gender Code")
 		XCTAssertEqual(inst.publisher, "DCP")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.title, "Administrative gender")
 		XCTAssertEqual(inst.version, "1.0")
 		
 		return inst

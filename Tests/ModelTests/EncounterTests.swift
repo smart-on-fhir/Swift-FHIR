@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -322,7 +322,7 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.diagnosis?[0].rank, 1)
 		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].code, "AD")
 		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Admission diagnosis")
-		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/diagnosis-role")
 		XCTAssertEqual(inst.id, "f202")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "temp")!)
 		XCTAssertEqual(inst.identifier?[0].value, "Encounter_Roel_20130128")
@@ -372,11 +372,11 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.diagnosis?[0].rank, 1)
 		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].code, "AD")
 		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Admission diagnosis")
-		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/diagnosis-role")
 		XCTAssertEqual(inst.diagnosis?[1].condition?.reference, "Condition/f201")
 		XCTAssertEqual(inst.diagnosis?[1].role?.coding?[0].code, "DD")
 		XCTAssertEqual(inst.diagnosis?[1].role?.coding?[0].display, "Discharge diagnosis")
-		XCTAssertEqual(inst.diagnosis?[1].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-diagnosis-role")
+		XCTAssertEqual(inst.diagnosis?[1].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/diagnosis-role")
 		XCTAssertEqual(inst.episodeOfCare?[0].reference, "EpisodeOfCare/example")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].code, "309902002")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].display, "Clinical Oncology Department")

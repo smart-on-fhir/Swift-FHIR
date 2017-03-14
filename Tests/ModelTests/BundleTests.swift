@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -197,9 +197,10 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?.value, "urn:uuid:0c3151bd-1cbf-4d64-b04d-cd9187a4c6e0")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2013-05-28T22:12:21Z")
 		XCTAssertEqual(inst.signature?.contentType, "image/jpg")
+		XCTAssertEqual(inst.signature?.onBehalfOfReference?.reference, "Organization/example")
 		XCTAssertEqual(inst.signature?.type?[0].code, "1.2.840.10065.1.12.1.1")
 		XCTAssertEqual(inst.signature?.type?[0].display, "Author's Signature")
-		XCTAssertEqual(inst.signature?.type?[0].system?.absoluteString, "http://hl7.org/fhir/valueset-signature-type")
+		XCTAssertEqual(inst.signature?.type?[0].system?.absoluteString, "urn:iso-astm:E1762-95:2013")
 		XCTAssertEqual(inst.signature?.when?.description, "2015-08-31T07:42:33+10:00")
 		XCTAssertEqual(inst.signature?.whoReference?.reference, "Device/software")
 		XCTAssertEqual(inst.type, BundleType(rawValue: "document")!)

@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -72,7 +72,7 @@ class GoalTests: XCTestCase {
 		
 		XCTAssertEqual(inst.addresses?[0].display, "obesity condition")
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "dietary")
-		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/valueset-goal-category")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/goal-category")
 		XCTAssertEqual(inst.description_fhir?.text, "Target weight is 160 to 180 lbs.")
 		XCTAssertEqual(inst.expressedBy?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.expressedBy?.reference, "Patient/example")

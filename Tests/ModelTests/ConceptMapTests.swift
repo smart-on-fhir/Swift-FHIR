@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -38,6 +38,52 @@ class ConceptMapTests: XCTestCase {
 	
 	@discardableResult
 	func runConceptMap1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConceptMap {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example-2.json")
+		
+		XCTAssertEqual(inst.contact?[0].name, "FHIR project team (example)")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.date?.description, "2012-06-13")
+		XCTAssertEqual(inst.description_fhir, "An example mapping")
+		XCTAssertEqual(inst.experimental, true)
+		XCTAssertEqual(inst.group?[0].element?[0].code, "code")
+		XCTAssertEqual(inst.group?[0].element?[0].display, "Example Code")
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].code, "code2")
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].code, "some-code")
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].property?.absoluteString, "http://example.org/fhir/DataElement/example")
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].system?.absoluteString, "http://example.org/fhir/example3")
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].display, "Some Example Code")
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].equivalence, ConceptMapEquivalence(rawValue: "equivalent")!)
+		XCTAssertEqual(inst.group?[0].source?.absoluteString, "http://example.org/fhir/example1")
+		XCTAssertEqual(inst.group?[0].target?.absoluteString, "http://example.org/fhir/example2")
+		XCTAssertEqual(inst.group?[0].unmapped?.mode, ConceptMapGroupUnmappedMode(rawValue: "other-map")!)
+		XCTAssertEqual(inst.group?[0].unmapped?.url?.absoluteString, "http://example.org/fhir/ConceptMap/map2")
+		XCTAssertEqual(inst.id, "example2")
+		XCTAssertEqual(inst.name, "FHIR-exanple-2")
+		XCTAssertEqual(inst.publisher, "HL7, Inc")
+		XCTAssertEqual(inst.purpose, "To illustrate mapping features")
+		XCTAssertEqual(inst.sourceUri?.absoluteString, "http://example.org/fhir/example1")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.targetUri?.absoluteString, "http://example.org/fhir/example2")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.title, "FHIR Example 2")
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ConceptMap/example2")
+		
+		return inst
+	}
+	
+	func testConceptMap2() {
+		do {
+			let instance = try runConceptMap2()
+			try runConceptMap2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runConceptMap2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConceptMap {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example-specimen-type.json")
 		
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
@@ -98,10 +144,10 @@ class ConceptMapTests: XCTestCase {
 		return inst
 	}
 	
-	func testConceptMap2() {
+	func testConceptMap3() {
 		do {
-			let instance = try runConceptMap2()
-			try runConceptMap2(instance.asJSON())
+			let instance = try runConceptMap3()
+			try runConceptMap3(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw:\n---\n\(error)\n---")
@@ -109,7 +155,7 @@ class ConceptMapTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runConceptMap2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConceptMap {
+	func runConceptMap3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRConceptMap {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team (example)")
@@ -145,13 +191,14 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:uuid:53cd62ee-033e-414c-9f58-3ca97b5ffc3b")
-		XCTAssertEqual(inst.name, "FHIR/v3 Address Use Mapping")
+		XCTAssertEqual(inst.name, "FHIR-v3-Address-Use")
 		XCTAssertEqual(inst.publisher, "HL7, Inc")
 		XCTAssertEqual(inst.purpose, "To help implementers map from HL7 v3/CDA to FHIR")
-		XCTAssertEqual(inst.sourceReference?.reference, "http://hl7.org/fhir/ValueSet/address-use")
+		XCTAssertEqual(inst.sourceUri?.absoluteString, "http://hl7.org/fhir/ValueSet/address-use")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.targetReference?.reference, "http://hl7.org/fhir/ValueSet/v3-AddressUse")
+		XCTAssertEqual(inst.targetUri?.absoluteString, "http://hl7.org/fhir/ValueSet/v3-AddressUse")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.title, "FHIR/v3 Address Use Mapping")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ConceptMap/101")
 		XCTAssertEqual(inst.useContext?[0].code?.code, "venue")
 		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")

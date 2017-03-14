@@ -2,7 +2,7 @@
 //  FamilyMemberHistoryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -51,8 +51,9 @@ class FamilyMemberHistoryTests: XCTestCase {
 		XCTAssertEqual(inst.id, "mother")
 		XCTAssertEqual(inst.patient?.display, "Peter Patient")
 		XCTAssertEqual(inst.patient?.reference, "Patient/100")
-		XCTAssertEqual(inst.relationship?.coding?[0].code, "mother")
-		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.relationship?.coding?[0].code, "MTH")
+		XCTAssertEqual(inst.relationship?.coding?[0].display, "mother")
+		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.status, FamilyHistoryStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mother died of a stroke aged 56</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -91,8 +92,9 @@ class FamilyMemberHistoryTests: XCTestCase {
 		XCTAssertEqual(inst.notDone, false)
 		XCTAssertEqual(inst.patient?.display, "Peter Patient")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.relationship?.coding?[0].code, "father")
-		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.relationship?.coding?[0].code, "FTH")
+		XCTAssertEqual(inst.relationship?.coding?[0].display, "father")
+		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.status, FamilyHistoryStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Father died of a heart attack aged 74</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

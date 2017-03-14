@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -46,7 +46,7 @@ class MessageHeaderTests: XCTestCase {
 		XCTAssertEqual(inst.destination?[0].target?.reference, "Device/example")
 		XCTAssertEqual(inst.enterer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.event?.code, "admin-notify")
-		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-type")
+		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-events")
 		XCTAssertEqual(inst.focus?[0].reference, "Patient/example")
 		XCTAssertEqual(inst.id, "1cbdfb97-5859-48a4-8301-d54eab818d68")
 		XCTAssertEqual(inst.reason?.coding?[0].code, "admit")

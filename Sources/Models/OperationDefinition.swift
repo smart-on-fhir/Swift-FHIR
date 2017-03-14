@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ open class OperationDefinition: DomainResource {
 	/// Name for this operation definition (Computer friendly).
 	public var name: FHIRString?
 	
-	/// For generating overloaded methods in code.
+	/// Define overloaded variants for when  generating code.
 	public var overload: [OperationDefinitionOverload]?
 	
 	/// Parameters for the operation/query.
@@ -204,9 +204,10 @@ open class OperationDefinition: DomainResource {
 
 
 /**
-For generating overloaded methods in code.
+Define overloaded variants for when  generating code.
 
-Defines an appropriate combination of parameters to use when invoking this operation.
+Defines an appropriate combination of parameters to use when invoking this operation, to help code generators when
+generating overloaded parameter sets for this operation.
 */
 open class OperationDefinitionOverload: BackboneElement {
 	override open class var resourceType: String {

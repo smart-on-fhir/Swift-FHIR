@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -28,6 +28,9 @@ open class RiskAssessment: DomainResource {
 	/// Type of assessment.
 	public var code: CodeableConcept?
 	
+	/// Comments on the risk assessment.
+	public var comment: Annotation?
+	
 	/// Condition assessed.
 	public var condition: Reference?
 	
@@ -42,9 +45,6 @@ open class RiskAssessment: DomainResource {
 	
 	/// How to reduce risk.
 	public var mitigation: FHIRString?
-	
-	/// Comments on the risk assessment.
-	public var note: Annotation?
 	
 	/// When was assessment made?.
 	public var occurrenceDateTime: DateTime?
@@ -87,12 +87,12 @@ open class RiskAssessment: DomainResource {
 		basedOn = createInstance(type: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		basis = createInstances(of: Reference.self, for: "basis", in: json, context: &instCtx, owner: self) ?? basis
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		comment = createInstance(type: Annotation.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		condition = createInstance(type: Reference.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		method = createInstance(type: CodeableConcept.self, for: "method", in: json, context: &instCtx, owner: self) ?? method
 		mitigation = createInstance(type: FHIRString.self, for: "mitigation", in: json, context: &instCtx, owner: self) ?? mitigation
-		note = createInstance(type: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
 		occurrencePeriod = createInstance(type: Period.self, for: "occurrencePeriod", in: json, context: &instCtx, owner: self) ?? occurrencePeriod
 		parent = createInstance(type: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
@@ -113,12 +113,12 @@ open class RiskAssessment: DomainResource {
 		self.basedOn?.decorate(json: &json, withKey: "basedOn", errors: &errors)
 		arrayDecorate(json: &json, withKey: "basis", using: self.basis, errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		self.condition?.decorate(json: &json, withKey: "condition", errors: &errors)
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.method?.decorate(json: &json, withKey: "method", errors: &errors)
 		self.mitigation?.decorate(json: &json, withKey: "mitigation", errors: &errors)
-		self.note?.decorate(json: &json, withKey: "note", errors: &errors)
 		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
 		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)
 		self.parent?.decorate(json: &json, withKey: "parent", errors: &errors)

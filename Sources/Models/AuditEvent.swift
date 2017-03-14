@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -316,6 +316,8 @@ open class AuditEventEntity: BackboneElement {
 
 /**
 Additional Information about the entity.
+
+Tagged value pairs for conveying additional information about the entity.
 */
 open class AuditEventEntityDetail: BackboneElement {
 	override open class var resourceType: String {

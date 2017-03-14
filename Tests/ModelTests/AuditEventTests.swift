@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -53,7 +53,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].requestor, false)
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.id, "example-login")
 		XCTAssertEqual(inst.outcome, "0")
@@ -65,11 +65,11 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
 		XCTAssertEqual(inst.subtype?[0].code, "110122")
 		XCTAssertEqual(inst.subtype?[0].display, "Login")
-		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110114")
 		XCTAssertEqual(inst.type?.display, "User Authentication")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		
 		return inst
 	}
@@ -101,7 +101,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].requestor, false)
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.id, "example-logout")
 		XCTAssertEqual(inst.outcome, "0")
@@ -113,11 +113,11 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
 		XCTAssertEqual(inst.subtype?[0].code, "110123")
 		XCTAssertEqual(inst.subtype?[0].display, "Logout")
-		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110114")
 		XCTAssertEqual(inst.type?.display, "User Authentication")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		
 		return inst
 	}
@@ -140,7 +140,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].requestor, false)
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "ExportToMedia.app")
 		XCTAssertEqual(inst.agent?[1].altId, "601847123")
 		XCTAssertEqual(inst.agent?[1].name, "Grahame Grieve")
@@ -148,7 +148,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].userId?.value, "95")
 		XCTAssertEqual(inst.agent?[2].media?.code, "110033")
 		XCTAssertEqual(inst.agent?[2].media?.display, "DVD")
-		XCTAssertEqual(inst.agent?[2].media?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[2].media?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[2].name, "Media title: Hello World")
 		XCTAssertEqual(inst.agent?[2].requestor, false)
 		XCTAssertEqual(inst.entity?[0].identifier?.value, "e3cdfc81a0d24bd^^^&2.16.840.1.113883.4.2&ISO")
@@ -182,7 +182,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110106")
 		XCTAssertEqual(inst.type?.display, "Export")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		
 		return inst
 	}
@@ -208,7 +208,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].requestor, false)
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.agent?[1].altId, "601847123")
 		XCTAssertEqual(inst.agent?[1].name, "Grahame Grieve")
@@ -239,7 +239,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110112")
 		XCTAssertEqual(inst.type?.display, "Query")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		
 		return inst
 	}
@@ -269,7 +269,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].requestor, false)
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.entity?[0].query, Base64Binary(value: "aHR0cDovL2ZoaXItZGV2LmhlYWx0aGludGVyc2VjdGlvbnMuY29tLmF1L29wZW4vRW5jb3VudGVyP3BhcnRpY2lwYW50PTEz"))
 		XCTAssertEqual(inst.entity?[0].role?.code, "24")
@@ -322,11 +322,11 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].requestor, false)
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.entity?[0].lifecycle?.code, "6")
 		XCTAssertEqual(inst.entity?[0].lifecycle?.display, "Access / Use")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/object-lifecycle")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/dicom-audit-lifecycle")
 		XCTAssertEqual(inst.entity?[0].reference?.reference, "Patient/example/_history/1")
 		XCTAssertEqual(inst.entity?[0].type?.code, "2")
 		XCTAssertEqual(inst.entity?[0].type?.display, "System Object")
@@ -374,7 +374,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].requestor, true)
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "SomeIdiot@nowhere.com")
 		XCTAssertEqual(inst.agent?[1].network?.address, "marketing.land")
 		XCTAssertEqual(inst.agent?[1].network?.type, "1")
@@ -385,12 +385,12 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].requestor, false)
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110152")
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Destination Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "Where")
 		XCTAssertEqual(inst.entity?[0].reference?.reference, "Patient/example")
 		XCTAssertEqual(inst.entity?[0].role?.code, "1")
 		XCTAssertEqual(inst.entity?[0].role?.display, "Patient")
-		XCTAssertEqual(inst.entity?[0].role?.system?.absoluteString, "http://hl7.org/fhir/valueset-object-role")
+		XCTAssertEqual(inst.entity?[0].role?.system?.absoluteString, "http://hl7.org/fhir/object-role")
 		XCTAssertEqual(inst.entity?[0].type?.code, "1")
 		XCTAssertEqual(inst.entity?[0].type?.display, "Person")
 		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
@@ -398,12 +398,12 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.entity?[1].identifier?.value, "What.id")
 		XCTAssertEqual(inst.entity?[1].lifecycle?.code, "11")
 		XCTAssertEqual(inst.entity?[1].lifecycle?.display, "Disclosure")
-		XCTAssertEqual(inst.entity?[1].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/object-lifecycle")
+		XCTAssertEqual(inst.entity?[1].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/dicom-audit-lifecycle")
 		XCTAssertEqual(inst.entity?[1].name, "Namne of What")
 		XCTAssertEqual(inst.entity?[1].reference?.reference, "Patient/example/_history/1")
 		XCTAssertEqual(inst.entity?[1].role?.code, "4")
-		XCTAssertEqual(inst.entity?[1].role?.display, "DomainResource")
-		XCTAssertEqual(inst.entity?[1].role?.system?.absoluteString, "http://hl7.org/fhir/valueset-object-role")
+		XCTAssertEqual(inst.entity?[1].role?.display, "Domain Resource")
+		XCTAssertEqual(inst.entity?[1].role?.system?.absoluteString, "http://hl7.org/fhir/object-role")
 		XCTAssertEqual(inst.entity?[1].securityLabel?[0].code, "V")
 		XCTAssertEqual(inst.entity?[1].securityLabel?[0].display, "very restricted")
 		XCTAssertEqual(inst.entity?[1].securityLabel?[0].system?.absoluteString, "http://hl7.org/fhir/v3/Confidentiality")
@@ -434,7 +434,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110106")
 		XCTAssertEqual(inst.type?.display, "Export")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		
 		return inst
 	}
@@ -465,7 +465,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].requestor, false)
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
 		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.entity?[0].identifier?.type?.coding?[0].code, "SNO")
 		XCTAssertEqual(inst.entity?[0].identifier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
@@ -473,7 +473,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.entity?[0].identifier?.value, "ABCDEF")
 		XCTAssertEqual(inst.entity?[0].lifecycle?.code, "6")
 		XCTAssertEqual(inst.entity?[0].lifecycle?.display, "Access / Use")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/object-lifecycle")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/dicom-audit-lifecycle")
 		XCTAssertEqual(inst.entity?[0].name, "Grahame's Laptop")
 		XCTAssertEqual(inst.entity?[0].role?.code, "4")
 		XCTAssertEqual(inst.entity?[0].role?.display, "Domain Resource")
@@ -486,16 +486,17 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.recorded?.description, "2012-10-25T22:04:27+11:00")
 		XCTAssertEqual(inst.source?.identifier?.value, "Grahame's Laptop")
 		XCTAssertEqual(inst.source?.site, "Development")
-		XCTAssertEqual(inst.source?.type?[0].code, "1")
-		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/audit-event-sub-type")
+		XCTAssertEqual(inst.source?.type?[0].code, "110122")
+		XCTAssertEqual(inst.source?.type?[0].display, "Login")
+		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.subtype?[0].code, "110120")
 		XCTAssertEqual(inst.subtype?[0].display, "Application Start")
-		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Application Start for under service login &quot;Grahame&quot; (id: Grahame's Test HL7Connect)</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.code, "110100")
 		XCTAssertEqual(inst.type?.display, "Application Activity")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://nema.org/dicom/dicm")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		
 		return inst
 	}

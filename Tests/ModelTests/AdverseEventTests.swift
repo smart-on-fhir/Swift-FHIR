@@ -2,7 +2,7 @@
 //  AdverseEventTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -49,7 +49,7 @@ class AdverseEventTests: XCTestCase {
 		XCTAssertEqual(inst.recorder?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.seriousness?.coding?[0].code, "Mild")
 		XCTAssertEqual(inst.seriousness?.coding?[0].display, "Mild")
-		XCTAssertEqual(inst.seriousness?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ValueSet/adverse-event-seriousness")
+		XCTAssertEqual(inst.seriousness?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/adverse-event-seriousness")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.suspectEntity?[0].instance?.reference, "Medication/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

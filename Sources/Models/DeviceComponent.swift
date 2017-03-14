@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
 An instance of a medical-related component of a medical device.
 
-Describes the characteristics, operational status and capabilities of a medical-related component of a medical device.
+The characteristics, operational status and capabilities of a medical-related component of a medical device.
 */
 open class DeviceComponent: DomainResource {
 	override open class var resourceType: String {
@@ -28,10 +28,10 @@ open class DeviceComponent: DomainResource {
 	/// Recent system change timestamp.
 	public var lastSystemChange: Instant?
 	
-	/// Describes the physical principle of the measurement. For example: thermal, chemical, acoustical, etc.
+	/// The physical principle of the measurement. For example: thermal, chemical, acoustical, etc.
 	public var measurementPrinciple: MeasmntPrinciple?
 	
-	/// Component operational status.
+	/// Current operational status of the component, for example On, Off or Standby.
 	public var operationalStatus: [CodeableConcept]?
 	
 	/// Current supported parameter group.
@@ -40,10 +40,10 @@ open class DeviceComponent: DomainResource {
 	/// Parent resource link.
 	public var parent: Reference?
 	
-	/// Production specification of the component.
+	/// Specification details such as Component Revisions, or Serial Numbers.
 	public var productionSpecification: [DeviceComponentProductionSpecification]?
 	
-	/// A source device of this component.
+	/// Top-level device resource link.
 	public var source: Reference?
 	
 	/// What kind of component it is.
@@ -110,9 +110,9 @@ open class DeviceComponent: DomainResource {
 
 
 /**
-Production specification of the component.
+Specification details such as Component Revisions, or Serial Numbers.
 
-Describes the production specification such as component revision, serial number, etc.
+The production specification such as component revision, serial number, etc.
 */
 open class DeviceComponentProductionSpecification: BackboneElement {
 	override open class var resourceType: String {
@@ -125,7 +125,7 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 	/// A printable string defining the component.
 	public var productionSpec: FHIRString?
 	
-	/// Specification type.
+	/// Type or kind of production specification, for example serial number or software revision.
 	public var specType: CodeableConcept?
 	
 	

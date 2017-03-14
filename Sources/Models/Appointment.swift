@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ open class Appointment: DomainResource {
 	/// Reason this appointment is scheduled.
 	public var reason: [CodeableConcept]?
 	
-	/// Potential date/time interval(s) requested to allocate the appointment during.
+	/// Potential date/time interval(s) requested to allocate the appointment within.
 	public var requestedPeriod: [Period]?
 	
 	/// A broad categorisation of the service that is to be performed during this appointment.
@@ -169,7 +169,7 @@ open class AppointmentParticipant: BackboneElement {
 	/// to discuss the results for a specific patient, and the patient is not required to be present.
 	public var required: ParticipantRequired?
 	
-	/// Participation status of the Patient.
+	/// Participation status of the actor.
 	public var status: ParticipationStatus?
 	
 	/// Role of participant in the appointment.

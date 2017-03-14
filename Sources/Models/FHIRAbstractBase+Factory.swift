@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -704,20 +704,20 @@ extension FHIRAbstractBase {
 				if let res = PersonLink(json: json, owner: owner, context: &context) as? T { return res }
 			case "PlanDefinition":
 				if let res = PlanDefinition(json: json, owner: owner, context: &context) as? T { return res }
-			case "PlanDefinitionActionDefinition":
-				if let res = PlanDefinitionActionDefinition(json: json, owner: owner, context: &context) as? T { return res }
-			case "PlanDefinitionActionDefinitionCondition":
-				if let res = PlanDefinitionActionDefinitionCondition(json: json, owner: owner, context: &context) as? T { return res }
-			case "PlanDefinitionActionDefinitionDynamicValue":
-				if let res = PlanDefinitionActionDefinitionDynamicValue(json: json, owner: owner, context: &context) as? T { return res }
-			case "PlanDefinitionActionDefinitionParticipant":
-				if let res = PlanDefinitionActionDefinitionParticipant(json: json, owner: owner, context: &context) as? T { return res }
-			case "PlanDefinitionActionDefinitionRelatedAction":
-				if let res = PlanDefinitionActionDefinitionRelatedAction(json: json, owner: owner, context: &context) as? T { return res }
-			case "PlanDefinitionGoalDefinition":
-				if let res = PlanDefinitionGoalDefinition(json: json, owner: owner, context: &context) as? T { return res }
-			case "PlanDefinitionGoalDefinitionTarget":
-				if let res = PlanDefinitionGoalDefinitionTarget(json: json, owner: owner, context: &context) as? T { return res }
+			case "PlanDefinitionAction":
+				if let res = PlanDefinitionAction(json: json, owner: owner, context: &context) as? T { return res }
+			case "PlanDefinitionActionCondition":
+				if let res = PlanDefinitionActionCondition(json: json, owner: owner, context: &context) as? T { return res }
+			case "PlanDefinitionActionDynamicValue":
+				if let res = PlanDefinitionActionDynamicValue(json: json, owner: owner, context: &context) as? T { return res }
+			case "PlanDefinitionActionParticipant":
+				if let res = PlanDefinitionActionParticipant(json: json, owner: owner, context: &context) as? T { return res }
+			case "PlanDefinitionActionRelatedAction":
+				if let res = PlanDefinitionActionRelatedAction(json: json, owner: owner, context: &context) as? T { return res }
+			case "PlanDefinitionGoal":
+				if let res = PlanDefinitionGoal(json: json, owner: owner, context: &context) as? T { return res }
+			case "PlanDefinitionGoalTarget":
+				if let res = PlanDefinitionGoalTarget(json: json, owner: owner, context: &context) as? T { return res }
 			case "Practitioner":
 				if let res = Practitioner(json: json, owner: owner, context: &context) as? T { return res }
 			case "PractitionerQualification":

@@ -2,7 +2,7 @@
 //  CapabilityStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -57,7 +57,8 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.implementation?.description_fhir, "main EHR at ACME")
 		XCTAssertEqual(inst.implementation?.url?.absoluteString, "http://10.2.3.4/fhir")
-		XCTAssertEqual(inst.implementationGuide?[0].absoluteString, "http://hl7.org/fhir/uslab")
+		XCTAssertEqual(inst.implementationGuide?[0].absoluteString, "http://hl7.org/fhir/us/lab")
+		XCTAssertEqual(inst.instantiates?[0].absoluteString, "http://ihe.org/fhir/CapabilityStatement/pixm-client")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
@@ -68,20 +69,20 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.messaging?[0].endpoint?[0].protocol_fhir?.system?.absoluteString, "http://hl7.org/fhir/message-transport")
 		XCTAssertEqual(inst.messaging?[0].event?[0].category, MessageSignificanceCategory(rawValue: "Consequence")!)
 		XCTAssertEqual(inst.messaging?[0].event?[0].code?.code, "admin-notify")
-		XCTAssertEqual(inst.messaging?[0].event?[0].code?.system?.absoluteString, "http://hl7.org/fhir/message-type")
+		XCTAssertEqual(inst.messaging?[0].event?[0].code?.system?.absoluteString, "http://hl7.org/fhir/message-events")
 		XCTAssertEqual(inst.messaging?[0].event?[0].documentation, "Notification of an update to a patient resource. changing the links is not supported")
 		XCTAssertEqual(inst.messaging?[0].event?[0].focus, "Patient")
 		XCTAssertEqual(inst.messaging?[0].event?[0].mode, EventCapabilityMode(rawValue: "receiver")!)
-		XCTAssertEqual(inst.messaging?[0].event?[0].request?.reference, "StructureDefinition/daf-patient")
+		XCTAssertEqual(inst.messaging?[0].event?[0].request?.reference, "StructureDefinition/Patient")
 		XCTAssertEqual(inst.messaging?[0].event?[0].response?.reference, "StructureDefinition/MessageHeader")
 		XCTAssertEqual(inst.messaging?[0].reliableCache, 30)
 		XCTAssertEqual(inst.name, "ACME-EHR")
 		XCTAssertEqual(inst.patchFormat?[0], "application/xml-patch+xml")
 		XCTAssertEqual(inst.patchFormat?[1], "application/json-patch+json")
-		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient")
+		XCTAssertEqual(inst.profile?[0].reference, "http://hl7.org/fhir/us/core/StructureDefinition/familymemberhistory-genetic")
 		XCTAssertEqual(inst.publisher, "ACME Corporation")
 		XCTAssertEqual(inst.purpose, "Main EHR capability statement, published for contracting and operational support")
-		XCTAssertEqual(inst.rest?[0].compartment?[0].absoluteString, "http://hl7.org/fhir/compartment/Patient")
+		XCTAssertEqual(inst.rest?[0].compartment?[0].absoluteString, "http://hl7.org/fhir/CompartmentDefinition/patient")
 		XCTAssertEqual(inst.rest?[0].documentation, "Main FHIR endpoint for acem health")
 		XCTAssertEqual(inst.rest?[0].interaction?[0].code, FHIRRestfulInteractions(rawValue: "transaction")!)
 		XCTAssertEqual(inst.rest?[0].interaction?[1].code, FHIRRestfulInteractions(rawValue: "history-system")!)
@@ -105,8 +106,8 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].documentation, "Only supports search by institution MRN")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].name, "identifier")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].type, SearchParamType(rawValue: "token")!)
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-careprovider")
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].name, "careprovider")
+		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-general-practitioner")
+		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].name, "general-practitioner")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].type, SearchParamType(rawValue: "reference")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchRevInclude?[0], "Person")
 		XCTAssertEqual(inst.rest?[0].resource?[0].type, "Patient")
@@ -124,7 +125,7 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "ACME EHR capability statement")
-		XCTAssertEqual(inst.url?.absoluteString, "68D043B5-9ECF-4559-A57A-396E0D452311")
+		XCTAssertEqual(inst.url?.absoluteString, "urn:uuid:68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.useContext?[0].code?.code, "focus")
 		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")
 		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].code, "positive")

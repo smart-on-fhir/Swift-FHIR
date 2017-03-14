@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -80,7 +80,7 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/pat1")
 		XCTAssertEqual(inst.payee?.party?.reference, "Organization/2")
 		XCTAssertEqual(inst.payee?.type?.coding?[0].code, "provider")
-		XCTAssertEqual(inst.payee?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ValueSet/payeetype")
+		XCTAssertEqual(inst.payee?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/payeetype")
 		XCTAssertEqual(inst.provider?.reference, "Practitioner/1")
 		XCTAssertEqual(inst.status, ExplanationOfBenefitStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ExplanationOfBenefit</div>")

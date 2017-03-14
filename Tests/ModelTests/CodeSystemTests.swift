@@ -2,7 +2,7 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -38,6 +38,45 @@ class CodeSystemTests: XCTestCase {
 	
 	@discardableResult
 	func runCodeSystem1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-example-summary.json")
+		
+		XCTAssertEqual(inst.caseSensitive, true)
+		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "not-present")!)
+		XCTAssertEqual(inst.count, 92)
+		XCTAssertEqual(inst.description_fhir, "This is an example code system summary for the ACME codes for body site.")
+		XCTAssertEqual(inst.experimental, true)
+		XCTAssertEqual(inst.id, "summary")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "CA")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
+		XCTAssertEqual(inst.name, "Code system summary example for ACME body sites")
+		XCTAssertEqual(inst.publisher, "HL7 International")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/CodeSystem/summary")
+		XCTAssertEqual(inst.useContext?[0].code?.code, "species")
+		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://example.org/CodeSystem/contexttype")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].code, "337915000")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].display, "Homo sapiens (organism)")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		
+		return inst
+	}
+	
+	func testCodeSystem2() {
+		do {
+			let instance = try runCodeSystem2()
+			try runCodeSystem2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runCodeSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-example.json")
 		
 		XCTAssertEqual(inst.caseSensitive, true)
@@ -69,7 +108,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://acme.com/identifiers/codesystems")
 		XCTAssertEqual(inst.identifier?.value, "internal-cholesterol-inl")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
 		XCTAssertEqual(inst.name, "ACME Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -80,10 +119,10 @@ class CodeSystemTests: XCTestCase {
 		return inst
 	}
 	
-	func testCodeSystem2() {
+	func testCodeSystem3() {
 		do {
-			let instance = try runCodeSystem2()
-			try runCodeSystem2(instance.asJSON())
+			let instance = try runCodeSystem3()
+			try runCodeSystem3(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
@@ -91,7 +130,7 @@ class CodeSystemTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCodeSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
+	func runCodeSystem3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-list-example-codes.json")
 		
 		XCTAssertEqual(inst.caseSensitive, true)
@@ -129,9 +168,9 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
-		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.173")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-02-24T14:45:13.708+00:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition")
+		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.308")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-03-14T06:25:31.015+00:00")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)

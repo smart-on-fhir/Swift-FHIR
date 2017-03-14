@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -20,45 +20,72 @@ open class Questionnaire: DomainResource {
 		get { return "Questionnaire" }
 	}
 	
+	/// When the questionnaire was approved by publisher.
+	public var approvalDate: FHIRDate?
+	
 	/// Concept that represents the overall questionnaire.
 	public var code: [Coding]?
 	
-	/// Date this version was authored.
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
+	
+	/// Use and/or publishing restrictions.
+	public var copyright: FHIRString?
+	
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// External identifiers for this questionnaire.
+	/// Natural language description of the questionnaire.
+	public var description_fhir: FHIRString?
+	
+	/// When the questionnaire is effective.
+	public var effectivePeriod: Period?
+	
+	/// If for testing purposes, not real usage.
+	public var experimental: FHIRBool?
+	
+	/// Additional identifier for the questionnaire.
 	public var identifier: [Identifier]?
 	
 	/// Questions and sections within the Questionnaire.
 	public var item: [QuestionnaireItem]?
 	
-	/// Organization/individual who designed the questionnaire.
+	/// Intended jurisdiction for questionnaire (if applicable).
+	public var jurisdiction: [CodeableConcept]?
+	
+	/// When the questionnaire was last reviewed.
+	public var lastReviewDate: FHIRDate?
+	
+	/// Name for this questionnaire (Computer friendly).
+	public var name: FHIRString?
+	
+	/// Name of the publisher (Organization or individual).
 	public var publisher: FHIRString?
 	
-	/// The lifecycle status of the questionnaire as a whole.
-	public var status: QuestionnaireStatus?
+	/// Why this questionnaire is defined.
+	public var purpose: FHIRString?
+	
+	/// The status of this questionnaire. Enables tracking the life-cycle of the content.
+	public var status: PublicationStatus?
 	
 	/// Resource that can be subject of QuestionnaireResponse.
 	public var subjectType: [FHIRString]?
 	
-	/// Contact information of the publisher.
-	public var telecom: [ContactPoint]?
-	
-	/// Name for the questionnaire.
+	/// Name for this questionnaire (Human friendly).
 	public var title: FHIRString?
 	
-	/// Globally unique logical identifier for  questionnaire.
+	/// Logical uri to reference this questionnaire (globally unique).
 	public var url: FHIRURL?
 	
-	/// Questionnaire intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	/// Content intends to support these contexts.
+	public var useContext: [UsageContext]?
 	
-	/// Logical identifier for this version of Questionnaire.
+	/// Business version of the questionnaire.
 	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: QuestionnaireStatus) {
+	public convenience init(status: PublicationStatus) {
 		self.init()
 		self.status = status
 	}
@@ -67,37 +94,55 @@ open class Questionnaire: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		approvalDate = createInstance(type: FHIRDate.self, for: "approvalDate", in: json, context: &instCtx, owner: self) ?? approvalDate
 		code = createInstances(of: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
+		copyright = createInstance(type: FHIRString.self, for: "copyright", in: json, context: &instCtx, owner: self) ?? copyright
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		effectivePeriod = createInstance(type: Period.self, for: "effectivePeriod", in: json, context: &instCtx, owner: self) ?? effectivePeriod
+		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		item = createInstances(of: QuestionnaireItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
+		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
+		lastReviewDate = createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, context: &instCtx, owner: self) ?? lastReviewDate
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
-		status = createEnum(type: QuestionnaireStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
+		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		subjectType = createInstances(of: FHIRString.self, for: "subjectType", in: json, context: &instCtx, owner: self) ?? subjectType
-		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
-		useContext = createInstances(of: CodeableConcept.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
+		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
 		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.approvalDate?.decorate(json: &json, withKey: "approvalDate", errors: &errors)
 		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
+		arrayDecorate(json: &json, withKey: "contact", using: self.contact, errors: &errors)
+		self.copyright?.decorate(json: &json, withKey: "copyright", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
+		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
+		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
+		self.lastReviewDate?.decorate(json: &json, withKey: "lastReviewDate", errors: &errors)
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
+		self.purpose?.decorate(json: &json, withKey: "purpose", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		arrayDecorate(json: &json, withKey: "subjectType", using: self.subjectType, errors: &errors)
-		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
 		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
 		arrayDecorate(json: &json, withKey: "useContext", using: self.useContext, errors: &errors)

@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -52,20 +52,20 @@ class PaymentReconciliationTests: XCTestCase {
 		XCTAssertEqual(inst.detail?[0].response?.identifier?.value, "CR20140815-AB12345")
 		XCTAssertEqual(inst.detail?[0].submitter?.reference, "Organization/1")
 		XCTAssertEqual(inst.detail?[0].type?.coding?[0].code, "payment")
-		XCTAssertEqual(inst.detail?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/paymenttype")
+		XCTAssertEqual(inst.detail?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/payment-type")
 		XCTAssertEqual(inst.detail?[1].amount?.code, "USD")
 		XCTAssertEqual(inst.detail?[1].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.detail?[1].amount?.value, "4000.0")
 		XCTAssertEqual(inst.detail?[1].date?.description, "2014-08-12")
 		XCTAssertEqual(inst.detail?[1].request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332699")
 		XCTAssertEqual(inst.detail?[1].type?.coding?[0].code, "payment")
-		XCTAssertEqual(inst.detail?[1].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/paymenttype")
+		XCTAssertEqual(inst.detail?[1].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/payment-type")
 		XCTAssertEqual(inst.detail?[2].amount?.code, "USD")
 		XCTAssertEqual(inst.detail?[2].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.detail?[2].amount?.value, "-1500.0")
 		XCTAssertEqual(inst.detail?[2].date?.description, "2014-08-16")
 		XCTAssertEqual(inst.detail?[2].type?.coding?[0].code, "advance")
-		XCTAssertEqual(inst.detail?[2].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/paymenttype")
+		XCTAssertEqual(inst.detail?[2].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/payment-type")
 		XCTAssertEqual(inst.disposition, "2014 August mid-month settlement.")
 		XCTAssertEqual(inst.form?.coding?[0].code, "PAYREC/2016/01B")
 		XCTAssertEqual(inst.form?.coding?[0].system?.absoluteString, "http://ncforms.org/formid")

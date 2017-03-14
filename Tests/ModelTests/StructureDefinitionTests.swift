@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -45,7 +45,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].name, "Grahame Grieve")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "email")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "grahame@healthintersections.com.au")
-		XCTAssertEqual(inst.copyright, "Createive Commons 0, per FHIR specification")
+		XCTAssertEqual(inst.copyright, "Creative Commons 0, per FHIR specification")
 		XCTAssertEqual(inst.date?.description, "2012-05-12")
 		XCTAssertEqual(inst.derivation, TypeDerivationRule(rawValue: "constraint")!)
 		XCTAssertEqual(inst.description_fhir, "Describes how the lab report is used for a standard Lipid Profile - Cholesterol, Triglyceride and Cholesterol fractions. Uses LOINC codes")
@@ -57,7 +57,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "AU")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		XCTAssertEqual(inst.keyword?[0].code, "314079002")
-		XCTAssertEqual(inst.keyword?[0].display, "314079002")
+		XCTAssertEqual(inst.keyword?[0].display, "Hyperlipidemia screening test (procedure)")
 		XCTAssertEqual(inst.keyword?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.kind, StructureDefinitionKind(rawValue: "resource")!)
 		XCTAssertEqual(inst.mapping?[0].comment, "Actual mappings haven't yet been filled out")
@@ -156,10 +156,14 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[6].min, 1)
 		XCTAssertEqual(inst.snapshot?.element?[6].path, "DiagnosticReport.subject")
 		XCTAssertEqual(inst.snapshot?.element?[6].short, "The subject of the report")
+		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].aggregation?[0], AggregationMode(rawValue: "bundled")!)
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].code?.absoluteString, "Reference")
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Patient")
+		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].versioning, ReferenceVersionRules(rawValue: "either")!)
+		XCTAssertEqual(inst.snapshot?.element?[6].type?[1].aggregation?[0], AggregationMode(rawValue: "bundled")!)
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[1].code?.absoluteString, "Reference")
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[1].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Group")
+		XCTAssertEqual(inst.snapshot?.element?[6].type?[2].aggregation?[0], AggregationMode(rawValue: "bundled")!)
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[2].code?.absoluteString, "Reference")
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[2].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Device")
 		XCTAssertEqual(inst.snapshot?.element?[7].base?.max, "1")
@@ -174,7 +178,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[7].path, "DiagnosticReport.performer")
 		XCTAssertEqual(inst.snapshot?.element?[7].short, "Responsible Diagnostic Service")
 		XCTAssertEqual(inst.snapshot?.element?[7].type?[0].code?.absoluteString, "Reference")
-		XCTAssertEqual(inst.snapshot?.element?[7].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Observation")
+		XCTAssertEqual(inst.snapshot?.element?[7].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Organization")
 		XCTAssertEqual(inst.snapshot?.element?[8].base?.max, "*")
 		XCTAssertEqual(inst.snapshot?.element?[8].base?.min, 0)
 		XCTAssertEqual(inst.snapshot?.element?[8].base?.path, "DiagnosticReport.identifier")
@@ -196,13 +200,21 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[9].min, 0)
 		XCTAssertEqual(inst.snapshot?.element?[9].path, "DiagnosticReport.request")
 		XCTAssertEqual(inst.snapshot?.element?[9].short, "What was requested")
+		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].aggregation?[0], AggregationMode(rawValue: "referenced")!)
 		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].code?.absoluteString, "Reference")
 		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/ProcedureRequest")
+		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].versioning, ReferenceVersionRules(rawValue: "specific")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Example Lipid Profile")
 		XCTAssertEqual(inst.type, "DiagnosticReport")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/example")
+		XCTAssertEqual(inst.useContext?[0].code?.code, "focus")
+		XCTAssertEqual(inst.useContext?[0].code?.display, "Clinical Focus")
+		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].code, "314079002")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].display, "Hyperlipidemia screening test (procedure)")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.version, "2")
 		
 		return inst

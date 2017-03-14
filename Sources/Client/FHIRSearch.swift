@@ -460,13 +460,19 @@ struct FHIRSearchConstructModifierHandler: FHIRSearchConstructHandler
 }
 
 
-struct FHIRSearchConstructOperatorHandler: FHIRSearchConstructHandler
-{
+/**
+Handles operators applied to search parameters, such as "greater than" ($gt).
+
+See http://build.fhir.org/search.html#number
+*/
+struct FHIRSearchConstructOperatorHandler: FHIRSearchConstructHandler {
+	
 	static let map = [
-		"$gt": "%3E",           // NSURL() fails if un-encoded ">" and "<" are present in the query part
-		"$lt": "%3C",
-		"$lte": "%3C%3D",       // NSURL() does not fail on "=" but let's also encode these to be consistent
-		"$gte": "%3E%3D",
+		"$gt": "gt",
+		"$lt": "lt",
+		"$le": "le",
+		"$ge": "ge",
+		"$ne": "ne",
 	]
 	
 	func handles(_ key: String) -> Bool {

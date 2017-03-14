@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -124,9 +124,9 @@ class SlotTests: XCTestCase {
 	func runSlot4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSlot {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example.json")
 		
-		XCTAssertEqual(inst.appointmentType?.coding?[0].code, "walkin")
+		XCTAssertEqual(inst.appointmentType?.coding?[0].code, "WALKIN")
 		XCTAssertEqual(inst.appointmentType?.coding?[0].display, "A previously unscheduled walk-in visit")
-		XCTAssertEqual(inst.appointmentType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2-0276")
+		XCTAssertEqual(inst.appointmentType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0276")
 		XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end?.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.id, "example")

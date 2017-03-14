@@ -55,7 +55,7 @@ class FHIRSearchTests: XCTestCase {
 		url = base + srch.construct()
 		pairs = URL(string: url)!.queryPairs()
 		XCTAssertTrue(pairs.contains("subject:Patient.name=maud"), "The query should contain \"subject:Patient.name=maud\" but doesn't: \(pairs)")
-		XCTAssertTrue(pairs.contains("subject:Patient.birthDate=>1970"), "The query should contain \"subject:Patient.birthDate=>1970\" but doesn't: \(pairs)")
+		XCTAssertTrue(pairs.contains("subject:Patient.birthDate=gt1970"), "The query should contain \"subject:Patient.birthDate=gt1970\" but doesn't: \(pairs)")
     }
 }
 

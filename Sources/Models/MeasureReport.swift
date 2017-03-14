@@ -2,7 +2,7 @@
 //  MeasureReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -27,6 +27,9 @@ open class MeasureReport: DomainResource {
 	
 	/// Measure results for each group.
 	public var group: [MeasureReportGroup]?
+	
+	/// Additional identifier for the Report.
+	public var identifier: Identifier?
 	
 	/// Measure that was evaluated.
 	public var measure: Reference?
@@ -65,6 +68,7 @@ open class MeasureReport: DomainResource {
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		evaluatedResources = createInstance(type: Reference.self, for: "evaluatedResources", in: json, context: &instCtx, owner: self) ?? evaluatedResources
 		group = createInstances(of: MeasureReportGroup.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		measure = createInstance(type: Reference.self, for: "measure", in: json, context: &instCtx, owner: self) ?? measure
 		if nil == measure && !instCtx.containsKey("measure") {
 			instCtx.addError(FHIRValidationError(missing: "measure"))
@@ -91,6 +95,7 @@ open class MeasureReport: DomainResource {
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.evaluatedResources?.decorate(json: &json, withKey: "evaluatedResources", errors: &errors)
 		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.measure?.decorate(json: &json, withKey: "measure", errors: &errors)
 		if nil == self.measure {
 			errors.append(FHIRValidationError(missing: "measure"))

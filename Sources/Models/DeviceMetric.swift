@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -47,10 +47,10 @@ open class DeviceMetric: DomainResource {
 	/// Describes the link to the source Device.
 	public var source: Reference?
 	
-	/// Type of metric.
+	/// Identity of metric, for example Heart Rate or PEEP Setting.
 	public var type: CodeableConcept?
 	
-	/// Unit of metric.
+	/// Unit of Measure for the Metric.
 	public var unit: CodeableConcept?
 	
 	

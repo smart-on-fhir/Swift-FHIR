@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -42,8 +42,7 @@ class AllergyIntoleranceTests: XCTestCase {
 		
 		XCTAssertEqual(inst.assertedDate?.description, "2014-10-09T14:58:00+11:00")
 		XCTAssertEqual(inst.asserter?.reference, "Patient/example")
-		XCTAssertEqual(inst.category?[0].coding?[0].code, "food")
-		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/allergy-intolerance-category")
+		XCTAssertEqual(inst.category?[0], AllergyIntoleranceCategory(rawValue: "food")!)
 		XCTAssertEqual(inst.clinicalStatus, AllergyIntoleranceClinicalStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.code?.coding?[0].code, "227493005")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Cashew nuts")

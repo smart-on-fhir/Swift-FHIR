@@ -2,7 +2,7 @@
 //  MeasureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -40,7 +40,7 @@ class MeasureTests: XCTestCase {
 	func runMeasure1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMeasure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "measure-cms146-example.json")
 		
-		XCTAssertEqual(inst.description_fhir, "Percentage of children 2-18 years of age who were diagnosed with pharyngitis, ordered an antibiotic and received a group A streptococcus (strep) test for the episode.")
+		XCTAssertEqual(inst.description_fhir, "Percentage of children 3-18 years of age who were diagnosed with pharyngitis, ordered an antibiotic and received a group A streptococcus (strep) test for the episode.")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.group?[0].identifier?.value, "CMS146-group-1")
 		XCTAssertEqual(inst.group?[0].population?[0].code?.coding?[0].code, "initial-population")
@@ -61,6 +61,7 @@ class MeasureTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].stratifier?[1].identifier?.value, "stratifier-ages-10-plus")
 		XCTAssertEqual(inst.group?[0].stratifier?[2].identifier?.value, "stratifier-ages-up-to-9")
 		XCTAssertEqual(inst.group?[0].stratifier?[2].path, "Patient.gender")
+		XCTAssertEqual(inst.guidance, "This is an episode of care measure that examines all eligible episodes for the patient during the measurement period. If the patient has more than one episode, include all episodes in the measure")
 		XCTAssertEqual(inst.id, "measure-cms146-example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://hl7.org/fhir/cqi/ecqm/Measure/Identifier/cms")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
@@ -68,7 +69,14 @@ class MeasureTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "http://hl7.org/fhir/cqi/ecqm/Measure/Identifier/nqf")
 		XCTAssertEqual(inst.identifier?[1].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[1].value, "0002")
+		XCTAssertEqual(inst.improvementNotation, "Higher score indicates better quality")
 		XCTAssertEqual(inst.library?[0].reference, "Library/library-cms146-example")
+		XCTAssertEqual(inst.purpose, "Measure of children with a group A streptococcus test in the 7-day period from 3 days prior through 3 days after the diagnosis of pharyngitis")
+		XCTAssertEqual(inst.relatedArtifact?[0].citation, "Linder, J.A., D.W. Bates, G.M. Lee, J.A. Finkelstein. 2005. \"Antibiotic treatment of children with sore throat.\" JAMA 294(18):2315-2322. ")
+		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "documentation")!)
+		XCTAssertEqual(inst.relatedArtifact?[1].citation, "Infectious Diseases Society of America. 2012. \"Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update.\" ")
+		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "documentation")!)
+		XCTAssertEqual(inst.relatedArtifact?[2].type, RelatedArtifactType(rawValue: "documentation")!)
 		XCTAssertEqual(inst.scoring?.coding?[0].code, "proportion")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.supplementalData?[0].identifier?.value, "supplemental-data-gender")

@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -61,7 +61,7 @@ open class ImagingStudy: DomainResource {
 	/// The performed procedure code.
 	public var procedureCode: [CodeableConcept]?
 	
-	/// The performed Procedure Reference.
+	/// The performed Procedure reference.
 	public var procedureReference: [Reference]?
 	
 	/// Why the study was requested.
@@ -256,7 +256,7 @@ open class ImagingStudySeries: BackboneElement {
 /**
 A single SOP instance from the series.
 
-A single SOP Instance within the series, e.g. an image, or presentation state.
+A single SOP instance within the series, e.g. an image, or presentation state.
 */
 open class ImagingStudySeriesInstance: BackboneElement {
 	override open class var resourceType: String {

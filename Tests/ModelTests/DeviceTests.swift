@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -170,7 +170,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.safety?[0].coding?[0].code, "mr-unsafe")
 		XCTAssertEqual(inst.safety?[0].coding?[0].display, "MR Unsafe")
-		XCTAssertEqual(inst.safety?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/device-safety")
+		XCTAssertEqual(inst.safety?[0].coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.3.26.1.1")
 		XCTAssertEqual(inst.safety?[0].text, "MR Unsafe")
 		XCTAssertEqual(inst.status, FHIRDeviceStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

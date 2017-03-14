@@ -2,7 +2,7 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -102,7 +102,13 @@ open class ActivityDefinition: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// When activity is to occur.
-	public var timingCodeableConcept: CodeableConcept?
+	public var timingDateTime: DateTime?
+	
+	/// When activity is to occur.
+	public var timingPeriod: Period?
+	
+	/// When activity is to occur.
+	public var timingRange: Range?
 	
 	/// When activity is to occur.
 	public var timingTiming: Timing?
@@ -169,7 +175,9 @@ open class ActivityDefinition: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		timingCodeableConcept = createInstance(type: CodeableConcept.self, for: "timingCodeableConcept", in: json, context: &instCtx, owner: self) ?? timingCodeableConcept
+		timingDateTime = createInstance(type: DateTime.self, for: "timingDateTime", in: json, context: &instCtx, owner: self) ?? timingDateTime
+		timingPeriod = createInstance(type: Period.self, for: "timingPeriod", in: json, context: &instCtx, owner: self) ?? timingPeriod
+		timingRange = createInstance(type: Range.self, for: "timingRange", in: json, context: &instCtx, owner: self) ?? timingRange
 		timingTiming = createInstance(type: Timing.self, for: "timingTiming", in: json, context: &instCtx, owner: self) ?? timingTiming
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		topic = createInstances(of: CodeableConcept.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
@@ -213,7 +221,9 @@ open class ActivityDefinition: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		self.timingCodeableConcept?.decorate(json: &json, withKey: "timingCodeableConcept", errors: &errors)
+		self.timingDateTime?.decorate(json: &json, withKey: "timingDateTime", errors: &errors)
+		self.timingPeriod?.decorate(json: &json, withKey: "timingPeriod", errors: &errors)
+		self.timingRange?.decorate(json: &json, withKey: "timingRange", errors: &errors)
 		self.timingTiming?.decorate(json: &json, withKey: "timingTiming", errors: &errors)
 		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)

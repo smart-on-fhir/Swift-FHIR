@@ -2,7 +2,7 @@
 //  ExpansionProfile.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -233,7 +233,7 @@ open class ExpansionProfileDesignationExcludeDesignation: BackboneElement {
 	/// Human language of the designation to be excluded.
 	public var language: FHIRString?
 	
-	/// Designation use.
+	/// What kind of Designation to exclude.
 	public var use: Coding?
 	
 	
@@ -292,7 +292,7 @@ open class ExpansionProfileDesignationIncludeDesignation: BackboneElement {
 	/// Human language of the designation to be included.
 	public var language: FHIRString?
 	
-	/// Designation use.
+	/// What kind of Designation to include.
 	public var use: Coding?
 	
 	

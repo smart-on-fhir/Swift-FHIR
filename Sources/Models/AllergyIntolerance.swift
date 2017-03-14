@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -26,8 +26,8 @@ open class AllergyIntolerance: DomainResource {
 	/// Source of the information about the allergy.
 	public var asserter: Reference?
 	
-	/// food | medication | environment | biologic.
-	public var category: [CodeableConcept]?
+	/// Category of the identified substance.
+	public var category: [AllergyIntoleranceCategory]?
 	
 	/// The clinical status of the allergy or intolerance.
 	public var clinicalStatus: AllergyIntoleranceClinicalStatus?
@@ -92,7 +92,7 @@ open class AllergyIntolerance: DomainResource {
 		
 		assertedDate = createInstance(type: DateTime.self, for: "assertedDate", in: json, context: &instCtx, owner: self) ?? assertedDate
 		asserter = createInstance(type: Reference.self, for: "asserter", in: json, context: &instCtx, owner: self) ?? asserter
-		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		category = createEnums(of: AllergyIntoleranceCategory.self, for: "category", in: json, context: &instCtx) ?? category
 		clinicalStatus = createEnum(type: AllergyIntoleranceClinicalStatus.self, for: "clinicalStatus", in: json, context: &instCtx) ?? clinicalStatus
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		criticality = createEnum(type: AllergyIntoleranceCriticality.self, for: "criticality", in: json, context: &instCtx) ?? criticality

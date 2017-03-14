@@ -2,7 +2,7 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -531,7 +531,7 @@ public enum AllergyIntoleranceCategory: String {
 
 
 /**
-Statement about the degree of clinical certainty that a specific substance was the cause of the manifestation in an
+Statement about the degree of clinical certainty that a specific substance was the cause of the manifestation in a
 reaction event.
 
 URL: http://hl7.org/fhir/reaction-event-certainty
@@ -617,7 +617,7 @@ public enum AllergyIntoleranceSeverity: String {
 
 
 /**
-The risk of an adverse reaction (allergy or intolerance) for this patient upon xposure to the substance (including
+The risk of an adverse reaction (allergy or intolerance) for this patient upon exposure to the substance (including
 pharmaceutical products).
 
 URL: http://hl7.org/fhir/allerg-intol-substance-exp-risk
@@ -819,7 +819,7 @@ public enum AssertionResponseTypes: String {
 
 
 /**
-Indicator for type of action performed during the event that generated the audit.
+Indicator for type of action performed during the event that generated the event
 
 URL: http://hl7.org/fhir/audit-event-action
 ValueSet: http://hl7.org/fhir/ValueSet/audit-event-action
@@ -989,25 +989,6 @@ public enum CarePlanIntent: String {
 
 
 /**
-Codes identifying the types of relationships between two plans.
-
-URL: http://hl7.org/fhir/care-plan-relationship
-ValueSet: http://hl7.org/fhir/ValueSet/care-plan-relationship
-*/
-public enum CarePlanRelationship: String {
-	
-	/// The referenced plan is considered to be part of this plan.
-	case includes = "includes"
-	
-	/// This plan takes the places of the referenced plan.
-	case replaces = "replaces"
-	
-	/// This plan provides details about how to perform activities defined at a higher level by the referenced plan.
-	case fulfills = "fulfills"
-}
-
-
-/**
 Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.
 
 URL: http://hl7.org/fhir/care-plan-status
@@ -1063,7 +1044,7 @@ public enum CareTeamCategory: String {
 	/// This type of team focuses on overall care coordination managing one or more conditions across the continuum of
 	/// care ensuring there are smooth transitions of care. The members of the team are determined or selected by an
 	/// individual or organization. When determined by an organization, the team may be assigned or based on the
-	/// person’s enrollment in a particular program. For example, disease management team or patient centered medical
+	/// person's enrollment in a particular program. For example, disease management team or patient centered medical
 	/// home team.
 	case longitudinal = "longitudinal"
 	
@@ -1567,8 +1548,8 @@ public enum ConditionalReadStatus: String {
 
 
 /**
-Indicates the degree of adherence to a specified behavior or capability expected in order for a system to be deemed
-conformant with a specification.
+Indicates the degree of adherence to a specified behavior or capability expected for a system to be deemed conformant
+with a specification.
 
 URL: http://hl7.org/fhir/conformance-expectation
 ValueSet: http://hl7.org/fhir/ValueSet/conformance-expectation
@@ -2196,16 +2177,16 @@ ValueSet: http://hl7.org/fhir/ValueSet/metric-calibration-type
 */
 public enum DeviceMetricCalibrationType: String {
 	
-	/// TODO
+	/// Metric calibration method has not been identified.
 	case unspecified = "unspecified"
 	
-	/// TODO
+	/// Offset metric calibration method
 	case offset = "offset"
 	
-	/// TODO
+	/// Gain metric calibration method
 	case gain = "gain"
 	
-	/// TODO
+	/// Two-point metric calibration method
 	case twoPoint = "two-point"
 }
 
@@ -2282,6 +2263,9 @@ public enum DeviceMetricOperationalStatus: String {
 	
 	/// The DeviceMetric is operating, but will not generate any DeviceObservations.
 	case standby = "standby"
+	
+	/// The DeviceMetric was entered in error.
+	case enteredInError = "entered-in-error"
 }
 
 
@@ -3507,93 +3491,6 @@ public enum IssueType: String {
 
 
 /**
-LOINC answer list for Genomic source class
-
-URL: http://hl7.org/fhir/LOINC-48002-0-answerlist
-ValueSet: http://hl7.org/fhir/ValueSet/LOINC-48002-0-answerlist
-*/
-public enum LOINC480020Answerlist: String {
-	
-	/// Germline
-	case LA66832 = "LA6683-2"
-	
-	/// Somatic
-	case LA66840 = "LA6684-0"
-	
-	/// Prenatal
-	case LA104291 = "LA10429-1"
-	
-	/// Likely Germline
-	case LA181943 = "LA18194-3"
-	
-	/// Likely Somatic
-	case LA181950 = "LA18195-0"
-	
-	/// Likely Prenatal
-	case LA181968 = "LA18196-8"
-	
-	/// Unknown Genomic Origin
-	case LA181976 = "LA18197-6"
-}
-
-
-/**
-LOINC answer list for Type of variation
-
-URL: http://hl7.org/fhir/LOINC-48019-4-answerlist
-ValueSet: http://hl7.org/fhir/ValueSet/LOINC-48019-4-answerlist
-*/
-public enum LOINC480194Answerlist: String {
-	
-	/// Wild type
-	case LA96581 = "LA9658-1"
-	
-	/// Deletion
-	case LA66923 = "LA6692-3"
-	
-	/// Duplication
-	case LA66865 = "LA6686-5"
-	
-	/// Insertion
-	case LA66873 = "LA6687-3"
-	
-	/// Insertion/Deletion
-	case LA66881 = "LA6688-1"
-	
-	/// Inversion
-	case LA66899 = "LA6689-9"
-	
-	/// Substitution
-	case LA66907 = "LA6690-7"
-}
-
-
-/**
-LOINC answer list for AllelicState
-
-URL: http://hl7.org/fhir/LOINC-53034-5-answerlist
-ValueSet: http://hl7.org/fhir/ValueSet/LOINC-53034-5-answerlist
-*/
-public enum LOINC530345Answerlist: String {
-	
-	/// Heteroplasmic
-	case LA67038 = "LA6703-8"
-	
-	/// Homoplasmic
-	case LA67046 = "LA6704-6"
-	
-	/// Homozygous
-	case LA67053 = "LA6705-3"
-	
-	/// Heterozygous
-	case LA67061 = "LA6706-1"
-	
-	/// Hemizygous
-	case LA67079 = "LA6707-9"
-}
-
-
-/**
 The type of knowledge asset this library contains
 
 URL: http://hl7.org/fhir/library-type
@@ -4724,8 +4621,8 @@ public enum ObservationRelationshipType: String {
 	case hasMember = "has-member"
 	
 	/// The target resource (Observation or QuestionnaireResponse) is part of the information from which this
-	/// observation value is derived. (e.g. calculated anion gap, Apgar score)  NOTE:  "derived-from" is only logical
-	/// choice when referencing QuestionnaireResponse.
+	/// observation value is derived. (e.g. calculated anion gap, Apgar score)  NOTE:  "derived-from" is the only
+	/// logical choice when referencing QuestionnaireResponse.
 	case derivedFrom = "derived-from"
 	
 	/// This observation follows the target observation (e.g. timed tests such as Glucose Tolerance Test).
@@ -4739,7 +4636,7 @@ public enum ObservationRelationshipType: String {
 	case qualifiedBy = "qualified-by"
 	
 	/// The value of the target observation interferes (degrades quality, or prevents valid observation) with the
-	/// semantics of the source observation (e.g. a hemolysis measure target from a plasma potassium measure which has
+	/// semantics of the source observation (e.g. a hemolysis measure target from a plasma potassium measure, which has
 	/// no value).
 	case interferedBy = "interfered-by"
 }
@@ -4779,8 +4676,8 @@ public enum ObservationStatus: String {
 	case enteredInError = "entered-in-error"
 	
 	/// The authoring system does not know which of the status values currently applies for this request. Note: This
-	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
-	/// which one.
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, but the authoring
+	/// system does not know which.
 	case unknown = "unknown"
 }
 
@@ -5047,22 +4944,6 @@ public enum PlanDefinitionType: String {
 
 
 /**
-The nature of the relationship with this procedure.
-
-URL: http://hl7.org/fhir/procedure-relationship-type
-ValueSet: http://hl7.org/fhir/ValueSet/procedure-relationship-type
-*/
-public enum ProcedureRelationshipType: String {
-	
-	/// This procedure had to be performed because of the related one.
-	case causedBy = "caused-by"
-	
-	/// This procedure caused the related one to be performed.
-	case becauseOf = "because-of"
-}
-
-
-/**
 How a property is represented when serialized.
 
 URL: http://hl7.org/fhir/property-representation
@@ -5274,7 +5155,7 @@ public enum QuestionnaireItemType: String {
 	/// Question with a Coding drawn from a list of options as an answer
 	case choice = "choice"
 	
-	/// Answer is a Coding drawn from a list of options or a free-text entry captured as Coding.display
+	/// Answer is a Coding drawn from a list of options or a free-text entry in a string
 	case openChoice = "open-choice"
 	
 	/// Question with binary content such as a image, PDF, etc. as an answer

@@ -2,7 +2,7 @@
 //  Consent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 (http://hl7.org/fhir/StructureDefinition/Consent) on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Consent) on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-A healthcare consumer’s policy choices to permits or denies recipients or roles to perform actions for specific purposes
+A healthcare consumer's policy choices to permits or denies recipients or roles to perform actions for specific purposes
 and periods of time.
 
 A record of a healthcare consumer’s policy choices, which permits or denies identified recipient(s) or recipient role(s)
@@ -465,7 +465,7 @@ open class ConsentPolicy: BackboneElement {
 		get { return "ConsentPolicy" }
 	}
 	
-	/// Authority of policy.
+	/// Enforcement source for policy.
 	public var authority: FHIRURL?
 	
 	/// Specific policy covered by this consent.

@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -67,7 +67,7 @@ class OperationOutcomeTests: XCTestCase {
 		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "suppressed")!)
 		XCTAssertEqual(inst.issue?[0].details?.coding?[0].code, "ETREAT")
 		XCTAssertEqual(inst.issue?[0].details?.coding?[0].display, "Emergency Treatment")
-		XCTAssertEqual(inst.issue?[0].details?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3-ActReason")
+		XCTAssertEqual(inst.issue?[0].details?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.issue?[0].details?.text, "Additional information may be available using the Break-The-Glass Protocol")
 		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "information")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -139,6 +139,7 @@ class OperationOutcomeTests: XCTestCase {
 		XCTAssertEqual(inst.id, "validationfail")
 		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "structure")!)
 		XCTAssertEqual(inst.issue?[0].details?.text, "Error parsing resource XML (Unknown Content \"label\"")
+		XCTAssertEqual(inst.issue?[0].expression?[0], "Patient.identifier")
 		XCTAssertEqual(inst.issue?[0].location?[0], "/f:Patient/f:identifier")
 		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "error")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -164,6 +165,7 @@ class OperationOutcomeTests: XCTestCase {
 		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "code-invalid")!)
 		XCTAssertEqual(inst.issue?[0].details?.text, "The code \"W\" is not known and not legal in this context")
 		XCTAssertEqual(inst.issue?[0].diagnostics, "Acme.Interop.FHIRProcessors.Patient.processGender line 2453")
+		XCTAssertEqual(inst.issue?[0].expression?[0], "Person.gender")
 		XCTAssertEqual(inst.issue?[0].location?[0], "/f:Person/f:gender")
 		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "error")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)

@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11377 on 2017-02-24.
+//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
 //  2017, SMART Health IT.
 //
 
@@ -242,6 +242,9 @@ class ConditionTests: XCTestCase {
 		XCTAssertEqual(inst.evidence?[0].detail?[0].display, "Erasmus' diagnostic report of Roel's tumor")
 		XCTAssertEqual(inst.evidence?[0].detail?[0].reference, "DiagnosticReport/f201")
 		XCTAssertEqual(inst.id, "f202")
+		XCTAssertEqual(inst.meta?.security?[0].code, "TBOO")
+		XCTAssertEqual(inst.meta?.security?[0].display, "taboo")
+		XCTAssertEqual(inst.meta?.security?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.onsetAge?.code, "a")
 		XCTAssertEqual(inst.onsetAge?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.onsetAge?.unit, "years")

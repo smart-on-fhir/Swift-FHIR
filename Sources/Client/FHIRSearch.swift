@@ -182,10 +182,10 @@ open class FHIRSearch
 
 
 /**
-	Instances of this struct represent URL query parameters.
- */
-struct FHIRURLParam
-{
+Instances of this struct represent URL query parameters.
+*/
+struct FHIRURLParam {
+	
 	/// Parameter name
 	let name: String
 	
@@ -193,8 +193,10 @@ struct FHIRURLParam
 	let value: String
 	
 	
+	/** Returns a "key=value" string representing this parameter, taking care of encoding the string as URL query part. */
 	func asParameter() -> String {
-		return "\(name)=\(value)"		// TODO: encode value
+		let encoded = value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? value
+		return "\(name)=\(encoded)"
 	}
 }
 

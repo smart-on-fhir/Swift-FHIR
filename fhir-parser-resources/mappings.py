@@ -34,38 +34,6 @@ classmap = {
 # Classes of properties to be replaced with different ones at resource rendering time
 replacemap = {}
 
-# Some properties can be any (value) type and have the `value[x]` form - how to
-# substitute is defined here
-# see http://hl7.org/fhir/2015May/datatypes.html#1.18.0.17
-starexpandtypes = {
-    'integer',
-    'decimal',
-    'dateTime',
-    'date',
-    'instant',
-    'time',
-    'string',
-    'uri',
-    'boolean',
-    'code',
-    'base64Binary',
-    
-    'Coding',
-    'CodeableConcept',
-    'Attachment',
-    'Identifier',
-    'Quantity',
-    'Range',
-    'Period',
-    'Ratio',
-    'HumanName',
-    'Address',
-    'ContactPoint',
-    'Timing',
-    'Signature',
-    'Reference',
-}
-
 # Which class names in use for properties are native to the language (or can
 # be treated this way)
 natives = ['Bool', 'Int', 'UInt', 'Double', 'NSDecimalNumber']

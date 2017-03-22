@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -51,10 +51,9 @@ open class DeviceComponent: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier, lastSystemChange: Instant, type: CodeableConcept) {
+	public convenience init(identifier: Identifier, type: CodeableConcept) {
 		self.init()
 		self.identifier = identifier
-		self.lastSystemChange = lastSystemChange
 		self.type = type
 	}
 	
@@ -68,9 +67,6 @@ open class DeviceComponent: DomainResource {
 		}
 		languageCode = createInstance(type: CodeableConcept.self, for: "languageCode", in: json, context: &instCtx, owner: self) ?? languageCode
 		lastSystemChange = createInstance(type: Instant.self, for: "lastSystemChange", in: json, context: &instCtx, owner: self) ?? lastSystemChange
-		if nil == lastSystemChange && !instCtx.containsKey("lastSystemChange") {
-			instCtx.addError(FHIRValidationError(missing: "lastSystemChange"))
-		}
 		measurementPrinciple = createEnum(type: MeasmntPrinciple.self, for: "measurementPrinciple", in: json, context: &instCtx) ?? measurementPrinciple
 		operationalStatus = createInstances(of: CodeableConcept.self, for: "operationalStatus", in: json, context: &instCtx, owner: self) ?? operationalStatus
 		parameterGroup = createInstance(type: CodeableConcept.self, for: "parameterGroup", in: json, context: &instCtx, owner: self) ?? parameterGroup
@@ -92,9 +88,6 @@ open class DeviceComponent: DomainResource {
 		}
 		self.languageCode?.decorate(json: &json, withKey: "languageCode", errors: &errors)
 		self.lastSystemChange?.decorate(json: &json, withKey: "lastSystemChange", errors: &errors)
-		if nil == self.lastSystemChange {
-			errors.append(FHIRValidationError(missing: "lastSystemChange"))
-		}
 		self.measurementPrinciple?.decorate(json: &json, withKey: "measurementPrinciple", errors: &errors)
 		arrayDecorate(json: &json, withKey: "operationalStatus", using: self.operationalStatus, errors: &errors)
 		self.parameterGroup?.decorate(json: &json, withKey: "parameterGroup", errors: &errors)

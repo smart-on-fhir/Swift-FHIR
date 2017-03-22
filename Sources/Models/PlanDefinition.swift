@@ -2,7 +2,7 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -42,10 +42,10 @@ open class PlanDefinition: DomainResource {
 	/// Natural language description of the plan definition.
 	public var description_fhir: FHIRString?
 	
-	/// When the plan definition is effective.
+	/// When the plan definition is expected to be used.
 	public var effectivePeriod: Period?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// What the plan is trying to accomplish.
@@ -63,10 +63,10 @@ open class PlanDefinition: DomainResource {
 	/// Logic used by the plan definition.
 	public var library: [Reference]?
 	
-	/// Name for this plan definition (Computer friendly).
+	/// Name for this plan definition (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this plan definition is defined.
@@ -78,7 +78,7 @@ open class PlanDefinition: DomainResource {
 	/// The status of this plan definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this plan definition (Human friendly).
+	/// Name for this plan definition (human friendly).
 	public var title: FHIRString?
 	
 	/// E.g. Education, Treatment, Assessment, etc.
@@ -87,13 +87,13 @@ open class PlanDefinition: DomainResource {
 	/// order-set | protocol | eca-rule.
 	public var type: CodeableConcept?
 	
-	/// Logical uri to reference this plan definition (globally unique).
+	/// Logical URI to reference this plan definition (globally unique).
 	public var url: FHIRURL?
 	
 	/// Describes the clinical usage of the asset.
 	public var usage: FHIRString?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the plan definition.

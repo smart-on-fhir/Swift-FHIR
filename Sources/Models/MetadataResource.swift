@@ -2,7 +2,7 @@
 //  MetadataResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/MetadataResource) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MetadataResource) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -28,28 +28,28 @@ open class MetadataResource: DomainResource {
 	/// Natural language description of the metadata resource.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Intended jurisdiction for metadata resource (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this metadata resource (Computer friendly).
+	/// Name for this metadata resource (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// The status of this metadata resource. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this metadata resource (Human friendly).
+	/// Name for this metadata resource (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this metadata resource (globally unique).
+	/// Logical URI to reference this metadata resource (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the metadata resource.

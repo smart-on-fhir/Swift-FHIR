@@ -2,7 +2,7 @@
 //  CodeSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -47,13 +47,13 @@ open class CodeSystem: DomainResource {
 	/// Natural language description of the code system.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Filter that can be used in a value set.
 	public var filter: [CodeSystemFilter]?
 	
-	/// The meaning of the heirarchy of concepts.
+	/// The meaning of the hierarchy of concepts.
 	public var hierarchyMeaning: CodeSystemHierarchyMeaning?
 	
 	/// Additional identifier for the code system.
@@ -62,13 +62,13 @@ open class CodeSystem: DomainResource {
 	/// Intended jurisdiction for code system (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this code system (Computer friendly).
+	/// Name for this code system (computer friendly).
 	public var name: FHIRString?
 	
 	/// Additional information supplied about each concept.
 	public var property: [CodeSystemProperty]?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this code system is defined.
@@ -77,13 +77,13 @@ open class CodeSystem: DomainResource {
 	/// The status of this code system. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this code system (Human friendly).
+	/// Name for this code system (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this code system (globally unique) (Coding.system).
+	/// Logical URI to reference this code system (globally unique) (Coding.system).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Canonical URL for value set with entire code system.

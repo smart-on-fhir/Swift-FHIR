@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import Foundation
 A structured set of questions and their answers.
 
 A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets,
-corresponding to the structure of the grouping of the underlying questions.
+corresponding to the structure of the grouping of the questionnaire being responded to.
 */
 open class QuestionnaireResponse: DomainResource {
 	override open class var resourceType: String {
@@ -23,7 +23,7 @@ open class QuestionnaireResponse: DomainResource {
 	/// Person who received and recorded the answers.
 	public var author: Reference?
 	
-	/// Date this version was authored.
+	/// Date the answers were gathered.
 	public var authored: DateTime?
 	
 	/// Request fulfilled by this QuestionnaireResponse.
@@ -47,7 +47,7 @@ open class QuestionnaireResponse: DomainResource {
 	/// The person who answered the questions.
 	public var source: Reference?
 	
-	/// The lifecycle status of the questionnaire response as a whole.
+	/// The position of the questionnaire response within its overall lifecycle.
 	public var status: QuestionnaireResponseStatus?
 	
 	/// The subject of the questions.
@@ -104,7 +104,7 @@ open class QuestionnaireResponse: DomainResource {
 /**
 Groups and questions.
 
-Corresponds to a group or question item from the original questionnaire.
+A group or question item from the original questionnaire for which answers are provided.
 */
 open class QuestionnaireResponseItem: BackboneElement {
 	override open class var resourceType: String {

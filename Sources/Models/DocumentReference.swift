@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ open class DocumentReference: DomainResource {
 	/// Other identifiers for the document.
 	public var identifier: [Identifier]?
 	
-	/// When this document reference created.
+	/// When this document reference was created.
 	public var indexed: Instant?
 	
 	/// Master Version Specific Identifier.
@@ -208,7 +208,7 @@ open class DocumentReferenceContext: BackboneElement {
 	/// Context of the document  content.
 	public var encounter: Reference?
 	
-	/// Main Clinical Acts Documented.
+	/// Main clinical acts documented.
 	public var event: [CodeableConcept]?
 	
 	/// Kind of facility where patient was seen.

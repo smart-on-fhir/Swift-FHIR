@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -36,13 +36,13 @@ open class MedicationDispense: DomainResource {
 	/// Where the medication was sent.
 	public var destination: Reference?
 	
-	/// Clinical Issue with action.
+	/// Clinical issue with action.
 	public var detectedIssue: [Reference]?
 	
 	/// How the medication is to be used by the patient or administered by the caregiver.
 	public var dosageInstruction: [Dosage]?
 	
-	/// A list of events of interest in the lifecycle.
+	/// A list of releveant lifecycle events.
 	public var eventHistory: [Reference]?
 	
 	/// External identifier.
@@ -193,7 +193,7 @@ open class MedicationDispense: DomainResource {
 /**
 Who performed event.
 
-Indicates who or what performed the event.
+Indicates who or what performed the event.  It should be assumed that the performer is the dispenser of the medication.
 */
 open class MedicationDispensePerformer: BackboneElement {
 	override open class var resourceType: String {

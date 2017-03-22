@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
 A structured set of questions.
 
-A structured set of questions intended to guide the collection of answers. The questions are ordered and grouped into
-coherent subsets, corresponding to the structure of the grouping of the underlying questions.
+A structured set of questions intended to guide the collection of answers from end-users. Questionnaires provide
+detailed control over order, presentation, phraseology and grouping to allow coherent, consistent data collection.
 */
 open class Questionnaire: DomainResource {
 	override open class var resourceType: String {
@@ -38,10 +38,10 @@ open class Questionnaire: DomainResource {
 	/// Natural language description of the questionnaire.
 	public var description_fhir: FHIRString?
 	
-	/// When the questionnaire is effective.
+	/// When the questionnaire is expected to be used.
 	public var effectivePeriod: Period?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Additional identifier for the questionnaire.
@@ -56,10 +56,10 @@ open class Questionnaire: DomainResource {
 	/// When the questionnaire was last reviewed.
 	public var lastReviewDate: FHIRDate?
 	
-	/// Name for this questionnaire (Computer friendly).
+	/// Name for this questionnaire (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this questionnaire is defined.
@@ -71,13 +71,13 @@ open class Questionnaire: DomainResource {
 	/// Resource that can be subject of QuestionnaireResponse.
 	public var subjectType: [FHIRString]?
 	
-	/// Name for this questionnaire (Human friendly).
+	/// Name for this questionnaire (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this questionnaire (globally unique).
+	/// Logical URI to reference this questionnaire (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the questionnaire.
@@ -154,20 +154,20 @@ open class Questionnaire: DomainResource {
 /**
 Questions and sections within the Questionnaire.
 
-The questions and groupings of questions that make up the questionnaire.
+A particular question, question grouping or display text that is part of the questionnaire.
 */
 open class QuestionnaireItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireItem" }
 	}
 	
-	/// Corresponding Concept for this item in a terminology.
+	/// Corresponding concept for this item in a terminology.
 	public var code: [Coding]?
 	
 	/// ElementDefinition - details for the item.
 	public var definition: FHIRURL?
 	
-	/// Only allow data when:.
+	/// Only allow data when.
 	public var enableWhen: [QuestionnaireItemEnableWhen]?
 	
 	/// Default value when item is first rendered.
@@ -236,8 +236,8 @@ open class QuestionnaireItem: BackboneElement {
 	/// Primary text for the item.
 	public var text: FHIRString?
 	
-	/// Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a
-	/// particular type of data to be captured (string, integer, coded choice, etc.).
+	/// The type of questionnaire item this is - whether text for display, a grouping of other items or a particular
+	/// type of data to be captured (string, integer, coded choice, etc.).
 	public var type: QuestionnaireItemType?
 	
 	
@@ -326,10 +326,10 @@ open class QuestionnaireItem: BackboneElement {
 
 
 /**
-Only allow data when:.
+Only allow data when.
 
-If present, indicates that this item should only be enabled (displayed/allow answers to be captured) when the specified
-condition is true.
+A constraint indicating that this item should only be enabled (displayed/allow answers to be captured) when the
+specified condition is true.
 */
 open class QuestionnaireItemEnableWhen: BackboneElement {
 	override open class var resourceType: String {
@@ -435,7 +435,7 @@ open class QuestionnaireItemEnableWhen: BackboneElement {
 /**
 Permitted answer.
 
-For a "choice" question, identifies one of the permitted answers for the question.
+One of the permitted answers for a "choice" or "open-choice" question.
 */
 open class QuestionnaireItemOption: BackboneElement {
 	override open class var resourceType: String {

@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -34,7 +34,7 @@ open class Bundle: Resource {
 	/// If search, the total number of matches.
 	public var total: FHIRInteger?
 	
-	/// Indicates the purpose of this bundle- how it was intended to be used.
+	/// Indicates the purpose of this bundle - how it was intended to be used.
 	public var type: BundleType?
 	
 	

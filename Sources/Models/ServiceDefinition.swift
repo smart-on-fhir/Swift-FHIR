@@ -2,7 +2,7 @@
 //  ServiceDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ServiceDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ServiceDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -41,10 +41,10 @@ open class ServiceDefinition: DomainResource {
 	/// Natural language description of the service definition.
 	public var description_fhir: FHIRString?
 	
-	/// When the service definition is effective.
+	/// When the service definition is expected to be used.
 	public var effectivePeriod: Period?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Additional identifier for the service definition.
@@ -56,13 +56,13 @@ open class ServiceDefinition: DomainResource {
 	/// When the service definition was last reviewed.
 	public var lastReviewDate: FHIRDate?
 	
-	/// Name for this service definition (Computer friendly).
+	/// Name for this service definition (computer friendly).
 	public var name: FHIRString?
 	
 	/// Operation to invoke.
 	public var operationDefinition: Reference?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this service definition is defined.
@@ -74,7 +74,7 @@ open class ServiceDefinition: DomainResource {
 	/// The status of this service definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this service definition (Human friendly).
+	/// Name for this service definition (human friendly).
 	public var title: FHIRString?
 	
 	/// E.g. Education, Treatment, Assessment, etc.
@@ -83,13 +83,13 @@ open class ServiceDefinition: DomainResource {
 	/// "when" the module should be invoked.
 	public var trigger: [TriggerDefinition]?
 	
-	/// Logical uri to reference this service definition (globally unique).
+	/// Logical URI to reference this service definition (globally unique).
 	public var url: FHIRURL?
 	
 	/// Describes the clinical usage of the module.
 	public var usage: FHIRString?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the service definition.

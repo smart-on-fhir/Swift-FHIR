@@ -2,7 +2,7 @@
 //  Measure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Measure) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Measure) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -49,10 +49,10 @@ open class Measure: DomainResource {
 	/// Disclaimer for use of the measure or its referenced content.
 	public var disclaimer: FHIRString?
 	
-	/// When the measure is effective.
+	/// When the measure is expected to be used.
 	public var effectivePeriod: Period?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Population criteria group.
@@ -76,10 +76,10 @@ open class Measure: DomainResource {
 	/// Logic used by the measure.
 	public var library: [Reference]?
 	
-	/// Name for this measure (Computer friendly).
+	/// Name for this measure (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this measure is defined.
@@ -109,7 +109,7 @@ open class Measure: DomainResource {
 	/// What other data should be reported with the measure.
 	public var supplementalData: [MeasureSupplementalData]?
 	
-	/// Name for this measure (Human friendly).
+	/// Name for this measure (human friendly).
 	public var title: FHIRString?
 	
 	/// E.g. Education, Treatment, Assessment, etc.
@@ -118,13 +118,13 @@ open class Measure: DomainResource {
 	/// process | outcome | structure | patient-reported-outcome | composite.
 	public var type: [CodeableConcept]?
 	
-	/// Logical uri to reference this measure (globally unique).
+	/// Logical URI to reference this measure (globally unique).
 	public var url: FHIRURL?
 	
 	/// Describes the clinical usage of the measure.
 	public var usage: FHIRString?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the measure.
@@ -403,7 +403,7 @@ open class MeasureSupplementalData: BackboneElement {
 		get { return "MeasureSupplementalData" }
 	}
 	
-	/// Expression describing additional data to be reporrted.
+	/// Expression describing additional data to be reported.
 	public var criteria: FHIRString?
 	
 	/// Identifier, unique within the measure.

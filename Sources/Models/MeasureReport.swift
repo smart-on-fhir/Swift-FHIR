@@ -2,7 +2,7 @@
 //  MeasureReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,7 +19,7 @@ open class MeasureReport: DomainResource {
 		get { return "MeasureReport" }
 	}
 	
-	/// Date the report was generated.
+	/// When the report was generated.
 	public var date: DateTime?
 	
 	/// What data was evaluated to produce the measure score.
@@ -31,24 +31,24 @@ open class MeasureReport: DomainResource {
 	/// Additional identifier for the Report.
 	public var identifier: Identifier?
 	
-	/// Measure that was evaluated.
+	/// What measure was evaluated.
 	public var measure: Reference?
 	
-	/// Optional Patient.
+	/// What patient the report is for.
 	public var patient: Reference?
 	
-	/// Reporting period.
+	/// What period the report covers.
 	public var period: Period?
 	
-	/// Reporting Organization.
+	/// Who is reporting the data.
 	public var reportingOrganization: Reference?
 	
 	/// The report status. No data will be available until the report status is complete.
 	public var status: MeasureReportStatus?
 	
 	/// The type of measure report. This may be an individual report, which provides a single patient's score for the
-	/// measure, a patient listing, which returns the list of patients that meet the various criteria in the measure, or
-	/// a summary report, which returns a population count for each criteria in the measure.
+	/// measure; a patient listing, which returns the list of patients that meet the various criteria in the measure; or
+	/// a summary report, which returns a population count for each of the criteria in the measure.
 	public var type: MeasureReportType?
 	
 	
@@ -128,10 +128,10 @@ open class MeasureReportGroup: BackboneElement {
 		get { return "MeasureReportGroup" }
 	}
 	
-	/// Identifier of the population group being reported.
+	/// What group of the measure.
 	public var identifier: Identifier?
 	
-	/// The measure score.
+	/// What score this group achieved.
 	public var measureScore: FHIRDecimal?
 	
 	/// The populations in the group.
@@ -191,7 +191,7 @@ open class MeasureReportGroupPopulation: BackboneElement {
 	/// Size of the population.
 	public var count: FHIRInteger?
 	
-	/// Identifier of the population being reported.
+	/// Population identifier as defined in the measure.
 	public var identifier: Identifier?
 	
 	/// For patient-list reports, the patients in this population.
@@ -229,7 +229,7 @@ open class MeasureReportGroupStratifier: BackboneElement {
 		get { return "MeasureReportGroupStratifier" }
 	}
 	
-	/// Identifier of the stratifier.
+	/// What stratifier of the group.
 	public var identifier: Identifier?
 	
 	/// Stratum results, one for each unique value in the stratifier.
@@ -263,7 +263,7 @@ open class MeasureReportGroupStratifierStratum: BackboneElement {
 		get { return "MeasureReportGroupStratifierStratum" }
 	}
 	
-	/// Score for this stratum.
+	/// What score this stratum achieved.
 	public var measureScore: FHIRDecimal?
 	
 	/// Population results in this stratum.
@@ -321,7 +321,7 @@ open class MeasureReportGroupStratifierStratumPopulation: BackboneElement {
 	/// Size of the population.
 	public var count: FHIRInteger?
 	
-	/// Identifier of the population.
+	/// Population identifier as defined in the measure.
 	public var identifier: Identifier?
 	
 	/// For patient-list reports, the patients in this population.

@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -48,7 +48,7 @@ open class Account: DomainResource {
 	/// Transaction window.
 	public var period: Period?
 	
-	/// Indicates whether the account is presently used/useable or not.
+	/// Indicates whether the account is presently used/usable or not.
 	public var status: AccountStatus?
 	
 	/// What is account tied to?.

@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ open class ValueSet: DomainResource {
 	/// Used when the value set is "expanded".
 	public var expansion: ValueSetExpansion?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Whether this is intended to be used with an extensible binding.
@@ -52,10 +52,10 @@ open class ValueSet: DomainResource {
 	/// Intended jurisdiction for value set (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this value set (Computer friendly).
+	/// Name for this value set (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this value set is defined.
@@ -64,13 +64,13 @@ open class ValueSet: DomainResource {
 	/// The status of this value set. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this value set (Human friendly).
+	/// Name for this value set (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this value set (globally unique).
+	/// Logical URI to reference this value set (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the value set.

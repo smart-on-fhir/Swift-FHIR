@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -41,13 +41,13 @@ open class DiagnosticReport: DomainResource {
 	/// Health care event when test ordered.
 	public var context: Reference?
 	
-	/// Clinically Relevant time/time-period for report.
+	/// Clinically relevant time/time-period for report.
 	public var effectiveDateTime: DateTime?
 	
-	/// Clinically Relevant time/time-period for report.
+	/// Clinically relevant time/time-period for report.
 	public var effectivePeriod: Period?
 	
-	/// Business Identifer for report.
+	/// Business identifier for report.
 	public var identifier: [Identifier]?
 	
 	/// Key images associated with this report.
@@ -74,7 +74,7 @@ open class DiagnosticReport: DomainResource {
 	/// The status of the diagnostic report as a whole.
 	public var status: DiagnosticReportStatus?
 	
-	/// The subject of the report, usually, but not always, the patient.
+	/// The subject of the report - usually, but not always, the patient.
 	public var subject: Reference?
 	
 	

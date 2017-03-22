@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -361,7 +361,7 @@ open class ElementDefinition: Element {
 	/// What the order of the elements means.
 	public var orderMeaning: FHIRString?
 	
-	/// Path of the element in the heirarchy of elements.
+	/// Path of the element in the hierarchy of elements.
 	public var path: FHIRString?
 	
 	/// Value must have at least these property values.
@@ -1428,7 +1428,7 @@ open class ElementDefinitionMapping: Element {
 		get { return "ElementDefinitionMapping" }
 	}
 	
-	/// Comments about the mapping or it's use.
+	/// Comments about the mapping or its use.
 	public var comment: FHIRString?
 	
 	/// Reference to mapping declaration.
@@ -1620,7 +1620,7 @@ open class ElementDefinitionType: Element {
 	/// Profile (StructureDefinition) to apply to reference target (or IG).
 	public var targetProfile: FHIRURL?
 	
-	/// Whether this reference needs to be version specific or version independent, or whetehr either can be used.
+	/// Whether this reference needs to be version specific or version independent, or whether either can be used.
 	public var versioning: ReferenceVersionRules?
 	
 	

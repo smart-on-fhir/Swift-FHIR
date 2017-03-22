@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -46,7 +46,7 @@ open class SearchParameter: DomainResource {
 	/// Natural language description of the search parameter.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// FHIRPath expression that extracts the values.
@@ -58,10 +58,10 @@ open class SearchParameter: DomainResource {
 	/// A modifier supported for the search parameter.
 	public var modifier: [SearchModifierCode]?
 	
-	/// Name for this search parameter (Computer friendly).
+	/// Name for this search parameter (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this search parameter is defined.
@@ -76,10 +76,10 @@ open class SearchParameter: DomainResource {
 	/// The type of value a search parameter refers to, and how the content is interpreted.
 	public var type: SearchParamType?
 	
-	/// Logical uri to reference this search parameter (globally unique).
+	/// Logical URI to reference this search parameter (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the search parameter.

@@ -2,7 +2,7 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-A statement of system Capabilities.
+A statement of system capabilities.
 
 A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server that may be used as a statement of
 actual server functionality or a statement of required or desired server implementation.
@@ -38,7 +38,7 @@ open class CapabilityStatement: DomainResource {
 	/// Document definition.
 	public var document: [CapabilityStatementDocument]?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// FHIR Version the system uses.
@@ -50,7 +50,7 @@ open class CapabilityStatement: DomainResource {
 	/// If this describes a specific instance.
 	public var implementation: CapabilityStatementImplementation?
 	
-	/// Implementation Guide supported.
+	/// Implementation guides supported.
 	public var implementationGuide: [FHIRURL]?
 	
 	/// Canonical URL of another capability statement this implements.
@@ -66,7 +66,7 @@ open class CapabilityStatement: DomainResource {
 	/// If messaging is supported.
 	public var messaging: [CapabilityStatementMessaging]?
 	
-	/// Name for this capability statement (Computer friendly).
+	/// Name for this capability statement (computer friendly).
 	public var name: FHIRString?
 	
 	/// Patch formats supported.
@@ -75,7 +75,7 @@ open class CapabilityStatement: DomainResource {
 	/// Profiles for use cases supported.
 	public var profile: [Reference]?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this capability statement is defined.
@@ -90,13 +90,13 @@ open class CapabilityStatement: DomainResource {
 	/// The status of this capability statement. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this capability statement (Human friendly).
+	/// Name for this capability statement (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this capability statement (globally unique).
+	/// Logical URI to reference this capability statement (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the capability statement.
@@ -230,7 +230,7 @@ open class CapabilityStatementDocument: BackboneElement {
 	/// Description of document support.
 	public var documentation: FHIRString?
 	
-	/// Mode of this document declaration - whether application is producer or consumer.
+	/// Mode of this document declaration - whether an application is a producer or consumer.
 	public var mode: DocumentMode?
 	
 	/// Constraint on a resource used in the document.
@@ -445,7 +445,7 @@ open class CapabilityStatementMessagingEvent: BackboneElement {
 	/// Resource that's focus of message.
 	public var focus: FHIRString?
 	
-	/// The mode of this event declaration - whether application is sender or receiver.
+	/// The mode of this event declaration - whether an application is a sender or receiver.
 	public var mode: EventCapabilityMode?
 	
 	/// Profile that describes the request.
@@ -594,7 +594,7 @@ open class CapabilityStatementRest: BackboneElement {
 	/// What operations are supported?.
 	public var interaction: [CapabilityStatementRestInteraction]?
 	
-	/// Identifies whether this portion of the statement is describing ability to initiate or receive restful
+	/// Identifies whether this portion of the statement is describing the ability to initiate or receive restful
 	/// operations.
 	public var mode: RestfulCapabilityMode?
 	
@@ -604,7 +604,7 @@ open class CapabilityStatementRest: BackboneElement {
 	/// Resource served on the REST interface.
 	public var resource: [CapabilityStatementRestResource]?
 	
-	/// Search params for searching all resources.
+	/// Search parameters for searching all resources.
 	public var searchParam: [CapabilityStatementRestResourceSearchParam]?
 	
 	/// Information about security of implementation.
@@ -702,7 +702,7 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 /**
 Definition of an operation or a custom query.
 
-Definition of an operation or a named query and with its parameters and their meaning and type.
+Definition of an operation or a named query together with its parameters and their meaning and type.
 */
 open class CapabilityStatementRestOperation: BackboneElement {
 	override open class var resourceType: String {
@@ -792,7 +792,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 	/// _include values supported by the server.
 	public var searchInclude: [FHIRString]?
 	
-	/// Search params supported by implementation.
+	/// Search parameters supported by implementation.
 	public var searchParam: [CapabilityStatementRestResourceSearchParam]?
 	
 	/// _revinclude values supported by the server.
@@ -921,7 +921,7 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 
 
 /**
-Search params supported by implementation.
+Search parameters supported by implementation.
 
 Search parameters for implementations to support and/or make use of - either references to ones defined in the
 specification, or additional ones defined for/by the implementation.
@@ -1038,7 +1038,7 @@ open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 	/// Actual certificate.
 	public var blob: Base64Binary?
 	
-	/// Mime type for certificate.
+	/// Mime type for certificates.
 	public var type: FHIRString?
 	
 	

@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -31,7 +31,7 @@ open class DataElement: DomainResource {
 	/// Definition of element.
 	public var element: [ElementDefinition]?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Additional identifier for the data element.
@@ -43,10 +43,10 @@ open class DataElement: DomainResource {
 	/// External specification mapped to.
 	public var mapping: [DataElementMapping]?
 	
-	/// Name for this data element (Computer friendly).
+	/// Name for this data element (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// The status of this data element. Enables tracking the life-cycle of the content.
@@ -55,13 +55,13 @@ open class DataElement: DomainResource {
 	/// Identifies how precise the data element is in its definition.
 	public var stringency: DataElementStringency?
 	
-	/// Name for this data element (Human friendly).
+	/// Name for this data element (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this data element (globally unique).
+	/// Logical URI to reference this data element (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the data element.

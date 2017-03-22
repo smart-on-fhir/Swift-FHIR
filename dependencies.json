@@ -491,7 +491,7 @@
 		"dependencies": ["FHIRAbstractResource","FHIRString","FHIRURL","Meta"]
 	},
 	"RiskAssessment": {
-		"dependencies": ["Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRDecimal","FHIRString","Identifier","Period","Range","Reference"],
+		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRDecimal","FHIRString","Identifier","Period","Range","Reference"],
 		"references": ["Condition","Device","Encounter","EpisodeOfCare","Group","Patient","Practitioner","Resource"]
 	},
 	"SampledData": {

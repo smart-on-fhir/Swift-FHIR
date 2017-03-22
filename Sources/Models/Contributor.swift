@@ -2,7 +2,7 @@
 //  Contributor.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Contributor) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Contributor) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -22,7 +22,7 @@ open class Contributor: Element {
 	/// Contact details of the contributor.
 	public var contact: [ContactDetail]?
 	
-	/// Name of the contributor.
+	/// Who contributed the content.
 	public var name: FHIRString?
 	
 	/// The type of contributor.

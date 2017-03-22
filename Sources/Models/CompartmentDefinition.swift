@@ -2,7 +2,7 @@
 //  CompartmentDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -31,22 +31,22 @@ open class CompartmentDefinition: DomainResource {
 	/// Natural language description of the compartment definition.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Intended jurisdiction for compartment definition (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this compartment definition (Computer friendly).
+	/// Name for this compartment definition (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this compartment definition is defined.
 	public var purpose: FHIRString?
 	
-	/// How resource is related to the compartment.
+	/// How a resource is related to the compartment.
 	public var resource: [CompartmentDefinitionResource]?
 	
 	/// Whether the search syntax is supported.
@@ -55,13 +55,13 @@ open class CompartmentDefinition: DomainResource {
 	/// The status of this compartment definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this compartment definition (Human friendly).
+	/// Name for this compartment definition (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this compartment definition (globally unique).
+	/// Logical URI to reference this compartment definition (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	
@@ -149,9 +149,9 @@ open class CompartmentDefinition: DomainResource {
 
 
 /**
-How resource is related to the compartment.
+How a resource is related to the compartment.
 
-Information about how a resource it related to the compartment.
+Information about how a resource is related to the compartment.
 */
 open class CompartmentDefinitionResource: BackboneElement {
 	override open class var resourceType: String {
@@ -161,10 +161,10 @@ open class CompartmentDefinitionResource: BackboneElement {
 	/// Name of resource type.
 	public var code: FHIRString?
 	
-	/// Additional doco about the resource and compartment.
+	/// Additional documentation about the resource and compartment.
 	public var documentation: FHIRString?
 	
-	/// Search Parameter Name, or chained params.
+	/// Search Parameter Name, or chained parameters.
 	public var param: [FHIRString]?
 	
 	

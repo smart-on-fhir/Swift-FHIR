@@ -2,7 +2,7 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -166,10 +166,16 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertEqual(inst.experimental, true)
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
+		XCTAssertEqual(inst.extension_fhir?[0].valueString, "Informative")
+		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
+		XCTAssertEqual(inst.extension_fhir?[1].valueInteger, 1)
+		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
+		XCTAssertEqual(inst.extension_fhir?[2].valueCode, "fhir")
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.308")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-03-14T06:25:31.015+00:00")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-03-21T21:41:32.180+00:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
@@ -177,7 +183,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "1.9.0")
+		XCTAssertEqual(inst.version, "3.0.0")
 		
 		return inst
 	}

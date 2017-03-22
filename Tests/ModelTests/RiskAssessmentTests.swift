@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -40,10 +40,14 @@ class RiskAssessmentTests: XCTestCase {
 	func runRiskAssessment1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRiskAssessment {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-cardiac.json")
 		
-		XCTAssertEqual(inst.basis?[0].reference, "Patient/example")
+		XCTAssertEqual(inst.basis?[0].reference, "Patient/pat2")
 		XCTAssertEqual(inst.basis?[1].reference, "DiagnosticReport/lipids")
 		XCTAssertEqual(inst.basis?[2].reference, "Observation/blood-pressure")
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "cardiac")
+		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://example.org")
+		XCTAssertEqual(inst.identifier?.use, IdentifierUse(rawValue: "official")!)
+		XCTAssertEqual(inst.identifier?.value, "risk-assessment-cardiac")
 		XCTAssertEqual(inst.occurrenceDateTime?.description, "2014-07-19T16:04:00Z")
 		XCTAssertEqual(inst.performer?.display, "http://cvdrisk.nhlbi.nih.gov/#cholesterol")
 		XCTAssertEqual(inst.prediction?[0].outcome?.text, "Heart Attack")
@@ -57,6 +61,7 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.unit, "years")
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.value, "39")
 		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
@@ -128,7 +133,7 @@ class RiskAssessmentTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis?[0].reference, "List/prognosis")
-		XCTAssertEqual(inst.comment?.text, "High degree of certainty")
+		XCTAssertEqual(inst.comment, "High degree of certainty")
 		XCTAssertEqual(inst.id, "genetic")
 		XCTAssertEqual(inst.method?.coding?[0].code, "BRCAPRO")
 		XCTAssertEqual(inst.occurrenceDateTime?.description, "2006-01-13T23:01:00Z")

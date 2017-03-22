@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -12,8 +12,7 @@ import Foundation
 /**
 Describes a set of tests.
 
-TestScript is a resource that specifies a suite of tests against a FHIR server implementation to determine compliance
-against the FHIR specification.
+A structured set of tests against a FHIR server implementation to determine compliance against the FHIR specification.
 */
 open class TestScript: DomainResource {
 	override open class var resourceType: String {
@@ -35,7 +34,7 @@ open class TestScript: DomainResource {
 	/// An abstract server representing a destination or receiver in a message exchange.
 	public var destination: [TestScriptDestination]?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Fixture in the test script - by reference (uri).
@@ -50,7 +49,7 @@ open class TestScript: DomainResource {
 	/// Required capability that is assumed to function correctly on the FHIR server being tested.
 	public var metadata: TestScriptMetadata?
 	
-	/// Name for this test script (Computer friendly).
+	/// Name for this test script (computer friendly).
 	public var name: FHIRString?
 	
 	/// An abstract server representing a client or sender in a message exchange.
@@ -59,7 +58,7 @@ open class TestScript: DomainResource {
 	/// Reference of the validation profile.
 	public var profile: [Reference]?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this test script is defined.
@@ -83,13 +82,13 @@ open class TestScript: DomainResource {
 	/// A test in this script.
 	public var test: [TestScriptTest]?
 	
-	/// Name for this test script (Human friendly).
+	/// Name for this test script (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this test script (globally unique).
+	/// Logical URI to reference this test script (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Placeholder for evaluated elements.
@@ -1228,7 +1227,7 @@ open class TestScriptSetupActionOperation: BackboneElement {
 	/// Explicitly defined path parameters.
 	public var params: FHIRString?
 	
-	/// Each operation can have one ore more header elements.
+	/// Each operation can have one or more header elements.
 	public var requestHeader: [TestScriptSetupActionOperationRequestHeader]?
 	
 	/// Fixture Id of mapped request.
@@ -1298,7 +1297,7 @@ open class TestScriptSetupActionOperation: BackboneElement {
 
 
 /**
-Each operation can have one ore more header elements.
+Each operation can have one or more header elements.
 
 Header elements would be used to set HTTP headers.
 */

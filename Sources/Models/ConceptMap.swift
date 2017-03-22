@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -32,7 +32,7 @@ open class ConceptMap: DomainResource {
 	/// Natural language description of the concept map.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Same source and target systems.
@@ -44,10 +44,10 @@ open class ConceptMap: DomainResource {
 	/// Intended jurisdiction for concept map (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this concept map (Computer friendly).
+	/// Name for this concept map (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this concept map is defined.
@@ -68,13 +68,13 @@ open class ConceptMap: DomainResource {
 	/// Provides context to the mappings.
 	public var targetUri: FHIRURL?
 	
-	/// Name for this concept map (Human friendly).
+	/// Name for this concept map (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this concept map (globally unique).
+	/// Logical URI to reference this concept map (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the concept map.
@@ -270,9 +270,6 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 	public var dependsOn: [ConceptMapGroupElementTargetDependsOn]?
 	
 	/// Display for the code.
-	public var dependsOndisplay: FHIRString?
-	
-	/// Display for the code.
 	public var display: FHIRString?
 	
 	/// The equivalence between the source and target concepts (counting for the dependencies and products). The
@@ -289,7 +286,6 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		dependsOn = createInstances(of: ConceptMapGroupElementTargetDependsOn.self, for: "dependsOn", in: json, context: &instCtx, owner: self) ?? dependsOn
-		dependsOndisplay = createInstance(type: FHIRString.self, for: "dependsOndisplay", in: json, context: &instCtx, owner: self) ?? dependsOndisplay
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		equivalence = createEnum(type: ConceptMapEquivalence.self, for: "equivalence", in: json, context: &instCtx) ?? equivalence
 		product = createInstances(of: ConceptMapGroupElementTargetDependsOn.self, for: "product", in: json, context: &instCtx, owner: self) ?? product
@@ -301,7 +297,6 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "dependsOn", using: self.dependsOn, errors: &errors)
-		self.dependsOndisplay?.decorate(json: &json, withKey: "dependsOndisplay", errors: &errors)
 		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		self.equivalence?.decorate(json: &json, withKey: "equivalence", errors: &errors)
 		arrayDecorate(json: &json, withKey: "product", using: self.product, errors: &errors)
@@ -322,6 +317,9 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 	
 	/// Value of the referenced element.
 	public var code: FHIRString?
+	
+	/// Display for the code.
+	public var display: FHIRString?
 	
 	/// Reference to property mapping depends on.
 	public var property: FHIRURL?
@@ -345,6 +343,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
+		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		property = createInstance(type: FHIRURL.self, for: "property", in: json, context: &instCtx, owner: self) ?? property
 		if nil == property && !instCtx.containsKey("property") && !_isSummaryResource {
 			instCtx.addError(FHIRValidationError(missing: "property"))
@@ -359,6 +358,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
+		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		self.property?.decorate(json: &json, withKey: "property", errors: &errors)
 		if nil == self.property {
 			errors.append(FHIRValidationError(missing: "property"))

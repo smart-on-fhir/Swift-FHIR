@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
 A request for a procedure or diagnostic to be performed.
 
-A record of a request for a diagnostic investigation service to be performed.
+A record of a request for diagnostic investigations, treatments, or operations to be performed.
 */
 open class ProcedureRequest: DomainResource {
 	override open class var resourceType: String {

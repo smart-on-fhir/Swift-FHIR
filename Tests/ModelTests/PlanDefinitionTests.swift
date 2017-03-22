@@ -2,7 +2,7 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -41,8 +41,20 @@ class PlanDefinitionTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example-kdn5-simplified.json")
 		
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].definition?.reference, "#1111")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[0].url?.absoluteString, "day")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[0].valueInteger, 1)
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[1].url?.absoluteString, "day")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[1].valueInteger, 8)
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/timing-daysOfCycle")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].id, "action-1")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].textEquivalent, "Gemcitabine 1250 mg/m² IV over 30 minutes on days 1 and 8")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].definition?.reference, "#2222")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].extension_fhir?[0].extension_fhir?[0].url?.absoluteString, "day")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].extension_fhir?[0].extension_fhir?[0].valueInteger, 1)
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/timing-daysOfCycle")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].id, "action-2")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].relatedAction?[0].actionId, "action-1")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].relatedAction?[0].relationship, ActionRelationshipType(rawValue: "concurrent-with-start")!)
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].textEquivalent, "CARBOplatin AUC 5 IV over 30 minutes on Day 1")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].id, "cycle-definition-1")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].textEquivalent, "21-day cycle for 6 cycles")
@@ -127,7 +139,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].definition?.reference, "#referralToMentalHealthCare")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].expression, "Now()")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].path, "timing.event")
-		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[1].expression, "Code '261QM0850X' from SuicideRiskLogic.\"NPI Taxonomy\" display 'Adult Mental Health'")
+		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[1].expression, "Code '261QM0850X' from SuicideRiskLogic.\"NUCC Provider Taxonomy\" display 'Adult Mental Health'")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[1].path, "specialty")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[2].expression, "SuicideRiskLogic.ReferralRequestFulfillmentTime")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[2].path, "occurrenceDateTime")
@@ -222,8 +234,12 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.publisher, "Motive Medical Intelligence")
 		XCTAssertEqual(inst.purpose, "This order set helps ensure consistent application of appropriate orders for the care of low suicide risk patients.")
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
-		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "citation")!)
+		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "derived-from")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
+		XCTAssertEqual(inst.relatedArtifact?[1].resource?.reference, "ActivityDefinition/referralPrimaryCareMentalHealth")
+		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "composed-of")!)
+		XCTAssertEqual(inst.relatedArtifact?[2].resource?.reference, "ActivityDefinition/citalopramPrescription")
+		XCTAssertEqual(inst.relatedArtifact?[2].type, RelatedArtifactType(rawValue: "composed-of")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Low Suicide Risk Order Set")
@@ -319,6 +335,61 @@ class PlanDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runPlanDefinition4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-predecessor-example.json")
+		
+		XCTAssertEqual(inst.action?[0].action?[0].condition?[0].expression, "Should Administer Zika Virus Exposure Assessment")
+		XCTAssertEqual(inst.action?[0].action?[0].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
+		XCTAssertEqual(inst.action?[0].action?[0].definition?.reference, "ActivityDefinition/administer-zika-virus-exposure-assessment")
+		XCTAssertEqual(inst.action?[0].action?[1].condition?[0].expression, "Should Order Serum + Urine rRT-PCR Test")
+		XCTAssertEqual(inst.action?[0].action?[1].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
+		XCTAssertEqual(inst.action?[0].action?[1].definition?.reference, "ActivityDefinition/order-serum-urine-rrt-pcr-test")
+		XCTAssertEqual(inst.action?[0].action?[2].condition?[0].expression, "Should Order Serum Zika Virus IgM + Dengue Virus IgM")
+		XCTAssertEqual(inst.action?[0].action?[2].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
+		XCTAssertEqual(inst.action?[0].action?[2].definition?.reference, "ActivityDefinition/order-serum-zika-dengue-virus-igm")
+		XCTAssertEqual(inst.action?[0].action?[3].condition?[0].expression, "Should Consider IgM Antibody Testing")
+		XCTAssertEqual(inst.action?[0].action?[3].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
+		XCTAssertEqual(inst.action?[0].action?[3].definition?.reference, "ActivityDefinition/consider-igm-antibody-testing")
+		XCTAssertEqual(inst.action?[0].action?[4].action?[0].definition?.reference, "ActivityDefinition/provide-mosquito-prevention-advice")
+		XCTAssertEqual(inst.action?[0].action?[4].action?[1].definition?.reference, "ActivityDefinition/provide-contraception-advice")
+		XCTAssertEqual(inst.action?[0].action?[4].condition?[0].expression, "Should Provide Mosquito Prevention and Contraception Advice")
+		XCTAssertEqual(inst.action?[0].action?[4].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
+		XCTAssertEqual(inst.action?[0].condition?[0].expression, "Is Patient Pregnant")
+		XCTAssertEqual(inst.action?[0].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
+		XCTAssertEqual(inst.action?[0].title, "Zika Virus Assessment")
+		XCTAssertEqual(inst.action?[0].triggerDefinition?[0].eventName, "patient-view")
+		XCTAssertEqual(inst.action?[0].triggerDefinition?[0].type, TriggerType(rawValue: "named-event")!)
+		XCTAssertEqual(inst.date?.description, "2016-11-14")
+		XCTAssertEqual(inst.description_fhir, "Zika Virus Management intervention describing the CDC Guidelines for Zika Virus Reporting and Management.")
+		XCTAssertEqual(inst.id, "zika-virus-intervention-initial")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
+		XCTAssertEqual(inst.identifier?[0].value, "zika-virus-intervention")
+		XCTAssertEqual(inst.library?[0].reference, "Library/zika-virus-intervention-logic")
+		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "derived-from")!)
+		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "https://www.cdc.gov/mmwr/volumes/65/wr/mm6539e1.htm?s_cid=mm6539e1_w")
+		XCTAssertEqual(inst.relatedArtifact?[1].resource?.reference, "PlanDefinition/zika-virus-intervention")
+		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "successor")!)
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.title, "Example Zika Virus Intervention")
+		XCTAssertEqual(inst.topic?[0].text, "Zika Virus Management")
+		XCTAssertEqual(inst.url?.absoluteString, "http://example.org/PlanDefinition/zika-virus-intervention")
+		XCTAssertEqual(inst.version, "1.0.0")
+		
+		return inst
+	}
+	
+	func testPlanDefinition5() {
+		do {
+			let instance = try runPlanDefinition5()
+			try runPlanDefinition5(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runPlanDefinition5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-protocol-example.json")
 		
 		XCTAssertEqual(inst.action?[0].cardinalityBehavior, ActionCardinalityBehavior(rawValue: "single")!)

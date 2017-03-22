@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
 A set of rules about how FHIR is used.
 
-A set of rules or how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an
-implementation guide into a logical whole, and to publish a computable definition of all the parts.
+A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an
+implementation guide into a logical whole and to publish a computable definition of all the parts.
 */
 open class ImplementationGuide: DomainResource {
 	override open class var resourceType: String {
@@ -38,7 +38,7 @@ open class ImplementationGuide: DomainResource {
 	/// Natural language description of the implementation guide.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// FHIR Version this Implementation Guide targets.
@@ -50,7 +50,7 @@ open class ImplementationGuide: DomainResource {
 	/// Intended jurisdiction for implementation guide (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this implementation guide (Computer friendly).
+	/// Name for this implementation guide (computer friendly).
 	public var name: FHIRString?
 	
 	/// Group of resources as used in .page.package.
@@ -59,16 +59,16 @@ open class ImplementationGuide: DomainResource {
 	/// Page/Section in the Guide.
 	public var page: ImplementationGuidePage?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// The status of this implementation guide. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Logical uri to reference this implementation guide (globally unique).
+	/// Logical URI to reference this implementation guide (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the implementation guide.
@@ -332,7 +332,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 	/// Reason why included in guide.
 	public var description_fhir: FHIRString?
 	
-	/// If not an example, has it's normal meaning.
+	/// If not an example, has its normal meaning.
 	public var example: FHIRBool?
 	
 	/// Resource this is an example of (if applicable).

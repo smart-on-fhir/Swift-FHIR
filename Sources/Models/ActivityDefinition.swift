@@ -2,7 +2,7 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -50,10 +50,10 @@ open class ActivityDefinition: DomainResource {
 	/// Dynamic aspects of the definition.
 	public var dynamicValue: [ActivityDefinitionDynamicValue]?
 	
-	/// When the activity definition is effective.
+	/// When the activity definition is expected to be used.
 	public var effectivePeriod: Period?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Additional identifier for the activity definition.
@@ -74,7 +74,7 @@ open class ActivityDefinition: DomainResource {
 	/// Where it should happen.
 	public var location: Reference?
 	
-	/// Name for this activity definition (Computer friendly).
+	/// Name for this activity definition (computer friendly).
 	public var name: FHIRString?
 	
 	/// Who should participate in the action.
@@ -86,7 +86,7 @@ open class ActivityDefinition: DomainResource {
 	/// What's administered/supplied.
 	public var productReference: Reference?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this activity definition is defined.
@@ -113,7 +113,7 @@ open class ActivityDefinition: DomainResource {
 	/// When activity is to occur.
 	public var timingTiming: Timing?
 	
-	/// Name for this activity definition (Human friendly).
+	/// Name for this activity definition (human friendly).
 	public var title: FHIRString?
 	
 	/// E.g. Education, Treatment, Assessment, etc.
@@ -122,13 +122,13 @@ open class ActivityDefinition: DomainResource {
 	/// Transform to apply the template.
 	public var transform: Reference?
 	
-	/// Logical uri to reference this activity definition (globally unique).
+	/// Logical URI to reference this activity definition (globally unique).
 	public var url: FHIRURL?
 	
 	/// Describes the clinical usage of the asset.
 	public var usage: FHIRString?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the activity definition.

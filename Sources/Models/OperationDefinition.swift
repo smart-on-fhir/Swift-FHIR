@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -38,7 +38,7 @@ open class OperationDefinition: DomainResource {
 	/// Natural language description of the operation definition.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Whether content is unchanged by the operation.
@@ -53,7 +53,7 @@ open class OperationDefinition: DomainResource {
 	/// Whether this is an operation or a named query.
 	public var kind: OperationKind?
 	
-	/// Name for this operation definition (Computer friendly).
+	/// Name for this operation definition (computer friendly).
 	public var name: FHIRString?
 	
 	/// Define overloaded variants for when  generating code.
@@ -62,7 +62,7 @@ open class OperationDefinition: DomainResource {
 	/// Parameters for the operation/query.
 	public var parameter: [OperationDefinitionParameter]?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this operation definition is defined.
@@ -80,10 +80,10 @@ open class OperationDefinition: DomainResource {
 	/// Invole at the type level?.
 	public var type: FHIRBool?
 	
-	/// Logical uri to reference this operation definition (globally unique).
+	/// Logical URI to reference this operation definition (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the operation definition.
@@ -108,7 +108,7 @@ open class OperationDefinition: DomainResource {
 		
 		base = createInstance(type: Reference.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
@@ -118,7 +118,7 @@ open class OperationDefinition: DomainResource {
 		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
 		idempotent = createInstance(type: FHIRBool.self, for: "idempotent", in: json, context: &instCtx, owner: self) ?? idempotent
 		instance = createInstance(type: FHIRBool.self, for: "instance", in: json, context: &instCtx, owner: self) ?? instance
-		if nil == instance && !instCtx.containsKey("instance") && !_isSummaryResource {
+		if nil == instance && !instCtx.containsKey("instance") {
 			instCtx.addError(FHIRValidationError(missing: "instance"))
 		}
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
@@ -140,11 +140,11 @@ open class OperationDefinition: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		system = createInstance(type: FHIRBool.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
-		if nil == system && !instCtx.containsKey("system") && !_isSummaryResource {
+		if nil == system && !instCtx.containsKey("system") {
 			instCtx.addError(FHIRValidationError(missing: "system"))
 		}
 		type = createInstance(type: FHIRBool.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url

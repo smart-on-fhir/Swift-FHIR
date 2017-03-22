@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -10,7 +10,9 @@ import Foundation
 
 
 /**
-A manifest that defines a set of documents.
+A list that defines a set of documents.
+
+A collection of documents compiled for a purpose together with metadata that applies to the collection.
 */
 open class DocumentManifest: DomainResource {
 	override open class var resourceType: String {

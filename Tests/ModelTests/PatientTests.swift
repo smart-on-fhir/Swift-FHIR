@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -44,7 +44,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].organization?.display, "Walt Disney Corporation")
 		XCTAssertEqual(inst.contact?[0].organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].code, "E")
-		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/patient-contact-relationship")
+		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
 		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "male")!)
 		XCTAssertEqual(inst.id, "pat1")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:0.1.2.3.4.5.6.7")
@@ -96,7 +96,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].name?.given?[0], "Peter")
 		XCTAssertEqual(inst.contact?[0].name?.given?[1], "James")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].code, "C")
-		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/patient-contact-relationship")
+		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "(03) 5555 6473")
@@ -332,7 +332,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].name?.given?[0], "Sarah")
 		XCTAssertEqual(inst.contact?[0].name?.use, NameUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].code, "C")
-		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/patient-contact-relationship")
+		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].use, ContactPointUse(rawValue: "mobile")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "0690383372")
@@ -397,7 +397,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].display, "Wife")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[1].code, "N")
-		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[1].system?.absoluteString, "http://hl7.org/fhir/patient-contact-relationship")
+		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[1].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[2].code, "WIFE")
 		XCTAssertEqual(inst.contact?[0].relationship?[0].coding?[2].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "phone")!)

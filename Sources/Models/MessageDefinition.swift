@@ -2,7 +2,7 @@
 //  MessageDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -44,7 +44,7 @@ open class MessageDefinition: DomainResource {
 	/// Event type.
 	public var event: Coding?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Resource(s) that are the subject of the event.
@@ -56,13 +56,13 @@ open class MessageDefinition: DomainResource {
 	/// Intended jurisdiction for message definition (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this message definition (Computer friendly).
+	/// Name for this message definition (computer friendly).
 	public var name: FHIRString?
 	
 	/// Protocol/workflow this is part of.
 	public var parent: [Reference]?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this message definition is defined.
@@ -77,13 +77,13 @@ open class MessageDefinition: DomainResource {
 	/// The status of this message definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this message definition (Human friendly).
+	/// Name for this message definition (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this message definition (globally unique).
+	/// Logical URI to reference this message definition (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the message definition.

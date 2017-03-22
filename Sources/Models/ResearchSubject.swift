@@ -2,7 +2,7 @@
 //  ResearchSubject.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
-Investigation increase healthcare-related patient-independent knowledge.
+Investigation to increase healthcare-related patient-independent knowledge.
 
 A process where a researcher or organization plans and then executes a series of steps intended to increase the field of
 healthcare-related knowledge.  This includes studies of safety, efficacy, comparative effectiveness and other
-information about medications, devices, therapies and other interventional and investigative techniques.
-ResearchStudies involve the gathering of information about human or animal subjects.
+information about medications, devices, therapies and other interventional and investigative techniques.  A
+ResearchStudy involves the gathering of information about human or animal subjects.
 */
 open class ResearchSubject: DomainResource {
 	override open class var resourceType: String {
@@ -31,7 +31,7 @@ open class ResearchSubject: DomainResource {
 	/// Agreement to participate in study.
 	public var consent: Reference?
 	
-	/// Business Identifer for event.
+	/// Business Identifier for research subject.
 	public var identifier: Identifier?
 	
 	/// Who is part of study.
@@ -40,7 +40,7 @@ open class ResearchSubject: DomainResource {
 	/// Start and end of participation.
 	public var period: Period?
 	
-	/// The current state of the event.
+	/// The current state of the subject.
 	public var status: ResearchSubjectStatus?
 	
 	/// Study subject is part of.

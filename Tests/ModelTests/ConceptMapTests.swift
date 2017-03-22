@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -50,6 +50,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[0].display, "Example Code")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].code, "code2")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].code, "some-code")
+		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].display, "Something Coded")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].property?.absoluteString, "http://example.org/fhir/DataElement/example")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].system?.absoluteString, "http://example.org/fhir/example3")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].display, "Some Example Code")

@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ open class MessageHeader: DomainResource {
 	/// The source of the decision.
 	public var author: Reference?
 	
-	/// Message Destination Application(s).
+	/// Message destination application(s).
 	public var destination: [MessageHeaderDestination]?
 	
 	/// The source of the data entry.
@@ -51,7 +51,7 @@ open class MessageHeader: DomainResource {
 	/// Real world sender of the message.
 	public var sender: Reference?
 	
-	/// Message Source Application.
+	/// Message source application.
 	public var source: MessageHeaderSource?
 	
 	/// Time that the message was sent.
@@ -122,7 +122,7 @@ open class MessageHeader: DomainResource {
 
 
 /**
-Message Destination Application(s).
+Message destination application(s).
 
 The destination application which the message is intended for.
 */
@@ -232,7 +232,7 @@ open class MessageHeaderResponse: BackboneElement {
 
 
 /**
-Message Source Application.
+Message source application.
 
 The source application from which this message originated.
 */

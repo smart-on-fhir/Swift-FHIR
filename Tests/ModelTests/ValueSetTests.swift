@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -299,21 +299,27 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.date?.description, "2017-03-14T06:25:31+00:00")
+		XCTAssertEqual(inst.date?.description, "2017-03-21T21:41:32+00:00")
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertEqual(inst.experimental, true)
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
+		XCTAssertEqual(inst.extension_fhir?[0].valueString, "Informative")
+		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
+		XCTAssertEqual(inst.extension_fhir?[1].valueInteger, 1)
+		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
+		XCTAssertEqual(inst.extension_fhir?[2].valueCode, "fhir")
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.3.307")
 		XCTAssertEqual(inst.immutable, true)
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-03-14T06:25:31.015+00:00")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-03-21T21:41:32.180+00:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "1.9.0")
+		XCTAssertEqual(inst.version, "3.0.0")
 		
 		return inst
 	}

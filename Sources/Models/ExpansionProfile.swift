@@ -2,7 +2,7 @@
 //  ExpansionProfile.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -49,7 +49,7 @@ open class ExpansionProfile: DomainResource {
 	/// Systems/Versions to be exclude.
 	public var excludedSystem: ExpansionProfileExcludedSystem?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Fix use of a code system to a particular version.
@@ -70,19 +70,19 @@ open class ExpansionProfile: DomainResource {
 	/// Controls behaviour of the value set expand operation when value sets are too large to be completely expanded.
 	public var limitedExpansion: FHIRBool?
 	
-	/// Name for this expansion profile (Computer friendly).
+	/// Name for this expansion profile (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// The status of this expansion profile. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Logical uri to reference this expansion profile (globally unique).
+	/// Logical URI to reference this expansion profile (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the expansion profile.
@@ -372,7 +372,7 @@ open class ExpansionProfileFixedVersion: BackboneElement {
 	/// the expansion profile.
 	public var mode: SystemVersionProcessingMode?
 	
-	/// System to have it's version fixed.
+	/// System to have its version fixed.
 	public var system: FHIRURL?
 	
 	/// Specific version of the code system referred to.

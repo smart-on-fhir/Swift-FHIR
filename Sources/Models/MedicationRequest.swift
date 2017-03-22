@@ -2,7 +2,7 @@
 //  MedicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ Ordering of medication for patient or group.
 
 An order or request for both supply of the medication and the instructions for administration of the medication to a
 patient. The resource is called "MedicationRequest" rather than "MedicationPrescription" or "MedicationOrder" to
-generalize the use across inpatient and outpatient settings as well as for care plans, etc and to harmonize with
-workflow patterns.
+generalize the use across inpatient and outpatient settings, including care plans, etc., and to harmonize with workflow
+patterns.
 */
 open class MedicationRequest: DomainResource {
 	override open class var resourceType: String {
@@ -88,7 +88,7 @@ open class MedicationRequest: DomainResource {
 	/// A code specifying the current state of the order.  Generally this will be active or completed state.
 	public var status: MedicationRequestStatus?
 	
-	/// Who or group prescription is for.
+	/// Who or group medication request is for.
 	public var subject: Reference?
 	
 	/// Any restrictions on medication substitution.
@@ -204,7 +204,7 @@ open class MedicationRequest: DomainResource {
 Medication supply authorization.
 
 Indicates the specific details for the dispense or medication supply part of a medication request (also known as a
-Medication Prescription or Medication Order).  Note that this information is NOT always sent with the order.  There may
+Medication Prescription or Medication Order).  Note that this information is not always sent with the order.  There may
 be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy
 department.
 */
@@ -301,8 +301,8 @@ open class MedicationRequestRequester: BackboneElement {
 Any restrictions on medication substitution.
 
 Indicates whether or not substitution can or should be part of the dispense. In some cases substitution must happen, in
-other cases substitution must not happen, and in others it does not matter. This block explains the prescriber's intent.
-If nothing is specified substitution may be done.
+other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified
+substitution may be done.
 */
 open class MedicationRequestSubstitution: BackboneElement {
 	override open class var resourceType: String {

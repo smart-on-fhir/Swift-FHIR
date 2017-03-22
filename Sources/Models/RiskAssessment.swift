@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -29,7 +29,7 @@ open class RiskAssessment: DomainResource {
 	public var code: CodeableConcept?
 	
 	/// Comments on the risk assessment.
-	public var comment: Annotation?
+	public var comment: FHIRString?
 	
 	/// Condition assessed.
 	public var condition: Reference?
@@ -87,7 +87,7 @@ open class RiskAssessment: DomainResource {
 		basedOn = createInstance(type: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		basis = createInstances(of: Reference.self, for: "basis", in: json, context: &instCtx, owner: self) ?? basis
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		comment = createInstance(type: Annotation.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
+		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		condition = createInstance(type: Reference.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier

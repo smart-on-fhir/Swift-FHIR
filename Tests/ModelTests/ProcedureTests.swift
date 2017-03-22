@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -224,6 +224,43 @@ class ProcedureTests: XCTestCase {
 	
 	@discardableResult
 	func runProcedure6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-education.json")
+		
+		XCTAssertEqual(inst.basedOn?[0].display, "Order for health education")
+		XCTAssertEqual(inst.basedOn?[0].reference, "ProcedureRequest/education")
+		XCTAssertEqual(inst.category?.coding?[0].code, "311401005")
+		XCTAssertEqual(inst.category?.coding?[0].display, "Patient education (procedure)")
+		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.category?.text, "Education")
+		XCTAssertEqual(inst.code?.coding?[0].code, "48023004")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Breast self-examination technique education (procedure)")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.code?.text, "Health education - breast examination")
+		XCTAssertEqual(inst.id, "education")
+		XCTAssertEqual(inst.location?.display, "Southside Community Health Center")
+		XCTAssertEqual(inst.performedDateTime?.description, "2014-08-16")
+		XCTAssertEqual(inst.performer?[0].actor?.display, "Pamela Educator, RN")
+		XCTAssertEqual(inst.reasonCode?[0].text, "early detection of breast mass")
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.subject?.display, "Jane Doe")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Health education - breast examination for early detection of breast mass</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testProcedure7() {
+		do {
+			let instance = try runProcedure7()
+			try runProcedure7(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runProcedure7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "17401000")
@@ -255,10 +292,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure7() {
+	func testProcedure8() {
 		do {
-			let instance = try runProcedure7()
-			try runProcedure7(instance.asJSON())
+			let instance = try runProcedure8()
+			try runProcedure8(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -266,7 +303,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "39607008")
@@ -298,10 +335,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure8() {
+	func testProcedure9() {
 		do {
-			let instance = try runProcedure8()
-			try runProcedure8(instance.asJSON())
+			let instance = try runProcedure9()
+			try runProcedure9(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -309,7 +346,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "83030008")
@@ -341,10 +378,10 @@ class ProcedureTests: XCTestCase {
 		return inst
 	}
 	
-	func testProcedure9() {
+	func testProcedure10() {
 		do {
-			let instance = try runProcedure9()
-			try runProcedure9(instance.asJSON())
+			let instance = try runProcedure10()
+			try runProcedure10(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
@@ -352,7 +389,7 @@ class ProcedureTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runProcedure9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
+	func runProcedure10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f004-tracheotomy.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "83030008")
@@ -379,46 +416,6 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f001")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testProcedure10() {
-		do {
-			let instance = try runProcedure10()
-			try runProcedure10(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runProcedure10(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcedure {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f201-tpf.json")
-		
-		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "272676008")
-		XCTAssertEqual(inst.bodySite?[0].coding?[0].display, "Sphenoid bone")
-		XCTAssertEqual(inst.bodySite?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.code?.coding?[0].code, "367336001")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Chemotherapy")
-		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.context?.display, "Roel's encounter on January 28th, 2013")
-		XCTAssertEqual(inst.context?.reference, "Encounter/f202")
-		XCTAssertEqual(inst.id, "f201")
-		XCTAssertEqual(inst.note?[0].text, "Eerste neo-adjuvante TPF-kuur bij groot proces in sphenoid met intracraniale uitbreiding.")
-		XCTAssertEqual(inst.performedPeriod?.end?.description, "2013-01-28T14:27:00+01:00")
-		XCTAssertEqual(inst.performedPeriod?.start?.description, "2013-01-28T13:31:00+01:00")
-		XCTAssertEqual(inst.performer?[0].actor?.display, "Dokter Bronsig")
-		XCTAssertEqual(inst.performer?[0].actor?.reference, "Practitioner/f201")
-		XCTAssertEqual(inst.performer?[0].role?.coding?[0].code, "310512001")
-		XCTAssertEqual(inst.performer?[0].role?.coding?[0].display, "Medical oncologist")
-		XCTAssertEqual(inst.performer?[0].role?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reasonCode?[0].text, "DiagnosticReport/f201")
-		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
-		XCTAssertEqual(inst.subject?.display, "Roel")
-		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

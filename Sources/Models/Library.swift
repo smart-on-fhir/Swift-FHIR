@@ -2,7 +2,7 @@
 //  Library.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/Library) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Library) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -45,10 +45,10 @@ open class Library: DomainResource {
 	/// Natural language description of the library.
 	public var description_fhir: FHIRString?
 	
-	/// When the library is effective.
+	/// When the library is expected to be used.
 	public var effectivePeriod: Period?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Additional identifier for the library.
@@ -60,13 +60,13 @@ open class Library: DomainResource {
 	/// When the library was last reviewed.
 	public var lastReviewDate: FHIRDate?
 	
-	/// Name for this library (Computer friendly).
+	/// Name for this library (computer friendly).
 	public var name: FHIRString?
 	
 	/// Parameters defined by the library.
 	public var parameter: [ParameterDefinition]?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this library is defined.
@@ -78,7 +78,7 @@ open class Library: DomainResource {
 	/// The status of this library. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this library (Human friendly).
+	/// Name for this library (human friendly).
 	public var title: FHIRString?
 	
 	/// E.g. Education, Treatment, Assessment, etc.
@@ -87,13 +87,13 @@ open class Library: DomainResource {
 	/// logic-library | model-definition | asset-collection | module-definition.
 	public var type: CodeableConcept?
 	
-	/// Logical uri to reference this library (globally unique).
+	/// Logical URI to reference this library (globally unique).
 	public var url: FHIRURL?
 	
 	/// Describes the clinical usage of the library.
 	public var usage: FHIRString?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the library.

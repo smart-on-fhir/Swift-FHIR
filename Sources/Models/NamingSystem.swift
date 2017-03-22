@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -35,10 +35,10 @@ open class NamingSystem: DomainResource {
 	/// Indicates the purpose for the naming system - what kinds of things does it make unique?
 	public var kind: NamingSystemType?
 	
-	/// Name for this naming system (Computer friendly).
+	/// Name for this naming system (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Use this instead.
@@ -59,7 +59,7 @@ open class NamingSystem: DomainResource {
 	/// How/where is it used.
 	public var usage: FHIRString?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	

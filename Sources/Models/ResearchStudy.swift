@@ -2,7 +2,7 @@
 //  ResearchStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 
 
 /**
-Investigation increase healthcare-related patient-independent knowledge.
+Investigation to increase healthcare-related patient-independent knowledge.
 
 A process where a researcher or organization plans and then executes a series of steps intended to increase the field of
 healthcare-related knowledge.  This includes studies of safety, efficacy, comparative effectiveness and other
-information about medications, devices, therapies and other interventional and investigative techniques.
-ResearchStudies involve the gathering of information about human or animal subjects.
+information about medications, devices, therapies and other interventional and investigative techniques.  A
+ResearchStudy involves the gathering of information about human or animal subjects.
 */
 open class ResearchStudy: DomainResource {
 	override open class var resourceType: String {
@@ -40,7 +40,7 @@ open class ResearchStudy: DomainResource {
 	/// Drugs, devices, conditions, etc. under study.
 	public var focus: [CodeableConcept]?
 	
-	/// Business Identifer for study.
+	/// Business Identifier for study.
 	public var identifier: [Identifier]?
 	
 	/// Geographic region(s) for study.
@@ -58,7 +58,7 @@ open class ResearchStudy: DomainResource {
 	/// When the study began and ended.
 	public var period: Period?
 	
-	/// Individual responsible for the study.
+	/// The individual responsible for the study.
 	public var principalInvestigator: Reference?
 	
 	/// Steps followed in executing study.
@@ -159,7 +159,7 @@ open class ResearchStudyArm: BackboneElement {
 		get { return "ResearchStudyArm" }
 	}
 	
-	/// Categorization of arm.
+	/// Categorization of study arm.
 	public var code: CodeableConcept?
 	
 	/// Short explanation of study path.

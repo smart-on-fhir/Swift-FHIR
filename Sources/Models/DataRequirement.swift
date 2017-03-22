@@ -2,7 +2,7 @@
 //  DataRequirement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
 Describes a required data item.
 
-Describes a required data item for evaluation in terms of the type of data, and optional code- or date-based filters of
+Describes a required data item for evaluation in terms of the type of data, and optional code or date-based filters of
 the data.
 */
 open class DataRequirement: Element {
@@ -20,10 +20,10 @@ open class DataRequirement: Element {
 		get { return "DataRequirement" }
 	}
 	
-	/// Code filters for the data.
+	/// What codes are expected.
 	public var codeFilter: [DataRequirementCodeFilter]?
 	
-	/// Date filters for the data.
+	/// What dates/date ranges are expected.
 	public var dateFilter: [DataRequirementDateFilter]?
 	
 	/// Indicates that specific structure elements are referenced by the knowledge module.
@@ -72,7 +72,7 @@ open class DataRequirement: Element {
 
 
 /**
-Code filters for the data.
+What codes are expected.
 
 Code filters specify additional constraints on the data, specifying the value set of interest for a particular element
 of the data.
@@ -85,13 +85,13 @@ open class DataRequirementCodeFilter: Element {
 	/// The code-valued attribute of the filter.
 	public var path: FHIRString?
 	
-	/// Code value of the filter.
+	/// What code is expected.
 	public var valueCode: [FHIRString]?
 	
-	/// CodeableConcept value of the filter.
+	/// What CodeableConcept is expected.
 	public var valueCodeableConcept: [CodeableConcept]?
 	
-	/// Coding value of the filter.
+	/// What Coding is expected.
 	public var valueCoding: [Coding]?
 	
 	/// Valueset for the filter.
@@ -139,7 +139,7 @@ open class DataRequirementCodeFilter: Element {
 
 
 /**
-Date filters for the data.
+What dates/date ranges are expected.
 
 Date filters specify additional constraints on the data in terms of the applicable date range for specific elements.
 */

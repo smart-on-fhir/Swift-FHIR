@@ -2,7 +2,7 @@
 //  GraphDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -29,7 +29,7 @@ open class GraphDefinition: DomainResource {
 	/// Natural language description of the graph definition.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Intended jurisdiction for graph definition (if applicable).
@@ -38,13 +38,13 @@ open class GraphDefinition: DomainResource {
 	/// Links this graph makes rules about.
 	public var link: [GraphDefinitionLink]?
 	
-	/// Name for this graph definition (Computer friendly).
+	/// Name for this graph definition (computer friendly).
 	public var name: FHIRString?
 	
 	/// Profile on base resource.
 	public var profile: FHIRURL?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this graph definition is defined.
@@ -56,10 +56,10 @@ open class GraphDefinition: DomainResource {
 	/// The status of this graph definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Logical uri to reference this graph definition (globally unique).
+	/// Logical URI to reference this graph definition (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the graph definition.
@@ -146,10 +146,10 @@ open class GraphDefinitionLink: BackboneElement {
 	/// Why this link is specified.
 	public var description_fhir: FHIRString?
 	
-	/// Maximum occurences for this link.
+	/// Maximum occurrences for this link.
 	public var max: FHIRString?
 	
-	/// Minimum occurences for this link.
+	/// Minimum occurrences for this link.
 	public var min: FHIRInteger?
 	
 	/// Path in the resource that contains the link.

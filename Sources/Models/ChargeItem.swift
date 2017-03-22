@@ -2,7 +2,7 @@
 //  ChargeItem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -46,7 +46,7 @@ open class ChargeItem: DomainResource {
 	/// Factor overriding the associated rules.
 	public var factorOverride: FHIRDecimal?
 	
-	/// Business Identifer for item.
+	/// Business Identifier for item.
 	public var identifier: Identifier?
 	
 	/// Comments made about the ChargeItem.

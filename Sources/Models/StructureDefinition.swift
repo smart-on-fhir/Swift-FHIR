@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import Foundation
 Structural Definition.
 
 A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined in
-FHIR, and also for describing extensions, and constraints on resources and data types.
+FHIR, and also for describing extensions and constraints on resources and data types.
 */
 open class StructureDefinition: DomainResource {
 	override open class var resourceType: String {
@@ -53,7 +53,7 @@ open class StructureDefinition: DomainResource {
 	/// Differential view of the structure.
 	public var differential: StructureDefinitionDifferential?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// FHIR Version this StructureDefinition targets.
@@ -74,10 +74,10 @@ open class StructureDefinition: DomainResource {
 	/// External specification that the content is mapped to.
 	public var mapping: [StructureDefinitionMapping]?
 	
-	/// Name for this structure definition (Computer friendly).
+	/// Name for this structure definition (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this structure definition is defined.
@@ -89,16 +89,16 @@ open class StructureDefinition: DomainResource {
 	/// The status of this structure definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this structure definition (Human friendly).
+	/// Name for this structure definition (human friendly).
 	public var title: FHIRString?
 	
 	/// Type defined or constrained by this structure.
 	public var type: FHIRString?
 	
-	/// Logical uri to reference this structure definition (globally unique).
+	/// Logical URI to reference this structure definition (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the structure definition.

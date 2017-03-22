@@ -2,7 +2,7 @@
 //  RequestGroup.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -26,17 +26,33 @@ open class RequestGroup: DomainResource {
 	/// Device or practitioner that authored the request group.
 	public var author: Reference?
 	
+	/// When the request group was authored.
+	public var authoredOn: DateTime?
+	
+	/// Fulfills plan, proposal, or order.
+	public var basedOn: [Reference]?
+	
 	/// Encounter or Episode for the request group.
 	public var context: Reference?
 	
+	/// Instantiates protocol or definition.
+	public var definition: [Reference]?
+	
+	/// Composite request this is part of.
+	public var groupIdentifier: Identifier?
+	
 	/// Business identifier.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
+	
+	/// Indicates the level of authority/intentionality associated with the request and where the request fits into the
+	/// workflow chain.
+	public var intent: RequestIntent?
 	
 	/// Additional notes about the response.
 	public var note: [Annotation]?
 	
-	/// When the request group was authored.
-	public var occurrenceDateTime: DateTime?
+	/// Indicates how quickly the request should be addressed with respect to other requests.
+	public var priority: RequestPriority?
 	
 	/// Reason for the request group.
 	public var reasonCodeableConcept: CodeableConcept?
@@ -44,8 +60,23 @@ open class RequestGroup: DomainResource {
 	/// Reason for the request group.
 	public var reasonReference: Reference?
 	
+	/// Request(s) replaced by this request.
+	public var replaces: [Reference]?
+	
+	/// The current state of the request. For request groups, the status reflects the status of all the requests in the
+	/// group.
+	public var status: RequestStatus?
+	
 	/// Who the request group is about.
 	public var subject: Reference?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(intent: RequestIntent, status: RequestStatus) {
+		self.init()
+		self.intent = intent
+		self.status = status
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -53,12 +84,25 @@ open class RequestGroup: DomainResource {
 		
 		action = createInstances(of: RequestGroupAction.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
+		authoredOn = createInstance(type: DateTime.self, for: "authoredOn", in: json, context: &instCtx, owner: self) ?? authoredOn
+		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		groupIdentifier = createInstance(type: Identifier.self, for: "groupIdentifier", in: json, context: &instCtx, owner: self) ?? groupIdentifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
+		if nil == intent && !instCtx.containsKey("intent") {
+			instCtx.addError(FHIRValidationError(missing: "intent"))
+		}
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
-		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
+		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
 		reasonCodeableConcept = createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, context: &instCtx, owner: self) ?? reasonCodeableConcept
 		reasonReference = createInstance(type: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
+		replaces = createInstances(of: Reference.self, for: "replaces", in: json, context: &instCtx, owner: self) ?? replaces
+		status = createEnum(type: RequestStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
+		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 	}
 	
@@ -67,12 +111,25 @@ open class RequestGroup: DomainResource {
 		
 		arrayDecorate(json: &json, withKey: "action", using: self.action, errors: &errors)
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
+		self.authoredOn?.decorate(json: &json, withKey: "authoredOn", errors: &errors)
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
+		self.groupIdentifier?.decorate(json: &json, withKey: "groupIdentifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		self.intent?.decorate(json: &json, withKey: "intent", errors: &errors)
+		if nil == self.intent {
+			errors.append(FHIRValidationError(missing: "intent"))
+		}
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
-		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
+		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		self.reasonCodeableConcept?.decorate(json: &json, withKey: "reasonCodeableConcept", errors: &errors)
 		self.reasonReference?.decorate(json: &json, withKey: "reasonReference", errors: &errors)
+		arrayDecorate(json: &json, withKey: "replaces", using: self.replaces, errors: &errors)
+		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 	}
 }

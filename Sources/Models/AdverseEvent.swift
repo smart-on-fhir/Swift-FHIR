@@ -2,7 +2,7 @@
 //  AdverseEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -10,6 +10,8 @@ import Foundation
 
 
 /**
+Medical care, research study or other healthcare event causing physical injury.
+
 Actual or  potential/avoided event causing unintended physical injury resulting from or contributed to by medical care,
 a research study or other healthcare setting factors that requires additional monitoring, treatment, or hospitalization,
 or that results in death.
@@ -19,23 +21,23 @@ open class AdverseEvent: DomainResource {
 		get { return "AdverseEvent" }
 	}
 	
-	/// The type of event is important to characterize what occurred and caused harm to the subject, or had the
+	/// The type of event which is important to characterize what occurred and caused harm to the subject, or had the
 	/// potential to cause harm to the subject.
 	public var category: AdverseEventCategory?
 	
-	/// AdverseEvent.date.
+	/// When the event occurred.
 	public var date: DateTime?
 	
-	/// AdverseEvent.description.
+	/// Description of the adverse event.
 	public var description_fhir: FHIRString?
 	
 	/// Who  was involved in the adverse event or the potential adverse event.
 	public var eventParticipant: Reference?
 	
-	/// AdverseEvent.identifier.
+	/// Business identifier for the event.
 	public var identifier: Identifier?
 	
-	/// AdverseEvent.location.
+	/// Location where adverse event occurred.
 	public var location: Reference?
 	
 	/// resolved | recovering | ongoing | resolvedWithSequelae | fatal | unknown.
@@ -44,7 +46,7 @@ open class AdverseEvent: DomainResource {
 	/// Adverse Reaction Events linked to exposure to substance.
 	public var reaction: [Reference]?
 	
-	/// AdverseEvent.recorder.
+	/// Who recorded the adverse event.
 	public var recorder: Reference?
 	
 	/// AdverseEvent.referenceDocument.
@@ -62,7 +64,7 @@ open class AdverseEvent: DomainResource {
 	/// AdverseEvent.subjectMedicalHistory.
 	public var subjectMedicalHistory: [Reference]?
 	
-	/// AdverseEvent.suspectEntity.
+	/// The suspected agent causing the adverse event.
 	public var suspectEntity: [AdverseEventSuspectEntity]?
 	
 	/// actual | potential.
@@ -114,7 +116,9 @@ open class AdverseEvent: DomainResource {
 
 
 /**
-AdverseEvent.suspectEntity.
+The suspected agent causing the adverse event.
+
+Describes the entity that is suspected to have caused the adverse event.
 */
 open class AdverseEventSuspectEntity: BackboneElement {
 	override open class var resourceType: String {
@@ -139,7 +143,7 @@ open class AdverseEventSuspectEntity: BackboneElement {
 	/// result1 | result2.
 	public var causalityResult: CodeableConcept?
 	
-	/// AdverseEvent.suspectEntity.instance.
+	/// Refers to the specific entity that caused the adverse event.
 	public var instance: Reference?
 	
 	

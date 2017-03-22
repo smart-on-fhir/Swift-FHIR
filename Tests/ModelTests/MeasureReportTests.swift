@@ -2,7 +2,7 @@
 //  MeasureReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -127,6 +127,7 @@ class MeasureReportTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].population?[3].count, 0)
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].value, "unknown")
 		XCTAssertEqual(inst.id, "measurereport-cms146-cat1-example")
+		XCTAssertEqual(inst.identifier?.value, "measurereport-cms146-cat1-example-2017-03-13")
 		XCTAssertEqual(inst.measure?.reference, "Measure/CMS146")
 		XCTAssertEqual(inst.patient?.reference, "Patient/123")
 		XCTAssertEqual(inst.period?.end?.description, "2014-03-31")
@@ -275,6 +276,7 @@ class MeasureReportTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].population?[3].patients?.reference, "List/CMS146-stratifier-gender-unknown-denominator-exclusions")
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].value, "unknown")
 		XCTAssertEqual(inst.id, "measurereport-cms146-cat2-example")
+		XCTAssertEqual(inst.identifier?.value, "measurereport-cms146-cat2-example-2017-03-13")
 		XCTAssertEqual(inst.measure?.reference, "Measure/CMS146")
 		XCTAssertEqual(inst.period?.end?.description, "2014-03-31")
 		XCTAssertEqual(inst.period?.start?.description, "2014-01-01")
@@ -386,6 +388,7 @@ class MeasureReportTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].population?[3].count, 0)
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].value, "unknown")
 		XCTAssertEqual(inst.id, "measurereport-cms146-cat3-example")
+		XCTAssertEqual(inst.identifier?.value, "measurereport-cms146-cat3-example-2017-03-13")
 		XCTAssertEqual(inst.measure?.reference, "Measure/CMS146")
 		XCTAssertEqual(inst.period?.end?.description, "2014-03-31")
 		XCTAssertEqual(inst.period?.start?.description, "2014-01-01")

@@ -2,7 +2,7 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -275,7 +275,7 @@ public enum ActionType: String {
 
 
 /**
-High-level categorization of the type of activity in a protocol.
+High-level categorization of the type of activity
 
 URL: http://hl7.org/fhir/activity-definition-category
 ValueSet: http://hl7.org/fhir/ValueSet/activity-definition-category
@@ -357,7 +357,7 @@ public enum AdministrativeGender: String {
 
 
 /**
-Overall categorisation of the event e.g. real or potential
+Overall categorization of the event, e.g. real or potential
 
 URL: http://hl7.org/fhir/adverse-event-category
 ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-category
@@ -1092,20 +1092,20 @@ ValueSet: http://hl7.org/fhir/ValueSet/chargeitem-status
 */
 public enum ChargeItemStatus: String {
 	
-	/// the charge item has been entered, but the charged service is not  yet complete, so it shall not be billed yet
+	/// The charge item has been entered, but the charged service is not  yet complete, so it shall not be billed yet
 	/// but might be used in the context of pre-authorization
 	case planned = "planned"
 	
-	/// the charge item is ready for billing
+	/// The charge item is ready for billing
 	case billable = "billable"
 	
-	/// the charge item has been determined to be not billable (e.g. due to rules associated with the billing code)
+	/// The charge item has been determined to be not billable (e.g. due to rules associated with the billing code)
 	case notBillable = "not-billable"
 	
 	/// The processing of the charge was aborted
 	case aborted = "aborted"
 	
-	/// the charge item has been billed (e.g. a billing engine has generated financial transactions by applying the
+	/// The charge item has been billed (e.g. a billing engine has generated financial transactions by applying the
 	/// associated ruled for the charge item to the context of the Encounter, and placed them into Claims/Invoices
 	case billed = "billed"
 	
@@ -1225,19 +1225,19 @@ public enum CodeSystemHierarchyMeaning: String {
 	
 	/// No particular relationship between the concepts can be assumed, except what can be determined by inspection of
 	/// the definitions of the elements (possible reasons to use this: importing from a source where this is not
-	/// defined, or where various parts of the heirarchy have different meanings)
+	/// defined, or where various parts of the hierarchy have different meanings)
 	case groupedBy = "grouped-by"
 	
 	/// A hierarchy where the child concepts have an IS-A relationship with the parents - that is, all the properties of
-	/// the parent are also true for it's child concepts
+	/// the parent are also true for its child concepts
 	case isA = "is-a"
 	
-	/// Child elements list the individual parts of a composite whole (e.g. bodysite)
+	/// Child elements list the individual parts of a composite whole (e.g. body site)
 	case partOf = "part-of"
 	
-	/// Child concepts in the hierarchy may have only one parent and there is a presumption that the code system is a
+	/// Child concepts in the hierarchy may have only one parent, and there is a presumption that the code system is a
 	/// "closed world" meaning all things must be in the hierarchy. This results in concepts such as "not otherwise
-	/// clasified."
+	/// classified."
 	case classifiedWith = "classified-with"
 }
 
@@ -1293,7 +1293,7 @@ public enum CommunicationNotDoneReason: String {
 
 
 /**
-Which compartment a compartmnet definition describes
+Which compartment a compartment definition describes
 
 URL: http://hl7.org/fhir/compartment-type
 ValueSet: http://hl7.org/fhir/ValueSet/compartment-type
@@ -1336,7 +1336,7 @@ public enum CompositeMeasureScoring: String {
 	/// Linear scoring gives an individual a score based on the number of numerators in which they appear
 	case linear = "linear"
 	
-	/// Weighted scoring gives an individual a score based on a weigthed factor for each component numerator in which
+	/// Weighted scoring gives an individual a score based on a weighted factor for each component numerator in which
 	/// they appear
 	case weighted = "weighted"
 }
@@ -1468,7 +1468,7 @@ public enum ConditionState: String {
 	/// The condition is active.
 	case active = "active"
 	
-	/// The condition inactive but not resolved.
+	/// The condition is inactive, but not resolved.
 	case inactive = "inactive"
 	
 	/// The condition is resolved.
@@ -1487,7 +1487,7 @@ public enum ConditionVerificationStatus: String {
 	/// This is a tentative diagnosis - still a candidate that is under consideration.
 	case provisional = "provisional"
 	
-	/// One of a set of potential (and typically mutually exclusive) diagnosis asserted to further guide the diagnostic
+	/// One of a set of potential (and typically mutually exclusive) diagnoses asserted to further guide the diagnostic
 	/// process and preliminary treatment.
 	case differential = "differential"
 	
@@ -1559,11 +1559,11 @@ public enum ConformanceExpectation: String {
 	/// Support for the specified capability is required to be considered conformant.
 	case SHALL = "SHALL"
 	
-	/// Support for the specified capability is strongly encouraged and failure to support it should only occur after
+	/// Support for the specified capability is strongly encouraged, and failure to support it should only occur after
 	/// careful consideration.
 	case SHOULD = "SHOULD"
 	
-	/// Support for the specified capability is not necessary to be considered conformant and the requirement should be
+	/// Support for the specified capability is not necessary to be considered conformant, and the requirement should be
 	/// considered strictly optional.
 	case MAY = "MAY"
 	
@@ -1583,10 +1583,10 @@ public enum ConsentDataMeaning: String {
 	/// The consent applies directly to the instance of the resource
 	case instance = "instance"
 	
-	/// The consent applies directly to the instance of the resource, and instances it refers to
+	/// The consent applies directly to the instance of the resource and instances it refers to
 	case related = "related"
 	
-	/// The consent applies directly to the instance of the resource, and instances that refer to it
+	/// The consent applies directly to the instance of the resource and instances that refer to it
 	case dependents = "dependents"
 	
 	/// The consent applies to instances of resources that are authored by
@@ -1595,7 +1595,7 @@ public enum ConsentDataMeaning: String {
 
 
 /**
-How an exception is statement is applied, as adding additional consent, or removing consent
+How an exception statement is applied, such as adding additional consent or removing consent
 
 URL: http://hl7.org/fhir/consent-except-type
 ValueSet: http://hl7.org/fhir/ValueSet/consent-except-type
@@ -1865,7 +1865,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/data-types
 public enum DataType: String {
 	
 	/// An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This
-	/// data type may be used to convey addresses for use in delivering mail as well as for visiting locations and which
+	/// data type may be used to convey addresses for use in delivering mail as well as for visiting locations which
 	/// might not be valid for mail delivery.  There are a variety of postal address formats defined around the world.
 	case address = "Address"
 	
@@ -1901,7 +1901,7 @@ public enum DataType: String {
 	/// that are not precisely quantified, including amounts involving arbitrary units and floating currencies.
 	case count = "Count"
 	
-	/// Describes a required data item for evaluation in terms of the type of data, and optional code- or date-based
+	/// Describes a required data item for evaluation in terms of the type of data, and optional code or date-based
 	/// filters of the data.
 	case dataRequirement = "DataRequirement"
 	
@@ -1920,7 +1920,7 @@ public enum DataType: String {
 	/// Captures constraints on each element within the resource, profile, or extension.
 	case elementDefinition = "ElementDefinition"
 	
-	/// Optional Extensions Element - found in all resources.
+	/// Optional Extension Element - found in all resources.
 	case extension_fhir = "Extension"
 	
 	/// A human's name with the ability to identify parts and usage.
@@ -1933,7 +1933,7 @@ public enum DataType: String {
 	/// to the content may not always be associated with version changes to the resource.
 	case meta = "Meta"
 	
-	/// An amount of economic utility in some recognised currency.
+	/// An amount of economic utility in some recognized currency.
 	case money = "Money"
 	
 	/// A human-readable formatted text, including images.
@@ -1968,7 +1968,7 @@ public enum DataType: String {
 	case sampledData = "SampledData"
 	
 	/// A digital signature along with supporting context. The signature may be electronic/cryptographic in nature, or a
-	/// graphical image representing a hand-written signature, or a signature process. Different Signature approaches
+	/// graphical image representing a hand-written signature, or a signature process. Different signature approaches
 	/// have different utilities.
 	case signature = "Signature"
 	
@@ -2026,7 +2026,7 @@ public enum DataType: String {
 	/// A string that may contain markdown syntax for optional processing by a mark down presentation engine
 	case markdown = "markdown"
 	
-	/// An oid represented as a URI
+	/// An OID represented as a URI
 	case oid = "oid"
 	
 	/// An integer with a value that is positive (e.g. >0)
@@ -2084,7 +2084,7 @@ public enum DaysOfWeek: String {
 
 
 /**
-Codes identifying the stage lifecycle stage of a definition
+Codes identifying the lifecycle stage of a definition
 
 URL: http://hl7.org/fhir/definition-status
 ValueSet: http://hl7.org/fhir/ValueSet/definition-status
@@ -2144,6 +2144,74 @@ public enum DetectedIssueSeverity: String {
 	/// Indicates the issue may result in some adverse consequences but is unlikely to substantially affect the
 	/// situation of the subject.
 	case low = "low"
+}
+
+
+/**
+Codes representing the current status of the device - on, off, suspended, etc.
+
+URL: http://hl7.org/fhir/operational-status
+ValueSet: http://hl7.org/fhir/ValueSet/operational-status
+*/
+public enum DeviceComponentOperationalStatus: String {
+	
+	/// The device is off.
+	case off = "off"
+	
+	/// The device is fully operational.
+	case on = "on"
+	
+	/// The device is not ready.
+	case notReady = "not-ready"
+	
+	/// The device is ready but not actively operating.
+	case standby = "standby"
+	
+	/// The device transducer is diconnected.
+	case transducDiscon = "transduc-discon"
+	
+	/// The device hardware is disconnected.
+	case hwDiscon = "hw-discon"
+	
+	/// The device was entered in error.
+	case enteredInError = "entered-in-error"
+}
+
+
+/**
+Codes identifying groupings of parameters; e.g. Cardiovascular.
+
+URL: http://hl7.org/fhir/parameter-group
+ValueSet: http://hl7.org/fhir/ValueSet/parameter-group
+*/
+public enum DeviceComponentParameterGroup: String {
+	
+	/// Haemodynamic Parameter Group - MDC_PGRP_HEMO
+	case haemodynamic = "haemodynamic"
+	
+	/// ECG Parameter Group - MDC_PGRP_ECG
+	case ecg = "ecg"
+	
+	/// Respiratory Parameter Group - MDC_PGRP_RESP
+	case respiratory = "respiratory"
+	
+	/// Ventilation Parameter Group - MDC_PGRP_VENT
+	case ventilation = "ventilation"
+	
+	/// Neurological Parameter Group - MDC_PGRP_NEURO
+	case neurological = "neurological"
+	
+	/// Drug Delivery Parameter Group - MDC_PGRP_DRUG
+	case drugDelivery = "drug-delivery"
+	
+	/// Fluid Chemistry Parameter Group - MDC_PGRP_FLUID
+	case fluidChemistry = "fluid-chemistry"
+	
+	/// Blood Chemistry Parameter Group - MDC_PGRP_BLOOD_CHEM
+	case bloodChemistry = "blood-chemistry"
+	
+	/// Miscellaneous Parameter Group - MDC_PGRP_MISC
+	case miscellaneous = "miscellaneous"
 }
 
 
@@ -2270,6 +2338,40 @@ public enum DeviceMetricOperationalStatus: String {
 
 
 /**
+Codes for device specification types such as serial number, part number, hardware revision, software revision, etc.
+
+URL: http://hl7.org/fhir/specification-type
+ValueSet: http://hl7.org/fhir/ValueSet/specification-type
+*/
+public enum DeviceSpecificationSpecType: String {
+	
+	/// Unspecified Production Specification - MDC_ID_PROD_SPEC_UNSPECIFIED
+	case unspecified = "unspecified"
+	
+	/// Serial Number - MDC_ID_PROD_SPEC_SERIAL
+	case serialNumber = "serial-number"
+	
+	/// Part Number - MDC_ID_PROD_SPEC_PART
+	case partNumber = "part-number"
+	
+	/// Hardware Revision - MDC_ID_PROD_SPEC_HW
+	case hardwareRevision = "hardware-revision"
+	
+	/// Software Revision - MDC_ID_PROD_SPEC_SW
+	case softwareRevision = "software-revision"
+	
+	/// Firmware Revision - MDC_ID_PROD_SPEC_FW
+	case firmwareRevision = "firmware-revision"
+	
+	/// Protocol Revision - MDC_ID_PROD_SPEC_PROTOCOL
+	case protocolRevision = "protocol-revision"
+	
+	/// GMDN - MDC_ID_PROD_SPEC_GMDN
+	case gmdn = "gmdn"
+}
+
+
+/**
 A coded concept indicating the current status of a the Device Usage
 
 URL: http://hl7.org/fhir/device-statement-status
@@ -2319,15 +2421,15 @@ public enum DiagnosticReportStatus: String {
 	/// The report is complete and verified by an authorized person.
 	case final = "final"
 	
-	/// Subsequent to being Final, the report has been modified.  This includes any change in the results, diagnosis,
+	/// Subsequent to being final, the report has been modified.  This includes any change in the results, diagnosis,
 	/// narrative text, or other content of a report that has been issued.
 	case amended = "amended"
 	
-	/// Subsequent to being Final, the report has been modified  to correct an error in the report or referenced
+	/// Subsequent to being final, the report has been modified  to correct an error in the report or referenced
 	/// results.
 	case corrected = "corrected"
 	
-	/// Subsequent to being Final, the report has been modified by adding new content. The existing content is
+	/// Subsequent to being final, the report has been modified by adding new content. The existing content is
 	/// unchanged.
 	case appended = "appended"
 	
@@ -2348,7 +2450,7 @@ public enum DiagnosticReportStatus: String {
 
 
 /**
-Whether the Media is a photo, video, or audio
+Whether the media is a photo, video, or audio
 
 URL: http://hl7.org/fhir/digital-media-type
 ValueSet: http://hl7.org/fhir/ValueSet/digital-media-type
@@ -2551,9 +2653,9 @@ ValueSet: http://hl7.org/fhir/ValueSet/episode-of-care-status
 */
 public enum EpisodeOfCareStatus: String {
 	
-	/// This episode of care is planned to start at the date specified in the period.start. During this status an
-	/// organization may perform assessments to determine if they are eligible to receive services, or be organizing to
-	/// make resources available to provide care services.
+	/// This episode of care is planned to start at the date specified in the period.start. During this status, an
+	/// organization may perform assessments to determine if the patient is eligible to receive services, or be
+	/// organizing to make resources available to provide care services.
 	case planned = "planned"
 	
 	/// This episode has been placed on a waitlist, pending the episode being made active (or cancelled).
@@ -2566,8 +2668,8 @@ public enum EpisodeOfCareStatus: String {
 	/// respite).
 	case onhold = "onhold"
 	
-	/// This episode of care is finished at the organization is not expecting to be providing care to the patient. Can
-	/// also be known as "closed", "completed" or other similar terms.
+	/// This episode of care is finished and the organization is not expecting to be providing further care to the
+	/// patient. Can also be known as "closed", "completed" or other similar terms.
 	case finished = "finished"
 	
 	/// The episode of care was cancelled, or withdrawn from service, often selected during the planned stage as the
@@ -2632,7 +2734,7 @@ public enum EventStatus: String {
 
 
 /**
-Real world event that the relating to the schedule.
+Real world event relating to the schedule.
 
 URL: http://hl7.org/fhir/event-timing
 ValueSet: http://hl7.org/fhir/ValueSet/event-timing
@@ -2721,11 +2823,11 @@ public enum FHIRDefinedConceptProperties: String {
 	case notSelectable = "notSelectable"
 	
 	/// The concept identified in this property is a parent of the concept on which it is a property. The property type
-	/// will be 'code'. The meaning of 'parent' is defined by the heirarchyMeaning attribute
+	/// will be 'code'. The meaning of 'parent' is defined by the hierarchyMeaning attribute
 	case parent = "parent"
 	
 	/// The concept identified in this property is a child of the concept on which it is a property. The property type
-	/// will be 'code'. The meaning of 'child' is defined by the heirarchyMeaning attribute
+	/// will be 'code'. The meaning of 'child' is defined by the hierarchyMeaning attribute
 	case child = "child"
 }
 
@@ -3643,31 +3745,6 @@ public enum LocationStatus: String {
 /**
 A Master Patient Index (MPI) assessment of whether a candidate patient record is a match or not.
 
-URL: http://hl7.org/fhir/patient-mpi-match
-ValueSet: http://hl7.org/fhir/ValueSet/patient-mpi-match
-*/
-public enum MPIMatch: String {
-	
-	/// This record meets the MPI criteria to be automatically considered as a full match.
-	case certain = "certain"
-	
-	/// This record is a close match, but not a certain match. Additional review (e.g. by a human) may be required
-	/// before using this as a match.
-	case probable = "probable"
-	
-	/// This record may be a matching one. Additional review (e.g. by a human) SHOULD be performed before using this as
-	/// a match.
-	case possible = "possible"
-	
-	/// This record is known not to be a match. Note that usually non-matching records are not returned, but in some
-	/// cases records previously or likely considered as a match may specifically be negated by the MPI.
-	case certainlyNot = "certainly-not"
-}
-
-
-/**
-A Master Patient Index (MPI) assessment of whether a candidate patient record is a match or not.
-
 URL: http://hl7.org/fhir/match-grade
 ValueSet: http://hl7.org/fhir/ValueSet/match-grade
 */
@@ -4300,7 +4377,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/message-significance-category
 */
 public enum MessageSignificanceCategory: String {
 	
-	/// The message represents/requests a change that should not be processed more than once; e.g. Making a booking for
+	/// The message represents/requests a change that should not be processed more than once; e.g., making a booking for
 	/// an appointment.
 	case consequence = "Consequence"
 	
@@ -4933,12 +5010,12 @@ public enum PlanDefinitionType: String {
 	/// entry (CPOE) system
 	case orderSet = "order-set"
 	
-	/// A set of activities that can be peformed that have relationships in terms of order, pre-conditions etc
+	/// A set of activities that can be performed that have relationships in terms of order, pre-conditions, etc.
 	case protocol_fhir = "protocol"
 	
 	/// A decision support rule of the form [on Event] if Condition then Action. It is intended to be a shareable,
-	/// computable definition of a actions that should be taken whenever some condition is met in response to a
-	/// particular event or events
+	/// computable definition of actions that should be taken whenever some condition is met in response to a particular
+	/// event or events
 	case ecaRule = "eca-rule"
 }
 
@@ -5034,7 +5111,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/publication-status
 */
 public enum PublicationStatus: String {
 	
-	/// This resource is still under development.
+	/// This resource is still under development and is not yet considered to be ready for normal use.
 	case draft = "draft"
 	
 	/// This resource is ready for normal use.
@@ -5042,6 +5119,11 @@ public enum PublicationStatus: String {
 	
 	/// This resource has been withdrawn or superseded and should no longer be used.
 	case retired = "retired"
+	
+	/// The authoring system does not know which of the status values currently applies for this resource.  Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
+	/// which one.
+	case unknown = "unknown"
 }
 
 
@@ -5116,56 +5198,61 @@ ValueSet: http://hl7.org/fhir/ValueSet/item-type
 */
 public enum QuestionnaireItemType: String {
 	
-	/// An item with no direct answer but which has descendant items that are questions
+	/// An item with no direct answer but should have at least one child item.
 	case group = "group"
 	
-	/// Text for display that will not capture an answer or have descendants
+	/// Text for display that will not capture an answer or have child items.
 	case display = "display"
 	
-	/// An item that defines a specific answer to be captured (and may have descendant items)
+	/// An item that defines a specific answer to be captured, and may have child items.
+	/// (the answer provided in the QuestionnaireResponse should be of the defined datatype)
 	case question = "question"
 	
-	/// Question with a yes/no answer
+	/// Question with a yes/no answer (valueBoolean)
 	case boolean = "boolean"
 	
-	/// Question with is a real number answer
+	/// Question with is a real number answer (valueDecimal)
 	case decimal = "decimal"
 	
-	/// Question with an integer answer
+	/// Question with an integer answer (valueInteger)
 	case integer = "integer"
 	
-	/// Question with adate answer
+	/// Question with a date answer (valueDate)
 	case date = "date"
 	
-	/// Question with a date and time answer
+	/// Question with a date and time answer (valueDateTime)
 	case dateTime = "dateTime"
 	
-	/// Question with a time (hour/minute/second) answer independent of date.
+	/// Question with a time (hour:minute:second) answer independent of date. (valueTime)
 	case time = "time"
 	
-	/// Question with a short (few words to short sentence) free-text entry answer
+	/// Question with a short (few words to short sentence) free-text entry answer (valueString)
 	case string = "string"
 	
-	/// Question with a long (potentially multi-paragraph) free-text entry (still captured as a string) answer
+	/// Question with a long (potentially multi-paragraph) free-text entry answer (valueString)
 	case text = "text"
 	
-	/// Question with a url (website, FTP site, etc.) answer
+	/// Question with a URL (website, FTP site, etc.) answer (valueUri)
 	case url = "url"
 	
-	/// Question with a Coding drawn from a list of options as an answer
+	/// Question with a Coding drawn from a list of options (specified in either the option property, or via the
+	/// valueset referenced in the options property) as an answer (valueCoding)
 	case choice = "choice"
 	
-	/// Answer is a Coding drawn from a list of options or a free-text entry in a string
+	/// Answer is a Coding drawn from a list of options (as with the choice type) or a free-text entry in a string
+	/// (valueCoding or valueString)
 	case openChoice = "open-choice"
 	
-	/// Question with binary content such as a image, PDF, etc. as an answer
+	/// Question with binary content such as a image, PDF, etc. as an answer (valueAttachment)
 	case attachment = "attachment"
 	
-	/// Question with a reference to another resource (practitioner, organization, etc.) as an answer
+	/// Question with a reference to another resource (practitioner, organization, etc.) as an answer (valueReference)
 	case reference = "reference"
 	
 	/// Question with a combination of a numeric value and unit, potentially with a comparator (<, >, etc.) as an
-	/// answer.
+	/// answer. (valueQuantity)
+	/// There is an extension 'http://hl7.org/fhir/StructureDefinition/questionnaire-unit' that can be used to define
+	/// what unit whould be captured (or the a unit that has a ucum conversion from the provided unit)
 	case quantity = "quantity"
 }
 
@@ -5219,33 +5306,14 @@ public enum QuestionnaireResponseStatus: String {
 	/// This QuestionnaireResponse was entered in error and voided.
 	case enteredInError = "entered-in-error"
 	
-	/// This QuestionnaireResponse has been partially filled out with answers, but it is unknown whether changes or
-	/// additions are expected to be made to it.
+	/// This QuestionnaireResponse has been partially filled out with answers, but has been abandoned. It is unknown
+	/// whether changes or additions are expected to be made to it.
 	case stopped = "stopped"
 }
 
 
 /**
-Lifecycle status of the questionnaire.
-
-URL: http://hl7.org/fhir/questionnaire-status
-ValueSet: http://hl7.org/fhir/ValueSet/questionnaire-status
-*/
-public enum QuestionnaireStatus: String {
-	
-	/// This Questionnaire is not ready for official use.
-	case draft = "draft"
-	
-	/// This Questionnaire is ready for use.
-	case published = "published"
-	
-	/// This Questionnaire should no longer be used to gather data.
-	case retired = "retired"
-}
-
-
-/**
-A set of flags that defines how references are supported
+A set of flags that defines how references are supported.
 
 URL: http://hl7.org/fhir/reference-handling-policy
 ValueSet: http://hl7.org/fhir/ValueSet/reference-handling-policy
@@ -5264,7 +5332,7 @@ public enum ReferenceHandlingPolicy: String {
 	case resolves = "resolves"
 	
 	/// The server enforces that references have integrity - e.g. it ensures that references can always be resolved.
-	/// This is typically the case for clinical record systems, but often no the case for middleware/proxy systems
+	/// This is typically the case for clinical record systems, but often not the case for middleware/proxy systems
 	case enforced = "enforced"
 	
 	/// The server does not support references that point to other servers
@@ -5273,7 +5341,7 @@ public enum ReferenceHandlingPolicy: String {
 
 
 /**
-Whether a reference needs to be version specific or version independent, or whetehr either can be used
+Whether a reference needs to be version specific or version independent, or whether either can be used
 
 URL: http://hl7.org/fhir/reference-version-rules
 ValueSet: http://hl7.org/fhir/ValueSet/reference-version-rules
@@ -5310,7 +5378,7 @@ public enum ReferralMethod: String {
 	/// used to know that they are able to transmit messages.
 	case elec = "elec"
 	
-	/// Referrals may be accepted via a secure email. To send please enrypt with the services public key.
+	/// Referrals may be accepted via a secure email. To send please encrypt with the services public key.
 	case semail = "semail"
 	
 	/// Referrals may be accepted via regular postage (or hand delivered).
@@ -5362,27 +5430,27 @@ public enum RelatedArtifactType: String {
 
 
 /**
-Type for access of external uri
+Type for access of external URI
 
 URL: http://hl7.org/fhir/repository-type
 ValueSet: http://hl7.org/fhir/ValueSet/repository-type
 */
 public enum RepositoryType: String {
 	
-	/// When url is clicked, the resource can be seen directly (by webpage or by download link format)
+	/// When URL is clicked, the resource can be seen directly (by webpage or by download link format)
 	case directlink = "directlink"
 	
-	/// When the api method (e.g. [base_url]/[parameter]) related with the url website is executed, the resource can be
-	/// seen directly (usually in json or xml format)
+	/// When the API method (e.g. [base_url]/[parameter]) related with the URL of the website is executed, the resource
+	/// can be seen directly (usually in JSON or XML format)
 	case openapi = "openapi"
 	
 	/// When logged into the website, the resource can be seen.
 	case login = "login"
 	
-	/// When logged in and follow the API in the website related with url, the resource can be seen.
+	/// When logged in and  follow the API in the website related with URL, the resource can be seen.
 	case oauth = "oauth"
 	
-	/// Some other complicated or particular way to get resource from url.
+	/// Some other complicated or particular way to get resource from URL.
 	case other = "other"
 }
 
@@ -5480,8 +5548,8 @@ public enum RequestStatus: String {
 	case enteredInError = "entered-in-error"
 	
 	/// The authoring system does not know which of the status values currently applies for this request.  Note: This
-	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
-	/// which one.
+	/// concept is not to be used for "other" . One of the listed statuses is presumed to apply,  but the system
+	/// creating the request doesn't know.
 	case unknown = "unknown"
 }
 
@@ -5604,7 +5672,7 @@ public enum ResourceVersionPolicy: String {
 	/// VersionId meta-property is supported (server) or used (client).
 	case versioned = "versioned"
 	
-	/// VersionId is must be correct for updates (server) or will be specified (If-match header) for updates (client).
+	/// VersionId must be correct for updates (server) or will be specified (If-match header) for updates (client).
 	case versionedUpdate = "versioned-update"
 }
 
@@ -5624,8 +5692,8 @@ public enum ResponseType: String {
 	/// database unavailable, which may be expected to resolve, though human intervention may be required.
 	case transientError = "transient-error"
 	
-	/// The message was rejected because of some content in it. There is no point in re-sending without change. The
-	/// response narrative SHALL describe the issue.
+	/// The message was rejected because of a problem with the content. There is no point in re-sending without change.
+	/// The response narrative SHALL describe the issue.
 	case fatalError = "fatal-error"
 }
 
@@ -5749,7 +5817,7 @@ public enum SearchModifierCode: String {
 	/// searched.
 	case contains = "contains"
 	
-	/// The search parameter returns resources that do not contain a match .
+	/// The search parameter returns resources that do not contain a match.
 	case not = "not"
 	
 	/// The search parameter is processed as a string that searches text associated with the code/value - either
@@ -5994,18 +6062,18 @@ ValueSet: http://hl7.org/fhir/ValueSet/structure-definition-kind
 */
 public enum StructureDefinitionKind: String {
 	
-	/// A data type, which is a primitive type that has a value and an extension. These can be used throughout Resource
-	/// and extension definitions. Only tbe base specification can define primitive types.
+	/// A primitive type that has a value and an extension. These can be used throughout Resource and extension
+	/// definitions. Only the base specification can define primitive types.
 	case primitiveType = "primitive-type"
 	
-	/// A data type - either a complex structure that defines a set of data elements. These can be used throughout
-	/// Resource and extension definitions, and in logical models.
+	/// A  complex structure that defines a set of data elements. These can be used throughout Resource and extension
+	/// definitions, and in logical models.
 	case complexType = "complex-type"
 	
 	/// A resource defined by the FHIR specification.
 	case resource = "resource"
 	
-	/// A logical model - a conceptual package of data that will be mapped to resources for implementation.
+	/// A conceptual package of data that will be mapped to resources for implementation.
 	case logical = "logical"
 }
 
@@ -6027,7 +6095,7 @@ public enum StructureMapContextType: String {
 
 
 /**
-If this is the default rule set to apply for thie source type, or this combination of types
+If this is the default rule set to apply for the source type, or this combination of types
 
 URL: http://hl7.org/fhir/map-group-type-mode
 ValueSet: http://hl7.org/fhir/ValueSet/map-group-type-mode
@@ -6134,7 +6202,7 @@ public enum StructureMapTargetListMode: String {
 
 
 /**
-How data is copied / created
+How data is copied/created
 
 URL: http://hl7.org/fhir/map-transform
 ValueSet: http://hl7.org/fhir/ValueSet/map-transform
@@ -6167,13 +6235,13 @@ public enum StructureMapTransform: String {
 	/// reference(source : object) - return a string that references the provided tree properly
 	case reference = "reference"
 	
-	/// Perform a date operation. Parameters to be documented
+	/// Perform a date operation. *Parameters to be documented*
 	case dateOp = "dateOp"
 	
 	/// Generate a random UUID (in lowercase). No Parameters
 	case uuid = "uuid"
 	
-	/// Return the appropriate string to put in a Reference that refers to the resource provided as a parameter
+	/// Return the appropriate string to put in a reference that refers to the resource provided as a parameter
 	case pointer = "pointer"
 	
 	/// Execute the supplied fluentpath expression and use the value returned by that
@@ -6185,7 +6253,7 @@ public enum StructureMapTransform: String {
 	/// Create a Coding. Parameters = (system. Code[, display])
 	case C = "c"
 	
-	/// Create a quantity. Parameters = (text) or (value, unit, [system, code]) where text =s the natural represenation
+	/// Create a quantity. Parameters = (text) or (value, unit, [system, code]) where text is the natural representation
 	/// e.g. [comparator]value[space]unit
 	case qty = "qty"
 	
@@ -6588,7 +6656,7 @@ public enum TransactionMode: String {
 The type of trigger
 
 URL: http://hl7.org/fhir/trigger-type
-ValueSet: http://hl7.org/fhir/ValueSet/cqif-trigger-type
+ValueSet: http://hl7.org/fhir/ValueSet/trigger-type
 */
 public enum TriggerType: String {
 	
@@ -6616,7 +6684,7 @@ public enum TriggerType: String {
 
 
 /**
-How a type relates to it's baseDefinition.
+How a type relates to its baseDefinition.
 
 URL: http://hl7.org/fhir/type-derivation-rule
 ValueSet: http://hl7.org/fhir/ValueSet/type-derivation-rule
@@ -6632,26 +6700,26 @@ public enum TypeDerivationRule: String {
 
 
 /**
-Codes to identify how udi data was entered
+Codes to identify how UDI data was entered
 
 URL: http://hl7.org/fhir/udi-entry-type
 ValueSet: http://hl7.org/fhir/ValueSet/udi-entry-type
 */
 public enum UDIEntryType: String {
 	
-	/// A Barcode scanner captured the the data from the device label
+	/// A Barcode scanner captured the data from the device label
 	case barcode = "barcode"
 	
-	/// An RFID chip reader captured the the data from the device label
+	/// An RFID chip reader captured the data from the device label
 	case rfid = "rfid"
 	
 	/// The data was read from the label by a person and manually entered. (e.g.  via a keyboard)
 	case manual = "manual"
 	
-	/// The data orginated from a patient's implant card and read by an operator.
+	/// The data originated from a patient's implant card and read by an operator.
 	case card = "card"
 	
-	/// The data orginated from a patient source and not directly scanned or read from a label or card.
+	/// The data originated from a patient source and not directly scanned or read from a label or card.
 	case selfReported = "self-reported"
 	
 	/// The method of data capture has not been determined
@@ -6682,7 +6750,7 @@ public enum UnknownContentCode: String {
 
 
 /**
-A code the specifies a type of context being specified by a usage context
+A code that specifies a type of context being specified by a usage context
 
 URL: http://hl7.org/fhir/usage-context-type
 ValueSet: http://hl7.org/fhir/ValueSet/usage-context-type
@@ -6690,34 +6758,38 @@ ValueSet: http://hl7.org/fhir/ValueSet/usage-context-type
 public enum UsageContextType: String {
 	
 	/// The gender of the patient. For this context type, the value should be a code taken from the
-	/// [AdministrativeGender](valueset-administrative-gender.html) value set
+	/// http://hl7.org/fhir/ValueSet/administrative-gender value set
 	case gender = "gender"
 	
 	/// The age of the patient. For this context type, the value should be a range the specifies the applicable ages or
-	/// a code from the MeSH value set AgeGroupObservationValue
+	/// a code from the MeSH value set http://hl7.org/fhir/ValueSet/v3-AgeGroupObservationValue
 	case age = "age"
 	
 	/// The clinical concept(s) addressed by the artifact. For example, disease, diagnostic test interpretation,
-	/// medication ordering.
+	/// medication ordering as in http://hl7.org/fhir/ValueSet/condition-code.
 	case focus = "focus"
 	
-	/// The clinical speciality of the context in which the patient is bring treated - For example, PCP, Patient,
+	/// The clinical specialty of the context in which the patient is being treated - For example, PCP, Patient,
 	/// Cardiologist, Behavioral Professional, Oral Health Professional, Prescriber, etc... taken from the NUCC Health
-	/// Care provider taxonomyCode system (OID: 2.16.840.1.113883.6.101).
+	/// Care provider taxonomy value set http://hl7.org/fhir/ValueSet/provider-taxonomy.
 	case user = "user"
 	
-	/// The settings in which the artifact is intended for use. For example, admission, pre-op, etc
+	/// The settings in which the artifact is intended for use. For example, admission, pre-op, etc. For example, the
+	/// ActEncounterCode value set http://hl7.org/fhir/ValueSet/v3-ActEncounterCode
 	case workflow = "workflow"
 	
 	/// The context for the clinical task(s) represented by this artifact. Can be any task context represented by the
-	/// HL7 ActTaskCode value set (OID: 2.16.840.1.113883.1.11.19846). General categories include: order entry, patient
-	/// documentation and patient information review.
+	/// HL7 ActTaskCode value set http://hl7.org/fhir/ValueSet/v3-ActTaskCode. General categories include: order entry,
+	/// patient documentation and patient information review.
 	case task = "task"
 	
 	/// The venue in which an artifact could be used. For example, Outpatient, Inpatient, Home, Nursing home. The code
-	/// value may originate from either the HL7 ActEncounter (OID: 2.16.840.1.113883.1.11.13955) or NUCC non-individual
-	/// provider codes OID: 2.16.840.1.113883.1.11.19465.
+	/// value may originate from either the HL7 ActEncounterCode http://hl7.org/fhir/ValueSet/v3-ActEncounterCode or
+	/// NUCC non-individual provider codes http://hl7.org/fhir/ValueSet/provider-taxonomy
 	case venue = "venue"
+	
+	/// The species to which an artifact applies. For example, SNOMED - 387961004 | Kingdom Animalia (organism).
+	case species = "species"
 }
 
 

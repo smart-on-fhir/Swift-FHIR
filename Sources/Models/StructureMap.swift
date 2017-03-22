@@ -2,7 +2,7 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.9.0.11599 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2017-03-14.
+//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2017-03-22.
 //  2017, SMART Health IT.
 //
 
@@ -29,7 +29,7 @@ open class StructureMap: DomainResource {
 	/// Natural language description of the structure map.
 	public var description_fhir: FHIRString?
 	
-	/// If for testing purposes, not real usage.
+	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
 	/// Named sections for reader convenience.
@@ -44,10 +44,10 @@ open class StructureMap: DomainResource {
 	/// Intended jurisdiction for structure map (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Name for this structure map (Computer friendly).
+	/// Name for this structure map (computer friendly).
 	public var name: FHIRString?
 	
-	/// Name of the publisher (Organization or individual).
+	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
 	/// Why this structure map is defined.
@@ -59,13 +59,13 @@ open class StructureMap: DomainResource {
 	/// Structure Definition used by this map.
 	public var structure: [StructureMapStructure]?
 	
-	/// Name for this structure map (Human friendly).
+	/// Name for this structure map (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical uri to reference this structure map (globally unique).
+	/// Logical URI to reference this structure map (globally unique).
 	public var url: FHIRURL?
 	
-	/// Content intends to support these contexts.
+	/// Context the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the structure map.
@@ -156,13 +156,15 @@ open class StructureMap: DomainResource {
 
 /**
 Named sections for reader convenience.
+
+Organizes the mapping into managable chunks for human review/ease of maintenance.
 */
 open class StructureMapGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroup" }
 	}
 	
-	/// Documentation for this group.
+	/// Additional description/explaination for group.
 	public var documentation: FHIRString?
 	
 	/// Another group that this group adds rules to.
@@ -171,7 +173,7 @@ open class StructureMapGroup: BackboneElement {
 	/// Named instance provided when invoking the map.
 	public var input: [StructureMapGroupInput]?
 	
-	/// Descriptive name for a user.
+	/// Human-readable label.
 	public var name: FHIRString?
 	
 	/// Transform Rule from source to target.
@@ -567,7 +569,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	/// Specified minimum cardinality.
 	public var min: FHIRInteger?
 	
-	/// Type for this source.
+	/// Rule only applies if source has this type.
 	public var type: FHIRString?
 	
 	/// Named context for field, if a field is specified.

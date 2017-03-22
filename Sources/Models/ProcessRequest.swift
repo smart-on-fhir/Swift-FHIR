@@ -134,7 +134,7 @@ open class ProcessRequestItem: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") && !_isSummaryResource {
+		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") {
 			instCtx.addError(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 	}

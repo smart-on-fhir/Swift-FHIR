@@ -109,7 +109,7 @@ open class PersonLink: BackboneElement {
 		
 		assurance = createEnum(type: IdentityAssuranceLevel.self, for: "assurance", in: json, context: &instCtx) ?? assurance
 		target = createInstance(type: Reference.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
-		if nil == target && !instCtx.containsKey("target") && !_isSummaryResource {
+		if nil == target && !instCtx.containsKey("target") {
 			instCtx.addError(FHIRValidationError(missing: "target"))
 		}
 	}

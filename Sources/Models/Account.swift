@@ -171,7 +171,7 @@ open class AccountGuarantor: BackboneElement {
 		
 		onHold = createInstance(type: FHIRBool.self, for: "onHold", in: json, context: &instCtx, owner: self) ?? onHold
 		party = createInstance(type: Reference.self, for: "party", in: json, context: &instCtx, owner: self) ?? party
-		if nil == party && !instCtx.containsKey("party") && !_isSummaryResource {
+		if nil == party && !instCtx.containsKey("party") {
 			instCtx.addError(FHIRValidationError(missing: "party"))
 		}
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period

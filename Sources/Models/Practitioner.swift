@@ -115,7 +115,7 @@ open class PractitionerQualification: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier

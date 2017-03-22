@@ -310,7 +310,7 @@ open class ActivityDefinitionParticipant: BackboneElement {
 		
 		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 		type = createEnum(type: ActionParticipantType.self, for: "type", in: json, context: &instCtx) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}

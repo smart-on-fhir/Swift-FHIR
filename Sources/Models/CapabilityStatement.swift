@@ -399,11 +399,11 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		address = createInstance(type: FHIRURL.self, for: "address", in: json, context: &instCtx, owner: self) ?? address
-		if nil == address && !instCtx.containsKey("address") && !_isSummaryResource {
+		if nil == address && !instCtx.containsKey("address") {
 			instCtx.addError(FHIRValidationError(missing: "address"))
 		}
 		protocol_fhir = createInstance(type: Coding.self, for: "protocol", in: json, context: &instCtx, owner: self) ?? protocol_fhir
-		if nil == protocol_fhir && !instCtx.containsKey("protocol") && !_isSummaryResource {
+		if nil == protocol_fhir && !instCtx.containsKey("protocol") {
 			instCtx.addError(FHIRValidationError(missing: "protocol"))
 		}
 	}
@@ -681,7 +681,7 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, context: &instCtx) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
@@ -902,7 +902,7 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createEnum(type: FHIRRestfulInteractions.self, for: "code", in: json, context: &instCtx) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
@@ -958,11 +958,11 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		type = createEnum(type: SearchParamType.self, for: "type", in: json, context: &instCtx) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}

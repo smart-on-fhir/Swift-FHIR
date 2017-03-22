@@ -122,7 +122,7 @@ open class EligibilityResponseError: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 	}
@@ -226,7 +226,7 @@ open class EligibilityResponseInsuranceBenefitBalance: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		if nil == category && !instCtx.containsKey("category") && !_isSummaryResource {
+		if nil == category && !instCtx.containsKey("category") {
 			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
@@ -301,7 +301,7 @@ open class EligibilityResponseInsuranceBenefitBalanceFinancial: BackboneElement 
 		allowedString = createInstance(type: FHIRString.self, for: "allowedString", in: json, context: &instCtx, owner: self) ?? allowedString
 		allowedUnsignedInt = createInstance(type: FHIRInteger.self, for: "allowedUnsignedInt", in: json, context: &instCtx, owner: self) ?? allowedUnsignedInt
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		usedMoney = createInstance(type: Money.self, for: "usedMoney", in: json, context: &instCtx, owner: self) ?? usedMoney

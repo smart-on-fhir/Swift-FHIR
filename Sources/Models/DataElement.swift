@@ -168,7 +168,7 @@ open class DataElementMapping: BackboneElement {
 		
 		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		identity = createInstance(type: FHIRString.self, for: "identity", in: json, context: &instCtx, owner: self) ?? identity
-		if nil == identity && !instCtx.containsKey("identity") && !_isSummaryResource {
+		if nil == identity && !instCtx.containsKey("identity") {
 			instCtx.addError(FHIRValidationError(missing: "identity"))
 		}
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name

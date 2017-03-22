@@ -101,7 +101,7 @@ open class Appointment: DomainResource {
 		indication = createInstances(of: Reference.self, for: "indication", in: json, context: &instCtx, owner: self) ?? indication
 		minutesDuration = createInstance(type: FHIRInteger.self, for: "minutesDuration", in: json, context: &instCtx, owner: self) ?? minutesDuration
 		participant = createInstances(of: AppointmentParticipant.self, for: "participant", in: json, context: &instCtx, owner: self) ?? participant
-		if (nil == participant || participant!.isEmpty) && !instCtx.containsKey("participant") && !_isSummaryResource {
+		if (nil == participant || participant!.isEmpty) && !instCtx.containsKey("participant") {
 			instCtx.addError(FHIRValidationError(missing: "participant"))
 		}
 		priority = createInstance(type: FHIRInteger.self, for: "priority", in: json, context: &instCtx, owner: self) ?? priority
@@ -189,7 +189,7 @@ open class AppointmentParticipant: BackboneElement {
 		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
 		required = createEnum(type: ParticipantRequired.self, for: "required", in: json, context: &instCtx) ?? required
 		status = createEnum(type: ParticipationStatus.self, for: "status", in: json, context: &instCtx) ?? status
-		if nil == status && !instCtx.containsKey("status") && !_isSummaryResource {
+		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		type = createInstances(of: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type

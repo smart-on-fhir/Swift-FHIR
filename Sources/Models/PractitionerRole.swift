@@ -174,7 +174,7 @@ open class PractitionerRoleNotAvailable: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
-		if nil == description_fhir && !instCtx.containsKey("description") && !_isSummaryResource {
+		if nil == description_fhir && !instCtx.containsKey("description") {
 			instCtx.addError(FHIRValidationError(missing: "description"))
 		}
 		during = createInstance(type: Period.self, for: "during", in: json, context: &instCtx, owner: self) ?? during

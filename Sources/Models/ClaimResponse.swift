@@ -307,7 +307,7 @@ open class ClaimResponseError: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		detailSequenceLinkId = createInstance(type: FHIRInteger.self, for: "detailSequenceLinkId", in: json, context: &instCtx, owner: self) ?? detailSequenceLinkId
@@ -373,16 +373,16 @@ open class ClaimResponseInsurance: BackboneElement {
 		businessArrangement = createInstance(type: FHIRString.self, for: "businessArrangement", in: json, context: &instCtx, owner: self) ?? businessArrangement
 		claimResponse = createInstance(type: Reference.self, for: "claimResponse", in: json, context: &instCtx, owner: self) ?? claimResponse
 		coverage = createInstance(type: Reference.self, for: "coverage", in: json, context: &instCtx, owner: self) ?? coverage
-		if nil == coverage && !instCtx.containsKey("coverage") && !_isSummaryResource {
+		if nil == coverage && !instCtx.containsKey("coverage") {
 			instCtx.addError(FHIRValidationError(missing: "coverage"))
 		}
 		focal = createInstance(type: FHIRBool.self, for: "focal", in: json, context: &instCtx, owner: self) ?? focal
-		if nil == focal && !instCtx.containsKey("focal") && !_isSummaryResource {
+		if nil == focal && !instCtx.containsKey("focal") {
 			instCtx.addError(FHIRValidationError(missing: "focal"))
 		}
 		preAuthRef = createInstances(of: FHIRString.self, for: "preAuthRef", in: json, context: &instCtx, owner: self) ?? preAuthRef
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 	}
@@ -446,7 +446,7 @@ open class ClaimResponseItem: BackboneElement {
 		detail = createInstances(of: ClaimResponseItemDetail.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
 		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
 		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") && !_isSummaryResource {
+		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") {
 			instCtx.addError(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 	}
@@ -500,7 +500,7 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 		
 		amount = createInstance(type: Money.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		if nil == category && !instCtx.containsKey("category") && !_isSummaryResource {
+		if nil == category && !instCtx.containsKey("category") {
 			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
 		reason = createInstance(type: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
@@ -557,7 +557,7 @@ open class ClaimResponseItemDetail: BackboneElement {
 		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
 		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
 		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") && !_isSummaryResource {
+		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") {
 			instCtx.addError(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 		subDetail = createInstances(of: ClaimResponseItemDetailSubDetail.self, for: "subDetail", in: json, context: &instCtx, owner: self) ?? subDetail
@@ -610,7 +610,7 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
 		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
 		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") && !_isSummaryResource {
+		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") {
 			instCtx.addError(FHIRValidationError(missing: "sequenceLinkId"))
 		}
 	}

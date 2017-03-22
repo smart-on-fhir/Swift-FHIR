@@ -208,7 +208,7 @@ open class PatientCommunication: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		language = createInstance(type: CodeableConcept.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
-		if nil == language && !instCtx.containsKey("language") && !_isSummaryResource {
+		if nil == language && !instCtx.containsKey("language") {
 			instCtx.addError(FHIRValidationError(missing: "language"))
 		}
 		preferred = createInstance(type: FHIRBool.self, for: "preferred", in: json, context: &instCtx, owner: self) ?? preferred

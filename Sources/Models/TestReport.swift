@@ -150,11 +150,11 @@ open class TestReportParticipant: BackboneElement {
 		
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		type = createEnum(type: TestReportParticipantType.self, for: "type", in: json, context: &instCtx) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		uri = createInstance(type: FHIRURL.self, for: "uri", in: json, context: &instCtx, owner: self) ?? uri
-		if nil == uri && !instCtx.containsKey("uri") && !_isSummaryResource {
+		if nil == uri && !instCtx.containsKey("uri") {
 			instCtx.addError(FHIRValidationError(missing: "uri"))
 		}
 	}
@@ -198,7 +198,7 @@ open class TestReportSetup: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		action = createInstances(of: TestReportSetupAction.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") && !_isSummaryResource {
+		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") {
 			instCtx.addError(FHIRValidationError(missing: "action"))
 		}
 	}
@@ -280,7 +280,7 @@ open class TestReportSetupActionAssert: BackboneElement {
 		detail = createInstance(type: FHIRString.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
 		message = createInstance(type: FHIRString.self, for: "message", in: json, context: &instCtx, owner: self) ?? message
 		result = createEnum(type: TestReportActionResult.self, for: "result", in: json, context: &instCtx) ?? result
-		if nil == result && !instCtx.containsKey("result") && !_isSummaryResource {
+		if nil == result && !instCtx.containsKey("result") {
 			instCtx.addError(FHIRValidationError(missing: "result"))
 		}
 	}
@@ -331,7 +331,7 @@ open class TestReportSetupActionOperation: BackboneElement {
 		detail = createInstance(type: FHIRURL.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
 		message = createInstance(type: FHIRString.self, for: "message", in: json, context: &instCtx, owner: self) ?? message
 		result = createEnum(type: TestReportActionResult.self, for: "result", in: json, context: &instCtx) ?? result
-		if nil == result && !instCtx.containsKey("result") && !_isSummaryResource {
+		if nil == result && !instCtx.containsKey("result") {
 			instCtx.addError(FHIRValidationError(missing: "result"))
 		}
 	}
@@ -375,7 +375,7 @@ open class TestReportTeardown: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		action = createInstances(of: TestReportTeardownAction.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") && !_isSummaryResource {
+		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") {
 			instCtx.addError(FHIRValidationError(missing: "action"))
 		}
 	}
@@ -416,7 +416,7 @@ open class TestReportTeardownAction: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		operation = createInstance(type: TestReportSetupActionOperation.self, for: "operation", in: json, context: &instCtx, owner: self) ?? operation
-		if nil == operation && !instCtx.containsKey("operation") && !_isSummaryResource {
+		if nil == operation && !instCtx.containsKey("operation") {
 			instCtx.addError(FHIRValidationError(missing: "operation"))
 		}
 	}
@@ -461,7 +461,7 @@ open class TestReportTest: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		action = createInstances(of: TestReportTestAction.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") && !_isSummaryResource {
+		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") {
 			instCtx.addError(FHIRValidationError(missing: "action"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir

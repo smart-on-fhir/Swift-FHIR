@@ -158,11 +158,11 @@ open class GroupCharacteristic: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		exclude = createInstance(type: FHIRBool.self, for: "exclude", in: json, context: &instCtx, owner: self) ?? exclude
-		if nil == exclude && !instCtx.containsKey("exclude") && !_isSummaryResource {
+		if nil == exclude && !instCtx.containsKey("exclude") {
 			instCtx.addError(FHIRValidationError(missing: "exclude"))
 		}
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
@@ -234,7 +234,7 @@ open class GroupMember: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		entity = createInstance(type: Reference.self, for: "entity", in: json, context: &instCtx, owner: self) ?? entity
-		if nil == entity && !instCtx.containsKey("entity") && !_isSummaryResource {
+		if nil == entity && !instCtx.containsKey("entity") {
 			instCtx.addError(FHIRValidationError(missing: "entity"))
 		}
 		inactive = createInstance(type: FHIRBool.self, for: "inactive", in: json, context: &instCtx, owner: self) ?? inactive

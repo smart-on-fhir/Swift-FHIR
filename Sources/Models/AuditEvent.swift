@@ -66,7 +66,7 @@ open class AuditEvent: DomainResource {
 		
 		action = createEnum(type: AuditEventAction.self, for: "action", in: json, context: &instCtx) ?? action
 		agent = createInstances(of: AuditEventAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
-		if (nil == agent || agent!.isEmpty) && !instCtx.containsKey("agent") && !_isSummaryResource {
+		if (nil == agent || agent!.isEmpty) && !instCtx.containsKey("agent") {
 			instCtx.addError(FHIRValidationError(missing: "agent"))
 		}
 		entity = createInstances(of: AuditEventEntity.self, for: "entity", in: json, context: &instCtx, owner: self) ?? entity
@@ -78,7 +78,7 @@ open class AuditEvent: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "recorded"))
 		}
 		source = createInstance(type: AuditEventSource.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
-		if nil == source && !instCtx.containsKey("source") && !_isSummaryResource {
+		if nil == source && !instCtx.containsKey("source") {
 			instCtx.addError(FHIRValidationError(missing: "source"))
 		}
 		subtype = createInstances(of: Coding.self, for: "subtype", in: json, context: &instCtx, owner: self) ?? subtype
@@ -180,7 +180,7 @@ open class AuditEventAgent: BackboneElement {
 		purposeOfUse = createInstances(of: CodeableConcept.self, for: "purposeOfUse", in: json, context: &instCtx, owner: self) ?? purposeOfUse
 		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
 		requestor = createInstance(type: FHIRBool.self, for: "requestor", in: json, context: &instCtx, owner: self) ?? requestor
-		if nil == requestor && !instCtx.containsKey("requestor") && !_isSummaryResource {
+		if nil == requestor && !instCtx.containsKey("requestor") {
 			instCtx.addError(FHIRValidationError(missing: "requestor"))
 		}
 		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
@@ -343,11 +343,11 @@ open class AuditEventEntityDetail: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		value = createInstance(type: Base64Binary.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}

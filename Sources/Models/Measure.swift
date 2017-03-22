@@ -268,7 +268,7 @@ open class MeasureGroup: BackboneElement {
 		
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") && !_isSummaryResource {
+		if nil == identifier && !instCtx.containsKey("identifier") {
 			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
@@ -330,7 +330,7 @@ open class MeasureGroupPopulation: BackboneElement {
 		
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		criteria = createInstance(type: FHIRString.self, for: "criteria", in: json, context: &instCtx, owner: self) ?? criteria
-		if nil == criteria && !instCtx.containsKey("criteria") && !_isSummaryResource {
+		if nil == criteria && !instCtx.containsKey("criteria") {
 			instCtx.addError(FHIRValidationError(missing: "criteria"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir

@@ -250,7 +250,7 @@ open class ClinicalImpressionInvestigation: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		item = createInstances(of: Reference.self, for: "item", in: json, context: &instCtx, owner: self) ?? item

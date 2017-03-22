@@ -236,11 +236,11 @@ open class SearchParameterComponent: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		definition = createInstance(type: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
-		if nil == definition && !instCtx.containsKey("definition") && !_isSummaryResource {
+		if nil == definition && !instCtx.containsKey("definition") {
 			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}
 		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
-		if nil == expression && !instCtx.containsKey("expression") && !_isSummaryResource {
+		if nil == expression && !instCtx.containsKey("expression") {
 			instCtx.addError(FHIRValidationError(missing: "expression"))
 		}
 	}

@@ -274,7 +274,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		designation = createInstances(of: ValueSetComposeIncludeConceptDesignation.self, for: "designation", in: json, context: &instCtx, owner: self) ?? designation
@@ -328,7 +328,7 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
 		use = createInstance(type: Coding.self, for: "use", in: json, context: &instCtx, owner: self) ?? use
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}
@@ -455,13 +455,13 @@ open class ValueSetExpansion: BackboneElement {
 		
 		contains = createInstances(of: ValueSetExpansionContains.self, for: "contains", in: json, context: &instCtx, owner: self) ?? contains
 		identifier = createInstance(type: FHIRURL.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") && !_isSummaryResource {
+		if nil == identifier && !instCtx.containsKey("identifier") {
 			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
 		offset = createInstance(type: FHIRInteger.self, for: "offset", in: json, context: &instCtx, owner: self) ?? offset
 		parameter = createInstances(of: ValueSetExpansionParameter.self, for: "parameter", in: json, context: &instCtx, owner: self) ?? parameter
 		timestamp = createInstance(type: DateTime.self, for: "timestamp", in: json, context: &instCtx, owner: self) ?? timestamp
-		if nil == timestamp && !instCtx.containsKey("timestamp") && !_isSummaryResource {
+		if nil == timestamp && !instCtx.containsKey("timestamp") {
 			instCtx.addError(FHIRValidationError(missing: "timestamp"))
 		}
 		total = createInstance(type: FHIRInteger.self, for: "total", in: json, context: &instCtx, owner: self) ?? total
@@ -593,7 +593,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean

@@ -85,7 +85,7 @@ open class NamingSystem: DomainResource {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		kind = createEnum(type: NamingSystemType.self, for: "kind", in: json, context: &instCtx) ?? kind
-		if nil == kind && !instCtx.containsKey("kind") && !_isSummaryResource {
+		if nil == kind && !instCtx.containsKey("kind") {
 			instCtx.addError(FHIRValidationError(missing: "kind"))
 		}
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
@@ -101,7 +101,7 @@ open class NamingSystem: DomainResource {
 		}
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		uniqueId = createInstances(of: NamingSystemUniqueId.self, for: "uniqueId", in: json, context: &instCtx, owner: self) ?? uniqueId
-		if (nil == uniqueId || uniqueId!.isEmpty) && !instCtx.containsKey("uniqueId") && !_isSummaryResource {
+		if (nil == uniqueId || uniqueId!.isEmpty) && !instCtx.containsKey("uniqueId") {
 			instCtx.addError(FHIRValidationError(missing: "uniqueId"))
 		}
 		usage = createInstance(type: FHIRString.self, for: "usage", in: json, context: &instCtx, owner: self) ?? usage
@@ -185,11 +185,11 @@ open class NamingSystemUniqueId: BackboneElement {
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		preferred = createInstance(type: FHIRBool.self, for: "preferred", in: json, context: &instCtx, owner: self) ?? preferred
 		type = createEnum(type: NamingSystemIdentifierType.self, for: "type", in: json, context: &instCtx) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}

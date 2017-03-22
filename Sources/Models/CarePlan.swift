@@ -308,7 +308,7 @@ open class CarePlanActivityDetail: BackboneElement {
 		scheduledString = createInstance(type: FHIRString.self, for: "scheduledString", in: json, context: &instCtx, owner: self) ?? scheduledString
 		scheduledTiming = createInstance(type: Timing.self, for: "scheduledTiming", in: json, context: &instCtx, owner: self) ?? scheduledTiming
 		status = createEnum(type: CarePlanActivityStatus.self, for: "status", in: json, context: &instCtx) ?? status
-		if nil == status && !instCtx.containsKey("status") && !_isSummaryResource {
+		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		statusReason = createInstance(type: FHIRString.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason

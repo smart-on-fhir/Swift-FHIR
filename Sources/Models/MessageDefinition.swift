@@ -203,7 +203,7 @@ open class MessageDefinitionAllowedResponse: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		message = createInstance(type: Reference.self, for: "message", in: json, context: &instCtx, owner: self) ?? message
-		if nil == message && !instCtx.containsKey("message") && !_isSummaryResource {
+		if nil == message && !instCtx.containsKey("message") {
 			instCtx.addError(FHIRValidationError(missing: "message"))
 		}
 		situation = createInstance(type: FHIRString.self, for: "situation", in: json, context: &instCtx, owner: self) ?? situation

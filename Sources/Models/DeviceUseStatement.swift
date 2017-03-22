@@ -75,7 +75,7 @@ open class DeviceUseStatement: DomainResource {
 		
 		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
 		device = createInstance(type: Reference.self, for: "device", in: json, context: &instCtx, owner: self) ?? device
-		if nil == device && !instCtx.containsKey("device") && !_isSummaryResource {
+		if nil == device && !instCtx.containsKey("device") {
 			instCtx.addError(FHIRValidationError(missing: "device"))
 		}
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
@@ -88,7 +88,7 @@ open class DeviceUseStatement: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
-		if nil == subject && !instCtx.containsKey("subject") && !_isSummaryResource {
+		if nil == subject && !instCtx.containsKey("subject") {
 			instCtx.addError(FHIRValidationError(missing: "subject"))
 		}
 		timingDateTime = createInstance(type: DateTime.self, for: "timingDateTime", in: json, context: &instCtx, owner: self) ?? timingDateTime

@@ -218,7 +218,7 @@ open class ProcedureFocalDevice: BackboneElement {
 		
 		action = createInstance(type: CodeableConcept.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
 		manipulated = createInstance(type: Reference.self, for: "manipulated", in: json, context: &instCtx, owner: self) ?? manipulated
-		if nil == manipulated && !instCtx.containsKey("manipulated") && !_isSummaryResource {
+		if nil == manipulated && !instCtx.containsKey("manipulated") {
 			instCtx.addError(FHIRValidationError(missing: "manipulated"))
 		}
 	}

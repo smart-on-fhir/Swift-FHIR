@@ -215,7 +215,7 @@ open class ChargeItemParticipant: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
-		if nil == actor && !instCtx.containsKey("actor") && !_isSummaryResource {
+		if nil == actor && !instCtx.containsKey("actor") {
 			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
 		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role

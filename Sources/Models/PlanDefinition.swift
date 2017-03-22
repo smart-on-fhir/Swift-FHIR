@@ -381,7 +381,7 @@ open class PlanDefinitionActionCondition: BackboneElement {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
 		kind = createEnum(type: ActionConditionKind.self, for: "kind", in: json, context: &instCtx) ?? kind
-		if nil == kind && !instCtx.containsKey("kind") && !_isSummaryResource {
+		if nil == kind && !instCtx.containsKey("kind") {
 			instCtx.addError(FHIRValidationError(missing: "kind"))
 		}
 		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
@@ -475,7 +475,7 @@ open class PlanDefinitionActionParticipant: BackboneElement {
 		
 		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 		type = createEnum(type: ActionParticipantType.self, for: "type", in: json, context: &instCtx) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}
@@ -527,13 +527,13 @@ open class PlanDefinitionActionRelatedAction: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		actionId = createInstance(type: FHIRString.self, for: "actionId", in: json, context: &instCtx, owner: self) ?? actionId
-		if nil == actionId && !instCtx.containsKey("actionId") && !_isSummaryResource {
+		if nil == actionId && !instCtx.containsKey("actionId") {
 			instCtx.addError(FHIRValidationError(missing: "actionId"))
 		}
 		offsetDuration = createInstance(type: Duration.self, for: "offsetDuration", in: json, context: &instCtx, owner: self) ?? offsetDuration
 		offsetRange = createInstance(type: Range.self, for: "offsetRange", in: json, context: &instCtx, owner: self) ?? offsetRange
 		relationship = createEnum(type: ActionRelationshipType.self, for: "relationship", in: json, context: &instCtx) ?? relationship
-		if nil == relationship && !instCtx.containsKey("relationship") && !_isSummaryResource {
+		if nil == relationship && !instCtx.containsKey("relationship") {
 			instCtx.addError(FHIRValidationError(missing: "relationship"))
 		}
 	}
@@ -601,7 +601,7 @@ open class PlanDefinitionGoal: BackboneElement {
 		addresses = createInstances(of: CodeableConcept.self, for: "addresses", in: json, context: &instCtx, owner: self) ?? addresses
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		description_fhir = createInstance(type: CodeableConcept.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
-		if nil == description_fhir && !instCtx.containsKey("description") && !_isSummaryResource {
+		if nil == description_fhir && !instCtx.containsKey("description") {
 			instCtx.addError(FHIRValidationError(missing: "description"))
 		}
 		documentation = createInstances(of: RelatedArtifact.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation

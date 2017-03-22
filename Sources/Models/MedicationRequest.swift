@@ -327,7 +327,7 @@ open class MedicationRequestSubstitution: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		allowed = createInstance(type: FHIRBool.self, for: "allowed", in: json, context: &instCtx, owner: self) ?? allowed
-		if nil == allowed && !instCtx.containsKey("allowed") && !_isSummaryResource {
+		if nil == allowed && !instCtx.containsKey("allowed") {
 			instCtx.addError(FHIRValidationError(missing: "allowed"))
 		}
 		reason = createInstance(type: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason

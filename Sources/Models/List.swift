@@ -156,7 +156,7 @@ open class ListEntry: BackboneElement {
 		deleted = createInstance(type: FHIRBool.self, for: "deleted", in: json, context: &instCtx, owner: self) ?? deleted
 		flag = createInstance(type: CodeableConcept.self, for: "flag", in: json, context: &instCtx, owner: self) ?? flag
 		item = createInstance(type: Reference.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
-		if nil == item && !instCtx.containsKey("item") && !_isSummaryResource {
+		if nil == item && !instCtx.containsKey("item") {
 			instCtx.addError(FHIRValidationError(missing: "item"))
 		}
 	}

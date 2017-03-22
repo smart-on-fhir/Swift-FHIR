@@ -218,11 +218,11 @@ open class TestScriptDestination: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		index = createInstance(type: FHIRInteger.self, for: "index", in: json, context: &instCtx, owner: self) ?? index
-		if nil == index && !instCtx.containsKey("index") && !_isSummaryResource {
+		if nil == index && !instCtx.containsKey("index") {
 			instCtx.addError(FHIRValidationError(missing: "index"))
 		}
 		profile = createInstance(type: Coding.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
-		if nil == profile && !instCtx.containsKey("profile") && !_isSummaryResource {
+		if nil == profile && !instCtx.containsKey("profile") {
 			instCtx.addError(FHIRValidationError(missing: "profile"))
 		}
 	}
@@ -308,7 +308,7 @@ open class TestScriptMetadata: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		capability = createInstances(of: TestScriptMetadataCapability.self, for: "capability", in: json, context: &instCtx, owner: self) ?? capability
-		if (nil == capability || capability!.isEmpty) && !instCtx.containsKey("capability") && !_isSummaryResource {
+		if (nil == capability || capability!.isEmpty) && !instCtx.containsKey("capability") {
 			instCtx.addError(FHIRValidationError(missing: "capability"))
 		}
 		link = createInstances(of: TestScriptMetadataLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
@@ -369,7 +369,7 @@ open class TestScriptMetadataCapability: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		capabilities = createInstance(type: Reference.self, for: "capabilities", in: json, context: &instCtx, owner: self) ?? capabilities
-		if nil == capabilities && !instCtx.containsKey("capabilities") && !_isSummaryResource {
+		if nil == capabilities && !instCtx.containsKey("capabilities") {
 			instCtx.addError(FHIRValidationError(missing: "capabilities"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
@@ -426,7 +426,7 @@ open class TestScriptMetadataLink: BackboneElement {
 		
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
-		if nil == url && !instCtx.containsKey("url") && !_isSummaryResource {
+		if nil == url && !instCtx.containsKey("url") {
 			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
 	}
@@ -472,11 +472,11 @@ open class TestScriptOrigin: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		index = createInstance(type: FHIRInteger.self, for: "index", in: json, context: &instCtx, owner: self) ?? index
-		if nil == index && !instCtx.containsKey("index") && !_isSummaryResource {
+		if nil == index && !instCtx.containsKey("index") {
 			instCtx.addError(FHIRValidationError(missing: "index"))
 		}
 		profile = createInstance(type: Coding.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
-		if nil == profile && !instCtx.containsKey("profile") && !_isSummaryResource {
+		if nil == profile && !instCtx.containsKey("profile") {
 			instCtx.addError(FHIRValidationError(missing: "profile"))
 		}
 	}
@@ -525,7 +525,7 @@ open class TestScriptRule: BackboneElement {
 		
 		param = createInstances(of: TestScriptRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
 		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
-		if nil == resource && !instCtx.containsKey("resource") && !_isSummaryResource {
+		if nil == resource && !instCtx.containsKey("resource") {
 			instCtx.addError(FHIRValidationError(missing: "resource"))
 		}
 	}
@@ -570,7 +570,7 @@ open class TestScriptRuleParam: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
@@ -618,11 +618,11 @@ open class TestScriptRuleset: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
-		if nil == resource && !instCtx.containsKey("resource") && !_isSummaryResource {
+		if nil == resource && !instCtx.containsKey("resource") {
 			instCtx.addError(FHIRValidationError(missing: "resource"))
 		}
 		rule = createInstances(of: TestScriptRulesetRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
-		if (nil == rule || rule!.isEmpty) && !instCtx.containsKey("rule") && !_isSummaryResource {
+		if (nil == rule || rule!.isEmpty) && !instCtx.containsKey("rule") {
 			instCtx.addError(FHIRValidationError(missing: "rule"))
 		}
 	}
@@ -671,7 +671,7 @@ open class TestScriptRulesetRule: BackboneElement {
 		
 		param = createInstances(of: TestScriptRulesetRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
 		ruleId = createInstance(type: FHIRString.self, for: "ruleId", in: json, context: &instCtx, owner: self) ?? ruleId
-		if nil == ruleId && !instCtx.containsKey("ruleId") && !_isSummaryResource {
+		if nil == ruleId && !instCtx.containsKey("ruleId") {
 			instCtx.addError(FHIRValidationError(missing: "ruleId"))
 		}
 	}
@@ -716,7 +716,7 @@ open class TestScriptRulesetRuleParam: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
@@ -757,7 +757,7 @@ open class TestScriptSetup: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		action = createInstances(of: TestScriptSetupAction.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") && !_isSummaryResource {
+		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") {
 			instCtx.addError(FHIRValidationError(missing: "action"))
 		}
 	}
@@ -978,7 +978,7 @@ open class TestScriptSetupActionAssertRule: BackboneElement {
 		
 		param = createInstances(of: TestScriptSetupActionAssertRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
 		ruleId = createInstance(type: FHIRString.self, for: "ruleId", in: json, context: &instCtx, owner: self) ?? ruleId
-		if nil == ruleId && !instCtx.containsKey("ruleId") && !_isSummaryResource {
+		if nil == ruleId && !instCtx.containsKey("ruleId") {
 			instCtx.addError(FHIRValidationError(missing: "ruleId"))
 		}
 	}
@@ -1024,11 +1024,11 @@ open class TestScriptSetupActionAssertRuleParam: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}
@@ -1077,7 +1077,7 @@ open class TestScriptSetupActionAssertRuleset: BackboneElement {
 		
 		rule = createInstances(of: TestScriptSetupActionAssertRulesetRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
 		rulesetId = createInstance(type: FHIRString.self, for: "rulesetId", in: json, context: &instCtx, owner: self) ?? rulesetId
-		if nil == rulesetId && !instCtx.containsKey("rulesetId") && !_isSummaryResource {
+		if nil == rulesetId && !instCtx.containsKey("rulesetId") {
 			instCtx.addError(FHIRValidationError(missing: "rulesetId"))
 		}
 	}
@@ -1123,7 +1123,7 @@ open class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 		
 		param = createInstances(of: TestScriptSetupActionAssertRulesetRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
 		ruleId = createInstance(type: FHIRString.self, for: "ruleId", in: json, context: &instCtx, owner: self) ?? ruleId
-		if nil == ruleId && !instCtx.containsKey("ruleId") && !_isSummaryResource {
+		if nil == ruleId && !instCtx.containsKey("ruleId") {
 			instCtx.addError(FHIRValidationError(missing: "ruleId"))
 		}
 	}
@@ -1169,11 +1169,11 @@ open class TestScriptSetupActionAssertRulesetRuleParam: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}
@@ -1325,11 +1325,11 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		field = createInstance(type: FHIRString.self, for: "field", in: json, context: &instCtx, owner: self) ?? field
-		if nil == field && !instCtx.containsKey("field") && !_isSummaryResource {
+		if nil == field && !instCtx.containsKey("field") {
 			instCtx.addError(FHIRValidationError(missing: "field"))
 		}
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}
@@ -1374,7 +1374,7 @@ open class TestScriptTeardown: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		action = createInstances(of: TestScriptTeardownAction.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") && !_isSummaryResource {
+		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") {
 			instCtx.addError(FHIRValidationError(missing: "action"))
 		}
 	}
@@ -1415,7 +1415,7 @@ open class TestScriptTeardownAction: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		operation = createInstance(type: TestScriptSetupActionOperation.self, for: "operation", in: json, context: &instCtx, owner: self) ?? operation
-		if nil == operation && !instCtx.containsKey("operation") && !_isSummaryResource {
+		if nil == operation && !instCtx.containsKey("operation") {
 			instCtx.addError(FHIRValidationError(missing: "operation"))
 		}
 	}
@@ -1460,7 +1460,7 @@ open class TestScriptTest: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		action = createInstances(of: TestScriptTestAction.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") && !_isSummaryResource {
+		if (nil == action || action!.isEmpty) && !instCtx.containsKey("action") {
 			instCtx.addError(FHIRValidationError(missing: "action"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
@@ -1564,7 +1564,7 @@ open class TestScriptVariable: BackboneElement {
 		headerField = createInstance(type: FHIRString.self, for: "headerField", in: json, context: &instCtx, owner: self) ?? headerField
 		hint = createInstance(type: FHIRString.self, for: "hint", in: json, context: &instCtx, owner: self) ?? hint
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path

@@ -182,7 +182,7 @@ open class ContractAgent: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
-		if nil == actor && !instCtx.containsKey("actor") && !_isSummaryResource {
+		if nil == actor && !instCtx.containsKey("actor") {
 			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
 		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
@@ -415,15 +415,15 @@ open class ContractSigner: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		party = createInstance(type: Reference.self, for: "party", in: json, context: &instCtx, owner: self) ?? party
-		if nil == party && !instCtx.containsKey("party") && !_isSummaryResource {
+		if nil == party && !instCtx.containsKey("party") {
 			instCtx.addError(FHIRValidationError(missing: "party"))
 		}
 		signature = createInstances(of: Signature.self, for: "signature", in: json, context: &instCtx, owner: self) ?? signature
-		if (nil == signature || signature!.isEmpty) && !instCtx.containsKey("signature") && !_isSummaryResource {
+		if (nil == signature || signature!.isEmpty) && !instCtx.containsKey("signature") {
 			instCtx.addError(FHIRValidationError(missing: "signature"))
 		}
 		type = createInstance(type: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}
@@ -564,7 +564,7 @@ open class ContractTermAgent: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
-		if nil == actor && !instCtx.containsKey("actor") && !_isSummaryResource {
+		if nil == actor && !instCtx.containsKey("actor") {
 			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
 		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role

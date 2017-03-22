@@ -123,7 +123,7 @@ open class OperationDefinition: DomainResource {
 		}
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		kind = createEnum(type: OperationKind.self, for: "kind", in: json, context: &instCtx) ?? kind
-		if nil == kind && !instCtx.containsKey("kind") && !_isSummaryResource {
+		if nil == kind && !instCtx.containsKey("kind") {
 			instCtx.addError(FHIRValidationError(missing: "kind"))
 		}
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
@@ -294,15 +294,15 @@ open class OperationDefinitionParameter: BackboneElement {
 		binding = createInstance(type: OperationDefinitionParameterBinding.self, for: "binding", in: json, context: &instCtx, owner: self) ?? binding
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		max = createInstance(type: FHIRString.self, for: "max", in: json, context: &instCtx, owner: self) ?? max
-		if nil == max && !instCtx.containsKey("max") && !_isSummaryResource {
+		if nil == max && !instCtx.containsKey("max") {
 			instCtx.addError(FHIRValidationError(missing: "max"))
 		}
 		min = createInstance(type: FHIRInteger.self, for: "min", in: json, context: &instCtx, owner: self) ?? min
-		if nil == min && !instCtx.containsKey("min") && !_isSummaryResource {
+		if nil == min && !instCtx.containsKey("min") {
 			instCtx.addError(FHIRValidationError(missing: "min"))
 		}
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
+		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		part = createInstances(of: OperationDefinitionParameter.self, for: "part", in: json, context: &instCtx, owner: self) ?? part
@@ -310,7 +310,7 @@ open class OperationDefinitionParameter: BackboneElement {
 		searchType = createEnum(type: SearchParamType.self, for: "searchType", in: json, context: &instCtx) ?? searchType
 		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		use = createEnum(type: OperationParameterUse.self, for: "use", in: json, context: &instCtx) ?? use
-		if nil == use && !instCtx.containsKey("use") && !_isSummaryResource {
+		if nil == use && !instCtx.containsKey("use") {
 			instCtx.addError(FHIRValidationError(missing: "use"))
 		}
 	}
@@ -385,7 +385,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		strength = createEnum(type: BindingStrength.self, for: "strength", in: json, context: &instCtx) ?? strength
-		if nil == strength && !instCtx.containsKey("strength") && !_isSummaryResource {
+		if nil == strength && !instCtx.containsKey("strength") {
 			instCtx.addError(FHIRValidationError(missing: "strength"))
 		}
 		valueSetReference = createInstance(type: Reference.self, for: "valueSetReference", in: json, context: &instCtx, owner: self) ?? valueSetReference

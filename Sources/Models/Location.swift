@@ -144,11 +144,11 @@ open class LocationPosition: BackboneElement {
 		
 		altitude = createInstance(type: FHIRDecimal.self, for: "altitude", in: json, context: &instCtx, owner: self) ?? altitude
 		latitude = createInstance(type: FHIRDecimal.self, for: "latitude", in: json, context: &instCtx, owner: self) ?? latitude
-		if nil == latitude && !instCtx.containsKey("latitude") && !_isSummaryResource {
+		if nil == latitude && !instCtx.containsKey("latitude") {
 			instCtx.addError(FHIRValidationError(missing: "latitude"))
 		}
 		longitude = createInstance(type: FHIRDecimal.self, for: "longitude", in: json, context: &instCtx, owner: self) ?? longitude
-		if nil == longitude && !instCtx.containsKey("longitude") && !_isSummaryResource {
+		if nil == longitude && !instCtx.containsKey("longitude") {
 			instCtx.addError(FHIRValidationError(missing: "longitude"))
 		}
 	}

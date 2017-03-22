@@ -186,11 +186,11 @@ open class EncounterClassHistory: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		`class` = createInstance(type: Coding.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
-		if nil == `class` && !instCtx.containsKey("class") && !_isSummaryResource {
+		if nil == `class` && !instCtx.containsKey("class") {
 			instCtx.addError(FHIRValidationError(missing: "class"))
 		}
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
-		if nil == period && !instCtx.containsKey("period") && !_isSummaryResource {
+		if nil == period && !instCtx.containsKey("period") {
 			instCtx.addError(FHIRValidationError(missing: "period"))
 		}
 	}
@@ -358,7 +358,7 @@ open class EncounterLocation: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
-		if nil == location && !instCtx.containsKey("location") && !_isSummaryResource {
+		if nil == location && !instCtx.containsKey("location") {
 			instCtx.addError(FHIRValidationError(missing: "location"))
 		}
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
@@ -446,11 +446,11 @@ open class EncounterStatusHistory: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
-		if nil == period && !instCtx.containsKey("period") && !_isSummaryResource {
+		if nil == period && !instCtx.containsKey("period") {
 			instCtx.addError(FHIRValidationError(missing: "period"))
 		}
 		status = createEnum(type: EncounterStatus.self, for: "status", in: json, context: &instCtx) ?? status
-		if nil == status && !instCtx.containsKey("status") && !_isSummaryResource {
+		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 	}

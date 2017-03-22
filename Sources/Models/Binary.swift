@@ -41,7 +41,7 @@ open class Binary: Resource {
 		super.populate(from: json, context: &instCtx)
 		
 		content = createInstance(type: Base64Binary.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
-		if nil == content && !instCtx.containsKey("content") && !_isSummaryResource {
+		if nil == content && !instCtx.containsKey("content") {
 			instCtx.addError(FHIRValidationError(missing: "content"))
 		}
 		contentType = createInstance(type: FHIRString.self, for: "contentType", in: json, context: &instCtx, owner: self) ?? contentType

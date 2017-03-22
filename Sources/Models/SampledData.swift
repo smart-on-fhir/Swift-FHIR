@@ -56,7 +56,7 @@ open class SampledData: Element {
 		super.populate(from: json, context: &instCtx)
 		
 		data = createInstance(type: FHIRString.self, for: "data", in: json, context: &instCtx, owner: self) ?? data
-		if nil == data && !instCtx.containsKey("data") && !_isSummaryResource {
+		if nil == data && !instCtx.containsKey("data") {
 			instCtx.addError(FHIRValidationError(missing: "data"))
 		}
 		dimensions = createInstance(type: FHIRInteger.self, for: "dimensions", in: json, context: &instCtx, owner: self) ?? dimensions

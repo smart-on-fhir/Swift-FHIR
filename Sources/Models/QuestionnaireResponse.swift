@@ -144,7 +144,7 @@ open class QuestionnaireResponseItem: BackboneElement {
 		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		item = createInstances(of: QuestionnaireResponseItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
 		linkId = createInstance(type: FHIRString.self, for: "linkId", in: json, context: &instCtx, owner: self) ?? linkId
-		if nil == linkId && !instCtx.containsKey("linkId") && !_isSummaryResource {
+		if nil == linkId && !instCtx.containsKey("linkId") {
 			instCtx.addError(FHIRValidationError(missing: "linkId"))
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject

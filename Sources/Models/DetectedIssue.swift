@@ -135,7 +135,7 @@ open class DetectedIssueMitigation: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		action = createInstance(type: CodeableConcept.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		if nil == action && !instCtx.containsKey("action") && !_isSummaryResource {
+		if nil == action && !instCtx.containsKey("action") {
 			instCtx.addError(FHIRValidationError(missing: "action"))
 		}
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author

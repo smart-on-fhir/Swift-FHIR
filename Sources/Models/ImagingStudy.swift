@@ -289,12 +289,12 @@ open class ImagingStudySeriesInstance: BackboneElement {
 		
 		number = createInstance(type: FHIRInteger.self, for: "number", in: json, context: &instCtx, owner: self) ?? number
 		sopClass = createInstance(type: FHIRURL.self, for: "sopClass", in: json, context: &instCtx, owner: self) ?? sopClass
-		if nil == sopClass && !instCtx.containsKey("sopClass") && !_isSummaryResource {
+		if nil == sopClass && !instCtx.containsKey("sopClass") {
 			instCtx.addError(FHIRValidationError(missing: "sopClass"))
 		}
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		uid = createInstance(type: FHIRURL.self, for: "uid", in: json, context: &instCtx, owner: self) ?? uid
-		if nil == uid && !instCtx.containsKey("uid") && !_isSummaryResource {
+		if nil == uid && !instCtx.containsKey("uid") {
 			instCtx.addError(FHIRValidationError(missing: "uid"))
 		}
 	}

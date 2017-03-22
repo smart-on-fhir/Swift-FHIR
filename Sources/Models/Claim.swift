@@ -219,7 +219,7 @@ open class ClaimAccident: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		date = createInstance(type: FHIRDate.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
-		if nil == date && !instCtx.containsKey("date") && !_isSummaryResource {
+		if nil == date && !instCtx.containsKey("date") {
 			instCtx.addError(FHIRValidationError(missing: "date"))
 		}
 		locationAddress = createInstance(type: Address.self, for: "locationAddress", in: json, context: &instCtx, owner: self) ?? locationAddress
@@ -280,14 +280,14 @@ open class ClaimCareTeam: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		provider = createInstance(type: Reference.self, for: "provider", in: json, context: &instCtx, owner: self) ?? provider
-		if nil == provider && !instCtx.containsKey("provider") && !_isSummaryResource {
+		if nil == provider && !instCtx.containsKey("provider") {
 			instCtx.addError(FHIRValidationError(missing: "provider"))
 		}
 		qualification = createInstance(type: CodeableConcept.self, for: "qualification", in: json, context: &instCtx, owner: self) ?? qualification
 		responsible = createInstance(type: FHIRBool.self, for: "responsible", in: json, context: &instCtx, owner: self) ?? responsible
 		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 	}
@@ -359,7 +359,7 @@ open class ClaimDiagnosis: BackboneElement {
 		diagnosisReference = createInstance(type: Reference.self, for: "diagnosisReference", in: json, context: &instCtx, owner: self) ?? diagnosisReference
 		packageCode = createInstance(type: CodeableConcept.self, for: "packageCode", in: json, context: &instCtx, owner: self) ?? packageCode
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		type = createInstances(of: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
@@ -445,13 +445,13 @@ open class ClaimInformation: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		if nil == category && !instCtx.containsKey("category") && !_isSummaryResource {
+		if nil == category && !instCtx.containsKey("category") {
 			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		reason = createInstance(type: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		timingDate = createInstance(type: FHIRDate.self, for: "timingDate", in: json, context: &instCtx, owner: self) ?? timingDate
@@ -529,16 +529,16 @@ open class ClaimInsurance: BackboneElement {
 		businessArrangement = createInstance(type: FHIRString.self, for: "businessArrangement", in: json, context: &instCtx, owner: self) ?? businessArrangement
 		claimResponse = createInstance(type: Reference.self, for: "claimResponse", in: json, context: &instCtx, owner: self) ?? claimResponse
 		coverage = createInstance(type: Reference.self, for: "coverage", in: json, context: &instCtx, owner: self) ?? coverage
-		if nil == coverage && !instCtx.containsKey("coverage") && !_isSummaryResource {
+		if nil == coverage && !instCtx.containsKey("coverage") {
 			instCtx.addError(FHIRValidationError(missing: "coverage"))
 		}
 		focal = createInstance(type: FHIRBool.self, for: "focal", in: json, context: &instCtx, owner: self) ?? focal
-		if nil == focal && !instCtx.containsKey("focal") && !_isSummaryResource {
+		if nil == focal && !instCtx.containsKey("focal") {
 			instCtx.addError(FHIRValidationError(missing: "focal"))
 		}
 		preAuthRef = createInstances(of: FHIRString.self, for: "preAuthRef", in: json, context: &instCtx, owner: self) ?? preAuthRef
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 	}
@@ -676,7 +676,7 @@ open class ClaimItem: BackboneElement {
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
@@ -786,7 +786,7 @@ open class ClaimItemDetail: BackboneElement {
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
@@ -879,7 +879,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
@@ -941,7 +941,7 @@ open class ClaimPayee: BackboneElement {
 		party = createInstance(type: Reference.self, for: "party", in: json, context: &instCtx, owner: self) ?? party
 		resourceType = createInstance(type: Coding.self, for: "resourceType", in: json, context: &instCtx, owner: self) ?? resourceType
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}
@@ -1005,7 +1005,7 @@ open class ClaimProcedure: BackboneElement {
 		procedureCodeableConcept = createInstance(type: CodeableConcept.self, for: "procedureCodeableConcept", in: json, context: &instCtx, owner: self) ?? procedureCodeableConcept
 		procedureReference = createInstance(type: Reference.self, for: "procedureReference", in: json, context: &instCtx, owner: self) ?? procedureReference
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		

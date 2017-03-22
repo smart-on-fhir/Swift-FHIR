@@ -148,7 +148,7 @@ open class Extension: Element {
 		super.populate(from: json, context: &instCtx)
 		
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
-		if nil == url && !instCtx.containsKey("url") && !_isSummaryResource {
+		if nil == url && !instCtx.containsKey("url") {
 			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
 		valueAddress = createInstance(type: Address.self, for: "valueAddress", in: json, context: &instCtx, owner: self) ?? valueAddress

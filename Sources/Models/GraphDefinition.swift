@@ -92,7 +92,7 @@ open class GraphDefinition: DomainResource {
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
 		start = createInstance(type: FHIRString.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
-		if nil == start && !instCtx.containsKey("start") && !_isSummaryResource {
+		if nil == start && !instCtx.containsKey("start") {
 			instCtx.addError(FHIRValidationError(missing: "start"))
 		}
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
@@ -177,12 +177,12 @@ open class GraphDefinitionLink: BackboneElement {
 		max = createInstance(type: FHIRString.self, for: "max", in: json, context: &instCtx, owner: self) ?? max
 		min = createInstance(type: FHIRInteger.self, for: "min", in: json, context: &instCtx, owner: self) ?? min
 		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path
-		if nil == path && !instCtx.containsKey("path") && !_isSummaryResource {
+		if nil == path && !instCtx.containsKey("path") {
 			instCtx.addError(FHIRValidationError(missing: "path"))
 		}
 		sliceName = createInstance(type: FHIRString.self, for: "sliceName", in: json, context: &instCtx, owner: self) ?? sliceName
 		target = createInstances(of: GraphDefinitionLinkTarget.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
-		if (nil == target || target!.isEmpty) && !instCtx.containsKey("target") && !_isSummaryResource {
+		if (nil == target || target!.isEmpty) && !instCtx.containsKey("target") {
 			instCtx.addError(FHIRValidationError(missing: "target"))
 		}
 	}
@@ -241,7 +241,7 @@ open class GraphDefinitionLinkTarget: BackboneElement {
 		link = createInstances(of: GraphDefinitionLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
 		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}
@@ -293,13 +293,13 @@ open class GraphDefinitionLinkTargetCompartment: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createEnum(type: CompartmentType.self, for: "code", in: json, context: &instCtx) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
 		rule = createEnum(type: GraphCompartmentRule.self, for: "rule", in: json, context: &instCtx) ?? rule
-		if nil == rule && !instCtx.containsKey("rule") && !_isSummaryResource {
+		if nil == rule && !instCtx.containsKey("rule") {
 			instCtx.addError(FHIRValidationError(missing: "rule"))
 		}
 	}

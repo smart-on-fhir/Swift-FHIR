@@ -193,11 +193,11 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
-		if nil == period && !instCtx.containsKey("period") && !_isSummaryResource {
+		if nil == period && !instCtx.containsKey("period") {
 			instCtx.addError(FHIRValidationError(missing: "period"))
 		}
 		status = createEnum(type: EpisodeOfCareStatus.self, for: "status", in: json, context: &instCtx) ?? status
-		if nil == status && !instCtx.containsKey("status") && !_isSummaryResource {
+		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 	}

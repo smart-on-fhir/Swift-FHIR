@@ -37,11 +37,11 @@ open class Narrative: Element {
 		super.populate(from: json, context: &instCtx)
 		
 		div = createInstance(type: FHIRString.self, for: "div", in: json, context: &instCtx, owner: self) ?? div
-		if nil == div && !instCtx.containsKey("div") && !_isSummaryResource {
+		if nil == div && !instCtx.containsKey("div") {
 			instCtx.addError(FHIRValidationError(missing: "div"))
 		}
 		status = createEnum(type: NarrativeStatus.self, for: "status", in: json, context: &instCtx) ?? status
-		if nil == status && !instCtx.containsKey("status") && !_isSummaryResource {
+		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 	}

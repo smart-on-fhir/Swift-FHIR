@@ -444,7 +444,7 @@ open class ExplanationOfBenefitBenefitBalance: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		if nil == category && !instCtx.containsKey("category") && !_isSummaryResource {
+		if nil == category && !instCtx.containsKey("category") {
 			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
@@ -519,7 +519,7 @@ open class ExplanationOfBenefitBenefitBalanceFinancial: BackboneElement {
 		allowedString = createInstance(type: FHIRString.self, for: "allowedString", in: json, context: &instCtx, owner: self) ?? allowedString
 		allowedUnsignedInt = createInstance(type: FHIRInteger.self, for: "allowedUnsignedInt", in: json, context: &instCtx, owner: self) ?? allowedUnsignedInt
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		usedMoney = createInstance(type: Money.self, for: "usedMoney", in: json, context: &instCtx, owner: self) ?? usedMoney
@@ -581,14 +581,14 @@ open class ExplanationOfBenefitCareTeam: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		provider = createInstance(type: Reference.self, for: "provider", in: json, context: &instCtx, owner: self) ?? provider
-		if nil == provider && !instCtx.containsKey("provider") && !_isSummaryResource {
+		if nil == provider && !instCtx.containsKey("provider") {
 			instCtx.addError(FHIRValidationError(missing: "provider"))
 		}
 		qualification = createInstance(type: CodeableConcept.self, for: "qualification", in: json, context: &instCtx, owner: self) ?? qualification
 		responsible = createInstance(type: FHIRBool.self, for: "responsible", in: json, context: &instCtx, owner: self) ?? responsible
 		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 	}
@@ -660,7 +660,7 @@ open class ExplanationOfBenefitDiagnosis: BackboneElement {
 		diagnosisReference = createInstance(type: Reference.self, for: "diagnosisReference", in: json, context: &instCtx, owner: self) ?? diagnosisReference
 		packageCode = createInstance(type: CodeableConcept.self, for: "packageCode", in: json, context: &instCtx, owner: self) ?? packageCode
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		type = createInstances(of: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
@@ -746,13 +746,13 @@ open class ExplanationOfBenefitInformation: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		if nil == category && !instCtx.containsKey("category") && !_isSummaryResource {
+		if nil == category && !instCtx.containsKey("category") {
 			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		reason = createInstance(type: Coding.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		timingDate = createInstance(type: FHIRDate.self, for: "timingDate", in: json, context: &instCtx, owner: self) ?? timingDate
@@ -938,7 +938,7 @@ open class ExplanationOfBenefitItem: BackboneElement {
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
@@ -1020,7 +1020,7 @@ open class ExplanationOfBenefitItemAdjudication: BackboneElement {
 		
 		amount = createInstance(type: Money.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		if nil == category && !instCtx.containsKey("category") && !_isSummaryResource {
+		if nil == category && !instCtx.containsKey("category") {
 			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
 		reason = createInstance(type: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
@@ -1118,13 +1118,13 @@ open class ExplanationOfBenefitItemDetail: BackboneElement {
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
 		subDetail = createInstances(of: ExplanationOfBenefitItemDetailSubDetail.self, for: "subDetail", in: json, context: &instCtx, owner: self) ?? subDetail
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		udi = createInstances(of: Reference.self, for: "udi", in: json, context: &instCtx, owner: self) ?? udi
@@ -1233,12 +1233,12 @@ open class ExplanationOfBenefitItemDetailSubDetail: BackboneElement {
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 		udi = createInstances(of: Reference.self, for: "udi", in: json, context: &instCtx, owner: self) ?? udi
@@ -1409,7 +1409,7 @@ open class ExplanationOfBenefitProcedure: BackboneElement {
 		procedureCodeableConcept = createInstance(type: CodeableConcept.self, for: "procedureCodeableConcept", in: json, context: &instCtx, owner: self) ?? procedureCodeableConcept
 		procedureReference = createInstance(type: Reference.self, for: "procedureReference", in: json, context: &instCtx, owner: self) ?? procedureReference
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		if nil == sequence && !instCtx.containsKey("sequence") && !_isSummaryResource {
+		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
 		}
 		

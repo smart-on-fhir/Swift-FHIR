@@ -151,7 +151,7 @@ open class PaymentReconciliationDetail: BackboneElement {
 		response = createInstance(type: Reference.self, for: "response", in: json, context: &instCtx, owner: self) ?? response
 		submitter = createInstance(type: Reference.self, for: "submitter", in: json, context: &instCtx, owner: self) ?? submitter
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}

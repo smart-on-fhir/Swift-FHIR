@@ -218,7 +218,7 @@ open class MedicationDispensePerformer: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
-		if nil == actor && !instCtx.containsKey("actor") && !_isSummaryResource {
+		if nil == actor && !instCtx.containsKey("actor") {
 			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
 		onBehalfOf = createInstance(type: Reference.self, for: "onBehalfOf", in: json, context: &instCtx, owner: self) ?? onBehalfOf
@@ -275,7 +275,7 @@ open class MedicationDispenseSubstitution: BackboneElement {
 		responsibleParty = createInstances(of: Reference.self, for: "responsibleParty", in: json, context: &instCtx, owner: self) ?? responsibleParty
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		wasSubstituted = createInstance(type: FHIRBool.self, for: "wasSubstituted", in: json, context: &instCtx, owner: self) ?? wasSubstituted
-		if nil == wasSubstituted && !instCtx.containsKey("wasSubstituted") && !_isSummaryResource {
+		if nil == wasSubstituted && !instCtx.containsKey("wasSubstituted") {
 			instCtx.addError(FHIRValidationError(missing: "wasSubstituted"))
 		}
 	}

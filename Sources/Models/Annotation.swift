@@ -45,7 +45,7 @@ open class Annotation: Element {
 		authorReference = createInstance(type: Reference.self, for: "authorReference", in: json, context: &instCtx, owner: self) ?? authorReference
 		authorString = createInstance(type: FHIRString.self, for: "authorString", in: json, context: &instCtx, owner: self) ?? authorString
 		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
-		if nil == text && !instCtx.containsKey("text") && !_isSummaryResource {
+		if nil == text && !instCtx.containsKey("text") {
 			instCtx.addError(FHIRValidationError(missing: "text"))
 		}
 		time = createInstance(type: DateTime.self, for: "time", in: json, context: &instCtx, owner: self) ?? time

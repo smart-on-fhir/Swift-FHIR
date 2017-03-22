@@ -304,7 +304,7 @@ open class RequestGroupActionCondition: BackboneElement {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
 		kind = createEnum(type: ActionConditionKind.self, for: "kind", in: json, context: &instCtx) ?? kind
-		if nil == kind && !instCtx.containsKey("kind") && !_isSummaryResource {
+		if nil == kind && !instCtx.containsKey("kind") {
 			instCtx.addError(FHIRValidationError(missing: "kind"))
 		}
 		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
@@ -359,13 +359,13 @@ open class RequestGroupActionRelatedAction: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		actionId = createInstance(type: FHIRString.self, for: "actionId", in: json, context: &instCtx, owner: self) ?? actionId
-		if nil == actionId && !instCtx.containsKey("actionId") && !_isSummaryResource {
+		if nil == actionId && !instCtx.containsKey("actionId") {
 			instCtx.addError(FHIRValidationError(missing: "actionId"))
 		}
 		offsetDuration = createInstance(type: Duration.self, for: "offsetDuration", in: json, context: &instCtx, owner: self) ?? offsetDuration
 		offsetRange = createInstance(type: Range.self, for: "offsetRange", in: json, context: &instCtx, owner: self) ?? offsetRange
 		relationship = createEnum(type: ActionRelationshipType.self, for: "relationship", in: json, context: &instCtx) ?? relationship
-		if nil == relationship && !instCtx.containsKey("relationship") && !_isSummaryResource {
+		if nil == relationship && !instCtx.containsKey("relationship") {
 			instCtx.addError(FHIRValidationError(missing: "relationship"))
 		}
 	}

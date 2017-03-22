@@ -219,7 +219,7 @@ open class CodeSystemConcept: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		concept = createInstances(of: CodeSystemConcept.self, for: "concept", in: json, context: &instCtx, owner: self) ?? concept
@@ -279,7 +279,7 @@ open class CodeSystemConceptDesignation: BackboneElement {
 		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
 		use = createInstance(type: Coding.self, for: "use", in: json, context: &instCtx, owner: self) ?? use
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}
@@ -361,7 +361,7 @@ open class CodeSystemConceptProperty: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean

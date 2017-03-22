@@ -152,7 +152,7 @@ open class MeasureReportGroup: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") && !_isSummaryResource {
+		if nil == identifier && !instCtx.containsKey("identifier") {
 			instCtx.addError(FHIRValidationError(missing: "identifier"))
 		}
 		measureScore = createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, context: &instCtx, owner: self) ?? measureScore
@@ -286,7 +286,7 @@ open class MeasureReportGroupStratifierStratum: BackboneElement {
 		measureScore = createInstance(type: FHIRDecimal.self, for: "measureScore", in: json, context: &instCtx, owner: self) ?? measureScore
 		population = createInstances(of: MeasureReportGroupStratifierStratumPopulation.self, for: "population", in: json, context: &instCtx, owner: self) ?? population
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") && !_isSummaryResource {
+		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
 		}
 	}

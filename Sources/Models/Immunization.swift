@@ -114,12 +114,12 @@ open class Immunization: DomainResource {
 		}
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
-		if nil == patient && !instCtx.containsKey("patient") && !_isSummaryResource {
+		if nil == patient && !instCtx.containsKey("patient") {
 			instCtx.addError(FHIRValidationError(missing: "patient"))
 		}
 		practitioner = createInstances(of: ImmunizationPractitioner.self, for: "practitioner", in: json, context: &instCtx, owner: self) ?? practitioner
 		primarySource = createInstance(type: FHIRBool.self, for: "primarySource", in: json, context: &instCtx, owner: self) ?? primarySource
-		if nil == primarySource && !instCtx.containsKey("primarySource") && !_isSummaryResource {
+		if nil == primarySource && !instCtx.containsKey("primarySource") {
 			instCtx.addError(FHIRValidationError(missing: "primarySource"))
 		}
 		reaction = createInstances(of: ImmunizationReaction.self, for: "reaction", in: json, context: &instCtx, owner: self) ?? reaction
@@ -132,7 +132,7 @@ open class Immunization: DomainResource {
 		}
 		vaccinationProtocol = createInstances(of: ImmunizationVaccinationProtocol.self, for: "vaccinationProtocol", in: json, context: &instCtx, owner: self) ?? vaccinationProtocol
 		vaccineCode = createInstance(type: CodeableConcept.self, for: "vaccineCode", in: json, context: &instCtx, owner: self) ?? vaccineCode
-		if nil == vaccineCode && !instCtx.containsKey("vaccineCode") && !_isSummaryResource {
+		if nil == vaccineCode && !instCtx.containsKey("vaccineCode") {
 			instCtx.addError(FHIRValidationError(missing: "vaccineCode"))
 		}
 	}
@@ -347,14 +347,14 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		doseSequence = createInstance(type: FHIRInteger.self, for: "doseSequence", in: json, context: &instCtx, owner: self) ?? doseSequence
 		doseStatus = createInstance(type: CodeableConcept.self, for: "doseStatus", in: json, context: &instCtx, owner: self) ?? doseStatus
-		if nil == doseStatus && !instCtx.containsKey("doseStatus") && !_isSummaryResource {
+		if nil == doseStatus && !instCtx.containsKey("doseStatus") {
 			instCtx.addError(FHIRValidationError(missing: "doseStatus"))
 		}
 		doseStatusReason = createInstance(type: CodeableConcept.self, for: "doseStatusReason", in: json, context: &instCtx, owner: self) ?? doseStatusReason
 		series = createInstance(type: FHIRString.self, for: "series", in: json, context: &instCtx, owner: self) ?? series
 		seriesDoses = createInstance(type: FHIRInteger.self, for: "seriesDoses", in: json, context: &instCtx, owner: self) ?? seriesDoses
 		targetDisease = createInstances(of: CodeableConcept.self, for: "targetDisease", in: json, context: &instCtx, owner: self) ?? targetDisease
-		if (nil == targetDisease || targetDisease!.isEmpty) && !instCtx.containsKey("targetDisease") && !_isSummaryResource {
+		if (nil == targetDisease || targetDisease!.isEmpty) && !instCtx.containsKey("targetDisease") {
 			instCtx.addError(FHIRValidationError(missing: "targetDisease"))
 		}
 	}

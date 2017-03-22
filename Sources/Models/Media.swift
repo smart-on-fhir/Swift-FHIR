@@ -90,7 +90,7 @@ open class Media: DomainResource {
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
 		content = createInstance(type: Attachment.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
-		if nil == content && !instCtx.containsKey("content") && !_isSummaryResource {
+		if nil == content && !instCtx.containsKey("content") {
 			instCtx.addError(FHIRValidationError(missing: "content"))
 		}
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context

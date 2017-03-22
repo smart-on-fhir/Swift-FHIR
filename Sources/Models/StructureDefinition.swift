@@ -246,7 +246,7 @@ open class StructureDefinitionDifferential: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		element = createInstances(of: ElementDefinition.self, for: "element", in: json, context: &instCtx, owner: self) ?? element
-		if (nil == element || element!.isEmpty) && !instCtx.containsKey("element") && !_isSummaryResource {
+		if (nil == element || element!.isEmpty) && !instCtx.containsKey("element") {
 			instCtx.addError(FHIRValidationError(missing: "element"))
 		}
 	}
@@ -297,7 +297,7 @@ open class StructureDefinitionMapping: BackboneElement {
 		
 		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		identity = createInstance(type: FHIRString.self, for: "identity", in: json, context: &instCtx, owner: self) ?? identity
-		if nil == identity && !instCtx.containsKey("identity") && !_isSummaryResource {
+		if nil == identity && !instCtx.containsKey("identity") {
 			instCtx.addError(FHIRValidationError(missing: "identity"))
 		}
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
@@ -344,7 +344,7 @@ open class StructureDefinitionSnapshot: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		element = createInstances(of: ElementDefinition.self, for: "element", in: json, context: &instCtx, owner: self) ?? element
-		if (nil == element || element!.isEmpty) && !instCtx.containsKey("element") && !_isSummaryResource {
+		if (nil == element || element!.isEmpty) && !instCtx.containsKey("element") {
 			instCtx.addError(FHIRValidationError(missing: "element"))
 		}
 	}

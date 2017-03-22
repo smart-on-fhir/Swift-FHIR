@@ -195,7 +195,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		exposureRoute = createInstance(type: CodeableConcept.self, for: "exposureRoute", in: json, context: &instCtx, owner: self) ?? exposureRoute
 		manifestation = createInstances(of: CodeableConcept.self, for: "manifestation", in: json, context: &instCtx, owner: self) ?? manifestation
-		if (nil == manifestation || manifestation!.isEmpty) && !instCtx.containsKey("manifestation") && !_isSummaryResource {
+		if (nil == manifestation || manifestation!.isEmpty) && !instCtx.containsKey("manifestation") {
 			instCtx.addError(FHIRValidationError(missing: "manifestation"))
 		}
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note

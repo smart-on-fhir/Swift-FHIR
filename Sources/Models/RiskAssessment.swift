@@ -101,7 +101,7 @@ open class RiskAssessment: DomainResource {
 		reasonCodeableConcept = createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, context: &instCtx, owner: self) ?? reasonCodeableConcept
 		reasonReference = createInstance(type: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		status = createEnum(type: ObservationStatus.self, for: "status", in: json, context: &instCtx) ?? status
-		if nil == status && !instCtx.containsKey("status") && !_isSummaryResource {
+		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
@@ -181,7 +181,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
-		if nil == outcome && !instCtx.containsKey("outcome") && !_isSummaryResource {
+		if nil == outcome && !instCtx.containsKey("outcome") {
 			instCtx.addError(FHIRValidationError(missing: "outcome"))
 		}
 		probabilityDecimal = createInstance(type: FHIRDecimal.self, for: "probabilityDecimal", in: json, context: &instCtx, owner: self) ?? probabilityDecimal

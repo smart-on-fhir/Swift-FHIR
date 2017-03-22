@@ -69,7 +69,7 @@ open class Provenance: DomainResource {
 		
 		activity = createInstance(type: Coding.self, for: "activity", in: json, context: &instCtx, owner: self) ?? activity
 		agent = createInstances(of: ProvenanceAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
-		if (nil == agent || agent!.isEmpty) && !instCtx.containsKey("agent") && !_isSummaryResource {
+		if (nil == agent || agent!.isEmpty) && !instCtx.containsKey("agent") {
 			instCtx.addError(FHIRValidationError(missing: "agent"))
 		}
 		entity = createInstances(of: ProvenanceEntity.self, for: "entity", in: json, context: &instCtx, owner: self) ?? entity

@@ -269,7 +269,7 @@ open class QuestionnaireItem: BackboneElement {
 		initialUri = createInstance(type: FHIRURL.self, for: "initialUri", in: json, context: &instCtx, owner: self) ?? initialUri
 		item = createInstances(of: QuestionnaireItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
 		linkId = createInstance(type: FHIRString.self, for: "linkId", in: json, context: &instCtx, owner: self) ?? linkId
-		if nil == linkId && !instCtx.containsKey("linkId") && !_isSummaryResource {
+		if nil == linkId && !instCtx.containsKey("linkId") {
 			instCtx.addError(FHIRValidationError(missing: "linkId"))
 		}
 		maxLength = createInstance(type: FHIRInteger.self, for: "maxLength", in: json, context: &instCtx, owner: self) ?? maxLength
@@ -281,7 +281,7 @@ open class QuestionnaireItem: BackboneElement {
 		required = createInstance(type: FHIRBool.self, for: "required", in: json, context: &instCtx, owner: self) ?? required
 		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
 		type = createEnum(type: QuestionnaireItemType.self, for: "type", in: json, context: &instCtx) ?? type
-		if nil == type && !instCtx.containsKey("type") && !_isSummaryResource {
+		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
 	}

@@ -186,7 +186,7 @@ open class ConceptMapGroup: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		element = createInstances(of: ConceptMapGroupElement.self, for: "element", in: json, context: &instCtx, owner: self) ?? element
-		if (nil == element || element!.isEmpty) && !instCtx.containsKey("element") && !_isSummaryResource {
+		if (nil == element || element!.isEmpty) && !instCtx.containsKey("element") {
 			instCtx.addError(FHIRValidationError(missing: "element"))
 		}
 		source = createInstance(type: FHIRURL.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
@@ -340,12 +340,12 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") && !_isSummaryResource {
+		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		property = createInstance(type: FHIRURL.self, for: "property", in: json, context: &instCtx, owner: self) ?? property
-		if nil == property && !instCtx.containsKey("property") && !_isSummaryResource {
+		if nil == property && !instCtx.containsKey("property") {
 			instCtx.addError(FHIRValidationError(missing: "property"))
 		}
 		system = createInstance(type: FHIRURL.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
@@ -406,7 +406,7 @@ open class ConceptMapGroupUnmapped: BackboneElement {
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		mode = createEnum(type: ConceptMapGroupUnmappedMode.self, for: "mode", in: json, context: &instCtx) ?? mode
-		if nil == mode && !instCtx.containsKey("mode") && !_isSummaryResource {
+		if nil == mode && !instCtx.containsKey("mode") {
 			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url

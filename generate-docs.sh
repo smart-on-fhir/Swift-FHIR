@@ -5,4 +5,4 @@
 
 jazzy \
 	-o "docs" \
-	--module-version "2.9"
+	--module-version "3.0"

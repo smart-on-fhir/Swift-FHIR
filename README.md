@@ -1,8 +1,7 @@
 FHIR Swift Classes
 ==================
 
-These are [Swift][] classes representing data models of [🔥 FHIR][fhir] elements and resources, compatible with **iOS 7** and **OS X 10.9** and later.
-Building _Swift 3_ frameworks requires Xcode 8 or later, using frameworks on iOS requires **iOS 8**.
+These are [Swift][] classes representing data models of [🔥 FHIR][fhir] elements and resources, compatible with **iOS 8** and **OS X 10.9** and later.
 
 This work is [Apache licensed](LICENSE.txt).
 FHIR® is the registered trademark of [HL7][] and is used with the permission of HL7.
@@ -20,7 +19,7 @@ See [tags/releases](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
- **3.0** |       3.0 | `2.0.0.xxxxx` | STU 3
+ **3.0** |       3.0 | `3.0.0.11832` | STU 3
 **2.10** |       3.0 | `1.8.0.10521` | STU 3 Freeze, Jan 2017
  **2.9** |       3.0 |  `1.6.0.9663` | STU 3 Ballot, Sep 2016
  **2.8** |       3.0 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
@@ -39,7 +38,6 @@ SMART on FHIR
 -------------
 
 The [Swift-SMART][] framework utilizes these classes.
-It also adds an implementation of the _FHIRServer_ protocol to make for a complete FHIR client framework.
 
 - [Programming Guide](https://github.com/smart-on-fhir/Swift-SMART/wiki) with code examples
 - [Technical Documentation](http://docs.smarthealthit.org/Swift-SMART/) of classes, properties and methods

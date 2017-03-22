@@ -1,9 +1,14 @@
 Changelog
 =========
 
+## 3.0
 
-## x.x
+- Update to FHIR `STU-3` (v3.0.0.11832)
 
+
+## 2.10
+
+- Update to FHIR `1.8.0.10521`
 - Change initializers: provide convenience initializers; initializers taking JSON may throw
 - BREAKING: now using custom types for all FHIR primitives, enabling to detect extensions (and ids) on primitives
 - BREAKING: generate enums for most closed ValueSets

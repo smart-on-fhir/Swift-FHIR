@@ -53,14 +53,14 @@ extension Array where Element == ValueSetComposeIncludeConceptDesignation {
 	- returns: A localized string, or nil if none is matching
 	*/
 	public func localization(for locale: Locale) -> FHIRString? {
-		for translation in translations {
+		for translation in self {
 			if let lang = translation.language?.string, Locale(identifier: lang) == locale, let localized = translation.value {
 				return localized
 			}
 		}
 		
 		// no exact match; test for languageCode only
-		for translation in translations {
+		for translation in self {
 			if let lang = translation.language?.string, Locale(identifier: lang).languageCode == locale.languageCode, let localized = translation.value {
 				return localized
 			}

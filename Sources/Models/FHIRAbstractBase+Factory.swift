@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
+//  Generated from FHIR 3.0.0.11923 on 2017-04-18.
 //  2017, SMART Health IT.
 //
 
@@ -32,6 +32,8 @@ extension FHIRAbstractBase {
 				if let res = AdverseEvent(json: json, owner: owner, context: &context) as? T { return res }
 			case "AdverseEventSuspectEntity":
 				if let res = AdverseEventSuspectEntity(json: json, owner: owner, context: &context) as? T { return res }
+			case "AdverseEventSuspectEntityCausality":
+				if let res = AdverseEventSuspectEntityCausality(json: json, owner: owner, context: &context) as? T { return res }
 			case "Age":
 				if let res = Age(json: json, owner: owner, context: &context) as? T { return res }
 			case "AllergyIntolerance":

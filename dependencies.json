@@ -277,7 +277,7 @@
 		"references": ["Organization"]
 	},
 	"ImagingManifest": {
-		"dependencies": ["BackboneElement","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Reference"],
+		"dependencies": ["BackboneElement","DateTime","DomainResource","FHIRInteger","FHIRString","FHIRURL","Identifier","Reference"],
 		"references": ["Device","Endpoint","ImagingStudy","Organization","Patient","Practitioner","RelatedPerson"]
 	},
 	"ImagingStudy": {

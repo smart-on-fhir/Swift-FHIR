@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11828 on 2017-04-18.
+//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
 //  2017, SMART Health IT.
 //
 

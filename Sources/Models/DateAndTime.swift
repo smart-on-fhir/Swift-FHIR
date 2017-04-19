@@ -972,7 +972,7 @@ extension Scanner {
 		#else
 		var str: NSString?
 		if scanString(searchString, into: &str) {
-			return str as String?
+			return str as? String
 		}
 		return nil
 		#endif
@@ -984,7 +984,7 @@ extension Scanner {
 		#else
 		var str: NSString?
 		if scanCharacters(from: set, into: &str) {
-			return str as String?
+			return str as? String
 		}
 		return nil
 		#endif

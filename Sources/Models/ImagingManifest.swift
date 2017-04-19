@@ -2,7 +2,7 @@
 //  ImagingManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11923 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2017-04-18.
+//  Generated from FHIR 3.0.0.11828 (http://hl7.org/fhir/StructureDefinition/ImagingManifest) on 2017-04-18.
 //  2017, SMART Health IT.
 //
 
@@ -214,9 +214,6 @@ open class ImagingManifestStudySeriesInstance: BackboneElement {
 		get { return "ImagingManifestStudySeriesInstance" }
 	}
 	
-	/// Frame reference number.
-	public var frameNumber: [FHIRInteger]?
-	
 	/// SOP class UID of instance.
 	public var sopClass: FHIRURL?
 	
@@ -235,7 +232,6 @@ open class ImagingManifestStudySeriesInstance: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		frameNumber = createInstances(of: FHIRInteger.self, for: "frameNumber", in: json, context: &instCtx, owner: self) ?? frameNumber
 		sopClass = createInstance(type: FHIRURL.self, for: "sopClass", in: json, context: &instCtx, owner: self) ?? sopClass
 		if nil == sopClass && !instCtx.containsKey("sopClass") {
 			instCtx.addError(FHIRValidationError(missing: "sopClass"))
@@ -249,7 +245,6 @@ open class ImagingManifestStudySeriesInstance: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "frameNumber", using: self.frameNumber, errors: &errors)
 		self.sopClass?.decorate(json: &json, withKey: "sopClass", errors: &errors)
 		if nil == self.sopClass {
 			errors.append(FHIRValidationError(missing: "sopClass"))

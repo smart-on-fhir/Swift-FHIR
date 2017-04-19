@@ -2,7 +2,7 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11923 on 2017-04-18.
+//  Generated from FHIR 3.0.0.11828 on 2017-04-18.
 //  2017, SMART Health IT.
 //
 
@@ -357,6 +357,38 @@ public enum AdministrativeGender: String {
 
 
 /**
+Overall categorization of the event, e.g. real or potential
+
+URL: http://hl7.org/fhir/adverse-event-category
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-category
+*/
+public enum AdverseEventCategory: String {
+	
+	/// AE
+	case AE = "AE"
+	
+	/// PAE
+	case PAE = "PAE"
+}
+
+
+/**
+TODO
+
+URL: http://hl7.org/fhir/adverse-event-causality
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality
+*/
+public enum AdverseEventCausality: String {
+	
+	/// causality1
+	case causality1 = "causality1"
+	
+	/// causality2
+	case causality2 = "causality2"
+}
+
+
+/**
 TODO
 
 URL: http://hl7.org/fhir/adverse-event-causality-assess
@@ -364,39 +396,11 @@ ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-assess
 */
 public enum AdverseEventCausalityAssessment: String {
 	
-	/// i) Event or laboratory test abnormality, with plausible time relationship to drug intake
-	/// ii) Cannot be explained by disease or other drugs
-	/// iii) Response to withdrawal plausible (pharmacologically, pathologically)
-	/// iv) Event definitive pharmacologically or phenomenologically (i.e. an objective and specific medical disorder or
-	/// a recognized pharmacological phenomenon)
-	/// v) Re-challenge satisfactory, if necessary
-	case certain = "Certain"
+	/// assess1
+	case assess1 = "assess1"
 	
-	/// i) Event or laboratory test abnormality, with reasonable time relationship to drug intake
-	/// ii) Unlikely to be attributed to disease or other drugs
-	/// iii) Response to withdrawal clinically reasonable
-	/// iv) Re-challenge not required
-	case probablyLikely = "Probably-Likely"
-	
-	/// i) Event or laboratory test abnormality, with reasonable time relationship to drug intake
-	/// ii) Could also be explained by disease or other drugs
-	/// iii) Information on drug withdrawal may be lacking or unclear
-	case possible = "Possible"
-	
-	/// i) Event or laboratory test abnormality, with a time to drug intake that makes a relationship improbable (but
-	/// not impossible)
-	/// ii) Disease or other drugs provide plausible explanations
-	case unlikely = "Unlikely"
-	
-	/// i) Event or laboratory test abnormality
-	/// ii) More data for proper assessment needed, or
-	/// iii) Additional data under examination
-	case conditionalClassified = "Conditional-Classified"
-	
-	/// i) Report suggesting an adverse reaction
-	/// ii) Cannot be judged because information is insufficient or contradictory
-	/// iii) Data cannot be supplemented or verified
-	case unassessableUnclassifiable = "Unassessable-Unclassifiable"
+	/// assess2
+	case assess2 = "assess2"
 }
 
 
@@ -408,48 +412,27 @@ ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-method
 */
 public enum AdverseEventCausalityMethod: String {
 	
-	/// probabilityScale
-	case probabilityScale = "ProbabilityScale"
+	/// method1
+	case method1 = "method1"
 	
-	/// bayesian
-	case bayesian = "Bayesian"
-	
-	/// checklist
-	case checklist = "Checklist"
+	/// method2
+	case method2 = "method2"
 }
 
 
 /**
-Overall categorization of the event, e.g. real or potential
+TODO
 
-URL: http://hl7.org/fhir/adverse-event-kind
-ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-kind
+URL: http://hl7.org/fhir/adverse-event-causality-result
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-result
 */
-public enum AdverseEventKind: String {
+public enum AdverseEventCausalityResult: String {
 	
-	/// adverseEvent
-	case adverseEvent = "AdverseEvent"
+	/// result1
+	case result1 = "result1"
 	
-	/// seriousAdverseEvent
-	case seriousAdverseEvent = "SeriousAdverseEvent"
-	
-	/// productProblem
-	case productProblem = "ProductProblem"
-	
-	/// productUseError
-	case productUseError = "ProductUseError"
-	
-	/// medicalDeviceUseError
-	case medicalDeviceUseError = "MedicalDeviceUseError"
-	
-	/// problemDifferentManufacturer
-	case problemDifferentManufacturer = "ProblemDifferentManufacturer"
-	
-	/// nearMiss
-	case nearMiss = "NearMiss"
-	
-	/// unsafeCondition
-	case unsafeCondition = "UnsafeCondition"
+	/// result2
+	case result2 = "result2"
 }
 
 
@@ -488,41 +471,6 @@ URL: http://hl7.org/fhir/adverse-event-seriousness
 ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-seriousness
 */
 public enum AdverseEventSeriousness: String {
-	
-	/// Non-serious
-	case nonSerious = "Non-serious"
-	
-	/// Serious
-	case serious = "Serious"
-	
-	/// Results in death
-	case seriousResultsInDeath = "SeriousResultsInDeath"
-	
-	/// Is Life-threatening
-	case seriousIsLifeThreatening = "SeriousIsLifeThreatening"
-	
-	/// Requires inpatient hospitalization or causes prolongation of existing hospitalization
-	case seriousResultsInHospitalization = "SeriousResultsInHospitalization"
-	
-	/// Results in persistent or significant disability/incapacity
-	case seriousResultsInDisability = "SeriousResultsInDisability"
-	
-	/// Is a congenital anomaly/birth defect
-	case seriousIsBirthDefect = "SeriousIsBirthDefect"
-	
-	/// Requires intervention to prevent permanent impairment or damage (i.e., an important medical event that requires
-	/// medical judgement)
-	case seriousRequiresPreventImpairment = "SeriousRequiresPreventImpairment"
-}
-
-
-/**
-The severity of the adverse event itself, in direct relation to the subject
-
-URL: http://hl7.org/fhir/adverse-event-severity
-ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-severity
-*/
-public enum AdverseEventSeverity: String {
 	
 	/// mild
 	case mild = "Mild"

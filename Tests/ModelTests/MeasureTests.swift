@@ -2,7 +2,7 @@
 //  MeasureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
+//  Generated from FHIR 3.0.1.11917 on 2017-04-25.
 //  2017, SMART Health IT.
 //
 
@@ -264,7 +264,7 @@ class MeasureTests: XCTestCase {
 		XCTAssertEqual(inst.title, "Exclusive Breastfeeding Measure")
 		XCTAssertEqual(inst.topic?[0].text, "Exclusive Breastfeeding")
 		XCTAssertEqual(inst.type?[0].coding?[0].code, "process")
-		XCTAssertEqual(inst.version, "3.0.0")
+		XCTAssertEqual(inst.version, "3.0.1")
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
+//  Generated from FHIR 3.0.1.11917 on 2017-04-25.
 //  2017, SMART Health IT.
 //
 
@@ -175,7 +175,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.308")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-03-21T21:41:32.180+00:00")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-04-19T07:44:43.294+10:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
@@ -183,7 +183,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "3.0.0")
+		XCTAssertEqual(inst.version, "3.0.1")
 		
 		return inst
 	}

@@ -65,7 +65,7 @@ extension Reference {
 						if let found = entry.resource as? T {
 							return found
 						}
-						fhir_warn("reference “\(refid)” was bundled as «\(entry.resource)», which is not of the expected type “\(T.self)”")
+						fhir_warn("reference “\(refid)” was bundled as «\(String(describing: entry.resource))», which is not of the expected type “\(T.self)”")
 						return nil
 					}
 				}

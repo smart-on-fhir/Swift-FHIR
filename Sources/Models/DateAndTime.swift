@@ -12,7 +12,7 @@ import Foundation
 /**
 A protocol for all our date and time structs.
 */
-protocol DateAndTime: FHIRPrimitive, CustomStringConvertible, Comparable, Equatable {
+protocol DateAndTime: FHIRPrimitive, CustomStringConvertible, Comparable {
 	
 	var nsDate: Date { get }
 	
@@ -340,9 +340,9 @@ public struct FHIRTime: DateAndTime {
 		}
 		if let s = second {
 			#if os(Linux)
-			return String(format: "%02d:%02d:", hour, minute) + ((s < 10) ? "0" : "") + String(format: "%g", s)
+			return String(format: "%02d:%02d:", hour, minute) + ((s < 10.0) ? "0" : "") + String(format: "%g", s)
 			#else
-			return String(format: "%02d:%02d:%@%g", hour, minute, (s < 10) ? "0" : "", s)
+			return String(format: "%02d:%02d:%@%g", hour, minute, (s < 10.0) ? "0" : "", s)
 			#endif
 		}
 		return String(format: "%02d:%02d", hour, minute)

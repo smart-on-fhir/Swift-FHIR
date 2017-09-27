@@ -19,7 +19,7 @@ public extension FHIRPrimitive {
 	
 	- parameter forURI: The URI defining the extension on the receiver
 	*/
-	public final func extensions(forURI uri: String) -> [Extension]? {
+	public func extensions(forURI uri: String) -> [Extension]? {
 		return extension_fhir?.filter() { return $0.url?.absoluteString == uri }
 	}
 }

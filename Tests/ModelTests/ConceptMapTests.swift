@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRConceptMap = Models.ConceptMap
-#else
 import SwiftFHIR
 typealias SwiftFHIRConceptMap = SwiftFHIR.ConceptMap
-#endif
 
 
 class ConceptMapTests: XCTestCase {

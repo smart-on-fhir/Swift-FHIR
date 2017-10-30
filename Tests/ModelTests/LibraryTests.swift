@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRLibrary = Models.Library
-#else
 import SwiftFHIR
 typealias SwiftFHIRLibrary = SwiftFHIR.Library
-#endif
 
 
 class LibraryTests: XCTestCase {

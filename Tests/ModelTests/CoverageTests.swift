@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRCoverage = Models.Coverage
-#else
 import SwiftFHIR
 typealias SwiftFHIRCoverage = SwiftFHIR.Coverage
-#endif
 
 
 class CoverageTests: XCTestCase {

@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRAllergyIntolerance = Models.AllergyIntolerance
-#else
 import SwiftFHIR
 typealias SwiftFHIRAllergyIntolerance = SwiftFHIR.AllergyIntolerance
-#endif
 
 
 class AllergyIntoleranceTests: XCTestCase {

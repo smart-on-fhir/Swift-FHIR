@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRTestScript = Models.TestScript
-#else
 import SwiftFHIR
 typealias SwiftFHIRTestScript = SwiftFHIR.TestScript
-#endif
 
 
 class TestScriptTests: XCTestCase {

@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRConsent = Models.Consent
-#else
 import SwiftFHIR
 typealias SwiftFHIRConsent = SwiftFHIR.Consent
-#endif
 
 
 class ConsentTests: XCTestCase {

@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRDeviceComponent = Models.DeviceComponent
-#else
 import SwiftFHIR
 typealias SwiftFHIRDeviceComponent = SwiftFHIR.DeviceComponent
-#endif
 
 
 class DeviceComponentTests: XCTestCase {

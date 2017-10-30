@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRAuditEvent = Models.AuditEvent
-#else
 import SwiftFHIR
 typealias SwiftFHIRAuditEvent = SwiftFHIR.AuditEvent
-#endif
 
 
 class AuditEventTests: XCTestCase {

@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRMessageHeader = Models.MessageHeader
-#else
 import SwiftFHIR
 typealias SwiftFHIRMessageHeader = SwiftFHIR.MessageHeader
-#endif
 
 
 class MessageHeaderTests: XCTestCase {

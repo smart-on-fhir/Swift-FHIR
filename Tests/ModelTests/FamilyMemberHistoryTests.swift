@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRFamilyMemberHistory = Models.FamilyMemberHistory
-#else
 import SwiftFHIR
 typealias SwiftFHIRFamilyMemberHistory = SwiftFHIR.FamilyMemberHistory
-#endif
 
 
 class FamilyMemberHistoryTests: XCTestCase {

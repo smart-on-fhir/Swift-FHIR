@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRObservation = Models.Observation
-#else
 import SwiftFHIR
 typealias SwiftFHIRObservation = SwiftFHIR.Observation
-#endif
 
 
 class ObservationTests: XCTestCase {

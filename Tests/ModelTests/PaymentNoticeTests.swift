@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRPaymentNotice = Models.PaymentNotice
-#else
 import SwiftFHIR
 typealias SwiftFHIRPaymentNotice = SwiftFHIR.PaymentNotice
-#endif
 
 
 class PaymentNoticeTests: XCTestCase {

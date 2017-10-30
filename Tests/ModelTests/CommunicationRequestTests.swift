@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRCommunicationRequest = Models.CommunicationRequest
-#else
 import SwiftFHIR
 typealias SwiftFHIRCommunicationRequest = SwiftFHIR.CommunicationRequest
-#endif
 
 
 class CommunicationRequestTests: XCTestCase {

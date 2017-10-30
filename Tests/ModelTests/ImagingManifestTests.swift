@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRImagingManifest = Models.ImagingManifest
-#else
 import SwiftFHIR
 typealias SwiftFHIRImagingManifest = SwiftFHIR.ImagingManifest
-#endif
 
 
 class ImagingManifestTests: XCTestCase {

@@ -7,12 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-import Client
-#else
 import SwiftFHIR
-#endif
+
 
 
 /**

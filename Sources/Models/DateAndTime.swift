@@ -878,8 +878,8 @@ class DateAndTimeParser {
 								}
 							}
 							else if 4 == hourStr.characters.count {
-								tzhour = Int(hourStr.substring(to: hourStr.index(hourStr.startIndex, offsetBy: 2)))!
-								tzmin = Int(hourStr.substring(from: hourStr.index(hourStr.startIndex, offsetBy: 2)))!
+                                tzhour = Int(hourStr[..<hourStr.index(hourStr.startIndex, offsetBy: 2)])!
+                                tzmin = Int(hourStr[hourStr.index(hourStr.startIndex, offsetBy: 2)...])!
 							}
 							
 							let offset = tzhour * 3600 + tzmin * 60

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRAppointmentResponse = Models.AppointmentResponse
+#else
 import SwiftFHIR
 typealias SwiftFHIRAppointmentResponse = SwiftFHIR.AppointmentResponse
+#endif
 
 
 class AppointmentResponseTests: XCTestCase {

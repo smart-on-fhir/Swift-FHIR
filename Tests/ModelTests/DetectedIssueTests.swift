@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDetectedIssue = Models.DetectedIssue
+#else
 import SwiftFHIR
 typealias SwiftFHIRDetectedIssue = SwiftFHIR.DetectedIssue
+#endif
 
 
 class DetectedIssueTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRProcessRequest = Models.ProcessRequest
+#else
 import SwiftFHIR
 typealias SwiftFHIRProcessRequest = SwiftFHIR.ProcessRequest
+#endif
 
 
 class ProcessRequestTests: XCTestCase {

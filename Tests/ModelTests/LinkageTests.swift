@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRLinkage = Models.Linkage
+#else
 import SwiftFHIR
 typealias SwiftFHIRLinkage = SwiftFHIR.Linkage
+#endif
 
 
 class LinkageTests: XCTestCase {

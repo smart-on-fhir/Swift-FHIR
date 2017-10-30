@@ -7,8 +7,12 @@
 //
 
 import Foundation
-
+#if !NO_MODEL_IMPORT
+import Models
+public typealias FHIRSearchBundleErrorCallback = ((Models.Bundle?, FHIRError?) -> Void)
+#else
 public typealias FHIRSearchBundleErrorCallback = ((Bundle?, FHIRError?) -> Void)
+#endif
 
 
 /**

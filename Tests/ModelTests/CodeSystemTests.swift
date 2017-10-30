@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCodeSystem = Models.CodeSystem
+#else
 import SwiftFHIR
 typealias SwiftFHIRCodeSystem = SwiftFHIR.CodeSystem
+#endif
 
 
 class CodeSystemTests: XCTestCase {

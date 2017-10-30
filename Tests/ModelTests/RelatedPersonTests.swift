@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRRelatedPerson = Models.RelatedPerson
+#else
 import SwiftFHIR
 typealias SwiftFHIRRelatedPerson = SwiftFHIR.RelatedPerson
+#endif
 
 
 class RelatedPersonTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRAdverseEvent = Models.AdverseEvent
+#else
 import SwiftFHIR
 typealias SwiftFHIRAdverseEvent = SwiftFHIR.AdverseEvent
+#endif
 
 
 class AdverseEventTests: XCTestCase {

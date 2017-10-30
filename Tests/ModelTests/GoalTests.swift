@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRGoal = Models.Goal
+#else
 import SwiftFHIR
 typealias SwiftFHIRGoal = SwiftFHIR.Goal
+#endif
 
 
 class GoalTests: XCTestCase {

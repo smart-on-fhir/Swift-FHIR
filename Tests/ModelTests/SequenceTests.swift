@@ -7,9 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSequence = Models.Sequence
+#else
 import SwiftFHIR
 typealias SwiftFHIRSequence = SwiftFHIR.Sequence
-
+#endif
 
 
 class SequenceTests: XCTestCase {

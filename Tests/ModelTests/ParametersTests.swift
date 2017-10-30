@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRParameters = Models.Parameters
+#else
 import SwiftFHIR
 typealias SwiftFHIRParameters = SwiftFHIR.Parameters
+#endif
 
 
 class ParametersTests: XCTestCase {

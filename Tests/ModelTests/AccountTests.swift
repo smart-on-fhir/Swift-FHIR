@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRAccount = Models.Account
+#else
 import SwiftFHIR
 typealias SwiftFHIRAccount = SwiftFHIR.Account
+#endif
 
 
 class AccountTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRContract = Models.Contract
+#else
 import SwiftFHIR
 typealias SwiftFHIRContract = SwiftFHIR.Contract
+#endif
 
 
 class ContractTests: XCTestCase {

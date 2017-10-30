@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRMessageDefinition = Models.MessageDefinition
+#else
 import SwiftFHIR
 typealias SwiftFHIRMessageDefinition = SwiftFHIR.MessageDefinition
+#endif
 
 
 class MessageDefinitionTests: XCTestCase {

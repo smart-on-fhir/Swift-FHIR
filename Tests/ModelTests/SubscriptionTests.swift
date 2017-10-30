@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSubscription = Models.Subscription
+#else
 import SwiftFHIR
 typealias SwiftFHIRSubscription = SwiftFHIR.Subscription
+#endif
 
 
 class SubscriptionTests: XCTestCase {

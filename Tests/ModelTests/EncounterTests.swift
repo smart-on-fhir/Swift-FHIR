@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIREncounter = Models.Encounter
+#else
 import SwiftFHIR
 typealias SwiftFHIREncounter = SwiftFHIR.Encounter
+#endif
 
 
 class EncounterTests: XCTestCase {

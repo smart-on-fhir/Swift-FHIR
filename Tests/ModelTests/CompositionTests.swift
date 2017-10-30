@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRComposition = Models.Composition
+#else
 import SwiftFHIR
 typealias SwiftFHIRComposition = SwiftFHIR.Composition
+#endif
 
 
 class CompositionTests: XCTestCase {

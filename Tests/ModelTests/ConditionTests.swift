@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCondition = Models.Condition
+#else
 import SwiftFHIR
 typealias SwiftFHIRCondition = SwiftFHIR.Condition
+#endif
 
 
 class ConditionTests: XCTestCase {

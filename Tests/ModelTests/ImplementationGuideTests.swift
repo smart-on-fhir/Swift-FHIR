@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRImplementationGuide = Models.ImplementationGuide
+#else
 import SwiftFHIR
 typealias SwiftFHIRImplementationGuide = SwiftFHIR.ImplementationGuide
+#endif
 
 
 class ImplementationGuideTests: XCTestCase {

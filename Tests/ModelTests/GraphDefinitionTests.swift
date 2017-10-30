@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRGraphDefinition = Models.GraphDefinition
+#else
 import SwiftFHIR
 typealias SwiftFHIRGraphDefinition = SwiftFHIR.GraphDefinition
+#endif
 
 
 class GraphDefinitionTests: XCTestCase {

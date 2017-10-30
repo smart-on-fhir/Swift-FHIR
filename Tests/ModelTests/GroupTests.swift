@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRGroup = Models.Group
+#else
 import SwiftFHIR
 typealias SwiftFHIRGroup = SwiftFHIR.Group
+#endif
 
 
 class GroupTests: XCTestCase {

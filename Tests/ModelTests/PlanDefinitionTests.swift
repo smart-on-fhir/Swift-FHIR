@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPlanDefinition = Models.PlanDefinition
+#else
 import SwiftFHIR
 typealias SwiftFHIRPlanDefinition = SwiftFHIR.PlanDefinition
+#endif
 
 
 class PlanDefinitionTests: XCTestCase {

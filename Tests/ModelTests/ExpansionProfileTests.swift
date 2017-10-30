@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRExpansionProfile = Models.ExpansionProfile
-#else
 import SwiftFHIR
 typealias SwiftFHIRExpansionProfile = SwiftFHIR.ExpansionProfile
-#endif
 
 
 class ExpansionProfileTests: XCTestCase {

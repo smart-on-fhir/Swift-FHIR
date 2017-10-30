@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRServiceDefinition = Models.ServiceDefinition
-#else
 import SwiftFHIR
 typealias SwiftFHIRServiceDefinition = SwiftFHIR.ServiceDefinition
-#endif
 
 
 class ServiceDefinitionTests: XCTestCase {

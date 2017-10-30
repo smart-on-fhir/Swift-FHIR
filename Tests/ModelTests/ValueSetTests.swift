@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRValueSet = Models.ValueSet
-#else
 import SwiftFHIR
 typealias SwiftFHIRValueSet = SwiftFHIR.ValueSet
-#endif
 
 
 class ValueSetTests: XCTestCase {

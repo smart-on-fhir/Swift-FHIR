@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRDeviceMetric = Models.DeviceMetric
-#else
 import SwiftFHIR
 typealias SwiftFHIRDeviceMetric = SwiftFHIR.DeviceMetric
-#endif
 
 
 class DeviceMetricTests: XCTestCase {

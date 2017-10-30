@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRBodySite = Models.BodySite
-#else
 import SwiftFHIR
 typealias SwiftFHIRBodySite = SwiftFHIR.BodySite
-#endif
 
 
 class BodySiteTests: XCTestCase {

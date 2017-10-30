@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIREndpoint = Models.Endpoint
-#else
 import SwiftFHIR
 typealias SwiftFHIREndpoint = SwiftFHIR.Endpoint
-#endif
 
 
 class EndpointTests: XCTestCase {

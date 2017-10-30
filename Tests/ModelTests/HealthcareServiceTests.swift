@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRHealthcareService = Models.HealthcareService
-#else
 import SwiftFHIR
 typealias SwiftFHIRHealthcareService = SwiftFHIR.HealthcareService
-#endif
 
 
 class HealthcareServiceTests: XCTestCase {

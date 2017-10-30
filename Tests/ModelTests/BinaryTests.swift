@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRBinary = Models.Binary
-#else
 import SwiftFHIR
 typealias SwiftFHIRBinary = SwiftFHIR.Binary
-#endif
 
 
 class BinaryTests: XCTestCase {

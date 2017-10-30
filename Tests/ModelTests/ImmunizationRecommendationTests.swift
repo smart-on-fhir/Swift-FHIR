@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRImmunizationRecommendation = Models.ImmunizationRecommendation
-#else
 import SwiftFHIR
 typealias SwiftFHIRImmunizationRecommendation = SwiftFHIR.ImmunizationRecommendation
-#endif
 
 
 class ImmunizationRecommendationTests: XCTestCase {

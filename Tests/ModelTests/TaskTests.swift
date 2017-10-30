@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRTask = Models.Task
-#else
 import SwiftFHIR
 typealias SwiftFHIRTask = SwiftFHIR.Task
-#endif
 
 
 class TaskTests: XCTestCase {

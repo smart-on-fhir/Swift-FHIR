@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRBundle = Models.Bundle
-#else
 import SwiftFHIR
 typealias SwiftFHIRBundle = SwiftFHIR.Bundle
-#endif
 
 
 class BundleTests: XCTestCase {

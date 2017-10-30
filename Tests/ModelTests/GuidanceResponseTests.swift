@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRGuidanceResponse = Models.GuidanceResponse
-#else
 import SwiftFHIR
 typealias SwiftFHIRGuidanceResponse = SwiftFHIR.GuidanceResponse
-#endif
 
 
 class GuidanceResponseTests: XCTestCase {

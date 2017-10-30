@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRClaimResponse = Models.ClaimResponse
-#else
 import SwiftFHIR
 typealias SwiftFHIRClaimResponse = SwiftFHIR.ClaimResponse
-#endif
 
 
 class ClaimResponseTests: XCTestCase {

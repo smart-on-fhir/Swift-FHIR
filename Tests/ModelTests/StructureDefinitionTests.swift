@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRStructureDefinition = Models.StructureDefinition
-#else
 import SwiftFHIR
 typealias SwiftFHIRStructureDefinition = SwiftFHIR.StructureDefinition
-#endif
 
 
 class StructureDefinitionTests: XCTestCase {

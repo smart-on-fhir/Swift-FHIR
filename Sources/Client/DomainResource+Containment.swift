@@ -6,9 +6,6 @@
 //  2016, SMART Health IT.
 //
 
-#if !NO_MODEL_IMPORT
-import Models
-#endif
 
 
 extension DomainResource {

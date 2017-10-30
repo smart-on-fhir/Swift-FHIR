@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRSlot = Models.Slot
-#else
 import SwiftFHIR
 typealias SwiftFHIRSlot = SwiftFHIR.Slot
-#endif
 
 
 class SlotTests: XCTestCase {

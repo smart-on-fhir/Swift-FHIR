@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRFlag = Models.Flag
-#else
 import SwiftFHIR
 typealias SwiftFHIRFlag = SwiftFHIR.Flag
-#endif
 
 
 class FlagTests: XCTestCase {

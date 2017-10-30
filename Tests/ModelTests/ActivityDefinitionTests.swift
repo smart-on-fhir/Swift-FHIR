@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRActivityDefinition = Models.ActivityDefinition
-#else
 import SwiftFHIR
 typealias SwiftFHIRActivityDefinition = SwiftFHIR.ActivityDefinition
-#endif
 
 
 class ActivityDefinitionTests: XCTestCase {

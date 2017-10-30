@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIREligibilityRequest = Models.EligibilityRequest
-#else
 import SwiftFHIR
 typealias SwiftFHIREligibilityRequest = SwiftFHIR.EligibilityRequest
-#endif
 
 
 class EligibilityRequestTests: XCTestCase {

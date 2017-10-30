@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRNamingSystem = Models.NamingSystem
-#else
 import SwiftFHIR
 typealias SwiftFHIRNamingSystem = SwiftFHIR.NamingSystem
-#endif
 
 
 class NamingSystemTests: XCTestCase {

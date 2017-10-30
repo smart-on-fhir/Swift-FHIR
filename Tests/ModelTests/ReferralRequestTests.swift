@@ -7,13 +7,8 @@
 //
 
 import XCTest
-#if !NO_MODEL_IMPORT
-import Models
-typealias SwiftFHIRReferralRequest = Models.ReferralRequest
-#else
 import SwiftFHIR
 typealias SwiftFHIRReferralRequest = SwiftFHIR.ReferralRequest
-#endif
 
 
 class ReferralRequestTests: XCTestCase {

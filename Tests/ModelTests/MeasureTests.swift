@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRMeasure = Models.Measure
+#else
 import SwiftFHIR
 typealias SwiftFHIRMeasure = SwiftFHIR.Measure
+#endif
 
 
 class MeasureTests: XCTestCase {

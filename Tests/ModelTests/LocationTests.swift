@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRLocation = Models.Location
+#else
 import SwiftFHIR
 typealias SwiftFHIRLocation = SwiftFHIR.Location
+#endif
 
 
 class LocationTests: XCTestCase {

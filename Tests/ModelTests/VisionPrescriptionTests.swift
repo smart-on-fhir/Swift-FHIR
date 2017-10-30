@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRVisionPrescription = Models.VisionPrescription
+#else
 import SwiftFHIR
 typealias SwiftFHIRVisionPrescription = SwiftFHIR.VisionPrescription
+#endif
 
 
 class VisionPrescriptionTests: XCTestCase {

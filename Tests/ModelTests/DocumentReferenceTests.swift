@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDocumentReference = Models.DocumentReference
+#else
 import SwiftFHIR
 typealias SwiftFHIRDocumentReference = SwiftFHIR.DocumentReference
+#endif
 
 
 class DocumentReferenceTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRPaymentReconciliation = Models.PaymentReconciliation
+#else
 import SwiftFHIR
 typealias SwiftFHIRPaymentReconciliation = SwiftFHIR.PaymentReconciliation
+#endif
 
 
 class PaymentReconciliationTests: XCTestCase {

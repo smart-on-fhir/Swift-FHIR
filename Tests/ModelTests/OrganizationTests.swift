@@ -7,8 +7,14 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIROrganization = Models.Organization
+#else
 import SwiftFHIR
 typealias SwiftFHIROrganization = SwiftFHIR.Organization
+#endif
+
 
 class OrganizationTests: XCTestCase {
 	

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDocumentManifest = Models.DocumentManifest
+#else
 import SwiftFHIR
 typealias SwiftFHIRDocumentManifest = SwiftFHIR.DocumentManifest
+#endif
 
 
 class DocumentManifestTests: XCTestCase {

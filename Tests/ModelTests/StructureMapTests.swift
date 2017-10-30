@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRStructureMap = Models.StructureMap
+#else
 import SwiftFHIR
 typealias SwiftFHIRStructureMap = SwiftFHIR.StructureMap
+#endif
 
 
 class StructureMapTests: XCTestCase {

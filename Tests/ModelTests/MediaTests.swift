@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRMedia = Models.Media
+#else
 import SwiftFHIR
 typealias SwiftFHIRMedia = SwiftFHIR.Media
+#endif
 
 
 class MediaTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRExplanationOfBenefit = Models.ExplanationOfBenefit
+#else
 import SwiftFHIR
 typealias SwiftFHIRExplanationOfBenefit = SwiftFHIR.ExplanationOfBenefit
+#endif
 
 
 class ExplanationOfBenefitTests: XCTestCase {

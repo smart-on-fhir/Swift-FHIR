@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDeviceUseStatement = Models.DeviceUseStatement
+#else
 import SwiftFHIR
 typealias SwiftFHIRDeviceUseStatement = SwiftFHIR.DeviceUseStatement
+#endif
 
 
 class DeviceUseStatementTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRChargeItem = Models.ChargeItem
+#else
 import SwiftFHIR
 typealias SwiftFHIRChargeItem = SwiftFHIR.ChargeItem
+#endif
 
 
 class ChargeItemTests: XCTestCase {

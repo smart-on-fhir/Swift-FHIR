@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRCapabilityStatement = Models.CapabilityStatement
+#else
 import SwiftFHIR
 typealias SwiftFHIRCapabilityStatement = SwiftFHIR.CapabilityStatement
+#endif
 
 
 class CapabilityStatementTests: XCTestCase {

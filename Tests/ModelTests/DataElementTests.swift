@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRDataElement = Models.DataElement
+#else
 import SwiftFHIR
 typealias SwiftFHIRDataElement = SwiftFHIR.DataElement
+#endif
 
 
 class DataElementTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRRiskAssessment = Models.RiskAssessment
+#else
 import SwiftFHIR
 typealias SwiftFHIRRiskAssessment = SwiftFHIR.RiskAssessment
+#endif
 
 
 class RiskAssessmentTests: XCTestCase {

@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSupplyRequest = Models.SupplyRequest
+#else
 import SwiftFHIR
 typealias SwiftFHIRSupplyRequest = SwiftFHIR.SupplyRequest
+#endif
 
 
 class SupplyRequestTests: XCTestCase {

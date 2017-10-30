@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIROperationDefinition = Models.OperationDefinition
+#else
 import SwiftFHIR
 typealias SwiftFHIROperationDefinition = SwiftFHIR.OperationDefinition
+#endif
 
 
 class OperationDefinitionTests: XCTestCase {

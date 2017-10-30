@@ -8,6 +8,9 @@
 
 
 import Foundation
+#if !NO_MODEL_IMPORT
+	import Models
+#endif
 
 
 extension ValueSetComposeIncludeConceptDesignation {

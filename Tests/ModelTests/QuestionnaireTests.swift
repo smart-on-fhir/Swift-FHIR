@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRQuestionnaire = Models.Questionnaire
+#else
 import SwiftFHIR
 typealias SwiftFHIRQuestionnaire = SwiftFHIR.Questionnaire
+#endif
 
 
 class QuestionnaireTests: XCTestCase {

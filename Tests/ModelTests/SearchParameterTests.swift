@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRSearchParameter = Models.SearchParameter
+#else
 import SwiftFHIR
 typealias SwiftFHIRSearchParameter = SwiftFHIR.SearchParameter
+#endif
 
 
 class SearchParameterTests: XCTestCase {

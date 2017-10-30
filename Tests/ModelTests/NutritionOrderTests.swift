@@ -7,8 +7,13 @@
 //
 
 import XCTest
+#if !NO_MODEL_IMPORT
+import Models
+typealias SwiftFHIRNutritionOrder = Models.NutritionOrder
+#else
 import SwiftFHIR
 typealias SwiftFHIRNutritionOrder = SwiftFHIR.NutritionOrder
+#endif
 
 
 class NutritionOrderTests: XCTestCase {

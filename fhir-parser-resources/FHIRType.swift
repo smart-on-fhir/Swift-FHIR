@@ -191,7 +191,7 @@ public struct FHIRInstantiationContext {
 	public mutating func finalize(for json: FHIRJSON) {
 		for key in json.keys {     // cannot use filter() because that uses a closure, which complains of caturing a mutating foobar
 			if !containsKey(key) {
-				addError(FHIRValidationError(unknown: key, ofType: type(of: json[key]!)))
+				addError(FHIRValidationError(unknown: key, ofType: Swift.type(of: json[key]!)))
 			}
 		}
 	}
@@ -235,7 +235,7 @@ public func createInstance<P: FHIRJSONType>(type: P.Type, for key: String, in js
 	context.insertKey(key)
 	
 	guard let val = exist as? P.JSONType else {
-		context.addError(FHIRValidationError(key: key, wants: P.JSONType.self, has: type(of: exist)))
+		context.addError(FHIRValidationError(key: key, wants: P.JSONType.self, has: Swift.type(of: exist)))
 		return nil
 	}
 	
@@ -278,7 +278,7 @@ public func createInstances<P: FHIRJSONType>(of type: P.Type, for key: String, i
 	
 	// correct type, also for _key?
 	guard let val = exist as? [P.JSONType] else {
-		context.addError(FHIRValidationError(key: key, wants: Array<P.JSONType>.self, has: type(of: exist)))
+		context.addError(FHIRValidationError(key: key, wants: Array<P.JSONType>.self, has: Swift.type(of: exist)))
 		return nil
 	}
 	
@@ -289,7 +289,7 @@ public func createInstances<P: FHIRJSONType>(of type: P.Type, for key: String, i
 			primitiveExtensions = primitivesCorrect
 		}
 		else {
-			context.addError(FHIRValidationError(key: "_\(key)", wants: Array<FHIRJSON?>.self, has: type(of: primitivesExist)))
+			context.addError(FHIRValidationError(key: "_\(key)", wants: Array<FHIRJSON?>.self, has: Swift.type(of: primitivesExist)))
 		}
 	}
 	

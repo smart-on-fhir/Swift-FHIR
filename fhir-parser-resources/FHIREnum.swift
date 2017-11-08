@@ -26,7 +26,7 @@ public func createEnum<E: RawRepresentable>(type: E.Type, for key: String, in js
 	
 	// correct type?
 	guard let value = exist as? E.RawValue else {
-		context.addError(FHIRValidationError(key: key, wants: E.RawValue.self, has: type(of: exist)))
+		context.addError(FHIRValidationError(key: key, wants: E.RawValue.self, has: Swift.type(of: exist)))
 		return nil
 	}
 	
@@ -61,7 +61,7 @@ public func createEnums<E: RawRepresentable>(of type: E.Type, for key: String, i
 	
 	// correct type?
 	guard let val = exist as? [E.RawValue] else {
-		context.addError(FHIRValidationError(key: key, wants: Array<E.RawValue>.self, has: type(of: exist)))
+		context.addError(FHIRValidationError(key: key, wants: Array<E.RawValue>.self, has: Swift.type(of: exist)))
 		return nil
 	}
 	

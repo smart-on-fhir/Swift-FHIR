@@ -112,7 +112,7 @@ extension FHIRJSONType {
 	- parameter json:    The JSON element to use to populate the receiver
 	- parameter context: An in-out parameter being filled with key names used.
 	*/
-	public final func populateAndFinalize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
+	public func populateAndFinalize(from json: FHIRJSON, context: inout FHIRInstantiationContext) {
 		context.insertKey("fhir_comments")
 		populate(from: json, context: &context)
 		

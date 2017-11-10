@@ -107,7 +107,7 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 		// finalize
 		context.finalize(for: json)
 		if nil == _owner {
-			context.prefixErrors(with: "\(type(of: self))")
+			context.prefixErrors(with: "\(Swift.type(of: self))")
 		}
 	}
 	
@@ -219,7 +219,7 @@ open class FHIRAbstractBase: FHIRJSONType, CustomStringConvertible, CustomDebugS
 	// MARK: - CustomStringConvertible
 	
 	open var description: String {
-		return "<\(type(of: self).resourceType)>"
+		return "<\(Swift.type(of: self).resourceType)>"
 	}
 	
 	/// The debug description pretty-prints the Element/Resource's JSON representation.
@@ -254,7 +254,7 @@ public func instantiate<T: FHIRAbstractBase>(type: T.Type, for key: String, in j
 	
 	// correct type?
 	guard let arr = exist as? [T.JSONType] else {
-		errors.append(FHIRValidationError(key: key, wants: Array<T.JSONType>.self, has: type(of: exist)))
+		errors.append(FHIRValidationError(key: key, wants: Array<T.JSONType>.self, has: Swift.type(of: exist)))
 		return nil
 	}
 	

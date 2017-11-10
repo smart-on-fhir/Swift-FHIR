@@ -647,7 +647,7 @@ open class ExplanationOfBenefitDiagnosis: BackboneElement {
 			self.diagnosisReference = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: diagnosis))” for property “\(diagnosis)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: diagnosis))” for property “\(diagnosis)” is invalid, ignoring")
 		}
 		self.sequence = sequence
 	}

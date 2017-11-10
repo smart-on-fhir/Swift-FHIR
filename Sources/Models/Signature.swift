@@ -58,7 +58,7 @@ open class Signature: Element {
 			self.whoReference = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: who))” for property “\(who)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: who))” for property “\(who)” is invalid, ignoring")
 		}
 	}
 	

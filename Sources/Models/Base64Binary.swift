@@ -69,7 +69,7 @@ public struct Base64Binary: FHIRPrimitive, FHIRJSONType, ExpressibleByStringLite
 	// MARK: - Printable, Equatable and Comparable
 	
 	public var description: String {
-		return "<Base64Binary; \(value.characters.count) chars>"
+		return "<Base64Binary; \(value.count) chars>"
 	}
 }
 

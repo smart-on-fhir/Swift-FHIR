@@ -47,7 +47,7 @@ open class FHIROperation: CustomStringConvertible {
 	var instance: Resource? {
 		didSet {
 			if let inst = instance {
-				type = type(of: inst)
+				type = Swift.type(of: inst)
 				context = .instance
 			}
 		}
@@ -181,5 +181,5 @@ open class FHIROperation: CustomStringConvertible {
 
 
 /// Alias to `FHIROperation` for neat operation usage.
-public typealias $ = FHIROperation
+public typealias `$` = FHIROperation
 

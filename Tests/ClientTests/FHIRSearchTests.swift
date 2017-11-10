@@ -65,7 +65,7 @@ extension URL
 	func queryPairs() -> [String] {
 		if let comp = URLComponents(url: self, resolvingAgainstBaseURL: false) {
 			if let qry = comp.query {
-				return qry.characters.split() {$0 == "&"}.map { String($0) }
+				return qry.split() {$0 == "&"}.map { String($0) }
 			}
 		}
 		return []

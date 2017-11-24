@@ -8,7 +8,7 @@ fi
 
 # always copy our settings, then run the generator in dry-run mode
 cd fhir-parser
-cp ../generator-settings.py ./settings.py
+cp ../fhir-parser-resources/settings.py ./settings.py
 ./generate.py $1 --load-only
 cd ..
 

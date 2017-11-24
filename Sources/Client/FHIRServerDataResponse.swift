@@ -205,34 +205,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		// parse data as JSON
 		if let data = inData, data.count > 0 {
 			do {
-				let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
-				self.json = json
-				
-				// inspect OperationOutcome if there was an error
-				if status >= 400 {
-					do {
-						// TODO: be smarter as to when to expect an operation outcome; may also be returned if < 400
-						self.outcome = try responseResource(ofType: OperationOutcome.self)
-					}
-					catch {  }
-					if nil == outcome {
-						fhir_warn("No OperationOutcome available")
-					}
-					if let erritem = self.outcome?.issue?.first {
-						let errstr = "[\(erritem.severity?.rawValue ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
-						self.error = FHIRError.requestError(status, errstr)
-					}
-					else if let errstr = json?["error"] as? String {
-						self.error = FHIRError.requestError(status, errstr)
-					}
-					else {
-						var errstr = "Error"
-						if let urlResponse = response as? HTTPURLResponse {
-							errstr = HTTPURLResponse.localizedString(forStatusCode: urlResponse.statusCode)
-						}
-						self.error = FHIRError.requestError(status, errstr)
-					}
-				}
+				json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
 			}
 			catch let error as NSError {
 				// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
@@ -243,6 +216,32 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 			}
 			catch let error {
 				self.error = error.asFHIRError
+			}
+		}
+		
+		// fill error on HTTP status >= 400
+		if status >= 400 {
+			do {
+				// TODO: be smarter as to when to expect an operation outcome; may also be returned if < 400
+				self.outcome = try responseResource(ofType: OperationOutcome.self)
+			}
+			catch {  }
+			if nil == outcome {
+				fhir_warn("No OperationOutcome available")
+			}
+			if let erritem = self.outcome?.issue?.first {
+				let errstr = "[\(erritem.severity?.rawValue ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
+				self.error = FHIRError.requestError(status, errstr)
+			}
+			else if let errstr = json?["error"] as? String {
+				self.error = FHIRError.requestError(status, errstr)
+			}
+			else {
+				var errstr = "Error"
+				if let urlResponse = response as? HTTPURLResponse {
+					errstr = HTTPURLResponse.localizedString(forStatusCode: urlResponse.statusCode)
+				}
+				self.error = FHIRError.requestError(status, errstr)
 			}
 		}
 	}

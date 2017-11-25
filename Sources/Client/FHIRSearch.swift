@@ -86,12 +86,12 @@ open class FHIRSearch
 		// expand
 		let qry = query.expand(extra)
 		if let type = profileType {
-			if qry.characters.count > 0 {
+			if qry.count > 0 {
 				return "\(type.resourceType)?\(qry)"
 			}
 			return type.resourceType
 		}
-		if qry.characters.count > 0 {
+		if qry.count > 0 {
 			return "?\(qry)"
 		}
 		return ""

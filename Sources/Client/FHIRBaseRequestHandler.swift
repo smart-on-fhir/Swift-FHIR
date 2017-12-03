@@ -54,9 +54,7 @@ open class FHIRBaseRequestHandler: FHIRRequestHandler {
 	- parameter headers: The headers to add to the receiver
 	*/
 	open func add(headers inHeaders: FHIRRequestHeaders) {
-		var hdrs = headers
-		inHeaders.headers.forEach() { hdrs[$0] = $1 }
-		headers = hdrs
+		headers = headers.merged(with: inHeaders)
 	}
 	
 	/**

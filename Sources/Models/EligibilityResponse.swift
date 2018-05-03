@@ -2,8 +2,8 @@
 //  EligibilityResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/EligibilityResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/EligibilityResponse) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -18,6 +18,9 @@ open class EligibilityResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "EligibilityResponse" }
 	}
+	
+	/// Services which may require prior authorization.
+	public var authorization: [EligibilityResponseAuthorization]?
 	
 	/// Creation date.
 	public var created: DateTime?
@@ -43,14 +46,14 @@ open class EligibilityResponse: DomainResource {
 	/// Insurer issuing the coverage.
 	public var insurer: Reference?
 	
-	/// complete | error | partial.
-	public var outcome: CodeableConcept?
+	/// queued | complete | error | partial.
+	public var outcome: FHIRString?
+	
+	/// Pre-Authorization/Determination Reference.
+	public var preAuthRef: FHIRString?
 	
 	/// Eligibility reference.
 	public var request: Reference?
-	
-	/// Responsible organization.
-	public var requestOrganization: Reference?
 	
 	/// Responsible practitioner.
 	public var requestProvider: Reference?
@@ -62,6 +65,7 @@ open class EligibilityResponse: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		authorization = createInstances(of: EligibilityResponseAuthorization.self, for: "authorization", in: json, context: &instCtx, owner: self) ?? authorization
 		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
 		disposition = createInstance(type: FHIRString.self, for: "disposition", in: json, context: &instCtx, owner: self) ?? disposition
 		error = createInstances(of: EligibilityResponseError.self, for: "error", in: json, context: &instCtx, owner: self) ?? error
@@ -70,9 +74,9 @@ open class EligibilityResponse: DomainResource {
 		inforce = createInstance(type: FHIRBool.self, for: "inforce", in: json, context: &instCtx, owner: self) ?? inforce
 		insurance = createInstances(of: EligibilityResponseInsurance.self, for: "insurance", in: json, context: &instCtx, owner: self) ?? insurance
 		insurer = createInstance(type: Reference.self, for: "insurer", in: json, context: &instCtx, owner: self) ?? insurer
-		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		outcome = createInstance(type: FHIRString.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		preAuthRef = createInstance(type: FHIRString.self, for: "preAuthRef", in: json, context: &instCtx, owner: self) ?? preAuthRef
 		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
-		requestOrganization = createInstance(type: Reference.self, for: "requestOrganization", in: json, context: &instCtx, owner: self) ?? requestOrganization
 		requestProvider = createInstance(type: Reference.self, for: "requestProvider", in: json, context: &instCtx, owner: self) ?? requestProvider
 		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
 	}
@@ -80,6 +84,7 @@ open class EligibilityResponse: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "authorization", using: self.authorization, errors: &errors)
 		self.created?.decorate(json: &json, withKey: "created", errors: &errors)
 		self.disposition?.decorate(json: &json, withKey: "disposition", errors: &errors)
 		arrayDecorate(json: &json, withKey: "error", using: self.error, errors: &errors)
@@ -89,10 +94,68 @@ open class EligibilityResponse: DomainResource {
 		arrayDecorate(json: &json, withKey: "insurance", using: self.insurance, errors: &errors)
 		self.insurer?.decorate(json: &json, withKey: "insurer", errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
+		self.preAuthRef?.decorate(json: &json, withKey: "preAuthRef", errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
-		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+	}
+}
+
+
+/**
+Services which may require prior authorization.
+
+A list of billable services for which an authorization prior to service delivery may be required by the payor.
+*/
+open class EligibilityResponseAuthorization: BackboneElement {
+	override open class var resourceType: String {
+		get { return "EligibilityResponseAuthorization" }
+	}
+	
+	/// Procedure sequence for reference.
+	public var authorizationSequence: FHIRInteger?
+	
+	/// Comments and instructions.
+	public var note: [Annotation]?
+	
+	/// Authorization required flag.
+	public var required: FHIRBool?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(authorizationSequence: FHIRInteger, required: FHIRBool) {
+		self.init()
+		self.authorizationSequence = authorizationSequence
+		self.required = required
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		authorizationSequence = createInstance(type: FHIRInteger.self, for: "authorizationSequence", in: json, context: &instCtx, owner: self) ?? authorizationSequence
+		if nil == authorizationSequence && !instCtx.containsKey("authorizationSequence") {
+			instCtx.addError(FHIRValidationError(missing: "authorizationSequence"))
+		}
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		required = createInstance(type: FHIRBool.self, for: "required", in: json, context: &instCtx, owner: self) ?? required
+		if nil == required && !instCtx.containsKey("required") {
+			instCtx.addError(FHIRValidationError(missing: "required"))
+		}
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.authorizationSequence?.decorate(json: &json, withKey: "authorizationSequence", errors: &errors)
+		if nil == self.authorizationSequence {
+			errors.append(FHIRValidationError(missing: "authorizationSequence"))
+		}
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		self.required?.decorate(json: &json, withKey: "required", errors: &errors)
+		if nil == self.required {
+			errors.append(FHIRValidationError(missing: "required"))
+		}
 	}
 }
 

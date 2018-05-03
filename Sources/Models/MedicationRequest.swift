@@ -2,8 +2,8 @@
 //  MedicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/MedicationRequest) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -29,13 +29,10 @@ open class MedicationRequest: DomainResource {
 	public var basedOn: [Reference]?
 	
 	/// Type of medication usage.
-	public var category: CodeableConcept?
+	public var category: [CodeableConcept]?
 	
 	/// Created during encounter/admission/stay.
 	public var context: Reference?
-	
-	/// Protocol or definition.
-	public var definition: [Reference]?
 	
 	/// Clinical Issue with action.
 	public var detectedIssue: [Reference]?
@@ -55,6 +52,12 @@ open class MedicationRequest: DomainResource {
 	/// External ids for this request.
 	public var identifier: [Identifier]?
 	
+	/// Instantiates protocol or definition.
+	public var instantiates: [FHIRURL]?
+	
+	/// Associated insurance coverage.
+	public var insurance: [Reference]?
+	
 	/// Whether the request is a proposal, plan, or an original order.
 	public var intent: MedicationRequestIntent?
 	
@@ -67,26 +70,35 @@ open class MedicationRequest: DomainResource {
 	/// Information about the prescription.
 	public var note: [Annotation]?
 	
+	/// Intended performer of administration.
+	public var performer: Reference?
+	
+	/// Desired kind of performer of the medication administration.
+	public var performerType: CodeableConcept?
+	
 	/// An order/prescription that is being replaced.
 	public var priorPrescription: Reference?
 	
 	/// Indicates how quickly the Medication Request should be addressed with respect to other requests.
-	public var priority: MedicationRequestPriority?
+	public var priority: RequestPriority?
 	
 	/// Reason or indication for writing the prescription.
 	public var reasonCode: [CodeableConcept]?
 	
-	/// Condition or Observation that supports why the prescription is being written.
+	/// Condition or observation that supports why the prescription is being written.
 	public var reasonReference: [Reference]?
 	
 	/// Person who entered the request.
 	public var recorder: Reference?
 	
 	/// Who/What requested the Request.
-	public var requester: MedicationRequestRequester?
+	public var requester: Reference?
 	
-	/// A code specifying the current state of the order.  Generally this will be active or completed state.
+	/// A code specifying the current state of the order.  Generally, this will be active or completed state.
 	public var status: MedicationRequestStatus?
+	
+	/// Reason for current status.
+	public var statusReason: CodeableConcept?
 	
 	/// Who or group medication request is for.
 	public var subject: Reference?
@@ -99,7 +111,7 @@ open class MedicationRequest: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(intent: MedicationRequestIntent, medication: Any, subject: Reference) {
+	public convenience init(intent: MedicationRequestIntent, medication: Any, status: MedicationRequestStatus, subject: Reference) {
 		self.init()
 		self.intent = intent
 		if let value = medication as? CodeableConcept {
@@ -111,6 +123,7 @@ open class MedicationRequest: DomainResource {
 		else {
 			fhir_warn("Type “\(type(of: medication))” for property “\(medication)” is invalid, ignoring")
 		}
+		self.status = status
 		self.subject = subject
 	}
 	
@@ -120,15 +133,16 @@ open class MedicationRequest: DomainResource {
 		
 		authoredOn = createInstance(type: DateTime.self, for: "authoredOn", in: json, context: &instCtx, owner: self) ?? authoredOn
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
-		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		detectedIssue = createInstances(of: Reference.self, for: "detectedIssue", in: json, context: &instCtx, owner: self) ?? detectedIssue
 		dispenseRequest = createInstance(type: MedicationRequestDispenseRequest.self, for: "dispenseRequest", in: json, context: &instCtx, owner: self) ?? dispenseRequest
 		dosageInstruction = createInstances(of: Dosage.self, for: "dosageInstruction", in: json, context: &instCtx, owner: self) ?? dosageInstruction
 		eventHistory = createInstances(of: Reference.self, for: "eventHistory", in: json, context: &instCtx, owner: self) ?? eventHistory
 		groupIdentifier = createInstance(type: Identifier.self, for: "groupIdentifier", in: json, context: &instCtx, owner: self) ?? groupIdentifier
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
+		insurance = createInstances(of: Reference.self, for: "insurance", in: json, context: &instCtx, owner: self) ?? insurance
 		intent = createEnum(type: MedicationRequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
 		if nil == intent && !instCtx.containsKey("intent") {
 			instCtx.addError(FHIRValidationError(missing: "intent"))
@@ -136,13 +150,19 @@ open class MedicationRequest: DomainResource {
 		medicationCodeableConcept = createInstance(type: CodeableConcept.self, for: "medicationCodeableConcept", in: json, context: &instCtx, owner: self) ?? medicationCodeableConcept
 		medicationReference = createInstance(type: Reference.self, for: "medicationReference", in: json, context: &instCtx, owner: self) ?? medicationReference
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		performer = createInstance(type: Reference.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
+		performerType = createInstance(type: CodeableConcept.self, for: "performerType", in: json, context: &instCtx, owner: self) ?? performerType
 		priorPrescription = createInstance(type: Reference.self, for: "priorPrescription", in: json, context: &instCtx, owner: self) ?? priorPrescription
-		priority = createEnum(type: MedicationRequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
+		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
 		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
-		requester = createInstance(type: MedicationRequestRequester.self, for: "requester", in: json, context: &instCtx, owner: self) ?? requester
+		requester = createInstance(type: Reference.self, for: "requester", in: json, context: &instCtx, owner: self) ?? requester
 		status = createEnum(type: MedicationRequestStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
+		}
+		statusReason = createInstance(type: CodeableConcept.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		if nil == subject && !instCtx.containsKey("subject") {
 			instCtx.addError(FHIRValidationError(missing: "subject"))
@@ -162,15 +182,16 @@ open class MedicationRequest: DomainResource {
 		
 		self.authoredOn?.decorate(json: &json, withKey: "authoredOn", errors: &errors)
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		arrayDecorate(json: &json, withKey: "detectedIssue", using: self.detectedIssue, errors: &errors)
 		self.dispenseRequest?.decorate(json: &json, withKey: "dispenseRequest", errors: &errors)
 		arrayDecorate(json: &json, withKey: "dosageInstruction", using: self.dosageInstruction, errors: &errors)
 		arrayDecorate(json: &json, withKey: "eventHistory", using: self.eventHistory, errors: &errors)
 		self.groupIdentifier?.decorate(json: &json, withKey: "groupIdentifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiates", using: self.instantiates, errors: &errors)
+		arrayDecorate(json: &json, withKey: "insurance", using: self.insurance, errors: &errors)
 		self.intent?.decorate(json: &json, withKey: "intent", errors: &errors)
 		if nil == self.intent {
 			errors.append(FHIRValidationError(missing: "intent"))
@@ -178,6 +199,8 @@ open class MedicationRequest: DomainResource {
 		self.medicationCodeableConcept?.decorate(json: &json, withKey: "medicationCodeableConcept", errors: &errors)
 		self.medicationReference?.decorate(json: &json, withKey: "medicationReference", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		self.performer?.decorate(json: &json, withKey: "performer", errors: &errors)
+		self.performerType?.decorate(json: &json, withKey: "performerType", errors: &errors)
 		self.priorPrescription?.decorate(json: &json, withKey: "priorPrescription", errors: &errors)
 		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
@@ -185,6 +208,10 @@ open class MedicationRequest: DomainResource {
 		self.recorder?.decorate(json: &json, withKey: "recorder", errors: &errors)
 		self.requester?.decorate(json: &json, withKey: "requester", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
+		self.statusReason?.decorate(json: &json, withKey: "statusReason", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
@@ -247,52 +274,6 @@ open class MedicationRequestDispenseRequest: BackboneElement {
 		self.performer?.decorate(json: &json, withKey: "performer", errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
 		self.validityPeriod?.decorate(json: &json, withKey: "validityPeriod", errors: &errors)
-	}
-}
-
-
-/**
-Who/What requested the Request.
-
-The individual, organization or device that initiated the request and has responsibility for its activation.
-*/
-open class MedicationRequestRequester: BackboneElement {
-	override open class var resourceType: String {
-		get { return "MedicationRequestRequester" }
-	}
-	
-	/// Who ordered the initial medication(s).
-	public var agent: Reference?
-	
-	/// Organization agent is acting for.
-	public var onBehalfOf: Reference?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(agent: Reference) {
-		self.init()
-		self.agent = agent
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		agent = createInstance(type: Reference.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
-		if nil == agent && !instCtx.containsKey("agent") {
-			instCtx.addError(FHIRValidationError(missing: "agent"))
-		}
-		onBehalfOf = createInstance(type: Reference.self, for: "onBehalfOf", in: json, context: &instCtx, owner: self) ?? onBehalfOf
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.agent?.decorate(json: &json, withKey: "agent", errors: &errors)
-		if nil == self.agent {
-			errors.append(FHIRValidationError(missing: "agent"))
-		}
-		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
 	}
 }
 

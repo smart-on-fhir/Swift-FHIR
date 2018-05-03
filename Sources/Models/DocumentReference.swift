@@ -2,8 +2,8 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -20,11 +20,11 @@ open class DocumentReference: DomainResource {
 	/// Categorization of document.
 	public var `class`: CodeableConcept?
 	
+	/// Agent involved.
+	public var agent: [DocumentReferenceAgent]?
+	
 	/// Who/what authenticated the document.
 	public var authenticator: Reference?
-	
-	/// Who and/or what authored the document.
-	public var author: [Reference]?
 	
 	/// Document referenced.
 	public var content: [DocumentReferenceContent]?
@@ -38,6 +38,9 @@ open class DocumentReference: DomainResource {
 	/// Organization which maintains the document.
 	public var custodian: Reference?
 	
+	/// When this document reference was created.
+	public var date: Instant?
+	
 	/// Human-readable description (title).
 	public var description_fhir: FHIRString?
 	
@@ -46,9 +49,6 @@ open class DocumentReference: DomainResource {
 	
 	/// Other identifiers for the document.
 	public var identifier: [Identifier]?
-	
-	/// When this document reference was created.
-	public var indexed: Instant?
 	
 	/// Master Version Specific Identifier.
 	public var masterIdentifier: Identifier?
@@ -70,12 +70,10 @@ open class DocumentReference: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: [DocumentReferenceContent], indexed: Instant, status: DocumentReferenceStatus, type: CodeableConcept) {
+	public convenience init(content: [DocumentReferenceContent], status: DocumentReferenceStatus) {
 		self.init()
 		self.content = content
-		self.indexed = indexed
 		self.status = status
-		self.type = type
 	}
 	
 	
@@ -83,8 +81,8 @@ open class DocumentReference: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		`class` = createInstance(type: CodeableConcept.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
+		agent = createInstances(of: DocumentReferenceAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
 		authenticator = createInstance(type: Reference.self, for: "authenticator", in: json, context: &instCtx, owner: self) ?? authenticator
-		author = createInstances(of: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
 		content = createInstances(of: DocumentReferenceContent.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
 		if (nil == content || content!.isEmpty) && !instCtx.containsKey("content") {
 			instCtx.addError(FHIRValidationError(missing: "content"))
@@ -92,13 +90,10 @@ open class DocumentReference: DomainResource {
 		context = createInstance(type: DocumentReferenceContext.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
 		custodian = createInstance(type: Reference.self, for: "custodian", in: json, context: &instCtx, owner: self) ?? custodian
+		date = createInstance(type: Instant.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		docStatus = createEnum(type: CompositionStatus.self, for: "docStatus", in: json, context: &instCtx) ?? docStatus
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		indexed = createInstance(type: Instant.self, for: "indexed", in: json, context: &instCtx, owner: self) ?? indexed
-		if nil == indexed && !instCtx.containsKey("indexed") {
-			instCtx.addError(FHIRValidationError(missing: "indexed"))
-		}
 		masterIdentifier = createInstance(type: Identifier.self, for: "masterIdentifier", in: json, context: &instCtx, owner: self) ?? masterIdentifier
 		relatesTo = createInstances(of: DocumentReferenceRelatesTo.self, for: "relatesTo", in: json, context: &instCtx, owner: self) ?? relatesTo
 		securityLabel = createInstances(of: CodeableConcept.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
@@ -108,17 +103,14 @@ open class DocumentReference: DomainResource {
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") {
-			instCtx.addError(FHIRValidationError(missing: "type"))
-		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
+		arrayDecorate(json: &json, withKey: "agent", using: self.agent, errors: &errors)
 		self.authenticator?.decorate(json: &json, withKey: "authenticator", errors: &errors)
-		arrayDecorate(json: &json, withKey: "author", using: self.author, errors: &errors)
 		arrayDecorate(json: &json, withKey: "content", using: self.content, errors: &errors)
 		if nil == content || self.content!.isEmpty {
 			errors.append(FHIRValidationError(missing: "content"))
@@ -126,13 +118,10 @@ open class DocumentReference: DomainResource {
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.created?.decorate(json: &json, withKey: "created", errors: &errors)
 		self.custodian?.decorate(json: &json, withKey: "custodian", errors: &errors)
+		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.docStatus?.decorate(json: &json, withKey: "docStatus", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		self.indexed?.decorate(json: &json, withKey: "indexed", errors: &errors)
-		if nil == self.indexed {
-			errors.append(FHIRValidationError(missing: "indexed"))
-		}
 		self.masterIdentifier?.decorate(json: &json, withKey: "masterIdentifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "relatesTo", using: self.relatesTo, errors: &errors)
 		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
@@ -142,8 +131,51 @@ open class DocumentReference: DomainResource {
 		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		if nil == self.type {
-			errors.append(FHIRValidationError(missing: "type"))
+	}
+}
+
+
+/**
+Agent involved.
+
+An actor taking an active role in the document.
+*/
+open class DocumentReferenceAgent: BackboneElement {
+	override open class var resourceType: String {
+		get { return "DocumentReferenceAgent" }
+	}
+	
+	/// How agent participated.
+	public var type: CodeableConcept?
+	
+	/// Who and/or what authored the document.
+	public var who: Reference?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(who: Reference) {
+		self.init()
+		self.who = who
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		who = createInstance(type: Reference.self, for: "who", in: json, context: &instCtx, owner: self) ?? who
+		if nil == who && !instCtx.containsKey("who") {
+			instCtx.addError(FHIRValidationError(missing: "who"))
+		}
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		self.who?.decorate(json: &json, withKey: "who", errors: &errors)
+		if nil == self.who {
+			errors.append(FHIRValidationError(missing: "who"))
 		}
 	}
 }

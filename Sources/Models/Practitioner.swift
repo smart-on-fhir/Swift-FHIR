@@ -2,8 +2,8 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -28,14 +28,14 @@ open class Practitioner: DomainResource {
 	/// The date  on which the practitioner was born.
 	public var birthDate: FHIRDate?
 	
-	/// A language the practitioner is able to use in patient communication.
+	/// A language the practitioner can use in patient communication.
 	public var communication: [CodeableConcept]?
 	
 	/// Administrative Gender - the gender that the person is considered to have for administration and record keeping
 	/// purposes.
 	public var gender: AdministrativeGender?
 	
-	/// A identifier for the person as this agent.
+	/// An identifier for the person as this agent.
 	public var identifier: [Identifier]?
 	
 	/// The name(s) associated with the practitioner.

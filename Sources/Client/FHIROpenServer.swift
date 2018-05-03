@@ -93,10 +93,10 @@ open class FHIROpenServer: FHIRMinimalServer {
 	var operations: [String: OperationDefinition]?
 	
 	/// Operations as found in the cabability statement.
-	var cababilityOperations: [CapabilityStatementRestOperation]?
+	var cababilityOperations: [CapabilityStatementRestResourceOperation]?
 	
 	/** Find operation with given name. */
-	func cababilityOperation(_ name: String) -> CapabilityStatementRestOperation? {
+	func cababilityOperation(_ name: String) -> CapabilityStatementRestResourceOperation? {
 		if let defs = cababilityOperations {
 			for def in defs {
 				if name == def.name?.string {
@@ -117,6 +117,8 @@ open class FHIROpenServer: FHIRMinimalServer {
 		if let op = operations?[name] {
 			callback(op)
 		}
+		// TODO resolve a 'canonical' reference
+		/*
 		else if let def = cababilityOperation(name) {
 			def.definition?.resolve(OperationDefinition.self) { optop in
 				if let op = optop {
@@ -130,6 +132,7 @@ open class FHIROpenServer: FHIRMinimalServer {
 				callback(optop)
 			}
 		}
+		*/
 		else {
 			callback(nil)
 		}

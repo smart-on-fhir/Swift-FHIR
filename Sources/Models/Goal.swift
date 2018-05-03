@@ -2,8 +2,8 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Goal) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -70,10 +70,11 @@ open class Goal: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: CodeableConcept, status: GoalStatus) {
+	public convenience init(description_fhir: CodeableConcept, status: GoalStatus, subject: Reference) {
 		self.init()
 		self.description_fhir = description_fhir
 		self.status = status
+		self.subject = subject
 	}
 	
 	
@@ -101,6 +102,9 @@ open class Goal: DomainResource {
 		statusDate = createInstance(type: FHIRDate.self, for: "statusDate", in: json, context: &instCtx, owner: self) ?? statusDate
 		statusReason = createInstance(type: FHIRString.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		if nil == subject && !instCtx.containsKey("subject") {
+			instCtx.addError(FHIRValidationError(missing: "subject"))
+		}
 		target = createInstance(type: GoalTarget.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
 	}
 	
@@ -128,6 +132,9 @@ open class Goal: DomainResource {
 		self.statusDate?.decorate(json: &json, withKey: "statusDate", errors: &errors)
 		self.statusReason?.decorate(json: &json, withKey: "statusReason", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
+		if nil == self.subject {
+			errors.append(FHIRValidationError(missing: "subject"))
+		}
 		self.target?.decorate(json: &json, withKey: "target", errors: &errors)
 	}
 }

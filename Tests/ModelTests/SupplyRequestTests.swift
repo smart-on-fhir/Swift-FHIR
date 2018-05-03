@@ -2,8 +2,8 @@
 //  SupplyRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -47,15 +47,14 @@ class SupplyRequestTests: XCTestCase {
 		XCTAssertEqual(inst.deliverTo?.display, "GoodHealth Clinic Receiving")
 		XCTAssertEqual(inst.id, "simpleorder")
 		XCTAssertEqual(inst.identifier?.value, "Order10284")
+		XCTAssertEqual(inst.itemCodeableConcept?.coding?[0].code, "BlueTubes")
+		XCTAssertEqual(inst.itemCodeableConcept?.coding?[0].display, "Blood collect tubes blue cap")
 		XCTAssertEqual(inst.occurrenceDateTime?.description, "2016-12-31")
-		XCTAssertEqual(inst.orderedItem?.itemCodeableConcept?.coding?[0].code, "BlueTubes")
-		XCTAssertEqual(inst.orderedItem?.itemCodeableConcept?.coding?[0].display, "Blood collect tubes blue cap")
-		XCTAssertEqual(inst.orderedItem?.quantity?.value, "10")
 		XCTAssertEqual(inst.priority, RequestPriority(rawValue: "asap")!)
-		XCTAssertEqual(inst.reasonCodeableConcept?.coding?[0].code, "stock_low")
-		XCTAssertEqual(inst.reasonCodeableConcept?.coding?[0].display, "Refill due to low stock")
-		XCTAssertEqual(inst.requester?.agent?.display, "Henry Seven")
-		XCTAssertEqual(inst.requester?.onBehalfOf?.display, "Purchasing Dept")
+		XCTAssertEqual(inst.quantity?.value, "10")
+		XCTAssertEqual(inst.reasonCode?[0].coding?[0].code, "stock_low")
+		XCTAssertEqual(inst.reasonCode?[0].coding?[0].display, "Refill due to low stock")
+		XCTAssertEqual(inst.requester?.display, "Henry Seven")
 		XCTAssertEqual(inst.status, SupplyRequestStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.supplier?[0].display, "Vendor1")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

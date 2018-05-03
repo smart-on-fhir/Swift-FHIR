@@ -2,8 +2,8 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -59,6 +59,9 @@ open class Sequence: DomainResource {
 	/// Specimen used for sequencing.
 	public var specimen: Reference?
 	
+	/// Structural variant.
+	public var structureVariant: [SequenceStructureVariant]?
+	
 	/// aa | dna | rna.
 	public var type: FHIRString?
 	
@@ -92,6 +95,7 @@ open class Sequence: DomainResource {
 		referenceSeq = createInstance(type: SequenceReferenceSeq.self, for: "referenceSeq", in: json, context: &instCtx, owner: self) ?? referenceSeq
 		repository = createInstances(of: SequenceRepository.self, for: "repository", in: json, context: &instCtx, owner: self) ?? repository
 		specimen = createInstance(type: Reference.self, for: "specimen", in: json, context: &instCtx, owner: self) ?? specimen
+		structureVariant = createInstances(of: SequenceStructureVariant.self, for: "structureVariant", in: json, context: &instCtx, owner: self) ?? structureVariant
 		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		variant = createInstances(of: SequenceVariant.self, for: "variant", in: json, context: &instCtx, owner: self) ?? variant
 	}
@@ -115,6 +119,7 @@ open class Sequence: DomainResource {
 		self.referenceSeq?.decorate(json: &json, withKey: "referenceSeq", errors: &errors)
 		arrayDecorate(json: &json, withKey: "repository", using: self.repository, errors: &errors)
 		self.specimen?.decorate(json: &json, withKey: "specimen", errors: &errors)
+		arrayDecorate(json: &json, withKey: "structureVariant", using: self.structureVariant, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		arrayDecorate(json: &json, withKey: "variant", using: self.variant, errors: &errors)
 	}
@@ -156,6 +161,9 @@ open class SequenceQuality: BackboneElement {
 	/// Recall of comparison.
 	public var recall: FHIRDecimal?
 	
+	/// Receiver Operator Characteristic (ROC) Curve.
+	public var roc: SequenceQualityRoc?
+	
 	/// Quality score for the comparison.
 	public var score: Quantity?
 	
@@ -193,6 +201,7 @@ open class SequenceQuality: BackboneElement {
 		queryFP = createInstance(type: FHIRDecimal.self, for: "queryFP", in: json, context: &instCtx, owner: self) ?? queryFP
 		queryTP = createInstance(type: FHIRDecimal.self, for: "queryTP", in: json, context: &instCtx, owner: self) ?? queryTP
 		recall = createInstance(type: FHIRDecimal.self, for: "recall", in: json, context: &instCtx, owner: self) ?? recall
+		roc = createInstance(type: SequenceQualityRoc.self, for: "roc", in: json, context: &instCtx, owner: self) ?? roc
 		score = createInstance(type: Quantity.self, for: "score", in: json, context: &instCtx, owner: self) ?? score
 		standardSequence = createInstance(type: CodeableConcept.self, for: "standardSequence", in: json, context: &instCtx, owner: self) ?? standardSequence
 		start = createInstance(type: FHIRInteger.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
@@ -215,6 +224,7 @@ open class SequenceQuality: BackboneElement {
 		self.queryFP?.decorate(json: &json, withKey: "queryFP", errors: &errors)
 		self.queryTP?.decorate(json: &json, withKey: "queryTP", errors: &errors)
 		self.recall?.decorate(json: &json, withKey: "recall", errors: &errors)
+		self.roc?.decorate(json: &json, withKey: "roc", errors: &errors)
 		self.score?.decorate(json: &json, withKey: "score", errors: &errors)
 		self.standardSequence?.decorate(json: &json, withKey: "standardSequence", errors: &errors)
 		self.start?.decorate(json: &json, withKey: "start", errors: &errors)
@@ -224,6 +234,64 @@ open class SequenceQuality: BackboneElement {
 		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
+	}
+}
+
+
+/**
+Receiver Operator Characteristic (ROC) Curve.
+
+Receiver Operator Characteristic (ROC) Curve  to give sensitivity/specificity tradeoff.
+*/
+open class SequenceQualityRoc: BackboneElement {
+	override open class var resourceType: String {
+		get { return "SequenceQualityRoc" }
+	}
+	
+	/// FScore of the GQ score.
+	public var fMeasure: [FHIRDecimal]?
+	
+	/// Roc score false negative numbers.
+	public var numFN: [FHIRInteger]?
+	
+	/// Roc score false positive numbers.
+	public var numFP: [FHIRInteger]?
+	
+	/// Roc score true positive numbers.
+	public var numTP: [FHIRInteger]?
+	
+	/// Precision of the GQ score.
+	public var precision: [FHIRDecimal]?
+	
+	/// Genotype quality score.
+	public var score: [FHIRInteger]?
+	
+	/// Sensitivity of the GQ score.
+	public var sensitivity: [FHIRDecimal]?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		fMeasure = createInstances(of: FHIRDecimal.self, for: "fMeasure", in: json, context: &instCtx, owner: self) ?? fMeasure
+		numFN = createInstances(of: FHIRInteger.self, for: "numFN", in: json, context: &instCtx, owner: self) ?? numFN
+		numFP = createInstances(of: FHIRInteger.self, for: "numFP", in: json, context: &instCtx, owner: self) ?? numFP
+		numTP = createInstances(of: FHIRInteger.self, for: "numTP", in: json, context: &instCtx, owner: self) ?? numTP
+		precision = createInstances(of: FHIRDecimal.self, for: "precision", in: json, context: &instCtx, owner: self) ?? precision
+		score = createInstances(of: FHIRInteger.self, for: "score", in: json, context: &instCtx, owner: self) ?? score
+		sensitivity = createInstances(of: FHIRDecimal.self, for: "sensitivity", in: json, context: &instCtx, owner: self) ?? sensitivity
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		arrayDecorate(json: &json, withKey: "fMeasure", using: self.fMeasure, errors: &errors)
+		arrayDecorate(json: &json, withKey: "numFN", using: self.numFN, errors: &errors)
+		arrayDecorate(json: &json, withKey: "numFP", using: self.numFP, errors: &errors)
+		arrayDecorate(json: &json, withKey: "numTP", using: self.numTP, errors: &errors)
+		arrayDecorate(json: &json, withKey: "precision", using: self.precision, errors: &errors)
+		arrayDecorate(json: &json, withKey: "score", using: self.score, errors: &errors)
+		arrayDecorate(json: &json, withKey: "sensitivity", using: self.sensitivity, errors: &errors)
 	}
 }
 
@@ -244,6 +312,10 @@ open class SequenceReferenceSeq: BackboneElement {
 	/// The Genome Build used for reference, following GRCh build versions e.g. 'GRCh 37'.
 	public var genomeBuild: FHIRString?
 	
+	/// A relative reference to a DNA strand based on gene orientation. The strand that contains the open reading frame
+	/// of the gene is the "sense" strand, and the opposite complementary strand is the "antisense" strand.
+	public var orientation: OrientationType?
+	
 	/// Reference identifier.
 	public var referenceSeqId: CodeableConcept?
 	
@@ -253,8 +325,9 @@ open class SequenceReferenceSeq: BackboneElement {
 	/// A string to represent reference sequence.
 	public var referenceSeqString: FHIRString?
 	
-	/// Directionality of DNA ( +1/-1).
-	public var strand: FHIRInteger?
+	/// An absolute reference to a strand. The Watson strand is the strand whose 5'-end is on the short arm of the
+	/// chromosome, and the Crick strand as the one whose 5'-end is on the long arm.
+	public var strand: StrandType?
 	
 	/// End position of the window on the reference sequence.
 	public var windowEnd: FHIRInteger?
@@ -276,10 +349,11 @@ open class SequenceReferenceSeq: BackboneElement {
 		
 		chromosome = createInstance(type: CodeableConcept.self, for: "chromosome", in: json, context: &instCtx, owner: self) ?? chromosome
 		genomeBuild = createInstance(type: FHIRString.self, for: "genomeBuild", in: json, context: &instCtx, owner: self) ?? genomeBuild
+		orientation = createEnum(type: OrientationType.self, for: "orientation", in: json, context: &instCtx) ?? orientation
 		referenceSeqId = createInstance(type: CodeableConcept.self, for: "referenceSeqId", in: json, context: &instCtx, owner: self) ?? referenceSeqId
 		referenceSeqPointer = createInstance(type: Reference.self, for: "referenceSeqPointer", in: json, context: &instCtx, owner: self) ?? referenceSeqPointer
 		referenceSeqString = createInstance(type: FHIRString.self, for: "referenceSeqString", in: json, context: &instCtx, owner: self) ?? referenceSeqString
-		strand = createInstance(type: FHIRInteger.self, for: "strand", in: json, context: &instCtx, owner: self) ?? strand
+		strand = createEnum(type: StrandType.self, for: "strand", in: json, context: &instCtx) ?? strand
 		windowEnd = createInstance(type: FHIRInteger.self, for: "windowEnd", in: json, context: &instCtx, owner: self) ?? windowEnd
 		if nil == windowEnd && !instCtx.containsKey("windowEnd") {
 			instCtx.addError(FHIRValidationError(missing: "windowEnd"))
@@ -295,6 +369,7 @@ open class SequenceReferenceSeq: BackboneElement {
 		
 		self.chromosome?.decorate(json: &json, withKey: "chromosome", errors: &errors)
 		self.genomeBuild?.decorate(json: &json, withKey: "genomeBuild", errors: &errors)
+		self.orientation?.decorate(json: &json, withKey: "orientation", errors: &errors)
 		self.referenceSeqId?.decorate(json: &json, withKey: "referenceSeqId", errors: &errors)
 		self.referenceSeqPointer?.decorate(json: &json, withKey: "referenceSeqPointer", errors: &errors)
 		self.referenceSeqString?.decorate(json: &json, withKey: "referenceSeqString", errors: &errors)
@@ -374,6 +449,116 @@ open class SequenceRepository: BackboneElement {
 		}
 		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
 		self.variantsetId?.decorate(json: &json, withKey: "variantsetId", errors: &errors)
+	}
+}
+
+
+/**
+Structural variant.
+
+Information about chromosome structure variation.
+*/
+open class SequenceStructureVariant: BackboneElement {
+	override open class var resourceType: String {
+		get { return "SequenceStructureVariant" }
+	}
+	
+	/// Structural variant inner.
+	public var inner: SequenceStructureVariantInner?
+	
+	/// Structural Variant Length.
+	public var length: FHIRInteger?
+	
+	/// Structural variant outer.
+	public var outer: SequenceStructureVariantOuter?
+	
+	/// Precision of boundaries.
+	public var precision: FHIRString?
+	
+	/// Structural Variant reported aCGH ratio.
+	public var reportedaCGHRatio: FHIRDecimal?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		inner = createInstance(type: SequenceStructureVariantInner.self, for: "inner", in: json, context: &instCtx, owner: self) ?? inner
+		length = createInstance(type: FHIRInteger.self, for: "length", in: json, context: &instCtx, owner: self) ?? length
+		outer = createInstance(type: SequenceStructureVariantOuter.self, for: "outer", in: json, context: &instCtx, owner: self) ?? outer
+		precision = createInstance(type: FHIRString.self, for: "precision", in: json, context: &instCtx, owner: self) ?? precision
+		reportedaCGHRatio = createInstance(type: FHIRDecimal.self, for: "reportedaCGHRatio", in: json, context: &instCtx, owner: self) ?? reportedaCGHRatio
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.inner?.decorate(json: &json, withKey: "inner", errors: &errors)
+		self.length?.decorate(json: &json, withKey: "length", errors: &errors)
+		self.outer?.decorate(json: &json, withKey: "outer", errors: &errors)
+		self.precision?.decorate(json: &json, withKey: "precision", errors: &errors)
+		self.reportedaCGHRatio?.decorate(json: &json, withKey: "reportedaCGHRatio", errors: &errors)
+	}
+}
+
+
+/**
+Structural variant inner.
+*/
+open class SequenceStructureVariantInner: BackboneElement {
+	override open class var resourceType: String {
+		get { return "SequenceStructureVariantInner" }
+	}
+	
+	/// Structural Variant Inner End.
+	public var end: FHIRInteger?
+	
+	/// Structural Variant Inner Start.
+	public var start: FHIRInteger?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		end = createInstance(type: FHIRInteger.self, for: "end", in: json, context: &instCtx, owner: self) ?? end
+		start = createInstance(type: FHIRInteger.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.end?.decorate(json: &json, withKey: "end", errors: &errors)
+		self.start?.decorate(json: &json, withKey: "start", errors: &errors)
+	}
+}
+
+
+/**
+Structural variant outer.
+*/
+open class SequenceStructureVariantOuter: BackboneElement {
+	override open class var resourceType: String {
+		get { return "SequenceStructureVariantOuter" }
+	}
+	
+	/// Structural Variant Outer End.
+	public var end: FHIRInteger?
+	
+	/// Structural Variant Outer Start.
+	public var start: FHIRInteger?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		end = createInstance(type: FHIRInteger.self, for: "end", in: json, context: &instCtx, owner: self) ?? end
+		start = createInstance(type: FHIRInteger.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.end?.decorate(json: &json, withKey: "end", errors: &errors)
+		self.start?.decorate(json: &json, withKey: "start", errors: &errors)
 	}
 }
 

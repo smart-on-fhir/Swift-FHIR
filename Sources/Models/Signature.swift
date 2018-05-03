@@ -2,36 +2,39 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Signature) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-A digital Signature - XML DigSig, JWT, Graphical image of signature, etc..
+A Signature - XML DigSig, JWS, Graphical image of signature, etc..
 
-A digital signature along with supporting context. The signature may be electronic/cryptographic in nature, or a
-graphical image representing a hand-written signature, or a signature process. Different signature approaches have
-different utilities.
+A signature along with supporting context. The signature may be a digital signature that is cryptographic in nature, or
+some other signature acceptable to the domain. This other signature may be as simple as a graphical image representing a
+hand-written signature, or a signature ceremony Different signature approaches have different utilities.
 */
 open class Signature: Element {
 	override open class var resourceType: String {
 		get { return "Signature" }
 	}
 	
-	/// The actual signature content (XML DigSig. JWT, picture, etc.).
+	/// The actual signature content (XML DigSig. JWS, picture, etc.).
 	public var blob: Base64Binary?
-	
-	/// The technical format of the signature.
-	public var contentType: FHIRString?
 	
 	/// The party represented.
 	public var onBehalfOfReference: Reference?
 	
 	/// The party represented.
 	public var onBehalfOfUri: FHIRURL?
+	
+	/// The technical format of the signature.
+	public var sigFormat: FHIRString?
+	
+	/// The technical format of the signed resources.
+	public var targetFormat: FHIRString?
 	
 	/// Indication of the reason the entity signed the object(s).
 	public var type: [Coding]?
@@ -67,9 +70,10 @@ open class Signature: Element {
 		super.populate(from: json, context: &instCtx)
 		
 		blob = createInstance(type: Base64Binary.self, for: "blob", in: json, context: &instCtx, owner: self) ?? blob
-		contentType = createInstance(type: FHIRString.self, for: "contentType", in: json, context: &instCtx, owner: self) ?? contentType
 		onBehalfOfReference = createInstance(type: Reference.self, for: "onBehalfOfReference", in: json, context: &instCtx, owner: self) ?? onBehalfOfReference
 		onBehalfOfUri = createInstance(type: FHIRURL.self, for: "onBehalfOfUri", in: json, context: &instCtx, owner: self) ?? onBehalfOfUri
+		sigFormat = createInstance(type: FHIRString.self, for: "sigFormat", in: json, context: &instCtx, owner: self) ?? sigFormat
+		targetFormat = createInstance(type: FHIRString.self, for: "targetFormat", in: json, context: &instCtx, owner: self) ?? targetFormat
 		type = createInstances(of: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		if (nil == type || type!.isEmpty) && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
@@ -92,9 +96,10 @@ open class Signature: Element {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.blob?.decorate(json: &json, withKey: "blob", errors: &errors)
-		self.contentType?.decorate(json: &json, withKey: "contentType", errors: &errors)
 		self.onBehalfOfReference?.decorate(json: &json, withKey: "onBehalfOfReference", errors: &errors)
 		self.onBehalfOfUri?.decorate(json: &json, withKey: "onBehalfOfUri", errors: &errors)
+		self.sigFormat?.decorate(json: &json, withKey: "sigFormat", errors: &errors)
+		self.targetFormat?.decorate(json: &json, withKey: "targetFormat", errors: &errors)
 		arrayDecorate(json: &json, withKey: "type", using: self.type, errors: &errors)
 		if nil == type || self.type!.isEmpty {
 			errors.append(FHIRValidationError(missing: "type"))

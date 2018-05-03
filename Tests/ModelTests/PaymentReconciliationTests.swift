@@ -2,8 +2,8 @@
 //  PaymentReconciliationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -73,16 +73,13 @@ class PaymentReconciliationTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst.identifier?[0].value, "781234")
 		XCTAssertEqual(inst.organization?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
-		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
+		XCTAssertEqual(inst.outcome, "complete")
 		XCTAssertEqual(inst.period?.end?.description, "2014-08-31")
 		XCTAssertEqual(inst.period?.start?.description, "2014-08-16")
 		XCTAssertEqual(inst.processNote?[0].text, "Due to the year end holiday the cutoff for submissions for December will be the 28th.")
-		XCTAssertEqual(inst.processNote?[0].type?.coding?[0].code, "display")
-		XCTAssertEqual(inst.processNote?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/note-type")
+		XCTAssertEqual(inst.processNote?[0].type, NoteType(rawValue: "display")!)
 		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
-		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.requestProvider?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.requestProvider?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the PaymentReconciliation</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

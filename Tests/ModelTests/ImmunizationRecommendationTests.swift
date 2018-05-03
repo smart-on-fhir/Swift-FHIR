@@ -2,8 +2,8 @@
 //  ImmunizationRecommendationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -40,11 +40,12 @@ class ImmunizationRecommendationTests: XCTestCase {
 	func runImmunizationRecommendation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRImmunizationRecommendation {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "immunizationrecommendation-example.json")
 		
+		XCTAssertEqual(inst.authority?.reference, "Organization/hl7")
+		XCTAssertEqual(inst.date?.description, "2015-02-09T11:04:15.817-05:00")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1235")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.recommendation?[0].date?.description, "2015-02-09T11:04:15.817-05:00")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[0].code?.coding?[0].code, "earliest")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[0].code?.coding?[0].display, "Earliest Date")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[0].code?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/immunization-recommendation-date-criterion")
@@ -57,17 +58,16 @@ class ImmunizationRecommendationTests: XCTestCase {
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].code?.coding?[0].display, "Past Due Date")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].code?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/immunization-recommendation-date-criterion")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].value?.description, "2016-12-28T00:00:00-05:00")
-		XCTAssertEqual(inst.recommendation?[0].doseNumber, 1)
+		XCTAssertEqual(inst.recommendation?[0].description_fhir, "First sequence in protocol")
+		XCTAssertEqual(inst.recommendation?[0].doseNumberPositiveInt, 1)
 		XCTAssertEqual(inst.recommendation?[0].forecastStatus?.text, "Not Complete")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.authority?.reference, "Organization/hl7")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.description_fhir, "First sequence in protocol")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.doseSequence, 1)
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.series, "Vaccination Series 1")
+		XCTAssertEqual(inst.recommendation?[0].series, "Vaccination Series 1")
+		XCTAssertEqual(inst.recommendation?[0].seriesDosesPositiveInt, 3)
 		XCTAssertEqual(inst.recommendation?[0].supportingImmunization?[0].reference, "Immunization/example")
 		XCTAssertEqual(inst.recommendation?[0].supportingPatientInformation?[0].reference, "Observation/example")
-		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].code, "14745005")
-		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].display, "Hepatitis A vaccine")
-		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.recommendation?[0].vaccineCode?[0].coding?[0].code, "14745005")
+		XCTAssertEqual(inst.recommendation?[0].vaccineCode?[0].coding?[0].display, "Hepatitis A vaccine")
+		XCTAssertEqual(inst.recommendation?[0].vaccineCode?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Authored by Joginder Madra</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -86,13 +86,14 @@ class ImmunizationRecommendationTests: XCTestCase {
 	
 	@discardableResult
 	func runImmunizationRecommendation2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRImmunizationRecommendation {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "immunizationrecommendation-target-disease-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "immunizationrecommendation-example-target-disease.json")
 		
+		XCTAssertEqual(inst.authority?.reference, "Organization/hl7")
+		XCTAssertEqual(inst.date?.description, "2015-02-09T11:04:15.817-05:00")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1235")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.recommendation?[0].date?.description, "2015-02-09T11:04:15.817-05:00")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[0].code?.coding?[0].code, "earliest")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[0].code?.coding?[0].display, "Earliest Date")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[0].code?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/immunization-recommendation-date-criterion")
@@ -105,12 +106,11 @@ class ImmunizationRecommendationTests: XCTestCase {
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].code?.coding?[0].display, "Past Due Date")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].code?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/immunization-recommendation-date-criterion")
 		XCTAssertEqual(inst.recommendation?[0].dateCriterion?[2].value?.description, "2016-12-28T00:00:00-05:00")
-		XCTAssertEqual(inst.recommendation?[0].doseNumber, 1)
+		XCTAssertEqual(inst.recommendation?[0].description_fhir, "First sequence in protocol")
+		XCTAssertEqual(inst.recommendation?[0].doseNumberPositiveInt, 1)
 		XCTAssertEqual(inst.recommendation?[0].forecastStatus?.text, "Not Complete")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.authority?.reference, "Organization/hl7")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.description_fhir, "First sequence in protocol")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.doseSequence, 1)
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.series, "Vaccination Series 1")
+		XCTAssertEqual(inst.recommendation?[0].series, "Vaccination Series 1")
+		XCTAssertEqual(inst.recommendation?[0].seriesDosesPositiveInt, 3)
 		XCTAssertEqual(inst.recommendation?[0].supportingImmunization?[0].reference, "Immunization/example")
 		XCTAssertEqual(inst.recommendation?[0].supportingPatientInformation?[0].reference, "Observation/example")
 		XCTAssertEqual(inst.recommendation?[0].targetDisease?.coding?[0].code, "40468003")

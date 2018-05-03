@@ -2,8 +2,8 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -32,8 +32,8 @@ open class DeviceMetric: DomainResource {
 	/// magenta.
 	public var color: DeviceMetricColor?
 	
-	/// Unique identifier of this DeviceMetric.
-	public var identifier: Identifier?
+	/// Instance identifier.
+	public var identifier: [Identifier]?
 	
 	/// Describes the measurement repetition time.
 	public var measurementPeriod: Timing?
@@ -55,10 +55,9 @@ open class DeviceMetric: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: DeviceMetricCategory, identifier: Identifier, type: CodeableConcept) {
+	public convenience init(category: DeviceMetricCategory, type: CodeableConcept) {
 		self.init()
 		self.category = category
-		self.identifier = identifier
 		self.type = type
 	}
 	
@@ -72,10 +71,7 @@ open class DeviceMetric: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "category"))
 		}
 		color = createEnum(type: DeviceMetricColor.self, for: "color", in: json, context: &instCtx) ?? color
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") {
-			instCtx.addError(FHIRValidationError(missing: "identifier"))
-		}
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		measurementPeriod = createInstance(type: Timing.self, for: "measurementPeriod", in: json, context: &instCtx, owner: self) ?? measurementPeriod
 		operationalStatus = createEnum(type: DeviceMetricOperationalStatus.self, for: "operationalStatus", in: json, context: &instCtx) ?? operationalStatus
 		parent = createInstance(type: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
@@ -96,10 +92,7 @@ open class DeviceMetric: DomainResource {
 			errors.append(FHIRValidationError(missing: "category"))
 		}
 		self.color?.decorate(json: &json, withKey: "color", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.measurementPeriod?.decorate(json: &json, withKey: "measurementPeriod", errors: &errors)
 		self.operationalStatus?.decorate(json: &json, withKey: "operationalStatus", errors: &errors)
 		self.parent?.decorate(json: &json, withKey: "parent", errors: &errors)

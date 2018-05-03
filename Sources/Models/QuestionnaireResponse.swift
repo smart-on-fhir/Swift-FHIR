@@ -2,8 +2,8 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -39,10 +39,10 @@ open class QuestionnaireResponse: DomainResource {
 	public var item: [QuestionnaireResponseItem]?
 	
 	/// Part of this action.
-	public var parent: [Reference]?
+	public var partOf: [Reference]?
 	
 	/// Form being answered.
-	public var questionnaire: Reference?
+	public var questionnaire: FHIRURL?
 	
 	/// The person who answered the questions.
 	public var source: Reference?
@@ -70,8 +70,8 @@ open class QuestionnaireResponse: DomainResource {
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		item = createInstances(of: QuestionnaireResponseItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
-		parent = createInstances(of: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
-		questionnaire = createInstance(type: Reference.self, for: "questionnaire", in: json, context: &instCtx, owner: self) ?? questionnaire
+		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		questionnaire = createInstance(type: FHIRURL.self, for: "questionnaire", in: json, context: &instCtx, owner: self) ?? questionnaire
 		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		status = createEnum(type: QuestionnaireResponseStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
@@ -89,7 +89,7 @@ open class QuestionnaireResponse: DomainResource {
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
-		arrayDecorate(json: &json, withKey: "parent", using: self.parent, errors: &errors)
+		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		self.questionnaire?.decorate(json: &json, withKey: "questionnaire", errors: &errors)
 		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)

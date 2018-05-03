@@ -2,8 +2,8 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -40,7 +40,7 @@ class SearchParameterTests: XCTestCase {
 	func runSearchParameter1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSearchParameter {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-extension.json")
 		
-		XCTAssertEqual(inst.base?[0], "Patient")
+		XCTAssertEqual(inst.base?[0], ResourceType(rawValue: "Patient")!)
 		XCTAssertEqual(inst.code, "part-agree")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
@@ -51,7 +51,7 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.name, "Example Search Parameter on an extension")
 		XCTAssertEqual(inst.publisher, "Health Level Seven International (FHIR Infrastructure)")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.target?[0], "DocumentReference")
+		XCTAssertEqual(inst.target?[0], ResourceType(rawValue: "DocumentReference")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, SearchParamType(rawValue: "reference")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/SearchParameter/example-extension")
@@ -75,7 +75,7 @@ class SearchParameterTests: XCTestCase {
 	func runSearchParameter2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSearchParameter {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-reference.json")
 		
-		XCTAssertEqual(inst.base?[0], "Condition")
+		XCTAssertEqual(inst.base?[0], ResourceType(rawValue: "Condition")!)
 		XCTAssertEqual(inst.chain?[0], "name")
 		XCTAssertEqual(inst.chain?[1], "identifier")
 		XCTAssertEqual(inst.code, "subject")
@@ -92,7 +92,7 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.publisher, "Health Level Seven International (FHIR Infrastructure)")
 		XCTAssertEqual(inst.purpose, "Need to search Condition by subject")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.target?[0], "Organization")
+		XCTAssertEqual(inst.target?[0], ResourceType(rawValue: "Organization")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, SearchParamType(rawValue: "reference")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/SearchParameter/example")
@@ -115,7 +115,7 @@ class SearchParameterTests: XCTestCase {
 	func runSearchParameter3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSearchParameter {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example.json")
 		
-		XCTAssertEqual(inst.base?[0], "Resource")
+		XCTAssertEqual(inst.base?[0], ResourceType(rawValue: "Resource")!)
 		XCTAssertEqual(inst.code, "_id")
 		XCTAssertEqual(inst.comparator?[0], SearchComparator(rawValue: "eq")!)
 		XCTAssertEqual(inst.contact?[0].name, "[string]")

@@ -2,8 +2,8 @@
 //  HealthcareServiceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -55,10 +55,10 @@ class HealthcareServiceTests: XCTestCase {
 		XCTAssertEqual(inst.availableTime?[2].availableStartTime?.description, "09:30:00")
 		XCTAssertEqual(inst.availableTime?[2].daysOfWeek?[0], DaysOfWeek(rawValue: "sat")!)
 		XCTAssertEqual(inst.availableTime?[2].daysOfWeek?[1], DaysOfWeek(rawValue: "fri")!)
-		XCTAssertEqual(inst.category?.coding?[0].code, "8")
-		XCTAssertEqual(inst.category?.coding?[0].display, "Counselling")
-		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/service-category")
-		XCTAssertEqual(inst.category?.text, "Counselling")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "8")
+		XCTAssertEqual(inst.category?[0].coding?[0].display, "Counselling")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/service-category")
+		XCTAssertEqual(inst.category?[0].text, "Counselling")
 		XCTAssertEqual(inst.characteristic?[0].coding?[0].display, "Wheelchair access")
 		XCTAssertEqual(inst.comment, "Providing Specialist psychology services to the greater Den Burg area, many years of experience dealing with PTSD issues")
 		XCTAssertEqual(inst.contained?[0].id, "DenBurg")

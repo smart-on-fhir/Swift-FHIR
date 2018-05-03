@@ -2,8 +2,8 @@
 //  DetectedIssueTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -69,11 +69,11 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2013-05-08")
 		XCTAssertEqual(inst.detail, "Similar test was performed within the past 14 days")
 		XCTAssertEqual(inst.id, "duplicate")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://example.org")
-		XCTAssertEqual(inst.identifier?.use, IdentifierUse(rawValue: "official")!)
-		XCTAssertEqual(inst.identifier?.value, "12345")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
+		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.implicated?[0].display, "Chest CT - ordered May 8, 2013 by Dr. Adam Careful")
-		XCTAssertEqual(inst.implicated?[0].reference, "ProcedureRequest/di")
+		XCTAssertEqual(inst.implicated?[0].reference, "ServiceRequest/di")
 		XCTAssertEqual(inst.implicated?[1].display, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
 		XCTAssertEqual(inst.implicated?[1].reference, "ImagingStudy/example")
 		XCTAssertEqual(inst.patient?.reference, "Patient/dicom")
@@ -96,28 +96,6 @@ class DetectedIssueTests: XCTestCase {
 	
 	@discardableResult
 	func runDetectedIssue3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDetectedIssue {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-lab.json")
-		
-		XCTAssertEqual(inst.id, "lab")
-		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testDetectedIssue4() {
-		do {
-			let instance = try runDetectedIssue4()
-			try runDetectedIssue4(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runDetectedIssue4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDetectedIssue {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Device/software")
@@ -139,6 +117,28 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.mitigation?[0].date?.description, "2014-01-05")
 		XCTAssertEqual(inst.severity, DetectedIssueSeverity(rawValue: "high")!)
 		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testDetectedIssue4() {
+		do {
+			let instance = try runDetectedIssue4()
+			try runDetectedIssue4(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runDetectedIssue4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDetectedIssue {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-lab.json")
+		
+		XCTAssertEqual(inst.id, "lab")
+		XCTAssertEqual(inst.status, ObservationStatus(rawValue: "final")!)
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

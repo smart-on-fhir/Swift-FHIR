@@ -2,8 +2,8 @@
 //  DocumentManifestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -40,9 +40,12 @@ class DocumentManifestTests: XCTestCase {
 	func runDocumentManifest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRDocumentManifest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "documentmanifest-example.json")
 		
-		XCTAssertEqual(inst.author?[0].reference, "#a1")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "AUT")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "author (originator)")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
+		XCTAssertEqual(inst.agent?[0].who?.reference, "#a1")
 		XCTAssertEqual(inst.contained?[0].id, "a1")
-		XCTAssertEqual(inst.content?[0].pReference?.reference, "DocumentReference/example")
+		XCTAssertEqual(inst.content?[0].reference, "DocumentReference/example")
 		XCTAssertEqual(inst.created?.description, "2004-12-25T23:50:50-05:00")
 		XCTAssertEqual(inst.description_fhir, "Physical")
 		XCTAssertEqual(inst.id, "example")

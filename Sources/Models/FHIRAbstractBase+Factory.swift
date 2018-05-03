@@ -2,8 +2,8 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 
@@ -32,6 +32,8 @@ extension FHIRAbstractBase {
 				if let res = AdverseEvent(json: json, owner: owner, context: &context) as? T { return res }
 			case "AdverseEventSuspectEntity":
 				if let res = AdverseEventSuspectEntity(json: json, owner: owner, context: &context) as? T { return res }
+			case "AdverseEventSuspectEntityCausality":
+				if let res = AdverseEventSuspectEntityCausality(json: json, owner: owner, context: &context) as? T { return res }
 			case "Age":
 				if let res = Age(json: json, owner: owner, context: &context) as? T { return res }
 			case "AllergyIntolerance":
@@ -66,8 +68,18 @@ extension FHIRAbstractBase {
 				if let res = Basic(json: json, owner: owner, context: &context) as? T { return res }
 			case "Binary":
 				if let res = Binary(json: json, owner: owner, context: &context) as? T { return res }
-			case "BodySite":
-				if let res = BodySite(json: json, owner: owner, context: &context) as? T { return res }
+			case "BiologicallyDerivedProduct":
+				if let res = BiologicallyDerivedProduct(json: json, owner: owner, context: &context) as? T { return res }
+			case "BiologicallyDerivedProductCollection":
+				if let res = BiologicallyDerivedProductCollection(json: json, owner: owner, context: &context) as? T { return res }
+			case "BiologicallyDerivedProductManipulation":
+				if let res = BiologicallyDerivedProductManipulation(json: json, owner: owner, context: &context) as? T { return res }
+			case "BiologicallyDerivedProductProcessing":
+				if let res = BiologicallyDerivedProductProcessing(json: json, owner: owner, context: &context) as? T { return res }
+			case "BiologicallyDerivedProductStorage":
+				if let res = BiologicallyDerivedProductStorage(json: json, owner: owner, context: &context) as? T { return res }
+			case "BodyStructure":
+				if let res = BodyStructure(json: json, owner: owner, context: &context) as? T { return res }
 			case "Bundle":
 				if let res = Bundle(json: json, owner: owner, context: &context) as? T { return res }
 			case "BundleEntry":
@@ -90,26 +102,22 @@ extension FHIRAbstractBase {
 				if let res = CapabilityStatementMessaging(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementMessagingEndpoint":
 				if let res = CapabilityStatementMessagingEndpoint(json: json, owner: owner, context: &context) as? T { return res }
-			case "CapabilityStatementMessagingEvent":
-				if let res = CapabilityStatementMessagingEvent(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementMessagingSupportedMessage":
 				if let res = CapabilityStatementMessagingSupportedMessage(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementRest":
 				if let res = CapabilityStatementRest(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementRestInteraction":
 				if let res = CapabilityStatementRestInteraction(json: json, owner: owner, context: &context) as? T { return res }
-			case "CapabilityStatementRestOperation":
-				if let res = CapabilityStatementRestOperation(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementRestResource":
 				if let res = CapabilityStatementRestResource(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementRestResourceInteraction":
 				if let res = CapabilityStatementRestResourceInteraction(json: json, owner: owner, context: &context) as? T { return res }
+			case "CapabilityStatementRestResourceOperation":
+				if let res = CapabilityStatementRestResourceOperation(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementRestResourceSearchParam":
 				if let res = CapabilityStatementRestResourceSearchParam(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementRestSecurity":
 				if let res = CapabilityStatementRestSecurity(json: json, owner: owner, context: &context) as? T { return res }
-			case "CapabilityStatementRestSecurityCertificate":
-				if let res = CapabilityStatementRestSecurityCertificate(json: json, owner: owner, context: &context) as? T { return res }
 			case "CapabilityStatementSoftware":
 				if let res = CapabilityStatementSoftware(json: json, owner: owner, context: &context) as? T { return res }
 			case "CarePlan":
@@ -154,8 +162,6 @@ extension FHIRAbstractBase {
 				if let res = ClaimResponse(json: json, owner: owner, context: &context) as? T { return res }
 			case "ClaimResponseAddItem":
 				if let res = ClaimResponseAddItem(json: json, owner: owner, context: &context) as? T { return res }
-			case "ClaimResponseAddItemDetail":
-				if let res = ClaimResponseAddItemDetail(json: json, owner: owner, context: &context) as? T { return res }
 			case "ClaimResponseError":
 				if let res = ClaimResponseError(json: json, owner: owner, context: &context) as? T { return res }
 			case "ClaimResponseInsurance":
@@ -172,6 +178,8 @@ extension FHIRAbstractBase {
 				if let res = ClaimResponsePayment(json: json, owner: owner, context: &context) as? T { return res }
 			case "ClaimResponseProcessNote":
 				if let res = ClaimResponseProcessNote(json: json, owner: owner, context: &context) as? T { return res }
+			case "ClaimResponseTotal":
+				if let res = ClaimResponseTotal(json: json, owner: owner, context: &context) as? T { return res }
 			case "ClinicalImpression":
 				if let res = ClinicalImpression(json: json, owner: owner, context: &context) as? T { return res }
 			case "ClinicalImpressionFinding":
@@ -202,8 +210,6 @@ extension FHIRAbstractBase {
 				if let res = CommunicationRequest(json: json, owner: owner, context: &context) as? T { return res }
 			case "CommunicationRequestPayload":
 				if let res = CommunicationRequestPayload(json: json, owner: owner, context: &context) as? T { return res }
-			case "CommunicationRequestRequester":
-				if let res = CommunicationRequestRequester(json: json, owner: owner, context: &context) as? T { return res }
 			case "CompartmentDefinition":
 				if let res = CompartmentDefinition(json: json, owner: owner, context: &context) as? T { return res }
 			case "CompartmentDefinitionResource":
@@ -238,26 +244,22 @@ extension FHIRAbstractBase {
 				if let res = ConditionStage(json: json, owner: owner, context: &context) as? T { return res }
 			case "Consent":
 				if let res = Consent(json: json, owner: owner, context: &context) as? T { return res }
-			case "ConsentActor":
-				if let res = ConsentActor(json: json, owner: owner, context: &context) as? T { return res }
-			case "ConsentData":
-				if let res = ConsentData(json: json, owner: owner, context: &context) as? T { return res }
-			case "ConsentExcept":
-				if let res = ConsentExcept(json: json, owner: owner, context: &context) as? T { return res }
-			case "ConsentExceptActor":
-				if let res = ConsentExceptActor(json: json, owner: owner, context: &context) as? T { return res }
-			case "ConsentExceptData":
-				if let res = ConsentExceptData(json: json, owner: owner, context: &context) as? T { return res }
 			case "ConsentPolicy":
 				if let res = ConsentPolicy(json: json, owner: owner, context: &context) as? T { return res }
+			case "ConsentProvision":
+				if let res = ConsentProvision(json: json, owner: owner, context: &context) as? T { return res }
+			case "ConsentProvisionActor":
+				if let res = ConsentProvisionActor(json: json, owner: owner, context: &context) as? T { return res }
+			case "ConsentProvisionData":
+				if let res = ConsentProvisionData(json: json, owner: owner, context: &context) as? T { return res }
+			case "ConsentVerification":
+				if let res = ConsentVerification(json: json, owner: owner, context: &context) as? T { return res }
 			case "ContactDetail":
 				if let res = ContactDetail(json: json, owner: owner, context: &context) as? T { return res }
 			case "ContactPoint":
 				if let res = ContactPoint(json: json, owner: owner, context: &context) as? T { return res }
 			case "Contract":
 				if let res = Contract(json: json, owner: owner, context: &context) as? T { return res }
-			case "ContractAgent":
-				if let res = ContractAgent(json: json, owner: owner, context: &context) as? T { return res }
 			case "ContractFriendly":
 				if let res = ContractFriendly(json: json, owner: owner, context: &context) as? T { return res }
 			case "ContractLegal":
@@ -270,28 +272,32 @@ extension FHIRAbstractBase {
 				if let res = ContractTerm(json: json, owner: owner, context: &context) as? T { return res }
 			case "ContractTermAgent":
 				if let res = ContractTermAgent(json: json, owner: owner, context: &context) as? T { return res }
-			case "ContractTermValuedItem":
-				if let res = ContractTermValuedItem(json: json, owner: owner, context: &context) as? T { return res }
-			case "ContractValuedItem":
-				if let res = ContractValuedItem(json: json, owner: owner, context: &context) as? T { return res }
+			case "ContractTermAsset":
+				if let res = ContractTermAsset(json: json, owner: owner, context: &context) as? T { return res }
+			case "ContractTermAssetData":
+				if let res = ContractTermAssetData(json: json, owner: owner, context: &context) as? T { return res }
+			case "ContractTermAssetValuedItem":
+				if let res = ContractTermAssetValuedItem(json: json, owner: owner, context: &context) as? T { return res }
+			case "ContractTermOffer":
+				if let res = ContractTermOffer(json: json, owner: owner, context: &context) as? T { return res }
 			case "Contributor":
 				if let res = Contributor(json: json, owner: owner, context: &context) as? T { return res }
 			case "Count":
 				if let res = Count(json: json, owner: owner, context: &context) as? T { return res }
 			case "Coverage":
 				if let res = Coverage(json: json, owner: owner, context: &context) as? T { return res }
-			case "CoverageGrouping":
-				if let res = CoverageGrouping(json: json, owner: owner, context: &context) as? T { return res }
-			case "DataElement":
-				if let res = DataElement(json: json, owner: owner, context: &context) as? T { return res }
-			case "DataElementMapping":
-				if let res = DataElementMapping(json: json, owner: owner, context: &context) as? T { return res }
+			case "CoverageClass":
+				if let res = CoverageClass(json: json, owner: owner, context: &context) as? T { return res }
+			case "CoverageCopay":
+				if let res = CoverageCopay(json: json, owner: owner, context: &context) as? T { return res }
 			case "DataRequirement":
 				if let res = DataRequirement(json: json, owner: owner, context: &context) as? T { return res }
 			case "DataRequirementCodeFilter":
 				if let res = DataRequirementCodeFilter(json: json, owner: owner, context: &context) as? T { return res }
 			case "DataRequirementDateFilter":
 				if let res = DataRequirementDateFilter(json: json, owner: owner, context: &context) as? T { return res }
+			case "DataRequirementSort":
+				if let res = DataRequirementSort(json: json, owner: owner, context: &context) as? T { return res }
 			case "DetectedIssue":
 				if let res = DetectedIssue(json: json, owner: owner, context: &context) as? T { return res }
 			case "DetectedIssueMitigation":
@@ -302,34 +308,36 @@ extension FHIRAbstractBase {
 				if let res = DeviceComponent(json: json, owner: owner, context: &context) as? T { return res }
 			case "DeviceComponentProductionSpecification":
 				if let res = DeviceComponentProductionSpecification(json: json, owner: owner, context: &context) as? T { return res }
+			case "DeviceComponentProperty":
+				if let res = DeviceComponentProperty(json: json, owner: owner, context: &context) as? T { return res }
 			case "DeviceMetric":
 				if let res = DeviceMetric(json: json, owner: owner, context: &context) as? T { return res }
 			case "DeviceMetricCalibration":
 				if let res = DeviceMetricCalibration(json: json, owner: owner, context: &context) as? T { return res }
 			case "DeviceRequest":
 				if let res = DeviceRequest(json: json, owner: owner, context: &context) as? T { return res }
-			case "DeviceRequestRequester":
-				if let res = DeviceRequestRequester(json: json, owner: owner, context: &context) as? T { return res }
+			case "DeviceRequestParameter":
+				if let res = DeviceRequestParameter(json: json, owner: owner, context: &context) as? T { return res }
 			case "DeviceUdi":
 				if let res = DeviceUdi(json: json, owner: owner, context: &context) as? T { return res }
 			case "DeviceUseStatement":
 				if let res = DeviceUseStatement(json: json, owner: owner, context: &context) as? T { return res }
 			case "DiagnosticReport":
 				if let res = DiagnosticReport(json: json, owner: owner, context: &context) as? T { return res }
-			case "DiagnosticReportImage":
-				if let res = DiagnosticReportImage(json: json, owner: owner, context: &context) as? T { return res }
-			case "DiagnosticReportPerformer":
-				if let res = DiagnosticReportPerformer(json: json, owner: owner, context: &context) as? T { return res }
+			case "DiagnosticReportMedia":
+				if let res = DiagnosticReportMedia(json: json, owner: owner, context: &context) as? T { return res }
 			case "Distance":
 				if let res = Distance(json: json, owner: owner, context: &context) as? T { return res }
 			case "DocumentManifest":
 				if let res = DocumentManifest(json: json, owner: owner, context: &context) as? T { return res }
-			case "DocumentManifestContent":
-				if let res = DocumentManifestContent(json: json, owner: owner, context: &context) as? T { return res }
+			case "DocumentManifestAgent":
+				if let res = DocumentManifestAgent(json: json, owner: owner, context: &context) as? T { return res }
 			case "DocumentManifestRelated":
 				if let res = DocumentManifestRelated(json: json, owner: owner, context: &context) as? T { return res }
 			case "DocumentReference":
 				if let res = DocumentReference(json: json, owner: owner, context: &context) as? T { return res }
+			case "DocumentReferenceAgent":
+				if let res = DocumentReferenceAgent(json: json, owner: owner, context: &context) as? T { return res }
 			case "DocumentReferenceContent":
 				if let res = DocumentReferenceContent(json: json, owner: owner, context: &context) as? T { return res }
 			case "DocumentReferenceContext":
@@ -342,6 +350,8 @@ extension FHIRAbstractBase {
 				if let res = DomainResource(json: json, owner: owner, context: &context) as? T { return res }
 			case "Dosage":
 				if let res = Dosage(json: json, owner: owner, context: &context) as? T { return res }
+			case "DosageDoseAndRate":
+				if let res = DosageDoseAndRate(json: json, owner: owner, context: &context) as? T { return res }
 			case "Duration":
 				if let res = Duration(json: json, owner: owner, context: &context) as? T { return res }
 			case "Element":
@@ -366,8 +376,14 @@ extension FHIRAbstractBase {
 				if let res = ElementDefinitionType(json: json, owner: owner, context: &context) as? T { return res }
 			case "EligibilityRequest":
 				if let res = EligibilityRequest(json: json, owner: owner, context: &context) as? T { return res }
+			case "EligibilityRequestAuthorization":
+				if let res = EligibilityRequestAuthorization(json: json, owner: owner, context: &context) as? T { return res }
+			case "EligibilityRequestAuthorizationDiagnosis":
+				if let res = EligibilityRequestAuthorizationDiagnosis(json: json, owner: owner, context: &context) as? T { return res }
 			case "EligibilityResponse":
 				if let res = EligibilityResponse(json: json, owner: owner, context: &context) as? T { return res }
+			case "EligibilityResponseAuthorization":
+				if let res = EligibilityResponseAuthorization(json: json, owner: owner, context: &context) as? T { return res }
 			case "EligibilityResponseError":
 				if let res = EligibilityResponseError(json: json, owner: owner, context: &context) as? T { return res }
 			case "EligibilityResponseInsurance":
@@ -396,12 +412,38 @@ extension FHIRAbstractBase {
 				if let res = EnrollmentRequest(json: json, owner: owner, context: &context) as? T { return res }
 			case "EnrollmentResponse":
 				if let res = EnrollmentResponse(json: json, owner: owner, context: &context) as? T { return res }
+			case "EntryDefinition":
+				if let res = EntryDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "EntryDefinitionRelatedEntry":
+				if let res = EntryDefinitionRelatedEntry(json: json, owner: owner, context: &context) as? T { return res }
 			case "EpisodeOfCare":
 				if let res = EpisodeOfCare(json: json, owner: owner, context: &context) as? T { return res }
 			case "EpisodeOfCareDiagnosis":
 				if let res = EpisodeOfCareDiagnosis(json: json, owner: owner, context: &context) as? T { return res }
 			case "EpisodeOfCareStatusHistory":
 				if let res = EpisodeOfCareStatusHistory(json: json, owner: owner, context: &context) as? T { return res }
+			case "EventDefinition":
+				if let res = EventDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenario":
+				if let res = ExampleScenario(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioActor":
+				if let res = ExampleScenarioActor(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioInstance":
+				if let res = ExampleScenarioInstance(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioInstanceContainedInstance":
+				if let res = ExampleScenarioInstanceContainedInstance(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioInstanceVersion":
+				if let res = ExampleScenarioInstanceVersion(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioProcess":
+				if let res = ExampleScenarioProcess(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioProcessStep":
+				if let res = ExampleScenarioProcessStep(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioProcessStepAlternative":
+				if let res = ExampleScenarioProcessStepAlternative(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioProcessStepAlternativeOption":
+				if let res = ExampleScenarioProcessStepAlternativeOption(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExampleScenarioProcessStepOperation":
+				if let res = ExampleScenarioProcessStepOperation(json: json, owner: owner, context: &context) as? T { return res }
 			case "ExpansionProfile":
 				if let res = ExpansionProfile(json: json, owner: owner, context: &context) as? T { return res }
 			case "ExpansionProfileDesignation":
@@ -424,8 +466,6 @@ extension FHIRAbstractBase {
 				if let res = ExplanationOfBenefitAccident(json: json, owner: owner, context: &context) as? T { return res }
 			case "ExplanationOfBenefitAddItem":
 				if let res = ExplanationOfBenefitAddItem(json: json, owner: owner, context: &context) as? T { return res }
-			case "ExplanationOfBenefitAddItemDetail":
-				if let res = ExplanationOfBenefitAddItemDetail(json: json, owner: owner, context: &context) as? T { return res }
 			case "ExplanationOfBenefitBenefitBalance":
 				if let res = ExplanationOfBenefitBenefitBalance(json: json, owner: owner, context: &context) as? T { return res }
 			case "ExplanationOfBenefitBenefitBalanceFinancial":
@@ -456,6 +496,8 @@ extension FHIRAbstractBase {
 				if let res = ExplanationOfBenefitProcessNote(json: json, owner: owner, context: &context) as? T { return res }
 			case "ExplanationOfBenefitRelated":
 				if let res = ExplanationOfBenefitRelated(json: json, owner: owner, context: &context) as? T { return res }
+			case "ExplanationOfBenefitTotal":
+				if let res = ExplanationOfBenefitTotal(json: json, owner: owner, context: &context) as? T { return res }
 			case "Extension":
 				if let res = Extension(json: json, owner: owner, context: &context) as? T { return res }
 			case "FamilyMemberHistory":
@@ -494,50 +536,62 @@ extension FHIRAbstractBase {
 				if let res = HumanName(json: json, owner: owner, context: &context) as? T { return res }
 			case "Identifier":
 				if let res = Identifier(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImagingManifest":
-				if let res = ImagingManifest(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImagingManifestStudy":
-				if let res = ImagingManifestStudy(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImagingManifestStudySeries":
-				if let res = ImagingManifestStudySeries(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImagingManifestStudySeriesInstance":
-				if let res = ImagingManifestStudySeriesInstance(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImagingStudy":
 				if let res = ImagingStudy(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImagingStudySeries":
 				if let res = ImagingStudySeries(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImagingStudySeriesInstance":
 				if let res = ImagingStudySeriesInstance(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImagingStudySeriesPerformer":
+				if let res = ImagingStudySeriesPerformer(json: json, owner: owner, context: &context) as? T { return res }
 			case "Immunization":
 				if let res = Immunization(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImmunizationExplanation":
-				if let res = ImmunizationExplanation(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImmunizationPractitioner":
-				if let res = ImmunizationPractitioner(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImmunizationReaction":
-				if let res = ImmunizationReaction(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImmunizationEducation":
+				if let res = ImmunizationEducation(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImmunizationEvaluation":
+				if let res = ImmunizationEvaluation(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImmunizationPerformer":
+				if let res = ImmunizationPerformer(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImmunizationRecommendation":
 				if let res = ImmunizationRecommendation(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImmunizationRecommendationRecommendation":
 				if let res = ImmunizationRecommendationRecommendation(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImmunizationRecommendationRecommendationDateCriterion":
 				if let res = ImmunizationRecommendationRecommendationDateCriterion(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImmunizationRecommendationRecommendationProtocol":
-				if let res = ImmunizationRecommendationRecommendationProtocol(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImmunizationVaccinationProtocol":
-				if let res = ImmunizationVaccinationProtocol(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImplementationGuide":
 				if let res = ImplementationGuide(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImplementationGuideDependency":
-				if let res = ImplementationGuideDependency(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideDefinition":
+				if let res = ImplementationGuideDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideDefinitionPackage":
+				if let res = ImplementationGuideDefinitionPackage(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideDefinitionPage":
+				if let res = ImplementationGuideDefinitionPage(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideDefinitionParameter":
+				if let res = ImplementationGuideDefinitionParameter(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideDefinitionResource":
+				if let res = ImplementationGuideDefinitionResource(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideDefinitionTemplate":
+				if let res = ImplementationGuideDefinitionTemplate(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideDependsOn":
+				if let res = ImplementationGuideDependsOn(json: json, owner: owner, context: &context) as? T { return res }
 			case "ImplementationGuideGlobal":
 				if let res = ImplementationGuideGlobal(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImplementationGuidePackage":
-				if let res = ImplementationGuidePackage(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImplementationGuidePackageResource":
-				if let res = ImplementationGuidePackageResource(json: json, owner: owner, context: &context) as? T { return res }
-			case "ImplementationGuidePage":
-				if let res = ImplementationGuidePage(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideManifest":
+				if let res = ImplementationGuideManifest(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideManifestPage":
+				if let res = ImplementationGuideManifestPage(json: json, owner: owner, context: &context) as? T { return res }
+			case "ImplementationGuideManifestResource":
+				if let res = ImplementationGuideManifestResource(json: json, owner: owner, context: &context) as? T { return res }
+			case "Invoice":
+				if let res = Invoice(json: json, owner: owner, context: &context) as? T { return res }
+			case "InvoiceLineItem":
+				if let res = InvoiceLineItem(json: json, owner: owner, context: &context) as? T { return res }
+			case "InvoiceLineItemPriceComponent":
+				if let res = InvoiceLineItemPriceComponent(json: json, owner: owner, context: &context) as? T { return res }
+			case "InvoiceParticipant":
+				if let res = InvoiceParticipant(json: json, owner: owner, context: &context) as? T { return res }
+			case "ItemInstance":
+				if let res = ItemInstance(json: json, owner: owner, context: &context) as? T { return res }
 			case "Library":
 				if let res = Library(json: json, owner: owner, context: &context) as? T { return res }
 			case "Linkage":
@@ -550,8 +604,12 @@ extension FHIRAbstractBase {
 				if let res = ListEntry(json: json, owner: owner, context: &context) as? T { return res }
 			case "Location":
 				if let res = Location(json: json, owner: owner, context: &context) as? T { return res }
+			case "LocationHoursOfOperation":
+				if let res = LocationHoursOfOperation(json: json, owner: owner, context: &context) as? T { return res }
 			case "LocationPosition":
 				if let res = LocationPosition(json: json, owner: owner, context: &context) as? T { return res }
+			case "MarketingStatus":
+				if let res = MarketingStatus(json: json, owner: owner, context: &context) as? T { return res }
 			case "Measure":
 				if let res = Measure(json: json, owner: owner, context: &context) as? T { return res }
 			case "MeasureGroup":
@@ -584,6 +642,8 @@ extension FHIRAbstractBase {
 				if let res = MedicationAdministrationDosage(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationAdministrationPerformer":
 				if let res = MedicationAdministrationPerformer(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicationBatch":
+				if let res = MedicationBatch(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationDispense":
 				if let res = MedicationDispense(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationDispensePerformer":
@@ -592,22 +652,72 @@ extension FHIRAbstractBase {
 				if let res = MedicationDispenseSubstitution(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationIngredient":
 				if let res = MedicationIngredient(json: json, owner: owner, context: &context) as? T { return res }
-			case "MedicationPackage":
-				if let res = MedicationPackage(json: json, owner: owner, context: &context) as? T { return res }
-			case "MedicationPackageBatch":
-				if let res = MedicationPackageBatch(json: json, owner: owner, context: &context) as? T { return res }
-			case "MedicationPackageContent":
-				if let res = MedicationPackageContent(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationRequest":
 				if let res = MedicationRequest(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationRequestDispenseRequest":
 				if let res = MedicationRequestDispenseRequest(json: json, owner: owner, context: &context) as? T { return res }
-			case "MedicationRequestRequester":
-				if let res = MedicationRequestRequester(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationRequestSubstitution":
 				if let res = MedicationRequestSubstitution(json: json, owner: owner, context: &context) as? T { return res }
 			case "MedicationStatement":
 				if let res = MedicationStatement(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProduct":
+				if let res = MedicinalProduct(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductAuthorization":
+				if let res = MedicinalProductAuthorization(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductAuthorizationJurisdictionalAuthorization":
+				if let res = MedicinalProductAuthorizationJurisdictionalAuthorization(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductAuthorizationProcedure":
+				if let res = MedicinalProductAuthorizationProcedure(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductAuthorizationProcedureApplication":
+				if let res = MedicinalProductAuthorizationProcedureApplication(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductClinicals":
+				if let res = MedicinalProductClinicals(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductClinicalsContraindication":
+				if let res = MedicinalProductClinicalsContraindication(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductClinicalsInteractions":
+				if let res = MedicinalProductClinicalsInteractions(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductClinicalsTherapeuticIndication":
+				if let res = MedicinalProductClinicalsTherapeuticIndication(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductClinicalsTherapeuticIndicationOtherTherapy":
+				if let res = MedicinalProductClinicalsTherapeuticIndicationOtherTherapy(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductClinicalsUndesirableEffects":
+				if let res = MedicinalProductClinicalsUndesirableEffects(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductClinicalsUndesirableEffectsPopulation":
+				if let res = MedicinalProductClinicalsUndesirableEffectsPopulation(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductDeviceSpec":
+				if let res = MedicinalProductDeviceSpec(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductDeviceSpecMaterial":
+				if let res = MedicinalProductDeviceSpecMaterial(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductIngredient":
+				if let res = MedicinalProductIngredient(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductIngredientSpecifiedSubstance":
+				if let res = MedicinalProductIngredientSpecifiedSubstance(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductIngredientSpecifiedSubstanceStrength":
+				if let res = MedicinalProductIngredientSpecifiedSubstanceStrength(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength":
+				if let res = MedicinalProductIngredientSpecifiedSubstanceStrengthReferenceStrength(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductIngredientSubstance":
+				if let res = MedicinalProductIngredientSubstance(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductManufacturingBusinessOperation":
+				if let res = MedicinalProductManufacturingBusinessOperation(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductName":
+				if let res = MedicinalProductName(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductNameCountryLanguage":
+				if let res = MedicinalProductNameCountryLanguage(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductNameNamePart":
+				if let res = MedicinalProductNameNamePart(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductPackaged":
+				if let res = MedicinalProductPackaged(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductPackagedBatchIdentifier":
+				if let res = MedicinalProductPackagedBatchIdentifier(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductPackagedPackageItem":
+				if let res = MedicinalProductPackagedPackageItem(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductPackagedPackageItemManufacturedItem":
+				if let res = MedicinalProductPackagedPackageItemManufacturedItem(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductPharmaceutical":
+				if let res = MedicinalProductPharmaceutical(json: json, owner: owner, context: &context) as? T { return res }
+			case "MedicinalProductPharmaceuticalCharacteristics":
+				if let res = MedicinalProductPharmaceuticalCharacteristics(json: json, owner: owner, context: &context) as? T { return res }
 			case "MessageDefinition":
 				if let res = MessageDefinition(json: json, owner: owner, context: &context) as? T { return res }
 			case "MessageDefinitionAllowedResponse":
@@ -652,10 +762,24 @@ extension FHIRAbstractBase {
 				if let res = Observation(json: json, owner: owner, context: &context) as? T { return res }
 			case "ObservationComponent":
 				if let res = ObservationComponent(json: json, owner: owner, context: &context) as? T { return res }
+			case "ObservationDefinition":
+				if let res = ObservationDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "ObservationDefinitionQualifiedInterval":
+				if let res = ObservationDefinitionQualifiedInterval(json: json, owner: owner, context: &context) as? T { return res }
+			case "ObservationDefinitionQuantitativeDetails":
+				if let res = ObservationDefinitionQuantitativeDetails(json: json, owner: owner, context: &context) as? T { return res }
 			case "ObservationReferenceRange":
 				if let res = ObservationReferenceRange(json: json, owner: owner, context: &context) as? T { return res }
-			case "ObservationRelated":
-				if let res = ObservationRelated(json: json, owner: owner, context: &context) as? T { return res }
+			case "OccupationalData":
+				if let res = OccupationalData(json: json, owner: owner, context: &context) as? T { return res }
+			case "OccupationalDataEmploymentStatus":
+				if let res = OccupationalDataEmploymentStatus(json: json, owner: owner, context: &context) as? T { return res }
+			case "OccupationalDataPastOrPresentJob":
+				if let res = OccupationalDataPastOrPresentJob(json: json, owner: owner, context: &context) as? T { return res }
+			case "OccupationalDataPastOrPresentJobWorkSchedule":
+				if let res = OccupationalDataPastOrPresentJobWorkSchedule(json: json, owner: owner, context: &context) as? T { return res }
+			case "OccupationalDataUsualWork":
+				if let res = OccupationalDataUsualWork(json: json, owner: owner, context: &context) as? T { return res }
 			case "OperationDefinition":
 				if let res = OperationDefinition(json: json, owner: owner, context: &context) as? T { return res }
 			case "OperationDefinitionOverload":
@@ -672,6 +796,12 @@ extension FHIRAbstractBase {
 				if let res = Organization(json: json, owner: owner, context: &context) as? T { return res }
 			case "OrganizationContact":
 				if let res = OrganizationContact(json: json, owner: owner, context: &context) as? T { return res }
+			case "OrganizationRole":
+				if let res = OrganizationRole(json: json, owner: owner, context: &context) as? T { return res }
+			case "OrganizationRoleAvailableTime":
+				if let res = OrganizationRoleAvailableTime(json: json, owner: owner, context: &context) as? T { return res }
+			case "OrganizationRoleNotAvailable":
+				if let res = OrganizationRoleNotAvailable(json: json, owner: owner, context: &context) as? T { return res }
 			case "ParameterDefinition":
 				if let res = ParameterDefinition(json: json, owner: owner, context: &context) as? T { return res }
 			case "Parameters":
@@ -680,8 +810,6 @@ extension FHIRAbstractBase {
 				if let res = ParametersParameter(json: json, owner: owner, context: &context) as? T { return res }
 			case "Patient":
 				if let res = Patient(json: json, owner: owner, context: &context) as? T { return res }
-			case "PatientAnimal":
-				if let res = PatientAnimal(json: json, owner: owner, context: &context) as? T { return res }
 			case "PatientCommunication":
 				if let res = PatientCommunication(json: json, owner: owner, context: &context) as? T { return res }
 			case "PatientContact":
@@ -734,10 +862,6 @@ extension FHIRAbstractBase {
 				if let res = ProcedureFocalDevice(json: json, owner: owner, context: &context) as? T { return res }
 			case "ProcedurePerformer":
 				if let res = ProcedurePerformer(json: json, owner: owner, context: &context) as? T { return res }
-			case "ProcedureRequest":
-				if let res = ProcedureRequest(json: json, owner: owner, context: &context) as? T { return res }
-			case "ProcedureRequestRequester":
-				if let res = ProcedureRequestRequester(json: json, owner: owner, context: &context) as? T { return res }
 			case "ProcessRequest":
 				if let res = ProcessRequest(json: json, owner: owner, context: &context) as? T { return res }
 			case "ProcessRequestItem":
@@ -746,6 +870,28 @@ extension FHIRAbstractBase {
 				if let res = ProcessResponse(json: json, owner: owner, context: &context) as? T { return res }
 			case "ProcessResponseProcessNote":
 				if let res = ProcessResponseProcessNote(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProdCharacteristic":
+				if let res = ProdCharacteristic(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlan":
+				if let res = ProductPlan(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanContact":
+				if let res = ProductPlanContact(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanCoverage":
+				if let res = ProductPlanCoverage(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanCoverageBenefit":
+				if let res = ProductPlanCoverageBenefit(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanCoverageBenefitItem":
+				if let res = ProductPlanCoverageBenefitItem(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanPlan":
+				if let res = ProductPlanPlan(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanPlanCategory":
+				if let res = ProductPlanPlanCategory(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanPlanCategoryBenefit":
+				if let res = ProductPlanPlanCategoryBenefit(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductPlanPlanCategoryBenefitCost":
+				if let res = ProductPlanPlanCategoryBenefitCost(json: json, owner: owner, context: &context) as? T { return res }
+			case "ProductShelfLife":
+				if let res = ProductShelfLife(json: json, owner: owner, context: &context) as? T { return res }
 			case "Provenance":
 				if let res = Provenance(json: json, owner: owner, context: &context) as? T { return res }
 			case "ProvenanceAgent":
@@ -760,6 +906,8 @@ extension FHIRAbstractBase {
 				if let res = QuestionnaireItem(json: json, owner: owner, context: &context) as? T { return res }
 			case "QuestionnaireItemEnableWhen":
 				if let res = QuestionnaireItemEnableWhen(json: json, owner: owner, context: &context) as? T { return res }
+			case "QuestionnaireItemInitial":
+				if let res = QuestionnaireItemInitial(json: json, owner: owner, context: &context) as? T { return res }
 			case "QuestionnaireItemOption":
 				if let res = QuestionnaireItemOption(json: json, owner: owner, context: &context) as? T { return res }
 			case "QuestionnaireResponse":
@@ -774,10 +922,6 @@ extension FHIRAbstractBase {
 				if let res = Ratio(json: json, owner: owner, context: &context) as? T { return res }
 			case "Reference":
 				if let res = Reference(json: json, owner: owner, context: &context) as? T { return res }
-			case "ReferralRequest":
-				if let res = ReferralRequest(json: json, owner: owner, context: &context) as? T { return res }
-			case "ReferralRequestRequester":
-				if let res = ReferralRequestRequester(json: json, owner: owner, context: &context) as? T { return res }
 			case "RelatedArtifact":
 				if let res = RelatedArtifact(json: json, owner: owner, context: &context) as? T { return res }
 			case "RelatedPerson":
@@ -794,6 +938,8 @@ extension FHIRAbstractBase {
 				if let res = ResearchStudy(json: json, owner: owner, context: &context) as? T { return res }
 			case "ResearchStudyArm":
 				if let res = ResearchStudyArm(json: json, owner: owner, context: &context) as? T { return res }
+			case "ResearchStudyObjective":
+				if let res = ResearchStudyObjective(json: json, owner: owner, context: &context) as? T { return res }
 			case "ResearchSubject":
 				if let res = ResearchSubject(json: json, owner: owner, context: &context) as? T { return res }
 			case "Resource":
@@ -814,14 +960,22 @@ extension FHIRAbstractBase {
 				if let res = Sequence(json: json, owner: owner, context: &context) as? T { return res }
 			case "SequenceQuality":
 				if let res = SequenceQuality(json: json, owner: owner, context: &context) as? T { return res }
+			case "SequenceQualityRoc":
+				if let res = SequenceQualityRoc(json: json, owner: owner, context: &context) as? T { return res }
 			case "SequenceReferenceSeq":
 				if let res = SequenceReferenceSeq(json: json, owner: owner, context: &context) as? T { return res }
 			case "SequenceRepository":
 				if let res = SequenceRepository(json: json, owner: owner, context: &context) as? T { return res }
+			case "SequenceStructureVariant":
+				if let res = SequenceStructureVariant(json: json, owner: owner, context: &context) as? T { return res }
+			case "SequenceStructureVariantInner":
+				if let res = SequenceStructureVariantInner(json: json, owner: owner, context: &context) as? T { return res }
+			case "SequenceStructureVariantOuter":
+				if let res = SequenceStructureVariantOuter(json: json, owner: owner, context: &context) as? T { return res }
 			case "SequenceVariant":
 				if let res = SequenceVariant(json: json, owner: owner, context: &context) as? T { return res }
-			case "ServiceDefinition":
-				if let res = ServiceDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "ServiceRequest":
+				if let res = ServiceRequest(json: json, owner: owner, context: &context) as? T { return res }
 			case "Signature":
 				if let res = Signature(json: json, owner: owner, context: &context) as? T { return res }
 			case "Slot":
@@ -832,10 +986,20 @@ extension FHIRAbstractBase {
 				if let res = SpecimenCollection(json: json, owner: owner, context: &context) as? T { return res }
 			case "SpecimenContainer":
 				if let res = SpecimenContainer(json: json, owner: owner, context: &context) as? T { return res }
+			case "SpecimenDefinition":
+				if let res = SpecimenDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "SpecimenDefinitionSpecimenToLab":
+				if let res = SpecimenDefinitionSpecimenToLab(json: json, owner: owner, context: &context) as? T { return res }
+			case "SpecimenDefinitionSpecimenToLabContainerAdditive":
+				if let res = SpecimenDefinitionSpecimenToLabContainerAdditive(json: json, owner: owner, context: &context) as? T { return res }
+			case "SpecimenDefinitionSpecimenToLabHandling":
+				if let res = SpecimenDefinitionSpecimenToLabHandling(json: json, owner: owner, context: &context) as? T { return res }
 			case "SpecimenProcessing":
 				if let res = SpecimenProcessing(json: json, owner: owner, context: &context) as? T { return res }
 			case "StructureDefinition":
 				if let res = StructureDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "StructureDefinitionContext":
+				if let res = StructureDefinitionContext(json: json, owner: owner, context: &context) as? T { return res }
 			case "StructureDefinitionDifferential":
 				if let res = StructureDefinitionDifferential(json: json, owner: owner, context: &context) as? T { return res }
 			case "StructureDefinitionMapping":
@@ -866,30 +1030,94 @@ extension FHIRAbstractBase {
 				if let res = SubscriptionChannel(json: json, owner: owner, context: &context) as? T { return res }
 			case "Substance":
 				if let res = Substance(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceAmount":
+				if let res = SubstanceAmount(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceAmountReferenceRange":
+				if let res = SubstanceAmountReferenceRange(json: json, owner: owner, context: &context) as? T { return res }
 			case "SubstanceIngredient":
 				if let res = SubstanceIngredient(json: json, owner: owner, context: &context) as? T { return res }
 			case "SubstanceInstance":
 				if let res = SubstanceInstance(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceMoiety":
+				if let res = SubstanceMoiety(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstancePolymer":
+				if let res = SubstancePolymer(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstancePolymerMonomerSet":
+				if let res = SubstancePolymerMonomerSet(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstancePolymerMonomerSetStartingMaterial":
+				if let res = SubstancePolymerMonomerSetStartingMaterial(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstancePolymerRepeat":
+				if let res = SubstancePolymerRepeat(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstancePolymerRepeatRepeatUnit":
+				if let res = SubstancePolymerRepeatRepeatUnit(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation":
+				if let res = SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstancePolymerRepeatRepeatUnitStructuralRepresentation":
+				if let res = SubstancePolymerRepeatRepeatUnitStructuralRepresentation(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceReferenceInformation":
+				if let res = SubstanceReferenceInformation(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceReferenceInformationClassification":
+				if let res = SubstanceReferenceInformationClassification(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceReferenceInformationGene":
+				if let res = SubstanceReferenceInformationGene(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceReferenceInformationGeneElement":
+				if let res = SubstanceReferenceInformationGeneElement(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceReferenceInformationRelationship":
+				if let res = SubstanceReferenceInformationRelationship(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceReferenceInformationTarget":
+				if let res = SubstanceReferenceInformationTarget(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecification":
+				if let res = SubstanceSpecification(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationMoiety":
+				if let res = SubstanceSpecificationMoiety(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationProperty":
+				if let res = SubstanceSpecificationProperty(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationStructure":
+				if let res = SubstanceSpecificationStructure(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationStructureIsotope":
+				if let res = SubstanceSpecificationStructureIsotope(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationStructureIsotopeMolecularWeight":
+				if let res = SubstanceSpecificationStructureIsotopeMolecularWeight(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationStructureStructuralRepresentation":
+				if let res = SubstanceSpecificationStructureStructuralRepresentation(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationSubstanceCode":
+				if let res = SubstanceSpecificationSubstanceCode(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationSubstanceName":
+				if let res = SubstanceSpecificationSubstanceName(json: json, owner: owner, context: &context) as? T { return res }
+			case "SubstanceSpecificationSubstanceNameOfficialName":
+				if let res = SubstanceSpecificationSubstanceNameOfficialName(json: json, owner: owner, context: &context) as? T { return res }
 			case "SupplyDelivery":
 				if let res = SupplyDelivery(json: json, owner: owner, context: &context) as? T { return res }
 			case "SupplyDeliverySuppliedItem":
 				if let res = SupplyDeliverySuppliedItem(json: json, owner: owner, context: &context) as? T { return res }
 			case "SupplyRequest":
 				if let res = SupplyRequest(json: json, owner: owner, context: &context) as? T { return res }
-			case "SupplyRequestOrderedItem":
-				if let res = SupplyRequestOrderedItem(json: json, owner: owner, context: &context) as? T { return res }
-			case "SupplyRequestRequester":
-				if let res = SupplyRequestRequester(json: json, owner: owner, context: &context) as? T { return res }
+			case "SupplyRequestParameter":
+				if let res = SupplyRequestParameter(json: json, owner: owner, context: &context) as? T { return res }
 			case "Task":
 				if let res = Task(json: json, owner: owner, context: &context) as? T { return res }
 			case "TaskInput":
 				if let res = TaskInput(json: json, owner: owner, context: &context) as? T { return res }
 			case "TaskOutput":
 				if let res = TaskOutput(json: json, owner: owner, context: &context) as? T { return res }
-			case "TaskRequester":
-				if let res = TaskRequester(json: json, owner: owner, context: &context) as? T { return res }
 			case "TaskRestriction":
 				if let res = TaskRestriction(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilities":
+				if let res = TerminologyCapabilities(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilitiesClosure":
+				if let res = TerminologyCapabilitiesClosure(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilitiesCodeSystem":
+				if let res = TerminologyCapabilitiesCodeSystem(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilitiesCodeSystemVersion":
+				if let res = TerminologyCapabilitiesCodeSystemVersion(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilitiesCodeSystemVersionFilter":
+				if let res = TerminologyCapabilitiesCodeSystemVersionFilter(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilitiesExpansion":
+				if let res = TerminologyCapabilitiesExpansion(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilitiesTranslation":
+				if let res = TerminologyCapabilitiesTranslation(json: json, owner: owner, context: &context) as? T { return res }
+			case "TerminologyCapabilitiesValidateCode":
+				if let res = TerminologyCapabilitiesValidateCode(json: json, owner: owner, context: &context) as? T { return res }
 			case "TestReport":
 				if let res = TestReport(json: json, owner: owner, context: &context) as? T { return res }
 			case "TestReportParticipant":
@@ -970,8 +1198,16 @@ extension FHIRAbstractBase {
 				if let res = TimingRepeat(json: json, owner: owner, context: &context) as? T { return res }
 			case "TriggerDefinition":
 				if let res = TriggerDefinition(json: json, owner: owner, context: &context) as? T { return res }
+			case "TriggerDefinitionCondition":
+				if let res = TriggerDefinitionCondition(json: json, owner: owner, context: &context) as? T { return res }
 			case "UsageContext":
 				if let res = UsageContext(json: json, owner: owner, context: &context) as? T { return res }
+			case "UserSession":
+				if let res = UserSession(json: json, owner: owner, context: &context) as? T { return res }
+			case "UserSessionContext":
+				if let res = UserSessionContext(json: json, owner: owner, context: &context) as? T { return res }
+			case "UserSessionStatus":
+				if let res = UserSessionStatus(json: json, owner: owner, context: &context) as? T { return res }
 			case "ValueSet":
 				if let res = ValueSet(json: json, owner: owner, context: &context) as? T { return res }
 			case "ValueSetCompose":
@@ -990,10 +1226,20 @@ extension FHIRAbstractBase {
 				if let res = ValueSetExpansionContains(json: json, owner: owner, context: &context) as? T { return res }
 			case "ValueSetExpansionParameter":
 				if let res = ValueSetExpansionParameter(json: json, owner: owner, context: &context) as? T { return res }
+			case "VerificationResult":
+				if let res = VerificationResult(json: json, owner: owner, context: &context) as? T { return res }
+			case "VerificationResultAttestation":
+				if let res = VerificationResultAttestation(json: json, owner: owner, context: &context) as? T { return res }
+			case "VerificationResultPrimarySource":
+				if let res = VerificationResultPrimarySource(json: json, owner: owner, context: &context) as? T { return res }
+			case "VerificationResultValidator":
+				if let res = VerificationResultValidator(json: json, owner: owner, context: &context) as? T { return res }
 			case "VisionPrescription":
 				if let res = VisionPrescription(json: json, owner: owner, context: &context) as? T { return res }
 			case "VisionPrescriptionDispense":
 				if let res = VisionPrescriptionDispense(json: json, owner: owner, context: &context) as? T { return res }
+			case "VisionPrescriptionDispensePrism":
+				if let res = VisionPrescriptionDispensePrism(json: json, owner: owner, context: &context) as? T { return res }
 			default:
 				break
 		}

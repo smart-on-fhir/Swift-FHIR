@@ -2,8 +2,8 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Organization) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -27,7 +27,7 @@ open class Organization: DomainResource {
 	/// An address for the organization.
 	public var address: [Address]?
 	
-	/// A list of alternate names that the organization is known as, or was known as in the past.
+	/// A list of alternate names that the organization is known as, or was known as in the past.
 	public var alias: [FHIRString]?
 	
 	/// Contact for the organization for a certain purpose.

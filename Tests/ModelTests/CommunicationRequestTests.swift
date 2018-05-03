@@ -2,8 +2,8 @@
 //  CommunicationRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,6 +38,30 @@ class CommunicationRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runCommunicationRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunicationRequest {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communicationrequest-example.json")
+		
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.status, RequestStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be filled out at a later time</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testCommunicationRequest2() {
+		do {
+			let instance = try runCommunicationRequest2()
+			try runCommunicationRequest2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runCommunicationRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunicationRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communicationrequest-example-fm-solicit-attachment.json")
 		
 		XCTAssertEqual(inst.authoredOn?.description, "2016-06-10T11:01:10-08:00")
@@ -61,34 +85,10 @@ class CommunicationRequestTests: XCTestCase {
 		XCTAssertEqual(inst.priority, RequestPriority(rawValue: "routine")!)
 		XCTAssertEqual(inst.recipient?[0].reference, "#provider")
 		XCTAssertEqual(inst.replaces?[0].display, "prior CommunicationRequest")
-		XCTAssertEqual(inst.requester?.agent?.reference, "#requester")
+		XCTAssertEqual(inst.requester?.reference, "#requester")
 		XCTAssertEqual(inst.sender?.reference, "#payor")
 		XCTAssertEqual(inst.status, RequestStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Request for Accident Report</div>")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testCommunicationRequest2() {
-		do {
-			let instance = try runCommunicationRequest2()
-			try runCommunicationRequest2(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runCommunicationRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunicationRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communicationrequest-example.json")
-		
-		XCTAssertEqual(inst.context?.reference, "Encounter/example")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.status, RequestStatus(rawValue: "active")!)
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be filled out at a later time</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

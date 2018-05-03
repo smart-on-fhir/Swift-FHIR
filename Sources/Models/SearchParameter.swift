@@ -2,15 +2,15 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Search Parameter for a resource.
+Search parameter for a resource.
 
 A search parameter that defines a named search item that can be used to search/filter on a resource.
 */
@@ -19,8 +19,8 @@ open class SearchParameter: DomainResource {
 		get { return "SearchParameter" }
 	}
 	
-	/// The resource type(s) this search parameter applies to.
-	public var base: [FHIRString]?
+	/// The base resource type(s) that this search parameter can be used against.
+	public var base: [ResourceType]?
 	
 	/// Chained names supported.
 	public var chain: [FHIRString]?
@@ -37,10 +37,10 @@ open class SearchParameter: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
-	/// Original Definition for the search parameter.
+	/// Original definition for the search parameter.
 	public var derivedFrom: FHIRURL?
 	
 	/// Natural language description of the search parameter.
@@ -58,6 +58,12 @@ open class SearchParameter: DomainResource {
 	/// A modifier supported for the search parameter.
 	public var modifier: [SearchModifierCode]?
 	
+	/// Allow multiple parameters (and).
+	public var multipleAnd: FHIRBool?
+	
+	/// Allow multiple values per parameter (or).
+	public var multipleOr: FHIRBool?
+	
 	/// Name for this search parameter (computer friendly).
 	public var name: FHIRString?
 	
@@ -70,16 +76,16 @@ open class SearchParameter: DomainResource {
 	/// The status of this search parameter. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Types of resource (if a resource reference).
-	public var target: [FHIRString]?
+	/// Types of resource (if a resource is referenced).
+	public var target: [ResourceType]?
 	
 	/// The type of value a search parameter refers to, and how the content is interpreted.
 	public var type: SearchParamType?
 	
-	/// Logical URI to reference this search parameter (globally unique).
+	/// Canonical identifier for this search parameter, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the search parameter.
@@ -93,7 +99,7 @@ open class SearchParameter: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(base: [FHIRString], code: FHIRString, description_fhir: FHIRString, name: FHIRString, status: PublicationStatus, type: SearchParamType, url: FHIRURL) {
+	public convenience init(base: [ResourceType], code: FHIRString, description_fhir: FHIRString, name: FHIRString, status: PublicationStatus, type: SearchParamType, url: FHIRURL) {
 		self.init()
 		self.base = base
 		self.code = code
@@ -108,7 +114,7 @@ open class SearchParameter: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		base = createInstances(of: FHIRString.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
+		base = createEnums(of: ResourceType.self, for: "base", in: json, context: &instCtx) ?? base
 		if (nil == base || base!.isEmpty) && !instCtx.containsKey("base") {
 			instCtx.addError(FHIRValidationError(missing: "base"))
 		}
@@ -130,6 +136,8 @@ open class SearchParameter: DomainResource {
 		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		modifier = createEnums(of: SearchModifierCode.self, for: "modifier", in: json, context: &instCtx) ?? modifier
+		multipleAnd = createInstance(type: FHIRBool.self, for: "multipleAnd", in: json, context: &instCtx, owner: self) ?? multipleAnd
+		multipleOr = createInstance(type: FHIRBool.self, for: "multipleOr", in: json, context: &instCtx, owner: self) ?? multipleOr
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
@@ -140,7 +148,7 @@ open class SearchParameter: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		target = createInstances(of: FHIRString.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
+		target = createEnums(of: ResourceType.self, for: "target", in: json, context: &instCtx) ?? target
 		type = createEnum(type: SearchParamType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
@@ -180,6 +188,8 @@ open class SearchParameter: DomainResource {
 		self.expression?.decorate(json: &json, withKey: "expression", errors: &errors)
 		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
 		arrayDecorate(json: &json, withKey: "modifier", using: self.modifier, errors: &errors)
+		self.multipleAnd?.decorate(json: &json, withKey: "multipleAnd", errors: &errors)
+		self.multipleOr?.decorate(json: &json, withKey: "multipleOr", errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		if nil == self.name {
 			errors.append(FHIRValidationError(missing: "name"))
@@ -218,14 +228,14 @@ open class SearchParameterComponent: BackboneElement {
 	}
 	
 	/// Defines how the part works.
-	public var definition: Reference?
+	public var definition: FHIRURL?
 	
 	/// Subexpression relative to main expression.
 	public var expression: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: Reference, expression: FHIRString) {
+	public convenience init(definition: FHIRURL, expression: FHIRString) {
 		self.init()
 		self.definition = definition
 		self.expression = expression
@@ -235,7 +245,7 @@ open class SearchParameterComponent: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definition = createInstance(type: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		if nil == definition && !instCtx.containsKey("definition") {
 			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}

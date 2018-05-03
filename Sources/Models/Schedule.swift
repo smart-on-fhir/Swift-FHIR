@@ -2,8 +2,8 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -20,29 +20,25 @@ open class Schedule: DomainResource {
 	/// Whether this schedule is in active use.
 	public var active: FHIRBool?
 	
-	/// The resource this Schedule resource is providing availability information for. These are expected to usually be
-	/// one of HealthcareService, Location, Practitioner, PractitionerRole, Device, Patient or RelatedPerson.
+	/// E.g. HealthCareService, Location, Practitioner, etc..
 	public var actor: [Reference]?
 	
-	/// Comments on the availability to describe any extended information. Such as custom constraints on the slots that
-	/// may be associated.
+	/// Comments on availability.
 	public var comment: FHIRString?
 	
 	/// External Ids for this item.
 	public var identifier: [Identifier]?
 	
-	/// The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These
-	/// cover the amount of time that an organization's planning horizon; the interval for which they are currently
-	/// accepting appointments. This does not define a "template" for planning outside these dates.
+	/// Period of time covered by schedule.
 	public var planningHorizon: Period?
 	
-	/// A broad categorisation of the service that is to be performed during this appointment.
-	public var serviceCategory: CodeableConcept?
+	/// High-level category.
+	public var serviceCategory: [CodeableConcept]?
 	
-	/// The specific service that is to be performed during this appointment.
+	/// Specific service.
 	public var serviceType: [CodeableConcept]?
 	
-	/// The specialty of a practitioner that would be required to perform the service requested in this appointment.
+	/// Type of specialty needed.
 	public var specialty: [CodeableConcept]?
 	
 	
@@ -64,7 +60,7 @@ open class Schedule: DomainResource {
 		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		planningHorizon = createInstance(type: Period.self, for: "planningHorizon", in: json, context: &instCtx, owner: self) ?? planningHorizon
-		serviceCategory = createInstance(type: CodeableConcept.self, for: "serviceCategory", in: json, context: &instCtx, owner: self) ?? serviceCategory
+		serviceCategory = createInstances(of: CodeableConcept.self, for: "serviceCategory", in: json, context: &instCtx, owner: self) ?? serviceCategory
 		serviceType = createInstances(of: CodeableConcept.self, for: "serviceType", in: json, context: &instCtx, owner: self) ?? serviceType
 		specialty = createInstances(of: CodeableConcept.self, for: "specialty", in: json, context: &instCtx, owner: self) ?? specialty
 	}
@@ -80,7 +76,7 @@ open class Schedule: DomainResource {
 		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.planningHorizon?.decorate(json: &json, withKey: "planningHorizon", errors: &errors)
-		self.serviceCategory?.decorate(json: &json, withKey: "serviceCategory", errors: &errors)
+		arrayDecorate(json: &json, withKey: "serviceCategory", using: self.serviceCategory, errors: &errors)
 		arrayDecorate(json: &json, withKey: "serviceType", using: self.serviceType, errors: &errors)
 		arrayDecorate(json: &json, withKey: "specialty", using: self.specialty, errors: &errors)
 	}

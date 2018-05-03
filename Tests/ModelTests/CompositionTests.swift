@@ -2,8 +2,8 @@
 //  CompositionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -43,7 +43,7 @@ class CompositionTests: XCTestCase {
 		XCTAssertEqual(inst.`class`?.coding?[0].code, "LP173421-1")
 		XCTAssertEqual(inst.`class`?.coding?[0].display, "Report")
 		XCTAssertEqual(inst.`class`?.coding?[0].system?.absoluteString, "http://loinc.org")
-		XCTAssertEqual(inst.attester?[0].mode?[0], CompositionAttestationMode(rawValue: "legal")!)
+		XCTAssertEqual(inst.attester?[0].mode, CompositionAttestationMode(rawValue: "legal")!)
 		XCTAssertEqual(inst.attester?[0].party?.display, "Harold Hippocrates, MD")
 		XCTAssertEqual(inst.attester?[0].party?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.attester?[0].time?.description, "2012-01-04T09:10:14Z")

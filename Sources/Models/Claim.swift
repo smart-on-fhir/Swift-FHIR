@@ -2,8 +2,8 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Claim) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -35,9 +35,6 @@ open class Claim: DomainResource {
 	/// List of Diagnosis.
 	public var diagnosis: [ClaimDiagnosis]?
 	
-	/// Period unable to work.
-	public var employmentImpacted: Period?
-	
 	/// Author.
 	public var enterer: Reference?
 	
@@ -46,9 +43,6 @@ open class Claim: DomainResource {
 	
 	/// Funds requested to be reserved.
 	public var fundsReserve: CodeableConcept?
-	
-	/// Period in hospital.
-	public var hospitalization: Period?
 	
 	/// Claim number.
 	public var identifier: [Identifier]?
@@ -64,9 +58,6 @@ open class Claim: DomainResource {
 	
 	/// Goods and Services.
 	public var item: [ClaimItem]?
-	
-	/// Responsible organization.
-	public var organization: Reference?
 	
 	/// Original prescription if superceded by fulfiller.
 	public var originalPrescription: Reference?
@@ -119,17 +110,14 @@ open class Claim: DomainResource {
 		careTeam = createInstances(of: ClaimCareTeam.self, for: "careTeam", in: json, context: &instCtx, owner: self) ?? careTeam
 		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
 		diagnosis = createInstances(of: ClaimDiagnosis.self, for: "diagnosis", in: json, context: &instCtx, owner: self) ?? diagnosis
-		employmentImpacted = createInstance(type: Period.self, for: "employmentImpacted", in: json, context: &instCtx, owner: self) ?? employmentImpacted
 		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer
 		facility = createInstance(type: Reference.self, for: "facility", in: json, context: &instCtx, owner: self) ?? facility
 		fundsReserve = createInstance(type: CodeableConcept.self, for: "fundsReserve", in: json, context: &instCtx, owner: self) ?? fundsReserve
-		hospitalization = createInstance(type: Period.self, for: "hospitalization", in: json, context: &instCtx, owner: self) ?? hospitalization
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		information = createInstances(of: ClaimInformation.self, for: "information", in: json, context: &instCtx, owner: self) ?? information
 		insurance = createInstances(of: ClaimInsurance.self, for: "insurance", in: json, context: &instCtx, owner: self) ?? insurance
 		insurer = createInstance(type: Reference.self, for: "insurer", in: json, context: &instCtx, owner: self) ?? insurer
 		item = createInstances(of: ClaimItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
-		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
 		originalPrescription = createInstance(type: Reference.self, for: "originalPrescription", in: json, context: &instCtx, owner: self) ?? originalPrescription
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
 		payee = createInstance(type: ClaimPayee.self, for: "payee", in: json, context: &instCtx, owner: self) ?? payee
@@ -154,17 +142,14 @@ open class Claim: DomainResource {
 		arrayDecorate(json: &json, withKey: "careTeam", using: self.careTeam, errors: &errors)
 		self.created?.decorate(json: &json, withKey: "created", errors: &errors)
 		arrayDecorate(json: &json, withKey: "diagnosis", using: self.diagnosis, errors: &errors)
-		self.employmentImpacted?.decorate(json: &json, withKey: "employmentImpacted", errors: &errors)
 		self.enterer?.decorate(json: &json, withKey: "enterer", errors: &errors)
 		self.facility?.decorate(json: &json, withKey: "facility", errors: &errors)
 		self.fundsReserve?.decorate(json: &json, withKey: "fundsReserve", errors: &errors)
-		self.hospitalization?.decorate(json: &json, withKey: "hospitalization", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "information", using: self.information, errors: &errors)
 		arrayDecorate(json: &json, withKey: "insurance", using: self.insurance, errors: &errors)
 		self.insurer?.decorate(json: &json, withKey: "insurer", errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
-		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
 		self.originalPrescription?.decorate(json: &json, withKey: "originalPrescription", errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		self.payee?.decorate(json: &json, withKey: "payee", errors: &errors)
@@ -264,7 +249,7 @@ open class ClaimCareTeam: BackboneElement {
 	/// Role on the team.
 	public var role: CodeableConcept?
 	
-	/// Number to covey order of careTeam.
+	/// Number to convey order of careTeam.
 	public var sequence: FHIRInteger?
 	
 	
@@ -329,7 +314,7 @@ open class ClaimDiagnosis: BackboneElement {
 	/// Package billing code.
 	public var packageCode: CodeableConcept?
 	
-	/// Number to covey order of diagnosis.
+	/// Number to convey order of diagnosis.
 	public var sequence: FHIRInteger?
 	
 	/// Timing or nature of the diagnosis.
@@ -424,6 +409,9 @@ open class ClaimInformation: BackboneElement {
 	public var valueAttachment: Attachment?
 	
 	/// Additional Data or supporting information.
+	public var valueBoolean: FHIRBool?
+	
+	/// Additional Data or supporting information.
 	public var valueQuantity: Quantity?
 	
 	/// Additional Data or supporting information.
@@ -457,6 +445,7 @@ open class ClaimInformation: BackboneElement {
 		timingDate = createInstance(type: FHIRDate.self, for: "timingDate", in: json, context: &instCtx, owner: self) ?? timingDate
 		timingPeriod = createInstance(type: Period.self, for: "timingPeriod", in: json, context: &instCtx, owner: self) ?? timingPeriod
 		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
+		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
 		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
 		valueReference = createInstance(type: Reference.self, for: "valueReference", in: json, context: &instCtx, owner: self) ?? valueReference
 		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
@@ -478,6 +467,7 @@ open class ClaimInformation: BackboneElement {
 		self.timingDate?.decorate(json: &json, withKey: "timingDate", errors: &errors)
 		self.timingPeriod?.decorate(json: &json, withKey: "timingPeriod", errors: &errors)
 		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
+		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
 		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
 		self.valueReference?.decorate(json: &json, withKey: "valueReference", errors: &errors)
 		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)
@@ -506,6 +496,9 @@ open class ClaimInsurance: BackboneElement {
 	
 	/// Is the focal Coverage.
 	public var focal: FHIRBool?
+	
+	/// Claim number.
+	public var identifier: Identifier?
 	
 	/// Pre-Authorization/Determination Reference.
 	public var preAuthRef: [FHIRString]?
@@ -536,6 +529,7 @@ open class ClaimInsurance: BackboneElement {
 		if nil == focal && !instCtx.containsKey("focal") {
 			instCtx.addError(FHIRValidationError(missing: "focal"))
 		}
+		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		preAuthRef = createInstances(of: FHIRString.self, for: "preAuthRef", in: json, context: &instCtx, owner: self) ?? preAuthRef
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
 		if nil == sequence && !instCtx.containsKey("sequence") {
@@ -556,6 +550,7 @@ open class ClaimInsurance: BackboneElement {
 		if nil == self.focal {
 			errors.append(FHIRValidationError(missing: "focal"))
 		}
+		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "preAuthRef", using: self.preAuthRef, errors: &errors)
 		self.sequence?.decorate(json: &json, withKey: "sequence", errors: &errors)
 		if nil == self.sequence {
@@ -579,7 +574,7 @@ open class ClaimItem: BackboneElement {
 	public var bodySite: CodeableConcept?
 	
 	/// Applicable careTeam members.
-	public var careTeamLinkId: [FHIRInteger]?
+	public var careTeamSequence: [FHIRInteger]?
 	
 	/// Type of service or product.
 	public var category: CodeableConcept?
@@ -588,7 +583,7 @@ open class ClaimItem: BackboneElement {
 	public var detail: [ClaimItemDetail]?
 	
 	/// Applicable diagnoses.
-	public var diagnosisLinkId: [FHIRInteger]?
+	public var diagnosisSequence: [FHIRInteger]?
 	
 	/// Encounters related to this billed item.
 	public var encounter: [Reference]?
@@ -597,7 +592,7 @@ open class ClaimItem: BackboneElement {
 	public var factor: FHIRDecimal?
 	
 	/// Applicable exception and supporting information.
-	public var informationLinkId: [FHIRInteger]?
+	public var informationSequence: [FHIRInteger]?
 	
 	/// Place of service.
 	public var locationAddress: Address?
@@ -615,7 +610,7 @@ open class ClaimItem: BackboneElement {
 	public var net: Money?
 	
 	/// Applicable procedures.
-	public var procedureLinkId: [FHIRInteger]?
+	public var procedureSequence: [FHIRInteger]?
 	
 	/// Program specific reason for item inclusion.
 	public var programCode: [CodeableConcept]?
@@ -659,19 +654,19 @@ open class ClaimItem: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
-		careTeamLinkId = createInstances(of: FHIRInteger.self, for: "careTeamLinkId", in: json, context: &instCtx, owner: self) ?? careTeamLinkId
+		careTeamSequence = createInstances(of: FHIRInteger.self, for: "careTeamSequence", in: json, context: &instCtx, owner: self) ?? careTeamSequence
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		detail = createInstances(of: ClaimItemDetail.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
-		diagnosisLinkId = createInstances(of: FHIRInteger.self, for: "diagnosisLinkId", in: json, context: &instCtx, owner: self) ?? diagnosisLinkId
+		diagnosisSequence = createInstances(of: FHIRInteger.self, for: "diagnosisSequence", in: json, context: &instCtx, owner: self) ?? diagnosisSequence
 		encounter = createInstances(of: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		factor = createInstance(type: FHIRDecimal.self, for: "factor", in: json, context: &instCtx, owner: self) ?? factor
-		informationLinkId = createInstances(of: FHIRInteger.self, for: "informationLinkId", in: json, context: &instCtx, owner: self) ?? informationLinkId
+		informationSequence = createInstances(of: FHIRInteger.self, for: "informationSequence", in: json, context: &instCtx, owner: self) ?? informationSequence
 		locationAddress = createInstance(type: Address.self, for: "locationAddress", in: json, context: &instCtx, owner: self) ?? locationAddress
 		locationCodeableConcept = createInstance(type: CodeableConcept.self, for: "locationCodeableConcept", in: json, context: &instCtx, owner: self) ?? locationCodeableConcept
 		locationReference = createInstance(type: Reference.self, for: "locationReference", in: json, context: &instCtx, owner: self) ?? locationReference
 		modifier = createInstances(of: CodeableConcept.self, for: "modifier", in: json, context: &instCtx, owner: self) ?? modifier
 		net = createInstance(type: Money.self, for: "net", in: json, context: &instCtx, owner: self) ?? net
-		procedureLinkId = createInstances(of: FHIRInteger.self, for: "procedureLinkId", in: json, context: &instCtx, owner: self) ?? procedureLinkId
+		procedureSequence = createInstances(of: FHIRInteger.self, for: "procedureSequence", in: json, context: &instCtx, owner: self) ?? procedureSequence
 		programCode = createInstances(of: CodeableConcept.self, for: "programCode", in: json, context: &instCtx, owner: self) ?? programCode
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
@@ -691,19 +686,19 @@ open class ClaimItem: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.bodySite?.decorate(json: &json, withKey: "bodySite", errors: &errors)
-		arrayDecorate(json: &json, withKey: "careTeamLinkId", using: self.careTeamLinkId, errors: &errors)
+		arrayDecorate(json: &json, withKey: "careTeamSequence", using: self.careTeamSequence, errors: &errors)
 		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
 		arrayDecorate(json: &json, withKey: "detail", using: self.detail, errors: &errors)
-		arrayDecorate(json: &json, withKey: "diagnosisLinkId", using: self.diagnosisLinkId, errors: &errors)
+		arrayDecorate(json: &json, withKey: "diagnosisSequence", using: self.diagnosisSequence, errors: &errors)
 		arrayDecorate(json: &json, withKey: "encounter", using: self.encounter, errors: &errors)
 		self.factor?.decorate(json: &json, withKey: "factor", errors: &errors)
-		arrayDecorate(json: &json, withKey: "informationLinkId", using: self.informationLinkId, errors: &errors)
+		arrayDecorate(json: &json, withKey: "informationSequence", using: self.informationSequence, errors: &errors)
 		self.locationAddress?.decorate(json: &json, withKey: "locationAddress", errors: &errors)
 		self.locationCodeableConcept?.decorate(json: &json, withKey: "locationCodeableConcept", errors: &errors)
 		self.locationReference?.decorate(json: &json, withKey: "locationReference", errors: &errors)
 		arrayDecorate(json: &json, withKey: "modifier", using: self.modifier, errors: &errors)
 		self.net?.decorate(json: &json, withKey: "net", errors: &errors)
-		arrayDecorate(json: &json, withKey: "procedureLinkId", using: self.procedureLinkId, errors: &errors)
+		arrayDecorate(json: &json, withKey: "procedureSequence", using: self.procedureSequence, errors: &errors)
 		arrayDecorate(json: &json, withKey: "programCode", using: self.programCode, errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
 		self.revenue?.decorate(json: &json, withKey: "revenue", errors: &errors)
@@ -922,7 +917,7 @@ open class ClaimPayee: BackboneElement {
 	public var party: Reference?
 	
 	/// organization | patient | practitioner | relatedperson.
-	public var resourceType: Coding?
+	public var resource: Coding?
 	
 	/// Type of party: Subscriber, Provider, other.
 	public var type: CodeableConcept?
@@ -939,7 +934,7 @@ open class ClaimPayee: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		party = createInstance(type: Reference.self, for: "party", in: json, context: &instCtx, owner: self) ?? party
-		resourceType = createInstance(type: Coding.self, for: "resourceType", in: json, context: &instCtx, owner: self) ?? resourceType
+		resource = createInstance(type: Coding.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
@@ -950,7 +945,7 @@ open class ClaimPayee: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.party?.decorate(json: &json, withKey: "party", errors: &errors)
-		self.resourceType?.decorate(json: &json, withKey: "resourceType", errors: &errors)
+		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))

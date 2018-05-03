@@ -2,13 +2,14 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 
 /**
-A type defined by FHIR that is an abstract type
+A list of the base types defined by this version of the FHIR specification - types that are defined, but for which only
+specializations actually are created
 
 URL: http://hl7.org/fhir/abstract-types
 ValueSet: http://hl7.org/fhir/ValueSet/abstract-types
@@ -39,6 +40,12 @@ public enum AccountStatus: String {
 	
 	/// This instance should not have been part of this patient's medical record.
 	case enteredInError = "entered-in-error"
+	
+	/// This account is on hold
+	case onHold = "on-hold"
+	
+	/// The ccount status is unknown
+	case unknown = "unknown"
 }
 
 
@@ -209,7 +216,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/action-required-behavior
 */
 public enum ActionRequiredBehavior: String {
 	
-	/// An action with this behavior must be included in the actions processed by the end user; the end user may not
+	/// An action with this behavior must be included in the actions processed by the end user; the end user SHALL not
 	/// choose not to include this action
 	case must = "must"
 	
@@ -240,7 +247,7 @@ public enum ActionSelectionBehavior: String {
 	/// user, or none may be selected
 	case allOrNone = "all-or-none"
 	
-	/// The end user must choose one and only one of the selectable actions in the group. The user may not choose none
+	/// The end user must choose one and only one of the selectable actions in the group. The user SHALL not choose none
 	/// of the actions in the group
 	case exactlyOne = "exactly-one"
 	
@@ -329,8 +336,11 @@ public enum AddressUse: String {
 	/// A temporary address. The period can provide more detailed information.
 	case temp = "temp"
 	
-	/// This address is no longer in use (or was never correct, but retained for records).
+	/// This address is no longer in use (or was never correct but retained for records).
 	case old = "old"
+	
+	/// An address to be used to send bills, invoices, receipts etc.
+	case billing = "billing"
 }
 
 
@@ -357,34 +367,70 @@ public enum AdministrativeGender: String {
 
 
 /**
-Overall categorization of the event, e.g. real or potential
+Overall nature of the event, e.g. real or potential
+
+URL: http://hl7.org/fhir/adverse-event-actuality
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-actuality
+*/
+public enum AdverseEventActuality: String {
+	
+	/// actual
+	case actual = "actual"
+	
+	/// potential
+	case potential = "potential"
+}
+
+
+/**
+Overall categorization of the event, e.g. product related or situational
 
 URL: http://hl7.org/fhir/adverse-event-category
 ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-category
 */
 public enum AdverseEventCategory: String {
 	
-	/// AE
-	case AE = "AE"
+	/// productProblem
+	case productProblem = "ProductProblem"
 	
-	/// PAE
-	case PAE = "PAE"
-}
-
-
-/**
-TODO
-
-URL: http://hl7.org/fhir/adverse-event-causality
-ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality
-*/
-public enum AdverseEventCausality: String {
+	/// productQuality
+	case productQuality = "ProductQuality"
 	
-	/// causality1
-	case causality1 = "causality1"
+	/// productUseError
+	case productUseError = "ProductUseError"
 	
-	/// causality2
-	case causality2 = "causality2"
+	/// wrongDose
+	case wrongDose = "WrongDose"
+	
+	/// incorrectPrescribingInformation
+	case incorrectPrescribingInformation = "IncorrectPrescribingInformation"
+	
+	/// wrongTechnique
+	case wrongTechnique = "WrongTechnique"
+	
+	/// wrongRouteOfAdministration
+	case wrongRouteOfAdministration = "WrongRouteOfAdministration"
+	
+	/// wrongRate
+	case wrongRate = "WrongRate"
+	
+	/// wrongDuration
+	case wrongDuration = "WrongDuration"
+	
+	/// wrongTime
+	case wrongTime = "WrongTime"
+	
+	/// expiredDrug
+	case expiredDrug = "ExpiredDrug"
+	
+	/// medicalDeviceUseError
+	case medicalDeviceUseError = "MedicalDeviceUseError"
+	
+	/// problemDifferentManufacturer
+	case problemDifferentManufacturer = "ProblemDifferentManufacturer"
+	
+	/// unsafePhysicalEnvironment
+	case unsafePhysicalEnvironment = "UnsafePhysicalEnvironment"
 }
 
 
@@ -396,11 +442,32 @@ ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-assess
 */
 public enum AdverseEventCausalityAssessment: String {
 	
-	/// assess1
-	case assess1 = "assess1"
+	/// i) Event or laboratory test abnormality, with plausible time relationship to drug intake ii) Cannot be explained
+	/// by disease or other drugs iii) Response to withdrawal plausible (pharmacologically, pathologically) iv) Event
+	/// definitive pharmacologically or phenomenologically (i.e. an objective and specific medical disorder or a
+	/// recognized pharmacological phenomenon) v) Re-challenge satisfactory, if necessary
+	case certain = "Certain"
 	
-	/// assess2
-	case assess2 = "assess2"
+	/// i) Event or laboratory test abnormality, with reasonable time relationship to drug intake ii) Unlikely to be
+	/// attributed to disease or other drugs iii) Response to withdrawal clinically reasonable iv) Re-challenge not
+	/// required
+	case probablyLikely = "Probably-Likely"
+	
+	/// i) Event or laboratory test abnormality, with reasonable time relationship to drug intake ii) Could also be
+	/// explained by disease or other drugs iii) Information on drug withdrawal may be lacking or unclear
+	case possible = "Possible"
+	
+	/// i) Event or laboratory test abnormality, with a time to drug intake that makes a relationship improbable (but
+	/// not impossible) ii) Disease or other drugs provide plausible explanations
+	case unlikely = "Unlikely"
+	
+	/// i) Event or laboratory test abnormality ii) More data for proper assessment needed, or iii) Additional data
+	/// under examination
+	case conditionalClassified = "Conditional-Classified"
+	
+	/// i) Report suggesting an adverse reaction ii) Cannot be judged because information is insufficient or
+	/// contradictory iii) Data cannot be supplemented or verified
+	case unassessableUnclassifiable = "Unassessable-Unclassifiable"
 }
 
 
@@ -412,27 +479,14 @@ ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-method
 */
 public enum AdverseEventCausalityMethod: String {
 	
-	/// method1
-	case method1 = "method1"
+	/// probabilityScale
+	case probabilityScale = "ProbabilityScale"
 	
-	/// method2
-	case method2 = "method2"
-}
-
-
-/**
-TODO
-
-URL: http://hl7.org/fhir/adverse-event-causality-result
-ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-causality-result
-*/
-public enum AdverseEventCausalityResult: String {
+	/// bayesian
+	case bayesian = "Bayesian"
 	
-	/// result1
-	case result1 = "result1"
-	
-	/// result2
-	case result2 = "result2"
+	/// checklist
+	case checklist = "Checklist"
 }
 
 
@@ -471,6 +525,41 @@ URL: http://hl7.org/fhir/adverse-event-seriousness
 ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-seriousness
 */
 public enum AdverseEventSeriousness: String {
+	
+	/// Non-serious
+	case nonSerious = "Non-serious"
+	
+	/// Serious
+	case serious = "Serious"
+	
+	/// Results in death
+	case seriousResultsInDeath = "SeriousResultsInDeath"
+	
+	/// Is Life-threatening
+	case seriousIsLifeThreatening = "SeriousIsLifeThreatening"
+	
+	/// Requires inpatient hospitalization or causes prolongation of existing hospitalization
+	case seriousResultsInHospitalization = "SeriousResultsInHospitalization"
+	
+	/// Results in persistent or significant disability/incapacity
+	case seriousResultsInDisability = "SeriousResultsInDisability"
+	
+	/// Is a congenital anomaly/birth defect
+	case seriousIsBirthDefect = "SeriousIsBirthDefect"
+	
+	/// Requires intervention to prevent permanent impairment or damage (i.e., an important medical event that requires
+	/// medical judgement)
+	case seriousRequiresPreventImpairment = "SeriousRequiresPreventImpairment"
+}
+
+
+/**
+The severity of the adverse event itself, in direct relation to the subject
+
+URL: http://hl7.org/fhir/adverse-event-severity
+ValueSet: http://hl7.org/fhir/ValueSet/adverse-event-severity
+*/
+public enum AdverseEventSeverity: String {
 	
 	/// mild
 	case mild = "Mild"
@@ -678,6 +767,34 @@ public enum AllergyIntoleranceVerificationStatus: String {
 
 
 /**
+Indicates the type of use for which the code is defined
+
+URL: http://hl7.org/fhir/codesystem-altcode-kind
+ValueSet: http://hl7.org/fhir/ValueSet/codesystem-altcode-kind
+*/
+public enum AlternativeCodeKind: String {
+	
+	/// The code is an alternative code that can be used in any of the circumstances that the primary code can be used
+	case alternate = "alternate"
+	
+	/// The code should no longer be used, but was used in the past
+	case deprecated = "deprecated"
+	
+	/// The code is an alternative to be used when a case insensitive code is required (when the primary codes are case
+	/// sensitive)
+	case caseInsensitive = "case-insensitive"
+	
+	/// The code is an alternative to be used when a case sensitive code is required (when the primary codes are case
+	/// insensitive)
+	case caseSensitive = "case-sensitive"
+	
+	/// The code is an alternative for the primary code that is built using the expression grammar defined by the code
+	/// system
+	case expression = "expression"
+}
+
+
+/**
 The free/busy status of an appointment.
 
 URL: http://hl7.org/fhir/appointmentstatus
@@ -686,7 +803,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/appointmentstatus
 public enum AppointmentStatus: String {
 	
 	/// None of the participant(s) have finalized their acceptance of the appointment request, and the start/end time
-	/// may not be set yet.
+	/// might not be set yet.
 	case proposed = "proposed"
 	
 	/// Some or all of the participant(s) have not finalized their acceptance of the appointment request.
@@ -696,7 +813,7 @@ public enum AppointmentStatus: String {
 	/// specified.
 	case booked = "booked"
 	
-	/// Some of the patients have arrived.
+	/// The patient/patients has/have arrived and is/are waiting to be seen
 	case arrived = "arrived"
 	
 	/// This appointment has completed and may have resulted in an encounter.
@@ -710,6 +827,10 @@ public enum AppointmentStatus: String {
 	
 	/// This instance should not have been part of this patient's medical record.
 	case enteredInError = "entered-in-error"
+	
+	/// When checked in, all pre-encounter administrative work is complete, and the encounter may begin. (where multiple
+	/// patients are involved, they are all present)
+	case checkedIn = "checked-in"
 }
 
 
@@ -767,7 +888,7 @@ public enum AssertionOperatorType: String {
 	/// Compare value string does not contain a known value.
 	case notContains = "notContains"
 	
-	/// Evaluate the fluentpath expression as a boolean condition.
+	/// Evaluate the FHIRPath expression as a boolean condition.
 	case eval = "eval"
 }
 
@@ -871,6 +992,67 @@ public enum BindingStrength: String {
 
 
 /**
+Biologically Derived Product Category
+
+URL: http://hl7.org/fhir/product-category
+ValueSet: http://hl7.org/fhir/ValueSet/product-category
+*/
+public enum BiologicallyDerivedProductCategory: String {
+	
+	/// A collection of tissues joined in a structural unit to serve a common function.
+	case organ = "organ"
+	
+	/// An ensemble of similar cells and their extracellular matrix from the same origin that together carry out a
+	/// specific function.
+	case tissue = "tissue"
+	
+	/// Body fluid
+	case fluid = "fluid"
+	
+	/// Collection of cells
+	case cells = "cells"
+	
+	/// Biological agent of unspecified type
+	case biologicalAgent = "biologicalAgent"
+}
+
+
+/**
+Biologically Derived Product Status
+
+URL: http://hl7.org/fhir/product-status
+ValueSet: http://hl7.org/fhir/ValueSet/product-status
+*/
+public enum BiologicallyDerivedProductStatus: String {
+	
+	/// Product is currently available for use.
+	case available = "available"
+	
+	/// Product is not currently available for use.
+	case unavailable = "unavailable"
+}
+
+
+/**
+BiologicallyDerived Product Storage Scale
+
+URL: http://hl7.org/fhir/product-storage-scale
+ValueSet: http://hl7.org/fhir/ValueSet/product-storage-scale
+*/
+public enum BiologicallyDerivedProductStorageScale: String {
+	
+	/// Fahrenheit temperature scale
+	case farenheit = "farenheit"
+	
+	/// Celsius or centigrade temperature scale
+	case celsius = "celsius"
+	
+	/// Kelvin absolute thermodynamic temperature scale
+	case kelvin = "kelvin"
+}
+
+
+/**
 Indicates the purpose of a bundle - how it was intended to be used.
 
 URL: http://hl7.org/fhir/bundle-type
@@ -909,6 +1091,131 @@ public enum BundleType: String {
 
 
 /**
+Ability of the primary source to push updates/alerts
+
+URL: http://hl7.org/fhir/can-push-updates
+ValueSet: http://hl7.org/fhir/ValueSet/can-push-updates
+*/
+public enum CanPushUpdates: String {
+	
+	/// yes
+	case yes = "yes"
+	
+	/// no
+	case no = "no"
+	
+	/// undetermined
+	case undetermined = "undetermined"
+}
+
+
+/**
+The master set of status codes used throughout FHIR. All status codes are mapped to one of these codes.
+
+URL: http://hl7.org/fhir/resource-status
+ValueSet: http://hl7.org/fhir/ValueSet/resource-status
+*/
+public enum CanonicalStatusCodesForFHIRResources: String {
+	
+	/// The resource was created in error, and should not be treated as valid (note: in many cases, for various data
+	/// integrity related reasons, the information cannot be removed from the record)
+	case error = "error"
+	
+	/// The resource describes an action or plan that is proposed, and not yet approved by the participants
+	case proposed = "proposed"
+	
+	/// The resource describes a course of action that is planned and agreed/approved, but at the time of recording was
+	/// still future
+	case planned = "planned"
+	
+	/// The information in the resource is still being prepared and edited
+	case draft = "draft"
+	
+	/// A fulfiller has been asked to perform this action, but it has not yet occurred
+	case requested = "requested"
+	
+	/// The fulfiller has received the request, but not yet agreed to carry out the action
+	case received = "received"
+	
+	/// The fulfiller chose not to perform the action
+	case declined = "declined"
+	
+	/// The fulfiller has decided to perform the action, and plans are in train to do this in the future
+	case accepted = "accepted"
+	
+	/// The pre-conditions for the action are all fulfilled, and it is imminent
+	case arrived = "arrived"
+	
+	/// The resource describes information that is currently valid or a process that is presently occuring
+	case active = "active"
+	
+	/// The process described/requested in this resource has been halted for some reason
+	case suspended = "suspended"
+	
+	/// The process described/requested in the resource could not be completed, and no further action is planned
+	case failed = "failed"
+	
+	/// The information in this resource has been replaced by information in another resource
+	case replaced = "replaced"
+	
+	/// The process described/requested in the resource has been completed, and no further action is planned
+	case complete = "complete"
+	
+	/// The resource describes information that is no longer valid or a process that is stopped occurring
+	case inactive = "inactive"
+	
+	/// The process described/requested in the resource did not complete - usually due to some workflow error, and no
+	/// further action is planned
+	case abandoned = "abandoned"
+	
+	/// Authoring system does not know the status
+	case unknown = "unknown"
+	
+	/// The information in this resource is not yet approved
+	case unconfirmed = "unconfirmed"
+	
+	/// The information in this resource is approved
+	case confirmed = "confirmed"
+	
+	/// The issue identified by this resource is no longer of concern
+	case resolved = "resolved"
+	
+	/// This information has been ruled out by testing and evaluation
+	case refuted = "refuted"
+	
+	/// Potentially true?
+	case differential = "differential"
+	
+	/// This information is still being assembled
+	case partial = "partial"
+	
+	/// not available at this time/location
+	case busyUnavailable = "busy-unavailable"
+	
+	/// Free for scheduling
+	case free = "free"
+	
+	/// Ready to act
+	case onTarget = "on-target"
+	
+	/// Ahead of the planned timelines
+	case aheadOfTarget = "ahead-of-target"
+	
+	/// behindTarget
+	case behindTarget = "behind-target"
+	
+	/// Behind the planned timelines
+	case notReady = "not-ready"
+	
+	/// The device transducer is disconnected
+	case transducDiscon = "transduc-discon"
+	
+	/// The hardware is disconnected
+	case hwDiscon = "hw-discon"
+}
+
+
+/**
 How a capability statement is intended to be used.
 
 URL: http://hl7.org/fhir/capability-statement-kind
@@ -917,7 +1224,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/capability-statement-kind
 public enum CapabilityStatementKind: String {
 	
 	/// The CapabilityStatement instance represents the present capabilities of a specific system instance.  This is the
-	/// kind returned by OPTIONS for a FHIR server end-point.
+	/// kind returned by /metadata for a FHIR server end-point.
 	case instance = "instance"
 	
 	/// The CapabilityStatement instance represents the capabilities of a system or piece of software, independent of a
@@ -950,13 +1257,16 @@ public enum CarePlanActivityStatus: String {
 	/// Activity was started but has temporarily ceased with an expectation of resumption at a future time.
 	case onHold = "on-hold"
 	
-	/// The activities have been completed (more or less) as planned.
+	/// The activity has been completed (more or less) as planned.
 	case completed = "completed"
 	
-	/// The activities have been ended prior to completion (perhaps even before they were started).
+	/// The planned activity has been withdrawn.
 	case cancelled = "cancelled"
 	
-	/// The authoring system doesn't know the current state of the activity.
+	/// The planned activity has been ended prior to completion after the activity was started.
+	case stopped = "stopped"
+	
+	/// The current state of the activity is not known.  Note: This concept is not to be used for "other".
 	case unknown = "unknown"
 }
 
@@ -1085,7 +1395,26 @@ public enum CareTeamStatus: String {
 
 
 /**
-Codes identifying the stage lifecycle stage of a ChargeItem
+The type of catalog
+
+URL: http://hl7.org/fhir/catalogType
+ValueSet: http://hl7.org/fhir/ValueSet/catalogType
+*/
+public enum CatalogType: String {
+	
+	/// Medication Catalog
+	case medication = "medication"
+	
+	/// Device Catalog
+	case device = "device"
+	
+	/// Protocol List
+	case protocol_fhir = "protocol"
+}
+
+
+/**
+Codes identifying the lifecycle stage of a ChargeItem
 
 URL: http://hl7.org/fhir/chargeitem-status
 ValueSet: http://hl7.org/fhir/ValueSet/chargeitem-status
@@ -1158,22 +1487,6 @@ public enum ClaimPayeeResourceType: String {
 
 
 /**
-Identifies whether a useContext represents a context or classification for the element
-
-URL: http://hl7.org/fhir/classification-or-context
-ValueSet: http://hl7.org/fhir/ValueSet/classification-or-context
-*/
-public enum ClassificationOrContext: String {
-	
-	/// Indicates the useContext is a classification - e.g. Administrative, financial, etc.
-	case classification = "classification"
-	
-	/// Indicates the useContext is a context - a domain of use - e.g. Particular country, organization or system
-	case context = "context"
-}
-
-
-/**
 The workflow state of a clinical impression.
 
 URL: http://hl7.org/fhir/clinical-impression-status
@@ -1189,6 +1502,22 @@ public enum ClinicalImpressionStatus: String {
 	
 	/// This assessment was never actually done and the record is erroneous (e.g. Wrong patient).
 	case enteredInError = "entered-in-error"
+}
+
+
+/**
+The degree to which the server supports the code search parameter on ValueSet, if it is supported
+
+URL: http://hl7.org/fhir/code-search-support
+ValueSet: http://hl7.org/fhir/ValueSet/code-search-support
+*/
+public enum CodeSearchSupport: String {
+	
+	/// The search for code on ValueSet only includes codes explicitly detailed on includes or expansions
+	case explicit = "explicit"
+	
+	/// The search for code on ValueSet only includes all codes based on the expansion of the value set
+	case all = "all"
 }
 
 
@@ -1212,6 +1541,10 @@ public enum CodeSystemContentMode: String {
 	
 	/// All the concepts defined by the code system are included in the code system resource
 	case complete = "complete"
+	
+	/// The resource doesn't define any new concepts; it just provides additional designations and properties to another
+	/// code system
+	case supplement = "supplement"
 }
 
 
@@ -1289,6 +1622,34 @@ public enum CommunicationNotDoneReason: String {
 	
 	/// The communication was not done due to a patient objection.
 	case patientObjection = "patient-objection"
+}
+
+
+/**
+Codes describing the purpose or content of the communication.
+
+URL: http://hl7.org/fhir/communication-topic
+ValueSet: http://hl7.org/fhir/ValueSet/communication-topic
+*/
+public enum CommunicationTopic: String {
+	
+	/// The purpose of the communication is a prescription refill request.
+	case prescriptionRefillRequest = "prescription-refill-request"
+	
+	/// The purpose of the communication is a progress update.
+	case progressUpdate = "progress-update"
+	
+	/// The purpose of the communication is to report labs.
+	case reportLabs = "report-labs"
+	
+	/// The purpose of the communication is an appointment reminder.
+	case appointmentReminder = "appointment-reminder"
+	
+	/// The purpose of the communication is a phone consult.
+	case phoneConsult = "phone-consult"
+	
+	/// The purpose of the communication is a summary report.
+	case summaryReport = "summary-report"
 }
 
 
@@ -1426,11 +1787,11 @@ public enum ConceptMapEquivalence: String {
 	
 	/// The target mapping overlaps with the source concept, but both source and target cover additional meaning, or the
 	/// definitions are imprecise and it is uncertain whether they have the same boundaries to their meaning. The sense
-	/// in which the mapping is narrower SHALL be described in the comments in this case, and applications should be
+	/// in which the mapping is inexact SHALL be described in the comments in this case, and applications should be
 	/// careful when attempting to use these mappings operationally.
 	case inexact = "inexact"
 	
-	/// There is no match for this concept in the destination concept system.
+	/// There is no match for this concept in the target code system.
 	case unmatched = "unmatched"
 	
 	/// This is an explicit assertion that there is no mapping between the source and target concept.
@@ -1484,6 +1845,9 @@ ValueSet: http://hl7.org/fhir/ValueSet/condition-ver-status
 */
 public enum ConditionVerificationStatus: String {
 	
+	/// There is not sufficient diagnostic and/or clinical evidence to treat this as a confirmed condition.
+	case unconfirmed = "unconfirmed"
+	
 	/// This is a tentative diagnosis - still a candidate that is under consideration.
 	case provisional = "provisional"
 	
@@ -1499,10 +1863,6 @@ public enum ConditionVerificationStatus: String {
 	
 	/// The statement was entered in error and is not valid.
 	case enteredInError = "entered-in-error"
-	
-	/// The condition status is unknown.  Note that "unknown" is a value of last resort and every attempt should be made
-	/// to provide a meaningful value other than "unknown".
-	case unknown = "unknown"
 }
 
 
@@ -1533,7 +1893,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/conditional-read-status
 */
 public enum ConditionalReadStatus: String {
 	
-	/// No support for conditional deletes.
+	/// No support for conditional reads
 	case notSupported = "not-supported"
 	
 	/// Conditional reads are supported, but only with the If-Modified-Since HTTP Header.
@@ -1595,46 +1955,18 @@ public enum ConsentDataMeaning: String {
 
 
 /**
-How an exception statement is applied, such as adding additional consent or removing consent
+How a rule statement is applied, such as adding additional consent or removing consent
 
-URL: http://hl7.org/fhir/consent-except-type
-ValueSet: http://hl7.org/fhir/ValueSet/consent-except-type
+URL: http://hl7.org/fhir/consent-provision-type
+ValueSet: http://hl7.org/fhir/ValueSet/consent-provision-type
 */
-public enum ConsentExceptType: String {
+public enum ConsentProvisionType: String {
 	
 	/// Consent is denied for actions meeting these rules
 	case deny = "deny"
 	
 	/// Consent is provided for actions meeting these rules
 	case permit = "permit"
-}
-
-
-/**
-Indicates the state of the consent
-
-URL: http://hl7.org/fhir/consent-state-codes
-ValueSet: http://hl7.org/fhir/ValueSet/consent-state-codes
-*/
-public enum ConsentState: String {
-	
-	/// The consent is in development or awaiting use but is not yet intended to be acted upon.
-	case draft = "draft"
-	
-	/// The consent has been proposed but not yet agreed to by all parties. The negotiation stage.
-	case proposed = "proposed"
-	
-	/// The consent is to be followed and enforced.
-	case active = "active"
-	
-	/// The consent has been rejected by one or more of the parties.
-	case rejected = "rejected"
-	
-	/// The consent is terminated or replaced.
-	case inactive = "inactive"
-	
-	/// The consent was created wrongly (e.g. wrong patient) and should be ignored
-	case enteredInError = "entered-in-error"
 }
 
 
@@ -1680,7 +2012,7 @@ public enum ContactPointSystem: String {
 	/// various personal contacts including blogs, Skype, Twitter, Facebook, etc. Do not use for email addresses.
 	case url = "url"
 	
-	/// A contact that can be used for sending an sms message (e.g. mobide phones, some landlines)
+	/// A contact that can be used for sending an sms message (e.g. mobile phones, some landlines)
 	case sms = "sms"
 	
 	/// A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail
@@ -1719,24 +2051,55 @@ public enum ContactPointUse: String {
 
 
 /**
-The content or mime type.
+Color of the container cap
 
-URL: http://hl7.org/fhir/content-type
-ValueSet: http://hl7.org/fhir/ValueSet/content-type
+URL: http://hl7.org/fhir/container-cap
+ValueSet: http://hl7.org/fhir/ValueSet/container-cap
 */
-public enum ContentType: String {
+public enum ContainerCap: String {
 	
-	/// XML content-type corresponding to the application/fhir+xml mime-type.
-	case xml = "xml"
+	/// red cap
+	case red = "red"
 	
-	/// JSON content-type corresponding to the application/fhir+json mime-type.
-	case json = "json"
+	/// yellow cap
+	case yellow = "yellow"
 	
-	/// RDF content-type corresponding to the text/turtle mime-type.
-	case ttl = "ttl"
+	/// grey cap
+	case grey = "grey"
 	
-	/// Prevent the use of the corresponding http header.
-	case none = "none"
+	/// violet cap
+	case violet = "violet"
+	
+	/// blue cap
+	case blue = "blue"
+	
+	/// black cap
+	case black = "black"
+	
+	/// green cap
+	case green = "green"
+}
+
+
+/**
+How a resource reference is interpreted when evaluating contract offers
+
+URL: http://hl7.org/fhir/contract-data-meaning
+ValueSet: http://hl7.org/fhir/ValueSet/contract-data-meaning
+*/
+public enum ContractDataMeaning: String {
+	
+	/// The consent applies directly to the instance of the resource
+	case instance = "instance"
+	
+	/// The consent applies directly to the instance of the resource and instances it refers to
+	case related = "related"
+	
+	/// The consent applies directly to the instance of the resource and instances that refer to it
+	case dependents = "dependents"
+	
+	/// The consent applies to instances of resources that are authored by
+	case authoredby = "authoredby"
 }
 
 
@@ -1770,7 +2133,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/copy-number-event
 */
 public enum CopyNumberEvent: String {
 	
-	/// amplificaiton
+	/// amplification
 	case amp = "amp"
 	
 	/// deletion
@@ -1789,75 +2152,56 @@ ValueSet: http://hl7.org/fhir/ValueSet/data-absent-reason
 */
 public enum DataAbsentReason: String {
 	
-	/// The value is not known.
+	/// The value is expected to exist but is not known.
 	case unknown = "unknown"
 	
-	/// The source human does not know the value.
-	case asked = "asked"
+	/// The source was asked but does not know the value.
+	case askedUnknown = "asked-unknown"
 	
 	/// There is reason to expect (from the workflow) that the value may become known.
-	case temp = "temp"
+	case tempUnknown = "temp-unknown"
 	
 	/// The workflow didn't lead to this value being known.
 	case notAsked = "not-asked"
 	
+	/// The source was asked but declined to answer.
+	case askedDeclined = "asked-declined"
+	
 	/// The information is not available due to security, privacy or related reasons.
 	case masked = "masked"
+	
+	/// There is no proper value for this element (e.g. last menstrual period for a male)
+	case notApplicable = "not-applicable"
 	
 	/// The source system wasn't capable of supporting this element.
 	case unsupported = "unsupported"
 	
 	/// The content of the data is represented in the resource narrative.
-	case astext = "astext"
+	case asText = "as-text"
 	
 	/// Some system or workflow process error means that the information is not available.
 	case error = "error"
 	
-	/// NaN, standing for not a number, is a numeric data type value representing an undefined or unrepresentable value.
-	case naN = "NaN"
+	/// The numeric value is undefined or unrepresentable due to a floating point processing error.
+	case notANumber = "not-a-number"
+	
+	/// The numeric value is excessively low and unrepresentable due to a floating point processing error.
+	case negativeInfinity = "negative-infinity"
+	
+	/// The numeric value is excessively high and unrepresentable due to a floating point processing error.
+	case positiveInfinity = "positive-infinity"
 	
 	/// The value is not available because the observation procedure (test, etc.) was not performed.
 	case notPerformed = "not-performed"
+	
+	/// The value is not permitted in this context (e.g. due to profiles, or the base data types)
+	case notPermitted = "not-permitted"
 }
 
 
 /**
-Indicates the degree of precision of the data element definition.
-
-URL: http://hl7.org/fhir/dataelement-stringency
-ValueSet: http://hl7.org/fhir/ValueSet/dataelement-stringency
-*/
-public enum DataElementStringency: String {
-	
-	/// The data element is sufficiently well-constrained that multiple pieces of data captured according to the
-	/// constraints of the data element will be comparable (though in some cases, a degree of automated
-	/// conversion/normalization may be required).
-	case comparable = "comparable"
-	
-	/// The data element is fully specified down to a single value set, single unit of measure, single data type, etc.
-	/// Multiple pieces of data associated with this data element are fully comparable.
-	case fullySpecified = "fully-specified"
-	
-	/// The data element allows multiple units of measure having equivalent meaning; e.g. "cc" (cubic centimeter) and
-	/// "mL" (milliliter).
-	case equivalent = "equivalent"
-	
-	/// The data element allows multiple units of measure that are convertable between each other (e.g. inches and
-	/// centimeters) and/or allows data to be captured in multiple value sets for which a known mapping exists allowing
-	/// conversion of meaning.
-	case convertable = "convertable"
-	
-	/// A convertable data element where unit conversions are different only by a power of 10; e.g. g, mg, kg.
-	case scaleable = "scaleable"
-	
-	/// The data element is unconstrained in units, choice of data types and/or choice of vocabulary such that automated
-	/// comparison of data captured using the data element is not possible.
-	case flexible = "flexible"
-}
-
-
-/**
-The type of an element - one of the FHIR data types.
+A version specific list of the data types defined by the FHIR specification for use as an element  type (any of the FHIR
+defined data types)
 
 URL: http://hl7.org/fhir/data-types
 ValueSet: http://hl7.org/fhir/ValueSet/data-types
@@ -1929,8 +2273,12 @@ public enum DataType: String {
 	/// A technical identifier - identifies some entity uniquely and unambiguously.
 	case identifier = "Identifier"
 	
+	/// The marketing status describes the date when a medicinal product is actually put on the market or the date as of
+	/// which it is no longer available.
+	case marketingStatus = "MarketingStatus"
+	
 	/// The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes
-	/// to the content may not always be associated with version changes to the resource.
+	/// to the content might not always be associated with version changes to the resource.
 	case meta = "Meta"
 	
 	/// An amount of economic utility in some recognized currency.
@@ -1946,6 +2294,14 @@ public enum DataType: String {
 	
 	/// A time period defined by a start and end date and optionally time.
 	case period = "Period"
+	
+	/// The marketing status describes the date when a medicinal product is actually put on the market or the date as of
+	/// which it is no longer available.
+	case prodCharacteristic = "ProdCharacteristic"
+	
+	/// The shelf-life and storage information for a medicinal product item or container can be described using this
+	/// class.
+	case productShelfLife = "ProductShelfLife"
 	
 	/// A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts
 	/// that are not precisely quantified, including amounts involving arbitrary units and floating currencies.
@@ -1967,13 +2323,28 @@ public enum DataType: String {
 	/// the data.
 	case sampledData = "SampledData"
 	
-	/// A digital signature along with supporting context. The signature may be electronic/cryptographic in nature, or a
-	/// graphical image representing a hand-written signature, or a signature process. Different signature approaches
-	/// have different utilities.
+	/// A signature along with supporting context. The signature may be a digital signature that is cryptographic in
+	/// nature, or some other signature acceptable to the domain. This other signature may be as simple as a graphical
+	/// image representing a hand-written signature, or a signature ceremony Different signature approaches have
+	/// different utilities.
 	case signature = "Signature"
 	
 	/// simpleQuantity
 	case simpleQuantity = "SimpleQuantity"
+	
+	/// Chemical substances are a single substance type whose primary defining element is the molecular structure.
+	/// Chemical substances shall be defined on the basis of their complete covalent molecular structure; the presence
+	/// of a salt (counter-ion) and/or solvates (water, alcohols) is also captured. Purity, grade, physical form or
+	/// particle size are not taken into account in the definition of a chemical substance or in the assignment of a
+	/// Substance ID.
+	case substanceAmount = "SubstanceAmount"
+	
+	/// Chemical substances are a single substance type whose primary defining element is the molecular structure.
+	/// Chemical substances shall be defined on the basis of their complete covalent molecular structure; the presence
+	/// of a salt (counter-ion) and/or solvates (water, alcohols) is also captured. Purity, grade, physical form or
+	/// particle size are not taken into account in the definition of a chemical substance or in the assignment of a
+	/// Substance ID.
+	case substanceMoiety = "SubstanceMoiety"
 	
 	/// Specifies an event that may occur multiple times. Timing schedules are used to record when things are planned,
 	/// expected or requested to occur. The most common usage is in dosage instructions for medications. They are also
@@ -1981,12 +2352,13 @@ public enum DataType: String {
 	/// activities were carried out.
 	case timing = "Timing"
 	
-	/// A description of a triggering event.
+	/// A description of a triggering event. Triggering events can be named events, data events, or periodic, as
+	/// determined by the type element.
 	case triggerDefinition = "TriggerDefinition"
 	
-	/// Specifies clinical/business/etc metadata that can be used to retrieve, index and/or categorize an artifact. This
-	/// metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific context
-	/// of care (e.g., venue, care setting, provider of care).
+	/// Specifies clinical/business/etc. metadata that can be used to retrieve, index and/or categorize an artifact.
+	/// This metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific
+	/// context of care (e.g., venue, care setting, provider of care).
 	case usageContext = "UsageContext"
 	
 	/// A stream of bytes
@@ -1994,6 +2366,9 @@ public enum DataType: String {
 	
 	/// Value of "true" or "false"
 	case boolean = "boolean"
+	
+	/// A URI that is a reference to a canonical URI on a FHIR resource
+	case canonical = "canonical"
 	
 	/// A string which has at least one character and no leading or trailing whitespace and where there is no whitespace
 	/// other than single spaces in the contents
@@ -2023,7 +2398,8 @@ public enum DataType: String {
 	/// A whole number
 	case integer = "integer"
 	
-	/// A string that may contain markdown syntax for optional processing by a mark down presentation engine
+	/// A string that may contain Github Flavored Markdown syntax for optional processing by a mark down presentation
+	/// engine
 	case markdown = "markdown"
 	
 	/// An OID represented as a URI
@@ -2043,6 +2419,9 @@ public enum DataType: String {
 	
 	/// String of characters used to identify a name or a resource
 	case uri = "uri"
+	
+	/// A URI that is a literal reference
+	case url = "url"
 	
 	/// A UUID, represented as a URI
 	case uuid = "uuid"
@@ -2167,7 +2546,7 @@ public enum DeviceComponentOperationalStatus: String {
 	/// The device is ready but not actively operating.
 	case standby = "standby"
 	
-	/// The device transducer is diconnected.
+	/// The device transducer is disconnected.
 	case transducDiscon = "transduc-discon"
 	
 	/// The device hardware is disconnected.
@@ -2401,7 +2780,7 @@ public enum DeviceUseStatementStatus: String {
 
 
 /**
-The status of the diagnostic report as a whole.
+The status of the diagnostic report.
 
 URL: http://hl7.org/fhir/diagnostic-report-status
 ValueSet: http://hl7.org/fhir/ValueSet/diagnostic-report-status
@@ -2442,30 +2821,10 @@ public enum DiagnosticReportStatus: String {
 	/// the status should be "cancelled" rather than "entered-in-error".)
 	case enteredInError = "entered-in-error"
 	
-	/// The authoring system does not know which of the status values currently applies for this request. Note: This
-	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known
-	/// which one.
+	/// The authoring system does not know which of the status values currently applies to this report. Note: This
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply although which one is
+	/// not known.
 	case unknown = "unknown"
-}
-
-
-/**
-Whether the media is a photo, video, or audio
-
-URL: http://hl7.org/fhir/digital-media-type
-ValueSet: http://hl7.org/fhir/ValueSet/digital-media-type
-*/
-public enum DigitalMediaType: String {
-	
-	/// The media consists of one or more unmoving images, including photographs, computer-generated graphs and charts,
-	/// and scanned documents
-	case photo = "photo"
-	
-	/// The media consists of a series of frames that capture a moving image
-	case video = "video"
-	
-	/// The media consists of a sound recording
-	case audio = "audio"
 }
 
 
@@ -2487,10 +2846,12 @@ public enum DiscriminatorType: String {
 	/// ElementDefinition.pattern[x]
 	case pattern = "pattern"
 	
-	/// The slices are differentiated by type of the nominated element to a specifed profile
+	/// The slices are differentiated by type of the nominated element
 	case type = "type"
 	
-	/// The slices are differentiated by conformance of the nominated element to a specifed profile
+	/// The slices are differentiated by conformance of the nominated element to a specified profile. Note that if the
+	/// path specifies .resolve() then the profile is the target profile on the reference. In this case, validation by
+	/// the possible profiles is required to differentiate the slices
 	case profile = "profile"
 }
 
@@ -2549,6 +2910,38 @@ public enum DocumentRelationshipType: String {
 	
 	/// This document adds additional information to the target document.
 	case appends = "appends"
+}
+
+
+/**
+The kind of dose or rate specified
+
+URL: http://hl7.org/fhir/dose-rate-type
+ValueSet: http://hl7.org/fhir/ValueSet/dose-rate-type
+*/
+public enum DoseAndRateType: String {
+	
+	/// The dose specified is calculated by the prescriber or the system
+	case calculated = "calculated"
+	
+	/// The dose specified is as ordered by the prescriber
+	case ordered = "ordered"
+}
+
+
+/**
+Controls how multiple enableWhen values are interpreted -  whether all or any must be true
+
+URL: http://hl7.org/fhir/questionnaire-enable-behavior
+ValueSet: http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior
+*/
+public enum EnableWhenBehavior: String {
+	
+	/// Enable the question when all the enableWhen criteria are satisfied
+	case all = "all"
+	
+	/// Enable the question when any of the enableWhen criteria are satisfied
+	case any = "any"
 }
 
 
@@ -2699,7 +3092,7 @@ public enum EventCapabilityMode: String {
 
 
 /**
-Codes identifying the stage lifecycle stage of a event
+Codes identifying the lifecycle stage of a event
 
 URL: http://hl7.org/fhir/event-status
 ValueSet: http://hl7.org/fhir/ValueSet/event-status
@@ -2713,10 +3106,14 @@ public enum EventStatus: String {
 	/// The event is currently occurring
 	case inProgress = "in-progress"
 	
+	/// The event was terminated prior to any impact on the subject (though preparatory actions may have been taken)
+	case notDone = "not-done"
+	
 	/// The event has been temporarily stopped but is expected to resume in the future
 	case suspended = "suspended"
 	
-	/// The event was  prior to the full completion of the intended actions
+	/// The event was  terminated prior to the full completion of the intended actions but after having at least some
+	/// impact on the subject.
 	case aborted = "aborted"
 	
 	/// The event has now concluded
@@ -2741,20 +3138,69 @@ ValueSet: http://hl7.org/fhir/ValueSet/event-timing
 */
 public enum EventTiming: String {
 	
-	/// event occurs during the morning
+	/// Event occurs during the morning. The exact time is unspecified and established by institution convention or
+	/// patient interpretation
 	case MORN = "MORN"
 	
-	/// event occurs during the afternoon
+	/// Event occurs during the early morning. The exact time is unspecified and established by institution convention
+	/// or patient interpretation
+	case mORNEarly = "MORN.early"
+	
+	/// Event occurs during the late morning. The exact time is unspecified and established by institution convention or
+	/// patient interpretation
+	case mORNLate = "MORN.late"
+	
+	/// Event occurs around 12:00pm. The exact time is unspecified and established by institution convention or patient
+	/// interpretation
+	case NOON = "NOON"
+	
+	/// Event occurs during the afternoon. The exact time is unspecified and established by institution convention or
+	/// patient interpretation
 	case AFT = "AFT"
 	
-	/// event occurs during the evening
+	/// Event occurs during the early afternoon. The exact time is unspecified and established by institution convention
+	/// or patient interpretation
+	case aFTEarly = "AFT.early"
+	
+	/// Event occurs during the late afternoon. The exact time is unspecified and established by institution convention
+	/// or patient interpretation
+	case aFTLate = "AFT.late"
+	
+	/// Event occurs during the evening. The exact time is unspecified and established by institution convention or
+	/// patient interpretation
 	case EVE = "EVE"
 	
-	/// event occurs during the night
+	/// Event occurs during the early evening. The exact time is unspecified and established by institution convention
+	/// or patient interpretation
+	case eVEEarly = "EVE.early"
+	
+	/// Event occurs during the late evening. The exact time is unspecified and established by institution convention or
+	/// patient interpretation
+	case eVELate = "EVE.late"
+	
+	/// Event occurs during the night. The exact time is unspecified and established by institution convention or
+	/// patient interpretation
 	case NIGHT = "NIGHT"
 	
-	/// event occurs [offset] after subject goes to sleep
+	/// Event occurs [offset] after subject goes to sleep. The exact time is unspecified and established by institution
+	/// convention or patient interpretation
 	case PHS = "PHS"
+}
+
+
+/**
+The type of actor - system or human
+
+URL: http://hl7.org/fhir/examplescenario-actor-type
+ValueSet: http://hl7.org/fhir/ValueSet/examplescenario-actor-type
+*/
+public enum ExampleScenarioActorType: String {
+	
+	/// A person
+	case person = "person"
+	
+	/// A system
+	case entity = "entity"
 }
 
 
@@ -2781,27 +3227,45 @@ public enum ExplanationOfBenefitStatus: String {
 
 
 /**
+The media type of the expression language
+
+URL: http://hl7.org/fhir/expression-language
+ValueSet: http://hl7.org/fhir/ValueSet/expression-language
+*/
+public enum ExpressionLanguage: String {
+	
+	/// Clinical Quality Language
+	case textCql = "text/cql"
+	
+	/// FHIRPath
+	case textFhirpath = "text/fhirpath"
+}
+
+
+/**
 How an extension context is interpreted.
 
-URL: http://hl7.org/fhir/extension-context
-ValueSet: http://hl7.org/fhir/ValueSet/extension-context
+URL: http://hl7.org/fhir/extension-context-type
+ValueSet: http://hl7.org/fhir/ValueSet/extension-context-type
 */
-public enum ExtensionContext: String {
+public enum ExtensionContextType: String {
 	
-	/// The context is all elements matching a particular resource element path.
-	case resource = "resource"
+	/// The context is all elements that match the FHIRPath query found in the expression.
+	case fhirpath = "fhirpath"
 	
-	/// The context is all nodes matching a particular data type element path (root or repeating element) or all
-	/// elements referencing a particular primitive data type (expressed as the datatype name).
-	case datatype = "datatype"
+	/// The context is any element that has an ElementDefinition.id that matches that found in the expression. This
+	/// includes ElementDefinition Ids that have slicing identifiers. The full path for the element is
+	/// [url]#[elementid]. If there is no #, the Element id is one defined in the base specification
+	case element = "element"
 	
-	/// The context is a particular extension from a particular profile, a uri that identifies the extension definition.
+	/// The context is a particular extension from a particular profile, and the expression is just a uri that
+	/// identifies the extension
 	case extension_fhir = "extension"
 }
 
 
 /**
-A set of common concept properties for use on coded systems through out the FHIR eco-system.
+A set of common concept properties for use on coded systems throughout the FHIR eco-system.
 
 URL: http://hl7.org/fhir/concept-properties
 ValueSet: http://hl7.org/fhir/ValueSet/concept-properties
@@ -2819,7 +3283,7 @@ public enum FHIRDefinedConceptProperties: String {
 	
 	/// The concept is not intended to be chosen by the user - only intended to be used as a selector for other
 	/// concepts. Note, though, that the interpretation of this is highly contextual; all concepts are selectable in
-	/// some context. Property type is boolean, default value is false
+	/// some context. Property type is boolean
 	case notSelectable = "notSelectable"
 	
 	/// The concept identified in this property is a parent of the concept on which it is a property. The property type
@@ -2840,15 +3304,15 @@ ValueSet: http://hl7.org/fhir/ValueSet/device-status
 */
 public enum FHIRDeviceStatus: String {
 	
-	/// The Device is available for use.  Note: This means for *implanted devices*  the device is implanted in the
+	/// The device is available for use.  Note: For *implanted devices*  this means that the device is implanted in the
 	/// patient.
 	case active = "active"
 	
-	/// The Device is no longer available for use (e.g. lost, expired, damaged).  Note: This means for *implanted
-	/// devices*  the device has been removed from the patient.
+	/// The device is no longer available for use (e.g. lost, expired, damaged).  Note: For *implanted devices*  this
+	/// means that the device has been removed from the patient.
 	case inactive = "inactive"
 	
-	/// The Device was entered in error and voided.
+	/// The device was entered in error and voided.
 	case enteredInError = "entered-in-error"
 	
 	/// The status of the device has not been determined.
@@ -2937,12 +3401,34 @@ public enum FHIRSubstanceStatus: String {
 
 
 /**
-Codes describing the reason why a family member history was not done.
+The result if validation fails
 
-URL: http://hl7.org/fhir/history-not-done-reason
-ValueSet: http://hl7.org/fhir/ValueSet/history-not-done-reason
+URL: http://hl7.org/fhir/failure-action
+ValueSet: http://hl7.org/fhir/ValueSet/failure-action
 */
-public enum FamilyHistoryNotDoneReason: String {
+public enum FailureAction: String {
+	
+	/// fatal
+	case fatal = "fatal"
+	
+	/// warn
+	case warn = "warn"
+	
+	/// recOnly
+	case recOnly = "rec-only"
+	
+	/// none
+	case none = "none"
+}
+
+
+/**
+Codes describing the reason why a family member's history is not available.
+
+URL: http://hl7.org/fhir/history-absent-reason
+ValueSet: http://hl7.org/fhir/ValueSet/history-absent-reason
+*/
+public enum FamilyHistoryAbsentReason: String {
 	
 	/// Patient does not know the subject, e.g. the biological parent of an adopted patient.
 	case subjectUnknown = "subject-unknown"
@@ -3163,6 +3649,22 @@ public enum GraphCompartmentRule: String {
 
 
 /**
+Defines how a compartment rule is used
+
+URL: http://hl7.org/fhir/graph-compartment-use
+ValueSet: http://hl7.org/fhir/ValueSet/graph-compartment-use
+*/
+public enum GraphCompartmentUse: String {
+	
+	/// This compartment rule is a condition for whether the rule applies
+	case condition = "condition"
+	
+	/// This compartment rule is enforced on any relationships that meet the conditions
+	case requirement = "requirement"
+}
+
+
+/**
 Types of resources that are part of group
 
 URL: http://hl7.org/fhir/group-type
@@ -3176,7 +3678,7 @@ public enum GroupType: String {
 	/// Group contains "animal" Patient resources
 	case animal = "animal"
 	
-	/// Group contains healthcare practitioner resources
+	/// Group contains healthcare practitioner resources (Practitioner or PractitionerRole)
 	case practitioner = "practitioner"
 	
 	/// Group contains Device resources
@@ -3219,54 +3721,83 @@ public enum GuidanceResponseStatus: String {
 
 
 /**
-How a dependency is represented when the guide is published.
+A code that indicates how the page is generated
 
-URL: http://hl7.org/fhir/guide-dependency-type
-ValueSet: http://hl7.org/fhir/ValueSet/guide-dependency-type
+URL: http://hl7.org/fhir/guide-page-generation
+ValueSet: http://hl7.org/fhir/ValueSet/guide-page-generation
 */
-public enum GuideDependencyType: String {
+public enum GuidePageGeneration: String {
 	
-	/// The guide is referred to by URL.
-	case reference = "reference"
+	/// Page is proper xhtml with no templating.  Will be brought across unchanged for standard post-processing
+	case html = "html"
 	
-	/// The guide is embedded in this guide when published.
-	case inclusion = "inclusion"
+	/// Page is markdown with templating.  Will use the template to create a file that imports the markdown file prior
+	/// to post-processing
+	case markdown = "markdown"
+	
+	/// Page is xml with templating.  Will use the template to create a file that imports the source file and run the
+	/// nominated XSLT transform (see parameters) if present prior to post-processing
+	case xml = "xml"
+	
+	/// Page will be generated by the publication process - no source to bring across
+	case generated = "generated"
 }
 
 
 /**
-The kind of an included page.
+Code of parameter that is input to the guide
 
-URL: http://hl7.org/fhir/guide-page-kind
-ValueSet: http://hl7.org/fhir/ValueSet/guide-page-kind
+URL: http://hl7.org/fhir/guide-parameter-code
+ValueSet: http://hl7.org/fhir/ValueSet/guide-parameter-code
 */
-public enum GuidePageKind: String {
+public enum GuideParameterCode: String {
 	
-	/// This is a page of content that is included in the implementation guide. It has no particular function.
-	case page = "page"
+	/// If the value of this boolean 0..1 parameter is "true" then all conformance resources will have any specified
+	/// [Resource].version overwritten with the ImplementationGuide.version
+	case applyBusinessVersion = "apply-business-version"
 	
-	/// This is a page that represents a human readable rendering of an example.
-	case example = "example"
+	/// If the value of this boolean 0..1 parameter is "true" then all conformance resources will have any specified
+	/// [Resource].jurisdiction overwritten with the ImplementationGuide.jurisdiction
+	case applyJurisdiction = "apply-jurisdiction"
 	
-	/// This is a page that represents a list of resources of one or more types.
-	case list = "list"
+	/// The value of this string 0..* parameter is a subfolder of the build context's location that is to be scanned to
+	/// load resources. Scope is (if present) a particular resource type
+	case pathResource = "path-resource"
 	
-	/// This is a page showing where an included guide is injected.
-	case include = "include"
+	/// The value of this string 0..1 parameter is a subfolder of the build context's location that contains files that
+	/// are part of the html content processed by the builder
+	case pathPages = "path-pages"
 	
-	/// This is a page that lists the resources of a given type, and also creates pages for all the listed types as
-	/// other pages in the section.
-	case directory = "directory"
+	/// The value of this string 0..1 parameter is a subfolder of the build context's location that is used as the
+	/// terminology cache. If this is not present, the terminology cache is on the local system, not under version
+	/// control
+	case pathTxCache = "path-tx-cache"
 	
-	/// This is a page that creates the listed resources as a dictionary.
-	case dictionary = "dictionary"
+	/// The value of this string 0..1 parameter is a path to the ExpansionProfile used when expanding value sets for
+	/// this implementation guide. This is particularly used to specify the versions of published terminologies such as
+	/// SNOMED CT
+	case expansionProfile = "expansion-profile"
 	
-	/// This is a generated page that contains the table of contents.
-	case toc = "toc"
+	/// The value of this string 0..1 parameter is either "warning" or "error" (default = "error"). If the value is
+	/// "warning" then IG build tools allow the IG to be considered successfully build even when there is no internal
+	/// broken links
+	case ruleBrokenLinks = "rule-broken-links"
 	
-	/// This is a page that represents a presented resource. This is typically used for generated conformance resource
-	/// presentations.
-	case resource = "resource"
+	/// The value of this boolean 0..1 parameter specifies whether the IG publisher creates examples in XML format. If
+	/// not present, the Publication Tool decides whether to generate XML
+	case generateXml = "generate-xml"
+	
+	/// The value of this boolean 0..1 parameter specifies whether the IG publisher creates examples in JSON format. If
+	/// not present, the Publication Tool decides whether to generate JSON
+	case generateJson = "generate-json"
+	
+	/// The value of this boolean 0..1 parameter specifies whether the IG publisher creates examples in Turtle format.
+	/// If not present, the Publication Tool decides whether to generate Turtle
+	case generateTurtle = "generate-turtle"
+	
+	/// The value of this string singleton parameter is the name of the file to use as the builder template for each
+	/// generated page (see templating)
+	case htmlTemplate = "html-template"
 }
 
 
@@ -3360,6 +3891,9 @@ public enum HTTPVerb: String {
 	/// HTTP GET
 	case GET = "GET"
 	
+	/// HTTP HEAD
+	case HEAD = "HEAD"
+	
 	/// HTTP POST
 	case POST = "POST"
 	
@@ -3368,6 +3902,28 @@ public enum HTTPVerb: String {
 	
 	/// HTTP DELETE
 	case DELETE = "DELETE"
+	
+	/// HTTP PATCH
+	case PATCH = "PATCH"
+}
+
+
+/**
+Set of handling instructions prior testing of the specimen
+
+URL: http://hl7.org/fhir/handling-condition
+ValueSet: http://hl7.org/fhir/ValueSet/handling-condition
+*/
+public enum HandlingConditionSet: String {
+	
+	/// room temperature
+	case room = "room"
+	
+	/// refrigerated temperature
+	case refrigerated = "refrigerated"
+	
+	/// frozen temperature
+	case frozen = "frozen"
 }
 
 
@@ -3394,6 +3950,121 @@ public enum HumanNameAssemblyOrder: String {
 
 
 /**
+Attached is vocabulary for the 27 record lifecycle events, as per ISO TS 21089-2017, Health Informatics - Trusted End-
+to-End Information Flows, Section 3, Terms and Definitions (2017, at ISO Central Secretariat, passed ballot and ready
+for publication).  This will also be included in the FHIR EHR Record Lifecycle Event Implementation Guide, balloted and
+(to be) published with FHIR STU-3.
+
+URL: http://hl7.org/fhir/iso-21089-lifecycle
+*/
+public enum ISO210892017HealthRecordLifecycleEvents: String {
+	
+	/// Occurs when an agent causes the system to obtain and open a record entry for inspection or review.
+	case access = "access"
+	
+	/// Occurs when an agent causes the system to tag or otherwise indicate special access management and suspension of
+	/// record entry deletion/destruction, if deemed relevant to a lawsuit or which are reasonably anticipated to be
+	/// relevant or to fulfill organizational policy under the legal doctrine of “duty to preserve”.
+	case hold = "hold"
+	
+	/// Occurs when an agent makes any change to record entry content currently residing in storage considered permanent
+	/// (persistent).
+	case amend = "amend"
+	
+	/// Occurs when an agent causes the system to create and move archive artifacts containing record entry content,
+	/// typically to long-term offline storage.
+	case archive = "archive"
+	
+	/// Occurs when an agent causes the system to capture the agent’s digital signature (or equivalent indication)
+	/// during formal validation of record entry content.
+	case attest = "attest"
+	
+	/// Occurs when an agent causes the system to decode record entry content from a cipher.
+	case decrypt = "decrypt"
+	
+	/// Occurs when an agent causes the system to scrub record entry content to reduce the association between a set of
+	/// identifying data and the data subject in a way that might or might not be reversible.
+	case deidentify = "deidentify"
+	
+	/// Occurs when an agent causes the system to tag record entry(ies) as obsolete, erroneous or untrustworthy, to warn
+	/// against its future use.
+	case deprecate = "deprecate"
+	
+	/// Occurs when an agent causes the system to permanently erase record entry content from the system.
+	case destroy = "destroy"
+	
+	/// Occurs when an agent causes the system to release, transfer, provision access to, or otherwise divulge record
+	/// entry content.
+	case disclose = "disclose"
+	
+	/// Occurs when an agent causes the system to encode record entry content in a cipher.
+	case encrypt = "encrypt"
+	
+	/// Occurs when an agent causes the system to selectively pull out a subset of record entry content, based on
+	/// explicit criteria.
+	case extract = "extract"
+	
+	/// Occurs when an agent causes the system to connect related record entries.
+	case link = "link"
+	
+	/// Occurs when an agent causes the system to combine or join content from two or more record entries, resulting in
+	/// a single logical record entry.
+	case merge = "merge"
+	
+	/// Occurs when an agent causes the system to: a) initiate capture of potential record content, and b) incorporate
+	/// that content into the storage considered a permanent part of the health record.
+	case originate = "originate"
+	
+	/// Occurs when an agent causes the system to remove record entry content to reduce the association between a set of
+	/// identifying data and the data subject in a way that may be reversible.
+	case pseudonymize = "pseudonymize"
+	
+	/// Occurs when an agent causes the system to recreate or restore full status to record entries previously deleted
+	/// or deprecated.
+	case reactivate = "reactivate"
+	
+	/// Occurs when an agent causes the system to a) initiate capture of data content from elsewhere, and b) incorporate
+	/// that content into the storage considered a permanent part of the health record.
+	case receive = "receive"
+	
+	/// Occurs when an agent causes the system to restore information to data that allows identification of information
+	/// source and/or information subject.
+	case reidentify = "reidentify"
+	
+	/// Occurs when an agent causes the system to remove a tag or other cues for special access management had required
+	/// to fulfill organizational policy under the legal doctrine of “duty to preserve”.
+	case unhold = "unhold"
+	
+	/// Occurs when an agent causes the system to produce and deliver record entry content in a particular form and
+	/// manner.
+	case report = "report"
+	
+	/// Occurs when an agent causes the system to recreate record entries and their content from a previous created
+	/// archive artefact.
+	case restore = "restore"
+	
+	/// Occurs when an agent causes the system to change the form, language or code system used to represent record
+	/// entry content.
+	case transform = "transform"
+	
+	/// Occurs when an agent causes the system to send record entry content from one (EHR/PHR/other) system to another.
+	case transmit = "transmit"
+	
+	/// Occurs when an agent causes the system to disconnect two or more record entries previously connected, rendering
+	/// them separate (disconnected) again.
+	case unlink = "unlink"
+	
+	/// Occurs when an agent causes the system to reverse a previous record entry merge operation, rendering them
+	/// separate again.
+	case unmerge = "unmerge"
+	
+	/// Occurs when an agent causes the system to confirm compliance of data or data objects with regulations,
+	/// requirements, specifications, or other imposed conditions based on organizational policy.
+	case verify = "verify"
+}
+
+
+/**
 Identifies the purpose for this identifier, if known .
 
 URL: http://hl7.org/fhir/identifier-use
@@ -3413,6 +4084,10 @@ public enum IdentifierUse: String {
 	/// An identifier that was assigned in secondary use - it serves to identify the object in a relative context, but
 	/// cannot be consistently assigned to the same object again in a different context.
 	case secondary = "secondary"
+	
+	/// The identifier id no longer considered valid, but may be relevant for search purposes.  E.g. Changes to
+	/// identifier schemes, account merges, etc.
+	case old = "old"
 }
 
 
@@ -3439,6 +4114,35 @@ public enum IdentityAssuranceLevel: String {
 
 
 /**
+The status of the ImagingStudy
+
+URL: http://hl7.org/fhir/imagingstudy-status
+ValueSet: http://hl7.org/fhir/ValueSet/imagingstudy-status
+*/
+public enum ImagingStudyStatus: String {
+	
+	/// The existence of the imaging study is registered, but there is nothing yet available.
+	case registered = "registered"
+	
+	/// At least one instance has been associated with this imaging study.
+	case available = "available"
+	
+	/// The imaging study is unavailable because the imaging study was not started or not completed (also sometimes
+	/// called "aborted").
+	case cancelled = "cancelled"
+	
+	/// The imaging study has been withdrawn following a previous final release.  This electronic record should never
+	/// have existed, though it is possible that real-world decisions were based on it. (If real-world activity has
+	/// occurred, the status should be "cancelled" rather than "entered-in-error".)
+	case enteredInError = "entered-in-error"
+	
+	/// The system does not know which of the status values currently applies for this request. Note: This concept is
+	/// not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known which one.
+	case unknown = "unknown"
+}
+
+
+/**
 A set codes that define the functional status of an implanted device.
 
 URL: http://hl7.org/fhir/implant-status
@@ -3461,6 +4165,60 @@ public enum ImplantStatus: String {
 
 
 /**
+Codes indicating the details of what is/was done.  These will vary significantly based on the type of request resource
+and will often be example/preferred rather than extensible/required.
+
+URL: http://hl7.org/fhir/invoice-priceComponentType
+ValueSet: http://hl7.org/fhir/ValueSet/invoice-priceComponentType
+*/
+public enum InvoicePriceComponentType: String {
+	
+	/// the amount is the base price used for calculating the total price before applying surcharges, discount or taxes
+	case base = "base"
+	
+	/// the amount is a surcharge applied on the base price
+	case surcharge = "surcharge"
+	
+	/// the amount is a deduction applied on the base price
+	case deduction = "deduction"
+	
+	/// the amount is a discount applied on the base price
+	case discount = "discount"
+	
+	/// the amount is the tax component of the total price
+	case tax = "tax"
+	
+	/// the amount is of informational character, it has not been applied in the calculation of the total price
+	case informational = "informational"
+}
+
+
+/**
+Codes identifying the lifecycle stage of an Invoice
+
+URL: http://hl7.org/fhir/invoice-status
+ValueSet: http://hl7.org/fhir/ValueSet/invoice-status
+*/
+public enum InvoiceStatus: String {
+	
+	/// the invoice has been prepared but not yet finalized
+	case draft = "draft"
+	
+	/// the invoice has been finalized and sent to the recipient
+	case issued = "issued"
+	
+	/// the invoice has been balaced / completely paid
+	case balanced = "balanced"
+	
+	/// the invoice was cancelled
+	case cancelled = "cancelled"
+	
+	/// the invoice was determined as entered in error before it was issued
+	case enteredInError = "entered-in-error"
+}
+
+
+/**
 How the issue affects the success of the action.
 
 URL: http://hl7.org/fhir/issue-severity
@@ -3474,7 +4232,7 @@ public enum IssueSeverity: String {
 	/// The issue is sufficiently important to cause the action to fail.
 	case error = "error"
 	
-	/// The issue is not important enough to cause the action to fail, but may cause it to be performed suboptimally or
+	/// The issue is not important enough to cause the action to fail but may cause it to be performed suboptimally or
 	/// in a way that is not as desired.
 	case warning = "warning"
 	
@@ -3523,7 +4281,7 @@ public enum IssueType: String {
 	/// The user does not have the rights to perform this action.
 	case forbidden = "forbidden"
 	
-	/// Some information was not or may not have been returned due to business rules, consent or privacy rules, or
+	/// Some information was not or might not have been returned due to business rules, consent or privacy rules, or
 	/// access permission constraints.  This information may be accessible through alternate processes.
 	case suppressed = "suppressed"
 	
@@ -3563,8 +4321,8 @@ public enum IssueType: String {
 	/// into the application architecture.)
 	case conflict = "conflict"
 	
-	/// Not all data sources typically accessed could be reached, or responded in time, so the returned information may
-	/// not be complete.
+	/// Not all data sources typically accessed could be reached, or responded in time, so the returned information
+	/// might not be complete.
 	case incomplete = "incomplete"
 	
 	/// Transient processing issues. The system receiving the error may be able to resubmit the same content once an
@@ -3661,7 +4419,7 @@ public enum LinkageType: String {
 	/// actively maintained, even though it is not considered to be the source of truth.
 	case alternate = "alternate"
 	
-	/// The record represents an obsolete record of the underlyng event/condition/etc.  It is not expected to be
+	/// The record represents an obsolete record of the underlying event/condition/etc.  It is not expected to be
 	/// actively maintained.
 	case historical = "historical"
 }
@@ -3682,7 +4440,8 @@ public enum ListMode: String {
 	/// This list was prepared as a snapshot. It should not be assumed to be current
 	case snapshot = "snapshot"
 	
-	/// A list that indicates where changes have been made or recommended
+	/// A point-in-time list that shows what changes have been made or recommended.  E.g. a discharge medication list
+	/// showing what was added and removed during an encounter
 	case changes = "changes"
 }
 
@@ -3924,13 +4683,13 @@ ValueSet: http://hl7.org/fhir/ValueSet/measure-report-type
 public enum MeasureReportType: String {
 	
 	/// An individual report that provides information on the performance for a given measure with respect to a single
-	/// patient
+	/// subject
 	case individual = "individual"
 	
-	/// A patient list report that includes a listing of patients that satisfied each population criteria in the measure
-	case patientList = "patient-list"
+	/// A subject list report that includes a listing of subjects that satisfied each population criteria in the measure
+	case subjectList = "subject-list"
 	
-	/// A summary report that returns the number of patients in each population criteria for the measure
+	/// A summary report that returns the number of members in each population criteria for the measure
 	case summary = "summary"
 }
 
@@ -3999,8 +4758,31 @@ public enum MedicationAdministrationCategory: String {
 	case outpatient = "outpatient"
 	
 	/// Includes administrations by the patient in their home (this would include long term care or nursing homes,
-	/// hospices, etc)
+	/// hospices, etc.)
 	case community = "community"
+}
+
+
+/**
+A code describing the role an individual played in administering the medication
+
+URL: http://hl7.org/fhir/med-admin-perform-function
+ValueSet: http://hl7.org/fhir/ValueSet/med-admin-perform-function
+*/
+public enum MedicationAdministrationPerformerFunction: String {
+	
+	/// A person, non-person living subject, organization or device that who actually and principally carries out the
+	/// action
+	case performer = "performer"
+	
+	/// A person who verifies the correctness and appropriateness of the service (plan, order, event, etc.) and hence
+	/// takes on accountability.
+	case verifier = "verifier"
+	
+	/// A person witnessing the action happening without doing anything. A witness is not necessarily aware, much less
+	/// approves of anything stated in the service event. Example for a witness is students watching an operation or an
+	/// advanced directive witness.
+	case witness = "witness"
 }
 
 
@@ -4014,6 +4796,10 @@ public enum MedicationAdministrationStatus: String {
 	
 	/// The administration has started but has not yet completed.
 	case inProgress = "in-progress"
+	
+	/// The administration was terminated prior to any impact on the subject (though preparatory actions may have been
+	/// taken)
+	case notDone = "not-done"
 	
 	/// Actions implied by the administration have been temporarily halted, but are expected to continue later. May also
 	/// be called "suspended".
@@ -4036,41 +4822,6 @@ public enum MedicationAdministrationStatus: String {
 
 
 /**
-A coded concept defining the kind of container a medication package is packaged in
-
-URL: http://hl7.org/fhir/medication-package-form
-ValueSet: http://hl7.org/fhir/ValueSet/medication-package-form
-*/
-public enum MedicationContainer: String {
-	
-	/// A sealed glass capsule containing a liquid
-	case ampoule = "ampoule"
-	
-	/// A container, typically made of glass or plastic and with a narrow neck, used for storing liquids.
-	case bottle = "bottle"
-	
-	/// A container with a flat base and sides, typically square or rectangular and having a lid.
-	case box = "box"
-	
-	/// A device of various configuration and composition used with a syringe for the application of anesthetic or other
-	/// materials to a patient.
-	case cartridge = "cartridge"
-	
-	/// A package intended to store pharmaceuticals.
-	case container = "container"
-	
-	/// A long, hollow cylinder of metal, plastic, glass, etc., for holding medications, typically creams or ointments
-	case tube = "tube"
-	
-	/// A dose of medicine prepared in an individual package for convenience, safety or monitoring.
-	case unitdose = "unitdose"
-	
-	/// A small container, typically cylindrical and made of glass, used especially for holding liquid medications.
-	case vial = "vial"
-}
-
-
-/**
 A code describing where the dispensed medication is expected to be consumed or administered
 
 URL: http://hl7.org/fhir/medication-dispense-category
@@ -4086,8 +4837,31 @@ public enum MedicationDispenseCategory: String {
 	case outpatient = "outpatient"
 	
 	/// Includes dispenses for medications to be administered or consumed by the patient in their home (this would
-	/// include long term care or nursing homes, hospices, etc)
+	/// include long term care or nursing homes, hospices, etc.)
 	case community = "community"
+}
+
+
+/**
+A code describing the role an individual played in dispensing a medication
+
+URL: http://hl7.org/fhir/med-dispense-perform-function
+ValueSet: http://hl7.org/fhir/ValueSet/med-dispense-perform-function
+*/
+public enum MedicationDispensePerformerFunction: String {
+	
+	/// Recorded the details of the request
+	case dataenterer = "dataenterer"
+	
+	/// Prepared the medication
+	case packager = "packager"
+	
+	/// Performed initial quality assurance on the prepared medication
+	case checker = "checker"
+	
+	/// Performed the final quality assurance on the prepared medication against the request. Typically, this is a
+	/// pharmacist function.
+	case finalchecker = "finalchecker"
 }
 
 
@@ -4103,14 +4877,17 @@ public enum MedicationDispenseStatus: String {
 	/// packaging of medication). Preparation stages may be tracked for billing purposes.
 	case preparation = "preparation"
 	
-	/// The dispense has started but has not yet completed.
+	/// The dispensed product is ready for pickup.
 	case inProgress = "in-progress"
 	
-	/// Actions implied by the administration have been temporarily halted, but are expected to continue later. May also
-	/// be called "suspended"
+	/// The dispensed product was not and will never be picked up by the patient.
+	case cancelled = "cancelled"
+	
+	/// The dispense process is paused while waiting for an external event to reactivate the dispense.  For example, new
+	/// stock has arrived or the prescriber has called.
 	case onHold = "on-hold"
 	
-	/// All actions that are implied by the dispense have occurred.
+	/// The dispensed product has been picked up.
 	case completed = "completed"
 	
 	/// The dispense was entered in error and therefore nullified.
@@ -4118,11 +4895,100 @@ public enum MedicationDispenseStatus: String {
 	
 	/// Actions implied by the dispense have been permanently halted, before all of them occurred.
 	case stopped = "stopped"
+	
+	/// The authoring system does not know which of the status values applies for this medication dispense.  Note: this
+	/// concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just now known
+	/// which one.
+	case unknown = "unknown"
 }
 
 
 /**
-A coded concept identifying where the medication ordered is expected to be consumed or administered
+A code describing why a dispense was not performed
+
+URL: http://hl7.org/fhir/med-dispense-status-reason
+ValueSet: http://hl7.org/fhir/ValueSet/med-dispense-status-reason
+*/
+public enum MedicationDispenseStatusReason: String {
+	
+	/// The order has been stopped by the prescriber but this fact has not necessarily captured electronically. Example:
+	/// A verbal stop, a fax, etc.
+	case frr01 = "frr01"
+	
+	/// Order has not been fulfilled within a reasonable amount of time, and might not be current.
+	case frr02 = "frr02"
+	
+	/// Data needed to safely act on the order which was expected to become available independent of the order is not
+	/// yet available. Example: Lab results, diagnostic imaging, etc.
+	case frr03 = "frr03"
+	
+	/// Product not available or manufactured. Cannot supply.
+	case frr04 = "frr04"
+	
+	/// The dispenser has ethical, religious or moral objections to fulfilling the order/dispensing the product.
+	case frr05 = "frr05"
+	
+	/// Fulfiller not able to provide appropriate care associated with fulfilling the order.
+	/// Example: Therapy requires ongoing monitoring by fulfiller and fulfiller will be ending practice, leaving town,
+	/// unable to schedule necessary time, etc.
+	case frr06 = "frr06"
+	
+	/// This therapy has been ordered as a backup to a preferred therapy. This order will be released when and if the
+	/// preferred therapy is unsuccessful.
+	case altchoice = "altchoice"
+	
+	/// Clarification is required before the order can be acted upon.
+	case clarif = "clarif"
+	
+	/// The current level of the medication in the patient's system is too high. The medication is suspended to allow
+	/// the level to subside to a safer level.
+	case drughigh = "drughigh"
+	
+	/// The patient has been admitted to a care facility and their community medications are suspended until hospital
+	/// discharge.
+	case hospadm = "hospadm"
+	
+	/// The therapy would interfere with a planned lab test and the therapy is being withdrawn until the test is
+	/// completed.
+	case labint = "labint"
+	
+	/// Patient not available for a period of time due to a scheduled therapy, leave of absence or other reason.
+	case nonAvail = "non-avail"
+	
+	/// The patient is pregnant or breast feeding. The therapy will be resumed when the pregnancy is complete and the
+	/// patient is no longer breastfeeding.
+	case preg = "preg"
+	
+	/// The patient is believed to be allergic to a substance that is part of the therapy and the therapy is being
+	/// temporarily withdrawn to confirm.
+	case salg = "salg"
+	
+	/// The drug interacts with a short-term treatment that is more urgently required. This order will be resumed when
+	/// the short-term treatment is complete.
+	case sddi = "sddi"
+	
+	/// Another short-term co-occurring therapy fulfills the same purpose as this therapy. This therapy will be resumed
+	/// when the co-occuring therapy is complete.
+	case sdupther = "sdupther"
+	
+	/// The patient is believed to have an intolerance to a substance that is part of the therapy and the therapy is
+	/// being temporarily withdrawn to confirm.
+	case sintol = "sintol"
+	
+	/// The drug is contraindicated for patients receiving surgery and the patient is scheduled to be admitted for
+	/// surgery in the near future. The drug will be resumed when the patient has sufficiently recovered from the
+	/// surgery.
+	case surg = "surg"
+	
+	/// The patient was previously receiving a medication contraindicated with the current medication. The current
+	/// medication will remain on hold until the prior medication has been cleansed from their system.
+	case washout = "washout"
+}
+
+
+/**
+A coded concept identifying the category of medication request.  For example, where the medication is to be consumed or
+administered, or the type of medication treatment).
 
 URL: http://hl7.org/fhir/medication-request-category
 ValueSet: http://hl7.org/fhir/ValueSet/medication-request-category
@@ -4137,8 +5003,11 @@ public enum MedicationRequestCategory: String {
 	case outpatient = "outpatient"
 	
 	/// Includes orders for medications to be administered or consumed by the patient in their home (this would include
-	/// long term care or nursing homes, hospices, etc)
+	/// long term care or nursing homes, hospices, etc.)
 	case community = "community"
+	
+	/// Includes orders for medications created when the patient is being released from a facility
+	case discharge = "discharge"
 }
 
 
@@ -4161,30 +5030,15 @@ public enum MedicationRequestIntent: String {
 	/// The request represents a request/demand and authorization for action
 	case order = "order"
 	
+	/// The request represents the original authorization for the medication request.
+	case originalOrder = "original-order"
+	
 	/// The request represents an instance for the particular order, for example a medication administration record.
 	case instanceOrder = "instance-order"
-}
-
-
-/**
-Identifies the level of importance to be assigned to actioning the request
-
-URL: http://hl7.org/fhir/medication-request-priority
-ValueSet: http://hl7.org/fhir/ValueSet/medication-request-priority
-*/
-public enum MedicationRequestPriority: String {
 	
-	/// The order has a normal priority .
-	case routine = "routine"
-	
-	/// The order should be urgently.
-	case urgent = "urgent"
-	
-	/// The order is time-critical.
-	case stat = "stat"
-	
-	/// The order should be acted on as soon as possible.
-	case asap = "asap"
+	/// The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or
+	/// other constraints among a set of requests.
+	case option = "option"
 }
 
 
@@ -4203,16 +5057,19 @@ public enum MedicationRequestStatus: String {
 	/// be called "suspended".
 	case onHold = "on-hold"
 	
-	/// The prescription has been withdrawn.
+	/// The prescription has been withdrawn before any administrations have occurred
 	case cancelled = "cancelled"
 	
 	/// All actions that are implied by the prescription have occurred.
 	case completed = "completed"
 	
-	/// The prescription was entered in error.
+	/// Some of the actions that are implied by the medication request may have occurred.  For example, the medication
+	/// may have been dispensed and the patient may have taken some of the medication.  Clinical decision support
+	/// systems should take this status into account
 	case enteredInError = "entered-in-error"
 	
-	/// Actions implied by the prescription are to be permanently halted, before all of them occurred.
+	/// Actions implied by the prescription are to be permanently halted, before all of the administrations occurred.
+	/// This should not be used if the original order was entered in error
 	case stopped = "stopped"
 	
 	/// The prescription is not yet 'actionable', i.e. it is a work in progress, requires sign-off or verification, and
@@ -4225,7 +5082,68 @@ public enum MedicationRequestStatus: String {
 
 
 /**
-A coded concept identifying where the medication included in the medicationstatement is expected to be consumed or
+Identifies the reasons for a given status
+
+URL: http://hl7.org/fhir/med-request-status-reason
+ValueSet: http://hl7.org/fhir/ValueSet/med-request-status-reason
+*/
+public enum MedicationRequestStatusReason: String {
+	
+	/// This therapy has been ordered as a backup to a preferred therapy. This order will be released when and if the
+	/// preferred therapy is unsuccessful.
+	case altchoice = "altchoice"
+	
+	/// Clarification is required before the order can be acted upon.
+	case clarif = "clarif"
+	
+	/// The current level of the medication in the patient's system is too high. The medication is suspended to allow
+	/// the level to subside to a safer level.
+	case drughigh = "drughigh"
+	
+	/// The patient has been admitted to a care facility and their community medications are suspended until hospital
+	/// discharge.
+	case hospadm = "hospadm"
+	
+	/// The therapy would interfere with a planned lab test and the therapy is being withdrawn until the test is
+	/// completed.
+	case labint = "labint"
+	
+	/// Patient not available for a period of time due to a scheduled therapy, leave of absence or other reason.
+	case nonAvail = "non-avail"
+	
+	/// The patient is pregnant or breast feeding. The therapy will be resumed when the pregnancy is complete and the
+	/// patient is no longer breastfeeding.
+	case preg = "preg"
+	
+	/// The patient is believed to be allergic to a substance that is part of the therapy and the therapy is being
+	/// temporarily withdrawn to confirm.
+	case salg = "salg"
+	
+	/// The drug interacts with a short-term treatment that is more urgently required. This order will be resumed when
+	/// the short-term treatment is complete.
+	case sddi = "sddi"
+	
+	/// Another short-term concurrent therapy fulfills the same purpose as this therapy. This therapy will be resumed
+	/// when the concurrent therapy is complete.
+	case sdupther = "sdupther"
+	
+	/// The patient is believed to have an intolerance to a substance that is part of the therapy and the therapy is
+	/// being temporarily withdrawn to confirm.
+	case sintol = "sintol"
+	
+	/// The drug is contraindicated for patients receiving surgery and the patient is scheduled to be admitted for
+	/// surgery in the near future. The drug will be resumed when the patient has sufficiently recovered from the
+	/// surgery.
+	case surg = "surg"
+	
+	/// The patient was previously receiving a medication contraindicated with the current medication. The current
+	/// medication will remain on hold until the prior medication has been cleansed from their system.
+	case washout = "washout"
+}
+
+
+/**
+A coded concept identifying where the medication included in the MedicationStatement is expected to be consumed or
 administered
 
 URL: http://hl7.org/fhir/medication-statement-category
@@ -4241,7 +5159,7 @@ public enum MedicationStatementCategory: String {
 	case outpatient = "outpatient"
 	
 	/// Includes orders for medications to be administered or consumed by the patient in their home (this would include
-	/// long term care or nursing homes, hospices, etc)
+	/// long term care or nursing homes, hospices, etc.)
 	case community = "community"
 	
 	/// Includes statements about medication use, including over the counter medication, provided by the patient, agent
@@ -4264,18 +5182,26 @@ public enum MedicationStatementStatus: String {
 	/// The medication is no longer being taken.
 	case completed = "completed"
 	
-	/// The statement was recorded incorrectly.
+	/// Some of the actions that are implied by the medication statement may have occurred.  For example, the patient
+	/// may have taken some of the medication.  Clinical decision support systems should take this status into account
 	case enteredInError = "entered-in-error"
 	
 	/// The medication may be taken at some time in the future.
 	case intended = "intended"
 	
-	/// Actions implied by the statement have been permanently halted, before all of them occurred.
+	/// Actions implied by the statement have been permanently halted, before all of them occurred. This should not be
+	/// used if the statement was entered in error
 	case stopped = "stopped"
 	
 	/// Actions implied by the statement have been temporarily halted, but are expected to continue later. May also be
 	/// called "suspended".
 	case onHold = "on-hold"
+	
+	/// The state of the medication use is not currently known.
+	case unknown = "unknown"
+	
+	/// The medication was not consumed by the patient
+	case notTaken = "not-taken"
 }
 
 
@@ -4321,55 +5247,6 @@ public enum MedicationStatus: String {
 
 
 /**
-One of the message events defined as part of FHIR.
-
-URL: http://hl7.org/fhir/message-events
-ValueSet: http://hl7.org/fhir/ValueSet/message-events
-*/
-public enum MessageEvent: String {
-	
-	/// The definition of a code system is used to create a simple collection of codes suitable for use for data entry
-	/// or validation. An expanded code system will be returned, or an error message.
-	case codeSystemExpand = "CodeSystem-expand"
-	
-	/// Change the status of a Medication Administration to show that it is complete.
-	case medicationAdministrationComplete = "MedicationAdministration-Complete"
-	
-	/// Someone wishes to record that the record of administration of a medication is in error and should be ignored.
-	case medicationAdministrationNullification = "MedicationAdministration-Nullification"
-	
-	/// Indicates that a medication has been recorded against the patient's record.
-	case medicationAdministrationRecording = "MedicationAdministration-Recording"
-	
-	/// Update a Medication Administration record.
-	case medicationAdministrationUpdate = "MedicationAdministration-Update"
-	
-	/// Notification of a change to an administrative resource (either create or update). Note that there is no delete,
-	/// though some administrative resources have status or period elements for this use.
-	case adminNotify = "admin-notify"
-	
-	/// Notification to convey information.
-	case communicationRequest = "communication-request"
-	
-	/// Provide a diagnostic report, or update a previously provided diagnostic report.
-	case diagnosticreportProvide = "diagnosticreport-provide"
-	
-	/// Provide a simple observation or update a previously provided simple observation.
-	case observationProvide = "observation-provide"
-	
-	/// Notification that two patient records actually identify the same patient.
-	case patientLink = "patient-link"
-	
-	/// Notification that previous advice that two patient records concern the same patient is now considered incorrect.
-	case patientUnlink = "patient-unlink"
-	
-	/// The definition of a value set is used to create a simple collection of codes suitable for use for data entry or
-	/// validation. An expanded value set will be returned, or an error message.
-	case valuesetExpand = "valueset-expand"
-}
-
-
-/**
 The impact of the content of a message.
 
 URL: http://hl7.org/fhir/message-significance-category
@@ -4379,15 +5256,15 @@ public enum MessageSignificanceCategory: String {
 	
 	/// The message represents/requests a change that should not be processed more than once; e.g., making a booking for
 	/// an appointment.
-	case consequence = "Consequence"
+	case consequence = "consequence"
 	
 	/// The message represents a response to query for current information. Retrospective processing is wrong and/or
 	/// wasteful.
-	case currency = "Currency"
+	case currency = "currency"
 	
 	/// The content is not necessarily intended to be current, and it can be reprocessed, though there may be version
 	/// issues created by processing old notifications.
-	case notification = "Notification"
+	case notification = "notification"
 }
 
 
@@ -4628,6 +5505,25 @@ public enum NarrativeStatus: String {
 
 
 /**
+The frequency with which the target must be validated
+
+URL: http://hl7.org/fhir/need
+ValueSet: http://hl7.org/fhir/ValueSet/need
+*/
+public enum Need: String {
+	
+	/// none
+	case none = "none"
+	
+	/// initial
+	case initial = "initial"
+	
+	/// periodic
+	case periodic = "periodic"
+}
+
+
+/**
 The presentation types of notes.
 
 URL: http://hl7.org/fhir/note-type
@@ -4643,79 +5539,6 @@ public enum NoteType: String {
 	
 	/// Print the note for the operator.
 	case printoper = "printoper"
-}
-
-
-/**
-Codes specifying the state of the request. Describes the lifecycle of the nutrition order.
-
-URL: http://hl7.org/fhir/nutrition-request-status
-ValueSet: http://hl7.org/fhir/ValueSet/nutrition-request-status
-*/
-public enum NutritionOrderStatus: String {
-	
-	/// The request has been proposed.
-	case proposed = "proposed"
-	
-	/// The request is in preliminary form prior to being sent.
-	case draft = "draft"
-	
-	/// The request has been planned.
-	case planned = "planned"
-	
-	/// The request has been placed.
-	case requested = "requested"
-	
-	/// The request is 'actionable', but not all actions that are implied by it have occurred yet.
-	case active = "active"
-	
-	/// Actions implied by the request have been temporarily halted, but are expected to continue later. May also be
-	/// called "suspended".
-	case onHold = "on-hold"
-	
-	/// All actions that are implied by the order have occurred and no continuation is planned (this will rarely be made
-	/// explicit).
-	case completed = "completed"
-	
-	/// The request has been withdrawn and is no longer actionable.
-	case cancelled = "cancelled"
-	
-	/// The request was entered in error and voided.
-	case enteredInError = "entered-in-error"
-}
-
-
-/**
-Codes specifying how two observations are related.
-
-URL: http://hl7.org/fhir/observation-relationshiptypes
-ValueSet: http://hl7.org/fhir/ValueSet/observation-relationshiptypes
-*/
-public enum ObservationRelationshipType: String {
-	
-	/// This observation is a group observation (e.g. a battery, a panel of tests, a set of vital sign measurements)
-	/// that includes the target as a member of the group.
-	case hasMember = "has-member"
-	
-	/// The target resource (Observation or QuestionnaireResponse) is part of the information from which this
-	/// observation value is derived. (e.g. calculated anion gap, Apgar score)  NOTE:  "derived-from" is the only
-	/// logical choice when referencing QuestionnaireResponse.
-	case derivedFrom = "derived-from"
-	
-	/// This observation follows the target observation (e.g. timed tests such as Glucose Tolerance Test).
-	case sequelTo = "sequel-to"
-	
-	/// This observation replaces a previous observation (i.e. a revised value). The target observation is now obsolete.
-	case replaces = "replaces"
-	
-	/// The value of the target observation qualifies (refines) the semantics of the source observation (e.g. a lipemia
-	/// measure target from a plasma measure).
-	case qualifiedBy = "qualified-by"
-	
-	/// The value of the target observation interferes (degrades quality, or prevents valid observation) with the
-	/// semantics of the source observation (e.g. a hemolysis measure target from a plasma potassium measure, which has
-	/// no value).
-	case interferedBy = "interfered-by"
 }
 
 
@@ -4776,166 +5599,6 @@ public enum OperationKind: String {
 
 
 /**
-Operation Outcome codes used by FHIR test servers (see Implementation file translations.xml)
-
-URL: http://hl7.org/fhir/operation-outcome
-ValueSet: http://hl7.org/fhir/ValueSet/operation-outcome
-*/
-public enum OperationOutcomeCodes: String {
-	
-	/// MSG_AUTH_REQUIRED
-	case MSG_AUTH_REQUIRED = "MSG_AUTH_REQUIRED"
-	
-	/// MSG_BAD_FORMAT
-	case MSG_BAD_FORMAT = "MSG_BAD_FORMAT"
-	
-	/// MSG_BAD_SYNTAX
-	case MSG_BAD_SYNTAX = "MSG_BAD_SYNTAX"
-	
-	/// MSG_CANT_PARSE_CONTENT
-	case MSG_CANT_PARSE_CONTENT = "MSG_CANT_PARSE_CONTENT"
-	
-	/// MSG_CANT_PARSE_ROOT
-	case MSG_CANT_PARSE_ROOT = "MSG_CANT_PARSE_ROOT"
-	
-	/// MSG_CREATED
-	case MSG_CREATED = "MSG_CREATED"
-	
-	/// MSG_DATE_FORMAT
-	case MSG_DATE_FORMAT = "MSG_DATE_FORMAT"
-	
-	/// MSG_DELETED
-	case MSG_DELETED = "MSG_DELETED"
-	
-	/// MSG_DELETED_DONE
-	case MSG_DELETED_DONE = "MSG_DELETED_DONE"
-	
-	/// MSG_DELETED_ID
-	case MSG_DELETED_ID = "MSG_DELETED_ID"
-	
-	/// MSG_DUPLICATE_ID
-	case MSG_DUPLICATE_ID = "MSG_DUPLICATE_ID"
-	
-	/// MSG_ERROR_PARSING
-	case MSG_ERROR_PARSING = "MSG_ERROR_PARSING"
-	
-	/// MSG_ID_INVALID
-	case MSG_ID_INVALID = "MSG_ID_INVALID"
-	
-	/// MSG_ID_TOO_LONG
-	case MSG_ID_TOO_LONG = "MSG_ID_TOO_LONG"
-	
-	/// MSG_INVALID_ID
-	case MSG_INVALID_ID = "MSG_INVALID_ID"
-	
-	/// MSG_JSON_OBJECT
-	case MSG_JSON_OBJECT = "MSG_JSON_OBJECT"
-	
-	/// MSG_LOCAL_FAIL
-	case MSG_LOCAL_FAIL = "MSG_LOCAL_FAIL"
-	
-	/// MSG_NO_MATCH
-	case MSG_NO_MATCH = "MSG_NO_MATCH"
-	
-	/// MSG_NO_EXIST
-	case MSG_NO_EXIST = "MSG_NO_EXIST"
-	
-	/// MSG_NO_MODULE
-	case MSG_NO_MODULE = "MSG_NO_MODULE"
-	
-	/// MSG_NO_SUMMARY
-	case MSG_NO_SUMMARY = "MSG_NO_SUMMARY"
-	
-	/// MSG_OP_NOT_ALLOWED
-	case MSG_OP_NOT_ALLOWED = "MSG_OP_NOT_ALLOWED"
-	
-	/// MSG_PARAM_CHAINED
-	case MSG_PARAM_CHAINED = "MSG_PARAM_CHAINED"
-	
-	/// MSG_PARAM_NO_REPEAT
-	case MSG_PARAM_NO_REPEAT = "MSG_PARAM_NO_REPEAT"
-	
-	/// MSG_PARAM_UNKNOWN
-	case MSG_PARAM_UNKNOWN = "MSG_PARAM_UNKNOWN"
-	
-	/// MSG_PARAM_INVALID
-	case MSG_PARAM_INVALID = "MSG_PARAM_INVALID"
-	
-	/// MSG_PARAM_MODIFIER_INVALID
-	case MSG_PARAM_MODIFIER_INVALID = "MSG_PARAM_MODIFIER_INVALID"
-	
-	/// MSG_RESOURCE_EXAMPLE_PROTECTED
-	case MSG_RESOURCE_EXAMPLE_PROTECTED = "MSG_RESOURCE_EXAMPLE_PROTECTED"
-	
-	/// MSG_RESOURCE_ID_FAIL
-	case MSG_RESOURCE_ID_FAIL = "MSG_RESOURCE_ID_FAIL"
-	
-	/// MSG_RESOURCE_NOT_ALLOWED
-	case MSG_RESOURCE_NOT_ALLOWED = "MSG_RESOURCE_NOT_ALLOWED"
-	
-	/// MSG_RESOURCE_REQUIRED
-	case MSG_RESOURCE_REQUIRED = "MSG_RESOURCE_REQUIRED"
-	
-	/// MSG_RESOURCE_ID_MISMATCH
-	case MSG_RESOURCE_ID_MISMATCH = "MSG_RESOURCE_ID_MISMATCH"
-	
-	/// MSG_RESOURCE_ID_MISSING
-	case MSG_RESOURCE_ID_MISSING = "MSG_RESOURCE_ID_MISSING"
-	
-	/// MSG_RESOURCE_TYPE_MISMATCH
-	case MSG_RESOURCE_TYPE_MISMATCH = "MSG_RESOURCE_TYPE_MISMATCH"
-	
-	/// MSG_SORT_UNKNOWN
-	case MSG_SORT_UNKNOWN = "MSG_SORT_UNKNOWN"
-	
-	/// MSG_TRANSACTION_DUPLICATE_ID
-	case MSG_TRANSACTION_DUPLICATE_ID = "MSG_TRANSACTION_DUPLICATE_ID"
-	
-	/// MSG_TRANSACTION_MISSING_ID
-	case MSG_TRANSACTION_MISSING_ID = "MSG_TRANSACTION_MISSING_ID"
-	
-	/// MSG_UNHANDLED_NODE_TYPE
-	case MSG_UNHANDLED_NODE_TYPE = "MSG_UNHANDLED_NODE_TYPE"
-	
-	/// MSG_UNKNOWN_CONTENT
-	case MSG_UNKNOWN_CONTENT = "MSG_UNKNOWN_CONTENT"
-	
-	/// MSG_UNKNOWN_OPERATION
-	case MSG_UNKNOWN_OPERATION = "MSG_UNKNOWN_OPERATION"
-	
-	/// MSG_UNKNOWN_TYPE
-	case MSG_UNKNOWN_TYPE = "MSG_UNKNOWN_TYPE"
-	
-	/// MSG_UPDATED
-	case MSG_UPDATED = "MSG_UPDATED"
-	
-	/// MSG_VERSION_AWARE
-	case MSG_VERSION_AWARE = "MSG_VERSION_AWARE"
-	
-	/// MSG_VERSION_AWARE_CONFLICT
-	case MSG_VERSION_AWARE_CONFLICT = "MSG_VERSION_AWARE_CONFLICT"
-	
-	/// MSG_VERSION_AWARE_URL
-	case MSG_VERSION_AWARE_URL = "MSG_VERSION_AWARE_URL"
-	
-	/// MSG_WRONG_NS
-	case MSG_WRONG_NS = "MSG_WRONG_NS"
-	
-	/// SEARCH_MULTIPLE
-	case SEARCH_MULTIPLE = "SEARCH_MULTIPLE"
-	
-	/// UPDATE_MULTIPLE_MATCHES
-	case UPDATE_MULTIPLE_MATCHES = "UPDATE_MULTIPLE_MATCHES"
-	
-	/// DELETE_MULTIPLE_MATCHES
-	case DELETE_MULTIPLE_MATCHES = "DELETE_MULTIPLE_MATCHES"
-	
-	/// SEARCH_NONE
-	case SEARCH_NONE = "SEARCH_NONE"
-}
-
-
-/**
 Whether an operation parameter is an input or an output parameter.
 
 URL: http://hl7.org/fhir/operation-parameter-use
@@ -4948,6 +5611,22 @@ public enum OperationParameterUse: String {
 	
 	/// This is an output parameter.
 	case out = "out"
+}
+
+
+/**
+Type for orientation
+
+URL: http://hl7.org/fhir/orientation-type
+ValueSet: http://hl7.org/fhir/ValueSet/orientation-type
+*/
+public enum OrientationType: String {
+	
+	/// Sense orientation of reference sequence.
+	case sense = "sense"
+	
+	/// Antisense orientation of reference sequence
+	case antisense = "antisense"
 }
 
 
@@ -4965,7 +5644,7 @@ public enum ParticipantRequired: String {
 	/// The participant may optionally attend the appointment.
 	case optional = "optional"
 	
-	/// The participant is excluded from the appointment, and may not be informed of the appointment taking place.
+	/// The participant is excluded from the appointment, and might not be informed of the appointment taking place.
 	/// (Appointment is about them, not for them - such as 2 doctors discussing results about a patient's test).
 	case informationOnly = "information-only"
 }
@@ -5010,13 +5689,55 @@ public enum PlanDefinitionType: String {
 	/// entry (CPOE) system
 	case orderSet = "order-set"
 	
-	/// A set of activities that can be performed that have relationships in terms of order, pre-conditions, etc.
-	case protocol_fhir = "protocol"
+	/// Defines a desired/typical sequence of clinical activities including preconditions, triggers and temporal
+	/// relationships
+	case clinicalProtocol = "clinical-protocol"
 	
 	/// A decision support rule of the form [on Event] if Condition then Action. It is intended to be a shareable,
 	/// computable definition of actions that should be taken whenever some condition is met in response to a particular
 	/// event or events
 	case ecaRule = "eca-rule"
+	
+	/// Defines the steps for a group of one or more systems in an event flow process along with the step
+	/// constraints, sequence, pre-conditions and decision points to complete a particular objective
+	case workflowDefinition = "workflow-definition"
+}
+
+
+/**
+Type of the validation primary source
+
+URL: http://hl7.org/fhir/primary-source-type
+ValueSet: http://hl7.org/fhir/ValueSet/primary-source-type
+*/
+public enum PrimarySourceType: String {
+	
+	/// licBoard
+	case licBoard = "lic-board"
+	
+	/// prim
+	case prim = "prim"
+	
+	/// contEd
+	case contEd = "cont-ed"
+	
+	/// postServ
+	case postServ = "post-serv"
+	
+	/// relOwn
+	case relOwn = "rel-own"
+	
+	/// regAuth
+	case regAuth = "reg-auth"
+	
+	/// legal
+	case legal = "legal"
+	
+	/// issuer
+	case issuer = "issuer"
+	
+	/// authSource
+	case authSource = "auth-source"
 }
 
 
@@ -5072,6 +5793,9 @@ public enum PropertyType: String {
 	
 	/// The property is a date or a date + time
 	case dateTime = "dateTime"
+	
+	/// The property value is a decimal number
+	case decimal = "decimal"
 }
 
 
@@ -5090,8 +5814,8 @@ public enum ProvenanceEntityRole: String {
 	/// A derivation for which the resulting entity is a revised version of some original.
 	case revision = "revision"
 	
-	/// The repeat of (some or all of) an entity, such as text or image, by someone who may or may not be its original
-	/// author.
+	/// The repeat of (some or all of) an entity, such as text or image, by someone who might or might not be its
+	/// original author.
 	case quotation = "quotation"
 	
 	/// A primary source for a topic refers to something produced by some agent with direct experience and knowledge
@@ -5104,7 +5828,7 @@ public enum ProvenanceEntityRole: String {
 
 
 /**
-The lifecycle status of a Value Set or Concept Map.
+The lifecycle status of an artifact.
 
 URL: http://hl7.org/fhir/publication-status
 ValueSet: http://hl7.org/fhir/ValueSet/publication-status
@@ -5128,10 +5852,29 @@ public enum PublicationStatus: String {
 
 
 /**
+Type of alerts/updates the primary source can send
+
+URL: http://hl7.org/fhir/push-type-available
+ValueSet: http://hl7.org/fhir/ValueSet/push-type-available
+*/
+public enum PushTypeAvailable: String {
+	
+	/// specific
+	case specific = "specific"
+	
+	/// any
+	case any = "any"
+	
+	/// source
+	case source = "source"
+}
+
+
+/**
 A rating system that describes the quality of evidence such as the GRADE, DynaMed, or Oxford CEBM systems
 
 URL: http://hl7.org/fhir/evidence-quality
-ValueSet: http://hl7.org/fhir/ValueSet/cqif-evidence-quality
+ValueSet: http://hl7.org/fhir/ValueSet/evidence-quality
 */
 public enum QualityOfEvidenceRating: String {
 	
@@ -5191,6 +5934,37 @@ public enum QuantityComparator: String {
 
 
 /**
+The criteria by which a question is enabled
+
+URL: http://hl7.org/fhir/questionnaire-enable-operator
+ValueSet: http://hl7.org/fhir/ValueSet/questionnaire-enable-operator
+*/
+public enum QuestionnaireItemOperator: String {
+	
+	/// True if whether an answer exists is equal to the enableWhen answer (which must be a boolean)
+	case exists = "exists"
+	
+	/// True if whether at least one answer has a value that is equal to the enableWhen answer
+	case eq = "="
+	
+	/// True if whether at least no answer has a value that is equal to the enableWhen answer
+	case neq = "!="
+	
+	/// True if whether at least no answer has a value that is greater than the enableWhen answer
+	case gt = ">"
+	
+	/// True if whether at least no answer has a value that is less than the enableWhen answer
+	case lt = "<"
+	
+	/// True if whether at least no answer has a value that is greater or equal to the enableWhen answer
+	case gte = ">="
+	
+	/// True if whether at least no answer has a value that is less or equal to the enableWhen answer
+	case lte = "<="
+}
+
+
+/**
 Distinguishes groups from questions and display text and indicates data type for questions
 
 URL: http://hl7.org/fhir/item-type
@@ -5204,8 +5978,8 @@ public enum QuestionnaireItemType: String {
 	/// Text for display that will not capture an answer or have child items.
 	case display = "display"
 	
-	/// An item that defines a specific answer to be captured, and may have child items.
-	/// (the answer provided in the QuestionnaireResponse should be of the defined datatype)
+	/// An item that defines a specific answer to be captured, and which may have child items. (the answer provided in
+	/// the QuestionnaireResponse should be of the defined datatype)
 	case question = "question"
 	
 	/// Question with a yes/no answer (valueBoolean)
@@ -5250,9 +6024,9 @@ public enum QuestionnaireItemType: String {
 	case reference = "reference"
 	
 	/// Question with a combination of a numeric value and unit, potentially with a comparator (<, >, etc.) as an
-	/// answer. (valueQuantity)
-	/// There is an extension 'http://hl7.org/fhir/StructureDefinition/questionnaire-unit' that can be used to define
-	/// what unit whould be captured (or the a unit that has a ucum conversion from the provided unit)
+	/// answer. (valueQuantity) There is an extension 'http://hl7.org/fhir/StructureDefinition/questionnaire-unit' that
+	/// can be used to define what unit should be captured (or the a unit that has a ucum conversion from the provided
+	/// unit)
 	case quantity = "quantity"
 }
 
@@ -5292,11 +6066,11 @@ ValueSet: http://hl7.org/fhir/ValueSet/questionnaire-answers-status
 */
 public enum QuestionnaireResponseStatus: String {
 	
-	/// This QuestionnaireResponse has been partially filled out with answers, but changes or additions are still
+	/// This QuestionnaireResponse has been partially filled out with answers but changes or additions are still
 	/// expected to be made to it.
 	case inProgress = "in-progress"
 	
-	/// This QuestionnaireResponse has been filled out with answers, and the current content is regarded as definitive.
+	/// This QuestionnaireResponse has been filled out with answers and the current content is regarded as definitive.
 	case completed = "completed"
 	
 	/// This QuestionnaireResponse has been filled out with answers, then marked as complete, yet changes or additions
@@ -5306,7 +6080,7 @@ public enum QuestionnaireResponseStatus: String {
 	/// This QuestionnaireResponse was entered in error and voided.
 	case enteredInError = "entered-in-error"
 	
-	/// This QuestionnaireResponse has been partially filled out with answers, but has been abandoned. It is unknown
+	/// This QuestionnaireResponse has been partially filled out with answers but has been abandoned. It is unknown
 	/// whether changes or additions are expected to be made to it.
 	case stopped = "stopped"
 }
@@ -5387,6 +6161,31 @@ public enum ReferralMethod: String {
 
 
 /**
+Criterion for rejection of the specimen by laboratory
+
+URL: http://hl7.org/fhir/rejection-criteria
+ValueSet: http://hl7.org/fhir/ValueSet/rejection-criteria
+*/
+public enum RejectionCriterion: String {
+	
+	/// blood specimen hemolized
+	case hemolized = "hemolized"
+	
+	/// insufficient quantity of specimen
+	case insufficient = "insufficient"
+	
+	/// specimen container broken
+	case broken = "broken"
+	
+	/// specimen clotted
+	case clotted = "clotted"
+	
+	/// specimen temperature inappropriate
+	case wrongTemperature = "wrong-temperature"
+}
+
+
+/**
 The type of relationship to the related artifact
 
 URL: http://hl7.org/fhir/related-artifact-type
@@ -5463,11 +6262,11 @@ ValueSet: http://hl7.org/fhir/ValueSet/request-intent
 */
 public enum RequestIntent: String {
 	
-	/// The request is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and
+	/// The request is a suggestion made by someone/something that does not have an intention to ensure it occurs and
 	/// without providing an authorization to act
 	case proposal = "proposal"
 	
-	/// The request represents an intension to ensure something occurs without providing an authorization for others to
+	/// The request represents an intention to ensure something occurs without providing an authorization for others to
 	/// act
 	case plan = "plan"
 	
@@ -5490,9 +6289,8 @@ public enum RequestIntent: String {
 	case instanceOrder = "instance-order"
 	
 	/// The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or
-	/// other constraints among a set of requests.
-	/// 
-	/// Refer to [[[RequestGroup]]] for additional information on how this status is used
+	/// other constraints among a set of requests.  Refer to [[[RequestGroup]]] for additional information on how this
+	/// status is used
 	case option = "option"
 }
 
@@ -5520,7 +6318,7 @@ public enum RequestPriority: String {
 
 
 /**
-Codes identifying the stage lifecycle stage of a request
+Codes identifying the lifecycle stage of a request
 
 URL: http://hl7.org/fhir/request-status
 ValueSet: http://hl7.org/fhir/ValueSet/request-status
@@ -5530,7 +6328,7 @@ public enum RequestStatus: String {
 	/// The request has been created but is not yet complete or ready for action
 	case draft = "draft"
 	
-	/// The request is ready to be acted upon
+	/// The request is in force and ready to be acted upon
 	case active = "active"
 	
 	/// The authorization/request to act has been temporarily withdrawn but is expected to resume in the future
@@ -5549,8 +6347,134 @@ public enum RequestStatus: String {
 	
 	/// The authoring system does not know which of the status values currently applies for this request.  Note: This
 	/// concept is not to be used for "other" . One of the listed statuses is presumed to apply,  but the system
-	/// creating the request doesn't know.
+	/// creating the request does not know.
 	case unknown = "unknown"
+}
+
+
+/**
+Codes for the kind of study objective
+
+URL: http://hl7.org/fhir/research-study-objective-type
+ValueSet: http://hl7.org/fhir/ValueSet/research-study-objective-type
+*/
+public enum ResearchStudyObjectiveType: String {
+	
+	/// The main question to be answered, and the one that drives any statistical planning for the study—e.g.,
+	/// calculation of the sample size to provide the appropriate power for statistical testing.
+	case primary = "primary"
+	
+	/// Question to be answered in the study that is of lesser importance than the primary objective.
+	case secondary = "secondary"
+	
+	/// Exploratory questions to be answered in the study.
+	case exploratory = "exploratory"
+}
+
+
+/**
+Codes for the stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-
+market evaluation.
+
+URL: http://hl7.org/fhir/research-study-phase
+ValueSet: http://hl7.org/fhir/ValueSet/research-study-phase
+*/
+public enum ResearchStudyPhase: String {
+	
+	/// Trials without phases (for example, studies of devices or behavioral interventions).
+	case NA = "n-a"
+	
+	/// Designation for optional exploratory trials conducted in accordance with the United States Food and Drug
+	/// Administration's (FDA) 2006 Guidance on Exploratory Investigational New Drug (IND) Studies. Formerly called
+	/// Phase 0.
+	case earlyPhase1 = "early-phase-1"
+	
+	/// Includes initial studies to determine the metabolism and pharmacologic actions of drugs in humans, the side
+	/// effects associated with increasing doses, and to gain early evidence of effectiveness; may include healthy
+	/// participants and/or patients.
+	case phase1 = "phase-1"
+	
+	/// Trials that are a combination of phases 1 and 2.
+	case phase1Phase2 = "phase-1-phase-2"
+	
+	/// Includes controlled clinical studies conducted to evaluate the effectiveness of the drug for a particular
+	/// indication or indications in participants with the disease or condition under study and to determine the common
+	/// short-term side effects and risks.
+	case phase2 = "phase-2"
+	
+	/// Trials that are a combination of phases 2 and 3.
+	case phase2Phase3 = "phase-2-phase-3"
+	
+	/// Includes trials conducted after preliminary evidence suggesting effectiveness of the drug has been obtained, and
+	/// are intended to gather additional information to evaluate the overall benefit-risk relationship of the drug.
+	case phase3 = "phase-3"
+	
+	/// Studies of FDA-approved drugs to delineate additional information including the drug's risks, benefits, and
+	/// optimal use.
+	case phase4 = "phase-4"
+}
+
+
+/**
+Codes for the main intent of the study
+
+URL: http://hl7.org/fhir/research-study-prim-purp-type
+ValueSet: http://hl7.org/fhir/ValueSet/research-study-prim-purp-type
+*/
+public enum ResearchStudyPrimaryPurposeType: String {
+	
+	/// One or more interventions are being evaluated for treating a disease, syndrome, or condition.
+	case treatment = "treatment"
+	
+	/// One or more interventions are being assessed for preventing the development of a specific disease or health
+	/// condition.
+	case prevention = "prevention"
+	
+	/// One or more interventions are being evaluated for identifying a disease or health condition.
+	case diagnostic = "diagnostic"
+	
+	/// One or more interventions are evaluated for maximizing comfort, minimizing side effects, or mitigating against a
+	/// decline in the participant's health or function.
+	case supportiveCare = "supportive-care"
+	
+	/// One or more interventions are assessed or examined for identifying a condition, or risk factors for a condition,
+	/// in people who are not yet known to have the condition or risk factor.
+	case screening = "screening"
+	
+	/// One or more interventions for evaluating the delivery, processes, management, organization, or financing of
+	/// healthcare.
+	case healthServicesResearch = "health-services-research"
+	
+	/// One or more interventions for examining the basic mechanism of action (for example, physiology or biomechanics
+	/// of an intervention).
+	case basicScience = "basic-science"
+	
+	/// An intervention of a device product is being evaluated to determine the feasibility of the product or to test a
+	/// prototype device and not health outcomes. Such studies are conducted to confirm the design and operating
+	/// specifications of a device before beginning a full clinical trial.
+	case deviceFeasibility = "device-feasibility"
+}
+
+
+/**
+Codes for why the study ended prematurely
+
+URL: http://hl7.org/fhir/research-study-reason-stopped
+ValueSet: http://hl7.org/fhir/ValueSet/research-study-reason-stopped
+*/
+public enum ResearchStudyReasonStopped: String {
+	
+	/// The study prematurely ended because the accrual goal was met.
+	case accrualGoalMet = "accrual-goal-met"
+	
+	/// The study prematurely ended due to toxicity.
+	case closedDueToToxicity = "closed-due-to-toxicity"
+	
+	/// The study prematurely ended due to lack of study progress.
+	case closedDueToLackOfStudyProgress = "closed-due-to-lack-of-study-progress"
+	
+	/// The study prematurely ended temporarily per study design.
+	case temporarilyClosedPerStudyDesign = "temporarily-closed-per-study-design"
 }
 
 
@@ -5562,24 +6486,44 @@ ValueSet: http://hl7.org/fhir/ValueSet/research-study-status
 */
 public enum ResearchStudyStatus: String {
 	
-	/// The study is undergoing design but the process of selecting study subjects and capturing data has not yet begun.
-	case draft = "draft"
+	/// Study is opened for accrual.
+	case active = "active"
 	
-	/// The study is currently being executed
-	case inProgress = "in-progress"
+	/// Study is completed prematurely and will not resume; patients are no longer examined nor treated.
+	/// Tagged
+	case administrativelyCompleted = "administratively-completed"
 	
-	/// Execution of the study has been temporarily paused
-	case suspended = "suspended"
+	/// Protocol is approved by the review board.
+	case approved = "approved"
 	
-	/// The study was terminated prior to the final determination of results
-	case stopped = "stopped"
+	/// Study is closed for accrual; patients can be examined and treated.
+	case closedToAccrual = "closed-to-accrual"
 	
-	/// The information sought by the study has been gathered and compiled and no further work is being performed
+	/// Study is closed to accrual and intervention, i.e. the study is closed to enrollment, all study subjects have
+	/// completed treatment or intervention but are still being followed according to the primary objective of the
+	/// study.
+	case closedToAccrualAndIntervention = "closed-to-accrual-and-intervention"
+	
+	/// Study is closed to accrual and intervention, i.e. the study is closed to enrollment, all study subjects have
+	/// completed treatment
+	/// or intervention but are still being followed according to the primary objective of the study.
 	case completed = "completed"
 	
-	/// This study never actually existed.  The record is retained for tracking purposes in the event decisions may have
-	/// been made based on this erroneous information.
-	case enteredInError = "entered-in-error"
+	/// Protocol was disapproved by the review board.
+	case disapproved = "disapproved"
+	
+	/// Protocol is submitted to the review board for approval.
+	case inReview = "in-review"
+	
+	/// Study is temporarily closed for accrual; can be potentially resumed in the future; patients can be examined and
+	/// treated.
+	case temporarilyClosedToAccrual = "temporarily-closed-to-accrual"
+	
+	/// Study is temporarily closed for accrual and intervention and potentially can be resumed in the future.
+	case temporarilyClosedToAccrualAndIntervention = "temporarily-closed-to-accrual-and-intervention"
+	
+	/// Protocol was withdrawn by the lead organization.
+	case withdrawn = "withdrawn"
 }
 
 
@@ -5591,25 +6535,617 @@ ValueSet: http://hl7.org/fhir/ValueSet/research-subject-status
 */
 public enum ResearchSubjectStatus: String {
 	
-	/// The subject has been identified as a potential participant in the study but has not yet agreed to participate
+	/// An identified person that can be considered for inclusion in a study.
 	case candidate = "candidate"
 	
-	/// The subject has agreed to participate in the study but has not yet begun performing any action within the study
-	case enrolled = "enrolled"
+	/// A person that has met the eligibility criteria for inclusion in a study.
+	case eligible = "eligible"
 	
-	/// The subject is currently being monitored and/or subject to treatment as part of the study
-	case active = "active"
+	/// A person is no longer receiving study intervention and/or being evaluated with tests and procedures according to
+	/// the protocol, but they are being monitored on a protocol-prescribed schedule.
+	case followUp = "follow-up"
 	
-	/// The subject has temporarily discontinued monitoring/treatment as part of the study
-	case suspended = "suspended"
+	/// A person who did not meet one or more criteria required for participation in a study is considered to have
+	/// failed screening or
+	/// is ineligible for the study.
+	case ineligible = "ineligible"
 	
-	/// The subject has permanently ended participation in the study prior to completion of the intended
-	/// monitoring/treatment
+	/// A person for whom registration was not completed
+	case notRegistered = "not-registered"
+	
+	/// A person that has ended their participation on a study either because their treatment/observation is complete or
+	/// through not
+	/// responding, withdrawal, non-compliance and/or adverse event.
+	case offStudy = "off-study"
+	
+	/// A person that is enrolled or registered on a study.
+	case onStudy = "on-study"
+	
+	/// The person is receiving the treatment or participating in an activity (e.g. yoga, diet, etc.) that the study is
+	/// evaluating.
+	case onStudyIntervention = "on-study-intervention"
+	
+	/// The subject is being evaluated via tests and assessments according to the study calendar, but is not receiving
+	/// any intervention. Note that this state is study-dependent and might not exist in all studies.  A synonym for
+	/// this is "short-term follow-up".
+	case onStudyObservation = "on-study-observation"
+	
+	/// A person is pre-registered for a study.
+	case pendingOnStudy = "pending-on-study"
+	
+	/// A person that is potentially eligible for participation in the study.
+	case potentialCandidate = "potential-candidate"
+	
+	/// A person who is being evaluated for eligibility for a study.
+	case screening = "screening"
+	
+	/// The person has withdrawn their participation in the study before registration.
 	case withdrawn = "withdrawn"
+}
+
+
+/**
+One of the resource types defined as part of this version of FHIR.
+
+URL: http://hl7.org/fhir/resource-types
+ValueSet: http://hl7.org/fhir/ValueSet/resource-types
+*/
+public enum ResourceType: String {
 	
-	/// All intended monitoring/treatment of the subject has been completed and their engagement with the study is now
-	/// ended
-	case completed = "completed"
+	/// A financial tool for tracking value accrued for a particular purpose.  In the healthcare field, used to track
+	/// charges for a patient, cost centers, etc.
+	case account = "Account"
+	
+	/// This resource allows for the definition of some activity to be performed, independent of a particular patient,
+	/// practitioner, or other performance context.
+	case activityDefinition = "ActivityDefinition"
+	
+	/// Actual or  potential/avoided event causing unintended physical injury resulting from or contributed to by
+	/// medical care, a research study or other healthcare setting factors that requires additional monitoring,
+	/// treatment, or hospitalization, or that results in death.
+	case adverseEvent = "AdverseEvent"
+	
+	/// Risk of harmful or undesirable, physiological response which is unique to an individual and associated with
+	/// exposure to a substance.
+	case allergyIntolerance = "AllergyIntolerance"
+	
+	/// A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a
+	/// specific date/time. This may result in one or more Encounter(s).
+	case appointment = "Appointment"
+	
+	/// A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection.
+	case appointmentResponse = "AppointmentResponse"
+	
+	/// A record of an event made for purposes of maintaining a security log. Typical uses include detection of
+	/// intrusion attempts and monitoring for inappropriate usage.
+	case auditEvent = "AuditEvent"
+	
+	/// Basic is used for handling concepts not yet defined in FHIR, narrative-only resources that don't map to an
+	/// existing resource, and custom resources not appropriate for inclusion in the FHIR specification.
+	case basic = "Basic"
+	
+	/// A binary resource can contain any content, whether text, image, pdf, zip archive, etc.
+	case binary = "Binary"
+	
+	/// A material substance originating from a biological entity intended to be transplanted or infused
+	/// into another (possibly the same) biological entity.
+	case biologicallyDerivedProduct = "BiologicallyDerivedProduct"
+	
+	/// Record details about an anatomical structure.  This resource may be used when a coded concept does not provide
+	/// the necessary detail needed for the use case.
+	case bodyStructure = "BodyStructure"
+	
+	/// A container for a collection of resources.
+	case bundle = "Bundle"
+	
+	/// A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server that may be used as a
+	/// statement of actual server functionality or a statement of required or desired server implementation.
+	case capabilityStatement = "CapabilityStatement"
+	
+	/// Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group
+	/// or community for a period of time, possibly limited to care for a specific condition or set of conditions.
+	case carePlan = "CarePlan"
+	
+	/// The Care Team includes all the people and organizations who plan to participate in the coordination and delivery
+	/// of care for a patient.
+	case careTeam = "CareTeam"
+	
+	/// The resource ChargeItem describes the provision of healthcare provider products for a certain patient, therefore
+	/// referring not only to the product, but containing in addition details of the provision, like date, time, amounts
+	/// and participating organizations and persons. Main Usage of the ChargeItem is to enable the billing process and
+	/// internal cost allocation.
+	case chargeItem = "ChargeItem"
+	
+	/// A provider issued list of services and products provided, or to be provided, to a patient which is provided to
+	/// an insurer for payment recovery.
+	case claim = "Claim"
+	
+	/// This resource provides the adjudication details from the processing of a Claim resource.
+	case claimResponse = "ClaimResponse"
+	
+	/// A record of a clinical assessment performed to determine what problem(s) may affect the patient and before
+	/// planning the treatments or management strategies that are best to manage a patient's condition. Assessments are
+	/// often 1:1 with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow.
+	/// This resource is called "ClinicalImpression" rather than "ClinicalAssessment" to avoid confusion with the
+	/// recording of assessment tools such as Apgar score.
+	case clinicalImpression = "ClinicalImpression"
+	
+	/// The CodeSystem resource is used to declare the existence of and describe a code system or code system supplement
+	/// and its key properties, and optionally define a part or all of its content.
+	case codeSystem = "CodeSystem"
+	
+	/// An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public
+	/// health agency was notified about a reportable condition.
+	case communication = "Communication"
+	
+	/// A request to convey information; e.g. the CDS system proposes that an alert be sent to a responsible provider,
+	/// the CDS system proposes that the public health agency be notified about a reportable condition.
+	case communicationRequest = "CommunicationRequest"
+	
+	/// A compartment definition that defines how resources are accessed on a server.
+	case compartmentDefinition = "CompartmentDefinition"
+	
+	/// A set of healthcare-related information that is assembled together into a single logical package that provides a
+	/// single coherent statement of meaning, establishes its own context and that has clinical attestation with regard
+	/// to who is making the statement. A Composition defines the structure and narrative content necessary for a
+	/// document. However, a Composition alone does not constitute a document. Rather, the Composition must be the first
+	/// entry in a Bundle where Bundle.type=document, and any other resources referenced from Composition must be
+	/// included as subsequent entries in the Bundle (for example Patient, Practitioner, Encounter, etc.).
+	case composition = "Composition"
+	
+	/// A statement of relationships from one set of concepts to one or more other concepts - either code systems or
+	/// data elements, or classes in class models.
+	case conceptMap = "ConceptMap"
+	
+	/// A clinical condition, problem, diagnosis, or other event, situation, issue, or clinical concept that has risen
+	/// to a level of concern.
+	case condition = "Condition"
+	
+	/// A record of a healthcare consumer’s  choices, which permits or denies identified recipient(s) or recipient
+	/// role(s) to perform one or more actions within a given policy context, for specific purposes and periods of time.
+	case consent = "Consent"
+	
+	/// A formal agreement between parties regarding the conduct of business, exchange of information or other matters.
+	case contract = "Contract"
+	
+	/// Financial instrument which may be used to reimburse or pay for health care products and services.
+	case coverage = "Coverage"
+	
+	/// Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions
+	/// for a patient; e.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
+	case detectedIssue = "DetectedIssue"
+	
+	/// This resource identifies an instance or a type of a manufactured item that is used in the provision of
+	/// healthcare without being substantially changed through that activity. The device may be a medical or non-medical
+	/// device.  Medical devices include durable (reusable) medical equipment, implantable devices, as well as
+	/// disposable equipment used for diagnostic, treatment, and research for healthcare and public health.  Non-medical
+	/// devices may include items such as a machine, cellphone, computer, application, etc.
+	case device = "Device"
+	
+	/// The characteristics, operational status and capabilities of a medical-related component of a medical device.
+	case deviceComponent = "DeviceComponent"
+	
+	/// Describes a measurement, calculation or setting capability of a medical device.
+	case deviceMetric = "DeviceMetric"
+	
+	/// Represents a request for a patient to employ a medical device. The device may be an implantable device, or an
+	/// external assistive device, such as a walker.
+	case deviceRequest = "DeviceRequest"
+	
+	/// A record of a device being used by a patient where the record is the result of a report from the patient or
+	/// another clinician.
+	case deviceUseStatement = "DeviceUseStatement"
+	
+	/// The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and
+	/// locations, and/or specimens derived from these. The report includes clinical context such as requesting and
+	/// provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted
+	/// representation of diagnostic reports.
+	case diagnosticReport = "DiagnosticReport"
+	
+	/// A collection of documents compiled for a purpose together with metadata that applies to the collection.
+	case documentManifest = "DocumentManifest"
+	
+	/// A reference to a document.
+	case documentReference = "DocumentReference"
+	
+	/// A resource that includes narrative, extensions, and contained resources.
+	case domainResource = "DomainResource"
+	
+	/// The EligibilityRequest provides patient and insurance coverage information to an insurer for them to respond, in
+	/// the form of an EligibilityResponse, with information regarding whether the stated coverage is valid and in-force
+	/// and optionally to provide the insurance details of the policy.
+	case eligibilityRequest = "EligibilityRequest"
+	
+	/// This resource provides eligibility and plan details from the processing of an Eligibility resource.
+	case eligibilityResponse = "EligibilityResponse"
+	
+	/// An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s)
+	/// or assessing the health status of a patient.
+	case encounter = "Encounter"
+	
+	/// The technical details of an endpoint that can be used for electronic services, such as for web services
+	/// providing XDS.b or a REST endpoint for another FHIR server. This may include any security context information.
+	case endpoint = "Endpoint"
+	
+	/// This resource provides the insurance enrollment details to the insurer regarding a specified coverage.
+	case enrollmentRequest = "EnrollmentRequest"
+	
+	/// This resource provides enrollment and plan details from the processing of an Enrollment resource.
+	case enrollmentResponse = "EnrollmentResponse"
+	
+	/// Catalog entries are wrappers that contextualize items included in a catalog.
+	case entryDefinition = "EntryDefinition"
+	
+	/// An association between a patient and an organization / healthcare provider(s) during which time encounters may
+	/// occur. The managing organization assumes a level of responsibility for the patient during this time.
+	case episodeOfCare = "EpisodeOfCare"
+	
+	/// The EventDefinition resource provides a reusable description of when a particular event can occur.
+	case eventDefinition = "EventDefinition"
+	
+	/// Example of workflow instance.
+	case exampleScenario = "ExampleScenario"
+	
+	/// Resource to define constraints on the Expansion of a FHIR ValueSet.
+	case expansionProfile = "ExpansionProfile"
+	
+	/// This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally
+	/// account balance information, for informing the subscriber of the benefits provided.
+	case explanationOfBenefit = "ExplanationOfBenefit"
+	
+	/// Significant health conditions for a person related to the patient relevant in the context of care for the
+	/// patient.
+	case familyMemberHistory = "FamilyMemberHistory"
+	
+	/// Prospective warnings of potential issues when providing care to the patient.
+	case flag = "Flag"
+	
+	/// Describes the intended objective(s) for a patient, group or organization care, for example, weight loss,
+	/// restoring an activity of daily living, obtaining herd immunity via immunization, meeting a process improvement
+	/// objective, etc.
+	case goal = "Goal"
+	
+	/// A formal computable definition of a graph of resources - that is, a coherent set of resources that form a graph
+	/// by following references. The Graph Definition resource defines a set and makes rules about the set.
+	case graphDefinition = "GraphDefinition"
+	
+	/// Represents a defined collection of entities that may be discussed or acted upon collectively but which are not
+	/// expected to act collectively and are not formally or legally recognized; i.e. a collection of entities that
+	/// isn't an Organization.
+	case group = "Group"
+	
+	/// A guidance response is the formal response to a guidance request, including any output parameters returned by
+	/// the evaluation, as well as the description of any proposed actions to be taken.
+	case guidanceResponse = "GuidanceResponse"
+	
+	/// The details of a healthcare service available at a location.
+	case healthcareService = "HealthcareService"
+	
+	/// Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of
+	/// which includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or
+	/// produced in a common context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study
+	/// may have multiple series of different modalities.
+	case imagingStudy = "ImagingStudy"
+	
+	/// Describes the event of a patient being administered a vaccine or a record of an immunization as reported by a
+	/// patient, a clinician or another party.
+	case immunization = "Immunization"
+	
+	/// Describes a comparison of an immunization event against published recommendations to determine if the
+	/// administration is "valid" in relation to those  recommendations.
+	case immunizationEvaluation = "ImmunizationEvaluation"
+	
+	/// A patient's point-in-time set of recommendations (i.e. forecasting) according to a published schedule with
+	/// optional supporting justification.
+	case immunizationRecommendation = "ImmunizationRecommendation"
+	
+	/// A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts
+	/// of an implementation guide into a logical whole and to publish a computable definition of all the parts.
+	case implementationGuide = "ImplementationGuide"
+	
+	/// Invoice containing collected ChargeItems from an Account with calculated individual and total price for Billing
+	/// purpose.
+	case invoice = "Invoice"
+	
+	/// A physical, countable instance of an item, for example one box or one unit.
+	case itemInstance = "ItemInstance"
+	
+	/// The Library resource is a general-purpose container for knowledge asset definitions. It can be used to describe
+	/// and expose existing knowledge assets such as logic libraries and information model descriptions, as well as to
+	/// describe a collection of knowledge assets.
+	case library = "Library"
+	
+	/// Identifies two or more records (resource instances) that are referring to the same real-world "occurrence".
+	case linkage = "Linkage"
+	
+	/// A set of information summarized from a list of other resources.
+	case list = "List"
+	
+	/// Details and position information for a physical place where services are provided and resources and participants
+	/// may be stored, found, contained, or accommodated.
+	case location = "Location"
+	
+	/// The Measure resource provides the definition of a quality measure.
+	case measure = "Measure"
+	
+	/// The MeasureReport resource contains the results of the calculation of a measure; and optionally a reference to
+	/// the resources involved in that calculation.
+	case measureReport = "MeasureReport"
+	
+	/// A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided
+	/// by direct reference.
+	case media = "Media"
+	
+	/// This resource is primarily used for the identification and definition of a medication for the purposes of
+	/// prescribing, dispensing, and administering a medication as well as for making statements about medication use.
+	case medication = "Medication"
+	
+	/// Describes the event of a patient consuming or otherwise being administered a medication.  This may be as simple
+	/// as swallowing a tablet or it may be a long running infusion.  Related resources tie this event to the
+	/// authorizing prescription, and the specific encounter between patient and health care practitioner.
+	case medicationAdministration = "MedicationAdministration"
+	
+	/// Indicates that a medication product is to be or has been dispensed for a named person/patient.  This includes a
+	/// description of the medication product (supply) provided and the instructions for administering the medication.
+	/// The medication dispense is the result of a pharmacy system responding to a medication order.
+	case medicationDispense = "MedicationDispense"
+	
+	/// An order or request for both supply of the medication and the instructions for administration of the medication
+	/// to a patient. The resource is called "MedicationRequest" rather than "MedicationPrescription" or
+	/// "MedicationOrder" to generalize the use across inpatient and outpatient settings, including care plans, etc.,
+	/// and to harmonize with workflow patterns.
+	case medicationRequest = "MedicationRequest"
+	
+	/// A record of a medication that is being consumed by a patient.   A MedicationStatement may indicate that the
+	/// patient may be taking the medication now, or has taken the medication in the past or will be taking the
+	/// medication in the future.  The source of this information can be the patient, significant other (such as a
+	/// family member or spouse), or a clinician.  A common scenario where this information is captured is during the
+	/// history taking process during a patient visit or stay.   The medication information may come from sources such
+	/// as the patient's memory, from a prescription bottle,  or from a list of medications the patient, clinician or
+	/// other party maintains.
+	/// 
+	/// The primary difference between a medication statement and a medication administration is that the medication
+	/// administration has complete administration information and is based on actual administration information from
+	/// the person who administered the medication.  A medication statement is often, if not always, less specific.
+	/// There is no required date/time when the medication was administered, in fact we only know that a source has
+	/// reported the patient is taking this medication, where details such as time, quantity, or rate or even medication
+	/// product may be incomplete or missing or less precise.  As stated earlier, the medication statement information
+	/// may come from the patient's memory, from a prescription bottle or from a list of medications the patient,
+	/// clinician or other party maintains.  Medication administration is more formal and is not missing detailed
+	/// information.
+	case medicationStatement = "MedicationStatement"
+	
+	/// Detailed definition of a medicinal product, typically for uses other than direct patient care (e.g. regulatory
+	/// use).
+	case medicinalProduct = "MedicinalProduct"
+	
+	/// The regulatory authorization of a medicinal product.
+	case medicinalProductAuthorization = "MedicinalProductAuthorization"
+	
+	/// The clinical particulars - indications, contraindications etc. of a medicinal product, including for regulatory
+	/// purposes.
+	case medicinalProductClinicals = "MedicinalProductClinicals"
+	
+	/// A detailed description of a device, typically as part of a regulated medicinal product. It is not intended to
+	/// relace the Device resource, which covers use of device instances.
+	case medicinalProductDeviceSpec = "MedicinalProductDeviceSpec"
+	
+	/// An ingredient of a manufactured item or pharmaceutical product.
+	case medicinalProductIngredient = "MedicinalProductIngredient"
+	
+	/// A medicinal product in a container or package.
+	case medicinalProductPackaged = "MedicinalProductPackaged"
+	
+	/// A pharmaceutical product described in terms of its composition and dose form.
+	case medicinalProductPharmaceutical = "MedicinalProductPharmaceutical"
+	
+	/// Defines the characteristics of a message that can be shared between systems, including the type of event that
+	/// initiates the message, the content to be transmitted and what response(s), if any, are permitted.
+	case messageDefinition = "MessageDefinition"
+	
+	/// The header for a message exchange that is either requesting or responding to an action.  The reference(s) that
+	/// are the subject of the action as well as other information related to the action are typically transmitted in a
+	/// bundle in which the MessageHeader resource instance is the first resource in the bundle.
+	case messageHeader = "MessageHeader"
+	
+	/// A curated namespace that issues unique symbols within that namespace for the identification of concepts, people,
+	/// devices, etc.  Represents a "System" used within the Identifier and Coding data types.
+	case namingSystem = "NamingSystem"
+	
+	/// A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
+	case nutritionOrder = "NutritionOrder"
+	
+	/// Measurements and simple assertions made about a patient, device or other subject.
+	case observation = "Observation"
+	
+	/// Set of definitional characteristics for a kind of observation or measurement produced or consumed by an
+	/// orderable health care service.
+	case observationDefinition = "ObservationDefinition"
+	
+	/// A person's work information, structured to facilitate individual, population, and public health use; not
+	/// intended to support billing.
+	case occupationalData = "OccupationalData"
+	
+	/// A formal computable definition of an operation (on the RESTful interface) or a named query (using the search
+	/// interaction).
+	case operationDefinition = "OperationDefinition"
+	
+	/// A collection of error, warning or information messages that result from a system action.
+	case operationOutcome = "OperationOutcome"
+	
+	/// A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some
+	/// form of collective action.  Includes companies, institutions, corporations, departments, community groups,
+	/// healthcare practice groups, etc.
+	case organization = "Organization"
+	
+	/// A specific set of Roles/Locations/specialties/services that a practitioner may perform at an organization for a
+	/// period of time.
+	case organizationRole = "OrganizationRole"
+	
+	/// This special resource type is used to represent an operation request and response (operations.html). It has no
+	/// other use, and there is no RESTful endpoint associated with it.
+	case parameters = "Parameters"
+	
+	/// Demographics and other administrative information about an individual or animal receiving care or other health-
+	/// related services.
+	case patient = "Patient"
+	
+	/// This resource provides the status of the payment for goods and services rendered, and the request and response
+	/// resource references.
+	case paymentNotice = "PaymentNotice"
+	
+	/// This resource provides payment details and claim references supporting a bulk payment.
+	case paymentReconciliation = "PaymentReconciliation"
+	
+	/// Demographics and administrative information about a person independent of a specific health-related context.
+	case person = "Person"
+	
+	/// This resource allows for the definition of various types of plans as a sharable, consumable, and executable
+	/// artifact. The resource is general enough to support the description of a broad range of clinical artifacts such
+	/// as clinical decision support rules, order sets and protocols.
+	case planDefinition = "PlanDefinition"
+	
+	/// A person who is directly or indirectly involved in the provisioning of healthcare.
+	case practitioner = "Practitioner"
+	
+	/// A specific set of Roles/Locations/specialties/services that a practitioner may perform at an organization for a
+	/// period of time.
+	case practitionerRole = "PractitionerRole"
+	
+	/// An action that is or was performed on a patient. This can be a physical intervention like an operation, or less
+	/// invasive like counseling or hypnotherapy.
+	case procedure = "Procedure"
+	
+	/// This resource provides the target, request and response, and action details for an action to be performed by the
+	/// target on or about existing resources.
+	case processRequest = "ProcessRequest"
+	
+	/// This resource provides processing status, errors and notes from the processing of a resource.
+	case processResponse = "ProcessResponse"
+	
+	/// Details of a Health Insurance product/plan provided by an organization.
+	case productPlan = "ProductPlan"
+	
+	/// Provenance of a resource is a record that describes entities and processes involved in producing and delivering
+	/// or otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity,
+	/// enabling trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can
+	/// themselves become important records with their own provenance. Provenance statement indicates clinical
+	/// significance in terms of confidence in authenticity, reliability, and trustworthiness, integrity, and stage in
+	/// lifecycle (e.g. Document Completion - has the artifact been legally authenticated), all of which may impact
+	/// security, privacy, and trust policies.
+	case provenance = "Provenance"
+	
+	/// A structured set of questions intended to guide the collection of answers from end-users. Questionnaires provide
+	/// detailed control over order, presentation, phraseology and grouping to allow coherent, consistent data
+	/// collection.
+	case questionnaire = "Questionnaire"
+	
+	/// A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets,
+	/// corresponding to the structure of the grouping of the questionnaire being responded to.
+	case questionnaireResponse = "QuestionnaireResponse"
+	
+	/// Information about a person that is involved in the care for a patient, but who is not the target of healthcare,
+	/// nor has a formal responsibility in the care process.
+	case relatedPerson = "RelatedPerson"
+	
+	/// A group of related requests that can be used to capture intended activities that have inter-dependencies such as
+	/// "give this medication after that one".
+	case requestGroup = "RequestGroup"
+	
+	/// A process where a researcher or organization plans and then executes a series of steps intended to increase the
+	/// field of healthcare-related knowledge.  This includes studies of safety, efficacy, comparative effectiveness and
+	/// other information about medications, devices, therapies and other interventional and investigative techniques.
+	/// A ResearchStudy involves the gathering of information about human or animal subjects.
+	case researchStudy = "ResearchStudy"
+	
+	/// A physical entity which is the primary unit of operational and/or administrative interest in a study.
+	case researchSubject = "ResearchSubject"
+	
+	/// This is the base resource type for everything.
+	case resource = "Resource"
+	
+	/// An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome.
+	case riskAssessment = "RiskAssessment"
+	
+	/// A container for slots of time that may be available for booking appointments.
+	case schedule = "Schedule"
+	
+	/// A search parameter that defines a named search item that can be used to search/filter on a resource.
+	case searchParameter = "SearchParameter"
+	
+	/// Raw data describing a biological sequence.
+	case sequence = "Sequence"
+	
+	/// A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.
+	case serviceRequest = "ServiceRequest"
+	
+	/// A slot of time on a schedule that may be available for booking appointments.
+	case slot = "Slot"
+	
+	/// A sample to be used for analysis.
+	case specimen = "Specimen"
+	
+	/// A kind of specimen with associated set of requirements.
+	case specimenDefinition = "SpecimenDefinition"
+	
+	/// A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined
+	/// in FHIR, and also for describing extensions and constraints on resources and data types.
+	case structureDefinition = "StructureDefinition"
+	
+	/// A Map of relationships between 2 structures that can be used to transform data.
+	case structureMap = "StructureMap"
+	
+	/// The subscription resource is used to define a push-based subscription from a server to another system. Once a
+	/// subscription is registered with the server, the server checks every resource that is created or updated, and if
+	/// the resource matches the given criteria, it sends a message on the defined "channel" so that another system can
+	/// take an appropriate action.
+	case subscription = "Subscription"
+	
+	/// A homogeneous material with a definite composition.
+	case substance = "Substance"
+	
+	/// Todo.
+	case substancePolymer = "SubstancePolymer"
+	
+	/// Todo.
+	case substanceReferenceInformation = "SubstanceReferenceInformation"
+	
+	/// The detailed description of a substance, typically at a level beyond what is used for prescribing.
+	case substanceSpecification = "SubstanceSpecification"
+	
+	/// Record of delivery of what is supplied.
+	case supplyDelivery = "SupplyDelivery"
+	
+	/// A record of a request for a medication, substance or device used in the healthcare setting.
+	case supplyRequest = "SupplyRequest"
+	
+	/// A task to be performed.
+	case task = "Task"
+	
+	/// A Terminology Capabilities documents a set of capabilities (behaviors) of a FHIR Server that may be used as a
+	/// statement of actual server functionality or a statement of required or desired server implementation.
+	case terminologyCapabilities = "TerminologyCapabilities"
+	
+	/// A summary of information based on the results of executing a TestScript.
+	case testReport = "TestReport"
+	
+	/// A structured set of tests against a FHIR server or client implementation to determine compliance against the
+	/// FHIR specification.
+	case testScript = "TestScript"
+	
+	/// Information about a user's current session.
+	case userSession = "UserSession"
+	
+	/// A ValueSet resource specifies a set of codes drawn from one or more code systems, intended for use in a
+	/// particular context. Value sets link between [[[CodeSystem]]] definitions and their use in [coded
+	/// elements](terminologies.html).
+	case valueSet = "ValueSet"
+	
+	/// Describes validation requirements, source(s), status and dates for one or more elements.
+	case verificationResult = "VerificationResult"
+	
+	/// An authorization for the supply of glasses and/or contact lenses to a patient.
+	case visionPrescription = "VisionPrescription"
 }
 
 
@@ -5648,11 +7184,11 @@ public enum ResourceValidationMode: String {
 	case create = "create"
 	
 	/// The server checks the content, and then checks that it would accept it as an update against the nominated
-	/// specific resource (e.g. that there are no changes to immutable fields the server does not allow to change, and
+	/// specific resource (e.g. that there are no changes to immutable fields the server does not allow to change and
 	/// checking version integrity if appropriate).
 	case update = "update"
 	
-	/// The server ignores the content, and checks that the nominated resource is allowed to be deleted (e.g. checking
+	/// The server ignores the content and checks that the nominated resource is allowed to be deleted (e.g. checking
 	/// referential integrity rules).
 	case delete = "delete"
 }
@@ -5722,7 +7258,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/restful-security-service
 */
 public enum RestfulSecurityService: String {
 	
-	/// Oauth (unspecified version see oauth.net).
+	/// OAuth (unspecified version see oauth.net).
 	case oAuth = "OAuth"
 	
 	/// OAuth2 using SMART-on-FHIR profile (see http://docs.smarthealthit.org/).
@@ -5865,12 +7401,12 @@ public enum SearchParamType: String {
 	/// match just the start of a string. String parameters may contain spaces.
 	case string = "string"
 	
-	/// Search parameter on a coded element or identifier. May be used to search through the text, displayname, code and
+	/// Search parameter on a coded element or identifier. May be used to search through the text, display, code and
 	/// code/codesystem (for codes) and label, system and key (for identifier). Its value is either a string or a pair
 	/// of namespace and value, separated by a "|", depending on the modifier used.
 	case token = "token"
 	
-	/// A reference to another resource.
+	/// A reference to another resource (Reference or canonical).
 	case reference = "reference"
 	
 	/// A composite search parameter that combines a search on two values together.
@@ -5975,7 +7511,7 @@ public enum SlotStatus: String {
 	/// Indicates that the time interval is free for scheduling.
 	case free = "free"
 	
-	/// Indicates that the time interval is busy and that the interval can not be scheduled.
+	/// Indicates that the time interval is busy and that the interval cannot be scheduled.
 	case busyUnavailable = "busy-unavailable"
 	
 	/// Indicates that the time interval is busy because one or more events have been tentatively scheduled for that
@@ -5984,6 +7520,78 @@ public enum SlotStatus: String {
 	
 	/// This instance should not have been part of this patient's medical record.
 	case enteredInError = "entered-in-error"
+}
+
+
+/**
+Codes that define what the server is capable of
+
+URL: http://hl7.org/fhir/smart-capabilities
+ValueSet: http://hl7.org/fhir/ValueSet/smart-capabilities
+*/
+public enum SmartCapabilities: String {
+	
+	/// support for SMART’s EHR Launch mode
+	case launchEhr = "launch-ehr"
+	
+	/// support for SMART’s Standalone Launch mode
+	case launchStandalone = "launch-standalone"
+	
+	/// support for SMART’s public client profile (no client authentication)
+	case clientPublic = "client-public"
+	
+	/// support for SMART’s confidential client profile (symmetric client secret authentication)
+	case clientConfidentialSymmetric = "client-confidential-symmetric"
+	
+	/// support for SMART’s OpenID Connect profile
+	case ssoOpenidConnect = "sso-openid-connect"
+	
+	/// support for “need patient banner” launch context (conveyed via need_patient_banner token parameter)
+	case contextPassthroughBanner = "context-passthrough-banner"
+	
+	/// support for “SMART style URL” launch context (conveyed via smart_style_url token parameter)
+	case contextPassthroughStyle = "context-passthrough-style"
+	
+	/// support for patient-level launch context (requested by launch/patient scope, conveyed via patient token
+	/// parameter)
+	case contextEhrPatient = "context-ehr-patient"
+	
+	/// support for encounter-level launch context (requested by launch/encounter scope, conveyed via encounter token
+	/// parameter)
+	case contextEhrEncounter = "context-ehr-encounter"
+	
+	/// support for patient-level launch context (requested by launch/patient scope, conveyed via patient token
+	/// parameter)
+	case contextStandalonePatient = "context-standalone-patient"
+	
+	/// support for encounter-level launch context (requested by launch/encounter scope, conveyed via encounter token
+	/// parameter)
+	case contextStandaloneEncounter = "context-standalone-encounter"
+	
+	/// support for refresh tokens (requested by offline_access scope)
+	case permissionOffline = "permission-offline"
+	
+	/// support for patient-level scopes (e.g. patient/Observation.read)
+	case permissionPatient = "permission-patient"
+	
+	/// support for user-level scopes (e.g. user/Appointment.read)
+	case permissionUser = "permission-user"
+}
+
+
+/**
+The possible sort directions, ascending or descending
+
+URL: http://hl7.org/fhir/sort-direction
+ValueSet: http://hl7.org/fhir/ValueSet/sort-direction
+*/
+public enum SortDirection: String {
+	
+	/// Sort by the value ascending, so that lower values appear first
+	case ascending = "ascending"
+	
+	/// Sort by the value descending, so that lower values appear last
+	case descending = "descending"
 }
 
 
@@ -6017,6 +7625,22 @@ public enum SpecialValues: String {
 
 
 /**
+Degree of preference of a type of conditioned specimen
+
+URL: http://hl7.org/fhir/specimen-contained-preference
+ValueSet: http://hl7.org/fhir/ValueSet/specimen-contained-preference
+*/
+public enum SpecimenContainedPreference: String {
+	
+	/// This type of contained specimen is preferred to collect this kind of specimen
+	case preferred = "preferred"
+	
+	/// This type of conditioned specimen is an alternate
+	case alternate = "alternate"
+}
+
+
+/**
 Codes providing the status/availability of a specimen.
 
 URL: http://hl7.org/fhir/specimen-status
@@ -6039,10 +7663,54 @@ public enum SpecimenStatus: String {
 
 
 /**
+The validation status of the target
+
+URL: http://hl7.org/fhir/status
+ValueSet: http://hl7.org/fhir/ValueSet/status
+*/
+public enum Status: String {
+	
+	/// attested
+	case attested = "attested"
+	
+	/// validated
+	case validated = "validated"
+	
+	/// inProcess
+	case inProcess = "in-process"
+	
+	/// reqRevalid
+	case reqRevalid = "req-revalid"
+	
+	/// valFail
+	case valFail = "val-fail"
+	
+	/// revalFail
+	case revalFail = "reval-fail"
+}
+
+
+/**
+Type for strand
+
+URL: http://hl7.org/fhir/strand-type
+ValueSet: http://hl7.org/fhir/ValueSet/strand-type
+*/
+public enum StrandType: String {
+	
+	/// Watson strand of reference sequence
+	case watson = "watson"
+	
+	/// Crick strand of reference sequence
+	case crick = "crick"
+}
+
+
+/**
 A rating system that describes the strength of the recommendation, such as the GRADE, DynaMed, or HGPS systems
 
 URL: http://hl7.org/fhir/recommendation-strength
-ValueSet: http://hl7.org/fhir/ValueSet/cqif-recommendation-strength
+ValueSet: http://hl7.org/fhir/ValueSet/recommendation-strength
 */
 public enum StrengthOfRecommendationRating: String {
 	
@@ -6184,7 +7852,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/map-target-list-mode
 */
 public enum StructureMapTargetListMode: String {
 	
-	/// when the target list is being assembled, the items for this rule go first. If more that one rule defines a first
+	/// when the target list is being assembled, the items for this rule go first. If more than one rule defines a first
 	/// item (for a given instance of mapping) then this is an error
 	case first = "first"
 	
@@ -6192,7 +7860,7 @@ public enum StructureMapTargetListMode: String {
 	/// items, then create new ones)
 	case share = "share"
 	
-	/// when the target list is being assembled, the items for this rule go last. If more that one rule defines a last
+	/// when the target list is being assembled, the items for this rule go last. If more than one rule defines a last
 	/// item (for a given instance of mapping) then this is an error
 	case last = "last"
 	
@@ -6244,7 +7912,7 @@ public enum StructureMapTransform: String {
 	/// Return the appropriate string to put in a reference that refers to the resource provided as a parameter
 	case pointer = "pointer"
 	
-	/// Execute the supplied fluentpath expression and use the value returned by that
+	/// Execute the supplied FHIRPath expression and use the value returned by that
 	case evaluate = "evaluate"
 	
 	/// Create a CodeableConcept. Parameters = (text) or (system. Code[, display])
@@ -6357,7 +8025,7 @@ public enum SupplyDeliveryStatus: String {
 
 
 /**
-Why the supply item was requested
+The reason why the supply item was requested
 
 URL: http://hl7.org/fhir/supplyrequest-reason
 ValueSet: http://hl7.org/fhir/ValueSet/supplyrequest-reason
@@ -6367,7 +8035,7 @@ public enum SupplyRequestReason: String {
 	/// The supply has been requested for use in direct patient care.
 	case patientCare = "patient-care"
 	
-	/// The supply has been requested for for creating or replenishing ward stock.
+	/// The supply has been requested for creating or replenishing ward stock.
 	case wardStock = "ward-stock"
 }
 
@@ -6426,7 +8094,7 @@ public enum SystemVersionProcessingMode: String {
 	/// Use this version of the code system irrespective of which version is specified by a value set. Note that this
 	/// has obvious safety issues, in that it may result in a value set expansion giving a different list of codes that
 	/// is both wrong and unsafe, and implementers should only use this capability reluctantly. It primarily exists to
-	/// deal with situations where specifications have fallen into decay as time passes. If a  version is override, the
+	/// deal with situations where specifications have fallen into decay as time passes. If the value is override, the
 	/// version used SHALL explicitly be represented in the expansion parameters
 	case override = "override"
 }
@@ -6458,7 +8126,7 @@ public enum TaskPerformerType: String {
 	/// A workflow participant that manages task activity.
 	case manager = "manager"
 	
-	/// A workflow participant that acquires resources (specimens, images, etc) necessary to perform the task.
+	/// A workflow participant that acquires resources (specimens, images, etc.) necessary to perform the task.
 	case acquirer = "acquirer"
 	
 	/// A workflow participant that reviews task inputs or outputs.
@@ -6490,17 +8158,17 @@ public enum TaskStatus: String {
 	/// action.
 	case rejected = "rejected"
 	
-	/// Task is ready to be performed, but no action has yet been taken.  Used in place of
+	/// The task is ready to be performed, but no action has yet been taken.  Used in place of
 	/// requested/received/accepted/rejected when request assignment and acceptance is a given.
 	case ready = "ready"
 	
 	/// The task was not completed.
 	case cancelled = "cancelled"
 	
-	/// Task has been started but is not yet complete.
+	/// The task has been started but is not yet complete.
 	case inProgress = "in-progress"
 	
-	/// Task has been started but work has been paused.
+	/// The task has been started but work has been paused.
 	case onHold = "on-hold"
 	
 	/// The task was attempted but could not be completed due to some error.
@@ -6660,11 +8328,16 @@ ValueSet: http://hl7.org/fhir/ValueSet/trigger-type
 */
 public enum TriggerType: String {
 	
-	/// The trigger occurs in response to a specific named event
+	/// The trigger occurs in response to a specific named event, and no other information about the trigger is
+	/// specified. Named events are completely pre-coordinated, and the formal semantics of the trigger are not provided
 	case namedEvent = "named-event"
 	
-	/// The trigger occurs at a specific time or periodically as described by a timing or schedule
+	/// The trigger occurs at a specific time or periodically as described by a timing or schedule. A periodic event
+	/// cannot have any data elements, but may have a name assigned as a shorthand for the event
 	case periodic = "periodic"
+	
+	/// The trigger occurs whenever data of a particular type is changed in any way, either added, modified, or removed
+	case dataChanged = "data-changed"
 	
 	/// The trigger occurs whenever data of a particular type is added
 	case dataAdded = "data-added"
@@ -6707,7 +8380,7 @@ ValueSet: http://hl7.org/fhir/ValueSet/udi-entry-type
 */
 public enum UDIEntryType: String {
 	
-	/// A Barcode scanner captured the data from the device label
+	/// a barcodescanner captured the data from the device label
 	case barcode = "barcode"
 	
 	/// An RFID chip reader captured the data from the device label
@@ -6716,10 +8389,10 @@ public enum UDIEntryType: String {
 	/// The data was read from the label by a person and manually entered. (e.g.  via a keyboard)
 	case manual = "manual"
 	
-	/// The data originated from a patient's implant card and read by an operator.
+	/// The data originated from a patient's implant card and was read by an operator.
 	case card = "card"
 	
-	/// The data originated from a patient source and not directly scanned or read from a label or card.
+	/// The data originated from a patient source and was not directly scanned or read from a label or card.
 	case selfReported = "self-reported"
 	
 	/// The method of data capture has not been determined
@@ -6757,38 +8430,39 @@ ValueSet: http://hl7.org/fhir/ValueSet/usage-context-type
 */
 public enum UsageContextType: String {
 	
-	/// The gender of the patient. For this context type, the value should be a code taken from the
+	/// The gender of the patient. For this context type, appropriate values can be found in the
 	/// http://hl7.org/fhir/ValueSet/administrative-gender value set
 	case gender = "gender"
 	
-	/// The age of the patient. For this context type, the value should be a range the specifies the applicable ages or
-	/// a code from the MeSH value set http://hl7.org/fhir/ValueSet/v3-AgeGroupObservationValue
+	/// The age of the patient. For this context type, the value could be a range that specifies the applicable ages or
+	/// a code from an appropriate value set such as the MeSH value set
+	/// http://hl7.org/fhir/ValueSet/v3-AgeGroupObservationValue
 	case age = "age"
 	
 	/// The clinical concept(s) addressed by the artifact. For example, disease, diagnostic test interpretation,
-	/// medication ordering as in http://hl7.org/fhir/ValueSet/condition-code.
+	/// medication ordering as in http://hl7.org/fhir/ValueSet/condition-code
 	case focus = "focus"
 	
 	/// The clinical specialty of the context in which the patient is being treated - For example, PCP, Patient,
-	/// Cardiologist, Behavioral Professional, Oral Health Professional, Prescriber, etc... taken from the NUCC Health
-	/// Care provider taxonomy value set http://hl7.org/fhir/ValueSet/provider-taxonomy.
+	/// Cardiologist, Behavioral Professional, Oral Health Professional, Prescriber, etc... taken from a specialty value
+	/// set such as the NUCC Health Care provider taxonomy value set http://hl7.org/fhir/ValueSet/provider-taxonomy
 	case user = "user"
 	
 	/// The settings in which the artifact is intended for use. For example, admission, pre-op, etc. For example, the
 	/// ActEncounterCode value set http://hl7.org/fhir/ValueSet/v3-ActEncounterCode
 	case workflow = "workflow"
 	
-	/// The context for the clinical task(s) represented by this artifact. Can be any task context represented by the
-	/// HL7 ActTaskCode value set http://hl7.org/fhir/ValueSet/v3-ActTaskCode. General categories include: order entry,
-	/// patient documentation and patient information review.
+	/// The context for the clinical task(s) represented by this artifact. For example, this could be any task context
+	/// represented by the HL7 ActTaskCode value set http://hl7.org/fhir/ValueSet/v3-ActTaskCode. General categories
+	/// include: order entry, patient documentation and patient information review
 	case task = "task"
 	
 	/// The venue in which an artifact could be used. For example, Outpatient, Inpatient, Home, Nursing home. The code
-	/// value may originate from either the HL7 ActEncounterCode http://hl7.org/fhir/ValueSet/v3-ActEncounterCode or
-	/// NUCC non-individual provider codes http://hl7.org/fhir/ValueSet/provider-taxonomy
+	/// value may originate from the HL7 ServiceDeliveryLocationRoleType value set
+	/// (http://hl7.org/fhir/ValueSet/v3-ServiceDeliveryLocationRoleType)
 	case venue = "venue"
 	
-	/// The species to which an artifact applies. For example, SNOMED - 387961004 | Kingdom Animalia (organism).
+	/// The species to which an artifact applies. For example, SNOMED - 387961004 | Kingdom Animalia (organism)
 	case species = "species"
 }
 
@@ -6812,6 +8486,113 @@ public enum Use: String {
 	
 	/// A locally defined or otherwise resolved status.
 	case other = "other"
+}
+
+
+/**
+The status of the user session
+
+URL: http://hl7.org/fhir/usersession-status
+ValueSet: http://hl7.org/fhir/ValueSet/usersession-status
+*/
+public enum UserSessionStatusEnum: String {
+	
+	/// The user session is activating
+	case activating = "activating"
+	
+	/// The user session is active
+	case active = "active"
+	
+	/// The user session is suspended
+	case suspended = "suspended"
+	
+	/// The user session is closing
+	case closing = "closing"
+	
+	/// The user session is closed
+	case closed = "closed"
+}
+
+
+/**
+The source of the status of the user session
+
+URL: http://hl7.org/fhir/usersession-status-source
+ValueSet: http://hl7.org/fhir/ValueSet/usersession-status-source
+*/
+public enum UserSessionStatusSource: String {
+	
+	/// The status was reported by the user
+	case user = "user"
+	
+	/// The status was reported by the system
+	case system = "system"
+}
+
+
+/**
+The primary process by which the target is validated
+
+URL: http://hl7.org/fhir/validation-process
+ValueSet: http://hl7.org/fhir/ValueSet/validation-process
+*/
+public enum ValidationProcess: String {
+	
+	/// editCheck
+	case editCheck = "edit-check"
+	
+	/// valueset
+	case valueset = "valueset"
+	
+	/// primary
+	case primary = "primary"
+	
+	/// multi
+	case multi = "multi"
+	
+	/// standalone
+	case standalone = "standalone"
+	
+	/// inContext
+	case inContext = "in-context"
+}
+
+
+/**
+Status of the validation of the target against the primary source
+
+URL: http://hl7.org/fhir/validation-status
+ValueSet: http://hl7.org/fhir/ValueSet/validation-status
+*/
+public enum ValidationStatus: String {
+	
+	/// successful
+	case successful = "successful"
+	
+	/// failed
+	case failed = "failed"
+	
+	/// The validations status has not been determined yet
+	case unknown = "unknown"
+}
+
+
+/**
+What the target is validated against
+
+URL: http://hl7.org/fhir/validation-type
+ValueSet: http://hl7.org/fhir/ValueSet/validation-type
+*/
+public enum ValidationType: String {
+	
+	/// nothing
+	case nothing = "nothing"
+	
+	/// primary
+	case primary = "primary"
+	
+	/// multiple
+	case multiple = "multiple"
 }
 
 

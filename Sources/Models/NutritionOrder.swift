@@ -2,8 +2,8 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -22,11 +22,11 @@ open class NutritionOrder: DomainResource {
 	/// List of the patient's food and nutrition-related allergies and intolerances.
 	public var allergyIntolerance: [Reference]?
 	
+	/// The encounter associated with this nutrition order.
+	public var context: Reference?
+	
 	/// Date and time the nutrition order was requested.
 	public var dateTime: DateTime?
-	
-	/// The encounter associated with this nutrition order.
-	public var encounter: Reference?
 	
 	/// Enteral formula components.
 	public var enteralFormula: NutritionOrderEnteralFormula?
@@ -40,6 +40,16 @@ open class NutritionOrder: DomainResource {
 	/// Identifiers assigned to this order.
 	public var identifier: [Identifier]?
 	
+	/// Instantiates protocol or definition.
+	public var instantiates: [FHIRURL]?
+	
+	/// Indicates the level of authority/intentionality associated with the NutrionOrder and where the request fits into
+	/// the workflow chain.
+	public var intent: RequestIntent?
+	
+	/// Comments.
+	public var note: [Annotation]?
+	
 	/// Oral diet components.
 	public var oralDiet: NutritionOrderOralDiet?
 	
@@ -50,17 +60,19 @@ open class NutritionOrder: DomainResource {
 	public var patient: Reference?
 	
 	/// The workflow status of the nutrition order/request.
-	public var status: NutritionOrderStatus?
+	public var status: RequestStatus?
 	
 	/// Supplement components.
 	public var supplement: [NutritionOrderSupplement]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(dateTime: DateTime, patient: Reference) {
+	public convenience init(dateTime: DateTime, intent: RequestIntent, patient: Reference, status: RequestStatus) {
 		self.init()
 		self.dateTime = dateTime
+		self.intent = intent
 		self.patient = patient
+		self.status = status
 	}
 	
 	
@@ -68,22 +80,31 @@ open class NutritionOrder: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		allergyIntolerance = createInstances(of: Reference.self, for: "allergyIntolerance", in: json, context: &instCtx, owner: self) ?? allergyIntolerance
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		dateTime = createInstance(type: DateTime.self, for: "dateTime", in: json, context: &instCtx, owner: self) ?? dateTime
 		if nil == dateTime && !instCtx.containsKey("dateTime") {
 			instCtx.addError(FHIRValidationError(missing: "dateTime"))
 		}
-		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		enteralFormula = createInstance(type: NutritionOrderEnteralFormula.self, for: "enteralFormula", in: json, context: &instCtx, owner: self) ?? enteralFormula
 		excludeFoodModifier = createInstances(of: CodeableConcept.self, for: "excludeFoodModifier", in: json, context: &instCtx, owner: self) ?? excludeFoodModifier
 		foodPreferenceModifier = createInstances(of: CodeableConcept.self, for: "foodPreferenceModifier", in: json, context: &instCtx, owner: self) ?? foodPreferenceModifier
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
+		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
+		if nil == intent && !instCtx.containsKey("intent") {
+			instCtx.addError(FHIRValidationError(missing: "intent"))
+		}
+		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		oralDiet = createInstance(type: NutritionOrderOralDiet.self, for: "oralDiet", in: json, context: &instCtx, owner: self) ?? oralDiet
 		orderer = createInstance(type: Reference.self, for: "orderer", in: json, context: &instCtx, owner: self) ?? orderer
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
 		if nil == patient && !instCtx.containsKey("patient") {
 			instCtx.addError(FHIRValidationError(missing: "patient"))
 		}
-		status = createEnum(type: NutritionOrderStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		status = createEnum(type: RequestStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
+		}
 		supplement = createInstances(of: NutritionOrderSupplement.self, for: "supplement", in: json, context: &instCtx, owner: self) ?? supplement
 	}
 	
@@ -91,15 +112,21 @@ open class NutritionOrder: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "allergyIntolerance", using: self.allergyIntolerance, errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.dateTime?.decorate(json: &json, withKey: "dateTime", errors: &errors)
 		if nil == self.dateTime {
 			errors.append(FHIRValidationError(missing: "dateTime"))
 		}
-		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		self.enteralFormula?.decorate(json: &json, withKey: "enteralFormula", errors: &errors)
 		arrayDecorate(json: &json, withKey: "excludeFoodModifier", using: self.excludeFoodModifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "foodPreferenceModifier", using: self.foodPreferenceModifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiates", using: self.instantiates, errors: &errors)
+		self.intent?.decorate(json: &json, withKey: "intent", errors: &errors)
+		if nil == self.intent {
+			errors.append(FHIRValidationError(missing: "intent"))
+		}
+		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.oralDiet?.decorate(json: &json, withKey: "oralDiet", errors: &errors)
 		self.orderer?.decorate(json: &json, withKey: "orderer", errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
@@ -107,6 +134,9 @@ open class NutritionOrder: DomainResource {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		arrayDecorate(json: &json, withKey: "supplement", using: self.supplement, errors: &errors)
 	}
 }

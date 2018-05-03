@@ -2,8 +2,8 @@
 //  CompartmentDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -25,7 +25,7 @@ open class CompartmentDefinition: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the compartment definition.
@@ -58,10 +58,10 @@ open class CompartmentDefinition: DomainResource {
 	/// Name for this compartment definition (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this compartment definition (globally unique).
+	/// Canonical identifier for this compartment definition, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	
@@ -158,8 +158,8 @@ open class CompartmentDefinitionResource: BackboneElement {
 		get { return "CompartmentDefinitionResource" }
 	}
 	
-	/// Name of resource type.
-	public var code: FHIRString?
+	/// The name of a resource supported by the server.
+	public var code: ResourceType?
 	
 	/// Additional documentation about the resource and compartment.
 	public var documentation: FHIRString?
@@ -169,7 +169,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: FHIRString) {
+	public convenience init(code: ResourceType) {
 		self.init()
 		self.code = code
 	}
@@ -178,7 +178,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		code = createEnum(type: ResourceType.self, for: "code", in: json, context: &instCtx) ?? code
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}

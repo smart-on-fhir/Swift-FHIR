@@ -2,8 +2,8 @@
 //  AdverseEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/AdverseEvent) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -21,18 +21,26 @@ open class AdverseEvent: DomainResource {
 		get { return "AdverseEvent" }
 	}
 	
-	/// The type of event which is important to characterize what occurred and caused harm to the subject, or had the
-	/// potential to cause harm to the subject.
-	public var category: AdverseEventCategory?
+	/// Whether the event actually happened, or just had the potential to. Note that this is independent of whether
+	/// anyone was affected or harmed or how severely.
+	public var actuality: AdverseEventActuality?
+	
+	/// ProductProblem | ProductQuality | ProductUseError | WrongDose | IncorrectPrescribingInformation | WrongTechnique
+	/// | WrongRouteOfAdministration | WrongRate | WrongDuration | WrongTime | ExpiredDrug | MedicalDeviceUseError |
+	/// ProblemDifferentManufacturer | UnsafePhysicalEnvironment.
+	public var category: [CodeableConcept]?
+	
+	/// Encounter or episode of care that establishes the context for this AdverseEvent.
+	public var context: Reference?
+	
+	/// Who  was involved in the adverse event or the potential adverse event.
+	public var contributor: [Reference]?
 	
 	/// When the event occurred.
 	public var date: DateTime?
 	
-	/// Description of the adverse event.
-	public var description_fhir: FHIRString?
-	
-	/// Who  was involved in the adverse event or the potential adverse event.
-	public var eventParticipant: Reference?
+	/// Type of the event itself in relation to the subject.
+	public var event: CodeableConcept?
 	
 	/// Business identifier for the event.
 	public var identifier: Identifier?
@@ -43,22 +51,25 @@ open class AdverseEvent: DomainResource {
 	/// resolved | recovering | ongoing | resolvedWithSequelae | fatal | unknown.
 	public var outcome: CodeableConcept?
 	
-	/// Adverse Reaction Events linked to exposure to substance.
-	public var reaction: [Reference]?
-	
 	/// Who recorded the adverse event.
 	public var recorder: Reference?
 	
 	/// AdverseEvent.referenceDocument.
 	public var referenceDocument: [Reference]?
 	
-	/// Mild | Moderate | Severe.
+	/// Effect on the subject due to this event.
+	public var resultingCondition: [Reference]?
+	
+	/// Seriousness of the event.
 	public var seriousness: CodeableConcept?
+	
+	/// Mild | Moderate | Severe.
+	public var severity: CodeableConcept?
 	
 	/// AdverseEvent.study.
 	public var study: [Reference]?
 	
-	/// Subject or group impacted by event.
+	/// Subject impacted by event.
 	public var subject: Reference?
 	
 	/// AdverseEvent.subjectMedicalHistory.
@@ -67,50 +78,71 @@ open class AdverseEvent: DomainResource {
 	/// The suspected agent causing the adverse event.
 	public var suspectEntity: [AdverseEventSuspectEntity]?
 	
-	/// actual | potential.
-	public var type: CodeableConcept?
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(actuality: AdverseEventActuality, subject: Reference) {
+		self.init()
+		self.actuality = actuality
+		self.subject = subject
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		category = createEnum(type: AdverseEventCategory.self, for: "category", in: json, context: &instCtx) ?? category
+		actuality = createEnum(type: AdverseEventActuality.self, for: "actuality", in: json, context: &instCtx) ?? actuality
+		if nil == actuality && !instCtx.containsKey("actuality") {
+			instCtx.addError(FHIRValidationError(missing: "actuality"))
+		}
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		contributor = createInstances(of: Reference.self, for: "contributor", in: json, context: &instCtx, owner: self) ?? contributor
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
-		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
-		eventParticipant = createInstance(type: Reference.self, for: "eventParticipant", in: json, context: &instCtx, owner: self) ?? eventParticipant
+		event = createInstance(type: CodeableConcept.self, for: "event", in: json, context: &instCtx, owner: self) ?? event
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
 		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
-		reaction = createInstances(of: Reference.self, for: "reaction", in: json, context: &instCtx, owner: self) ?? reaction
 		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
 		referenceDocument = createInstances(of: Reference.self, for: "referenceDocument", in: json, context: &instCtx, owner: self) ?? referenceDocument
+		resultingCondition = createInstances(of: Reference.self, for: "resultingCondition", in: json, context: &instCtx, owner: self) ?? resultingCondition
 		seriousness = createInstance(type: CodeableConcept.self, for: "seriousness", in: json, context: &instCtx, owner: self) ?? seriousness
+		severity = createInstance(type: CodeableConcept.self, for: "severity", in: json, context: &instCtx, owner: self) ?? severity
 		study = createInstances(of: Reference.self, for: "study", in: json, context: &instCtx, owner: self) ?? study
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		if nil == subject && !instCtx.containsKey("subject") {
+			instCtx.addError(FHIRValidationError(missing: "subject"))
+		}
 		subjectMedicalHistory = createInstances(of: Reference.self, for: "subjectMedicalHistory", in: json, context: &instCtx, owner: self) ?? subjectMedicalHistory
 		suspectEntity = createInstances(of: AdverseEventSuspectEntity.self, for: "suspectEntity", in: json, context: &instCtx, owner: self) ?? suspectEntity
-		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		self.actuality?.decorate(json: &json, withKey: "actuality", errors: &errors)
+		if nil == self.actuality {
+			errors.append(FHIRValidationError(missing: "actuality"))
+		}
+		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
+		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
+		arrayDecorate(json: &json, withKey: "contributor", using: self.contributor, errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
-		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
-		self.eventParticipant?.decorate(json: &json, withKey: "eventParticipant", errors: &errors)
+		self.event?.decorate(json: &json, withKey: "event", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.location?.decorate(json: &json, withKey: "location", errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
-		arrayDecorate(json: &json, withKey: "reaction", using: self.reaction, errors: &errors)
 		self.recorder?.decorate(json: &json, withKey: "recorder", errors: &errors)
 		arrayDecorate(json: &json, withKey: "referenceDocument", using: self.referenceDocument, errors: &errors)
+		arrayDecorate(json: &json, withKey: "resultingCondition", using: self.resultingCondition, errors: &errors)
 		self.seriousness?.decorate(json: &json, withKey: "seriousness", errors: &errors)
+		self.severity?.decorate(json: &json, withKey: "severity", errors: &errors)
 		arrayDecorate(json: &json, withKey: "study", using: self.study, errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
+		if nil == self.subject {
+			errors.append(FHIRValidationError(missing: "subject"))
+		}
 		arrayDecorate(json: &json, withKey: "subjectMedicalHistory", using: self.subjectMedicalHistory, errors: &errors)
 		arrayDecorate(json: &json, withKey: "suspectEntity", using: self.suspectEntity, errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 
@@ -125,23 +157,8 @@ open class AdverseEventSuspectEntity: BackboneElement {
 		get { return "AdverseEventSuspectEntity" }
 	}
 	
-	/// None
-	public var causality: AdverseEventCausality?
-	
-	/// assess1 | assess2.
-	public var causalityAssessment: CodeableConcept?
-	
-	/// AdverseEvent.suspectEntity.causalityAuthor.
-	public var causalityAuthor: Reference?
-	
-	/// method1 | method2.
-	public var causalityMethod: CodeableConcept?
-	
-	/// AdverseEvent.suspectEntity.causalityProductRelatedness.
-	public var causalityProductRelatedness: FHIRString?
-	
-	/// result1 | result2.
-	public var causalityResult: CodeableConcept?
+	/// Information on the possible cause of the event.
+	public var causality: [AdverseEventSuspectEntityCausality]?
 	
 	/// Refers to the specific entity that caused the adverse event.
 	public var instance: Reference?
@@ -157,12 +174,7 @@ open class AdverseEventSuspectEntity: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		causality = createEnum(type: AdverseEventCausality.self, for: "causality", in: json, context: &instCtx) ?? causality
-		causalityAssessment = createInstance(type: CodeableConcept.self, for: "causalityAssessment", in: json, context: &instCtx, owner: self) ?? causalityAssessment
-		causalityAuthor = createInstance(type: Reference.self, for: "causalityAuthor", in: json, context: &instCtx, owner: self) ?? causalityAuthor
-		causalityMethod = createInstance(type: CodeableConcept.self, for: "causalityMethod", in: json, context: &instCtx, owner: self) ?? causalityMethod
-		causalityProductRelatedness = createInstance(type: FHIRString.self, for: "causalityProductRelatedness", in: json, context: &instCtx, owner: self) ?? causalityProductRelatedness
-		causalityResult = createInstance(type: CodeableConcept.self, for: "causalityResult", in: json, context: &instCtx, owner: self) ?? causalityResult
+		causality = createInstances(of: AdverseEventSuspectEntityCausality.self, for: "causality", in: json, context: &instCtx, owner: self) ?? causality
 		instance = createInstance(type: Reference.self, for: "instance", in: json, context: &instCtx, owner: self) ?? instance
 		if nil == instance && !instCtx.containsKey("instance") {
 			instCtx.addError(FHIRValidationError(missing: "instance"))
@@ -172,16 +184,52 @@ open class AdverseEventSuspectEntity: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.causality?.decorate(json: &json, withKey: "causality", errors: &errors)
-		self.causalityAssessment?.decorate(json: &json, withKey: "causalityAssessment", errors: &errors)
-		self.causalityAuthor?.decorate(json: &json, withKey: "causalityAuthor", errors: &errors)
-		self.causalityMethod?.decorate(json: &json, withKey: "causalityMethod", errors: &errors)
-		self.causalityProductRelatedness?.decorate(json: &json, withKey: "causalityProductRelatedness", errors: &errors)
-		self.causalityResult?.decorate(json: &json, withKey: "causalityResult", errors: &errors)
+		arrayDecorate(json: &json, withKey: "causality", using: self.causality, errors: &errors)
 		self.instance?.decorate(json: &json, withKey: "instance", errors: &errors)
 		if nil == self.instance {
 			errors.append(FHIRValidationError(missing: "instance"))
 		}
+	}
+}
+
+
+/**
+Information on the possible cause of the event.
+*/
+open class AdverseEventSuspectEntityCausality: BackboneElement {
+	override open class var resourceType: String {
+		get { return "AdverseEventSuspectEntityCausality" }
+	}
+	
+	/// Assessment of if the entity caused the event.
+	public var assessment: CodeableConcept?
+	
+	/// AdverseEvent.suspectEntity.causalityAuthor.
+	public var author: Reference?
+	
+	/// ProbabilityScale | Bayesian | Checklist.
+	public var method: CodeableConcept?
+	
+	/// AdverseEvent.suspectEntity.causalityProductRelatedness.
+	public var productRelatedness: FHIRString?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		assessment = createInstance(type: CodeableConcept.self, for: "assessment", in: json, context: &instCtx, owner: self) ?? assessment
+		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
+		method = createInstance(type: CodeableConcept.self, for: "method", in: json, context: &instCtx, owner: self) ?? method
+		productRelatedness = createInstance(type: FHIRString.self, for: "productRelatedness", in: json, context: &instCtx, owner: self) ?? productRelatedness
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.assessment?.decorate(json: &json, withKey: "assessment", errors: &errors)
+		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
+		self.method?.decorate(json: &json, withKey: "method", errors: &errors)
+		self.productRelatedness?.decorate(json: &json, withKey: "productRelatedness", errors: &errors)
 	}
 }
 

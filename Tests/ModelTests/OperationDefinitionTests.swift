@@ -2,8 +2,8 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -40,7 +40,7 @@ class OperationDefinitionTests: XCTestCase {
 	func runOperationDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationdefinition-example.json")
 		
-		XCTAssertEqual(inst.base?.reference, "OperationDefinition/Questionnaire-populate")
+		XCTAssertEqual(inst.base?.absoluteString, "OperationDefinition/Questionnaire-populate")
 		XCTAssertEqual(inst.code, "populate")
 		XCTAssertEqual(inst.comment, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.contact?[0].name, "System Administrator")
@@ -77,7 +77,7 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.parameter?[2].type, "QuestionnaireResponse")
 		XCTAssertEqual(inst.parameter?[2].use, OperationParameterUse(rawValue: "out")!)
 		XCTAssertEqual(inst.publisher, "Acme Healthcare Services")
-		XCTAssertEqual(inst.resource?[0], "Questionnaire")
+		XCTAssertEqual(inst.resource?[0], ResourceType(rawValue: "Questionnaire")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.system, false)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

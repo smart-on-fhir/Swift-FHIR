@@ -2,8 +2,8 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,36 +38,27 @@ class MediaTests: XCTestCase {
 	
 	@discardableResult
 	func runMedia1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
 		
-		XCTAssertEqual(inst.content?.contentType, "application/dicom")
-		XCTAssertEqual(inst.device?.display, "G.E. Medical Systems")
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://nema.org/fhir/extensions#0002-0010")
-		XCTAssertEqual(inst.extension_fhir?[0].valueUri?.absoluteString, "urn:oid:1.2.840.10008.1.2.1")
-		XCTAssertEqual(inst.height, 480)
-		XCTAssertEqual(inst.id, "1.2.840.11361907579238403408700.3.0.14.19970327150033")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
-		XCTAssertEqual(inst.identifier?[0].type?.text, "InstanceUID")
-		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
-		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:1.2.840.11361907579238403408700.3.0.14.19970327150033")
-		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "http://acme-imaging.com/accession/2012")
-		XCTAssertEqual(inst.identifier?[1].type?.text, "accessionNo")
-		XCTAssertEqual(inst.identifier?[1].value, "1234567")
-		XCTAssertEqual(inst.identifier?[2].system?.absoluteString, "urn:ietf:rfc:3986")
-		XCTAssertEqual(inst.identifier?[2].type?.text, "studyId")
-		XCTAssertEqual(inst.identifier?[2].value, "urn:oid:1.2.840.113619.2.21.848.34082.0.538976288.3")
-		XCTAssertEqual(inst.identifier?[3].system?.absoluteString, "urn:ietf:rfc:3986")
-		XCTAssertEqual(inst.identifier?[3].type?.text, "seriesId")
-		XCTAssertEqual(inst.identifier?[3].value, "urn:oid:1.2.840.113619.2.21.3408.700.0.757923840.3.0")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.subtype?.coding?[0].code, "US")
-		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.content?.contentType, "image/gif")
+		XCTAssertEqual(inst.content?.creation?.description, "2009-09-03")
+		XCTAssertEqual(inst.content?.id, "a1")
+		XCTAssertEqual(inst.createdDateTime?.description, "2017-12-17")
+		XCTAssertEqual(inst.device?.display, "Acme Camera")
+		XCTAssertEqual(inst.frames, 1)
+		XCTAssertEqual(inst.height, 145)
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.issued?.description, "2017-12-17T14:56:18Z")
+		XCTAssertEqual(inst.modality?.coding?[0].code, "diagram")
+		XCTAssertEqual(inst.modality?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/media-modality")
+		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
-		XCTAssertEqual(inst.view?.coding?[0].code, "399067008")
-		XCTAssertEqual(inst.view?.coding?[0].display, "Lateral projection")
-		XCTAssertEqual(inst.view?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.width, 640)
+		XCTAssertEqual(inst.type?.coding?[0].code, "image")
+		XCTAssertEqual(inst.type?.coding?[0].display, "Image")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/CodeSystem/media-category")
+		XCTAssertEqual(inst.width, 126)
 		
 		return inst
 	}
@@ -84,18 +75,36 @@ class MediaTests: XCTestCase {
 	
 	@discardableResult
 	func runMedia2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-sound.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
 		
-		XCTAssertEqual(inst.content?.contentType, "audio/mpeg")
-		XCTAssertEqual(inst.content?.data, Base64Binary(value: "dG9vIGJpZyB0b28gaW5jbHVkZSB0aGUgd2hvbGU="))
-		XCTAssertEqual(inst.content?.id, "a1")
-		XCTAssertEqual(inst.duration, 65)
-		XCTAssertEqual(inst.id, "sound")
-		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
-		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sound recording of speech example for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
+		XCTAssertEqual(inst.content?.contentType, "application/dicom")
+		XCTAssertEqual(inst.device?.display, "G.E. Medical Systems")
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://nema.org/fhir/extensions#0002-0010")
+		XCTAssertEqual(inst.extension_fhir?[0].valueUri?.absoluteString, "urn:oid:1.2.840.10008.1.2.1")
+		XCTAssertEqual(inst.height, 480)
+		XCTAssertEqual(inst.id, "1.2.840.11361907579238403408700.3.1.04.19970327150033")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?[0].type?.text, "InstanceUID")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
+		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:1.2.840.11361907579238403408700.3.1.04.19970327150033")
+		XCTAssertEqual(inst.identifier?[1].system?.absoluteString, "http://acme-imaging.com/accession/2012")
+		XCTAssertEqual(inst.identifier?[1].type?.text, "accessionNo")
+		XCTAssertEqual(inst.identifier?[1].value, "1234567")
+		XCTAssertEqual(inst.identifier?[2].system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?[2].type?.text, "studyId")
+		XCTAssertEqual(inst.identifier?[2].value, "urn:oid:1.2.840.113619.2.21.848.34082.0.538976288.3")
+		XCTAssertEqual(inst.identifier?[3].system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?[3].type?.text, "seriesId")
+		XCTAssertEqual(inst.identifier?[3].value, "urn:oid:1.2.840.113619.2.21.3408.700.0.757923840.3.0")
+		XCTAssertEqual(inst.modality?.coding?[0].code, "US")
+		XCTAssertEqual(inst.modality?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "video")!)
+		XCTAssertEqual(inst.view?.coding?[0].code, "399067008")
+		XCTAssertEqual(inst.view?.coding?[0].display, "Lateral projection")
+		XCTAssertEqual(inst.view?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.width, 640)
 		
 		return inst
 	}
@@ -125,16 +134,16 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.content?.id, "a1")
 		XCTAssertEqual(inst.content?.url?.absoluteString, "http://someimagingcenter.org/fhir/Binary/A12345")
 		XCTAssertEqual(inst.context?.reference, "Encounter/example")
+		XCTAssertEqual(inst.createdDateTime?.description, "2016-03-15")
 		XCTAssertEqual(inst.height, 432)
 		XCTAssertEqual(inst.id, "xray")
-		XCTAssertEqual(inst.occurrenceDateTime?.description, "2016-03-15")
+		XCTAssertEqual(inst.modality?.coding?[0].code, "39714003")
+		XCTAssertEqual(inst.modality?.coding?[0].display, "Skeletal X-ray of wrist and hand")
+		XCTAssertEqual(inst.modality?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.subtype?.coding?[0].code, "39714003")
-		XCTAssertEqual(inst.subtype?.coding?[0].display, "Skeletal X-ray of wrist and hand")
-		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Xray of left hand for Patient Henry Levin (MRN 12345) 2016-03-15</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
 		XCTAssertEqual(inst.width, 640)
 		
 		return inst
@@ -152,23 +161,18 @@ class MediaTests: XCTestCase {
 	
 	@discardableResult
 	func runMedia4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMedia {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-sound.json")
 		
-		XCTAssertEqual(inst.content?.contentType, "image/gif")
-		XCTAssertEqual(inst.content?.creation?.description, "2009-09-03")
+		XCTAssertEqual(inst.content?.contentType, "audio/mpeg")
+		XCTAssertEqual(inst.content?.data, Base64Binary(value: "dG9vIGJpZyB0b28gaW5jbHVkZSB0aGUgd2hvbGU="))
 		XCTAssertEqual(inst.content?.id, "a1")
-		XCTAssertEqual(inst.device?.display, "Acme Camera")
-		XCTAssertEqual(inst.frames, 1)
-		XCTAssertEqual(inst.height, 145)
-		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.duration, "65")
+		XCTAssertEqual(inst.id, "sound")
 		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
-		XCTAssertEqual(inst.subtype?.coding?[0].code, "diagram")
-		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/media-subtype")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagram for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sound recording of speech example for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type, DigitalMediaType(rawValue: "photo")!)
-		XCTAssertEqual(inst.width, 126)
 		
 		return inst
 	}

@@ -2,8 +2,8 @@
 //  PractitionerRole.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -20,7 +20,7 @@ open class PractitionerRole: DomainResource {
 		get { return "PractitionerRole" }
 	}
 	
-	/// Whether this practitioner's record is in active use.
+	/// Whether this practitioner role record is in active use.
 	public var active: FHIRBool?
 	
 	/// Description of availability exceptions.
@@ -53,7 +53,7 @@ open class PractitionerRole: DomainResource {
 	/// The period during which the practitioner is authorized to perform in these role(s).
 	public var period: Period?
 	
-	/// Practitioner that is able to provide the defined services for the organation.
+	/// Practitioner that is able to provide the defined services for the organization.
 	public var practitioner: Reference?
 	
 	/// Specific specialty of the practitioner.
@@ -159,7 +159,7 @@ open class PractitionerRoleNotAvailable: BackboneElement {
 	/// Reason presented to the user explaining why time not available.
 	public var description_fhir: FHIRString?
 	
-	/// Service not availablefrom this date.
+	/// Service not available from this date.
 	public var during: Period?
 	
 	

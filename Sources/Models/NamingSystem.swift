@@ -2,8 +2,8 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -23,7 +23,7 @@ open class NamingSystem: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the naming system.
@@ -41,9 +41,6 @@ open class NamingSystem: DomainResource {
 	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
 	
-	/// Use this instead.
-	public var replacedBy: Reference?
-	
 	/// Who maintains system namespace?.
 	public var responsible: FHIRString?
 	
@@ -59,7 +56,7 @@ open class NamingSystem: DomainResource {
 	/// How/where is it used.
 	public var usage: FHIRString?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	
@@ -93,7 +90,6 @@ open class NamingSystem: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
-		replacedBy = createInstance(type: Reference.self, for: "replacedBy", in: json, context: &instCtx, owner: self) ?? replacedBy
 		responsible = createInstance(type: FHIRString.self, for: "responsible", in: json, context: &instCtx, owner: self) ?? responsible
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
@@ -127,7 +123,6 @@ open class NamingSystem: DomainResource {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
-		self.replacedBy?.decorate(json: &json, withKey: "replacedBy", errors: &errors)
 		self.responsible?.decorate(json: &json, withKey: "responsible", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {

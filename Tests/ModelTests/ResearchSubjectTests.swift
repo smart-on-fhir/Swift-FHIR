@@ -2,8 +2,8 @@
 //  ResearchSubjectTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -41,9 +41,9 @@ class ResearchSubjectTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "researchsubject-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://example.org/studysubjectids")
-		XCTAssertEqual(inst.identifier?.type?.text, "Subject id")
-		XCTAssertEqual(inst.identifier?.value, "123")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/studysubjectids")
+		XCTAssertEqual(inst.identifier?[0].type?.text, "Subject id")
+		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.individual?.reference, "Patient/example")
 		XCTAssertEqual(inst.status, ResearchSubjectStatus(rawValue: "candidate")!)
 		XCTAssertEqual(inst.study?.reference, "ResearchStudy/example")

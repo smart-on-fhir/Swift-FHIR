@@ -2,8 +2,8 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ Definition of an element in a resource or extension.
 
 Captures constraints on each element within the resource, profile, or extension.
 */
-open class ElementDefinition: Element {
+open class ElementDefinition: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ElementDefinition" }
 	}
@@ -62,6 +62,9 @@ open class ElementDefinition: Element {
 	public var defaultValueBoolean: FHIRBool?
 	
 	/// Specified value if missing from instance.
+	public var defaultValueCanonical: FHIRURL?
+	
+	/// Specified value if missing from instance.
 	public var defaultValueCode: FHIRString?
 	
 	/// Specified value if missing from instance.
@@ -71,10 +74,19 @@ open class ElementDefinition: Element {
 	public var defaultValueCoding: Coding?
 	
 	/// Specified value if missing from instance.
+	public var defaultValueContactDetail: ContactDetail?
+	
+	/// Specified value if missing from instance.
 	public var defaultValueContactPoint: ContactPoint?
 	
 	/// Specified value if missing from instance.
+	public var defaultValueContributor: Contributor?
+	
+	/// Specified value if missing from instance.
 	public var defaultValueCount: Count?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueDataRequirement: DataRequirement?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueDate: FHIRDate?
@@ -87,6 +99,9 @@ open class ElementDefinition: Element {
 	
 	/// Specified value if missing from instance.
 	public var defaultValueDistance: Distance?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueDosage: Dosage?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueDuration: Duration?
@@ -110,13 +125,13 @@ open class ElementDefinition: Element {
 	public var defaultValueMarkdown: FHIRString?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueMeta: Meta?
-	
-	/// Specified value if missing from instance.
 	public var defaultValueMoney: Money?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueOid: FHIRURL?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueParameterDefinition: ParameterDefinition?
 	
 	/// Specified value if missing from instance.
 	public var defaultValuePeriod: Period?
@@ -137,6 +152,9 @@ open class ElementDefinition: Element {
 	public var defaultValueReference: Reference?
 	
 	/// Specified value if missing from instance.
+	public var defaultValueRelatedArtifact: RelatedArtifact?
+	
+	/// Specified value if missing from instance.
 	public var defaultValueSampledData: SampledData?
 	
 	/// Specified value if missing from instance.
@@ -152,10 +170,22 @@ open class ElementDefinition: Element {
 	public var defaultValueTiming: Timing?
 	
 	/// Specified value if missing from instance.
+	public var defaultValueTriggerDefinition: TriggerDefinition?
+	
+	/// Specified value if missing from instance.
 	public var defaultValueUnsignedInt: FHIRInteger?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueUri: FHIRURL?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueUrl: FHIRURL?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueUsageContext: UsageContext?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueUuid: FHIRString?
 	
 	/// Full formal definition as narrative text.
 	public var definition: FHIRString?
@@ -182,6 +212,9 @@ open class ElementDefinition: Element {
 	public var fixedBoolean: FHIRBool?
 	
 	/// Value must be exactly this.
+	public var fixedCanonical: FHIRURL?
+	
+	/// Value must be exactly this.
 	public var fixedCode: FHIRString?
 	
 	/// Value must be exactly this.
@@ -191,10 +224,19 @@ open class ElementDefinition: Element {
 	public var fixedCoding: Coding?
 	
 	/// Value must be exactly this.
+	public var fixedContactDetail: ContactDetail?
+	
+	/// Value must be exactly this.
 	public var fixedContactPoint: ContactPoint?
 	
 	/// Value must be exactly this.
+	public var fixedContributor: Contributor?
+	
+	/// Value must be exactly this.
 	public var fixedCount: Count?
+	
+	/// Value must be exactly this.
+	public var fixedDataRequirement: DataRequirement?
 	
 	/// Value must be exactly this.
 	public var fixedDate: FHIRDate?
@@ -207,6 +249,9 @@ open class ElementDefinition: Element {
 	
 	/// Value must be exactly this.
 	public var fixedDistance: Distance?
+	
+	/// Value must be exactly this.
+	public var fixedDosage: Dosage?
 	
 	/// Value must be exactly this.
 	public var fixedDuration: Duration?
@@ -230,13 +275,13 @@ open class ElementDefinition: Element {
 	public var fixedMarkdown: FHIRString?
 	
 	/// Value must be exactly this.
-	public var fixedMeta: Meta?
-	
-	/// Value must be exactly this.
 	public var fixedMoney: Money?
 	
 	/// Value must be exactly this.
 	public var fixedOid: FHIRURL?
+	
+	/// Value must be exactly this.
+	public var fixedParameterDefinition: ParameterDefinition?
 	
 	/// Value must be exactly this.
 	public var fixedPeriod: Period?
@@ -257,6 +302,9 @@ open class ElementDefinition: Element {
 	public var fixedReference: Reference?
 	
 	/// Value must be exactly this.
+	public var fixedRelatedArtifact: RelatedArtifact?
+	
+	/// Value must be exactly this.
 	public var fixedSampledData: SampledData?
 	
 	/// Value must be exactly this.
@@ -272,13 +320,28 @@ open class ElementDefinition: Element {
 	public var fixedTiming: Timing?
 	
 	/// Value must be exactly this.
+	public var fixedTriggerDefinition: TriggerDefinition?
+	
+	/// Value must be exactly this.
 	public var fixedUnsignedInt: FHIRInteger?
 	
 	/// Value must be exactly this.
 	public var fixedUri: FHIRURL?
 	
+	/// Value must be exactly this.
+	public var fixedUrl: FHIRURL?
+	
+	/// Value must be exactly this.
+	public var fixedUsageContext: UsageContext?
+	
+	/// Value must be exactly this.
+	public var fixedUuid: FHIRString?
+	
 	/// If this modifies the meaning of other elements.
 	public var isModifier: FHIRBool?
+	
+	/// Reason that this element is marked as a modifier.
+	public var isModifierReason: FHIRString?
 	
 	/// Include when _summary = true?.
 	public var isSummary: FHIRBool?
@@ -383,6 +446,9 @@ open class ElementDefinition: Element {
 	public var patternBoolean: FHIRBool?
 	
 	/// Value must have at least these property values.
+	public var patternCanonical: FHIRURL?
+	
+	/// Value must have at least these property values.
 	public var patternCode: FHIRString?
 	
 	/// Value must have at least these property values.
@@ -392,10 +458,19 @@ open class ElementDefinition: Element {
 	public var patternCoding: Coding?
 	
 	/// Value must have at least these property values.
+	public var patternContactDetail: ContactDetail?
+	
+	/// Value must have at least these property values.
 	public var patternContactPoint: ContactPoint?
 	
 	/// Value must have at least these property values.
+	public var patternContributor: Contributor?
+	
+	/// Value must have at least these property values.
 	public var patternCount: Count?
+	
+	/// Value must have at least these property values.
+	public var patternDataRequirement: DataRequirement?
 	
 	/// Value must have at least these property values.
 	public var patternDate: FHIRDate?
@@ -408,6 +483,9 @@ open class ElementDefinition: Element {
 	
 	/// Value must have at least these property values.
 	public var patternDistance: Distance?
+	
+	/// Value must have at least these property values.
+	public var patternDosage: Dosage?
 	
 	/// Value must have at least these property values.
 	public var patternDuration: Duration?
@@ -431,13 +509,13 @@ open class ElementDefinition: Element {
 	public var patternMarkdown: FHIRString?
 	
 	/// Value must have at least these property values.
-	public var patternMeta: Meta?
-	
-	/// Value must have at least these property values.
 	public var patternMoney: Money?
 	
 	/// Value must have at least these property values.
 	public var patternOid: FHIRURL?
+	
+	/// Value must have at least these property values.
+	public var patternParameterDefinition: ParameterDefinition?
 	
 	/// Value must have at least these property values.
 	public var patternPeriod: Period?
@@ -458,6 +536,9 @@ open class ElementDefinition: Element {
 	public var patternReference: Reference?
 	
 	/// Value must have at least these property values.
+	public var patternRelatedArtifact: RelatedArtifact?
+	
+	/// Value must have at least these property values.
 	public var patternSampledData: SampledData?
 	
 	/// Value must have at least these property values.
@@ -473,10 +554,22 @@ open class ElementDefinition: Element {
 	public var patternTiming: Timing?
 	
 	/// Value must have at least these property values.
+	public var patternTriggerDefinition: TriggerDefinition?
+	
+	/// Value must have at least these property values.
 	public var patternUnsignedInt: FHIRInteger?
 	
 	/// Value must have at least these property values.
 	public var patternUri: FHIRURL?
+	
+	/// Value must have at least these property values.
+	public var patternUrl: FHIRURL?
+	
+	/// Value must have at least these property values.
+	public var patternUsageContext: UsageContext?
+	
+	/// Value must have at least these property values.
+	public var patternUuid: FHIRString?
 	
 	/// Codes that define how this element is represented in instances, when the deviation varies from the normal case.
 	public var representation: [PropertyRepresentation]?
@@ -521,15 +614,20 @@ open class ElementDefinition: Element {
 		defaultValueAttachment = createInstance(type: Attachment.self, for: "defaultValueAttachment", in: json, context: &instCtx, owner: self) ?? defaultValueAttachment
 		defaultValueBase64Binary = createInstance(type: Base64Binary.self, for: "defaultValueBase64Binary", in: json, context: &instCtx, owner: self) ?? defaultValueBase64Binary
 		defaultValueBoolean = createInstance(type: FHIRBool.self, for: "defaultValueBoolean", in: json, context: &instCtx, owner: self) ?? defaultValueBoolean
+		defaultValueCanonical = createInstance(type: FHIRURL.self, for: "defaultValueCanonical", in: json, context: &instCtx, owner: self) ?? defaultValueCanonical
 		defaultValueCode = createInstance(type: FHIRString.self, for: "defaultValueCode", in: json, context: &instCtx, owner: self) ?? defaultValueCode
 		defaultValueCodeableConcept = createInstance(type: CodeableConcept.self, for: "defaultValueCodeableConcept", in: json, context: &instCtx, owner: self) ?? defaultValueCodeableConcept
 		defaultValueCoding = createInstance(type: Coding.self, for: "defaultValueCoding", in: json, context: &instCtx, owner: self) ?? defaultValueCoding
+		defaultValueContactDetail = createInstance(type: ContactDetail.self, for: "defaultValueContactDetail", in: json, context: &instCtx, owner: self) ?? defaultValueContactDetail
 		defaultValueContactPoint = createInstance(type: ContactPoint.self, for: "defaultValueContactPoint", in: json, context: &instCtx, owner: self) ?? defaultValueContactPoint
+		defaultValueContributor = createInstance(type: Contributor.self, for: "defaultValueContributor", in: json, context: &instCtx, owner: self) ?? defaultValueContributor
 		defaultValueCount = createInstance(type: Count.self, for: "defaultValueCount", in: json, context: &instCtx, owner: self) ?? defaultValueCount
+		defaultValueDataRequirement = createInstance(type: DataRequirement.self, for: "defaultValueDataRequirement", in: json, context: &instCtx, owner: self) ?? defaultValueDataRequirement
 		defaultValueDate = createInstance(type: FHIRDate.self, for: "defaultValueDate", in: json, context: &instCtx, owner: self) ?? defaultValueDate
 		defaultValueDateTime = createInstance(type: DateTime.self, for: "defaultValueDateTime", in: json, context: &instCtx, owner: self) ?? defaultValueDateTime
 		defaultValueDecimal = createInstance(type: FHIRDecimal.self, for: "defaultValueDecimal", in: json, context: &instCtx, owner: self) ?? defaultValueDecimal
 		defaultValueDistance = createInstance(type: Distance.self, for: "defaultValueDistance", in: json, context: &instCtx, owner: self) ?? defaultValueDistance
+		defaultValueDosage = createInstance(type: Dosage.self, for: "defaultValueDosage", in: json, context: &instCtx, owner: self) ?? defaultValueDosage
 		defaultValueDuration = createInstance(type: Duration.self, for: "defaultValueDuration", in: json, context: &instCtx, owner: self) ?? defaultValueDuration
 		defaultValueHumanName = createInstance(type: HumanName.self, for: "defaultValueHumanName", in: json, context: &instCtx, owner: self) ?? defaultValueHumanName
 		defaultValueId = createInstance(type: FHIRString.self, for: "defaultValueId", in: json, context: &instCtx, owner: self) ?? defaultValueId
@@ -537,22 +635,27 @@ open class ElementDefinition: Element {
 		defaultValueInstant = createInstance(type: Instant.self, for: "defaultValueInstant", in: json, context: &instCtx, owner: self) ?? defaultValueInstant
 		defaultValueInteger = createInstance(type: FHIRInteger.self, for: "defaultValueInteger", in: json, context: &instCtx, owner: self) ?? defaultValueInteger
 		defaultValueMarkdown = createInstance(type: FHIRString.self, for: "defaultValueMarkdown", in: json, context: &instCtx, owner: self) ?? defaultValueMarkdown
-		defaultValueMeta = createInstance(type: Meta.self, for: "defaultValueMeta", in: json, context: &instCtx, owner: self) ?? defaultValueMeta
 		defaultValueMoney = createInstance(type: Money.self, for: "defaultValueMoney", in: json, context: &instCtx, owner: self) ?? defaultValueMoney
 		defaultValueOid = createInstance(type: FHIRURL.self, for: "defaultValueOid", in: json, context: &instCtx, owner: self) ?? defaultValueOid
+		defaultValueParameterDefinition = createInstance(type: ParameterDefinition.self, for: "defaultValueParameterDefinition", in: json, context: &instCtx, owner: self) ?? defaultValueParameterDefinition
 		defaultValuePeriod = createInstance(type: Period.self, for: "defaultValuePeriod", in: json, context: &instCtx, owner: self) ?? defaultValuePeriod
 		defaultValuePositiveInt = createInstance(type: FHIRInteger.self, for: "defaultValuePositiveInt", in: json, context: &instCtx, owner: self) ?? defaultValuePositiveInt
 		defaultValueQuantity = createInstance(type: Quantity.self, for: "defaultValueQuantity", in: json, context: &instCtx, owner: self) ?? defaultValueQuantity
 		defaultValueRange = createInstance(type: Range.self, for: "defaultValueRange", in: json, context: &instCtx, owner: self) ?? defaultValueRange
 		defaultValueRatio = createInstance(type: Ratio.self, for: "defaultValueRatio", in: json, context: &instCtx, owner: self) ?? defaultValueRatio
 		defaultValueReference = createInstance(type: Reference.self, for: "defaultValueReference", in: json, context: &instCtx, owner: self) ?? defaultValueReference
+		defaultValueRelatedArtifact = createInstance(type: RelatedArtifact.self, for: "defaultValueRelatedArtifact", in: json, context: &instCtx, owner: self) ?? defaultValueRelatedArtifact
 		defaultValueSampledData = createInstance(type: SampledData.self, for: "defaultValueSampledData", in: json, context: &instCtx, owner: self) ?? defaultValueSampledData
 		defaultValueSignature = createInstance(type: Signature.self, for: "defaultValueSignature", in: json, context: &instCtx, owner: self) ?? defaultValueSignature
 		defaultValueString = createInstance(type: FHIRString.self, for: "defaultValueString", in: json, context: &instCtx, owner: self) ?? defaultValueString
 		defaultValueTime = createInstance(type: FHIRTime.self, for: "defaultValueTime", in: json, context: &instCtx, owner: self) ?? defaultValueTime
 		defaultValueTiming = createInstance(type: Timing.self, for: "defaultValueTiming", in: json, context: &instCtx, owner: self) ?? defaultValueTiming
+		defaultValueTriggerDefinition = createInstance(type: TriggerDefinition.self, for: "defaultValueTriggerDefinition", in: json, context: &instCtx, owner: self) ?? defaultValueTriggerDefinition
 		defaultValueUnsignedInt = createInstance(type: FHIRInteger.self, for: "defaultValueUnsignedInt", in: json, context: &instCtx, owner: self) ?? defaultValueUnsignedInt
 		defaultValueUri = createInstance(type: FHIRURL.self, for: "defaultValueUri", in: json, context: &instCtx, owner: self) ?? defaultValueUri
+		defaultValueUrl = createInstance(type: FHIRURL.self, for: "defaultValueUrl", in: json, context: &instCtx, owner: self) ?? defaultValueUrl
+		defaultValueUsageContext = createInstance(type: UsageContext.self, for: "defaultValueUsageContext", in: json, context: &instCtx, owner: self) ?? defaultValueUsageContext
+		defaultValueUuid = createInstance(type: FHIRString.self, for: "defaultValueUuid", in: json, context: &instCtx, owner: self) ?? defaultValueUuid
 		definition = createInstance(type: FHIRString.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		example = createInstances(of: ElementDefinitionExample.self, for: "example", in: json, context: &instCtx, owner: self) ?? example
 		fixedAddress = createInstance(type: Address.self, for: "fixedAddress", in: json, context: &instCtx, owner: self) ?? fixedAddress
@@ -561,15 +664,20 @@ open class ElementDefinition: Element {
 		fixedAttachment = createInstance(type: Attachment.self, for: "fixedAttachment", in: json, context: &instCtx, owner: self) ?? fixedAttachment
 		fixedBase64Binary = createInstance(type: Base64Binary.self, for: "fixedBase64Binary", in: json, context: &instCtx, owner: self) ?? fixedBase64Binary
 		fixedBoolean = createInstance(type: FHIRBool.self, for: "fixedBoolean", in: json, context: &instCtx, owner: self) ?? fixedBoolean
+		fixedCanonical = createInstance(type: FHIRURL.self, for: "fixedCanonical", in: json, context: &instCtx, owner: self) ?? fixedCanonical
 		fixedCode = createInstance(type: FHIRString.self, for: "fixedCode", in: json, context: &instCtx, owner: self) ?? fixedCode
 		fixedCodeableConcept = createInstance(type: CodeableConcept.self, for: "fixedCodeableConcept", in: json, context: &instCtx, owner: self) ?? fixedCodeableConcept
 		fixedCoding = createInstance(type: Coding.self, for: "fixedCoding", in: json, context: &instCtx, owner: self) ?? fixedCoding
+		fixedContactDetail = createInstance(type: ContactDetail.self, for: "fixedContactDetail", in: json, context: &instCtx, owner: self) ?? fixedContactDetail
 		fixedContactPoint = createInstance(type: ContactPoint.self, for: "fixedContactPoint", in: json, context: &instCtx, owner: self) ?? fixedContactPoint
+		fixedContributor = createInstance(type: Contributor.self, for: "fixedContributor", in: json, context: &instCtx, owner: self) ?? fixedContributor
 		fixedCount = createInstance(type: Count.self, for: "fixedCount", in: json, context: &instCtx, owner: self) ?? fixedCount
+		fixedDataRequirement = createInstance(type: DataRequirement.self, for: "fixedDataRequirement", in: json, context: &instCtx, owner: self) ?? fixedDataRequirement
 		fixedDate = createInstance(type: FHIRDate.self, for: "fixedDate", in: json, context: &instCtx, owner: self) ?? fixedDate
 		fixedDateTime = createInstance(type: DateTime.self, for: "fixedDateTime", in: json, context: &instCtx, owner: self) ?? fixedDateTime
 		fixedDecimal = createInstance(type: FHIRDecimal.self, for: "fixedDecimal", in: json, context: &instCtx, owner: self) ?? fixedDecimal
 		fixedDistance = createInstance(type: Distance.self, for: "fixedDistance", in: json, context: &instCtx, owner: self) ?? fixedDistance
+		fixedDosage = createInstance(type: Dosage.self, for: "fixedDosage", in: json, context: &instCtx, owner: self) ?? fixedDosage
 		fixedDuration = createInstance(type: Duration.self, for: "fixedDuration", in: json, context: &instCtx, owner: self) ?? fixedDuration
 		fixedHumanName = createInstance(type: HumanName.self, for: "fixedHumanName", in: json, context: &instCtx, owner: self) ?? fixedHumanName
 		fixedId = createInstance(type: FHIRString.self, for: "fixedId", in: json, context: &instCtx, owner: self) ?? fixedId
@@ -577,23 +685,29 @@ open class ElementDefinition: Element {
 		fixedInstant = createInstance(type: Instant.self, for: "fixedInstant", in: json, context: &instCtx, owner: self) ?? fixedInstant
 		fixedInteger = createInstance(type: FHIRInteger.self, for: "fixedInteger", in: json, context: &instCtx, owner: self) ?? fixedInteger
 		fixedMarkdown = createInstance(type: FHIRString.self, for: "fixedMarkdown", in: json, context: &instCtx, owner: self) ?? fixedMarkdown
-		fixedMeta = createInstance(type: Meta.self, for: "fixedMeta", in: json, context: &instCtx, owner: self) ?? fixedMeta
 		fixedMoney = createInstance(type: Money.self, for: "fixedMoney", in: json, context: &instCtx, owner: self) ?? fixedMoney
 		fixedOid = createInstance(type: FHIRURL.self, for: "fixedOid", in: json, context: &instCtx, owner: self) ?? fixedOid
+		fixedParameterDefinition = createInstance(type: ParameterDefinition.self, for: "fixedParameterDefinition", in: json, context: &instCtx, owner: self) ?? fixedParameterDefinition
 		fixedPeriod = createInstance(type: Period.self, for: "fixedPeriod", in: json, context: &instCtx, owner: self) ?? fixedPeriod
 		fixedPositiveInt = createInstance(type: FHIRInteger.self, for: "fixedPositiveInt", in: json, context: &instCtx, owner: self) ?? fixedPositiveInt
 		fixedQuantity = createInstance(type: Quantity.self, for: "fixedQuantity", in: json, context: &instCtx, owner: self) ?? fixedQuantity
 		fixedRange = createInstance(type: Range.self, for: "fixedRange", in: json, context: &instCtx, owner: self) ?? fixedRange
 		fixedRatio = createInstance(type: Ratio.self, for: "fixedRatio", in: json, context: &instCtx, owner: self) ?? fixedRatio
 		fixedReference = createInstance(type: Reference.self, for: "fixedReference", in: json, context: &instCtx, owner: self) ?? fixedReference
+		fixedRelatedArtifact = createInstance(type: RelatedArtifact.self, for: "fixedRelatedArtifact", in: json, context: &instCtx, owner: self) ?? fixedRelatedArtifact
 		fixedSampledData = createInstance(type: SampledData.self, for: "fixedSampledData", in: json, context: &instCtx, owner: self) ?? fixedSampledData
 		fixedSignature = createInstance(type: Signature.self, for: "fixedSignature", in: json, context: &instCtx, owner: self) ?? fixedSignature
 		fixedString = createInstance(type: FHIRString.self, for: "fixedString", in: json, context: &instCtx, owner: self) ?? fixedString
 		fixedTime = createInstance(type: FHIRTime.self, for: "fixedTime", in: json, context: &instCtx, owner: self) ?? fixedTime
 		fixedTiming = createInstance(type: Timing.self, for: "fixedTiming", in: json, context: &instCtx, owner: self) ?? fixedTiming
+		fixedTriggerDefinition = createInstance(type: TriggerDefinition.self, for: "fixedTriggerDefinition", in: json, context: &instCtx, owner: self) ?? fixedTriggerDefinition
 		fixedUnsignedInt = createInstance(type: FHIRInteger.self, for: "fixedUnsignedInt", in: json, context: &instCtx, owner: self) ?? fixedUnsignedInt
 		fixedUri = createInstance(type: FHIRURL.self, for: "fixedUri", in: json, context: &instCtx, owner: self) ?? fixedUri
+		fixedUrl = createInstance(type: FHIRURL.self, for: "fixedUrl", in: json, context: &instCtx, owner: self) ?? fixedUrl
+		fixedUsageContext = createInstance(type: UsageContext.self, for: "fixedUsageContext", in: json, context: &instCtx, owner: self) ?? fixedUsageContext
+		fixedUuid = createInstance(type: FHIRString.self, for: "fixedUuid", in: json, context: &instCtx, owner: self) ?? fixedUuid
 		isModifier = createInstance(type: FHIRBool.self, for: "isModifier", in: json, context: &instCtx, owner: self) ?? isModifier
+		isModifierReason = createInstance(type: FHIRString.self, for: "isModifierReason", in: json, context: &instCtx, owner: self) ?? isModifierReason
 		isSummary = createInstance(type: FHIRBool.self, for: "isSummary", in: json, context: &instCtx, owner: self) ?? isSummary
 		label = createInstance(type: FHIRString.self, for: "label", in: json, context: &instCtx, owner: self) ?? label
 		mapping = createInstances(of: ElementDefinitionMapping.self, for: "mapping", in: json, context: &instCtx, owner: self) ?? mapping
@@ -631,15 +745,20 @@ open class ElementDefinition: Element {
 		patternAttachment = createInstance(type: Attachment.self, for: "patternAttachment", in: json, context: &instCtx, owner: self) ?? patternAttachment
 		patternBase64Binary = createInstance(type: Base64Binary.self, for: "patternBase64Binary", in: json, context: &instCtx, owner: self) ?? patternBase64Binary
 		patternBoolean = createInstance(type: FHIRBool.self, for: "patternBoolean", in: json, context: &instCtx, owner: self) ?? patternBoolean
+		patternCanonical = createInstance(type: FHIRURL.self, for: "patternCanonical", in: json, context: &instCtx, owner: self) ?? patternCanonical
 		patternCode = createInstance(type: FHIRString.self, for: "patternCode", in: json, context: &instCtx, owner: self) ?? patternCode
 		patternCodeableConcept = createInstance(type: CodeableConcept.self, for: "patternCodeableConcept", in: json, context: &instCtx, owner: self) ?? patternCodeableConcept
 		patternCoding = createInstance(type: Coding.self, for: "patternCoding", in: json, context: &instCtx, owner: self) ?? patternCoding
+		patternContactDetail = createInstance(type: ContactDetail.self, for: "patternContactDetail", in: json, context: &instCtx, owner: self) ?? patternContactDetail
 		patternContactPoint = createInstance(type: ContactPoint.self, for: "patternContactPoint", in: json, context: &instCtx, owner: self) ?? patternContactPoint
+		patternContributor = createInstance(type: Contributor.self, for: "patternContributor", in: json, context: &instCtx, owner: self) ?? patternContributor
 		patternCount = createInstance(type: Count.self, for: "patternCount", in: json, context: &instCtx, owner: self) ?? patternCount
+		patternDataRequirement = createInstance(type: DataRequirement.self, for: "patternDataRequirement", in: json, context: &instCtx, owner: self) ?? patternDataRequirement
 		patternDate = createInstance(type: FHIRDate.self, for: "patternDate", in: json, context: &instCtx, owner: self) ?? patternDate
 		patternDateTime = createInstance(type: DateTime.self, for: "patternDateTime", in: json, context: &instCtx, owner: self) ?? patternDateTime
 		patternDecimal = createInstance(type: FHIRDecimal.self, for: "patternDecimal", in: json, context: &instCtx, owner: self) ?? patternDecimal
 		patternDistance = createInstance(type: Distance.self, for: "patternDistance", in: json, context: &instCtx, owner: self) ?? patternDistance
+		patternDosage = createInstance(type: Dosage.self, for: "patternDosage", in: json, context: &instCtx, owner: self) ?? patternDosage
 		patternDuration = createInstance(type: Duration.self, for: "patternDuration", in: json, context: &instCtx, owner: self) ?? patternDuration
 		patternHumanName = createInstance(type: HumanName.self, for: "patternHumanName", in: json, context: &instCtx, owner: self) ?? patternHumanName
 		patternId = createInstance(type: FHIRString.self, for: "patternId", in: json, context: &instCtx, owner: self) ?? patternId
@@ -647,22 +766,27 @@ open class ElementDefinition: Element {
 		patternInstant = createInstance(type: Instant.self, for: "patternInstant", in: json, context: &instCtx, owner: self) ?? patternInstant
 		patternInteger = createInstance(type: FHIRInteger.self, for: "patternInteger", in: json, context: &instCtx, owner: self) ?? patternInteger
 		patternMarkdown = createInstance(type: FHIRString.self, for: "patternMarkdown", in: json, context: &instCtx, owner: self) ?? patternMarkdown
-		patternMeta = createInstance(type: Meta.self, for: "patternMeta", in: json, context: &instCtx, owner: self) ?? patternMeta
 		patternMoney = createInstance(type: Money.self, for: "patternMoney", in: json, context: &instCtx, owner: self) ?? patternMoney
 		patternOid = createInstance(type: FHIRURL.self, for: "patternOid", in: json, context: &instCtx, owner: self) ?? patternOid
+		patternParameterDefinition = createInstance(type: ParameterDefinition.self, for: "patternParameterDefinition", in: json, context: &instCtx, owner: self) ?? patternParameterDefinition
 		patternPeriod = createInstance(type: Period.self, for: "patternPeriod", in: json, context: &instCtx, owner: self) ?? patternPeriod
 		patternPositiveInt = createInstance(type: FHIRInteger.self, for: "patternPositiveInt", in: json, context: &instCtx, owner: self) ?? patternPositiveInt
 		patternQuantity = createInstance(type: Quantity.self, for: "patternQuantity", in: json, context: &instCtx, owner: self) ?? patternQuantity
 		patternRange = createInstance(type: Range.self, for: "patternRange", in: json, context: &instCtx, owner: self) ?? patternRange
 		patternRatio = createInstance(type: Ratio.self, for: "patternRatio", in: json, context: &instCtx, owner: self) ?? patternRatio
 		patternReference = createInstance(type: Reference.self, for: "patternReference", in: json, context: &instCtx, owner: self) ?? patternReference
+		patternRelatedArtifact = createInstance(type: RelatedArtifact.self, for: "patternRelatedArtifact", in: json, context: &instCtx, owner: self) ?? patternRelatedArtifact
 		patternSampledData = createInstance(type: SampledData.self, for: "patternSampledData", in: json, context: &instCtx, owner: self) ?? patternSampledData
 		patternSignature = createInstance(type: Signature.self, for: "patternSignature", in: json, context: &instCtx, owner: self) ?? patternSignature
 		patternString = createInstance(type: FHIRString.self, for: "patternString", in: json, context: &instCtx, owner: self) ?? patternString
 		patternTime = createInstance(type: FHIRTime.self, for: "patternTime", in: json, context: &instCtx, owner: self) ?? patternTime
 		patternTiming = createInstance(type: Timing.self, for: "patternTiming", in: json, context: &instCtx, owner: self) ?? patternTiming
+		patternTriggerDefinition = createInstance(type: TriggerDefinition.self, for: "patternTriggerDefinition", in: json, context: &instCtx, owner: self) ?? patternTriggerDefinition
 		patternUnsignedInt = createInstance(type: FHIRInteger.self, for: "patternUnsignedInt", in: json, context: &instCtx, owner: self) ?? patternUnsignedInt
 		patternUri = createInstance(type: FHIRURL.self, for: "patternUri", in: json, context: &instCtx, owner: self) ?? patternUri
+		patternUrl = createInstance(type: FHIRURL.self, for: "patternUrl", in: json, context: &instCtx, owner: self) ?? patternUrl
+		patternUsageContext = createInstance(type: UsageContext.self, for: "patternUsageContext", in: json, context: &instCtx, owner: self) ?? patternUsageContext
+		patternUuid = createInstance(type: FHIRString.self, for: "patternUuid", in: json, context: &instCtx, owner: self) ?? patternUuid
 		representation = createEnums(of: PropertyRepresentation.self, for: "representation", in: json, context: &instCtx) ?? representation
 		requirements = createInstance(type: FHIRString.self, for: "requirements", in: json, context: &instCtx, owner: self) ?? requirements
 		short = createInstance(type: FHIRString.self, for: "short", in: json, context: &instCtx, owner: self) ?? short
@@ -688,15 +812,20 @@ open class ElementDefinition: Element {
 		self.defaultValueAttachment?.decorate(json: &json, withKey: "defaultValueAttachment", errors: &errors)
 		self.defaultValueBase64Binary?.decorate(json: &json, withKey: "defaultValueBase64Binary", errors: &errors)
 		self.defaultValueBoolean?.decorate(json: &json, withKey: "defaultValueBoolean", errors: &errors)
+		self.defaultValueCanonical?.decorate(json: &json, withKey: "defaultValueCanonical", errors: &errors)
 		self.defaultValueCode?.decorate(json: &json, withKey: "defaultValueCode", errors: &errors)
 		self.defaultValueCodeableConcept?.decorate(json: &json, withKey: "defaultValueCodeableConcept", errors: &errors)
 		self.defaultValueCoding?.decorate(json: &json, withKey: "defaultValueCoding", errors: &errors)
+		self.defaultValueContactDetail?.decorate(json: &json, withKey: "defaultValueContactDetail", errors: &errors)
 		self.defaultValueContactPoint?.decorate(json: &json, withKey: "defaultValueContactPoint", errors: &errors)
+		self.defaultValueContributor?.decorate(json: &json, withKey: "defaultValueContributor", errors: &errors)
 		self.defaultValueCount?.decorate(json: &json, withKey: "defaultValueCount", errors: &errors)
+		self.defaultValueDataRequirement?.decorate(json: &json, withKey: "defaultValueDataRequirement", errors: &errors)
 		self.defaultValueDate?.decorate(json: &json, withKey: "defaultValueDate", errors: &errors)
 		self.defaultValueDateTime?.decorate(json: &json, withKey: "defaultValueDateTime", errors: &errors)
 		self.defaultValueDecimal?.decorate(json: &json, withKey: "defaultValueDecimal", errors: &errors)
 		self.defaultValueDistance?.decorate(json: &json, withKey: "defaultValueDistance", errors: &errors)
+		self.defaultValueDosage?.decorate(json: &json, withKey: "defaultValueDosage", errors: &errors)
 		self.defaultValueDuration?.decorate(json: &json, withKey: "defaultValueDuration", errors: &errors)
 		self.defaultValueHumanName?.decorate(json: &json, withKey: "defaultValueHumanName", errors: &errors)
 		self.defaultValueId?.decorate(json: &json, withKey: "defaultValueId", errors: &errors)
@@ -704,22 +833,27 @@ open class ElementDefinition: Element {
 		self.defaultValueInstant?.decorate(json: &json, withKey: "defaultValueInstant", errors: &errors)
 		self.defaultValueInteger?.decorate(json: &json, withKey: "defaultValueInteger", errors: &errors)
 		self.defaultValueMarkdown?.decorate(json: &json, withKey: "defaultValueMarkdown", errors: &errors)
-		self.defaultValueMeta?.decorate(json: &json, withKey: "defaultValueMeta", errors: &errors)
 		self.defaultValueMoney?.decorate(json: &json, withKey: "defaultValueMoney", errors: &errors)
 		self.defaultValueOid?.decorate(json: &json, withKey: "defaultValueOid", errors: &errors)
+		self.defaultValueParameterDefinition?.decorate(json: &json, withKey: "defaultValueParameterDefinition", errors: &errors)
 		self.defaultValuePeriod?.decorate(json: &json, withKey: "defaultValuePeriod", errors: &errors)
 		self.defaultValuePositiveInt?.decorate(json: &json, withKey: "defaultValuePositiveInt", errors: &errors)
 		self.defaultValueQuantity?.decorate(json: &json, withKey: "defaultValueQuantity", errors: &errors)
 		self.defaultValueRange?.decorate(json: &json, withKey: "defaultValueRange", errors: &errors)
 		self.defaultValueRatio?.decorate(json: &json, withKey: "defaultValueRatio", errors: &errors)
 		self.defaultValueReference?.decorate(json: &json, withKey: "defaultValueReference", errors: &errors)
+		self.defaultValueRelatedArtifact?.decorate(json: &json, withKey: "defaultValueRelatedArtifact", errors: &errors)
 		self.defaultValueSampledData?.decorate(json: &json, withKey: "defaultValueSampledData", errors: &errors)
 		self.defaultValueSignature?.decorate(json: &json, withKey: "defaultValueSignature", errors: &errors)
 		self.defaultValueString?.decorate(json: &json, withKey: "defaultValueString", errors: &errors)
 		self.defaultValueTime?.decorate(json: &json, withKey: "defaultValueTime", errors: &errors)
 		self.defaultValueTiming?.decorate(json: &json, withKey: "defaultValueTiming", errors: &errors)
+		self.defaultValueTriggerDefinition?.decorate(json: &json, withKey: "defaultValueTriggerDefinition", errors: &errors)
 		self.defaultValueUnsignedInt?.decorate(json: &json, withKey: "defaultValueUnsignedInt", errors: &errors)
 		self.defaultValueUri?.decorate(json: &json, withKey: "defaultValueUri", errors: &errors)
+		self.defaultValueUrl?.decorate(json: &json, withKey: "defaultValueUrl", errors: &errors)
+		self.defaultValueUsageContext?.decorate(json: &json, withKey: "defaultValueUsageContext", errors: &errors)
+		self.defaultValueUuid?.decorate(json: &json, withKey: "defaultValueUuid", errors: &errors)
 		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
 		arrayDecorate(json: &json, withKey: "example", using: self.example, errors: &errors)
 		self.fixedAddress?.decorate(json: &json, withKey: "fixedAddress", errors: &errors)
@@ -728,15 +862,20 @@ open class ElementDefinition: Element {
 		self.fixedAttachment?.decorate(json: &json, withKey: "fixedAttachment", errors: &errors)
 		self.fixedBase64Binary?.decorate(json: &json, withKey: "fixedBase64Binary", errors: &errors)
 		self.fixedBoolean?.decorate(json: &json, withKey: "fixedBoolean", errors: &errors)
+		self.fixedCanonical?.decorate(json: &json, withKey: "fixedCanonical", errors: &errors)
 		self.fixedCode?.decorate(json: &json, withKey: "fixedCode", errors: &errors)
 		self.fixedCodeableConcept?.decorate(json: &json, withKey: "fixedCodeableConcept", errors: &errors)
 		self.fixedCoding?.decorate(json: &json, withKey: "fixedCoding", errors: &errors)
+		self.fixedContactDetail?.decorate(json: &json, withKey: "fixedContactDetail", errors: &errors)
 		self.fixedContactPoint?.decorate(json: &json, withKey: "fixedContactPoint", errors: &errors)
+		self.fixedContributor?.decorate(json: &json, withKey: "fixedContributor", errors: &errors)
 		self.fixedCount?.decorate(json: &json, withKey: "fixedCount", errors: &errors)
+		self.fixedDataRequirement?.decorate(json: &json, withKey: "fixedDataRequirement", errors: &errors)
 		self.fixedDate?.decorate(json: &json, withKey: "fixedDate", errors: &errors)
 		self.fixedDateTime?.decorate(json: &json, withKey: "fixedDateTime", errors: &errors)
 		self.fixedDecimal?.decorate(json: &json, withKey: "fixedDecimal", errors: &errors)
 		self.fixedDistance?.decorate(json: &json, withKey: "fixedDistance", errors: &errors)
+		self.fixedDosage?.decorate(json: &json, withKey: "fixedDosage", errors: &errors)
 		self.fixedDuration?.decorate(json: &json, withKey: "fixedDuration", errors: &errors)
 		self.fixedHumanName?.decorate(json: &json, withKey: "fixedHumanName", errors: &errors)
 		self.fixedId?.decorate(json: &json, withKey: "fixedId", errors: &errors)
@@ -744,23 +883,29 @@ open class ElementDefinition: Element {
 		self.fixedInstant?.decorate(json: &json, withKey: "fixedInstant", errors: &errors)
 		self.fixedInteger?.decorate(json: &json, withKey: "fixedInteger", errors: &errors)
 		self.fixedMarkdown?.decorate(json: &json, withKey: "fixedMarkdown", errors: &errors)
-		self.fixedMeta?.decorate(json: &json, withKey: "fixedMeta", errors: &errors)
 		self.fixedMoney?.decorate(json: &json, withKey: "fixedMoney", errors: &errors)
 		self.fixedOid?.decorate(json: &json, withKey: "fixedOid", errors: &errors)
+		self.fixedParameterDefinition?.decorate(json: &json, withKey: "fixedParameterDefinition", errors: &errors)
 		self.fixedPeriod?.decorate(json: &json, withKey: "fixedPeriod", errors: &errors)
 		self.fixedPositiveInt?.decorate(json: &json, withKey: "fixedPositiveInt", errors: &errors)
 		self.fixedQuantity?.decorate(json: &json, withKey: "fixedQuantity", errors: &errors)
 		self.fixedRange?.decorate(json: &json, withKey: "fixedRange", errors: &errors)
 		self.fixedRatio?.decorate(json: &json, withKey: "fixedRatio", errors: &errors)
 		self.fixedReference?.decorate(json: &json, withKey: "fixedReference", errors: &errors)
+		self.fixedRelatedArtifact?.decorate(json: &json, withKey: "fixedRelatedArtifact", errors: &errors)
 		self.fixedSampledData?.decorate(json: &json, withKey: "fixedSampledData", errors: &errors)
 		self.fixedSignature?.decorate(json: &json, withKey: "fixedSignature", errors: &errors)
 		self.fixedString?.decorate(json: &json, withKey: "fixedString", errors: &errors)
 		self.fixedTime?.decorate(json: &json, withKey: "fixedTime", errors: &errors)
 		self.fixedTiming?.decorate(json: &json, withKey: "fixedTiming", errors: &errors)
+		self.fixedTriggerDefinition?.decorate(json: &json, withKey: "fixedTriggerDefinition", errors: &errors)
 		self.fixedUnsignedInt?.decorate(json: &json, withKey: "fixedUnsignedInt", errors: &errors)
 		self.fixedUri?.decorate(json: &json, withKey: "fixedUri", errors: &errors)
+		self.fixedUrl?.decorate(json: &json, withKey: "fixedUrl", errors: &errors)
+		self.fixedUsageContext?.decorate(json: &json, withKey: "fixedUsageContext", errors: &errors)
+		self.fixedUuid?.decorate(json: &json, withKey: "fixedUuid", errors: &errors)
 		self.isModifier?.decorate(json: &json, withKey: "isModifier", errors: &errors)
+		self.isModifierReason?.decorate(json: &json, withKey: "isModifierReason", errors: &errors)
 		self.isSummary?.decorate(json: &json, withKey: "isSummary", errors: &errors)
 		self.label?.decorate(json: &json, withKey: "label", errors: &errors)
 		arrayDecorate(json: &json, withKey: "mapping", using: self.mapping, errors: &errors)
@@ -798,15 +943,20 @@ open class ElementDefinition: Element {
 		self.patternAttachment?.decorate(json: &json, withKey: "patternAttachment", errors: &errors)
 		self.patternBase64Binary?.decorate(json: &json, withKey: "patternBase64Binary", errors: &errors)
 		self.patternBoolean?.decorate(json: &json, withKey: "patternBoolean", errors: &errors)
+		self.patternCanonical?.decorate(json: &json, withKey: "patternCanonical", errors: &errors)
 		self.patternCode?.decorate(json: &json, withKey: "patternCode", errors: &errors)
 		self.patternCodeableConcept?.decorate(json: &json, withKey: "patternCodeableConcept", errors: &errors)
 		self.patternCoding?.decorate(json: &json, withKey: "patternCoding", errors: &errors)
+		self.patternContactDetail?.decorate(json: &json, withKey: "patternContactDetail", errors: &errors)
 		self.patternContactPoint?.decorate(json: &json, withKey: "patternContactPoint", errors: &errors)
+		self.patternContributor?.decorate(json: &json, withKey: "patternContributor", errors: &errors)
 		self.patternCount?.decorate(json: &json, withKey: "patternCount", errors: &errors)
+		self.patternDataRequirement?.decorate(json: &json, withKey: "patternDataRequirement", errors: &errors)
 		self.patternDate?.decorate(json: &json, withKey: "patternDate", errors: &errors)
 		self.patternDateTime?.decorate(json: &json, withKey: "patternDateTime", errors: &errors)
 		self.patternDecimal?.decorate(json: &json, withKey: "patternDecimal", errors: &errors)
 		self.patternDistance?.decorate(json: &json, withKey: "patternDistance", errors: &errors)
+		self.patternDosage?.decorate(json: &json, withKey: "patternDosage", errors: &errors)
 		self.patternDuration?.decorate(json: &json, withKey: "patternDuration", errors: &errors)
 		self.patternHumanName?.decorate(json: &json, withKey: "patternHumanName", errors: &errors)
 		self.patternId?.decorate(json: &json, withKey: "patternId", errors: &errors)
@@ -814,22 +964,27 @@ open class ElementDefinition: Element {
 		self.patternInstant?.decorate(json: &json, withKey: "patternInstant", errors: &errors)
 		self.patternInteger?.decorate(json: &json, withKey: "patternInteger", errors: &errors)
 		self.patternMarkdown?.decorate(json: &json, withKey: "patternMarkdown", errors: &errors)
-		self.patternMeta?.decorate(json: &json, withKey: "patternMeta", errors: &errors)
 		self.patternMoney?.decorate(json: &json, withKey: "patternMoney", errors: &errors)
 		self.patternOid?.decorate(json: &json, withKey: "patternOid", errors: &errors)
+		self.patternParameterDefinition?.decorate(json: &json, withKey: "patternParameterDefinition", errors: &errors)
 		self.patternPeriod?.decorate(json: &json, withKey: "patternPeriod", errors: &errors)
 		self.patternPositiveInt?.decorate(json: &json, withKey: "patternPositiveInt", errors: &errors)
 		self.patternQuantity?.decorate(json: &json, withKey: "patternQuantity", errors: &errors)
 		self.patternRange?.decorate(json: &json, withKey: "patternRange", errors: &errors)
 		self.patternRatio?.decorate(json: &json, withKey: "patternRatio", errors: &errors)
 		self.patternReference?.decorate(json: &json, withKey: "patternReference", errors: &errors)
+		self.patternRelatedArtifact?.decorate(json: &json, withKey: "patternRelatedArtifact", errors: &errors)
 		self.patternSampledData?.decorate(json: &json, withKey: "patternSampledData", errors: &errors)
 		self.patternSignature?.decorate(json: &json, withKey: "patternSignature", errors: &errors)
 		self.patternString?.decorate(json: &json, withKey: "patternString", errors: &errors)
 		self.patternTime?.decorate(json: &json, withKey: "patternTime", errors: &errors)
 		self.patternTiming?.decorate(json: &json, withKey: "patternTiming", errors: &errors)
+		self.patternTriggerDefinition?.decorate(json: &json, withKey: "patternTriggerDefinition", errors: &errors)
 		self.patternUnsignedInt?.decorate(json: &json, withKey: "patternUnsignedInt", errors: &errors)
 		self.patternUri?.decorate(json: &json, withKey: "patternUri", errors: &errors)
+		self.patternUrl?.decorate(json: &json, withKey: "patternUrl", errors: &errors)
+		self.patternUsageContext?.decorate(json: &json, withKey: "patternUsageContext", errors: &errors)
+		self.patternUuid?.decorate(json: &json, withKey: "patternUuid", errors: &errors)
 		arrayDecorate(json: &json, withKey: "representation", using: self.representation, errors: &errors)
 		self.requirements?.decorate(json: &json, withKey: "requirements", errors: &errors)
 		self.short?.decorate(json: &json, withKey: "short", errors: &errors)
@@ -844,9 +999,10 @@ open class ElementDefinition: Element {
 Base definition information for tools.
 
 Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation
-of the element through the derived and related profiles. This information is provided when the element definition is not
-the original definition of an element - i.g. either in a constraint on another type, or for elements from a super type
-in a snap shot.
+of the element through the derived and related profiles. When the element definition is not the original definition of
+an element - i.g. either in a constraint on another type, or for elements from a super type in a snap shot - then the
+information in provided in the element definition may be different to the base definition. On the original definition of
+the element, it will be same.
 */
 open class ElementDefinitionBase: Element {
 	override open class var resourceType: String {
@@ -927,7 +1083,7 @@ open class ElementDefinitionBinding: Element {
 	public var strength: BindingStrength?
 	
 	/// Source of value set.
-	public var valueSetReference: Reference?
+	public var valueSetCanonical: FHIRURL?
 	
 	/// Source of value set.
 	public var valueSetUri: FHIRURL?
@@ -948,7 +1104,7 @@ open class ElementDefinitionBinding: Element {
 		if nil == strength && !instCtx.containsKey("strength") {
 			instCtx.addError(FHIRValidationError(missing: "strength"))
 		}
-		valueSetReference = createInstance(type: Reference.self, for: "valueSetReference", in: json, context: &instCtx, owner: self) ?? valueSetReference
+		valueSetCanonical = createInstance(type: FHIRURL.self, for: "valueSetCanonical", in: json, context: &instCtx, owner: self) ?? valueSetCanonical
 		valueSetUri = createInstance(type: FHIRURL.self, for: "valueSetUri", in: json, context: &instCtx, owner: self) ?? valueSetUri
 	}
 	
@@ -960,7 +1116,7 @@ open class ElementDefinitionBinding: Element {
 		if nil == self.strength {
 			errors.append(FHIRValidationError(missing: "strength"))
 		}
-		self.valueSetReference?.decorate(json: &json, withKey: "valueSetReference", errors: &errors)
+		self.valueSetCanonical?.decorate(json: &json, withKey: "valueSetCanonical", errors: &errors)
 		self.valueSetUri?.decorate(json: &json, withKey: "valueSetUri", errors: &errors)
 	}
 }
@@ -1091,6 +1247,9 @@ open class ElementDefinitionExample: Element {
 	public var valueBoolean: FHIRBool?
 	
 	/// Value of Example (one of allowed types).
+	public var valueCanonical: FHIRURL?
+	
+	/// Value of Example (one of allowed types).
 	public var valueCode: FHIRString?
 	
 	/// Value of Example (one of allowed types).
@@ -1100,10 +1259,19 @@ open class ElementDefinitionExample: Element {
 	public var valueCoding: Coding?
 	
 	/// Value of Example (one of allowed types).
+	public var valueContactDetail: ContactDetail?
+	
+	/// Value of Example (one of allowed types).
 	public var valueContactPoint: ContactPoint?
 	
 	/// Value of Example (one of allowed types).
+	public var valueContributor: Contributor?
+	
+	/// Value of Example (one of allowed types).
 	public var valueCount: Count?
+	
+	/// Value of Example (one of allowed types).
+	public var valueDataRequirement: DataRequirement?
 	
 	/// Value of Example (one of allowed types).
 	public var valueDate: FHIRDate?
@@ -1116,6 +1284,9 @@ open class ElementDefinitionExample: Element {
 	
 	/// Value of Example (one of allowed types).
 	public var valueDistance: Distance?
+	
+	/// Value of Example (one of allowed types).
+	public var valueDosage: Dosage?
 	
 	/// Value of Example (one of allowed types).
 	public var valueDuration: Duration?
@@ -1139,13 +1310,13 @@ open class ElementDefinitionExample: Element {
 	public var valueMarkdown: FHIRString?
 	
 	/// Value of Example (one of allowed types).
-	public var valueMeta: Meta?
-	
-	/// Value of Example (one of allowed types).
 	public var valueMoney: Money?
 	
 	/// Value of Example (one of allowed types).
 	public var valueOid: FHIRURL?
+	
+	/// Value of Example (one of allowed types).
+	public var valueParameterDefinition: ParameterDefinition?
 	
 	/// Value of Example (one of allowed types).
 	public var valuePeriod: Period?
@@ -1166,6 +1337,9 @@ open class ElementDefinitionExample: Element {
 	public var valueReference: Reference?
 	
 	/// Value of Example (one of allowed types).
+	public var valueRelatedArtifact: RelatedArtifact?
+	
+	/// Value of Example (one of allowed types).
 	public var valueSampledData: SampledData?
 	
 	/// Value of Example (one of allowed types).
@@ -1181,10 +1355,22 @@ open class ElementDefinitionExample: Element {
 	public var valueTiming: Timing?
 	
 	/// Value of Example (one of allowed types).
+	public var valueTriggerDefinition: TriggerDefinition?
+	
+	/// Value of Example (one of allowed types).
 	public var valueUnsignedInt: FHIRInteger?
 	
 	/// Value of Example (one of allowed types).
 	public var valueUri: FHIRURL?
+	
+	/// Value of Example (one of allowed types).
+	public var valueUrl: FHIRURL?
+	
+	/// Value of Example (one of allowed types).
+	public var valueUsageContext: UsageContext?
+	
+	/// Value of Example (one of allowed types).
+	public var valueUuid: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1196,6 +1382,9 @@ open class ElementDefinitionExample: Element {
 		}
 		else if let value = value as? FHIRBool {
 			self.valueBoolean = value
+		}
+		else if let value = value as? FHIRURL {
+			self.valueCanonical = value
 		}
 		else if let value = value as? FHIRString {
 			self.valueCode = value
@@ -1238,6 +1427,12 @@ open class ElementDefinitionExample: Element {
 		}
 		else if let value = value as? FHIRURL {
 			self.valueUri = value
+		}
+		else if let value = value as? FHIRURL {
+			self.valueUrl = value
+		}
+		else if let value = value as? FHIRString {
+			self.valueUuid = value
 		}
 		else if let value = value as? Address {
 			self.valueAddress = value
@@ -1302,8 +1497,29 @@ open class ElementDefinitionExample: Element {
 		else if let value = value as? Timing {
 			self.valueTiming = value
 		}
-		else if let value = value as? Meta {
-			self.valueMeta = value
+		else if let value = value as? ParameterDefinition {
+			self.valueParameterDefinition = value
+		}
+		else if let value = value as? DataRequirement {
+			self.valueDataRequirement = value
+		}
+		else if let value = value as? RelatedArtifact {
+			self.valueRelatedArtifact = value
+		}
+		else if let value = value as? ContactDetail {
+			self.valueContactDetail = value
+		}
+		else if let value = value as? Contributor {
+			self.valueContributor = value
+		}
+		else if let value = value as? TriggerDefinition {
+			self.valueTriggerDefinition = value
+		}
+		else if let value = value as? UsageContext {
+			self.valueUsageContext = value
+		}
+		else if let value = value as? Dosage {
+			self.valueDosage = value
 		}
 		else {
 			fhir_warn("Type “\(type(of: value))” for property “\(value)” is invalid, ignoring")
@@ -1324,15 +1540,20 @@ open class ElementDefinitionExample: Element {
 		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
 		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
+		valueCanonical = createInstance(type: FHIRURL.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
 		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
+		valueContactDetail = createInstance(type: ContactDetail.self, for: "valueContactDetail", in: json, context: &instCtx, owner: self) ?? valueContactDetail
 		valueContactPoint = createInstance(type: ContactPoint.self, for: "valueContactPoint", in: json, context: &instCtx, owner: self) ?? valueContactPoint
+		valueContributor = createInstance(type: Contributor.self, for: "valueContributor", in: json, context: &instCtx, owner: self) ?? valueContributor
 		valueCount = createInstance(type: Count.self, for: "valueCount", in: json, context: &instCtx, owner: self) ?? valueCount
+		valueDataRequirement = createInstance(type: DataRequirement.self, for: "valueDataRequirement", in: json, context: &instCtx, owner: self) ?? valueDataRequirement
 		valueDate = createInstance(type: FHIRDate.self, for: "valueDate", in: json, context: &instCtx, owner: self) ?? valueDate
 		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
 		valueDecimal = createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, context: &instCtx, owner: self) ?? valueDecimal
 		valueDistance = createInstance(type: Distance.self, for: "valueDistance", in: json, context: &instCtx, owner: self) ?? valueDistance
+		valueDosage = createInstance(type: Dosage.self, for: "valueDosage", in: json, context: &instCtx, owner: self) ?? valueDosage
 		valueDuration = createInstance(type: Duration.self, for: "valueDuration", in: json, context: &instCtx, owner: self) ?? valueDuration
 		valueHumanName = createInstance(type: HumanName.self, for: "valueHumanName", in: json, context: &instCtx, owner: self) ?? valueHumanName
 		valueId = createInstance(type: FHIRString.self, for: "valueId", in: json, context: &instCtx, owner: self) ?? valueId
@@ -1340,25 +1561,30 @@ open class ElementDefinitionExample: Element {
 		valueInstant = createInstance(type: Instant.self, for: "valueInstant", in: json, context: &instCtx, owner: self) ?? valueInstant
 		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
 		valueMarkdown = createInstance(type: FHIRString.self, for: "valueMarkdown", in: json, context: &instCtx, owner: self) ?? valueMarkdown
-		valueMeta = createInstance(type: Meta.self, for: "valueMeta", in: json, context: &instCtx, owner: self) ?? valueMeta
 		valueMoney = createInstance(type: Money.self, for: "valueMoney", in: json, context: &instCtx, owner: self) ?? valueMoney
 		valueOid = createInstance(type: FHIRURL.self, for: "valueOid", in: json, context: &instCtx, owner: self) ?? valueOid
+		valueParameterDefinition = createInstance(type: ParameterDefinition.self, for: "valueParameterDefinition", in: json, context: &instCtx, owner: self) ?? valueParameterDefinition
 		valuePeriod = createInstance(type: Period.self, for: "valuePeriod", in: json, context: &instCtx, owner: self) ?? valuePeriod
 		valuePositiveInt = createInstance(type: FHIRInteger.self, for: "valuePositiveInt", in: json, context: &instCtx, owner: self) ?? valuePositiveInt
 		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
 		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
 		valueRatio = createInstance(type: Ratio.self, for: "valueRatio", in: json, context: &instCtx, owner: self) ?? valueRatio
 		valueReference = createInstance(type: Reference.self, for: "valueReference", in: json, context: &instCtx, owner: self) ?? valueReference
+		valueRelatedArtifact = createInstance(type: RelatedArtifact.self, for: "valueRelatedArtifact", in: json, context: &instCtx, owner: self) ?? valueRelatedArtifact
 		valueSampledData = createInstance(type: SampledData.self, for: "valueSampledData", in: json, context: &instCtx, owner: self) ?? valueSampledData
 		valueSignature = createInstance(type: Signature.self, for: "valueSignature", in: json, context: &instCtx, owner: self) ?? valueSignature
 		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
 		valueTime = createInstance(type: FHIRTime.self, for: "valueTime", in: json, context: &instCtx, owner: self) ?? valueTime
 		valueTiming = createInstance(type: Timing.self, for: "valueTiming", in: json, context: &instCtx, owner: self) ?? valueTiming
+		valueTriggerDefinition = createInstance(type: TriggerDefinition.self, for: "valueTriggerDefinition", in: json, context: &instCtx, owner: self) ?? valueTriggerDefinition
 		valueUnsignedInt = createInstance(type: FHIRInteger.self, for: "valueUnsignedInt", in: json, context: &instCtx, owner: self) ?? valueUnsignedInt
 		valueUri = createInstance(type: FHIRURL.self, for: "valueUri", in: json, context: &instCtx, owner: self) ?? valueUri
+		valueUrl = createInstance(type: FHIRURL.self, for: "valueUrl", in: json, context: &instCtx, owner: self) ?? valueUrl
+		valueUsageContext = createInstance(type: UsageContext.self, for: "valueUsageContext", in: json, context: &instCtx, owner: self) ?? valueUsageContext
+		valueUuid = createInstance(type: FHIRString.self, for: "valueUuid", in: json, context: &instCtx, owner: self) ?? valueUuid
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
+		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCanonical && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueUrl && nil == self.valueUuid && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueParameterDefinition && nil == self.valueDataRequirement && nil == self.valueRelatedArtifact && nil == self.valueContactDetail && nil == self.valueContributor && nil == self.valueTriggerDefinition && nil == self.valueUsageContext && nil == self.valueDosage {
 			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
@@ -1377,15 +1603,20 @@ open class ElementDefinitionExample: Element {
 		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
 		self.valueBase64Binary?.decorate(json: &json, withKey: "valueBase64Binary", errors: &errors)
 		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
+		self.valueCanonical?.decorate(json: &json, withKey: "valueCanonical", errors: &errors)
 		self.valueCode?.decorate(json: &json, withKey: "valueCode", errors: &errors)
 		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
 		self.valueCoding?.decorate(json: &json, withKey: "valueCoding", errors: &errors)
+		self.valueContactDetail?.decorate(json: &json, withKey: "valueContactDetail", errors: &errors)
 		self.valueContactPoint?.decorate(json: &json, withKey: "valueContactPoint", errors: &errors)
+		self.valueContributor?.decorate(json: &json, withKey: "valueContributor", errors: &errors)
 		self.valueCount?.decorate(json: &json, withKey: "valueCount", errors: &errors)
+		self.valueDataRequirement?.decorate(json: &json, withKey: "valueDataRequirement", errors: &errors)
 		self.valueDate?.decorate(json: &json, withKey: "valueDate", errors: &errors)
 		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
 		self.valueDecimal?.decorate(json: &json, withKey: "valueDecimal", errors: &errors)
 		self.valueDistance?.decorate(json: &json, withKey: "valueDistance", errors: &errors)
+		self.valueDosage?.decorate(json: &json, withKey: "valueDosage", errors: &errors)
 		self.valueDuration?.decorate(json: &json, withKey: "valueDuration", errors: &errors)
 		self.valueHumanName?.decorate(json: &json, withKey: "valueHumanName", errors: &errors)
 		self.valueId?.decorate(json: &json, withKey: "valueId", errors: &errors)
@@ -1393,25 +1624,30 @@ open class ElementDefinitionExample: Element {
 		self.valueInstant?.decorate(json: &json, withKey: "valueInstant", errors: &errors)
 		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
 		self.valueMarkdown?.decorate(json: &json, withKey: "valueMarkdown", errors: &errors)
-		self.valueMeta?.decorate(json: &json, withKey: "valueMeta", errors: &errors)
 		self.valueMoney?.decorate(json: &json, withKey: "valueMoney", errors: &errors)
 		self.valueOid?.decorate(json: &json, withKey: "valueOid", errors: &errors)
+		self.valueParameterDefinition?.decorate(json: &json, withKey: "valueParameterDefinition", errors: &errors)
 		self.valuePeriod?.decorate(json: &json, withKey: "valuePeriod", errors: &errors)
 		self.valuePositiveInt?.decorate(json: &json, withKey: "valuePositiveInt", errors: &errors)
 		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
 		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
 		self.valueRatio?.decorate(json: &json, withKey: "valueRatio", errors: &errors)
 		self.valueReference?.decorate(json: &json, withKey: "valueReference", errors: &errors)
+		self.valueRelatedArtifact?.decorate(json: &json, withKey: "valueRelatedArtifact", errors: &errors)
 		self.valueSampledData?.decorate(json: &json, withKey: "valueSampledData", errors: &errors)
 		self.valueSignature?.decorate(json: &json, withKey: "valueSignature", errors: &errors)
 		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)
 		self.valueTime?.decorate(json: &json, withKey: "valueTime", errors: &errors)
 		self.valueTiming?.decorate(json: &json, withKey: "valueTiming", errors: &errors)
+		self.valueTriggerDefinition?.decorate(json: &json, withKey: "valueTriggerDefinition", errors: &errors)
 		self.valueUnsignedInt?.decorate(json: &json, withKey: "valueUnsignedInt", errors: &errors)
 		self.valueUri?.decorate(json: &json, withKey: "valueUri", errors: &errors)
+		self.valueUrl?.decorate(json: &json, withKey: "valueUrl", errors: &errors)
+		self.valueUsageContext?.decorate(json: &json, withKey: "valueUsageContext", errors: &errors)
+		self.valueUuid?.decorate(json: &json, withKey: "valueUuid", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
-		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
+		if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCanonical && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueUrl && nil == self.valueUuid && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueParameterDefinition && nil == self.valueDataRequirement && nil == self.valueRelatedArtifact && nil == self.valueContactDetail && nil == self.valueContributor && nil == self.valueTriggerDefinition && nil == self.valueUsageContext && nil == self.valueDosage {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 	}
@@ -1614,11 +1850,11 @@ open class ElementDefinitionType: Element {
 	/// Data type or Resource (reference to definition).
 	public var code: FHIRURL?
 	
-	/// Profile (StructureDefinition) to apply (or IG).
-	public var profile: FHIRURL?
+	/// Profiles (StructureDefinition or IG) - one must apply.
+	public var profile: [FHIRURL]?
 	
-	/// Profile (StructureDefinition) to apply to reference target (or IG).
-	public var targetProfile: FHIRURL?
+	/// Profile (StructureDefinition or IG) on the Reference target - one must apply.
+	public var targetProfile: [FHIRURL]?
 	
 	/// Whether this reference needs to be version specific or version independent, or whether either can be used.
 	public var versioning: ReferenceVersionRules?
@@ -1639,8 +1875,8 @@ open class ElementDefinitionType: Element {
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
-		targetProfile = createInstance(type: FHIRURL.self, for: "targetProfile", in: json, context: &instCtx, owner: self) ?? targetProfile
+		profile = createInstances(of: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		targetProfile = createInstances(of: FHIRURL.self, for: "targetProfile", in: json, context: &instCtx, owner: self) ?? targetProfile
 		versioning = createEnum(type: ReferenceVersionRules.self, for: "versioning", in: json, context: &instCtx) ?? versioning
 	}
 	
@@ -1652,8 +1888,8 @@ open class ElementDefinitionType: Element {
 		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		self.profile?.decorate(json: &json, withKey: "profile", errors: &errors)
-		self.targetProfile?.decorate(json: &json, withKey: "targetProfile", errors: &errors)
+		arrayDecorate(json: &json, withKey: "profile", using: self.profile, errors: &errors)
+		arrayDecorate(json: &json, withKey: "targetProfile", using: self.targetProfile, errors: &errors)
 		self.versioning?.decorate(json: &json, withKey: "versioning", errors: &errors)
 	}
 }

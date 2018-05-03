@@ -2,8 +2,8 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -26,7 +26,7 @@ open class ConceptMap: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the concept map.
@@ -53,28 +53,28 @@ open class ConceptMap: DomainResource {
 	/// Why this concept map is defined.
 	public var purpose: FHIRString?
 	
-	/// Identifies the source of the concepts which are being mapped.
-	public var sourceReference: Reference?
+	/// The source value set that contains the concepts that are being mapped.
+	public var sourceCanonical: FHIRURL?
 	
-	/// Identifies the source of the concepts which are being mapped.
+	/// The source value set that contains the concepts that are being mapped.
 	public var sourceUri: FHIRURL?
 	
 	/// The status of this concept map. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Provides context to the mappings.
-	public var targetReference: Reference?
+	/// The target value set which provides context for the mappings.
+	public var targetCanonical: FHIRURL?
 	
-	/// Provides context to the mappings.
+	/// The target value set which provides context for the mappings.
 	public var targetUri: FHIRURL?
 	
 	/// Name for this concept map (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this concept map (globally unique).
+	/// Canonical identifier for this concept map, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the concept map.
@@ -102,13 +102,13 @@ open class ConceptMap: DomainResource {
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
-		sourceReference = createInstance(type: Reference.self, for: "sourceReference", in: json, context: &instCtx, owner: self) ?? sourceReference
+		sourceCanonical = createInstance(type: FHIRURL.self, for: "sourceCanonical", in: json, context: &instCtx, owner: self) ?? sourceCanonical
 		sourceUri = createInstance(type: FHIRURL.self, for: "sourceUri", in: json, context: &instCtx, owner: self) ?? sourceUri
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		targetReference = createInstance(type: Reference.self, for: "targetReference", in: json, context: &instCtx, owner: self) ?? targetReference
+		targetCanonical = createInstance(type: FHIRURL.self, for: "targetCanonical", in: json, context: &instCtx, owner: self) ?? targetCanonical
 		targetUri = createInstance(type: FHIRURL.self, for: "targetUri", in: json, context: &instCtx, owner: self) ?? targetUri
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
@@ -130,13 +130,13 @@ open class ConceptMap: DomainResource {
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
 		self.purpose?.decorate(json: &json, withKey: "purpose", errors: &errors)
-		self.sourceReference?.decorate(json: &json, withKey: "sourceReference", errors: &errors)
+		self.sourceCanonical?.decorate(json: &json, withKey: "sourceCanonical", errors: &errors)
 		self.sourceUri?.decorate(json: &json, withKey: "sourceUri", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		self.targetReference?.decorate(json: &json, withKey: "targetReference", errors: &errors)
+		self.targetCanonical?.decorate(json: &json, withKey: "targetCanonical", errors: &errors)
 		self.targetUri?.decorate(json: &json, withKey: "targetUri", errors: &errors)
 		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
@@ -159,19 +159,19 @@ open class ConceptMapGroup: BackboneElement {
 	/// Mappings for a concept from the source set.
 	public var element: [ConceptMapGroupElement]?
 	
-	/// Code System (if value set crosses code systems).
+	/// Source system where concepts to be mapped are defined.
 	public var source: FHIRURL?
 	
 	/// Specific version of the  code system.
 	public var sourceVersion: FHIRString?
 	
-	/// System of the target (if necessary).
+	/// Target system that the concepts are to be mapped to.
 	public var target: FHIRURL?
 	
 	/// Specific version of the  code system.
 	public var targetVersion: FHIRString?
 	
-	/// When no match in the mappings.
+	/// When there is no match for the source concept in the target system, so no mapping is available.
 	public var unmapped: ConceptMapGroupUnmapped?
 	
 	
@@ -280,6 +280,13 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 	public var product: [ConceptMapGroupElementTargetDependsOn]?
 	
 	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(equivalence: ConceptMapEquivalence) {
+		self.init()
+		self.equivalence = equivalence
+	}
+	
+	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
@@ -288,6 +295,9 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		dependsOn = createInstances(of: ConceptMapGroupElementTargetDependsOn.self, for: "dependsOn", in: json, context: &instCtx, owner: self) ?? dependsOn
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		equivalence = createEnum(type: ConceptMapEquivalence.self, for: "equivalence", in: json, context: &instCtx) ?? equivalence
+		if nil == equivalence && !instCtx.containsKey("equivalence") {
+			instCtx.addError(FHIRValidationError(missing: "equivalence"))
+		}
 		product = createInstances(of: ConceptMapGroupElementTargetDependsOn.self, for: "product", in: json, context: &instCtx, owner: self) ?? product
 	}
 	
@@ -299,6 +309,9 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 		arrayDecorate(json: &json, withKey: "dependsOn", using: self.dependsOn, errors: &errors)
 		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		self.equivalence?.decorate(json: &json, withKey: "equivalence", errors: &errors)
+		if nil == self.equivalence {
+			errors.append(FHIRValidationError(missing: "equivalence"))
+		}
 		arrayDecorate(json: &json, withKey: "product", using: self.product, errors: &errors)
 	}
 }
@@ -315,10 +328,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		get { return "ConceptMapGroupElementTargetDependsOn" }
 	}
 	
-	/// Value of the referenced element.
-	public var code: FHIRString?
-	
-	/// Display for the code.
+	/// Display for the code (if value is a code).
 	public var display: FHIRString?
 	
 	/// Reference to property mapping depends on.
@@ -327,51 +337,55 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 	/// Code System (if necessary).
 	public var system: FHIRURL?
 	
+	/// Value of the referenced element.
+	public var value: FHIRString?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: FHIRString, property: FHIRURL) {
+	public convenience init(property: FHIRURL, value: FHIRString) {
 		self.init()
-		self.code = code
 		self.property = property
+		self.value = value
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") {
-			instCtx.addError(FHIRValidationError(missing: "code"))
-		}
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		property = createInstance(type: FHIRURL.self, for: "property", in: json, context: &instCtx, owner: self) ?? property
 		if nil == property && !instCtx.containsKey("property") {
 			instCtx.addError(FHIRValidationError(missing: "property"))
 		}
 		system = createInstance(type: FHIRURL.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
+		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
+		if nil == value && !instCtx.containsKey("value") {
+			instCtx.addError(FHIRValidationError(missing: "value"))
+		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		if nil == self.code {
-			errors.append(FHIRValidationError(missing: "code"))
-		}
 		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		self.property?.decorate(json: &json, withKey: "property", errors: &errors)
 		if nil == self.property {
 			errors.append(FHIRValidationError(missing: "property"))
 		}
 		self.system?.decorate(json: &json, withKey: "system", errors: &errors)
+		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
+		if nil == self.value {
+			errors.append(FHIRValidationError(missing: "value"))
+		}
 	}
 }
 
 
 /**
-When no match in the mappings.
+When there is no match for the source concept in the target system, so no mapping is available.
 
-What to do when there is no match in the mappings in the group.
+What to do when there is no match for the source concept in the target system designated for the group and no mapping is
+able to be made.
 */
 open class ConceptMapGroupUnmapped: BackboneElement {
 	override open class var resourceType: String {
@@ -384,12 +398,13 @@ open class ConceptMapGroupUnmapped: BackboneElement {
 	/// Display for the code.
 	public var display: FHIRString?
 	
-	/// Defines which action to take if there is no match in the group. One of 3 actions is possible: use the unmapped
-	/// code (this is useful when doing a mapping between versions, and only a few codes have changed), use a fixed code
-	/// (a default code), or alternatively, a reference to a different concept map can be provided (by canonical URL).
+	/// Defines which action to take if there is no match for the source concept in the target system designated for the
+	/// group. One of 3 actions is possible: use the unmapped code (this is useful when doing a mapping between
+	/// versions, and only a few codes have changed), use a fixed code (a default code), or alternatively, a reference
+	/// to a different concept map can be provided (by canonical URL).
 	public var mode: ConceptMapGroupUnmappedMode?
 	
-	/// Canonical URL for other concept map.
+	/// Canonical URI for an additional ConceptMap to use for mapping if the source concept is unmapped.
 	public var url: FHIRURL?
 	
 	

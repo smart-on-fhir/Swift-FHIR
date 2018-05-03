@@ -2,8 +2,8 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -12,14 +12,16 @@ import Foundation
 /**
 A set of codes drawn from one or more code systems.
 
-A value set specifies a set of codes drawn from one or more code systems.
+A ValueSet resource specifies a set of codes drawn from one or more code systems, intended for use in a particular
+context. Value sets link between [CodeSystem](codesystem.html#) definitions and their use in [coded
+elements](terminologies.html).
 */
 open class ValueSet: DomainResource {
 	override open class var resourceType: String {
 		get { return "ValueSet" }
 	}
 	
-	/// Definition of the content of the value set (CLD).
+	/// Definition of the content of the value set.
 	public var compose: ValueSetCompose?
 	
 	/// Contact details for the publisher.
@@ -28,7 +30,7 @@ open class ValueSet: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the value set.
@@ -43,7 +45,7 @@ open class ValueSet: DomainResource {
 	/// Whether this is intended to be used with an extensible binding.
 	public var extensible: FHIRBool?
 	
-	/// Additional identifier for the value set.
+	/// Additional identifier for the value set (business identifier).
 	public var identifier: [Identifier]?
 	
 	/// Indicates whether or not any change to the content logical definition may occur.
@@ -67,10 +69,10 @@ open class ValueSet: DomainResource {
 	/// Name for this value set (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this value set (globally unique).
+	/// Canonical identifier for this value set, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the value set.
@@ -141,10 +143,10 @@ open class ValueSet: DomainResource {
 
 
 /**
-Definition of the content of the value set (CLD).
+Definition of the content of the value set.
 
-A set of criteria that define the content logical definition of the value set by including or excluding codes from
-outside this value set. This I also known as the "Content Logical Definition" (CLD).
+A set of criteria that define the contents of the value set by including or excluding codes selected from the specified
+code system(s) that the value set draws from. This is also known as the Content Logical Definition (CLD).
 */
 open class ValueSetCompose: BackboneElement {
 	override open class var resourceType: String {
@@ -214,7 +216,7 @@ open class ValueSetComposeInclude: BackboneElement {
 	/// The system the codes come from.
 	public var system: FHIRURL?
 	
-	/// Select only contents included in this value set.
+	/// Select the contents included in this value set.
 	public var valueSet: [FHIRURL]?
 	
 	/// Specific version of the code system referred to.
@@ -443,9 +445,8 @@ open class ValueSetExpansion: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: FHIRURL, timestamp: DateTime) {
+	public convenience init(timestamp: DateTime) {
 		self.init()
-		self.identifier = identifier
 		self.timestamp = timestamp
 	}
 	
@@ -455,9 +456,6 @@ open class ValueSetExpansion: BackboneElement {
 		
 		contains = createInstances(of: ValueSetExpansionContains.self, for: "contains", in: json, context: &instCtx, owner: self) ?? contains
 		identifier = createInstance(type: FHIRURL.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") {
-			instCtx.addError(FHIRValidationError(missing: "identifier"))
-		}
 		offset = createInstance(type: FHIRInteger.self, for: "offset", in: json, context: &instCtx, owner: self) ?? offset
 		parameter = createInstances(of: ValueSetExpansionParameter.self, for: "parameter", in: json, context: &instCtx, owner: self) ?? parameter
 		timestamp = createInstance(type: DateTime.self, for: "timestamp", in: json, context: &instCtx, owner: self) ?? timestamp
@@ -472,9 +470,6 @@ open class ValueSetExpansion: BackboneElement {
 		
 		arrayDecorate(json: &json, withKey: "contains", using: self.contains, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
 		self.offset?.decorate(json: &json, withKey: "offset", errors: &errors)
 		arrayDecorate(json: &json, withKey: "parameter", using: self.parameter, errors: &errors)
 		self.timestamp?.decorate(json: &json, withKey: "timestamp", errors: &errors)

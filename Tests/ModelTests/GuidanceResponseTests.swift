@@ -2,8 +2,8 @@
 //  GuidanceResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -43,13 +43,13 @@ class GuidanceResponseTests: XCTestCase {
 		XCTAssertEqual(inst.contained?[0].id, "outputParameters1")
 		XCTAssertEqual(inst.context?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://example.org")
-		XCTAssertEqual(inst.identifier?.value, "guidanceResponse1")
-		XCTAssertEqual(inst.module?.reference, "ServiceDefinition/example")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org")
+		XCTAssertEqual(inst.identifier?[0].value, "guidanceResponse1")
+		XCTAssertEqual(inst.moduleUri?.absoluteString, "http://someguidelineprovider.org/radiology-appropriateness-guidelines.html")
 		XCTAssertEqual(inst.occurrenceDateTime?.description, "2017-03-10T16:02:00Z")
 		XCTAssertEqual(inst.outputParameters?.reference, "#outputParameters1")
 		XCTAssertEqual(inst.performer?.reference, "Device/software")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Guideline Appropriate Ordering Assessment")
+		XCTAssertEqual(inst.reasonCode?[0].text, "Guideline Appropriate Ordering Assessment")
 		XCTAssertEqual(inst.requestId, "guidanceRequest1")
 		XCTAssertEqual(inst.status, GuidanceResponseStatus(rawValue: "success")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")

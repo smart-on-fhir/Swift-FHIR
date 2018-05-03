@@ -2,8 +2,8 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,6 +38,53 @@ class ValueSetTests: XCTestCase {
 	
 	@discardableResult
 	func runValueSet1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example.json")
+		
+		XCTAssertEqual(inst.compose?.inactive, true)
+		XCTAssertEqual(inst.compose?.include?[0].concept?[0].code, "14647-2")
+		XCTAssertEqual(inst.compose?.include?[0].concept?[0].display, "Cholesterol [Moles/Volume]")
+		XCTAssertEqual(inst.compose?.include?[0].concept?[1].code, "2093-3")
+		XCTAssertEqual(inst.compose?.include?[0].concept?[1].display, "Cholesterol [Mass/Volume]")
+		XCTAssertEqual(inst.compose?.include?[0].concept?[2].code, "35200-5")
+		XCTAssertEqual(inst.compose?.include?[0].concept?[2].display, "Cholesterol [Mass Or Moles/Volume]")
+		XCTAssertEqual(inst.compose?.include?[0].concept?[3].code, "9342-7")
+		XCTAssertEqual(inst.compose?.include?[0].concept?[3].display, "Cholesterol [Percentile]")
+		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.compose?.include?[0].version, "2.36")
+		XCTAssertEqual(inst.compose?.lockedDate?.description, "2012-06-13")
+		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.copyright, "This content from LOINC ® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use.")
+		XCTAssertEqual(inst.date?.description, "2015-06-22")
+		XCTAssertEqual(inst.description_fhir, "This is an example value set that includes all the LOINC codes for serum/plasma cholesterol from v2.36.")
+		XCTAssertEqual(inst.experimental, true)
+		XCTAssertEqual(inst.id, "example-extensional")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
+		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-int")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
+		XCTAssertEqual(inst.publisher, "HL7 International")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/example-extensional")
+		XCTAssertEqual(inst.version, "20150622")
+		
+		return inst
+	}
+	
+	func testValueSet2() {
+		do {
+			let instance = try runValueSet2()
+			try runValueSet2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runValueSet2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-expansion.json")
 		
 		XCTAssertEqual(inst.compose?.include?[0].filter?[0].op, FilterOperator(rawValue: "=")!)
@@ -106,10 +153,10 @@ class ValueSetTests: XCTestCase {
 		return inst
 	}
 	
-	func testValueSet2() {
+	func testValueSet3() {
 		do {
-			let instance = try runValueSet2()
-			try runValueSet2(instance.asJSON())
+			let instance = try runValueSet3()
+			try runValueSet3(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
@@ -117,7 +164,7 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+	func runValueSet3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-inactive.json")
 		
 		XCTAssertEqual(inst.compose?.inactive, true)
@@ -125,7 +172,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.compose?.include?[0].filter?[0].property, "concept")
 		XCTAssertEqual(inst.compose?.include?[0].filter?[0].value, "_ActMoodPredicate")
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActMood")
-		XCTAssertEqual(inst.description_fhir, "HL7 v3 ActMood Prdicate codes, including inactive codes")
+		XCTAssertEqual(inst.description_fhir, "HL7 v3 ActMood Predicate codes, including inactive codes")
 		XCTAssertEqual(inst.expansion?.contains?[0].code, "CRT")
 		XCTAssertEqual(inst.expansion?.contains?[0].display, "criterion")
 		XCTAssertEqual(inst.expansion?.contains?[0].inactive, true)
@@ -154,10 +201,10 @@ class ValueSetTests: XCTestCase {
 		return inst
 	}
 	
-	func testValueSet3() {
+	func testValueSet4() {
 		do {
-			let instance = try runValueSet3()
-			try runValueSet3(instance.asJSON())
+			let instance = try runValueSet4()
+			try runValueSet4(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
@@ -165,7 +212,132 @@ class ValueSetTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runValueSet3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+	func runValueSet4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-yesnodontknow.json")
+		
+		XCTAssertEqual(inst.compose?.include?[0].valueSet?[0].absoluteString, "http://hl7.org/fhir/ValueSet/v2-0136")
+		XCTAssertEqual(inst.compose?.include?[1].concept?[0].code, "asked-unknown")
+		XCTAssertEqual(inst.compose?.include?[1].concept?[0].display, "Don't know")
+		XCTAssertEqual(inst.compose?.include?[1].system?.absoluteString, "http://hl7.org/fhir/data-absent-reason")
+		XCTAssertEqual(inst.description_fhir, "For Capturing simple yes-no-don't know answers")
+		XCTAssertEqual(inst.expansion?.contains?[0].code, "Y")
+		XCTAssertEqual(inst.expansion?.contains?[0].display, "Yes")
+		XCTAssertEqual(inst.expansion?.contains?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0136")
+		XCTAssertEqual(inst.expansion?.contains?[1].code, "N")
+		XCTAssertEqual(inst.expansion?.contains?[1].display, "No")
+		XCTAssertEqual(inst.expansion?.contains?[1].system?.absoluteString, "http://hl7.org/fhir/v2/0136")
+		XCTAssertEqual(inst.expansion?.contains?[2].code, "asked-unknown")
+		XCTAssertEqual(inst.expansion?.contains?[2].display, "Don't know")
+		XCTAssertEqual(inst.expansion?.contains?[2].system?.absoluteString, "http://hl7.org/fhir/data-absent-reason")
+		XCTAssertEqual(inst.expansion?.identifier?.absoluteString, "urn:uuid:bf99fe50-2c2b-41ad-bd63-bee6919810b4")
+		XCTAssertEqual(inst.expansion?.timestamp?.description, "2015-07-14T10:00:00Z")
+		XCTAssertEqual(inst.id, "yesnodontknow")
+		XCTAssertEqual(inst.name, "Yes/No/Don't Know")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/yesnodontknow")
+		
+		return inst
+	}
+	
+	func testValueSet5() {
+		do {
+			let instance = try runValueSet5()
+			try runValueSet5(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runValueSet5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-examplescenario-actor-type.json")
+		
+		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/examplescenario-actor-type")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.contact?[0].telecom?[1].system, ContactPointSystem(rawValue: "email")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[1].value, "fhir@lists.hl7.org")
+		XCTAssertEqual(inst.date?.description, "2018-04-03T12:05:46+10:00")
+		XCTAssertEqual(inst.description_fhir, "The type of actor - system or human")
+		XCTAssertEqual(inst.experimental, false)
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
+		XCTAssertEqual(inst.extension_fhir?[0].valueString, "fhir")
+		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
+		XCTAssertEqual(inst.extension_fhir?[1].valueString, "Draft")
+		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
+		XCTAssertEqual(inst.extension_fhir?[2].valueInteger, 0)
+		XCTAssertEqual(inst.id, "examplescenario-actor-type")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.3.858")
+		XCTAssertEqual(inst.immutable, true)
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2018-04-03T12:05:46.262+10:00")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		XCTAssertEqual(inst.name, "ExampleScenarioActorType")
+		XCTAssertEqual(inst.publisher, "HL7 (FHIR Project)")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/examplescenario-actor-type")
+		XCTAssertEqual(inst.version, "3.3.0")
+		
+		return inst
+	}
+	
+	func testValueSet6() {
+		do {
+			let instance = try runValueSet6()
+			try runValueSet6(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runValueSet6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-list-example-codes.json")
+		
+		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.date?.description, "2018-04-03T12:05:46+10:00")
+		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
+		XCTAssertEqual(inst.experimental, true)
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
+		XCTAssertEqual(inst.extension_fhir?[0].valueString, "fhir")
+		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
+		XCTAssertEqual(inst.extension_fhir?[1].valueString, "Draft")
+		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
+		XCTAssertEqual(inst.extension_fhir?[2].valueInteger, 1)
+		XCTAssertEqual(inst.id, "list-example-codes")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.3.316")
+		XCTAssertEqual(inst.immutable, true)
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2018-04-03T12:05:46.262+10:00")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		XCTAssertEqual(inst.name, "Example Use Codes for List")
+		XCTAssertEqual(inst.publisher, "FHIR Project")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
+		XCTAssertEqual(inst.version, "3.3.0")
+		
+		return inst
+	}
+	
+	func testValueSet7() {
+		do {
+			let instance = try runValueSet7()
+			try runValueSet7(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runValueSet7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-intensional.json")
 		
 		XCTAssertEqual(inst.compose?.exclude?[0].concept?[0].code, "5932-9")
@@ -192,134 +364,6 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/example-intensional")
 		XCTAssertEqual(inst.version, "20150622")
-		
-		return inst
-	}
-	
-	func testValueSet4() {
-		do {
-			let instance = try runValueSet4()
-			try runValueSet4(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runValueSet4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-yesnodontknow.json")
-		
-		XCTAssertEqual(inst.compose?.include?[0].valueSet?[0].absoluteString, "http://hl7.org/fhir/ValueSet/v2-0136")
-		XCTAssertEqual(inst.compose?.include?[1].concept?[0].code, "asked")
-		XCTAssertEqual(inst.compose?.include?[1].concept?[0].display, "Don't know")
-		XCTAssertEqual(inst.compose?.include?[1].system?.absoluteString, "http://hl7.org/fhir/data-absent-reason")
-		XCTAssertEqual(inst.description_fhir, "For Capturing simple yes-no-don't know answers")
-		XCTAssertEqual(inst.expansion?.contains?[0].code, "Y")
-		XCTAssertEqual(inst.expansion?.contains?[0].display, "Yes")
-		XCTAssertEqual(inst.expansion?.contains?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0136")
-		XCTAssertEqual(inst.expansion?.contains?[1].code, "N")
-		XCTAssertEqual(inst.expansion?.contains?[1].display, "No")
-		XCTAssertEqual(inst.expansion?.contains?[1].system?.absoluteString, "http://hl7.org/fhir/v2/0136")
-		XCTAssertEqual(inst.expansion?.contains?[2].code, "asked")
-		XCTAssertEqual(inst.expansion?.contains?[2].display, "Don't know")
-		XCTAssertEqual(inst.expansion?.contains?[2].system?.absoluteString, "http://hl7.org/fhir/data-absent-reason")
-		XCTAssertEqual(inst.expansion?.identifier?.absoluteString, "urn:uuid:bf99fe50-2c2b-41ad-bd63-bee6919810b4")
-		XCTAssertEqual(inst.expansion?.timestamp?.description, "2015-07-14T10:00:00Z")
-		XCTAssertEqual(inst.id, "yesnodontknow")
-		XCTAssertEqual(inst.name, "Yes/No/Don't Know")
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/yesnodontknow")
-		
-		return inst
-	}
-	
-	func testValueSet5() {
-		do {
-			let instance = try runValueSet5()
-			try runValueSet5(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runValueSet5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example.json")
-		
-		XCTAssertEqual(inst.compose?.inactive, true)
-		XCTAssertEqual(inst.compose?.include?[0].concept?[0].code, "14647-2")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[0].display, "Cholesterol [Moles/Volume]")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[1].code, "2093-3")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[1].display, "Cholesterol [Mass/Volume]")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[2].code, "35200-5")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[2].display, "Cholesterol [Mass Or Moles/Volume]")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[3].code, "9342-7")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[3].display, "Cholesterol [Percentile]")
-		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://loinc.org")
-		XCTAssertEqual(inst.compose?.include?[0].version, "2.36")
-		XCTAssertEqual(inst.compose?.lockedDate?.description, "2012-06-13")
-		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
-		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.copyright, "This content from LOINC ® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use.")
-		XCTAssertEqual(inst.date?.description, "2015-06-22")
-		XCTAssertEqual(inst.description_fhir, "This is an example value set that includes all the LOINC codes for serum/plasma cholesterol from v2.36.")
-		XCTAssertEqual(inst.experimental, true)
-		XCTAssertEqual(inst.id, "example-extensional")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
-		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-int")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
-		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
-		XCTAssertEqual(inst.publisher, "HL7 International")
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/example-extensional")
-		XCTAssertEqual(inst.version, "20150622")
-		
-		return inst
-	}
-	
-	func testValueSet6() {
-		do {
-			let instance = try runValueSet6()
-			try runValueSet6(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runValueSet6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-list-example-codes.json")
-		
-		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
-		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.date?.description, "2017-04-19T07:44:43+10:00")
-		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
-		XCTAssertEqual(inst.experimental, true)
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
-		XCTAssertEqual(inst.extension_fhir?[0].valueString, "Informative")
-		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
-		XCTAssertEqual(inst.extension_fhir?[1].valueInteger, 1)
-		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
-		XCTAssertEqual(inst.extension_fhir?[2].valueCode, "fhir")
-		XCTAssertEqual(inst.id, "list-example-codes")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
-		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.3.307")
-		XCTAssertEqual(inst.immutable, true)
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-04-19T07:44:43.294+10:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
-		XCTAssertEqual(inst.name, "Example Use Codes for List")
-		XCTAssertEqual(inst.publisher, "FHIR Project")
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "3.0.1")
 		
 		return inst
 	}

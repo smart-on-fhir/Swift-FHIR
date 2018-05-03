@@ -2,8 +2,8 @@
 //  Linkage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -64,7 +64,7 @@ open class Linkage: DomainResource {
 Item to be linked.
 
 Identifies one of the records that is considered to refer to the same real-world occurrence as well as how the items
-hould be evaluated within the collection of linked items.
+should be evaluated within the collection of linked items.
 */
 open class LinkageItem: BackboneElement {
 	override open class var resourceType: String {

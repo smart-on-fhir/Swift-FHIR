@@ -2,8 +2,8 @@
 //  OperationOutcomeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,13 +38,15 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome1(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-allok.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-validationfail.json")
 		
-		XCTAssertEqual(inst.id, "allok")
-		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "informational")!)
-		XCTAssertEqual(inst.issue?[0].details?.text, "All OK")
-		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "information")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		XCTAssertEqual(inst.id, "validationfail")
+		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "structure")!)
+		XCTAssertEqual(inst.issue?[0].details?.text, "Error parsing resource XML (Unknown Content \"label\"")
+		XCTAssertEqual(inst.issue?[0].expression?[0], "Patient.identifier")
+		XCTAssertEqual(inst.issue?[0].location?[0], "/f:Patient/f:identifier")
+		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "error")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -87,13 +89,14 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome3(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-exception.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-searchfail.json")
 		
-		XCTAssertEqual(inst.id, "exception")
-		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "exception")!)
-		XCTAssertEqual(inst.issue?[0].details?.text, "SQL Link Communication Error (dbx = 34234)")
-		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "error")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		XCTAssertEqual(inst.id, "searchfail")
+		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "code-invalid")!)
+		XCTAssertEqual(inst.issue?[0].details?.text, "The \"name\" parameter has the modifier \"exact\" which is not supported by this server")
+		XCTAssertEqual(inst.issue?[0].location?[0], "http.name:exact")
+		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "fatal")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -110,14 +113,13 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome4(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-searchfail.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-exception.json")
 		
-		XCTAssertEqual(inst.id, "searchfail")
-		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "code-invalid")!)
-		XCTAssertEqual(inst.issue?[0].details?.text, "The \"name\" parameter has the modifier \"exact\" which is not supported by this server")
-		XCTAssertEqual(inst.issue?[0].location?[0], "http.name:exact")
-		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "fatal")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.id, "exception")
+		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "exception")!)
+		XCTAssertEqual(inst.issue?[0].details?.text, "SQL Link Communication Error (dbx = 34234)")
+		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "error")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
 	}
@@ -134,15 +136,16 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome5(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-validationfail.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example.json")
 		
-		XCTAssertEqual(inst.id, "validationfail")
-		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "structure")!)
-		XCTAssertEqual(inst.issue?[0].details?.text, "Error parsing resource XML (Unknown Content \"label\"")
-		XCTAssertEqual(inst.issue?[0].expression?[0], "Patient.identifier")
-		XCTAssertEqual(inst.issue?[0].location?[0], "/f:Patient/f:identifier")
+		XCTAssertEqual(inst.id, "101")
+		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "code-invalid")!)
+		XCTAssertEqual(inst.issue?[0].details?.text, "The code \"W\" is not known and not legal in this context")
+		XCTAssertEqual(inst.issue?[0].diagnostics, "Acme.Interop.FHIRProcessors.Patient.processGender line 2453")
+		XCTAssertEqual(inst.issue?[0].expression?[0], "Person.gender")
+		XCTAssertEqual(inst.issue?[0].location?[0], "/f:Person/f:gender")
 		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "error")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst
 	}
@@ -159,15 +162,12 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome6(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationOutcome {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-allok.json")
 		
-		XCTAssertEqual(inst.id, "101")
-		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "code-invalid")!)
-		XCTAssertEqual(inst.issue?[0].details?.text, "The code \"W\" is not known and not legal in this context")
-		XCTAssertEqual(inst.issue?[0].diagnostics, "Acme.Interop.FHIRProcessors.Patient.processGender line 2453")
-		XCTAssertEqual(inst.issue?[0].expression?[0], "Person.gender")
-		XCTAssertEqual(inst.issue?[0].location?[0], "/f:Person/f:gender")
-		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "error")!)
+		XCTAssertEqual(inst.id, "allok")
+		XCTAssertEqual(inst.issue?[0].code, IssueType(rawValue: "informational")!)
+		XCTAssertEqual(inst.issue?[0].details?.text, "All OK")
+		XCTAssertEqual(inst.issue?[0].severity, IssueSeverity(rawValue: "information")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst

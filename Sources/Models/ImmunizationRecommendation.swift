@@ -2,8 +2,8 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -12,13 +12,19 @@ import Foundation
 /**
 Guidance or advice relating to an immunization.
 
-A patient's point-in-time immunization and recommendation (i.e. forecasting a patient's immunization eligibility
-according to a published schedule) with optional supporting justification.
+A patient's point-in-time set of recommendations (i.e. forecasting) according to a published schedule with optional
+supporting justification.
 */
 open class ImmunizationRecommendation: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendation" }
 	}
+	
+	/// Who is responsible for protocol.
+	public var authority: Reference?
+	
+	/// Date recommendation(s) created.
+	public var date: DateTime?
 	
 	/// Business identifier.
 	public var identifier: [Identifier]?
@@ -31,8 +37,9 @@ open class ImmunizationRecommendation: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, recommendation: [ImmunizationRecommendationRecommendation]) {
+	public convenience init(date: DateTime, patient: Reference, recommendation: [ImmunizationRecommendationRecommendation]) {
 		self.init()
+		self.date = date
 		self.patient = patient
 		self.recommendation = recommendation
 	}
@@ -41,6 +48,11 @@ open class ImmunizationRecommendation: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		authority = createInstance(type: Reference.self, for: "authority", in: json, context: &instCtx, owner: self) ?? authority
+		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		if nil == date && !instCtx.containsKey("date") {
+			instCtx.addError(FHIRValidationError(missing: "date"))
+		}
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
 		if nil == patient && !instCtx.containsKey("patient") {
@@ -55,6 +67,11 @@ open class ImmunizationRecommendation: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.authority?.decorate(json: &json, withKey: "authority", errors: &errors)
+		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
+		if nil == self.date {
+			errors.append(FHIRValidationError(missing: "date"))
+		}
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		if nil == self.patient {
@@ -76,20 +93,35 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		get { return "ImmunizationRecommendationRecommendation" }
 	}
 	
-	/// Date recommendation created.
-	public var date: DateTime?
+	/// Vaccine which is contraindicated to fulfill the recommendation.
+	public var contraindicatedVaccineCode: [CodeableConcept]?
 	
 	/// Dates governing proposed immunization.
 	public var dateCriterion: [ImmunizationRecommendationRecommendationDateCriterion]?
 	
-	/// Recommended dose number.
-	public var doseNumber: FHIRInteger?
+	/// Protocol details.
+	public var description_fhir: FHIRString?
 	
-	/// Vaccine administration status.
+	/// Recommended dose number within series.
+	public var doseNumberPositiveInt: FHIRInteger?
+	
+	/// Recommended dose number within series.
+	public var doseNumberString: FHIRString?
+	
+	/// Vaccine administration status reason.
+	public var forecastReason: [CodeableConcept]?
+	
+	/// Vaccine recommendation status.
 	public var forecastStatus: CodeableConcept?
 	
-	/// Protocol used by recommendation.
-	public var protocol_fhir: ImmunizationRecommendationRecommendationProtocol?
+	/// Name of vaccination series.
+	public var series: FHIRString?
+	
+	/// Recommended number of doses for immunity.
+	public var seriesDosesPositiveInt: FHIRInteger?
+	
+	/// Recommended number of doses for immunity.
+	public var seriesDosesString: FHIRString?
 	
 	/// Past immunizations supporting recommendation.
 	public var supportingImmunization: [Reference]?
@@ -100,14 +132,13 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 	/// Disease to be immunized against.
 	public var targetDisease: CodeableConcept?
 	
-	/// Vaccine recommendation applies to.
-	public var vaccineCode: CodeableConcept?
+	/// Vaccine  or vaccine group recommendation applies to.
+	public var vaccineCode: [CodeableConcept]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime, forecastStatus: CodeableConcept) {
+	public convenience init(forecastStatus: CodeableConcept) {
 		self.init()
-		self.date = date
 		self.forecastStatus = forecastStatus
 	}
 	
@@ -115,41 +146,45 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
-		if nil == date && !instCtx.containsKey("date") {
-			instCtx.addError(FHIRValidationError(missing: "date"))
-		}
+		contraindicatedVaccineCode = createInstances(of: CodeableConcept.self, for: "contraindicatedVaccineCode", in: json, context: &instCtx, owner: self) ?? contraindicatedVaccineCode
 		dateCriterion = createInstances(of: ImmunizationRecommendationRecommendationDateCriterion.self, for: "dateCriterion", in: json, context: &instCtx, owner: self) ?? dateCriterion
-		doseNumber = createInstance(type: FHIRInteger.self, for: "doseNumber", in: json, context: &instCtx, owner: self) ?? doseNumber
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
+		doseNumberPositiveInt = createInstance(type: FHIRInteger.self, for: "doseNumberPositiveInt", in: json, context: &instCtx, owner: self) ?? doseNumberPositiveInt
+		doseNumberString = createInstance(type: FHIRString.self, for: "doseNumberString", in: json, context: &instCtx, owner: self) ?? doseNumberString
+		forecastReason = createInstances(of: CodeableConcept.self, for: "forecastReason", in: json, context: &instCtx, owner: self) ?? forecastReason
 		forecastStatus = createInstance(type: CodeableConcept.self, for: "forecastStatus", in: json, context: &instCtx, owner: self) ?? forecastStatus
 		if nil == forecastStatus && !instCtx.containsKey("forecastStatus") {
 			instCtx.addError(FHIRValidationError(missing: "forecastStatus"))
 		}
-		protocol_fhir = createInstance(type: ImmunizationRecommendationRecommendationProtocol.self, for: "protocol", in: json, context: &instCtx, owner: self) ?? protocol_fhir
+		series = createInstance(type: FHIRString.self, for: "series", in: json, context: &instCtx, owner: self) ?? series
+		seriesDosesPositiveInt = createInstance(type: FHIRInteger.self, for: "seriesDosesPositiveInt", in: json, context: &instCtx, owner: self) ?? seriesDosesPositiveInt
+		seriesDosesString = createInstance(type: FHIRString.self, for: "seriesDosesString", in: json, context: &instCtx, owner: self) ?? seriesDosesString
 		supportingImmunization = createInstances(of: Reference.self, for: "supportingImmunization", in: json, context: &instCtx, owner: self) ?? supportingImmunization
 		supportingPatientInformation = createInstances(of: Reference.self, for: "supportingPatientInformation", in: json, context: &instCtx, owner: self) ?? supportingPatientInformation
 		targetDisease = createInstance(type: CodeableConcept.self, for: "targetDisease", in: json, context: &instCtx, owner: self) ?? targetDisease
-		vaccineCode = createInstance(type: CodeableConcept.self, for: "vaccineCode", in: json, context: &instCtx, owner: self) ?? vaccineCode
+		vaccineCode = createInstances(of: CodeableConcept.self, for: "vaccineCode", in: json, context: &instCtx, owner: self) ?? vaccineCode
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
-		if nil == self.date {
-			errors.append(FHIRValidationError(missing: "date"))
-		}
+		arrayDecorate(json: &json, withKey: "contraindicatedVaccineCode", using: self.contraindicatedVaccineCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "dateCriterion", using: self.dateCriterion, errors: &errors)
-		self.doseNumber?.decorate(json: &json, withKey: "doseNumber", errors: &errors)
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
+		self.doseNumberPositiveInt?.decorate(json: &json, withKey: "doseNumberPositiveInt", errors: &errors)
+		self.doseNumberString?.decorate(json: &json, withKey: "doseNumberString", errors: &errors)
+		arrayDecorate(json: &json, withKey: "forecastReason", using: self.forecastReason, errors: &errors)
 		self.forecastStatus?.decorate(json: &json, withKey: "forecastStatus", errors: &errors)
 		if nil == self.forecastStatus {
 			errors.append(FHIRValidationError(missing: "forecastStatus"))
 		}
-		self.protocol_fhir?.decorate(json: &json, withKey: "protocol", errors: &errors)
+		self.series?.decorate(json: &json, withKey: "series", errors: &errors)
+		self.seriesDosesPositiveInt?.decorate(json: &json, withKey: "seriesDosesPositiveInt", errors: &errors)
+		self.seriesDosesString?.decorate(json: &json, withKey: "seriesDosesString", errors: &errors)
 		arrayDecorate(json: &json, withKey: "supportingImmunization", using: self.supportingImmunization, errors: &errors)
 		arrayDecorate(json: &json, withKey: "supportingPatientInformation", using: self.supportingPatientInformation, errors: &errors)
 		self.targetDisease?.decorate(json: &json, withKey: "targetDisease", errors: &errors)
-		self.vaccineCode?.decorate(json: &json, withKey: "vaccineCode", errors: &errors)
+		arrayDecorate(json: &json, withKey: "vaccineCode", using: self.vaccineCode, errors: &errors)
 	}
 }
 
@@ -203,49 +238,6 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 		if nil == self.value {
 			errors.append(FHIRValidationError(missing: "value"))
 		}
-	}
-}
-
-
-/**
-Protocol used by recommendation.
-
-Contains information about the protocol under which the vaccine was administered.
-*/
-open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ImmunizationRecommendationRecommendationProtocol" }
-	}
-	
-	/// Who is responsible for protocol.
-	public var authority: Reference?
-	
-	/// Protocol details.
-	public var description_fhir: FHIRString?
-	
-	/// Dose number within sequence.
-	public var doseSequence: FHIRInteger?
-	
-	/// Name of vaccination series.
-	public var series: FHIRString?
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		authority = createInstance(type: Reference.self, for: "authority", in: json, context: &instCtx, owner: self) ?? authority
-		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
-		doseSequence = createInstance(type: FHIRInteger.self, for: "doseSequence", in: json, context: &instCtx, owner: self) ?? doseSequence
-		series = createInstance(type: FHIRString.self, for: "series", in: json, context: &instCtx, owner: self) ?? series
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.authority?.decorate(json: &json, withKey: "authority", errors: &errors)
-		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
-		self.doseSequence?.decorate(json: &json, withKey: "doseSequence", errors: &errors)
-		self.series?.decorate(json: &json, withKey: "series", errors: &errors)
 	}
 }
 

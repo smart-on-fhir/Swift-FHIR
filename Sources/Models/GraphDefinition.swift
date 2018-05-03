@@ -2,15 +2,15 @@
 //  GraphDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Definition of an graph of resources.
+Definition of a graph of resources.
 
 A formal computable definition of a graph of resources - that is, a coherent set of resources that form a graph by
 following references. The Graph Definition resource defines a set and makes rules about the set.
@@ -23,7 +23,7 @@ open class GraphDefinition: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the graph definition.
@@ -50,16 +50,16 @@ open class GraphDefinition: DomainResource {
 	/// Why this graph definition is defined.
 	public var purpose: FHIRString?
 	
-	/// Type of resource at which the graph starts.
-	public var start: FHIRString?
+	/// The type of FHIR resource at which instances of this graph start.
+	public var start: ResourceType?
 	
 	/// The status of this graph definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Logical URI to reference this graph definition (globally unique).
+	/// Canonical identifier for this graph definition, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the graph definition.
@@ -67,7 +67,7 @@ open class GraphDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: FHIRString, start: FHIRString, status: PublicationStatus) {
+	public convenience init(name: FHIRString, start: ResourceType, status: PublicationStatus) {
 		self.init()
 		self.name = name
 		self.start = start
@@ -91,7 +91,7 @@ open class GraphDefinition: DomainResource {
 		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
-		start = createInstance(type: FHIRString.self, for: "start", in: json, context: &instCtx, owner: self) ?? start
+		start = createEnum(type: ResourceType.self, for: "start", in: json, context: &instCtx) ?? start
 		if nil == start && !instCtx.containsKey("start") {
 			instCtx.addError(FHIRValidationError(missing: "start"))
 		}
@@ -162,14 +162,6 @@ open class GraphDefinitionLink: BackboneElement {
 	public var target: [GraphDefinitionLinkTarget]?
 	
 	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(path: FHIRString, target: [GraphDefinitionLinkTarget]) {
-		self.init()
-		self.path = path
-		self.target = target
-	}
-	
-	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
@@ -177,14 +169,8 @@ open class GraphDefinitionLink: BackboneElement {
 		max = createInstance(type: FHIRString.self, for: "max", in: json, context: &instCtx, owner: self) ?? max
 		min = createInstance(type: FHIRInteger.self, for: "min", in: json, context: &instCtx, owner: self) ?? min
 		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path
-		if nil == path && !instCtx.containsKey("path") {
-			instCtx.addError(FHIRValidationError(missing: "path"))
-		}
 		sliceName = createInstance(type: FHIRString.self, for: "sliceName", in: json, context: &instCtx, owner: self) ?? sliceName
 		target = createInstances(of: GraphDefinitionLinkTarget.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
-		if (nil == target || target!.isEmpty) && !instCtx.containsKey("target") {
-			instCtx.addError(FHIRValidationError(missing: "target"))
-		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -194,14 +180,8 @@ open class GraphDefinitionLink: BackboneElement {
 		self.max?.decorate(json: &json, withKey: "max", errors: &errors)
 		self.min?.decorate(json: &json, withKey: "min", errors: &errors)
 		self.path?.decorate(json: &json, withKey: "path", errors: &errors)
-		if nil == self.path {
-			errors.append(FHIRValidationError(missing: "path"))
-		}
 		self.sliceName?.decorate(json: &json, withKey: "sliceName", errors: &errors)
 		arrayDecorate(json: &json, withKey: "target", using: self.target, errors: &errors)
-		if nil == target || self.target!.isEmpty {
-			errors.append(FHIRValidationError(missing: "target"))
-		}
 	}
 }
 
@@ -220,15 +200,18 @@ open class GraphDefinitionLinkTarget: BackboneElement {
 	/// Additional links from target resource.
 	public var link: [GraphDefinitionLink]?
 	
+	/// Criteria for reverse lookup.
+	public var params: FHIRString?
+	
 	/// Profile for the target resource.
 	public var profile: FHIRURL?
 	
-	/// Type of resource this link refers to.
-	public var type: FHIRString?
+	/// None
+	public var type: ResourceType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: FHIRString) {
+	public convenience init(type: ResourceType) {
 		self.init()
 		self.type = type
 	}
@@ -239,8 +222,9 @@ open class GraphDefinitionLinkTarget: BackboneElement {
 		
 		compartment = createInstances(of: GraphDefinitionLinkTargetCompartment.self, for: "compartment", in: json, context: &instCtx, owner: self) ?? compartment
 		link = createInstances(of: GraphDefinitionLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
+		params = createInstance(type: FHIRString.self, for: "params", in: json, context: &instCtx, owner: self) ?? params
 		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
-		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		type = createEnum(type: ResourceType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
@@ -251,6 +235,7 @@ open class GraphDefinitionLinkTarget: BackboneElement {
 		
 		arrayDecorate(json: &json, withKey: "compartment", using: self.compartment, errors: &errors)
 		arrayDecorate(json: &json, withKey: "link", using: self.link, errors: &errors)
+		self.params?.decorate(json: &json, withKey: "params", errors: &errors)
 		self.profile?.decorate(json: &json, withKey: "profile", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
@@ -280,12 +265,17 @@ open class GraphDefinitionLinkTargetCompartment: BackboneElement {
 	/// identical | matching | different | no-rule | custom.
 	public var rule: GraphCompartmentRule?
 	
+	/// Defines how the compartment rule is used - whether it it is used to test whether resources are subject to the
+	/// rule, or whether it is a rule that must be followed.
+	public var use: GraphCompartmentUse?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CompartmentType, rule: GraphCompartmentRule) {
+	public convenience init(code: CompartmentType, rule: GraphCompartmentRule, use: GraphCompartmentUse) {
 		self.init()
 		self.code = code
 		self.rule = rule
+		self.use = use
 	}
 	
 	
@@ -302,6 +292,10 @@ open class GraphDefinitionLinkTargetCompartment: BackboneElement {
 		if nil == rule && !instCtx.containsKey("rule") {
 			instCtx.addError(FHIRValidationError(missing: "rule"))
 		}
+		use = createEnum(type: GraphCompartmentUse.self, for: "use", in: json, context: &instCtx) ?? use
+		if nil == use && !instCtx.containsKey("use") {
+			instCtx.addError(FHIRValidationError(missing: "use"))
+		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -316,6 +310,10 @@ open class GraphDefinitionLinkTargetCompartment: BackboneElement {
 		self.rule?.decorate(json: &json, withKey: "rule", errors: &errors)
 		if nil == self.rule {
 			errors.append(FHIRValidationError(missing: "rule"))
+		}
+		self.use?.decorate(json: &json, withKey: "use", errors: &errors)
+		if nil == self.use {
+			errors.append(FHIRValidationError(missing: "use"))
 		}
 	}
 }

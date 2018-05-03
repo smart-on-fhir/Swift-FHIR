@@ -2,8 +2,8 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ be taking the medication now, or has taken the medication in the past or will be
 The source of this information can be the patient, significant other (such as a family member or spouse), or a
 clinician.  A common scenario where this information is captured is during the history taking process during a patient
 visit or stay.   The medication information may come from sources such as the patient's memory, from a prescription
-bottle,  or from a list of medications the patient, clinician or other party maintains
+bottle,  or from a list of medications the patient, clinician or other party maintains.
 
 The primary difference between a medication statement and a medication administration is that the medication
 administration has complete administration information and is based on actual administration information from the person
@@ -51,10 +51,10 @@ open class MedicationStatement: DomainResource {
 	/// Details of how medication is/was taken or should be taken.
 	public var dosage: [Dosage]?
 	
-	/// The date/time or interval when the medication was taken.
+	/// The date/time or interval when the medication is/was/will taken.
 	public var effectiveDateTime: DateTime?
 	
-	/// The date/time or interval when the medication was taken.
+	/// The date/time or interval when the medication is/was/will taken.
 	public var effectivePeriod: Period?
 	
 	/// External identifier.
@@ -78,9 +78,6 @@ open class MedicationStatement: DomainResource {
 	/// Reason for why the medication is being/was taken.
 	public var reasonCode: [CodeableConcept]?
 	
-	/// True if asserting medication was not given.
-	public var reasonNotTaken: [CodeableConcept]?
-	
 	/// Condition or observation that supports why the medication is being/was taken.
 	public var reasonReference: [Reference]?
 	
@@ -88,15 +85,15 @@ open class MedicationStatement: DomainResource {
 	/// statement is about.  Generally this will be active or completed.
 	public var status: MedicationStatementStatus?
 	
+	/// Reason for current status.
+	public var statusReason: [CodeableConcept]?
+	
 	/// Who is/was taking  the medication.
 	public var subject: Reference?
 	
-	/// Indicator of the certainty of whether the medication was taken by the patient.
-	public var taken: MedicationStatementTaken?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(medication: Any, status: MedicationStatementStatus, subject: Reference, taken: MedicationStatementTaken) {
+	public convenience init(medication: Any, status: MedicationStatementStatus, subject: Reference) {
 		self.init()
 		if let value = medication as? CodeableConcept {
 			self.medicationCodeableConcept = value
@@ -109,7 +106,6 @@ open class MedicationStatement: DomainResource {
 		}
 		self.status = status
 		self.subject = subject
-		self.taken = taken
 	}
 	
 	
@@ -131,19 +127,15 @@ open class MedicationStatement: DomainResource {
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
 		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
-		reasonNotTaken = createInstances(of: CodeableConcept.self, for: "reasonNotTaken", in: json, context: &instCtx, owner: self) ?? reasonNotTaken
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		status = createEnum(type: MedicationStatementStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
+		statusReason = createInstances(of: CodeableConcept.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		if nil == subject && !instCtx.containsKey("subject") {
 			instCtx.addError(FHIRValidationError(missing: "subject"))
-		}
-		taken = createEnum(type: MedicationStatementTaken.self, for: "taken", in: json, context: &instCtx) ?? taken
-		if nil == taken && !instCtx.containsKey("taken") {
-			instCtx.addError(FHIRValidationError(missing: "taken"))
 		}
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
@@ -171,19 +163,15 @@ open class MedicationStatement: DomainResource {
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonNotTaken", using: self.reasonNotTaken, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		arrayDecorate(json: &json, withKey: "statusReason", using: self.statusReason, errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
-		}
-		self.taken?.decorate(json: &json, withKey: "taken", errors: &errors)
-		if nil == self.taken {
-			errors.append(FHIRValidationError(missing: "taken"))
 		}
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present

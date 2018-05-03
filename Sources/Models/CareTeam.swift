@@ -2,8 +2,8 @@
 //  CareTeam.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -56,6 +56,9 @@ open class CareTeam: DomainResource {
 	/// Who care team is for.
 	public var subject: Reference?
 	
+	/// A contact detail for the care team (that applies to all members).
+	public var telecom: [ContactPoint]?
+	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
@@ -72,6 +75,7 @@ open class CareTeam: DomainResource {
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		status = createEnum(type: CareTeamStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -89,6 +93,7 @@ open class CareTeam: DomainResource {
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
+		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
 	}
 }
 

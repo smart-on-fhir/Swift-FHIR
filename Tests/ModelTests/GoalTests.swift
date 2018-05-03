@@ -2,8 +2,8 @@
 //  GoalTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,36 +38,6 @@ class GoalTests: XCTestCase {
 	
 	@discardableResult
 	func runGoal1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGoal {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-example-stop-smoking.json")
-		
-		XCTAssertEqual(inst.description_fhir?.text, "Stop smoking")
-		XCTAssertEqual(inst.id, "stop-smoking")
-		XCTAssertEqual(inst.identifier?[0].value, "123")
-		XCTAssertEqual(inst.outcomeCode?[0].coding?[0].code, "8517006")
-		XCTAssertEqual(inst.outcomeCode?[0].coding?[0].display, "Ex-smoker (finding)")
-		XCTAssertEqual(inst.outcomeCode?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.outcomeCode?[0].text, "Former smoker")
-		XCTAssertEqual(inst.startDate?.description, "2015-04-05")
-		XCTAssertEqual(inst.status, GoalStatus(rawValue: "achieved")!)
-		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
-		
-		return inst
-	}
-	
-	func testGoal2() {
-		do {
-			let instance = try runGoal2()
-			try runGoal2(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Goal successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runGoal2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGoal {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-example.json")
 		
 		XCTAssertEqual(inst.addresses?[0].display, "obesity condition")
@@ -102,6 +72,36 @@ class GoalTests: XCTestCase {
 		XCTAssertEqual(inst.target?.measure?.coding?[0].code, "3141-9")
 		XCTAssertEqual(inst.target?.measure?.coding?[0].display, "Weight Measured")
 		XCTAssertEqual(inst.target?.measure?.coding?[0].system?.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		
+		return inst
+	}
+	
+	func testGoal2() {
+		do {
+			let instance = try runGoal2()
+			try runGoal2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Goal successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runGoal2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGoal {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-example-stop-smoking.json")
+		
+		XCTAssertEqual(inst.description_fhir?.text, "Stop smoking")
+		XCTAssertEqual(inst.id, "stop-smoking")
+		XCTAssertEqual(inst.identifier?[0].value, "123")
+		XCTAssertEqual(inst.outcomeCode?[0].coding?[0].code, "8517006")
+		XCTAssertEqual(inst.outcomeCode?[0].coding?[0].display, "Ex-smoker (finding)")
+		XCTAssertEqual(inst.outcomeCode?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.outcomeCode?[0].text, "Former smoker")
+		XCTAssertEqual(inst.startDate?.description, "2015-04-05")
+		XCTAssertEqual(inst.status, GoalStatus(rawValue: "achieved")!)
+		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers")
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
 		
 		return inst

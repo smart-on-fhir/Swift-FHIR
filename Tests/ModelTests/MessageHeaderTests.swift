@@ -2,8 +2,8 @@
 //  MessageHeaderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -41,12 +41,14 @@ class MessageHeaderTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "messageheader-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.definition?.absoluteString, "http:////acme.com/ehr/fhir/messagedefinition/patientrequest")
 		XCTAssertEqual(inst.destination?[0].endpoint?.absoluteString, "llp:10.11.12.14:5432")
 		XCTAssertEqual(inst.destination?[0].name, "Acme Message Gateway")
+		XCTAssertEqual(inst.destination?[0].receiver?.reference, "http://acme.com/ehr/fhir/Practitioner/2323-33-4")
 		XCTAssertEqual(inst.destination?[0].target?.reference, "Device/example")
 		XCTAssertEqual(inst.enterer?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.event?.code, "admin-notify")
-		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-events")
+		XCTAssertEqual(inst.eventCoding?.code, "admin-notify")
+		XCTAssertEqual(inst.eventCoding?.system?.absoluteString, "http://example.org/fhir/message-events")
 		XCTAssertEqual(inst.focus?[0].reference, "Patient/example")
 		XCTAssertEqual(inst.id, "1cbdfb97-5859-48a4-8301-d54eab818d68")
 		XCTAssertEqual(inst.reason?.coding?[0].code, "admit")
@@ -61,7 +63,6 @@ class MessageHeaderTests: XCTestCase {
 		XCTAssertEqual(inst.source?.software, "FooBar Patient Manager")
 		XCTAssertEqual(inst.source?.version, "3.1.45.AABB")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.timestamp?.description, "2012-01-04T09:10:14Z")
 		
 		return inst
 	}

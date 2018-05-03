@@ -2,8 +2,8 @@
 //  Reference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Reference) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Reference) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -26,6 +26,9 @@ open class Reference: Element {
 	/// Literal reference, Relative, internal or absolute URL.
 	public var reference: FHIRString?
 	
+	/// Type the reference refers to (e.g. "Patient").
+	public var type: FHIRURL?
+	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
@@ -33,6 +36,7 @@ open class Reference: Element {
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		reference = createInstance(type: FHIRString.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+		type = createInstance(type: FHIRURL.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -41,6 +45,7 @@ open class Reference: Element {
 		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 

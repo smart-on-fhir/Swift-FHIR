@@ -2,8 +2,8 @@
 //  CompartmentDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -54,11 +54,11 @@ class CompartmentDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.name, "EXAMPLE")
 		XCTAssertEqual(inst.publisher, "Health Level Seven International (FHIR Infrastructure)")
 		XCTAssertEqual(inst.purpose, "Provides an example of a FHIR compartment definition based on the Device resource type.")
-		XCTAssertEqual(inst.resource?[0].code, "Communication")
+		XCTAssertEqual(inst.resource?[0].code, ResourceType(rawValue: "Communication")!)
 		XCTAssertEqual(inst.resource?[0].documentation, "The device used as the message sender and recipient")
 		XCTAssertEqual(inst.resource?[0].param?[0], "sender")
 		XCTAssertEqual(inst.resource?[0].param?[1], "recipient")
-		XCTAssertEqual(inst.resource?[1].code, "CommunicationRequest")
+		XCTAssertEqual(inst.resource?[1].code, ResourceType(rawValue: "CommunicationRequest")!)
 		XCTAssertEqual(inst.resource?[1].documentation, "The device used as the message sender and recipient")
 		XCTAssertEqual(inst.resource?[1].param?[0], "sender")
 		XCTAssertEqual(inst.resource?[1].param?[1], "recipient")

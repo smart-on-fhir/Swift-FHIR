@@ -2,8 +2,8 @@
 //  Library.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Library) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Library) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -39,7 +39,7 @@ open class Library: DomainResource {
 	/// What data is referenced by this library.
 	public var dataRequirement: [DataRequirement]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the library.
@@ -78,22 +78,31 @@ open class Library: DomainResource {
 	/// The status of this library. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
+	/// Type of individual the library content is focused on.
+	public var subjectCodeableConcept: CodeableConcept?
+	
+	/// Type of individual the library content is focused on.
+	public var subjectReference: Reference?
+	
+	/// Subordinate title of the library.
+	public var subtitle: FHIRString?
+	
 	/// Name for this library (human friendly).
 	public var title: FHIRString?
 	
-	/// E.g. Education, Treatment, Assessment, etc.
+	/// E.g. Education, Treatment, Assessment, etc..
 	public var topic: [CodeableConcept]?
 	
 	/// logic-library | model-definition | asset-collection | module-definition.
 	public var type: CodeableConcept?
 	
-	/// Logical URI to reference this library (globally unique).
+	/// Canonical identifier for this library, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
 	/// Describes the clinical usage of the library.
 	public var usage: FHIRString?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the library.
@@ -133,6 +142,9 @@ open class Library: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
+		subjectCodeableConcept = createInstance(type: CodeableConcept.self, for: "subjectCodeableConcept", in: json, context: &instCtx, owner: self) ?? subjectCodeableConcept
+		subjectReference = createInstance(type: Reference.self, for: "subjectReference", in: json, context: &instCtx, owner: self) ?? subjectReference
+		subtitle = createInstance(type: FHIRString.self, for: "subtitle", in: json, context: &instCtx, owner: self) ?? subtitle
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		topic = createInstances(of: CodeableConcept.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
@@ -170,6 +182,9 @@ open class Library: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		self.subjectCodeableConcept?.decorate(json: &json, withKey: "subjectCodeableConcept", errors: &errors)
+		self.subjectReference?.decorate(json: &json, withKey: "subjectReference", errors: &errors)
+		self.subtitle?.decorate(json: &json, withKey: "subtitle", errors: &errors)
 		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)

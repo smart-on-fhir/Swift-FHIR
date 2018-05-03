@@ -2,8 +2,8 @@
 //  StructureDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -124,7 +124,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[4].base?.min, 1)
 		XCTAssertEqual(inst.snapshot?.element?[4].base?.path, "DiagnosticReport.status")
 		XCTAssertEqual(inst.snapshot?.element?[4].binding?.strength, BindingStrength(rawValue: "required")!)
-		XCTAssertEqual(inst.snapshot?.element?[4].binding?.valueSetReference?.reference, "http://hl7.org/fhir/ValueSet/observation-status")
+		XCTAssertEqual(inst.snapshot?.element?[4].binding?.valueSetCanonical?.absoluteString, "http://hl7.org/fhir/ValueSet/observation-status")
 		XCTAssertEqual(inst.snapshot?.element?[4].comment, "This is labeled as \"Is Modifier\" because applications need to take appropriate action if a report is withdrawn.")
 		XCTAssertEqual(inst.snapshot?.element?[4].definition, "The status of the diagnostic report as a whole.")
 		XCTAssertEqual(inst.snapshot?.element?[4].id, "DiagnosticReport.status")
@@ -158,14 +158,10 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[6].short, "The subject of the report")
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].aggregation?[0], AggregationMode(rawValue: "bundled")!)
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].code?.absoluteString, "Reference")
-		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Patient")
+		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].targetProfile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/Patient")
+		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].targetProfile?[1].absoluteString, "http://hl7.org/fhir/StructureDefinition/Group")
+		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].targetProfile?[2].absoluteString, "http://hl7.org/fhir/StructureDefinition/Device")
 		XCTAssertEqual(inst.snapshot?.element?[6].type?[0].versioning, ReferenceVersionRules(rawValue: "either")!)
-		XCTAssertEqual(inst.snapshot?.element?[6].type?[1].aggregation?[0], AggregationMode(rawValue: "bundled")!)
-		XCTAssertEqual(inst.snapshot?.element?[6].type?[1].code?.absoluteString, "Reference")
-		XCTAssertEqual(inst.snapshot?.element?[6].type?[1].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Group")
-		XCTAssertEqual(inst.snapshot?.element?[6].type?[2].aggregation?[0], AggregationMode(rawValue: "bundled")!)
-		XCTAssertEqual(inst.snapshot?.element?[6].type?[2].code?.absoluteString, "Reference")
-		XCTAssertEqual(inst.snapshot?.element?[6].type?[2].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Device")
 		XCTAssertEqual(inst.snapshot?.element?[7].base?.max, "1")
 		XCTAssertEqual(inst.snapshot?.element?[7].base?.min, 1)
 		XCTAssertEqual(inst.snapshot?.element?[7].base?.path, "DiagnosticReport.performer")
@@ -178,7 +174,7 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[7].path, "DiagnosticReport.performer")
 		XCTAssertEqual(inst.snapshot?.element?[7].short, "Responsible Diagnostic Service")
 		XCTAssertEqual(inst.snapshot?.element?[7].type?[0].code?.absoluteString, "Reference")
-		XCTAssertEqual(inst.snapshot?.element?[7].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Organization")
+		XCTAssertEqual(inst.snapshot?.element?[7].type?[0].targetProfile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/Organization")
 		XCTAssertEqual(inst.snapshot?.element?[8].base?.max, "*")
 		XCTAssertEqual(inst.snapshot?.element?[8].base?.min, 0)
 		XCTAssertEqual(inst.snapshot?.element?[8].base?.path, "DiagnosticReport.identifier")
@@ -202,12 +198,12 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.snapshot?.element?[9].short, "What was requested")
 		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].aggregation?[0], AggregationMode(rawValue: "referenced")!)
 		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].code?.absoluteString, "Reference")
-		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].targetProfile?.absoluteString, "http://hl7.org/fhir/StructureDefinition/ProcedureRequest")
+		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].targetProfile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/ServiceRequest")
 		XCTAssertEqual(inst.snapshot?.element?[9].type?[0].versioning, ReferenceVersionRules(rawValue: "specific")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Example Lipid Profile")
-		XCTAssertEqual(inst.type, "DiagnosticReport")
+		XCTAssertEqual(inst.type?.absoluteString, "DiagnosticReport")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/example")
 		XCTAssertEqual(inst.useContext?[0].code?.code, "focus")
 		XCTAssertEqual(inst.useContext?[0].code?.display, "Clinical Focus")

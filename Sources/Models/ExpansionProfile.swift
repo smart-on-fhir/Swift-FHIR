@@ -2,15 +2,15 @@
 //  ExpansionProfile.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Defines behaviour and contraints on the ValueSet Expansion operation.
+Defines behavior and constraints on the ValueSet Expansion operation.
 
 Resource to define constraints on the Expansion of a FHIR ValueSet.
 */
@@ -25,13 +25,13 @@ open class ExpansionProfile: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the expansion profile.
 	public var description_fhir: FHIRString?
 	
-	/// When the expansion profile imposes designation contraints.
+	/// When the expansion profile imposes designation constraints.
 	public var designation: ExpansionProfileDesignation?
 	
 	/// Specify the language for the display element of codes in the value set expansion.
@@ -67,7 +67,7 @@ open class ExpansionProfile: DomainResource {
 	/// Intended jurisdiction for expansion profile (if applicable).
 	public var jurisdiction: [CodeableConcept]?
 	
-	/// Controls behaviour of the value set expand operation when value sets are too large to be completely expanded.
+	/// Controls behavior of the value set expand operation when value sets are too large to be completely expanded.
 	public var limitedExpansion: FHIRBool?
 	
 	/// Name for this expansion profile (computer friendly).
@@ -79,10 +79,10 @@ open class ExpansionProfile: DomainResource {
 	/// The status of this expansion profile. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Logical URI to reference this expansion profile (globally unique).
+	/// Canonical identifier for this expansion profile, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the expansion profile.
@@ -161,7 +161,7 @@ open class ExpansionProfile: DomainResource {
 
 
 /**
-When the expansion profile imposes designation contraints.
+When the expansion profile imposes designation constraints.
 
 A set of criteria that provide the constraints imposed on the value set expansion by including or excluding
 designations.

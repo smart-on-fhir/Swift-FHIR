@@ -2,8 +2,8 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -43,9 +43,8 @@ open class SampledData: Element {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(data: FHIRString, dimensions: FHIRInteger, origin: Quantity, period: FHIRDecimal) {
+	public convenience init(dimensions: FHIRInteger, origin: Quantity, period: FHIRDecimal) {
 		self.init()
-		self.data = data
 		self.dimensions = dimensions
 		self.origin = origin
 		self.period = period
@@ -56,9 +55,6 @@ open class SampledData: Element {
 		super.populate(from: json, context: &instCtx)
 		
 		data = createInstance(type: FHIRString.self, for: "data", in: json, context: &instCtx, owner: self) ?? data
-		if nil == data && !instCtx.containsKey("data") {
-			instCtx.addError(FHIRValidationError(missing: "data"))
-		}
 		dimensions = createInstance(type: FHIRInteger.self, for: "dimensions", in: json, context: &instCtx, owner: self) ?? dimensions
 		if nil == dimensions && !instCtx.containsKey("dimensions") {
 			instCtx.addError(FHIRValidationError(missing: "dimensions"))
@@ -80,9 +76,6 @@ open class SampledData: Element {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.data?.decorate(json: &json, withKey: "data", errors: &errors)
-		if nil == self.data {
-			errors.append(FHIRValidationError(missing: "data"))
-		}
 		self.dimensions?.decorate(json: &json, withKey: "dimensions", errors: &errors)
 		if nil == self.dimensions {
 			errors.append(FHIRValidationError(missing: "dimensions"))

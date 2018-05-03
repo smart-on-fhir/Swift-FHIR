@@ -2,8 +2,8 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -37,6 +37,9 @@ open class AllergyIntolerance: DomainResource {
 	
 	/// Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance.
 	public var criticality: AllergyIntoleranceCriticality?
+	
+	/// Encounter when the allergy or intolerance was asserted.
+	public var encounter: Reference?
 	
 	/// External ids for this item.
 	public var identifier: [Identifier]?
@@ -80,10 +83,9 @@ open class AllergyIntolerance: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, verificationStatus: AllergyIntoleranceVerificationStatus) {
+	public convenience init(patient: Reference) {
 		self.init()
 		self.patient = patient
-		self.verificationStatus = verificationStatus
 	}
 	
 	
@@ -96,6 +98,7 @@ open class AllergyIntolerance: DomainResource {
 		clinicalStatus = createEnum(type: AllergyIntoleranceClinicalStatus.self, for: "clinicalStatus", in: json, context: &instCtx) ?? clinicalStatus
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		criticality = createEnum(type: AllergyIntoleranceCriticality.self, for: "criticality", in: json, context: &instCtx) ?? criticality
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		lastOccurrence = createInstance(type: DateTime.self, for: "lastOccurrence", in: json, context: &instCtx, owner: self) ?? lastOccurrence
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
@@ -112,9 +115,6 @@ open class AllergyIntolerance: DomainResource {
 		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
 		type = createEnum(type: AllergyIntoleranceType.self, for: "type", in: json, context: &instCtx) ?? type
 		verificationStatus = createEnum(type: AllergyIntoleranceVerificationStatus.self, for: "verificationStatus", in: json, context: &instCtx) ?? verificationStatus
-		if nil == verificationStatus && !instCtx.containsKey("verificationStatus") {
-			instCtx.addError(FHIRValidationError(missing: "verificationStatus"))
-		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -126,6 +126,7 @@ open class AllergyIntolerance: DomainResource {
 		self.clinicalStatus?.decorate(json: &json, withKey: "clinicalStatus", errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.criticality?.decorate(json: &json, withKey: "criticality", errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.lastOccurrence?.decorate(json: &json, withKey: "lastOccurrence", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
@@ -142,9 +143,6 @@ open class AllergyIntolerance: DomainResource {
 		self.recorder?.decorate(json: &json, withKey: "recorder", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		self.verificationStatus?.decorate(json: &json, withKey: "verificationStatus", errors: &errors)
-		if nil == self.verificationStatus {
-			errors.append(FHIRValidationError(missing: "verificationStatus"))
-		}
 	}
 }
 

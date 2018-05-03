@@ -2,8 +2,8 @@
 //  AuditEventTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,38 +38,46 @@ class AuditEventTests: XCTestCase {
 	
 	@discardableResult
 	func runAuditEvent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-login.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-search.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
 		XCTAssertEqual(inst.agent?[0].altId, "601847123")
 		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
-		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
-		XCTAssertEqual(inst.agent?[0].network?.type, "2")
 		XCTAssertEqual(inst.agent?[0].requestor, true)
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "95")
 		XCTAssertEqual(inst.agent?[1].altId, "6580")
 		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
 		XCTAssertEqual(inst.agent?[1].network?.type, "1")
 		XCTAssertEqual(inst.agent?[1].requestor, false)
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
-		XCTAssertEqual(inst.id, "example-login")
+		XCTAssertEqual(inst.entity?[0].query, Base64Binary(value: "aHR0cDovL2ZoaXItZGV2LmhlYWx0aGludGVyc2VjdGlvbnMuY29tLmF1L29wZW4vRW5jb3VudGVyP3BhcnRpY2lwYW50PTEz"))
+		XCTAssertEqual(inst.entity?[0].role?.code, "24")
+		XCTAssertEqual(inst.entity?[0].role?.display, "Query")
+		XCTAssertEqual(inst.entity?[0].role?.system?.absoluteString, "http://hl7.org/fhir/object-role")
+		XCTAssertEqual(inst.entity?[0].type?.code, "2")
+		XCTAssertEqual(inst.entity?[0].type?.display, "System Object")
+		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
+		XCTAssertEqual(inst.id, "example-search")
 		XCTAssertEqual(inst.outcome, "0")
-		XCTAssertEqual(inst.recorded?.description, "2013-06-20T23:41:23Z")
+		XCTAssertEqual(inst.recorded?.description, "2015-08-22T23:42:24Z")
 		XCTAssertEqual(inst.source?.identifier?.value, "hl7connect.healthintersections.com.au")
 		XCTAssertEqual(inst.source?.site, "Cloud")
 		XCTAssertEqual(inst.source?.type?[0].code, "3")
 		XCTAssertEqual(inst.source?.type?[0].display, "Web Server")
 		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
-		XCTAssertEqual(inst.subtype?[0].code, "110122")
-		XCTAssertEqual(inst.subtype?[0].display, "Login")
-		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.subtype?[0].code, "search")
+		XCTAssertEqual(inst.subtype?[0].display, "search")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://hl7.org/fhir/restful-interaction")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.code, "110114")
-		XCTAssertEqual(inst.type?.display, "User Authentication")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.type?.code, "rest")
+		XCTAssertEqual(inst.type?.display, "Restful Operation")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/audit-event-type")
 		
 		return inst
 	}
@@ -94,14 +102,17 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
 		XCTAssertEqual(inst.agent?[0].network?.type, "2")
 		XCTAssertEqual(inst.agent?[0].requestor, true)
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "95")
 		XCTAssertEqual(inst.agent?[1].altId, "6580")
 		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
 		XCTAssertEqual(inst.agent?[1].network?.type, "1")
 		XCTAssertEqual(inst.agent?[1].requestor, false)
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.id, "example-logout")
 		XCTAssertEqual(inst.outcome, "0")
@@ -134,23 +145,85 @@ class AuditEventTests: XCTestCase {
 	
 	@discardableResult
 	func runAuditEvent3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-vread.json")
+		
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
+		XCTAssertEqual(inst.agent?[0].altId, "601847123")
+		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
+		XCTAssertEqual(inst.agent?[0].requestor, true)
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
+		XCTAssertEqual(inst.agent?[0].userId?.value, "95")
+		XCTAssertEqual(inst.agent?[1].altId, "6580")
+		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
+		XCTAssertEqual(inst.agent?[1].network?.type, "1")
+		XCTAssertEqual(inst.agent?[1].requestor, false)
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.code, "6")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.display, "Access / Use")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/dicom-audit-lifecycle")
+		XCTAssertEqual(inst.entity?[0].reference?.reference, "Patient/example/_history/1")
+		XCTAssertEqual(inst.entity?[0].type?.code, "2")
+		XCTAssertEqual(inst.entity?[0].type?.display, "System Object")
+		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
+		XCTAssertEqual(inst.id, "example-rest")
+		XCTAssertEqual(inst.outcome, "0")
+		XCTAssertEqual(inst.recorded?.description, "2013-06-20T23:42:24Z")
+		XCTAssertEqual(inst.source?.identifier?.value, "hl7connect.healthintersections.com.au")
+		XCTAssertEqual(inst.source?.site, "Cloud")
+		XCTAssertEqual(inst.source?.type?[0].code, "3")
+		XCTAssertEqual(inst.source?.type?[0].display, "Web Server")
+		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
+		XCTAssertEqual(inst.subtype?[0].code, "vread")
+		XCTAssertEqual(inst.subtype?[0].display, "vread")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://hl7.org/fhir/restful-interaction")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type?.code, "rest")
+		XCTAssertEqual(inst.type?.display, "Restful Operation")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/audit-event-type")
+		
+		return inst
+	}
+	
+	func testAuditEvent4() {
+		do {
+			let instance = try runAuditEvent4()
+			try runAuditEvent4(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runAuditEvent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-media.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
 		XCTAssertEqual(inst.agent?[0].requestor, false)
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "ExportToMedia.app")
 		XCTAssertEqual(inst.agent?[1].altId, "601847123")
 		XCTAssertEqual(inst.agent?[1].name, "Grahame Grieve")
 		XCTAssertEqual(inst.agent?[1].requestor, true)
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "95")
 		XCTAssertEqual(inst.agent?[2].media?.code, "110033")
 		XCTAssertEqual(inst.agent?[2].media?.display, "DVD")
 		XCTAssertEqual(inst.agent?[2].media?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[2].name, "Media title: Hello World")
 		XCTAssertEqual(inst.agent?[2].requestor, false)
+		XCTAssertEqual(inst.agent?[2].type?.coding?[0].code, "110154")
+		XCTAssertEqual(inst.agent?[2].type?.coding?[0].display, "Destination Media")
+		XCTAssertEqual(inst.agent?[2].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.entity?[0].identifier?.value, "e3cdfc81a0d24bd^^^&2.16.840.1.113883.4.2&ISO")
 		XCTAssertEqual(inst.entity?[0].role?.code, "1")
 		XCTAssertEqual(inst.entity?[0].role?.display, "Patient")
@@ -187,10 +260,10 @@ class AuditEventTests: XCTestCase {
 		return inst
 	}
 	
-	func testAuditEvent4() {
+	func testAuditEvent5() {
 		do {
-			let instance = try runAuditEvent4()
-			try runAuditEvent4(instance.asJSON())
+			let instance = try runAuditEvent5()
+			try runAuditEvent5(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
@@ -198,7 +271,58 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
+	func runAuditEvent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-login.json")
+		
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
+		XCTAssertEqual(inst.agent?[0].altId, "601847123")
+		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
+		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
+		XCTAssertEqual(inst.agent?[0].network?.type, "2")
+		XCTAssertEqual(inst.agent?[0].requestor, true)
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
+		XCTAssertEqual(inst.agent?[0].userId?.value, "95")
+		XCTAssertEqual(inst.agent?[1].altId, "6580")
+		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
+		XCTAssertEqual(inst.agent?[1].network?.type, "1")
+		XCTAssertEqual(inst.agent?[1].requestor, false)
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
+		XCTAssertEqual(inst.id, "example-login")
+		XCTAssertEqual(inst.outcome, "0")
+		XCTAssertEqual(inst.recorded?.description, "2013-06-20T23:41:23Z")
+		XCTAssertEqual(inst.source?.identifier?.value, "hl7connect.healthintersections.com.au")
+		XCTAssertEqual(inst.source?.site, "Cloud")
+		XCTAssertEqual(inst.source?.type?[0].code, "3")
+		XCTAssertEqual(inst.source?.type?[0].display, "Web Server")
+		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
+		XCTAssertEqual(inst.subtype?[0].code, "110122")
+		XCTAssertEqual(inst.subtype?[0].display, "Login")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type?.code, "110114")
+		XCTAssertEqual(inst.type?.display, "User Authentication")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		
+		return inst
+	}
+	
+	func testAuditEvent6() {
+		do {
+			let instance = try runAuditEvent6()
+			try runAuditEvent6(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runAuditEvent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-pixQuery.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
@@ -206,13 +330,16 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].network?.address, "Workstation1.ehr.familyclinic.com")
 		XCTAssertEqual(inst.agent?[0].network?.type, "1")
 		XCTAssertEqual(inst.agent?[0].requestor, false)
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
 		XCTAssertEqual(inst.agent?[1].altId, "601847123")
 		XCTAssertEqual(inst.agent?[1].name, "Grahame Grieve")
 		XCTAssertEqual(inst.agent?[1].requestor, true)
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "95")
 		XCTAssertEqual(inst.entity?[0].identifier?.value, "e3cdfc81a0d24bd^^^&2.16.840.1.113883.4.2&ISO")
 		XCTAssertEqual(inst.entity?[0].role?.code, "1")
@@ -222,7 +349,7 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.entity?[0].type?.display, "Person")
 		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
 		XCTAssertEqual(inst.entity?[1].detail?[0].type, "MSH-10")
-		XCTAssertEqual(inst.entity?[1].detail?[0].value, Base64Binary(value: "MS4yLjg0MC4xMTQzNTAuMS4xMy4wLjEuNy4xLjE="))
+		XCTAssertEqual(inst.entity?[1].detail?[0].valueBase64Binary, Base64Binary(value: "MS4yLjg0MC4xMTQzNTAuMS4xMy4wLjEuNy4xLjE="))
 		XCTAssertEqual(inst.entity?[1].role?.code, "24")
 		XCTAssertEqual(inst.entity?[1].role?.display, "Query")
 		XCTAssertEqual(inst.entity?[1].role?.system?.absoluteString, "http://hl7.org/fhir/object-role")
@@ -244,112 +371,6 @@ class AuditEventTests: XCTestCase {
 		return inst
 	}
 	
-	func testAuditEvent5() {
-		do {
-			let instance = try runAuditEvent5()
-			try runAuditEvent5(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runAuditEvent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-search.json")
-		
-		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
-		XCTAssertEqual(inst.agent?[0].altId, "601847123")
-		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
-		XCTAssertEqual(inst.agent?[0].requestor, true)
-		XCTAssertEqual(inst.agent?[0].userId?.value, "95")
-		XCTAssertEqual(inst.agent?[1].altId, "6580")
-		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
-		XCTAssertEqual(inst.agent?[1].network?.type, "1")
-		XCTAssertEqual(inst.agent?[1].requestor, false)
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
-		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
-		XCTAssertEqual(inst.entity?[0].query, Base64Binary(value: "aHR0cDovL2ZoaXItZGV2LmhlYWx0aGludGVyc2VjdGlvbnMuY29tLmF1L29wZW4vRW5jb3VudGVyP3BhcnRpY2lwYW50PTEz"))
-		XCTAssertEqual(inst.entity?[0].role?.code, "24")
-		XCTAssertEqual(inst.entity?[0].role?.display, "Query")
-		XCTAssertEqual(inst.entity?[0].role?.system?.absoluteString, "http://hl7.org/fhir/object-role")
-		XCTAssertEqual(inst.entity?[0].type?.code, "2")
-		XCTAssertEqual(inst.entity?[0].type?.display, "System Object")
-		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
-		XCTAssertEqual(inst.id, "example-search")
-		XCTAssertEqual(inst.outcome, "0")
-		XCTAssertEqual(inst.recorded?.description, "2015-08-22T23:42:24Z")
-		XCTAssertEqual(inst.source?.identifier?.value, "hl7connect.healthintersections.com.au")
-		XCTAssertEqual(inst.source?.site, "Cloud")
-		XCTAssertEqual(inst.source?.type?[0].code, "3")
-		XCTAssertEqual(inst.source?.type?[0].display, "Web Server")
-		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
-		XCTAssertEqual(inst.subtype?[0].code, "search")
-		XCTAssertEqual(inst.subtype?[0].display, "search")
-		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://hl7.org/fhir/restful-interaction")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.code, "rest")
-		XCTAssertEqual(inst.type?.display, "Restful Operation")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/audit-event-type")
-		
-		return inst
-	}
-	
-	func testAuditEvent6() {
-		do {
-			let instance = try runAuditEvent6()
-			try runAuditEvent6(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runAuditEvent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-vread.json")
-		
-		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
-		XCTAssertEqual(inst.agent?[0].altId, "601847123")
-		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
-		XCTAssertEqual(inst.agent?[0].requestor, true)
-		XCTAssertEqual(inst.agent?[0].userId?.value, "95")
-		XCTAssertEqual(inst.agent?[1].altId, "6580")
-		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
-		XCTAssertEqual(inst.agent?[1].network?.type, "1")
-		XCTAssertEqual(inst.agent?[1].requestor, false)
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
-		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.code, "6")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.display, "Access / Use")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/dicom-audit-lifecycle")
-		XCTAssertEqual(inst.entity?[0].reference?.reference, "Patient/example/_history/1")
-		XCTAssertEqual(inst.entity?[0].type?.code, "2")
-		XCTAssertEqual(inst.entity?[0].type?.display, "System Object")
-		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
-		XCTAssertEqual(inst.id, "example-rest")
-		XCTAssertEqual(inst.outcome, "0")
-		XCTAssertEqual(inst.recorded?.description, "2013-06-20T23:42:24Z")
-		XCTAssertEqual(inst.source?.identifier?.value, "hl7connect.healthintersections.com.au")
-		XCTAssertEqual(inst.source?.site, "Cloud")
-		XCTAssertEqual(inst.source?.type?[0].code, "3")
-		XCTAssertEqual(inst.source?.type?[0].display, "Web Server")
-		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
-		XCTAssertEqual(inst.subtype?[0].code, "vread")
-		XCTAssertEqual(inst.subtype?[0].display, "vread")
-		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://hl7.org/fhir/restful-interaction")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.code, "rest")
-		XCTAssertEqual(inst.type?.display, "Restful Operation")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/audit-event-type")
-		
-		return inst
-	}
-	
 	func testAuditEvent7() {
 		do {
 			let instance = try runAuditEvent7()
@@ -362,6 +383,71 @@ class AuditEventTests: XCTestCase {
 	
 	@discardableResult
 	func runAuditEvent7(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example.json")
+		
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
+		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
+		XCTAssertEqual(inst.agent?[0].network?.type, "2")
+		XCTAssertEqual(inst.agent?[0].requestor, false)
+		XCTAssertEqual(inst.agent?[0].role?[0].text, "Service User (Logon)")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
+		XCTAssertEqual(inst.agent?[0].userId?.value, "Grahame")
+		XCTAssertEqual(inst.agent?[1].altId, "6580")
+		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
+		XCTAssertEqual(inst.agent?[1].network?.type, "1")
+		XCTAssertEqual(inst.agent?[1].requestor, false)
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
+		XCTAssertEqual(inst.entity?[0].identifier?.type?.coding?[0].code, "SNO")
+		XCTAssertEqual(inst.entity?[0].identifier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
+		XCTAssertEqual(inst.entity?[0].identifier?.type?.text, "Dell Serial Number")
+		XCTAssertEqual(inst.entity?[0].identifier?.value, "ABCDEF")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.code, "6")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.display, "Access / Use")
+		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/dicom-audit-lifecycle")
+		XCTAssertEqual(inst.entity?[0].name, "Grahame's Laptop")
+		XCTAssertEqual(inst.entity?[0].role?.code, "4")
+		XCTAssertEqual(inst.entity?[0].role?.display, "Domain Resource")
+		XCTAssertEqual(inst.entity?[0].role?.system?.absoluteString, "http://hl7.org/fhir/object-role")
+		XCTAssertEqual(inst.entity?[0].type?.code, "4")
+		XCTAssertEqual(inst.entity?[0].type?.display, "Other")
+		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.outcome, "0")
+		XCTAssertEqual(inst.recorded?.description, "2012-10-25T22:04:27+11:00")
+		XCTAssertEqual(inst.source?.identifier?.value, "Grahame's Laptop")
+		XCTAssertEqual(inst.source?.site, "Development")
+		XCTAssertEqual(inst.source?.type?[0].code, "110122")
+		XCTAssertEqual(inst.source?.type?[0].display, "Login")
+		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.subtype?[0].code, "110120")
+		XCTAssertEqual(inst.subtype?[0].display, "Application Start")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Application Start for under service login &quot;Grahame&quot; (id: Grahame's Test HL7Connect)</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type?.code, "110100")
+		XCTAssertEqual(inst.type?.display, "Application Activity")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		
+		return inst
+	}
+	
+	func testAuditEvent8() {
+		do {
+			let instance = try runAuditEvent8()
+			try runAuditEvent8(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runAuditEvent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example-disclosure.json")
 		
 		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "R")!)
@@ -372,9 +458,9 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[0].network?.type, "1")
 		XCTAssertEqual(inst.agent?[0].policy?[0].absoluteString, "http://consent.com/yes")
 		XCTAssertEqual(inst.agent?[0].requestor, true)
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[0].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[0].userId?.value, "SomeIdiot@nowhere.com")
 		XCTAssertEqual(inst.agent?[1].network?.address, "marketing.land")
 		XCTAssertEqual(inst.agent?[1].network?.type, "1")
@@ -383,9 +469,9 @@ class AuditEventTests: XCTestCase {
 		XCTAssertEqual(inst.agent?[1].purposeOfUse?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.agent?[1].reference?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.agent?[1].requestor, false)
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110152")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Destination Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "110152")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "Destination Role ID")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "Where")
 		XCTAssertEqual(inst.entity?[0].reference?.reference, "Patient/example")
 		XCTAssertEqual(inst.entity?[0].role?.code, "1")
@@ -439,10 +525,10 @@ class AuditEventTests: XCTestCase {
 		return inst
 	}
 	
-	func testAuditEvent8() {
+	func testAuditEvent9() {
 		do {
-			let instance = try runAuditEvent8()
-			try runAuditEvent8(instance.asJSON())
+			let instance = try runAuditEvent9()
+			try runAuditEvent9(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw:\n---\n\(error)\n---")
@@ -450,53 +536,52 @@ class AuditEventTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runAuditEvent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example.json")
+	func runAuditEvent9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAuditEvent {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example-error.json")
 		
-		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "E")!)
-		XCTAssertEqual(inst.agent?[0].network?.address, "127.0.0.1")
-		XCTAssertEqual(inst.agent?[0].network?.type, "2")
-		XCTAssertEqual(inst.agent?[0].requestor, false)
-		XCTAssertEqual(inst.agent?[0].role?[0].text, "Service User (Logon)")
-		XCTAssertEqual(inst.agent?[0].userId?.value, "Grahame")
+		XCTAssertEqual(inst.action, AuditEventAction(rawValue: "C")!)
+		XCTAssertEqual(inst.agent?[0].altId, "601847123")
+		XCTAssertEqual(inst.agent?[0].name, "Grahame Grieve")
+		XCTAssertEqual(inst.agent?[0].requestor, true)
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "humanuser")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "human user")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/extra-security-role-type")
+		XCTAssertEqual(inst.agent?[0].userId?.value, "95")
 		XCTAssertEqual(inst.agent?[1].altId, "6580")
 		XCTAssertEqual(inst.agent?[1].network?.address, "Workstation1.ehr.familyclinic.com")
 		XCTAssertEqual(inst.agent?[1].network?.type, "1")
 		XCTAssertEqual(inst.agent?[1].requestor, false)
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].code, "110153")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].display, "Source Role ID")
-		XCTAssertEqual(inst.agent?[1].role?[0].coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "110153")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "Source Role ID")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
 		XCTAssertEqual(inst.agent?[1].userId?.value, "2.16.840.1.113883.4.2|2.16.840.1.113883.4.2")
-		XCTAssertEqual(inst.entity?[0].identifier?.type?.coding?[0].code, "SNO")
-		XCTAssertEqual(inst.entity?[0].identifier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
-		XCTAssertEqual(inst.entity?[0].identifier?.type?.text, "Dell Serial Number")
-		XCTAssertEqual(inst.entity?[0].identifier?.value, "ABCDEF")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.code, "6")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.display, "Access / Use")
-		XCTAssertEqual(inst.entity?[0].lifecycle?.system?.absoluteString, "http://hl7.org/fhir/dicom-audit-lifecycle")
-		XCTAssertEqual(inst.entity?[0].name, "Grahame's Laptop")
-		XCTAssertEqual(inst.entity?[0].role?.code, "4")
-		XCTAssertEqual(inst.entity?[0].role?.display, "Domain Resource")
-		XCTAssertEqual(inst.entity?[0].role?.system?.absoluteString, "http://hl7.org/fhir/object-role")
-		XCTAssertEqual(inst.entity?[0].type?.code, "4")
-		XCTAssertEqual(inst.entity?[0].type?.display, "Other")
+		XCTAssertEqual(inst.contained?[0].id, "o1")
+		XCTAssertEqual(inst.entity?[0].detail?[0].type, "requested transaction")
+		XCTAssertEqual(inst.entity?[0].detail?[0].valueString, "http POST ..... ")
+		XCTAssertEqual(inst.entity?[0].type?.code, "2")
+		XCTAssertEqual(inst.entity?[0].type?.display, "System Object")
 		XCTAssertEqual(inst.entity?[0].type?.system?.absoluteString, "http://hl7.org/fhir/object-type")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.outcome, "0")
-		XCTAssertEqual(inst.recorded?.description, "2012-10-25T22:04:27+11:00")
-		XCTAssertEqual(inst.source?.identifier?.value, "Grahame's Laptop")
-		XCTAssertEqual(inst.source?.site, "Development")
-		XCTAssertEqual(inst.source?.type?[0].code, "110122")
-		XCTAssertEqual(inst.source?.type?[0].display, "Login")
-		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
-		XCTAssertEqual(inst.subtype?[0].code, "110120")
-		XCTAssertEqual(inst.subtype?[0].display, "Application Start")
-		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Application Start for under service login &quot;Grahame&quot; (id: Grahame's Test HL7Connect)</div>")
+		XCTAssertEqual(inst.entity?[1].description_fhir, "transaction failed")
+		XCTAssertEqual(inst.entity?[1].reference?.reference, "#o1")
+		XCTAssertEqual(inst.entity?[1].type?.code, "OperationOutcome")
+		XCTAssertEqual(inst.entity?[1].type?.display, "OperationOutcome")
+		XCTAssertEqual(inst.entity?[1].type?.system?.absoluteString, "http://hl7.org/fhir/resource-types")
+		XCTAssertEqual(inst.id, "example-error")
+		XCTAssertEqual(inst.outcome, "8")
+		XCTAssertEqual(inst.outcomeDesc, "Invalid request to create an Operation resource on the Patient endpoint.")
+		XCTAssertEqual(inst.recorded?.description, "2017-09-07T23:42:24Z")
+		XCTAssertEqual(inst.source?.identifier?.value, "hl7connect.healthintersections.com.au")
+		XCTAssertEqual(inst.source?.site, "Cloud")
+		XCTAssertEqual(inst.source?.type?[0].code, "3")
+		XCTAssertEqual(inst.source?.type?[0].display, "Web Server")
+		XCTAssertEqual(inst.source?.type?[0].system?.absoluteString, "http://hl7.org/fhir/security-source-type")
+		XCTAssertEqual(inst.subtype?[0].code, "create")
+		XCTAssertEqual(inst.subtype?[0].display, "create")
+		XCTAssertEqual(inst.subtype?[0].system?.absoluteString, "http://hl7.org/fhir/restful-interaction")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.code, "110100")
-		XCTAssertEqual(inst.type?.display, "Application Activity")
-		XCTAssertEqual(inst.type?.system?.absoluteString, "http://dicom.nema.org/resources/ontology/DCM")
+		XCTAssertEqual(inst.type?.code, "rest")
+		XCTAssertEqual(inst.type?.display, "Restful Operation")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/audit-event-type")
 		
 		return inst
 	}

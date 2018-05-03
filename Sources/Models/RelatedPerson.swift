@@ -2,15 +2,15 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-An person that is related to a patient, but who is not a direct target of care.
+A person that is related to a patient, but who is not a direct target of care.
 
 Information about a person that is involved in the care for a patient, but who is not the target of healthcare, nor has
 a formal responsibility in the care process.
@@ -49,7 +49,7 @@ open class RelatedPerson: DomainResource {
 	public var photo: [Attachment]?
 	
 	/// The nature of the relationship.
-	public var relationship: CodeableConcept?
+	public var relationship: [CodeableConcept]?
 	
 	/// A contact detail for the person.
 	public var telecom: [ContactPoint]?
@@ -77,7 +77,7 @@ open class RelatedPerson: DomainResource {
 		}
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		photo = createInstances(of: Attachment.self, for: "photo", in: json, context: &instCtx, owner: self) ?? photo
-		relationship = createInstance(type: CodeableConcept.self, for: "relationship", in: json, context: &instCtx, owner: self) ?? relationship
+		relationship = createInstances(of: CodeableConcept.self, for: "relationship", in: json, context: &instCtx, owner: self) ?? relationship
 		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
 	}
 	
@@ -96,7 +96,7 @@ open class RelatedPerson: DomainResource {
 		}
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		arrayDecorate(json: &json, withKey: "photo", using: self.photo, errors: &errors)
-		self.relationship?.decorate(json: &json, withKey: "relationship", errors: &errors)
+		arrayDecorate(json: &json, withKey: "relationship", using: self.relationship, errors: &errors)
 		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
 	}
 }

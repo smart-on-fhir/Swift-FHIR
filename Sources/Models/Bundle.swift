@@ -2,8 +2,8 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -31,6 +31,9 @@ open class Bundle: Resource {
 	/// Digital Signature.
 	public var signature: Signature?
 	
+	/// When the bundle was assembled.
+	public var timestamp: Instant?
+	
 	/// If search, the total number of matches.
 	public var total: FHIRInteger?
 	
@@ -52,6 +55,7 @@ open class Bundle: Resource {
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		link = createInstances(of: BundleLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
 		signature = createInstance(type: Signature.self, for: "signature", in: json, context: &instCtx, owner: self) ?? signature
+		timestamp = createInstance(type: Instant.self, for: "timestamp", in: json, context: &instCtx, owner: self) ?? timestamp
 		total = createInstance(type: FHIRInteger.self, for: "total", in: json, context: &instCtx, owner: self) ?? total
 		type = createEnum(type: BundleType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
@@ -66,6 +70,7 @@ open class Bundle: Resource {
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "link", using: self.link, errors: &errors)
 		self.signature?.decorate(json: &json, withKey: "signature", errors: &errors)
+		self.timestamp?.decorate(json: &json, withKey: "timestamp", errors: &errors)
 		self.total?.decorate(json: &json, withKey: "total", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
@@ -212,7 +217,7 @@ open class BundleEntryResponse: BackboneElement {
 		get { return "BundleEntryResponse" }
 	}
 	
-	/// The etag for the resource (if relevant).
+	/// The Etag for the resource (if relevant).
 	public var etag: FHIRString?
 	
 	/// Server's date time modified.

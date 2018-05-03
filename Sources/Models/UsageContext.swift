@@ -2,8 +2,8 @@
 //  UsageContext.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Foundation
 /**
 Describes the context of use for a conformance or knowledge resource.
 
-Specifies clinical/business/etc metadata that can be used to retrieve, index and/or categorize an artifact. This
+Specifies clinical/business/etc. metadata that can be used to retrieve, index and/or categorize an artifact. This
 metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific context of care
 (e.g., venue, care setting, provider of care).
 */

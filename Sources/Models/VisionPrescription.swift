@@ -2,8 +2,8 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -96,9 +96,6 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// Contact lens back curvature.
 	public var backCurve: FHIRDecimal?
 	
-	/// The relative base, or reference lens edge, for the prism.
-	public var base: VisionBase?
-	
 	/// Brand required.
 	public var brand: FHIRString?
 	
@@ -124,7 +121,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 	public var power: FHIRDecimal?
 	
 	/// Lens prism.
-	public var prism: FHIRDecimal?
+	public var prism: [VisionPrescriptionDispensePrism]?
 	
 	/// Product to be supplied.
 	public var product: CodeableConcept?
@@ -139,7 +136,6 @@ open class VisionPrescriptionDispense: BackboneElement {
 		add = createInstance(type: FHIRDecimal.self, for: "add", in: json, context: &instCtx, owner: self) ?? add
 		axis = createInstance(type: FHIRInteger.self, for: "axis", in: json, context: &instCtx, owner: self) ?? axis
 		backCurve = createInstance(type: FHIRDecimal.self, for: "backCurve", in: json, context: &instCtx, owner: self) ?? backCurve
-		base = createEnum(type: VisionBase.self, for: "base", in: json, context: &instCtx) ?? base
 		brand = createInstance(type: FHIRString.self, for: "brand", in: json, context: &instCtx, owner: self) ?? brand
 		color = createInstance(type: FHIRString.self, for: "color", in: json, context: &instCtx, owner: self) ?? color
 		cylinder = createInstance(type: FHIRDecimal.self, for: "cylinder", in: json, context: &instCtx, owner: self) ?? cylinder
@@ -148,7 +144,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 		eye = createEnum(type: VisionEyes.self, for: "eye", in: json, context: &instCtx) ?? eye
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		power = createInstance(type: FHIRDecimal.self, for: "power", in: json, context: &instCtx, owner: self) ?? power
-		prism = createInstance(type: FHIRDecimal.self, for: "prism", in: json, context: &instCtx, owner: self) ?? prism
+		prism = createInstances(of: VisionPrescriptionDispensePrism.self, for: "prism", in: json, context: &instCtx, owner: self) ?? prism
 		product = createInstance(type: CodeableConcept.self, for: "product", in: json, context: &instCtx, owner: self) ?? product
 		sphere = createInstance(type: FHIRDecimal.self, for: "sphere", in: json, context: &instCtx, owner: self) ?? sphere
 	}
@@ -159,7 +155,6 @@ open class VisionPrescriptionDispense: BackboneElement {
 		self.add?.decorate(json: &json, withKey: "add", errors: &errors)
 		self.axis?.decorate(json: &json, withKey: "axis", errors: &errors)
 		self.backCurve?.decorate(json: &json, withKey: "backCurve", errors: &errors)
-		self.base?.decorate(json: &json, withKey: "base", errors: &errors)
 		self.brand?.decorate(json: &json, withKey: "brand", errors: &errors)
 		self.color?.decorate(json: &json, withKey: "color", errors: &errors)
 		self.cylinder?.decorate(json: &json, withKey: "cylinder", errors: &errors)
@@ -168,9 +163,62 @@ open class VisionPrescriptionDispense: BackboneElement {
 		self.eye?.decorate(json: &json, withKey: "eye", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.power?.decorate(json: &json, withKey: "power", errors: &errors)
-		self.prism?.decorate(json: &json, withKey: "prism", errors: &errors)
+		arrayDecorate(json: &json, withKey: "prism", using: self.prism, errors: &errors)
 		self.product?.decorate(json: &json, withKey: "product", errors: &errors)
 		self.sphere?.decorate(json: &json, withKey: "sphere", errors: &errors)
+	}
+}
+
+
+/**
+Lens prism.
+
+Allows for adjustment on two axis.
+*/
+open class VisionPrescriptionDispensePrism: BackboneElement {
+	override open class var resourceType: String {
+		get { return "VisionPrescriptionDispensePrism" }
+	}
+	
+	/// Amount of adjustment.
+	public var amount: FHIRDecimal?
+	
+	/// The relative base, or reference lens edge, for the prism.
+	public var base: VisionBase?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(amount: FHIRDecimal, base: VisionBase) {
+		self.init()
+		self.amount = amount
+		self.base = base
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		amount = createInstance(type: FHIRDecimal.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
+		if nil == amount && !instCtx.containsKey("amount") {
+			instCtx.addError(FHIRValidationError(missing: "amount"))
+		}
+		base = createEnum(type: VisionBase.self, for: "base", in: json, context: &instCtx) ?? base
+		if nil == base && !instCtx.containsKey("base") {
+			instCtx.addError(FHIRValidationError(missing: "base"))
+		}
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.amount?.decorate(json: &json, withKey: "amount", errors: &errors)
+		if nil == self.amount {
+			errors.append(FHIRValidationError(missing: "amount"))
+		}
+		self.base?.decorate(json: &json, withKey: "base", errors: &errors)
+		if nil == self.base {
+			errors.append(FHIRValidationError(missing: "base"))
+		}
 	}
 }
 

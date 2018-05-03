@@ -2,8 +2,8 @@
 //  RequestGroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,64 +38,6 @@ class RequestGroupTests: XCTestCase {
 	
 	@discardableResult
 	func runRequestGroup1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRequestGroup {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "requestgroup-example.json")
-		
-		XCTAssertEqual(inst.action?[0].action?[0].description_fhir, "Administer medication 1")
-		XCTAssertEqual(inst.action?[0].action?[0].id, "medication-action-1")
-		XCTAssertEqual(inst.action?[0].action?[0].resource?.reference, "#medicationrequest-1")
-		XCTAssertEqual(inst.action?[0].action?[0].type?.code, "create")
-		XCTAssertEqual(inst.action?[0].action?[1].description_fhir, "Administer medication 2")
-		XCTAssertEqual(inst.action?[0].action?[1].id, "medication-action-2")
-		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].actionId, "medication-action-1")
-		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].offsetDuration?.unit, "h")
-		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].offsetDuration?.value, "1")
-		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].relationship, ActionRelationshipType(rawValue: "after-end")!)
-		XCTAssertEqual(inst.action?[0].action?[1].resource?.reference, "#medicationrequest-2")
-		XCTAssertEqual(inst.action?[0].action?[1].type?.code, "create")
-		XCTAssertEqual(inst.action?[0].cardinalityBehavior, ActionCardinalityBehavior(rawValue: "single")!)
-		XCTAssertEqual(inst.action?[0].description_fhir, "Administer medications at the appropriate time")
-		XCTAssertEqual(inst.action?[0].groupingBehavior, ActionGroupingBehavior(rawValue: "logical-group")!)
-		XCTAssertEqual(inst.action?[0].label, "1")
-		XCTAssertEqual(inst.action?[0].participant?[0].reference, "Practitioner/1")
-		XCTAssertEqual(inst.action?[0].precheckBehavior, ActionPrecheckBehavior(rawValue: "yes")!)
-		XCTAssertEqual(inst.action?[0].requiredBehavior, ActionRequiredBehavior(rawValue: "must")!)
-		XCTAssertEqual(inst.action?[0].selectionBehavior, ActionSelectionBehavior(rawValue: "all")!)
-		XCTAssertEqual(inst.action?[0].textEquivalent, "Administer medication 1, followed an hour later by medication 2")
-		XCTAssertEqual(inst.action?[0].timingDateTime?.description, "2017-03-06T19:00:00Z")
-		XCTAssertEqual(inst.action?[0].title, "Administer Medications")
-		XCTAssertEqual(inst.author?.reference, "Practitioner/1")
-		XCTAssertEqual(inst.authoredOn?.description, "2017-03-06T17:31:00Z")
-		XCTAssertEqual(inst.contained?[0].id, "medicationrequest-1")
-		XCTAssertEqual(inst.contained?[1].id, "medicationrequest-2")
-		XCTAssertEqual(inst.context?.reference, "Encounter/example")
-		XCTAssertEqual(inst.groupIdentifier?.system?.absoluteString, "http://example.org/treatment-group")
-		XCTAssertEqual(inst.groupIdentifier?.value, "00001")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?[0].value, "requestgroup-1")
-		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "plan")!)
-		XCTAssertEqual(inst.note?[0].text, "Additional notes about the request group")
-		XCTAssertEqual(inst.priority, RequestPriority(rawValue: "routine")!)
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Treatment")
-		XCTAssertEqual(inst.status, RequestStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Example RequestGroup illustrating related actions to administer medications in sequence with time delay.</div>")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testRequestGroup2() {
-		do {
-			let instance = try runRequestGroup2()
-			try runRequestGroup2(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test RequestGroup successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runRequestGroup2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRequestGroup {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "requestgroup-kdn5-example.json")
 		
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[0].url?.absoluteString, "day")
@@ -128,14 +70,72 @@ class RequestGroupTests: XCTestCase {
 		XCTAssertEqual(inst.contained?[0].id, "1111")
 		XCTAssertEqual(inst.contained?[1].id, "2222")
 		XCTAssertEqual(inst.context?.reference, "Encounter/example")
-		XCTAssertEqual(inst.definition?[0].reference, "PlanDefinition/KDN5")
 		XCTAssertEqual(inst.id, "kdn5-example")
 		XCTAssertEqual(inst.identifier?[0].value, "requestgroup-kdn5")
+		XCTAssertEqual(inst.instantiatesCanonical?[0].absoluteString, "PlanDefinition/KDN5")
 		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "plan")!)
 		XCTAssertEqual(inst.priority, RequestPriority(rawValue: "routine")!)
 		XCTAssertEqual(inst.status, RequestStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Administer gemcitabine and carboplatin.</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testRequestGroup2() {
+		do {
+			let instance = try runRequestGroup2()
+			try runRequestGroup2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RequestGroup successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runRequestGroup2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRequestGroup {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "requestgroup-example.json")
+		
+		XCTAssertEqual(inst.action?[0].action?[0].description_fhir, "Administer medication 1")
+		XCTAssertEqual(inst.action?[0].action?[0].id, "medication-action-1")
+		XCTAssertEqual(inst.action?[0].action?[0].resource?.reference, "#medicationrequest-1")
+		XCTAssertEqual(inst.action?[0].action?[0].type?.coding?[0].code, "create")
+		XCTAssertEqual(inst.action?[0].action?[1].description_fhir, "Administer medication 2")
+		XCTAssertEqual(inst.action?[0].action?[1].id, "medication-action-2")
+		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].actionId, "medication-action-1")
+		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].offsetDuration?.unit, "h")
+		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].offsetDuration?.value, "1")
+		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].relationship, ActionRelationshipType(rawValue: "after-end")!)
+		XCTAssertEqual(inst.action?[0].action?[1].resource?.reference, "#medicationrequest-2")
+		XCTAssertEqual(inst.action?[0].action?[1].type?.coding?[0].code, "create")
+		XCTAssertEqual(inst.action?[0].cardinalityBehavior, ActionCardinalityBehavior(rawValue: "single")!)
+		XCTAssertEqual(inst.action?[0].description_fhir, "Administer medications at the appropriate time")
+		XCTAssertEqual(inst.action?[0].groupingBehavior, ActionGroupingBehavior(rawValue: "logical-group")!)
+		XCTAssertEqual(inst.action?[0].participant?[0].reference, "Practitioner/1")
+		XCTAssertEqual(inst.action?[0].precheckBehavior, ActionPrecheckBehavior(rawValue: "yes")!)
+		XCTAssertEqual(inst.action?[0].prefix, "1")
+		XCTAssertEqual(inst.action?[0].requiredBehavior, ActionRequiredBehavior(rawValue: "must")!)
+		XCTAssertEqual(inst.action?[0].selectionBehavior, ActionSelectionBehavior(rawValue: "all")!)
+		XCTAssertEqual(inst.action?[0].textEquivalent, "Administer medication 1, followed an hour later by medication 2")
+		XCTAssertEqual(inst.action?[0].timingDateTime?.description, "2017-03-06T19:00:00Z")
+		XCTAssertEqual(inst.action?[0].title, "Administer Medications")
+		XCTAssertEqual(inst.author?.reference, "Practitioner/1")
+		XCTAssertEqual(inst.authoredOn?.description, "2017-03-06T17:31:00Z")
+		XCTAssertEqual(inst.contained?[0].id, "medicationrequest-1")
+		XCTAssertEqual(inst.contained?[1].id, "medicationrequest-2")
+		XCTAssertEqual(inst.context?.reference, "Encounter/example")
+		XCTAssertEqual(inst.groupIdentifier?.system?.absoluteString, "http://example.org/treatment-group")
+		XCTAssertEqual(inst.groupIdentifier?.value, "00001")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.identifier?[0].value, "requestgroup-1")
+		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "plan")!)
+		XCTAssertEqual(inst.note?[0].text, "Additional notes about the request group")
+		XCTAssertEqual(inst.priority, RequestPriority(rawValue: "routine")!)
+		XCTAssertEqual(inst.reasonCode?[0].text, "Treatment")
+		XCTAssertEqual(inst.status, RequestStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Example RequestGroup illustrating related actions to administer medications in sequence with time delay.</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

@@ -2,8 +2,8 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -33,7 +33,7 @@ open class DetectedIssue: DomainResource {
 	public var detail: FHIRString?
 	
 	/// Unique id for the detected issue.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Problem resource.
 	public var implicated: [Reference]?
@@ -69,7 +69,7 @@ open class DetectedIssue: DomainResource {
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		detail = createInstance(type: FHIRString.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		implicated = createInstances(of: Reference.self, for: "implicated", in: json, context: &instCtx, owner: self) ?? implicated
 		mitigation = createInstances(of: DetectedIssueMitigation.self, for: "mitigation", in: json, context: &instCtx, owner: self) ?? mitigation
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
@@ -88,7 +88,7 @@ open class DetectedIssue: DomainResource {
 		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.detail?.decorate(json: &json, withKey: "detail", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "implicated", using: self.implicated, errors: &errors)
 		arrayDecorate(json: &json, withKey: "mitigation", using: self.mitigation, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
@@ -105,8 +105,8 @@ open class DetectedIssue: DomainResource {
 /**
 Step taken to address.
 
-Indicates an action that has been taken or is committed to to reduce or eliminate the likelihood of the risk identified
-by the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that may
+Indicates an action that has been taken or is committed to reduce or eliminate the likelihood of the risk identified by
+the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that may
 reduce/eliminate the need for any action.
 */
 open class DetectedIssueMitigation: BackboneElement {

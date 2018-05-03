@@ -2,8 +2,8 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -24,7 +24,7 @@ open class EpisodeOfCare: DomainResource {
 	/// The set of accounts that may be used for billing for this EpisodeOfCare.
 	public var account: [Reference]?
 	
-	/// Care manager/care co-ordinator for the patient.
+	/// Care manager/care coordinator for the patient.
 	public var careManager: Reference?
 	
 	/// The list of diagnosis relevant to this episode of care.

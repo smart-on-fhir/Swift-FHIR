@@ -2,8 +2,8 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Meta) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 Metadata about a resource.
 
 The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the
-content may not always be associated with version changes to the resource.
+content might not always be associated with version changes to the resource.
 */
 open class Meta: Element {
 	override open class var resourceType: String {
@@ -29,6 +29,9 @@ open class Meta: Element {
 	/// Security Labels applied to this resource.
 	public var security: [Coding]?
 	
+	/// Identifies where the resource comes from.
+	public var source: FHIRURL?
+	
 	/// Tags applied to this resource.
 	public var tag: [Coding]?
 	
@@ -42,6 +45,7 @@ open class Meta: Element {
 		lastUpdated = createInstance(type: Instant.self, for: "lastUpdated", in: json, context: &instCtx, owner: self) ?? lastUpdated
 		profile = createInstances(of: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		security = createInstances(of: Coding.self, for: "security", in: json, context: &instCtx, owner: self) ?? security
+		source = createInstance(type: FHIRURL.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		tag = createInstances(of: Coding.self, for: "tag", in: json, context: &instCtx, owner: self) ?? tag
 		versionId = createInstance(type: FHIRString.self, for: "versionId", in: json, context: &instCtx, owner: self) ?? versionId
 	}
@@ -52,6 +56,7 @@ open class Meta: Element {
 		self.lastUpdated?.decorate(json: &json, withKey: "lastUpdated", errors: &errors)
 		arrayDecorate(json: &json, withKey: "profile", using: self.profile, errors: &errors)
 		arrayDecorate(json: &json, withKey: "security", using: self.security, errors: &errors)
+		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
 		arrayDecorate(json: &json, withKey: "tag", using: self.tag, errors: &errors)
 		self.versionId?.decorate(json: &json, withKey: "versionId", errors: &errors)
 	}

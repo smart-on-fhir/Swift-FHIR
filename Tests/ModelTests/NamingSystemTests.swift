@@ -2,8 +2,8 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -44,7 +44,7 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7-australia.wikispaces.com/FHIR+Australia")
 		XCTAssertEqual(inst.date?.description, "2015-08-31")
-		XCTAssertEqual(inst.description_fhir, "Australian HI Identifier as established by relevant regulations etc")
+		XCTAssertEqual(inst.description_fhir, "Australian HI Identifier as established by relevant regulations etc.")
 		XCTAssertEqual(inst.id, "example-id")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "AU")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
@@ -82,35 +82,6 @@ class NamingSystemTests: XCTestCase {
 	
 	@discardableResult
 	func runNamingSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRNamingSystem {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-replaced.json")
-		
-		XCTAssertEqual(inst.date?.description, "2005-01-25")
-		XCTAssertEqual(inst.description_fhir, "This was a wrong registration for the spanish editions of SNOMED CT. Do not use")
-		XCTAssertEqual(inst.id, "example-replaced")
-		XCTAssertEqual(inst.kind, NamingSystemType(rawValue: "codesystem")!)
-		XCTAssertEqual(inst.name, "SNOMED CT Spanish")
-		XCTAssertEqual(inst.publisher, "Not HL7!")
-		XCTAssertEqual(inst.replacedBy?.reference, "NamingSystem/example")
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "retired")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.uniqueId?[0].type, NamingSystemIdentifierType(rawValue: "oid")!)
-		XCTAssertEqual(inst.uniqueId?[0].value, "2.16.840.1.113883.6.96.1")
-		
-		return inst
-	}
-	
-	func testNamingSystem3() {
-		do {
-			let instance = try runNamingSystem3()
-			try runNamingSystem3(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runNamingSystem3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRNamingSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")

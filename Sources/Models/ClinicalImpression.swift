@@ -2,8 +2,8 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -53,7 +53,7 @@ open class ClinicalImpression: DomainResource {
 	/// Business identifier.
 	public var identifier: [Identifier]?
 	
-	/// One or more sets of investigations (signs, symptions, etc.).
+	/// One or more sets of investigations (signs, symptoms, etc.).
 	public var investigation: [ClinicalImpressionInvestigation]?
 	
 	/// Comments made about the ClinicalImpression.
@@ -176,33 +176,12 @@ open class ClinicalImpressionFinding: BackboneElement {
 	public var itemReference: Reference?
 	
 	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: Any) {
-		self.init()
-		if let value = item as? CodeableConcept {
-			self.itemCodeableConcept = value
-		}
-		else if let value = item as? Reference {
-			self.itemReference = value
-		}
-		else {
-			fhir_warn("Type “\(type(of: item))” for property “\(item)” is invalid, ignoring")
-		}
-	}
-	
-	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		basis = createInstance(type: FHIRString.self, for: "basis", in: json, context: &instCtx, owner: self) ?? basis
 		itemCodeableConcept = createInstance(type: CodeableConcept.self, for: "itemCodeableConcept", in: json, context: &instCtx, owner: self) ?? itemCodeableConcept
 		itemReference = createInstance(type: Reference.self, for: "itemReference", in: json, context: &instCtx, owner: self) ?? itemReference
-		
-		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.itemCodeableConcept && nil == self.itemReference {
-			instCtx.addError(FHIRValidationError(missing: "item[x]"))
-		}
-		
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -211,19 +190,14 @@ open class ClinicalImpressionFinding: BackboneElement {
 		self.basis?.decorate(json: &json, withKey: "basis", errors: &errors)
 		self.itemCodeableConcept?.decorate(json: &json, withKey: "itemCodeableConcept", errors: &errors)
 		self.itemReference?.decorate(json: &json, withKey: "itemReference", errors: &errors)
-		
-		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
-		if nil == self.itemCodeableConcept && nil == self.itemReference {
-			errors.append(FHIRValidationError(missing: "item[x]"))
-		}
 	}
 }
 
 
 /**
-One or more sets of investigations (signs, symptions, etc.).
+One or more sets of investigations (signs, symptoms, etc.).
 
-One or more sets of investigations (signs, symptions, etc.). The actual grouping of investigations vary greatly
+One or more sets of investigations (signs, symptoms, etc.). The actual grouping of investigations varies greatly
 depending on the type and context of the assessment. These investigations may include data generated during the
 assessment process, or data previously generated and recorded that is pertinent to the outcomes.
 */

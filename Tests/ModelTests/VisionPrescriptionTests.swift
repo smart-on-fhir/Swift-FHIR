@@ -2,8 +2,8 @@
 //  VisionPrescriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -104,18 +104,18 @@ class VisionPrescriptionTests: XCTestCase {
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
 		XCTAssertEqual(inst.dispense?[0].add, "2.0")
-		XCTAssertEqual(inst.dispense?[0].base, VisionBase(rawValue: "down")!)
 		XCTAssertEqual(inst.dispense?[0].eye, VisionEyes(rawValue: "right")!)
-		XCTAssertEqual(inst.dispense?[0].prism, "0.5")
+		XCTAssertEqual(inst.dispense?[0].prism?[0].amount, "0.5")
+		XCTAssertEqual(inst.dispense?[0].prism?[0].base, VisionBase(rawValue: "down")!)
 		XCTAssertEqual(inst.dispense?[0].product?.coding?[0].code, "lens")
 		XCTAssertEqual(inst.dispense?[0].product?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense?[0].sphere, "-2.0")
 		XCTAssertEqual(inst.dispense?[1].add, "2.0")
 		XCTAssertEqual(inst.dispense?[1].axis, 180)
-		XCTAssertEqual(inst.dispense?[1].base, VisionBase(rawValue: "up")!)
 		XCTAssertEqual(inst.dispense?[1].cylinder, "-0.5")
 		XCTAssertEqual(inst.dispense?[1].eye, VisionEyes(rawValue: "left")!)
-		XCTAssertEqual(inst.dispense?[1].prism, "0.5")
+		XCTAssertEqual(inst.dispense?[1].prism?[0].amount, "0.5")
+		XCTAssertEqual(inst.dispense?[1].prism?[0].base, VisionBase(rawValue: "up")!)
 		XCTAssertEqual(inst.dispense?[1].product?.coding?[0].code, "lens")
 		XCTAssertEqual(inst.dispense?[1].product?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense?[1].sphere, "-1.0")

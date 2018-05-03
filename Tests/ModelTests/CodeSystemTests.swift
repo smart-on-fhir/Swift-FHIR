@@ -2,8 +2,8 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,6 +38,125 @@ class CodeSystemTests: XCTestCase {
 	
 	@discardableResult
 	func runCodeSystem1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-list-example-codes.json")
+		
+		XCTAssertEqual(inst.caseSensitive, true)
+		XCTAssertEqual(inst.concept?[0].code, "alerts")
+		XCTAssertEqual(inst.concept?[0].definition, "A list of alerts for the patient.")
+		XCTAssertEqual(inst.concept?[0].display, "Alerts")
+		XCTAssertEqual(inst.concept?[1].code, "adverserxns")
+		XCTAssertEqual(inst.concept?[1].definition, "A list of part adverse reactions.")
+		XCTAssertEqual(inst.concept?[1].display, "Adverse Reactions")
+		XCTAssertEqual(inst.concept?[2].code, "allergies")
+		XCTAssertEqual(inst.concept?[2].definition, "A list of Allergies for the patient.")
+		XCTAssertEqual(inst.concept?[2].display, "Allergies")
+		XCTAssertEqual(inst.concept?[3].code, "medications")
+		XCTAssertEqual(inst.concept?[3].definition, "A list of medication statements for the patient.")
+		XCTAssertEqual(inst.concept?[3].display, "Medication List")
+		XCTAssertEqual(inst.concept?[4].code, "problems")
+		XCTAssertEqual(inst.concept?[4].definition, "A list of problems that the patient is known of have (or have had in the past).")
+		XCTAssertEqual(inst.concept?[4].display, "Problem List")
+		XCTAssertEqual(inst.concept?[5].code, "worklist")
+		XCTAssertEqual(inst.concept?[5].definition, "A list of items that constitute a set of work to be performed (typically this code would be specialized for more specific uses, such as a ward round list).")
+		XCTAssertEqual(inst.concept?[5].display, "Worklist")
+		XCTAssertEqual(inst.concept?[6].code, "waiting")
+		XCTAssertEqual(inst.concept?[6].definition, "A list of items waiting for an event (perhaps a surgical patient waiting list).")
+		XCTAssertEqual(inst.concept?[6].display, "Waiting List")
+		XCTAssertEqual(inst.concept?[7].code, "protocols")
+		XCTAssertEqual(inst.concept?[7].definition, "A set of protocols to be followed.")
+		XCTAssertEqual(inst.concept?[7].display, "Protocols")
+		XCTAssertEqual(inst.concept?[8].code, "plans")
+		XCTAssertEqual(inst.concept?[8].definition, "A set of care plans that apply in a particular context of care.")
+		XCTAssertEqual(inst.concept?[8].display, "Care Plans")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
+		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
+		XCTAssertEqual(inst.experimental, true)
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
+		XCTAssertEqual(inst.extension_fhir?[0].valueCode, "fhir")
+		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
+		XCTAssertEqual(inst.extension_fhir?[1].valueString, "Draft")
+		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
+		XCTAssertEqual(inst.extension_fhir?[2].valueInteger, 1)
+		XCTAssertEqual(inst.id, "list-example-codes")
+		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.317")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2018-04-03T12:05:46.262+10:00")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
+		XCTAssertEqual(inst.name, "Example Use Codes for List")
+		XCTAssertEqual(inst.publisher, "FHIR Project")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
+		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
+		XCTAssertEqual(inst.version, "3.3.0")
+		
+		return inst
+	}
+	
+	func testCodeSystem2() {
+		do {
+			let instance = try runCodeSystem2()
+			try runCodeSystem2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runCodeSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-examplescenario-actor-type.json")
+		
+		XCTAssertEqual(inst.caseSensitive, true)
+		XCTAssertEqual(inst.concept?[0].code, "person")
+		XCTAssertEqual(inst.concept?[0].definition, "A person")
+		XCTAssertEqual(inst.concept?[0].display, "Person")
+		XCTAssertEqual(inst.concept?[1].code, "entity")
+		XCTAssertEqual(inst.concept?[1].definition, "A system")
+		XCTAssertEqual(inst.concept?[1].display, "System")
+		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.contact?[0].telecom?[1].system, ContactPointSystem(rawValue: "email")!)
+		XCTAssertEqual(inst.contact?[0].telecom?[1].value, "fhir@lists.hl7.org")
+		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
+		XCTAssertEqual(inst.date?.description, "2018-04-03T12:05:46+10:00")
+		XCTAssertEqual(inst.description_fhir, "The type of actor - system or human")
+		XCTAssertEqual(inst.experimental, false)
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
+		XCTAssertEqual(inst.extension_fhir?[0].valueCode, "fhir")
+		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
+		XCTAssertEqual(inst.extension_fhir?[1].valueString, "Draft")
+		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
+		XCTAssertEqual(inst.extension_fhir?[2].valueInteger, 0)
+		XCTAssertEqual(inst.id, "examplescenario-actor-type")
+		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.859")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2018-04-03T12:05:46.262+10:00")
+		XCTAssertEqual(inst.name, "ExampleScenarioActorType")
+		XCTAssertEqual(inst.publisher, "HL7 (FHIR Project)")
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/examplescenario-actor-type")
+		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/examplescenario-actor-type")
+		XCTAssertEqual(inst.version, "3.3.0")
+		
+		return inst
+	}
+	
+	func testCodeSystem3() {
+		do {
+			let instance = try runCodeSystem3()
+			try runCodeSystem3(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runCodeSystem3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-example-summary.json")
 		
 		XCTAssertEqual(inst.caseSensitive, true)
@@ -65,10 +184,10 @@ class CodeSystemTests: XCTestCase {
 		return inst
 	}
 	
-	func testCodeSystem2() {
+	func testCodeSystem4() {
 		do {
-			let instance = try runCodeSystem2()
-			try runCodeSystem2(instance.asJSON())
+			let instance = try runCodeSystem4()
+			try runCodeSystem4(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
@@ -76,7 +195,7 @@ class CodeSystemTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runCodeSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
+	func runCodeSystem4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-example.json")
 		
 		XCTAssertEqual(inst.caseSensitive, true)
@@ -115,75 +234,6 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/CodeSystem/example")
 		XCTAssertEqual(inst.version, "20160128")
-		
-		return inst
-	}
-	
-	func testCodeSystem3() {
-		do {
-			let instance = try runCodeSystem3()
-			try runCodeSystem3(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test CodeSystem successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runCodeSystem3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCodeSystem {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "codesystem-list-example-codes.json")
-		
-		XCTAssertEqual(inst.caseSensitive, true)
-		XCTAssertEqual(inst.concept?[0].code, "alerts")
-		XCTAssertEqual(inst.concept?[0].definition, "A list of alerts for the patient.")
-		XCTAssertEqual(inst.concept?[0].display, "Alerts")
-		XCTAssertEqual(inst.concept?[1].code, "adverserxns")
-		XCTAssertEqual(inst.concept?[1].definition, "A list of part adverse reactions.")
-		XCTAssertEqual(inst.concept?[1].display, "Adverse Reactions")
-		XCTAssertEqual(inst.concept?[2].code, "allergies")
-		XCTAssertEqual(inst.concept?[2].definition, "A list of Allergies for the patient.")
-		XCTAssertEqual(inst.concept?[2].display, "Allergies")
-		XCTAssertEqual(inst.concept?[3].code, "medications")
-		XCTAssertEqual(inst.concept?[3].definition, "A list of medication statements for the patient.")
-		XCTAssertEqual(inst.concept?[3].display, "Medication List")
-		XCTAssertEqual(inst.concept?[4].code, "problems")
-		XCTAssertEqual(inst.concept?[4].definition, "A list of problems that the patient is known of have (or have had in the past).")
-		XCTAssertEqual(inst.concept?[4].display, "Problem List")
-		XCTAssertEqual(inst.concept?[5].code, "worklist")
-		XCTAssertEqual(inst.concept?[5].definition, "A list of items that constitute a set of work to be performed (typically this code would be specialized for more specific uses, such as a ward round list).")
-		XCTAssertEqual(inst.concept?[5].display, "Worklist")
-		XCTAssertEqual(inst.concept?[6].code, "waiting")
-		XCTAssertEqual(inst.concept?[6].definition, "A list of items waiting for an event (perhaps a surgical patient waiting list).")
-		XCTAssertEqual(inst.concept?[6].display, "Waiting List")
-		XCTAssertEqual(inst.concept?[7].code, "protocols")
-		XCTAssertEqual(inst.concept?[7].definition, "A set of protocols to be followed.")
-		XCTAssertEqual(inst.concept?[7].display, "Protocols")
-		XCTAssertEqual(inst.concept?[8].code, "plans")
-		XCTAssertEqual(inst.concept?[8].definition, "A set of care plans that apply in a particular context of care.")
-		XCTAssertEqual(inst.concept?[8].display, "Care Plans")
-		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
-		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.content, CodeSystemContentMode(rawValue: "complete")!)
-		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
-		XCTAssertEqual(inst.experimental, true)
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-ballot-status")
-		XCTAssertEqual(inst.extension_fhir?[0].valueString, "Informative")
-		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm")
-		XCTAssertEqual(inst.extension_fhir?[1].valueInteger, 1)
-		XCTAssertEqual(inst.extension_fhir?[2].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg")
-		XCTAssertEqual(inst.extension_fhir?[2].valueCode, "fhir")
-		XCTAssertEqual(inst.id, "list-example-codes")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
-		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.308")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2017-04-19T07:44:43.294+10:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
-		XCTAssertEqual(inst.name, "Example Use Codes for List")
-		XCTAssertEqual(inst.publisher, "FHIR Project")
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
-		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "3.0.1")
 		
 		return inst
 	}

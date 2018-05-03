@@ -2,8 +2,8 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Account) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -19,12 +19,6 @@ open class Account: DomainResource {
 	override open class var resourceType: String {
 		get { return "Account" }
 	}
-	
-	/// Time window that transactions may be posted to this account.
-	public var active: Period?
-	
-	/// How much is in account?.
-	public var balance: Money?
 	
 	/// The party(s) that are responsible for covering the payment of this account, and what order should they be
 	/// applied to the account.
@@ -45,8 +39,11 @@ open class Account: DomainResource {
 	/// Who is responsible?.
 	public var owner: Reference?
 	
+	/// Reference to a parent Account.
+	public var partOf: Reference?
+	
 	/// Transaction window.
-	public var period: Period?
+	public var servicePeriod: Period?
 	
 	/// Indicates whether the account is presently used/usable or not.
 	public var status: AccountStatus?
@@ -58,19 +55,28 @@ open class Account: DomainResource {
 	public var type: CodeableConcept?
 	
 	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: AccountStatus) {
+		self.init()
+		self.status = status
+	}
+	
+	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		active = createInstance(type: Period.self, for: "active", in: json, context: &instCtx, owner: self) ?? active
-		balance = createInstance(type: Money.self, for: "balance", in: json, context: &instCtx, owner: self) ?? balance
 		coverage = createInstances(of: AccountCoverage.self, for: "coverage", in: json, context: &instCtx, owner: self) ?? coverage
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		guarantor = createInstances(of: AccountGuarantor.self, for: "guarantor", in: json, context: &instCtx, owner: self) ?? guarantor
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		owner = createInstance(type: Reference.self, for: "owner", in: json, context: &instCtx, owner: self) ?? owner
-		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		partOf = createInstance(type: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		servicePeriod = createInstance(type: Period.self, for: "servicePeriod", in: json, context: &instCtx, owner: self) ?? servicePeriod
 		status = createEnum(type: AccountStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
+		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
@@ -78,16 +84,18 @@ open class Account: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.active?.decorate(json: &json, withKey: "active", errors: &errors)
-		self.balance?.decorate(json: &json, withKey: "balance", errors: &errors)
 		arrayDecorate(json: &json, withKey: "coverage", using: self.coverage, errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "guarantor", using: self.guarantor, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		self.owner?.decorate(json: &json, withKey: "owner", errors: &errors)
-		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		self.partOf?.decorate(json: &json, withKey: "partOf", errors: &errors)
+		self.servicePeriod?.decorate(json: &json, withKey: "servicePeriod", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
@@ -155,7 +163,7 @@ open class AccountGuarantor: BackboneElement {
 	/// Responsible entity.
 	public var party: Reference?
 	
-	/// Guarrantee account during.
+	/// Guarantee account during.
 	public var period: Period?
 	
 	

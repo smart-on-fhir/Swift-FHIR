@@ -2,8 +2,8 @@
 //  EligibilityResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -115,13 +115,10 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.insurance?[0].contract?.reference, "http://www.BenefitsInc.com/fhir/contract/NBU22547")
 		XCTAssertEqual(inst.insurance?[0].coverage?.reference, "#coverage-1")
 		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
-		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
+		XCTAssertEqual(inst.outcome, "complete")
 		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332405")
-		XCTAssertEqual(inst.requestOrganization?.identifier?.system?.absoluteString, "http://national.org/clinic")
-		XCTAssertEqual(inst.requestOrganization?.identifier?.value, "OR1234")
-		XCTAssertEqual(inst.requestProvider?.identifier?.system?.absoluteString, "http://national.org/provider")
-		XCTAssertEqual(inst.requestProvider?.identifier?.value, "PR9876")
+		XCTAssertEqual(inst.requestProvider?.identifier?.system?.absoluteString, "http://national.org/clinic")
+		XCTAssertEqual(inst.requestProvider?.identifier?.value, "OR1234")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityResponse.</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -141,6 +138,71 @@ class EligibilityResponseTests: XCTestCase {
 	
 	@discardableResult
 	func runEligibilityResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityResponse {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example-error.json")
+		
+		XCTAssertEqual(inst.created?.description, "2014-09-16")
+		XCTAssertEqual(inst.disposition, "Eligibiliy request could not be processed, please address errors before submitting.")
+		XCTAssertEqual(inst.error?[0].code?.coding?[0].code, "a001")
+		XCTAssertEqual(inst.error?[0].code?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/adjudication-error")
+		XCTAssertEqual(inst.form?.coding?[0].code, "ELRSP/2017/01")
+		XCTAssertEqual(inst.form?.coding?[0].system?.absoluteString, "http://national.org/form")
+		XCTAssertEqual(inst.id, "E2503")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
+		XCTAssertEqual(inst.identifier?[0].value, "8812343")
+		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
+		XCTAssertEqual(inst.outcome, "error")
+		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332406")
+		XCTAssertEqual(inst.requestProvider?.identifier?.system?.absoluteString, "http://national.org/clinic")
+		XCTAssertEqual(inst.requestProvider?.identifier?.value, "OR1234")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityResponse.</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testEligibilityResponse3() {
+		do {
+			let instance = try runEligibilityResponse3()
+			try runEligibilityResponse3(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runEligibilityResponse3(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityResponse {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example.json")
+		
+		XCTAssertEqual(inst.created?.description, "2014-08-16")
+		XCTAssertEqual(inst.disposition, "Policy is currently in-force.")
+		XCTAssertEqual(inst.id, "E2500")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
+		XCTAssertEqual(inst.identifier?[0].value, "881234")
+		XCTAssertEqual(inst.inforce, true)
+		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
+		XCTAssertEqual(inst.outcome, "complete")
+		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityResponse.</div>")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testEligibilityResponse4() {
+		do {
+			let instance = try runEligibilityResponse4()
+			try runEligibilityResponse4(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runEligibilityResponse4(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityResponse {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example-benefits.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -233,77 +295,7 @@ class EligibilityResponseTests: XCTestCase {
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].unit?.coding?[0].code, "individual")
 		XCTAssertEqual(inst.insurance?[0].benefitBalance?[4].unit?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/benefit-unit")
 		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
-		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
-		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityResponse.</div>")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testEligibilityResponse3() {
-		do {
-			let instance = try runEligibilityResponse3()
-			try runEligibilityResponse3(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runEligibilityResponse3(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityResponse {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example-error.json")
-		
-		XCTAssertEqual(inst.created?.description, "2014-09-16")
-		XCTAssertEqual(inst.disposition, "Eligibiliy request could not be processed, please address errors before submitting.")
-		XCTAssertEqual(inst.error?[0].code?.coding?[0].code, "a001")
-		XCTAssertEqual(inst.error?[0].code?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/adjudication-error")
-		XCTAssertEqual(inst.form?.coding?[0].code, "ELRSP/2017/01")
-		XCTAssertEqual(inst.form?.coding?[0].system?.absoluteString, "http://national.org/form")
-		XCTAssertEqual(inst.id, "E2503")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
-		XCTAssertEqual(inst.identifier?[0].value, "8812343")
-		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome?.coding?[0].code, "error")
-		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
-		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332406")
-		XCTAssertEqual(inst.requestOrganization?.identifier?.system?.absoluteString, "http://national.org/clinic")
-		XCTAssertEqual(inst.requestOrganization?.identifier?.value, "OR1234")
-		XCTAssertEqual(inst.requestProvider?.identifier?.system?.absoluteString, "http://national.org/provider")
-		XCTAssertEqual(inst.requestProvider?.identifier?.value, "PR9876")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityResponse.</div>")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testEligibilityResponse4() {
-		do {
-			let instance = try runEligibilityResponse4()
-			try runEligibilityResponse4(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runEligibilityResponse4(_ json: FHIRJSON? = nil) throws -> SwiftFHIREligibilityResponse {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example.json")
-		
-		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.disposition, "Policy is currently in-force.")
-		XCTAssertEqual(inst.id, "E2500")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
-		XCTAssertEqual(inst.identifier?[0].value, "881234")
-		XCTAssertEqual(inst.inforce, true)
-		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome?.coding?[0].code, "complete")
-		XCTAssertEqual(inst.outcome?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
+		XCTAssertEqual(inst.outcome, "complete")
 		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityResponse.</div>")

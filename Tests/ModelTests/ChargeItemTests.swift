@@ -2,8 +2,8 @@
 //  ChargeItemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -49,8 +49,8 @@ class ChargeItemTests: XCTestCase {
 		XCTAssertEqual(inst.enterer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.factorOverride, "0.8")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://myHospital.org/ChargeItems")
-		XCTAssertEqual(inst.identifier?.value, "654321")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://myHospital.org/ChargeItems")
+		XCTAssertEqual(inst.identifier?[0].value, "654321")
 		XCTAssertEqual(inst.note?[0].authorReference?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.note?[0].text, "The code is only applicable for periods longer than 4h")
 		XCTAssertEqual(inst.note?[0].time?.description, "2017-01-25T23:55:04+01:00")

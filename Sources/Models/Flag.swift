@@ -2,8 +2,8 @@
 //  Flag.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Flag) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Flag) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -23,7 +23,7 @@ open class Flag: DomainResource {
 	public var author: Reference?
 	
 	/// Clinical, administrative, etc..
-	public var category: CodeableConcept?
+	public var category: [CodeableConcept]?
 	
 	/// Coded or textual message to display to user.
 	public var code: CodeableConcept?
@@ -57,7 +57,7 @@ open class Flag: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
-		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
@@ -79,7 +79,7 @@ open class Flag: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))

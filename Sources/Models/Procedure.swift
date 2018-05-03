@@ -2,8 +2,8 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -20,6 +20,9 @@ open class Procedure: DomainResource {
 		get { return "Procedure" }
 	}
 	
+	/// Person who asserts this procedure.
+	public var asserter: Reference?
+	
 	/// A request for this procedure.
 	public var basedOn: [Reference]?
 	
@@ -35,16 +38,13 @@ open class Procedure: DomainResource {
 	/// Complication following the procedure.
 	public var complication: [CodeableConcept]?
 	
-	/// A condition that is a result of the procedure.
+	/// A condition that is a result of the procedure.
 	public var complicationDetail: [Reference]?
 	
 	/// Encounter or episode associated with the procedure.
 	public var context: Reference?
 	
-	/// Instantiates protocol or definition.
-	public var definition: [Reference]?
-	
-	/// Device changed in procedure.
+	/// Manipulated, implanted, or removed device.
 	public var focalDevice: [ProcedureFocalDevice]?
 	
 	/// Instructions for follow up.
@@ -53,14 +53,11 @@ open class Procedure: DomainResource {
 	/// External Identifiers for this procedure.
 	public var identifier: [Identifier]?
 	
+	/// Instantiates protocol or definition.
+	public var instantiates: [FHIRURL]?
+	
 	/// Where the procedure happened.
 	public var location: Reference?
-	
-	/// True if procedure was not performed as scheduled.
-	public var notDone: FHIRBool?
-	
-	/// Reason procedure was not performed.
-	public var notDoneReason: CodeableConcept?
 	
 	/// Additional information about the procedure.
 	public var note: [Annotation]?
@@ -71,11 +68,20 @@ open class Procedure: DomainResource {
 	/// Part of referenced event.
 	public var partOf: [Reference]?
 	
-	/// Date/Period the procedure was performed.
+	/// When the procedure was performed.
+	public var performedAge: Age?
+	
+	/// When the procedure was performed.
 	public var performedDateTime: DateTime?
 	
-	/// Date/Period the procedure was performed.
+	/// When the procedure was performed.
 	public var performedPeriod: Period?
+	
+	/// When the procedure was performed.
+	public var performedRange: Range?
+	
+	/// When the procedure was performed.
+	public var performedString: FHIRString?
 	
 	/// The people who performed the procedure.
 	public var performer: [ProcedurePerformer]?
@@ -83,14 +89,20 @@ open class Procedure: DomainResource {
 	/// Coded reason procedure performed.
 	public var reasonCode: [CodeableConcept]?
 	
-	/// Condition that is the reason the procedure performed.
+	/// The justification that the procedure was performed.
 	public var reasonReference: [Reference]?
+	
+	/// Who recorded the procedure.
+	public var recorder: Reference?
 	
 	/// Any report resulting from the procedure.
 	public var report: [Reference]?
 	
 	/// A code specifying the state of the procedure. Generally this will be in-progress or completed state.
 	public var status: EventStatus?
+	
+	/// Reason for current status.
+	public var statusReason: CodeableConcept?
 	
 	/// Who the procedure was performed on.
 	public var subject: Reference?
@@ -113,6 +125,7 @@ open class Procedure: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		asserter = createInstance(type: Reference.self, for: "asserter", in: json, context: &instCtx, owner: self) ?? asserter
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		bodySite = createInstances(of: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
@@ -120,26 +133,29 @@ open class Procedure: DomainResource {
 		complication = createInstances(of: CodeableConcept.self, for: "complication", in: json, context: &instCtx, owner: self) ?? complication
 		complicationDetail = createInstances(of: Reference.self, for: "complicationDetail", in: json, context: &instCtx, owner: self) ?? complicationDetail
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		focalDevice = createInstances(of: ProcedureFocalDevice.self, for: "focalDevice", in: json, context: &instCtx, owner: self) ?? focalDevice
 		followUp = createInstances(of: CodeableConcept.self, for: "followUp", in: json, context: &instCtx, owner: self) ?? followUp
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
 		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
-		notDone = createInstance(type: FHIRBool.self, for: "notDone", in: json, context: &instCtx, owner: self) ?? notDone
-		notDoneReason = createInstance(type: CodeableConcept.self, for: "notDoneReason", in: json, context: &instCtx, owner: self) ?? notDoneReason
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
 		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		performedAge = createInstance(type: Age.self, for: "performedAge", in: json, context: &instCtx, owner: self) ?? performedAge
 		performedDateTime = createInstance(type: DateTime.self, for: "performedDateTime", in: json, context: &instCtx, owner: self) ?? performedDateTime
 		performedPeriod = createInstance(type: Period.self, for: "performedPeriod", in: json, context: &instCtx, owner: self) ?? performedPeriod
+		performedRange = createInstance(type: Range.self, for: "performedRange", in: json, context: &instCtx, owner: self) ?? performedRange
+		performedString = createInstance(type: FHIRString.self, for: "performedString", in: json, context: &instCtx, owner: self) ?? performedString
 		performer = createInstances(of: ProcedurePerformer.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
 		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
+		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
 		report = createInstances(of: Reference.self, for: "report", in: json, context: &instCtx, owner: self) ?? report
 		status = createEnum(type: EventStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
+		statusReason = createInstance(type: CodeableConcept.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		if nil == subject && !instCtx.containsKey("subject") {
 			instCtx.addError(FHIRValidationError(missing: "subject"))
@@ -151,6 +167,7 @@ open class Procedure: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.asserter?.decorate(json: &json, withKey: "asserter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		arrayDecorate(json: &json, withKey: "bodySite", using: self.bodySite, errors: &errors)
 		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
@@ -158,26 +175,29 @@ open class Procedure: DomainResource {
 		arrayDecorate(json: &json, withKey: "complication", using: self.complication, errors: &errors)
 		arrayDecorate(json: &json, withKey: "complicationDetail", using: self.complicationDetail, errors: &errors)
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		arrayDecorate(json: &json, withKey: "focalDevice", using: self.focalDevice, errors: &errors)
 		arrayDecorate(json: &json, withKey: "followUp", using: self.followUp, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiates", using: self.instantiates, errors: &errors)
 		self.location?.decorate(json: &json, withKey: "location", errors: &errors)
-		self.notDone?.decorate(json: &json, withKey: "notDone", errors: &errors)
-		self.notDoneReason?.decorate(json: &json, withKey: "notDoneReason", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
+		self.performedAge?.decorate(json: &json, withKey: "performedAge", errors: &errors)
 		self.performedDateTime?.decorate(json: &json, withKey: "performedDateTime", errors: &errors)
 		self.performedPeriod?.decorate(json: &json, withKey: "performedPeriod", errors: &errors)
+		self.performedRange?.decorate(json: &json, withKey: "performedRange", errors: &errors)
+		self.performedString?.decorate(json: &json, withKey: "performedString", errors: &errors)
 		arrayDecorate(json: &json, withKey: "performer", using: self.performer, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
+		self.recorder?.decorate(json: &json, withKey: "recorder", errors: &errors)
 		arrayDecorate(json: &json, withKey: "report", using: self.report, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		self.statusReason?.decorate(json: &json, withKey: "statusReason", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
@@ -189,7 +209,7 @@ open class Procedure: DomainResource {
 
 
 /**
-Device changed in procedure.
+Manipulated, implanted, or removed device.
 
 A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a prosthesis,
 attaching a wound-vac, etc.) as a focal portion of the Procedure.

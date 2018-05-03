@@ -2,8 +2,8 @@
 //  BasicTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,11 +38,29 @@ class BasicTests: XCTestCase {
 	
 	@discardableResult
 	func runBasic1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBasic {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-narrative.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example2.json")
 		
-		XCTAssertEqual(inst.code?.text, "Example Narrative Tester")
-		XCTAssertEqual(inst.id, "basic-example-narrative")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		XCTAssertEqual(inst.code?.coding?[0].code, "UMLCLASSMODEL")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://example.org/do-not-use/fhir-codes#resourceTypes")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].url?.absoluteString, "name")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].valueString, "Class1")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[0].url?.absoluteString, "name")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[0].valueString, "attribute1")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[1].url?.absoluteString, "minOccurs")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[1].valueInteger, 1)
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[2].url?.absoluteString, "maxOccurs")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[2].valueCode, "*")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].url?.absoluteString, "attribute")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[0].url?.absoluteString, "name")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[0].valueString, "attribute2")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[1].url?.absoluteString, "minOccurs")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[1].valueInteger, 0)
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[2].url?.absoluteString, "maxOccurs")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[2].valueInteger, 1)
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].url?.absoluteString, "attribute")
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://example.org/do-not-use/fhir-extensions/UMLclass")
+		XCTAssertEqual(inst.id, "classModel")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
 	}
@@ -59,6 +77,27 @@ class BasicTests: XCTestCase {
 	
 	@discardableResult
 	func runBasic2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBasic {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-narrative.json")
+		
+		XCTAssertEqual(inst.code?.text, "Example Narrative Tester")
+		XCTAssertEqual(inst.id, "basic-example-narrative")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		
+		return inst
+	}
+	
+	func testBasic3() {
+		do {
+			let instance = try runBasic3()
+			try runBasic3(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runBasic3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBasic {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
@@ -86,45 +125,6 @@ class BasicTests: XCTestCase {
 		XCTAssertEqual(inst.modifierExtension?[2].valueCode, "complete")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testBasic3() {
-		do {
-			let instance = try runBasic3()
-			try runBasic3(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runBasic3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRBasic {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example2.json")
-		
-		XCTAssertEqual(inst.code?.coding?[0].code, "UMLCLASSMODEL")
-		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://example.org/do-not-use/fhir-codes#resourceTypes")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].url?.absoluteString, "name")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].valueString, "Class1")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[0].url?.absoluteString, "name")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[0].valueString, "attribute1")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[1].url?.absoluteString, "minOccurs")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[1].valueInteger, 1)
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[2].url?.absoluteString, "maxOccurs")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].extension_fhir?[2].valueCode, "*")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[1].url?.absoluteString, "attribute")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[0].url?.absoluteString, "name")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[0].valueString, "attribute2")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[1].url?.absoluteString, "minOccurs")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[1].valueInteger, 0)
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[2].url?.absoluteString, "maxOccurs")
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].extension_fhir?[2].valueInteger, 1)
-		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[2].url?.absoluteString, "attribute")
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://example.org/do-not-use/fhir-extensions/UMLclass")
-		XCTAssertEqual(inst.id, "classModel")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

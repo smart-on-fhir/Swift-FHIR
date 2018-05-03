@@ -2,8 +2,8 @@
 //  Measure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Measure) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Measure) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -37,7 +37,7 @@ open class Measure: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Defined terms used in the measure documentation.
@@ -74,7 +74,7 @@ open class Measure: DomainResource {
 	public var lastReviewDate: FHIRDate?
 	
 	/// Logic used by the measure.
-	public var library: [Reference]?
+	public var library: [FHIRURL]?
 	
 	/// Name for this measure (computer friendly).
 	public var name: FHIRString?
@@ -91,10 +91,10 @@ open class Measure: DomainResource {
 	/// Why does this measure exist.
 	public var rationale: FHIRString?
 	
-	/// Additional documentation, citations, etc.
+	/// Additional documentation, citations, etc..
 	public var relatedArtifact: [RelatedArtifact]?
 	
-	/// How is risk adjustment applied for this measure.
+	/// How risk adjustment is applied for this measure.
 	public var riskAdjustment: FHIRString?
 	
 	/// proportion | ratio | continuous-variable | cohort.
@@ -106,25 +106,34 @@ open class Measure: DomainResource {
 	/// The status of this measure. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
+	/// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device.
+	public var subjectCodeableConcept: CodeableConcept?
+	
+	/// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device.
+	public var subjectReference: Reference?
+	
+	/// Subordinate title of the measure.
+	public var subtitle: FHIRString?
+	
 	/// What other data should be reported with the measure.
 	public var supplementalData: [MeasureSupplementalData]?
 	
 	/// Name for this measure (human friendly).
 	public var title: FHIRString?
 	
-	/// E.g. Education, Treatment, Assessment, etc.
+	/// The category of the measure, such as Education, Treatment, Assessment, etc..
 	public var topic: [CodeableConcept]?
 	
 	/// process | outcome | structure | patient-reported-outcome | composite.
 	public var type: [CodeableConcept]?
 	
-	/// Logical URI to reference this measure (globally unique).
+	/// Canonical identifier for this measure, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
 	/// Describes the clinical usage of the measure.
 	public var usage: FHIRString?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the measure.
@@ -159,7 +168,7 @@ open class Measure: DomainResource {
 		improvementNotation = createInstance(type: FHIRString.self, for: "improvementNotation", in: json, context: &instCtx, owner: self) ?? improvementNotation
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		lastReviewDate = createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, context: &instCtx, owner: self) ?? lastReviewDate
-		library = createInstances(of: Reference.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
+		library = createInstances(of: FHIRURL.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
@@ -173,6 +182,9 @@ open class Measure: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
+		subjectCodeableConcept = createInstance(type: CodeableConcept.self, for: "subjectCodeableConcept", in: json, context: &instCtx, owner: self) ?? subjectCodeableConcept
+		subjectReference = createInstance(type: Reference.self, for: "subjectReference", in: json, context: &instCtx, owner: self) ?? subjectReference
+		subtitle = createInstance(type: FHIRString.self, for: "subtitle", in: json, context: &instCtx, owner: self) ?? subtitle
 		supplementalData = createInstances(of: MeasureSupplementalData.self, for: "supplementalData", in: json, context: &instCtx, owner: self) ?? supplementalData
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		topic = createInstances(of: CodeableConcept.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
@@ -218,6 +230,9 @@ open class Measure: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		self.subjectCodeableConcept?.decorate(json: &json, withKey: "subjectCodeableConcept", errors: &errors)
+		self.subjectReference?.decorate(json: &json, withKey: "subjectReference", errors: &errors)
+		self.subtitle?.decorate(json: &json, withKey: "subtitle", errors: &errors)
 		arrayDecorate(json: &json, withKey: "supplementalData", using: self.supplementalData, errors: &errors)
 		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)
@@ -240,14 +255,11 @@ open class MeasureGroup: BackboneElement {
 		get { return "MeasureGroup" }
 	}
 	
+	/// Meaning of the group.
+	public var code: CodeableConcept?
+	
 	/// Summary description.
 	public var description_fhir: FHIRString?
-	
-	/// Unique identifier.
-	public var identifier: Identifier?
-	
-	/// Short name.
-	public var name: FHIRString?
 	
 	/// Population criteria.
 	public var population: [MeasureGroupPopulation]?
@@ -256,22 +268,11 @@ open class MeasureGroup: BackboneElement {
 	public var stratifier: [MeasureGroupStratifier]?
 	
 	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier) {
-		self.init()
-		self.identifier = identifier
-	}
-	
-	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") {
-			instCtx.addError(FHIRValidationError(missing: "identifier"))
-		}
-		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		population = createInstances(of: MeasureGroupPopulation.self, for: "population", in: json, context: &instCtx, owner: self) ?? population
 		stratifier = createInstances(of: MeasureGroupStratifier.self, for: "stratifier", in: json, context: &instCtx, owner: self) ?? stratifier
 	}
@@ -279,12 +280,8 @@ open class MeasureGroup: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
-		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		arrayDecorate(json: &json, withKey: "population", using: self.population, errors: &errors)
 		arrayDecorate(json: &json, withKey: "stratifier", using: self.stratifier, errors: &errors)
 	}
@@ -311,12 +308,6 @@ open class MeasureGroupPopulation: BackboneElement {
 	/// The human readable description of this population criteria.
 	public var description_fhir: FHIRString?
 	
-	/// Unique identifier.
-	public var identifier: Identifier?
-	
-	/// Short name.
-	public var name: FHIRString?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(criteria: FHIRString) {
@@ -334,8 +325,6 @@ open class MeasureGroupPopulation: BackboneElement {
 			instCtx.addError(FHIRValidationError(missing: "criteria"))
 		}
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -347,8 +336,6 @@ open class MeasureGroupPopulation: BackboneElement {
 			errors.append(FHIRValidationError(missing: "criteria"))
 		}
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 	}
 }
 
@@ -357,18 +344,21 @@ open class MeasureGroupPopulation: BackboneElement {
 Stratifier criteria for the measure.
 
 The stratifier criteria for the measure report, specified as either the name of a valid CQL expression defined within a
-referenced library, or a valid FHIR Resource Path.
+referenced library or a valid FHIR Resource Path.
 */
 open class MeasureGroupStratifier: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MeasureGroupStratifier" }
 	}
 	
+	/// Meaning of the stratifier.
+	public var code: CodeableConcept?
+	
 	/// How the measure should be stratified.
 	public var criteria: FHIRString?
 	
-	/// The identifier for the stratifier used to coordinate the reported data back to this stratifier.
-	public var identifier: Identifier?
+	/// The human readable description of this stratifier.
+	public var description_fhir: FHIRString?
 	
 	/// Path to the stratifier.
 	public var path: FHIRString?
@@ -377,16 +367,18 @@ open class MeasureGroupStratifier: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		criteria = createInstance(type: FHIRString.self, for: "criteria", in: json, context: &instCtx, owner: self) ?? criteria
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.criteria?.decorate(json: &json, withKey: "criteria", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.path?.decorate(json: &json, withKey: "path", errors: &errors)
 	}
 }
@@ -403,11 +395,14 @@ open class MeasureSupplementalData: BackboneElement {
 		get { return "MeasureSupplementalData" }
 	}
 	
+	/// Meaning of the supplemental data.
+	public var code: CodeableConcept?
+	
 	/// Expression describing additional data to be reported.
 	public var criteria: FHIRString?
 	
-	/// Identifier, unique within the measure.
-	public var identifier: Identifier?
+	/// The human readable description of this supplemental data.
+	public var description_fhir: FHIRString?
 	
 	/// Path to the supplemental data element.
 	public var path: FHIRString?
@@ -419,8 +414,9 @@ open class MeasureSupplementalData: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		criteria = createInstance(type: FHIRString.self, for: "criteria", in: json, context: &instCtx, owner: self) ?? criteria
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path
 		usage = createInstances(of: CodeableConcept.self, for: "usage", in: json, context: &instCtx, owner: self) ?? usage
 	}
@@ -428,8 +424,9 @@ open class MeasureSupplementalData: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.criteria?.decorate(json: &json, withKey: "criteria", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.path?.decorate(json: &json, withKey: "path", errors: &errors)
 		arrayDecorate(json: &json, withKey: "usage", using: self.usage, errors: &errors)
 	}

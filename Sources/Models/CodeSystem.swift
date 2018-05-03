@@ -2,17 +2,18 @@
 //  CodeSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-A set of codes drawn from one or more code systems.
+Declares the existence of and describes a code system or code system supplement.
 
-A code system resource specifies a set of codes drawn from one or more code systems.
+The CodeSystem resource is used to declare the existence of and describe a code system or code system supplement and its
+key properties, and optionally define a part or all of its content.
 */
 open class CodeSystem: DomainResource {
 	override open class var resourceType: String {
@@ -41,7 +42,7 @@ open class CodeSystem: DomainResource {
 	/// Total concepts in the code system.
 	public var count: FHIRInteger?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the code system.
@@ -77,13 +78,16 @@ open class CodeSystem: DomainResource {
 	/// The status of this code system. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
+	/// Code System this adds designations and properties to.
+	public var supplements: FHIRURL?
+	
 	/// Name for this code system (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this code system (globally unique) (Coding.system).
+	/// Canonical identifier for this code system, represented as a URI (globally unique) (Coding.system).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Canonical URL for value set with entire code system.
@@ -132,6 +136,7 @@ open class CodeSystem: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
+		supplements = createInstance(type: FHIRURL.self, for: "supplements", in: json, context: &instCtx, owner: self) ?? supplements
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
@@ -168,6 +173,7 @@ open class CodeSystem: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		self.supplements?.decorate(json: &json, withKey: "supplements", errors: &errors)
 		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
 		arrayDecorate(json: &json, withKey: "useContext", using: self.useContext, errors: &errors)
@@ -323,6 +329,9 @@ open class CodeSystemConceptProperty: BackboneElement {
 	public var valueDateTime: DateTime?
 	
 	/// Value of the property for this concept.
+	public var valueDecimal: FHIRDecimal?
+	
+	/// Value of the property for this concept.
 	public var valueInteger: FHIRInteger?
 	
 	/// Value of the property for this concept.
@@ -351,6 +360,9 @@ open class CodeSystemConceptProperty: BackboneElement {
 		else if let value = value as? DateTime {
 			self.valueDateTime = value
 		}
+		else if let value = value as? FHIRDecimal {
+			self.valueDecimal = value
+		}
 		else {
 			fhir_warn("Type “\(type(of: value))” for property “\(value)” is invalid, ignoring")
 		}
@@ -368,11 +380,12 @@ open class CodeSystemConceptProperty: BackboneElement {
 		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
 		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
 		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
+		valueDecimal = createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, context: &instCtx, owner: self) ?? valueDecimal
 		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
 		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.valueCode && nil == self.valueCoding && nil == self.valueString && nil == self.valueInteger && nil == self.valueBoolean && nil == self.valueDateTime {
+		if nil == self.valueCode && nil == self.valueCoding && nil == self.valueString && nil == self.valueInteger && nil == self.valueBoolean && nil == self.valueDateTime && nil == self.valueDecimal {
 			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
@@ -389,11 +402,12 @@ open class CodeSystemConceptProperty: BackboneElement {
 		self.valueCode?.decorate(json: &json, withKey: "valueCode", errors: &errors)
 		self.valueCoding?.decorate(json: &json, withKey: "valueCoding", errors: &errors)
 		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
+		self.valueDecimal?.decorate(json: &json, withKey: "valueDecimal", errors: &errors)
 		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
 		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
-		if nil == self.valueCode && nil == self.valueCoding && nil == self.valueString && nil == self.valueInteger && nil == self.valueBoolean && nil == self.valueDateTime {
+		if nil == self.valueCode && nil == self.valueCoding && nil == self.valueString && nil == self.valueInteger && nil == self.valueBoolean && nil == self.valueDateTime && nil == self.valueDecimal {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 	}
@@ -487,7 +501,7 @@ open class CodeSystemProperty: BackboneElement {
 	public var description_fhir: FHIRString?
 	
 	/// The type of the property value. Properties of type "code" contain a code defined by the code system (e.g. a
-	/// reference to anotherr defined concept).
+	/// reference to another defined concept).
 	public var type: PropertyType?
 	
 	/// Formal identifier for the property.

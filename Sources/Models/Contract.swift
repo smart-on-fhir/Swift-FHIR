@@ -2,8 +2,8 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Contract) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -19,41 +19,23 @@ open class Contract: DomainResource {
 		get { return "Contract" }
 	}
 	
-	/// Action stipulated by this Contract.
-	public var action: [CodeableConcept]?
-	
-	/// Rationale for the stiplulated action.
-	public var actionReason: [CodeableConcept]?
-	
-	/// Entity being ascribed responsibility.
-	public var agent: [ContractAgent]?
-	
 	/// Effective time.
 	public var applies: Period?
 	
 	/// Authority under which this Contract has standing.
 	public var authority: [Reference]?
 	
-	/// Binding Contract.
-	public var bindingAttachment: Attachment?
-	
-	/// Binding Contract.
-	public var bindingReference: Reference?
-	
 	/// Content derived from the basal information.
 	public var contentDerivative: CodeableConcept?
 	
-	/// Decision by Grantor.
-	public var decisionType: CodeableConcept?
-	
-	/// Domain in which this Contract applies.
+	/// A sphere of control governed by an authoritative jurisdiction, organization, or person.
 	public var domain: [Reference]?
 	
 	/// Contract Friendly Language.
 	public var friendly: [ContractFriendly]?
 	
 	/// Contract number.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// When this Contract was issued.
 	public var issued: DateTime?
@@ -61,11 +43,14 @@ open class Contract: DomainResource {
 	/// Contract Legal Language.
 	public var legal: [ContractLegal]?
 	
-	/// Computable Contract Language.
-	public var rule: [ContractRule]?
+	/// Binding Contract.
+	public var legallyBindingAttachment: Attachment?
 	
-	/// Security Labels that define affected resources.
-	public var securityLabel: [Coding]?
+	/// Binding Contract.
+	public var legallyBindingReference: Reference?
+	
+	/// Computable Contract Language.
+	public var rule: ContractRule?
 	
 	/// Contract Signatory.
 	public var signer: [ContractSigner]?
@@ -83,119 +68,52 @@ open class Contract: DomainResource {
 	/// Contract Term List.
 	public var term: [ContractTerm]?
 	
-	/// Context of the Contract.
-	public var topic: [Reference]?
-	
 	/// Type or form.
 	public var type: CodeableConcept?
-	
-	/// Contract Valued Item List.
-	public var valuedItem: [ContractValuedItem]?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		action = createInstances(of: CodeableConcept.self, for: "action", in: json, context: &instCtx, owner: self) ?? action
-		actionReason = createInstances(of: CodeableConcept.self, for: "actionReason", in: json, context: &instCtx, owner: self) ?? actionReason
-		agent = createInstances(of: ContractAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
 		applies = createInstance(type: Period.self, for: "applies", in: json, context: &instCtx, owner: self) ?? applies
 		authority = createInstances(of: Reference.self, for: "authority", in: json, context: &instCtx, owner: self) ?? authority
-		bindingAttachment = createInstance(type: Attachment.self, for: "bindingAttachment", in: json, context: &instCtx, owner: self) ?? bindingAttachment
-		bindingReference = createInstance(type: Reference.self, for: "bindingReference", in: json, context: &instCtx, owner: self) ?? bindingReference
 		contentDerivative = createInstance(type: CodeableConcept.self, for: "contentDerivative", in: json, context: &instCtx, owner: self) ?? contentDerivative
-		decisionType = createInstance(type: CodeableConcept.self, for: "decisionType", in: json, context: &instCtx, owner: self) ?? decisionType
 		domain = createInstances(of: Reference.self, for: "domain", in: json, context: &instCtx, owner: self) ?? domain
 		friendly = createInstances(of: ContractFriendly.self, for: "friendly", in: json, context: &instCtx, owner: self) ?? friendly
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		issued = createInstance(type: DateTime.self, for: "issued", in: json, context: &instCtx, owner: self) ?? issued
 		legal = createInstances(of: ContractLegal.self, for: "legal", in: json, context: &instCtx, owner: self) ?? legal
-		rule = createInstances(of: ContractRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
-		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		legallyBindingAttachment = createInstance(type: Attachment.self, for: "legallyBindingAttachment", in: json, context: &instCtx, owner: self) ?? legallyBindingAttachment
+		legallyBindingReference = createInstance(type: Reference.self, for: "legallyBindingReference", in: json, context: &instCtx, owner: self) ?? legallyBindingReference
+		rule = createInstance(type: ContractRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
 		signer = createInstances(of: ContractSigner.self, for: "signer", in: json, context: &instCtx, owner: self) ?? signer
 		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
 		subType = createInstances(of: CodeableConcept.self, for: "subType", in: json, context: &instCtx, owner: self) ?? subType
 		subject = createInstances(of: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		term = createInstances(of: ContractTerm.self, for: "term", in: json, context: &instCtx, owner: self) ?? term
-		topic = createInstances(of: Reference.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		valuedItem = createInstances(of: ContractValuedItem.self, for: "valuedItem", in: json, context: &instCtx, owner: self) ?? valuedItem
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "action", using: self.action, errors: &errors)
-		arrayDecorate(json: &json, withKey: "actionReason", using: self.actionReason, errors: &errors)
-		arrayDecorate(json: &json, withKey: "agent", using: self.agent, errors: &errors)
 		self.applies?.decorate(json: &json, withKey: "applies", errors: &errors)
 		arrayDecorate(json: &json, withKey: "authority", using: self.authority, errors: &errors)
-		self.bindingAttachment?.decorate(json: &json, withKey: "bindingAttachment", errors: &errors)
-		self.bindingReference?.decorate(json: &json, withKey: "bindingReference", errors: &errors)
 		self.contentDerivative?.decorate(json: &json, withKey: "contentDerivative", errors: &errors)
-		self.decisionType?.decorate(json: &json, withKey: "decisionType", errors: &errors)
 		arrayDecorate(json: &json, withKey: "domain", using: self.domain, errors: &errors)
 		arrayDecorate(json: &json, withKey: "friendly", using: self.friendly, errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
 		arrayDecorate(json: &json, withKey: "legal", using: self.legal, errors: &errors)
-		arrayDecorate(json: &json, withKey: "rule", using: self.rule, errors: &errors)
-		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
+		self.legallyBindingAttachment?.decorate(json: &json, withKey: "legallyBindingAttachment", errors: &errors)
+		self.legallyBindingReference?.decorate(json: &json, withKey: "legallyBindingReference", errors: &errors)
+		self.rule?.decorate(json: &json, withKey: "rule", errors: &errors)
 		arrayDecorate(json: &json, withKey: "signer", using: self.signer, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		arrayDecorate(json: &json, withKey: "subType", using: self.subType, errors: &errors)
 		arrayDecorate(json: &json, withKey: "subject", using: self.subject, errors: &errors)
 		arrayDecorate(json: &json, withKey: "term", using: self.term, errors: &errors)
-		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		arrayDecorate(json: &json, withKey: "valuedItem", using: self.valuedItem, errors: &errors)
-	}
-}
-
-
-/**
-Entity being ascribed responsibility.
-
-An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity taking
-place.
-*/
-open class ContractAgent: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ContractAgent" }
-	}
-	
-	/// Contract Agent Type.
-	public var actor: Reference?
-	
-	/// Role type of the agent.
-	public var role: [CodeableConcept]?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actor: Reference) {
-		self.init()
-		self.actor = actor
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		actor = createInstance(type: Reference.self, for: "actor", in: json, context: &instCtx, owner: self) ?? actor
-		if nil == actor && !instCtx.containsKey("actor") {
-			instCtx.addError(FHIRValidationError(missing: "actor"))
-		}
-		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.actor?.decorate(json: &json, withKey: "actor", errors: &errors)
-		if nil == self.actor {
-			errors.append(FHIRValidationError(missing: "actor"))
-		}
-		arrayDecorate(json: &json, withKey: "role", using: self.role, errors: &errors)
 	}
 }
 
@@ -463,11 +381,14 @@ open class ContractTerm: BackboneElement {
 	/// Purpose for the Contract Term Action.
 	public var actionReason: [CodeableConcept]?
 	
-	/// Contract Term Agent List.
+	/// Entity being ascribed responsibility.
 	public var agent: [ContractTermAgent]?
 	
 	/// Contract Term Effective Time.
 	public var applies: Period?
+	
+	/// Contract Term Asset List.
+	public var asset: [ContractTermAsset]?
 	
 	/// Nested Contract Term Group.
 	public var group: [ContractTerm]?
@@ -478,23 +399,21 @@ open class ContractTerm: BackboneElement {
 	/// Contract Term Issue Date Time.
 	public var issued: DateTime?
 	
-	/// Security Labels that define affected terms.
-	public var securityLabel: [Coding]?
+	/// Context of the Contract term.
+	public var offer: ContractTermOffer?
 	
 	/// Contract Term Type specific classification.
 	public var subType: CodeableConcept?
 	
-	/// Human readable Contract term text.
-	public var text: FHIRString?
-	
-	/// Context of the Contract term.
-	public var topic: [Reference]?
-	
 	/// Contract Term Type or Form.
 	public var type: CodeableConcept?
 	
-	/// Contract Term Valued Item List.
-	public var valuedItem: [ContractTermValuedItem]?
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(offer: ContractTermOffer) {
+		self.init()
+		self.offer = offer
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -504,15 +423,16 @@ open class ContractTerm: BackboneElement {
 		actionReason = createInstances(of: CodeableConcept.self, for: "actionReason", in: json, context: &instCtx, owner: self) ?? actionReason
 		agent = createInstances(of: ContractTermAgent.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
 		applies = createInstance(type: Period.self, for: "applies", in: json, context: &instCtx, owner: self) ?? applies
+		asset = createInstances(of: ContractTermAsset.self, for: "asset", in: json, context: &instCtx, owner: self) ?? asset
 		group = createInstances(of: ContractTerm.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		issued = createInstance(type: DateTime.self, for: "issued", in: json, context: &instCtx, owner: self) ?? issued
-		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		offer = createInstance(type: ContractTermOffer.self, for: "offer", in: json, context: &instCtx, owner: self) ?? offer
+		if nil == offer && !instCtx.containsKey("offer") {
+			instCtx.addError(FHIRValidationError(missing: "offer"))
+		}
 		subType = createInstance(type: CodeableConcept.self, for: "subType", in: json, context: &instCtx, owner: self) ?? subType
-		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
-		topic = createInstances(of: Reference.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		valuedItem = createInstances(of: ContractTermValuedItem.self, for: "valuedItem", in: json, context: &instCtx, owner: self) ?? valuedItem
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -522,21 +442,22 @@ open class ContractTerm: BackboneElement {
 		arrayDecorate(json: &json, withKey: "actionReason", using: self.actionReason, errors: &errors)
 		arrayDecorate(json: &json, withKey: "agent", using: self.agent, errors: &errors)
 		self.applies?.decorate(json: &json, withKey: "applies", errors: &errors)
+		arrayDecorate(json: &json, withKey: "asset", using: self.asset, errors: &errors)
 		arrayDecorate(json: &json, withKey: "group", using: self.group, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
-		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
+		self.offer?.decorate(json: &json, withKey: "offer", errors: &errors)
+		if nil == self.offer {
+			errors.append(FHIRValidationError(missing: "offer"))
+		}
 		self.subType?.decorate(json: &json, withKey: "subType", errors: &errors)
-		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
-		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		arrayDecorate(json: &json, withKey: "valuedItem", using: self.valuedItem, errors: &errors)
 	}
 }
 
 
 /**
-Contract Term Agent List.
+Entity being ascribed responsibility.
 
 An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity taking
 place.
@@ -546,10 +467,10 @@ open class ContractTermAgent: BackboneElement {
 		get { return "ContractTermAgent" }
 	}
 	
-	/// Contract Term Agent Subject.
+	/// Contract Agent Type.
 	public var actor: Reference?
 	
-	/// Type of the Contract Term Agent.
+	/// Role type of the agent.
 	public var role: [CodeableConcept]?
 	
 	
@@ -583,69 +504,88 @@ open class ContractTermAgent: BackboneElement {
 
 
 /**
-Contract Term Valued Item List.
-
-Contract Provision Valued Item List.
+Contract Term Asset List.
 */
-open class ContractTermValuedItem: BackboneElement {
+open class ContractTermAsset: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ContractTermValuedItem" }
+		get { return "ContractTermAsset" }
 	}
 	
-	/// Contract Term Valued Item Effective Tiem.
-	public var effectiveTime: DateTime?
+	/// Resource Type, Profile, or CDA etc..
+	public var `class`: Coding?
 	
-	/// Contract Term Valued Item Type.
-	public var entityCodeableConcept: CodeableConcept?
+	/// Code in the content.
+	public var code: Coding?
 	
-	/// Contract Term Valued Item Type.
-	public var entityReference: Reference?
+	/// Data defined by this Asset.
+	public var data: [ContractTermAssetData]?
 	
-	/// Contract Term Valued Item Price Scaling Factor.
-	public var factor: FHIRDecimal?
+	/// Time period of the data for the asset.
+	public var dataPeriod: Period?
 	
-	/// Contract Term Valued Item Number.
-	public var identifier: Identifier?
+	/// Time period of the asset.
+	public var period: Period?
 	
-	/// Total Contract Term Valued Item Value.
-	public var net: Money?
+	/// Security Labels that define affected terms.
+	public var securityLabel: [Coding]?
 	
-	/// Contract Term Valued Item Difficulty Scaling Factor.
-	public var points: FHIRDecimal?
-	
-	/// Contract Term Valued Item Count.
-	public var quantity: Quantity?
-	
-	/// Contract Term Valued Item fee, charge, or cost.
-	public var unitPrice: Money?
+	/// Contract Valued Item List.
+	public var valuedItem: [ContractTermAssetValuedItem]?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		effectiveTime = createInstance(type: DateTime.self, for: "effectiveTime", in: json, context: &instCtx, owner: self) ?? effectiveTime
-		entityCodeableConcept = createInstance(type: CodeableConcept.self, for: "entityCodeableConcept", in: json, context: &instCtx, owner: self) ?? entityCodeableConcept
-		entityReference = createInstance(type: Reference.self, for: "entityReference", in: json, context: &instCtx, owner: self) ?? entityReference
-		factor = createInstance(type: FHIRDecimal.self, for: "factor", in: json, context: &instCtx, owner: self) ?? factor
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		net = createInstance(type: Money.self, for: "net", in: json, context: &instCtx, owner: self) ?? net
-		points = createInstance(type: FHIRDecimal.self, for: "points", in: json, context: &instCtx, owner: self) ?? points
-		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
-		unitPrice = createInstance(type: Money.self, for: "unitPrice", in: json, context: &instCtx, owner: self) ?? unitPrice
+		`class` = createInstance(type: Coding.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
+		code = createInstance(type: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		data = createInstances(of: ContractTermAssetData.self, for: "data", in: json, context: &instCtx, owner: self) ?? data
+		dataPeriod = createInstance(type: Period.self, for: "dataPeriod", in: json, context: &instCtx, owner: self) ?? dataPeriod
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
+		valuedItem = createInstances(of: ContractTermAssetValuedItem.self, for: "valuedItem", in: json, context: &instCtx, owner: self) ?? valuedItem
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.effectiveTime?.decorate(json: &json, withKey: "effectiveTime", errors: &errors)
-		self.entityCodeableConcept?.decorate(json: &json, withKey: "entityCodeableConcept", errors: &errors)
-		self.entityReference?.decorate(json: &json, withKey: "entityReference", errors: &errors)
-		self.factor?.decorate(json: &json, withKey: "factor", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		self.net?.decorate(json: &json, withKey: "net", errors: &errors)
-		self.points?.decorate(json: &json, withKey: "points", errors: &errors)
-		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
-		self.unitPrice?.decorate(json: &json, withKey: "unitPrice", errors: &errors)
+		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		arrayDecorate(json: &json, withKey: "data", using: self.data, errors: &errors)
+		self.dataPeriod?.decorate(json: &json, withKey: "dataPeriod", errors: &errors)
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
+		arrayDecorate(json: &json, withKey: "valuedItem", using: self.valuedItem, errors: &errors)
+	}
+}
+
+
+/**
+Data defined by this Asset.
+*/
+open class ContractTermAssetData: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ContractTermAssetData" }
+	}
+	
+	/// None
+	public var meaning: ContractDataMeaning?
+	
+	/// The actual data reference.
+	public var reference: Reference?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		meaning = createEnum(type: ContractDataMeaning.self, for: "meaning", in: json, context: &instCtx) ?? meaning
+		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.meaning?.decorate(json: &json, withKey: "meaning", errors: &errors)
+		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
 	}
 }
 
@@ -653,9 +593,9 @@ open class ContractTermValuedItem: BackboneElement {
 /**
 Contract Valued Item List.
 */
-open class ContractValuedItem: BackboneElement {
+open class ContractTermAssetValuedItem: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ContractValuedItem" }
+		get { return "ContractTermAssetValuedItem" }
 	}
 	
 	/// Contract Valued Item Effective Tiem.
@@ -712,6 +652,54 @@ open class ContractValuedItem: BackboneElement {
 		self.points?.decorate(json: &json, withKey: "points", errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
 		self.unitPrice?.decorate(json: &json, withKey: "unitPrice", errors: &errors)
+	}
+}
+
+
+/**
+Context of the Contract term.
+
+The matter of concern in the context of this provision of the agrement.
+*/
+open class ContractTermOffer: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ContractTermOffer" }
+	}
+	
+	/// Decision by Grantor.
+	public var decision: CodeableConcept?
+	
+	/// Pointer to text.
+	public var linkId: FHIRString?
+	
+	/// Human readable offer text.
+	public var text: FHIRString?
+	
+	/// Negotiable offer asset.
+	public var topic: Reference?
+	
+	/// Contract Offer Type or Form.
+	public var type: CodeableConcept?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		decision = createInstance(type: CodeableConcept.self, for: "decision", in: json, context: &instCtx, owner: self) ?? decision
+		linkId = createInstance(type: FHIRString.self, for: "linkId", in: json, context: &instCtx, owner: self) ?? linkId
+		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
+		topic = createInstance(type: Reference.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.decision?.decorate(json: &json, withKey: "decision", errors: &errors)
+		self.linkId?.decorate(json: &json, withKey: "linkId", errors: &errors)
+		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
+		self.topic?.decorate(json: &json, withKey: "topic", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 

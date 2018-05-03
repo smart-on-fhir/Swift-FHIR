@@ -2,8 +2,8 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ open class HealthcareService: DomainResource {
 		get { return "HealthcareService" }
 	}
 	
-	/// Whether this healthcareservice is in active use.
+	/// Whether this HealthcareService record is in active use.
 	public var active: FHIRBool?
 	
 	/// If an appointment is required for access to this service.
@@ -30,7 +30,7 @@ open class HealthcareService: DomainResource {
 	public var availableTime: [HealthcareServiceAvailableTime]?
 	
 	/// Broad category of service being performed or delivered.
-	public var category: CodeableConcept?
+	public var category: [CodeableConcept]?
 	
 	/// Collection of characteristics (attributes).
 	public var characteristic: [CodeableConcept]?
@@ -38,7 +38,7 @@ open class HealthcareService: DomainResource {
 	/// Additional description and/or any specific issues not covered elsewhere.
 	public var comment: FHIRString?
 	
-	/// Location(s) service is inteded for/available to.
+	/// Location(s) service is intended for/available to.
 	public var coverageArea: [Reference]?
 	
 	/// Specific eligibility requirements required to use the service.
@@ -97,7 +97,7 @@ open class HealthcareService: DomainResource {
 		appointmentRequired = createInstance(type: FHIRBool.self, for: "appointmentRequired", in: json, context: &instCtx, owner: self) ?? appointmentRequired
 		availabilityExceptions = createInstance(type: FHIRString.self, for: "availabilityExceptions", in: json, context: &instCtx, owner: self) ?? availabilityExceptions
 		availableTime = createInstances(of: HealthcareServiceAvailableTime.self, for: "availableTime", in: json, context: &instCtx, owner: self) ?? availableTime
-		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		characteristic = createInstances(of: CodeableConcept.self, for: "characteristic", in: json, context: &instCtx, owner: self) ?? characteristic
 		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
 		coverageArea = createInstances(of: Reference.self, for: "coverageArea", in: json, context: &instCtx, owner: self) ?? coverageArea
@@ -126,7 +126,7 @@ open class HealthcareService: DomainResource {
 		self.appointmentRequired?.decorate(json: &json, withKey: "appointmentRequired", errors: &errors)
 		self.availabilityExceptions?.decorate(json: &json, withKey: "availabilityExceptions", errors: &errors)
 		arrayDecorate(json: &json, withKey: "availableTime", using: self.availableTime, errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		arrayDecorate(json: &json, withKey: "characteristic", using: self.characteristic, errors: &errors)
 		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
 		arrayDecorate(json: &json, withKey: "coverageArea", using: self.coverageArea, errors: &errors)
@@ -206,7 +206,7 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 	/// Reason presented to the user explaining why time not available.
 	public var description_fhir: FHIRString?
 	
-	/// Service not availablefrom this date.
+	/// Service not available from this date.
 	public var during: Period?
 	
 	

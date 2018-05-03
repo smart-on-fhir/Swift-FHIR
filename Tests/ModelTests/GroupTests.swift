@@ -2,8 +2,8 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,6 +38,39 @@ class GroupTests: XCTestCase {
 	
 	@discardableResult
 	func runGroup1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGroup {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
+		
+		XCTAssertEqual(inst.actual, true)
+		XCTAssertEqual(inst.characteristic?[0].code?.text, "gender")
+		XCTAssertEqual(inst.characteristic?[0].exclude, false)
+		XCTAssertEqual(inst.characteristic?[0].valueCodeableConcept?.text, "mixed")
+		XCTAssertEqual(inst.characteristic?[1].code?.text, "owner")
+		XCTAssertEqual(inst.characteristic?[1].exclude, false)
+		XCTAssertEqual(inst.characteristic?[1].valueCodeableConcept?.text, "John Smith")
+		XCTAssertEqual(inst.code?.text, "Horse")
+		XCTAssertEqual(inst.id, "101")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://someveterinarianclinic.org/fhir/NamingSystem/herds")
+		XCTAssertEqual(inst.identifier?[0].value, "12345")
+		XCTAssertEqual(inst.name, "John's herd")
+		XCTAssertEqual(inst.quantity, 25)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		XCTAssertEqual(inst.type, GroupType(rawValue: "animal")!)
+		
+		return inst
+	}
+	
+	func testGroup2() {
+		do {
+			let instance = try runGroup2()
+			try runGroup2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runGroup2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGroup {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example-member.json")
 		
 		XCTAssertEqual(inst.actual, true)
@@ -57,10 +90,10 @@ class GroupTests: XCTestCase {
 		return inst
 	}
 	
-	func testGroup2() {
+	func testGroup3() {
 		do {
-			let instance = try runGroup2()
-			try runGroup2(instance.asJSON())
+			let instance = try runGroup3()
+			try runGroup3(instance.asJSON())
 		}
 		catch let error {
 			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw:\n---\n\(error)\n---")
@@ -68,23 +101,30 @@ class GroupTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runGroup2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGroup {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
+	func runGroup3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRGroup {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example-herd1.json")
 		
+		XCTAssertEqual(inst.active, true)
 		XCTAssertEqual(inst.actual, true)
 		XCTAssertEqual(inst.characteristic?[0].code?.text, "gender")
 		XCTAssertEqual(inst.characteristic?[0].exclude, false)
-		XCTAssertEqual(inst.characteristic?[0].valueCodeableConcept?.text, "mixed")
-		XCTAssertEqual(inst.characteristic?[1].code?.text, "owner")
-		XCTAssertEqual(inst.characteristic?[1].exclude, false)
-		XCTAssertEqual(inst.characteristic?[1].valueCodeableConcept?.text, "John Smith")
-		XCTAssertEqual(inst.code?.text, "Horse")
-		XCTAssertEqual(inst.id, "101")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://someveterinarianclinic.org/fhir/NamingSystem/herds")
-		XCTAssertEqual(inst.identifier?[0].value, "12345")
-		XCTAssertEqual(inst.name, "John's herd")
-		XCTAssertEqual(inst.quantity, 25)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "additional")!)
+		XCTAssertEqual(inst.characteristic?[0].valueCodeableConcept?.text, "female")
+		XCTAssertEqual(inst.code?.coding?[0].code, "388393002")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Genus Sus (organism)")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.code?.coding?[1].code, "POR")
+		XCTAssertEqual(inst.code?.coding?[1].display, "porcine")
+		XCTAssertEqual(inst.code?.coding?[1].system?.absoluteString, "https://www.aphis.usda.gov")
+		XCTAssertEqual(inst.code?.text, "Porcine")
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://example.org/fhir/StructureDefinition/owner")
+		XCTAssertEqual(inst.extension_fhir?[0].valueReference?.display, "Peter Chalmers")
+		XCTAssertEqual(inst.extension_fhir?[0].valueReference?.reference, "RelatedPerson/peter")
+		XCTAssertEqual(inst.id, "herd1")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "https://vetmed.iastate.edu/vdl")
+		XCTAssertEqual(inst.identifier?[0].value, "20171120-1234")
+		XCTAssertEqual(inst.name, "Breeding herd")
+		XCTAssertEqual(inst.quantity, 2500)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, GroupType(rawValue: "animal")!)
 		
 		return inst

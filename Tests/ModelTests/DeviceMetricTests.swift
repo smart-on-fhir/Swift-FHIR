@@ -2,8 +2,8 @@
 //  DeviceMetricTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -46,8 +46,8 @@ class DeviceMetricTests: XCTestCase {
 		XCTAssertEqual(inst.category, DeviceMetricCategory(rawValue: "measurement")!)
 		XCTAssertEqual(inst.color, DeviceMetricColor(rawValue: "blue")!)
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://goodcare.org/devicemetric/id")
-		XCTAssertEqual(inst.identifier?.value, "345675")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodcare.org/devicemetric/id")
+		XCTAssertEqual(inst.identifier?[0].value, "345675")
 		XCTAssertEqual(inst.measurementPeriod?.repeat_fhir?.frequency, 1)
 		XCTAssertEqual(inst.measurementPeriod?.repeat_fhir?.period, "1")
 		XCTAssertEqual(inst.measurementPeriod?.repeat_fhir?.periodUnit, "s")
@@ -57,10 +57,10 @@ class DeviceMetricTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "150456")
 		XCTAssertEqual(inst.type?.coding?[0].display, "MDC_PULS_OXIM_SAT_O2")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "urn:iso:std:iso:11073:10101")
 		XCTAssertEqual(inst.unit?.coding?[0].code, "262688")
 		XCTAssertEqual(inst.unit?.coding?[0].display, "MDC_DIM_PERCENT")
-		XCTAssertEqual(inst.unit?.coding?[0].system?.absoluteString, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.unit?.coding?[0].system?.absoluteString, "urn:iso:std:iso:11073:10101")
 		
 		return inst
 	}

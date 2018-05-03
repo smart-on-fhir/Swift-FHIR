@@ -2,8 +2,8 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -19,8 +19,8 @@ open class DeviceComponent: DomainResource {
 		get { return "DeviceComponent" }
 	}
 	
-	/// Instance id assigned by the software stack.
-	public var identifier: Identifier?
+	/// Instance identifier.
+	public var identifier: [Identifier]?
 	
 	/// Language code for the human-readable text strings produced by the device.
 	public var languageCode: CodeableConcept?
@@ -43,6 +43,9 @@ open class DeviceComponent: DomainResource {
 	/// Specification details such as Component Revisions, or Serial Numbers.
 	public var productionSpecification: [DeviceComponentProductionSpecification]?
 	
+	/// Other Attributes.
+	public var property: [DeviceComponentProperty]?
+	
 	/// Top-level device resource link.
 	public var source: Reference?
 	
@@ -51,9 +54,8 @@ open class DeviceComponent: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier, type: CodeableConcept) {
+	public convenience init(type: CodeableConcept) {
 		self.init()
-		self.identifier = identifier
 		self.type = type
 	}
 	
@@ -61,10 +63,7 @@ open class DeviceComponent: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") {
-			instCtx.addError(FHIRValidationError(missing: "identifier"))
-		}
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		languageCode = createInstance(type: CodeableConcept.self, for: "languageCode", in: json, context: &instCtx, owner: self) ?? languageCode
 		lastSystemChange = createInstance(type: Instant.self, for: "lastSystemChange", in: json, context: &instCtx, owner: self) ?? lastSystemChange
 		measurementPrinciple = createEnum(type: MeasmntPrinciple.self, for: "measurementPrinciple", in: json, context: &instCtx) ?? measurementPrinciple
@@ -72,6 +71,7 @@ open class DeviceComponent: DomainResource {
 		parameterGroup = createInstance(type: CodeableConcept.self, for: "parameterGroup", in: json, context: &instCtx, owner: self) ?? parameterGroup
 		parent = createInstance(type: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
 		productionSpecification = createInstances(of: DeviceComponentProductionSpecification.self, for: "productionSpecification", in: json, context: &instCtx, owner: self) ?? productionSpecification
+		property = createInstances(of: DeviceComponentProperty.self, for: "property", in: json, context: &instCtx, owner: self) ?? property
 		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		if nil == type && !instCtx.containsKey("type") {
@@ -82,10 +82,7 @@ open class DeviceComponent: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.languageCode?.decorate(json: &json, withKey: "languageCode", errors: &errors)
 		self.lastSystemChange?.decorate(json: &json, withKey: "lastSystemChange", errors: &errors)
 		self.measurementPrinciple?.decorate(json: &json, withKey: "measurementPrinciple", errors: &errors)
@@ -93,6 +90,7 @@ open class DeviceComponent: DomainResource {
 		self.parameterGroup?.decorate(json: &json, withKey: "parameterGroup", errors: &errors)
 		self.parent?.decorate(json: &json, withKey: "parent", errors: &errors)
 		arrayDecorate(json: &json, withKey: "productionSpecification", using: self.productionSpecification, errors: &errors)
+		arrayDecorate(json: &json, withKey: "property", using: self.property, errors: &errors)
 		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
@@ -136,6 +134,58 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 		self.componentId?.decorate(json: &json, withKey: "componentId", errors: &errors)
 		self.productionSpec?.decorate(json: &json, withKey: "productionSpec", errors: &errors)
 		self.specType?.decorate(json: &json, withKey: "specType", errors: &errors)
+	}
+}
+
+
+/**
+Other Attributes.
+
+Other device properties expressed as a `type` which identifies the property and a value(s) either as a quantity or a
+code.
+*/
+open class DeviceComponentProperty: BackboneElement {
+	override open class var resourceType: String {
+		get { return "DeviceComponentProperty" }
+	}
+	
+	/// Code that specifies the property.
+	public var type: CodeableConcept?
+	
+	/// Property value as a code.
+	public var valueCode: [CodeableConcept]?
+	
+	/// Property value as a quantity.
+	public var valueQuantity: [Quantity]?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: CodeableConcept) {
+		self.init()
+		self.type = type
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
+		}
+		valueCode = createInstances(of: CodeableConcept.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
+		valueQuantity = createInstances(of: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		arrayDecorate(json: &json, withKey: "valueCode", using: self.valueCode, errors: &errors)
+		arrayDecorate(json: &json, withKey: "valueQuantity", using: self.valueQuantity, errors: &errors)
 	}
 }
 

@@ -2,8 +2,8 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -37,8 +37,8 @@ open class PaymentReconciliation: DomainResource {
 	/// Insurer.
 	public var organization: Reference?
 	
-	/// complete | error | partial.
-	public var outcome: CodeableConcept?
+	/// queued | complete | error | partial.
+	public var outcome: FHIRString?
 	
 	/// Period covered.
 	public var period: Period?
@@ -48,9 +48,6 @@ open class PaymentReconciliation: DomainResource {
 	
 	/// Claim reference.
 	public var request: Reference?
-	
-	/// Responsible organization.
-	public var requestOrganization: Reference?
 	
 	/// Responsible practitioner.
 	public var requestProvider: Reference?
@@ -71,11 +68,10 @@ open class PaymentReconciliation: DomainResource {
 		form = createInstance(type: CodeableConcept.self, for: "form", in: json, context: &instCtx, owner: self) ?? form
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
-		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		outcome = createInstance(type: FHIRString.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		processNote = createInstances(of: PaymentReconciliationProcessNote.self, for: "processNote", in: json, context: &instCtx, owner: self) ?? processNote
 		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
-		requestOrganization = createInstance(type: Reference.self, for: "requestOrganization", in: json, context: &instCtx, owner: self) ?? requestOrganization
 		requestProvider = createInstance(type: Reference.self, for: "requestProvider", in: json, context: &instCtx, owner: self) ?? requestProvider
 		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
 		total = createInstance(type: Money.self, for: "total", in: json, context: &instCtx, owner: self) ?? total
@@ -94,7 +90,6 @@ open class PaymentReconciliation: DomainResource {
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		arrayDecorate(json: &json, withKey: "processNote", using: self.processNote, errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
-		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		self.total?.decorate(json: &json, withKey: "total", errors: &errors)
@@ -186,15 +181,15 @@ open class PaymentReconciliationProcessNote: BackboneElement {
 	/// Comment on the processing.
 	public var text: FHIRString?
 	
-	/// display | print | printoper.
-	public var type: CodeableConcept?
+	/// The note purpose: Print/Display.
+	public var type: NoteType?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
-		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		type = createEnum(type: NoteType.self, for: "type", in: json, context: &instCtx) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

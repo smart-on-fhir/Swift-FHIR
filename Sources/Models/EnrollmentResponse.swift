@@ -2,8 +2,8 @@
 //  EnrollmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -31,14 +31,11 @@ open class EnrollmentResponse: DomainResource {
 	/// Insurer.
 	public var organization: Reference?
 	
-	/// complete | error | partial.
-	public var outcome: CodeableConcept?
+	/// queued | complete | error | partial.
+	public var outcome: FHIRString?
 	
 	/// Claim reference.
 	public var request: Reference?
-	
-	/// Responsible organization.
-	public var requestOrganization: Reference?
 	
 	/// Responsible practitioner.
 	public var requestProvider: Reference?
@@ -54,9 +51,8 @@ open class EnrollmentResponse: DomainResource {
 		disposition = createInstance(type: FHIRString.self, for: "disposition", in: json, context: &instCtx, owner: self) ?? disposition
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
-		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		outcome = createInstance(type: FHIRString.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
 		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
-		requestOrganization = createInstance(type: Reference.self, for: "requestOrganization", in: json, context: &instCtx, owner: self) ?? requestOrganization
 		requestProvider = createInstance(type: Reference.self, for: "requestProvider", in: json, context: &instCtx, owner: self) ?? requestProvider
 		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
 	}
@@ -70,7 +66,6 @@ open class EnrollmentResponse: DomainResource {
 		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
-		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 	}

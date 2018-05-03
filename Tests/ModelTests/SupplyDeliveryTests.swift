@@ -2,8 +2,8 @@
 //  SupplyDeliveryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,18 +38,23 @@ class SupplyDeliveryTests: XCTestCase {
 	
 	@discardableResult
 	func runSupplyDelivery1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSupplyDelivery {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "supplydelivery-example-pumpdelivery.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "supplydelivery-example.json")
 		
-		XCTAssertEqual(inst.destination?.display, "Home care dept")
-		XCTAssertEqual(inst.id, "pumpdelivery")
-		XCTAssertEqual(inst.identifier?.assigner?.display, "SupplierDeliveryNr")
-		XCTAssertEqual(inst.identifier?.value, "98398459409")
-		XCTAssertEqual(inst.patient?.display, "Mr. Belpit")
-		XCTAssertEqual(inst.receiver?[0].display, "Nurse Smith")
-		XCTAssertEqual(inst.status, SupplyDeliveryStatus(rawValue: "in-progress")!)
-		XCTAssertEqual(inst.supplier?.display, "ACME distribution")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
+		XCTAssertEqual(inst.basedOn?[0].reference, "SupplyRequest/simpleorder")
+		XCTAssertEqual(inst.destination?.display, "Location 1")
+		XCTAssertEqual(inst.id, "simpledelivery")
+		XCTAssertEqual(inst.identifier?[0].value, "Order10284")
+		XCTAssertEqual(inst.occurrenceDateTime?.description, "2016-12-31")
+		XCTAssertEqual(inst.partOf?[0].display, "Central Supply Restock")
+		XCTAssertEqual(inst.status, SupplyDeliveryStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.suppliedItem?.itemCodeableConcept?.coding?[0].code, "BlueTubes")
+		XCTAssertEqual(inst.suppliedItem?.itemCodeableConcept?.coding?[0].display, "Blood collect tubes blue cap")
+		XCTAssertEqual(inst.suppliedItem?.quantity?.value, "10")
+		XCTAssertEqual(inst.supplier?.display, "Vendor1")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type?.coding?[0].code, "device")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/supply-item-type")
+		XCTAssertEqual(inst.type?.text, "Blood collect tubes blue cap")
 		
 		return inst
 	}
@@ -66,23 +71,18 @@ class SupplyDeliveryTests: XCTestCase {
 	
 	@discardableResult
 	func runSupplyDelivery2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSupplyDelivery {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "supplydelivery-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "supplydelivery-example-pumpdelivery.json")
 		
-		XCTAssertEqual(inst.basedOn?[0].reference, "SupplyRequest/simpleorder")
-		XCTAssertEqual(inst.destination?.display, "Location 1")
-		XCTAssertEqual(inst.id, "simpledelivery")
-		XCTAssertEqual(inst.identifier?.value, "Order10284")
-		XCTAssertEqual(inst.occurrenceDateTime?.description, "2016-12-31")
-		XCTAssertEqual(inst.partOf?[0].display, "Central Supply Restock")
-		XCTAssertEqual(inst.status, SupplyDeliveryStatus(rawValue: "completed")!)
-		XCTAssertEqual(inst.suppliedItem?.itemCodeableConcept?.coding?[0].code, "BlueTubes")
-		XCTAssertEqual(inst.suppliedItem?.itemCodeableConcept?.coding?[0].display, "Blood collect tubes blue cap")
-		XCTAssertEqual(inst.suppliedItem?.quantity?.value, "10")
-		XCTAssertEqual(inst.supplier?.display, "Vendor1")
+		XCTAssertEqual(inst.destination?.display, "Home care dept")
+		XCTAssertEqual(inst.id, "pumpdelivery")
+		XCTAssertEqual(inst.identifier?[0].assigner?.display, "SupplierDeliveryNr")
+		XCTAssertEqual(inst.identifier?[0].value, "98398459409")
+		XCTAssertEqual(inst.patient?.display, "Mr. Belpit")
+		XCTAssertEqual(inst.receiver?[0].display, "Nurse Smith")
+		XCTAssertEqual(inst.status, SupplyDeliveryStatus(rawValue: "in-progress")!)
+		XCTAssertEqual(inst.supplier?.display, "ACME distribution")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "device")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/supply-item-type")
-		XCTAssertEqual(inst.type?.text, "Blood collect tubes blue cap")
 		
 		return inst
 	}

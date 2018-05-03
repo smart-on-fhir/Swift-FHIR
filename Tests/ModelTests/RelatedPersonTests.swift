@@ -2,8 +2,8 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,74 +38,6 @@ class RelatedPersonTests: XCTestCase {
 	
 	@discardableResult
 	func runRelatedPerson1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRelatedPerson {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
-		
-		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "female")!)
-		XCTAssertEqual(inst.id, "f001")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
-		XCTAssertEqual(inst.identifier?[0].type?.text, "BSN")
-		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
-		XCTAssertEqual(inst.name?[0].family, "Abels")
-		XCTAssertEqual(inst.name?[0].given?[0], "Sarah")
-		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "usual")!)
-		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
-		XCTAssertEqual(inst.relationship?.coding?[0].code, "SIGOTHR")
-		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
-		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
-		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "mobile")!)
-		XCTAssertEqual(inst.telecom?[0].value, "0690383372")
-		XCTAssertEqual(inst.telecom?[1].system, ContactPointSystem(rawValue: "email")!)
-		XCTAssertEqual(inst.telecom?[1].use, ContactPointUse(rawValue: "home")!)
-		XCTAssertEqual(inst.telecom?[1].value, "s.abels@kpn.nl")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testRelatedPerson2() {
-		do {
-			let instance = try runRelatedPerson2()
-			try runRelatedPerson2(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runRelatedPerson2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRelatedPerson {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
-		
-		XCTAssertEqual(inst.birthDate?.description, "1963")
-		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "female")!)
-		XCTAssertEqual(inst.id, "f002")
-		XCTAssertEqual(inst.name?[0].text, "Ariadne Bor-Jansma")
-		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "usual")!)
-		XCTAssertEqual(inst.patient?.reference, "Patient/f201")
-		XCTAssertEqual(inst.period?.start?.description, "1975")
-		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")
-		XCTAssertEqual(inst.relationship?.coding?[0].code, "SIGOTHR")
-		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
-		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
-		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "home")!)
-		XCTAssertEqual(inst.telecom?[0].value, "+31201234567")
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		
-		return inst
-	}
-	
-	func testRelatedPerson3() {
-		do {
-			let instance = try runRelatedPerson3()
-			try runRelatedPerson3(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runRelatedPerson3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRelatedPerson {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-peter.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "PleasantVille")
@@ -123,11 +55,87 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.period?.start?.description, "2012-03-11")
 		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")
 		XCTAssertEqual(inst.photo?[0].url?.absoluteString, "Binary/f012")
-		XCTAssertEqual(inst.relationship?.coding?[0].code, "C")
-		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].code, "C")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
 		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.telecom?[0].value, "(03) 5555 6473")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testRelatedPerson2() {
+		do {
+			let instance = try runRelatedPerson2()
+			try runRelatedPerson2(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runRelatedPerson2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRelatedPerson {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
+		
+		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "female")!)
+		XCTAssertEqual(inst.id, "f001")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier?[0].type?.text, "BSN")
+		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
+		XCTAssertEqual(inst.name?[0].family, "Abels")
+		XCTAssertEqual(inst.name?[0].given?[0], "Sarah")
+		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "usual")!)
+		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].code, "SIGOTHR")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
+		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
+		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "mobile")!)
+		XCTAssertEqual(inst.telecom?[0].value, "0690383372")
+		XCTAssertEqual(inst.telecom?[1].system, ContactPointSystem(rawValue: "email")!)
+		XCTAssertEqual(inst.telecom?[1].use, ContactPointUse(rawValue: "home")!)
+		XCTAssertEqual(inst.telecom?[1].value, "s.abels@kpn.nl")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testRelatedPerson3() {
+		do {
+			let instance = try runRelatedPerson3()
+			try runRelatedPerson3(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runRelatedPerson3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRelatedPerson {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-newborn-mom.json")
+		
+		XCTAssertEqual(inst.active, true)
+		XCTAssertEqual(inst.address?[0].line?[0], "2222 Home Street")
+		XCTAssertEqual(inst.address?[0].use, AddressUse(rawValue: "home")!)
+		XCTAssertEqual(inst.birthDate?.description, "1973-05-31")
+		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "female")!)
+		XCTAssertEqual(inst.id, "newborn-mom")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://hl7.org/fhir/sid/us-ssn")
+		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].code, "SS")
+		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.identifier?[0].value, "444222222")
+		XCTAssertEqual(inst.name?[0].family, "Everywoman")
+		XCTAssertEqual(inst.name?[0].given?[0], "Eve")
+		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "official")!)
+		XCTAssertEqual(inst.patient?.reference, "Patient/newborn")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].code, "NMTH")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].display, "natural mother")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
+		XCTAssertEqual(inst.relationship?[0].text, "Natural Mother")
+		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
+		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "work")!)
+		XCTAssertEqual(inst.telecom?[0].value, "555-555-2003")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -163,12 +171,44 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")
 		XCTAssertEqual(inst.photo?[0].url?.absoluteString, "Binary/f016")
-		XCTAssertEqual(inst.relationship?.coding?[0].code, "N")
-		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
-		XCTAssertEqual(inst.relationship?.coding?[1].code, "WIFE")
-		XCTAssertEqual(inst.relationship?.coding?[1].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].code, "N")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0131")
+		XCTAssertEqual(inst.relationship?[0].coding?[1].code, "WIFE")
+		XCTAssertEqual(inst.relationship?[0].coding?[1].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
 		XCTAssertEqual(inst.telecom?[0].value, "+33 (237) 998327")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testRelatedPerson5() {
+		do {
+			let instance = try runRelatedPerson5()
+			try runRelatedPerson5(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runRelatedPerson5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRRelatedPerson {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
+		
+		XCTAssertEqual(inst.birthDate?.description, "1963")
+		XCTAssertEqual(inst.gender, AdministrativeGender(rawValue: "female")!)
+		XCTAssertEqual(inst.id, "f002")
+		XCTAssertEqual(inst.name?[0].text, "Ariadne Bor-Jansma")
+		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "usual")!)
+		XCTAssertEqual(inst.patient?.reference, "Patient/f201")
+		XCTAssertEqual(inst.period?.start?.description, "1975")
+		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].code, "SIGOTHR")
+		XCTAssertEqual(inst.relationship?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
+		XCTAssertEqual(inst.telecom?[0].system, ContactPointSystem(rawValue: "phone")!)
+		XCTAssertEqual(inst.telecom?[0].use, ContactPointUse(rawValue: "home")!)
+		XCTAssertEqual(inst.telecom?[0].value, "+31201234567")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

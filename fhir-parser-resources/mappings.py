@@ -22,6 +22,8 @@ classmap = {
     'oid': 'FHIRURL',
     'uuid': 'FHIRString',
     'uri': 'FHIRURL',
+    'url': 'FHIRURL',
+    'canonical': 'FHIRURL',
     
 #   'base64Binary': 'Base64Binary',
     
@@ -80,6 +82,7 @@ reservedmap = {
 # For enum codes where a computer just cannot generate reasonable names
 enum_map = {
     '=': 'eq',
+	'!=': 'neq',
     '<': 'lt',
     '<=': 'lte',
     '>': 'gt',
@@ -92,5 +95,6 @@ enum_namemap = {
     'http://hl7.org/fhir/contracttermsubtypecodes': 'ContractTermSubtypeCodes',
     'http://hl7.org/fhir/coverage-exception': 'CoverageExceptionCodes',
     'http://hl7.org/fhir/resource-type-link': 'ResourceTypeLink',
+	'http://hl7.org/fhir/usersession-status': 'UserSessionStatusEnum'
 }
 

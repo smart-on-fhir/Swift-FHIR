@@ -2,8 +2,8 @@
 //  DocumentReferenceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -43,9 +43,15 @@ class DocumentReferenceTests: XCTestCase {
 		XCTAssertEqual(inst.`class`?.coding?[0].code, "History and Physical")
 		XCTAssertEqual(inst.`class`?.coding?[0].display, "History and Physical")
 		XCTAssertEqual(inst.`class`?.coding?[0].system?.absoluteString, "http://ihe.net/xds/connectathon/classCodes")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].code, "AUT")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].display, "author (originator)")
+		XCTAssertEqual(inst.agent?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
+		XCTAssertEqual(inst.agent?[0].who?.reference, "Practitioner/xcda1")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].code, "AUT")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].display, "author (originator)")
+		XCTAssertEqual(inst.agent?[1].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
+		XCTAssertEqual(inst.agent?[1].who?.reference, "#a2")
 		XCTAssertEqual(inst.authenticator?.reference, "Organization/f001")
-		XCTAssertEqual(inst.author?[0].reference, "Practitioner/xcda1")
-		XCTAssertEqual(inst.author?[1].reference, "#a2")
 		XCTAssertEqual(inst.contained?[0].id, "a2")
 		XCTAssertEqual(inst.content?[0].attachment?.contentType, "application/hl7-v3+xml")
 		XCTAssertEqual(inst.content?[0].attachment?.hash, Base64Binary(value: "2jmj7l5rSw0yVb/vlWAYkK/YBwk="))
@@ -73,12 +79,12 @@ class DocumentReferenceTests: XCTestCase {
 		XCTAssertEqual(inst.context?.sourcePatientInfo?.reference, "Patient/xcda")
 		XCTAssertEqual(inst.created?.description, "2005-12-24T09:35:00+11:00")
 		XCTAssertEqual(inst.custodian?.reference, "Organization/f001")
+		XCTAssertEqual(inst.date?.description, "2005-12-24T09:43:41+11:00")
 		XCTAssertEqual(inst.description_fhir, "Physical")
 		XCTAssertEqual(inst.docStatus, CompositionStatus(rawValue: "preliminary")!)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234")
-		XCTAssertEqual(inst.indexed?.description, "2005-12-24T09:43:41+11:00")
 		XCTAssertEqual(inst.masterIdentifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.masterIdentifier?.value, "urn:oid:1.3.6.1.4.1.21367.2005.3.7")
 		XCTAssertEqual(inst.relatesTo?[0].code, DocumentRelationshipType(rawValue: "appends")!)

@@ -2,8 +2,8 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -41,16 +41,13 @@ open class ProcessResponse: DomainResource {
 	public var organization: Reference?
 	
 	/// Processing outcome.
-	public var outcome: CodeableConcept?
+	public var outcome: FHIRString?
 	
 	/// Processing comments or additional requirements.
 	public var processNote: [ProcessResponseProcessNote]?
 	
 	/// Request reference.
 	public var request: Reference?
-	
-	/// Responsible organization.
-	public var requestOrganization: Reference?
 	
 	/// Responsible Practitioner.
 	public var requestProvider: Reference?
@@ -69,10 +66,9 @@ open class ProcessResponse: DomainResource {
 		form = createInstance(type: CodeableConcept.self, for: "form", in: json, context: &instCtx, owner: self) ?? form
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
-		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		outcome = createInstance(type: FHIRString.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
 		processNote = createInstances(of: ProcessResponseProcessNote.self, for: "processNote", in: json, context: &instCtx, owner: self) ?? processNote
 		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
-		requestOrganization = createInstance(type: Reference.self, for: "requestOrganization", in: json, context: &instCtx, owner: self) ?? requestOrganization
 		requestProvider = createInstance(type: Reference.self, for: "requestProvider", in: json, context: &instCtx, owner: self) ?? requestProvider
 		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
 	}
@@ -90,7 +86,6 @@ open class ProcessResponse: DomainResource {
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
 		arrayDecorate(json: &json, withKey: "processNote", using: self.processNote, errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
-		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 	}
@@ -110,15 +105,15 @@ open class ProcessResponseProcessNote: BackboneElement {
 	/// Comment on the processing.
 	public var text: FHIRString?
 	
-	/// display | print | printoper.
-	public var type: CodeableConcept?
+	/// The note purpose: Print/Display.
+	public var type: NoteType?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
-		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		type = createEnum(type: NoteType.self, for: "type", in: json, context: &instCtx) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

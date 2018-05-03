@@ -2,8 +2,8 @@
 //  Endpoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -35,7 +35,7 @@ open class Endpoint: DomainResource {
 	/// Identifies this endpoint across multiple systems.
 	public var identifier: [Identifier]?
 	
-	/// Organization that manages this endpoint (may not be the organization that exposes the endpoint).
+	/// Organization that manages this endpoint (might not be the organization that exposes the endpoint).
 	public var managingOrganization: Reference?
 	
 	/// A name that this endpoint can be identified by.

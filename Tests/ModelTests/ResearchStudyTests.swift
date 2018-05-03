@@ -2,8 +2,8 @@
 //  ResearchStudyTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -41,7 +41,7 @@ class ResearchStudyTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "researchstudy-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.status, ResearchStudyStatus(rawValue: "draft")!)
+		XCTAssertEqual(inst.status, ResearchStudyStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

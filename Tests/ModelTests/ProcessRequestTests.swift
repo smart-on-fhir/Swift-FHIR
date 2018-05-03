@@ -2,8 +2,8 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,14 +38,16 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-eob.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "1115")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.phr.com/patient/12345/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "115")
-		XCTAssertEqual(inst.include?[0], "ExplanationOfBenefit")
+		XCTAssertEqual(inst.exclude?[0], "Communication")
+		XCTAssertEqual(inst.exclude?[1], "PaymentReconciliation")
+		XCTAssertEqual(inst.id, "1113")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
+		XCTAssertEqual(inst.identifier?[0].value, "113")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -65,16 +67,14 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-eob.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.exclude?[0], "Communication")
-		XCTAssertEqual(inst.exclude?[1], "PaymentReconciliation")
-		XCTAssertEqual(inst.id, "1113")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "113")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.id, "1115")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.phr.com/patient/12345/processrequest")
+		XCTAssertEqual(inst.identifier?[0].value, "115")
+		XCTAssertEqual(inst.include?[0], "ExplanationOfBenefit")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -94,16 +94,19 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-specific.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "1112")
+		XCTAssertEqual(inst.id, "1111")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "112")
-		XCTAssertEqual(inst.include?[0], "PaymentReconciliation")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.identifier?[0].value, "111")
+		XCTAssertEqual(inst.provider?.identifier?.system?.absoluteString, "http://npid.org/providerid")
+		XCTAssertEqual(inst.provider?.identifier?.value, "AF12345")
+		XCTAssertEqual(inst.request?.reference, "http://benefitco.com/oralhealthclaim/12345")
 		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.target?.identifier?.system?.absoluteString, "http://ninsurers.org/payorid")
+		XCTAssertEqual(inst.target?.identifier?.value, "WI12345")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -122,17 +125,15 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-payrec.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "1114")
+		XCTAssertEqual(inst.id, "1112")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "114")
+		XCTAssertEqual(inst.identifier?[0].value, "112")
 		XCTAssertEqual(inst.include?[0], "PaymentReconciliation")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.period?.end?.description, "2014-08-20")
-		XCTAssertEqual(inst.period?.start?.description, "2014-08-10")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -152,20 +153,18 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-specific.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-payrec.json")
 		
 		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "1111")
+		XCTAssertEqual(inst.id, "1114")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "111")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.provider?.identifier?.system?.absoluteString, "http://npid.org/providerid")
-		XCTAssertEqual(inst.provider?.identifier?.value, "AF12345")
-		XCTAssertEqual(inst.request?.reference, "http://benefitco.com/oralhealthclaim/12345")
+		XCTAssertEqual(inst.identifier?[0].value, "114")
+		XCTAssertEqual(inst.include?[0], "PaymentReconciliation")
+		XCTAssertEqual(inst.period?.end?.description, "2014-08-20")
+		XCTAssertEqual(inst.period?.start?.description, "2014-08-10")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.target?.identifier?.system?.absoluteString, "http://ninsurers.org/payorid")
-		XCTAssertEqual(inst.target?.identifier?.value, "WI12345")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -184,19 +183,16 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reprocess.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example.json")
 		
-		XCTAssertEqual(inst.action, ActionList(rawValue: "reprocess")!)
+		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "44654")
+		XCTAssertEqual(inst.id, "1110")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "44543")
-		XCTAssertEqual(inst.item?[0].sequenceLinkId, 1)
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.reference, "ABC12345G")
-		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/claim/12345")
+		XCTAssertEqual(inst.identifier?[0].value, "110")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ReProcess ProcessRequest resource.</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -222,7 +218,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "76543")
 		XCTAssertEqual(inst.nullify, false)
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
 		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/claim/12345")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Reversal ProcessRequest</div>")
@@ -243,18 +239,19 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest8(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-status.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reprocess.json")
 		
-		XCTAssertEqual(inst.action, ActionList(rawValue: "status")!)
+		XCTAssertEqual(inst.action, ActionList(rawValue: "reprocess")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "87655")
+		XCTAssertEqual(inst.id, "44654")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "1776543")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.request?.reference, "http://happyvalley.com/claim/12345")
-		XCTAssertEqual(inst.response?.reference, "http://BenefitsInc.com/fhir/claimresponse/3500")
+		XCTAssertEqual(inst.identifier?[0].value, "44543")
+		XCTAssertEqual(inst.item?[0].sequenceLinkId, 1)
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
+		XCTAssertEqual(inst.reference, "ABC12345G")
+		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/claim/12345")
 		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Status ProcessRequest</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ReProcess ProcessRequest resource.</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -272,16 +269,18 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest9(_ json: FHIRJSON? = nil) throws -> SwiftFHIRProcessRequest {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-status.json")
 		
-		XCTAssertEqual(inst.action, ActionList(rawValue: "poll")!)
+		XCTAssertEqual(inst.action, ActionList(rawValue: "status")!)
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "1110")
+		XCTAssertEqual(inst.id, "87655")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
-		XCTAssertEqual(inst.identifier?[0].value, "110")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.identifier?[0].value, "1776543")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
+		XCTAssertEqual(inst.request?.reference, "http://happyvalley.com/claim/12345")
+		XCTAssertEqual(inst.response?.reference, "http://BenefitsInc.com/fhir/claimresponse/3500")
 		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Poll ProcessRequest</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Status ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

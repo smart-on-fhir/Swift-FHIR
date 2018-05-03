@@ -2,8 +2,8 @@
 //  ActivityDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -38,9 +38,9 @@ class ActivityDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runActivityDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRActivityDefinition {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-predecessor-example.json")
 		
-		XCTAssertEqual(inst.approvalDate?.description, "2017-03-01")
+		XCTAssertEqual(inst.approvalDate?.description, "2016-03-12")
 		XCTAssertEqual(inst.code?.coding?[0].code, "306206005")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code?.text, "Referral to service (procedure)")
@@ -62,25 +62,25 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2017-03-03T14:06:00Z")
 		XCTAssertEqual(inst.description_fhir, "refer to primary care mental-health integrated care program for evaluation and treatment of mental health conditions now")
 		XCTAssertEqual(inst.effectivePeriod?.end?.description, "2017-12-31")
-		XCTAssertEqual(inst.effectivePeriod?.start?.description, "2017-03-01")
+		XCTAssertEqual(inst.effectivePeriod?.start?.description, "2016-01-01")
 		XCTAssertEqual(inst.experimental, true)
-		XCTAssertEqual(inst.id, "referralPrimaryCareMentalHealth")
+		XCTAssertEqual(inst.id, "referralPrimaryCareMentalHealth-initial")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://motivemi.com/artifacts")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "referralPrimaryCareMentalHealth")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.kind, "ReferralRequest")
-		XCTAssertEqual(inst.lastReviewDate?.description, "2017-03-01")
+		XCTAssertEqual(inst.kind, ResourceType(rawValue: "ServiceRequest")!)
+		XCTAssertEqual(inst.lastReviewDate?.description, "2016-08-15")
 		XCTAssertEqual(inst.name, "ReferralPrimaryCareMentalHealth")
 		XCTAssertEqual(inst.participant?[0].type, ActionParticipantType(rawValue: "practitioner")!)
 		XCTAssertEqual(inst.publisher, "Motive Medical Intelligence")
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "citation")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.reference, "ActivityDefinition/referralPrimaryCareMentalHealth-initial")
-		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "predecessor")!)
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "ActivityDefinition/referralPrimaryCareMentalHealth")
+		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "successor")!)
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "retired")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Referral to Primary Care Mental Health")
 		XCTAssertEqual(inst.topic?[0].text, "Mental Health Referral")
@@ -120,7 +120,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.useContext?[6].valueCodeableConcept?.coding?[0].code, "440655000")
 		XCTAssertEqual(inst.useContext?[6].valueCodeableConcept?.coding?[0].display, "Outpatient environment")
 		XCTAssertEqual(inst.useContext?[6].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.version, "1.1.0")
+		XCTAssertEqual(inst.version, "1.0.0")
 		
 		return inst
 	}
@@ -159,8 +159,11 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.copyright, "© Copyright 2016 Motive Medical Intelligence. All rights reserved.")
 		XCTAssertEqual(inst.date?.description, "2015-08-15")
 		XCTAssertEqual(inst.description_fhir, "Citalopram 20 mg tablet 1 tablet oral 1 time daily now (30 table; 3 refills")
-		XCTAssertEqual(inst.dosage?[0].doseQuantity?.unit, "{tbl}")
-		XCTAssertEqual(inst.dosage?[0].doseQuantity?.value, "1")
+		XCTAssertEqual(inst.dosage?[0].doseAndRate?[0].doseQuantity?.unit, "{tbl}")
+		XCTAssertEqual(inst.dosage?[0].doseAndRate?[0].doseQuantity?.value, "1")
+		XCTAssertEqual(inst.dosage?[0].doseAndRate?[0].type?.coding?[0].code, "ordered")
+		XCTAssertEqual(inst.dosage?[0].doseAndRate?[0].type?.coding?[0].display, "Ordered")
+		XCTAssertEqual(inst.dosage?[0].doseAndRate?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/dose-rate-type")
 		XCTAssertEqual(inst.dosage?[0].route?.coding?[0].code, "26643006")
 		XCTAssertEqual(inst.dosage?[0].route?.coding?[0].display, "Oral route (qualifier value)")
 		XCTAssertEqual(inst.dosage?[0].route?.text, "Oral route (qualifier value)")
@@ -185,7 +188,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "citalopramPrescription")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.kind, "MedicationRequest")
+		XCTAssertEqual(inst.kind, ResourceType(rawValue: "MedicationRequest")!)
 		XCTAssertEqual(inst.lastReviewDate?.description, "2016-08-15")
 		XCTAssertEqual(inst.name, "CitalopramPrescription")
 		XCTAssertEqual(inst.productReference?.reference, "#citalopramMedication")
@@ -194,7 +197,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "citation")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.reference, "#citalopramMedication")
+		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "#citalopramMedication")
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "composed-of")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -254,9 +257,9 @@ class ActivityDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runActivityDefinition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRActivityDefinition {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-predecessor-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-example.json")
 		
-		XCTAssertEqual(inst.approvalDate?.description, "2016-03-12")
+		XCTAssertEqual(inst.approvalDate?.description, "2017-03-01")
 		XCTAssertEqual(inst.code?.coding?[0].code, "306206005")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code?.text, "Referral to service (procedure)")
@@ -278,25 +281,25 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2017-03-03T14:06:00Z")
 		XCTAssertEqual(inst.description_fhir, "refer to primary care mental-health integrated care program for evaluation and treatment of mental health conditions now")
 		XCTAssertEqual(inst.effectivePeriod?.end?.description, "2017-12-31")
-		XCTAssertEqual(inst.effectivePeriod?.start?.description, "2016-01-01")
+		XCTAssertEqual(inst.effectivePeriod?.start?.description, "2017-03-01")
 		XCTAssertEqual(inst.experimental, true)
-		XCTAssertEqual(inst.id, "referralPrimaryCareMentalHealth-initial")
+		XCTAssertEqual(inst.id, "referralPrimaryCareMentalHealth")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://motivemi.com/artifacts")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "referralPrimaryCareMentalHealth")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.kind, "ReferralRequest")
-		XCTAssertEqual(inst.lastReviewDate?.description, "2016-08-15")
+		XCTAssertEqual(inst.kind, ResourceType(rawValue: "ServiceRequest")!)
+		XCTAssertEqual(inst.lastReviewDate?.description, "2017-03-01")
 		XCTAssertEqual(inst.name, "ReferralPrimaryCareMentalHealth")
 		XCTAssertEqual(inst.participant?[0].type, ActionParticipantType(rawValue: "practitioner")!)
 		XCTAssertEqual(inst.publisher, "Motive Medical Intelligence")
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "citation")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.reference, "ActivityDefinition/referralPrimaryCareMentalHealth")
-		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "successor")!)
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "retired")!)
+		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "ActivityDefinition/referralPrimaryCareMentalHealth-initial")
+		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "predecessor")!)
+		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Referral to Primary Care Mental Health")
 		XCTAssertEqual(inst.topic?[0].text, "Mental Health Referral")
@@ -336,7 +339,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.useContext?[6].valueCodeableConcept?.coding?[0].code, "440655000")
 		XCTAssertEqual(inst.useContext?[6].valueCodeableConcept?.coding?[0].display, "Outpatient environment")
 		XCTAssertEqual(inst.useContext?[6].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.version, "1.0.0")
+		XCTAssertEqual(inst.version, "1.1.0")
 		
 		return inst
 	}
@@ -353,7 +356,7 @@ class ActivityDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runActivityDefinition4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRActivityDefinition {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-procedurerequest-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "activitydefinition-servicerequest-example.json")
 		
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].code, "17401000")
 		XCTAssertEqual(inst.bodySite?[0].coding?[0].display, "Heart valve structure")
@@ -363,7 +366,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.description_fhir, "Heart valve replacement")
 		XCTAssertEqual(inst.id, "heart-valve-replacement")
-		XCTAssertEqual(inst.kind, "ProcedureRequest")
+		XCTAssertEqual(inst.kind, ResourceType(rawValue: "ServiceRequest")!)
 		XCTAssertEqual(inst.location?.reference, "Location/1")
 		XCTAssertEqual(inst.participant?[0].role?.coding?[0].code, "207RI0011X")
 		XCTAssertEqual(inst.participant?[0].role?.coding?[0].display, "Interventional Cardiology")
@@ -408,12 +411,12 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "Blood collect tubes blue cap")
 		XCTAssertEqual(inst.description_fhir, "10 Blood collect tubes blue cap")
 		XCTAssertEqual(inst.id, "blood-tubes-supply")
-		XCTAssertEqual(inst.kind, "SupplyRequest")
+		XCTAssertEqual(inst.kind, ResourceType(rawValue: "SupplyRequest")!)
 		XCTAssertEqual(inst.purpose, "Describes a request for 10 Blood collection tubes with blue caps.")
 		XCTAssertEqual(inst.quantity?.value, "10")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.transform?.reference, "StructureMap/supplyrequest-transform")
+		XCTAssertEqual(inst.transform?.absoluteString, "StructureMap/supplyrequest-transform")
 		
 		return inst
 	}

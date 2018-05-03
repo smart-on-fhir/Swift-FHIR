@@ -2,8 +2,8 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Observation) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -43,6 +43,9 @@ open class Observation: DomainResource {
 	/// Why the result is missing.
 	public var dataAbsentReason: CodeableConcept?
 	
+	/// Related measurements the observation is made from.
+	public var derivedFrom: [Reference]?
+	
 	/// (Measurement) Device.
 	public var device: Reference?
 	
@@ -52,26 +55,35 @@ open class Observation: DomainResource {
 	/// Clinically relevant time/time-period for observation.
 	public var effectivePeriod: Period?
 	
+	/// Clinically relevant time/time-period for observation.
+	public var effectiveTiming: Timing?
+	
+	/// The "focal point" of the observation.
+	public var focus: Reference?
+	
+	/// Related resource that belongs to the Observation group.
+	public var hasMember: [Reference]?
+	
 	/// Business Identifier for observation.
 	public var identifier: [Identifier]?
 	
 	/// High, low, normal, etc..
 	public var interpretation: CodeableConcept?
 	
-	/// Date/Time this was made available.
+	/// Date/Time this version was made available.
 	public var issued: Instant?
 	
 	/// How it was done.
 	public var method: CodeableConcept?
+	
+	/// Part of referenced event.
+	public var partOf: [Reference]?
 	
 	/// Who is responsible for the observation.
 	public var performer: [Reference]?
 	
 	/// Provides guide for interpretation.
 	public var referenceRange: [ObservationReferenceRange]?
-	
-	/// Resource related to this observation.
-	public var related: [ObservationRelated]?
 	
 	/// Specimen used for this observation.
 	public var specimen: Reference?
@@ -83,9 +95,6 @@ open class Observation: DomainResource {
 	public var subject: Reference?
 	
 	/// Actual result.
-	public var valueAttachment: Attachment?
-	
-	/// Actual result.
 	public var valueBoolean: FHIRBool?
 	
 	/// Actual result.
@@ -93,6 +102,9 @@ open class Observation: DomainResource {
 	
 	/// Actual result.
 	public var valueDateTime: DateTime?
+	
+	/// Actual result.
+	public var valueInteger: FHIRInteger?
 	
 	/// Actual result.
 	public var valuePeriod: Period?
@@ -138,26 +150,30 @@ open class Observation: DomainResource {
 		component = createInstances(of: ObservationComponent.self, for: "component", in: json, context: &instCtx, owner: self) ?? component
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		dataAbsentReason = createInstance(type: CodeableConcept.self, for: "dataAbsentReason", in: json, context: &instCtx, owner: self) ?? dataAbsentReason
+		derivedFrom = createInstances(of: Reference.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
 		device = createInstance(type: Reference.self, for: "device", in: json, context: &instCtx, owner: self) ?? device
 		effectiveDateTime = createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, context: &instCtx, owner: self) ?? effectiveDateTime
 		effectivePeriod = createInstance(type: Period.self, for: "effectivePeriod", in: json, context: &instCtx, owner: self) ?? effectivePeriod
+		effectiveTiming = createInstance(type: Timing.self, for: "effectiveTiming", in: json, context: &instCtx, owner: self) ?? effectiveTiming
+		focus = createInstance(type: Reference.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
+		hasMember = createInstances(of: Reference.self, for: "hasMember", in: json, context: &instCtx, owner: self) ?? hasMember
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		interpretation = createInstance(type: CodeableConcept.self, for: "interpretation", in: json, context: &instCtx, owner: self) ?? interpretation
 		issued = createInstance(type: Instant.self, for: "issued", in: json, context: &instCtx, owner: self) ?? issued
 		method = createInstance(type: CodeableConcept.self, for: "method", in: json, context: &instCtx, owner: self) ?? method
+		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
 		performer = createInstances(of: Reference.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
 		referenceRange = createInstances(of: ObservationReferenceRange.self, for: "referenceRange", in: json, context: &instCtx, owner: self) ?? referenceRange
-		related = createInstances(of: ObservationRelated.self, for: "related", in: json, context: &instCtx, owner: self) ?? related
 		specimen = createInstance(type: Reference.self, for: "specimen", in: json, context: &instCtx, owner: self) ?? specimen
 		status = createEnum(type: ObservationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
-		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
+		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
 		valuePeriod = createInstance(type: Period.self, for: "valuePeriod", in: json, context: &instCtx, owner: self) ?? valuePeriod
 		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
 		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
@@ -181,26 +197,30 @@ open class Observation: DomainResource {
 		arrayDecorate(json: &json, withKey: "component", using: self.component, errors: &errors)
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		self.dataAbsentReason?.decorate(json: &json, withKey: "dataAbsentReason", errors: &errors)
+		arrayDecorate(json: &json, withKey: "derivedFrom", using: self.derivedFrom, errors: &errors)
 		self.device?.decorate(json: &json, withKey: "device", errors: &errors)
 		self.effectiveDateTime?.decorate(json: &json, withKey: "effectiveDateTime", errors: &errors)
 		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
+		self.effectiveTiming?.decorate(json: &json, withKey: "effectiveTiming", errors: &errors)
+		self.focus?.decorate(json: &json, withKey: "focus", errors: &errors)
+		arrayDecorate(json: &json, withKey: "hasMember", using: self.hasMember, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.interpretation?.decorate(json: &json, withKey: "interpretation", errors: &errors)
 		self.issued?.decorate(json: &json, withKey: "issued", errors: &errors)
 		self.method?.decorate(json: &json, withKey: "method", errors: &errors)
+		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		arrayDecorate(json: &json, withKey: "performer", using: self.performer, errors: &errors)
 		arrayDecorate(json: &json, withKey: "referenceRange", using: self.referenceRange, errors: &errors)
-		arrayDecorate(json: &json, withKey: "related", using: self.related, errors: &errors)
 		self.specimen?.decorate(json: &json, withKey: "specimen", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
-		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
 		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
 		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
 		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
+		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
 		self.valuePeriod?.decorate(json: &json, withKey: "valuePeriod", errors: &errors)
 		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
 		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
@@ -237,13 +257,16 @@ open class ObservationComponent: BackboneElement {
 	public var referenceRange: [ObservationReferenceRange]?
 	
 	/// Actual component result.
-	public var valueAttachment: Attachment?
+	public var valueBoolean: FHIRBool?
 	
 	/// Actual component result.
 	public var valueCodeableConcept: CodeableConcept?
 	
 	/// Actual component result.
 	public var valueDateTime: DateTime?
+	
+	/// Actual component result.
+	public var valueInteger: FHIRInteger?
 	
 	/// Actual component result.
 	public var valuePeriod: Period?
@@ -284,9 +307,10 @@ open class ObservationComponent: BackboneElement {
 		dataAbsentReason = createInstance(type: CodeableConcept.self, for: "dataAbsentReason", in: json, context: &instCtx, owner: self) ?? dataAbsentReason
 		interpretation = createInstance(type: CodeableConcept.self, for: "interpretation", in: json, context: &instCtx, owner: self) ?? interpretation
 		referenceRange = createInstances(of: ObservationReferenceRange.self, for: "referenceRange", in: json, context: &instCtx, owner: self) ?? referenceRange
-		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
+		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
+		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
 		valuePeriod = createInstance(type: Period.self, for: "valuePeriod", in: json, context: &instCtx, owner: self) ?? valuePeriod
 		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
 		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
@@ -306,9 +330,10 @@ open class ObservationComponent: BackboneElement {
 		self.dataAbsentReason?.decorate(json: &json, withKey: "dataAbsentReason", errors: &errors)
 		self.interpretation?.decorate(json: &json, withKey: "interpretation", errors: &errors)
 		arrayDecorate(json: &json, withKey: "referenceRange", using: self.referenceRange, errors: &errors)
-		self.valueAttachment?.decorate(json: &json, withKey: "valueAttachment", errors: &errors)
+		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
 		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
 		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
+		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
 		self.valuePeriod?.decorate(json: &json, withKey: "valuePeriod", errors: &errors)
 		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
 		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
@@ -368,53 +393,6 @@ open class ObservationReferenceRange: BackboneElement {
 		self.high?.decorate(json: &json, withKey: "high", errors: &errors)
 		self.low?.decorate(json: &json, withKey: "low", errors: &errors)
 		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-	}
-}
-
-
-/**
-Resource related to this observation.
-
-A  reference to another resource (usually another Observation) whose relationship is defined by the relationship type
-code.
-*/
-open class ObservationRelated: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ObservationRelated" }
-	}
-	
-	/// Resource that is related to this one.
-	public var target: Reference?
-	
-	/// A code specifying the kind of relationship that exists with the target resource.
-	public var type: ObservationRelationshipType?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: Reference) {
-		self.init()
-		self.target = target
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		target = createInstance(type: Reference.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
-		if nil == target && !instCtx.containsKey("target") && !_isSummaryResource {
-			instCtx.addError(FHIRValidationError(missing: "target"))
-		}
-		type = createEnum(type: ObservationRelationshipType.self, for: "type", in: json, context: &instCtx) ?? type
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.target?.decorate(json: &json, withKey: "target", errors: &errors)
-		if nil == self.target {
-			errors.append(FHIRValidationError(missing: "target"))
-		}
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }

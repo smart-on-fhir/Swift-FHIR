@@ -2,8 +2,8 @@
 //  ChargeItem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -34,6 +34,9 @@ open class ChargeItem: DomainResource {
 	/// Encounter / Episode associated with event.
 	public var context: Reference?
 	
+	/// Organization that has ownership of the (potential, future) revenue.
+	public var costCenter: Reference?
+	
 	/// Defining information about the code of this charge item.
 	public var definition: [FHIRURL]?
 	
@@ -47,7 +50,7 @@ open class ChargeItem: DomainResource {
 	public var factorOverride: FHIRDecimal?
 	
 	/// Business Identifier for item.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Comments made about the ChargeItem.
 	public var note: [Annotation]?
@@ -94,7 +97,7 @@ open class ChargeItem: DomainResource {
 	/// Individual service was done for/to.
 	public var subject: Reference?
 	
-	/// Further information supporting the this charge.
+	/// Further information supporting this charge.
 	public var supportingInformation: [Reference]?
 	
 	
@@ -117,11 +120,12 @@ open class ChargeItem: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		costCenter = createInstance(type: Reference.self, for: "costCenter", in: json, context: &instCtx, owner: self) ?? costCenter
 		definition = createInstances(of: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		enteredDate = createInstance(type: DateTime.self, for: "enteredDate", in: json, context: &instCtx, owner: self) ?? enteredDate
 		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer
 		factorOverride = createInstance(type: FHIRDecimal.self, for: "factorOverride", in: json, context: &instCtx, owner: self) ?? factorOverride
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
 		occurrencePeriod = createInstance(type: Period.self, for: "occurrencePeriod", in: json, context: &instCtx, owner: self) ?? occurrencePeriod
@@ -156,11 +160,12 @@ open class ChargeItem: DomainResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
+		self.costCenter?.decorate(json: &json, withKey: "costCenter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		self.enteredDate?.decorate(json: &json, withKey: "enteredDate", errors: &errors)
 		self.enterer?.decorate(json: &json, withKey: "enterer", errors: &errors)
 		self.factorOverride?.decorate(json: &json, withKey: "factorOverride", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
 		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)

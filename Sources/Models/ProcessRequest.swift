@@ -2,8 +2,8 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -42,9 +42,6 @@ open class ProcessRequest: DomainResource {
 	/// Remove history.
 	public var nullify: FHIRBool?
 	
-	/// Responsible organization.
-	public var organization: Reference?
-	
 	/// Selection period.
 	public var period: Period?
 	
@@ -77,7 +74,6 @@ open class ProcessRequest: DomainResource {
 		include = createInstances(of: FHIRString.self, for: "include", in: json, context: &instCtx, owner: self) ?? include
 		item = createInstances(of: ProcessRequestItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
 		nullify = createInstance(type: FHIRBool.self, for: "nullify", in: json, context: &instCtx, owner: self) ?? nullify
-		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		provider = createInstance(type: Reference.self, for: "provider", in: json, context: &instCtx, owner: self) ?? provider
 		reference = createInstance(type: FHIRString.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
@@ -97,7 +93,6 @@ open class ProcessRequest: DomainResource {
 		arrayDecorate(json: &json, withKey: "include", using: self.include, errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
 		self.nullify?.decorate(json: &json, withKey: "nullify", errors: &errors)
-		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		self.provider?.decorate(json: &json, withKey: "provider", errors: &errors)
 		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)

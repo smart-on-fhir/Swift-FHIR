@@ -2,8 +2,8 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -25,9 +25,6 @@ open class PaymentNotice: DomainResource {
 	
 	/// Business Identifier.
 	public var identifier: [Identifier]?
-	
-	/// Responsible organization.
-	public var organization: Reference?
 	
 	/// Whether payment has been sent or cleared.
 	public var paymentStatus: CodeableConcept?
@@ -56,7 +53,6 @@ open class PaymentNotice: DomainResource {
 		
 		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
 		paymentStatus = createInstance(type: CodeableConcept.self, for: "paymentStatus", in: json, context: &instCtx, owner: self) ?? paymentStatus
 		provider = createInstance(type: Reference.self, for: "provider", in: json, context: &instCtx, owner: self) ?? provider
 		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
@@ -71,7 +67,6 @@ open class PaymentNotice: DomainResource {
 		
 		self.created?.decorate(json: &json, withKey: "created", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
 		self.paymentStatus?.decorate(json: &json, withKey: "paymentStatus", errors: &errors)
 		self.provider?.decorate(json: &json, withKey: "provider", errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)

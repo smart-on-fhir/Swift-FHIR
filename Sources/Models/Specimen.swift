@@ -2,8 +2,8 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import Foundation
@@ -49,7 +49,8 @@ open class Specimen: DomainResource {
 	/// The availability of the specimen.
 	public var status: SpecimenStatus?
 	
-	/// Where the specimen came from. This may be from the patient(s) or from the environment or a device.
+	/// Where the specimen came from. This may be from patient(s),from a location (e.g., the source of an environmental
+	/// sample), or a sampling of a substance or a device.
 	public var subject: Reference?
 	
 	/// Kind of material that forms the specimen.

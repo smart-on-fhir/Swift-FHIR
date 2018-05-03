@@ -2,8 +2,8 @@
 //  EligibilityRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 3.3.0.13671 on 2018-05-03.
+//  2018, SMART Health IT.
 //
 
 import XCTest
@@ -56,11 +56,9 @@ class EligibilityRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "52346")
 		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.patient?.reference, "Patient/pat1")
 		XCTAssertEqual(inst.priority?.coding?[0].code, "normal")
-		XCTAssertEqual(inst.provider?.identifier?.system?.absoluteString, "http://happyvalleyclinic.com/staff")
-		XCTAssertEqual(inst.provider?.identifier?.value, "18")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
 		XCTAssertEqual(inst.servicedDate?.description, "2014-09-17")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityRequest</div>")
@@ -89,9 +87,9 @@ class EligibilityRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "52345")
 		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.patient?.reference, "Patient/pat1")
 		XCTAssertEqual(inst.priority?.coding?[0].code, "normal")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EligibilityRequest</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

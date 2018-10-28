@@ -960,7 +960,7 @@ extension Scanner {
 	
 	public var fhir_isAtEnd: Bool {
 		#if os(Linux)
-		return atEnd
+		return isAtEnd
 		#else
 		return isAtEnd
 		#endif
@@ -968,7 +968,7 @@ extension Scanner {
 	
 	public func fhir_scanString(_ searchString: String) -> String? {
 		#if os(Linux)
-		return scanString(string: searchString)
+		return scanString(searchString)
 		#else
 		var str: NSString?
 		if scanString(searchString, into: &str) {
@@ -993,7 +993,7 @@ extension Scanner {
 	public func fhir_scanInt() -> Int? {
 		var int = 0
 		#if os(Linux)
-		let flag = scanInteger(&int)
+		let flag = scanInt(&int)
 		#else
 		let flag = scanInt(&int)
 		#endif

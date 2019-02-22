@@ -2,8 +2,8 @@
 //  ClinicalImpressionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -41,11 +41,11 @@ class ClinicalImpressionTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "clinicalimpression-example.json")
 		
 		XCTAssertEqual(inst.assessor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.context?.reference, "Encounter/example")
 		XCTAssertEqual(inst.date?.description, "2014-12-06T22:33:00+11:00")
 		XCTAssertEqual(inst.description_fhir, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
 		XCTAssertEqual(inst.effectivePeriod?.end?.description, "2014-12-06T22:33:00+11:00")
 		XCTAssertEqual(inst.effectivePeriod?.start?.description, "2014-12-06T20:00:00+11:00")
+		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.finding?[0].itemCodeableConcept?.coding?[0].code, "850.0")
 		XCTAssertEqual(inst.finding?[0].itemCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/sid/icd-9")
 		XCTAssertEqual(inst.id, "example")
@@ -55,8 +55,11 @@ class ClinicalImpressionTests: XCTestCase {
 		XCTAssertEqual(inst.investigation?[0].item?[1].display, "decreased level of consciousness")
 		XCTAssertEqual(inst.investigation?[0].item?[2].display, "disoriented to time and place")
 		XCTAssertEqual(inst.investigation?[0].item?[3].display, "restless")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.problem?[0].display, "MVA")
-		XCTAssertEqual(inst.status, ClinicalImpressionStatus(rawValue: "completed")!)
+		XCTAssertEqual(inst.status, EventStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.summary, "provisional diagnoses of laceration of head and traumatic brain injury (TBI)")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

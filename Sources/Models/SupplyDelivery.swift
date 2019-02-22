@@ -2,8 +2,8 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -26,7 +26,7 @@ open class SupplyDelivery: DomainResource {
 	public var destination: Reference?
 	
 	/// External identifier.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// When event occurred.
 	public var occurrenceDateTime: DateTime?
@@ -64,7 +64,7 @@ open class SupplyDelivery: DomainResource {
 		
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		destination = createInstance(type: Reference.self, for: "destination", in: json, context: &instCtx, owner: self) ?? destination
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
 		occurrencePeriod = createInstance(type: Period.self, for: "occurrencePeriod", in: json, context: &instCtx, owner: self) ?? occurrencePeriod
 		occurrenceTiming = createInstance(type: Timing.self, for: "occurrenceTiming", in: json, context: &instCtx, owner: self) ?? occurrenceTiming
@@ -82,7 +82,7 @@ open class SupplyDelivery: DomainResource {
 		
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.destination?.decorate(json: &json, withKey: "destination", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
 		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)
 		self.occurrenceTiming?.decorate(json: &json, withKey: "occurrenceTiming", errors: &errors)

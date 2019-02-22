@@ -45,7 +45,11 @@
 				},
 				"code": {},
 				"status": "final",
-				"comment": "Observation 123, referencing subject relatively"
+				"note": [
+					{
+						"text": "Observation 123, referencing subject relatively."
+					}
+				]
 			}
 		},
 		{
@@ -58,7 +62,11 @@
 				},
 				"code": {},
 				"status": "final",
-				"comment": "Observation 56, referencing subject via UUID"
+				"note": [
+					{
+						"text": "Observation 56, referencing subject via UUID."
+					}
+				]
 			}
 		},
 		{
@@ -71,7 +79,11 @@
 				},
 				"code": {},
 				"status": "final",
-				"comment": "Observation 34 with absolute subject reference to different endpoint"
+				"note": [
+					{
+						"text": "Observation 34 with absolute subject reference to different endpoint."
+					}
+				]
 			}
 		}
 	]

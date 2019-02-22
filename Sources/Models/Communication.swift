@@ -2,8 +2,8 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Communication) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -13,12 +13,15 @@ import Foundation
 A record of information transmitted from a sender to a receiver.
 
 An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public health
-agency was notified about a reportable condition.
+agency that was notified about a reportable condition.
 */
 open class Communication: DomainResource {
 	override open class var resourceType: String {
 		get { return "Communication" }
 	}
+	
+	/// Resources that pertain to this communication.
+	public var about: [Reference]?
 	
 	/// Request fulfilled by this communication.
 	public var basedOn: [Reference]?
@@ -26,23 +29,23 @@ open class Communication: DomainResource {
 	/// Message category.
 	public var category: [CodeableConcept]?
 	
-	/// Encounter or episode leading to message.
-	public var context: Reference?
-	
-	/// Instantiates protocol or definition.
-	public var definition: [Reference]?
+	/// Encounter created as part of.
+	public var encounter: Reference?
 	
 	/// Unique identifier.
 	public var identifier: [Identifier]?
 	
+	/// Reply to.
+	public var inResponseTo: [Reference]?
+	
+	/// Instantiates FHIR protocol or definition.
+	public var instantiatesCanonical: [FHIRURL]?
+	
+	/// Instantiates external protocol or definition.
+	public var instantiatesUri: [FHIRURL]?
+	
 	/// A channel of communication.
 	public var medium: [CodeableConcept]?
-	
-	/// Communication did not occur.
-	public var notDone: FHIRBool?
-	
-	/// Why communication did not occur.
-	public var notDoneReason: CodeableConcept?
 	
 	/// Comments made about the communication.
 	public var note: [Annotation]?
@@ -52,6 +55,10 @@ open class Communication: DomainResource {
 	
 	/// Message payload.
 	public var payload: [CommunicationPayload]?
+	
+	/// Characterizes how quickly the planned or in progress communication must be addressed. Includes concepts such as
+	/// stat, urgent, routine.
+	public var priority: RequestPriority?
 	
 	/// Indication for message.
 	public var reasonCode: [CodeableConcept]?
@@ -74,11 +81,14 @@ open class Communication: DomainResource {
 	/// The status of the transmission.
 	public var status: EventStatus?
 	
+	/// Reason for current status.
+	public var statusReason: CodeableConcept?
+	
 	/// Focus of message.
 	public var subject: Reference?
 	
-	/// Focal resources.
-	public var topic: [Reference]?
+	/// Description of the purpose/content.
+	public var topic: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -91,17 +101,19 @@ open class Communication: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		about = createInstances(of: Reference.self, for: "about", in: json, context: &instCtx, owner: self) ?? about
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		inResponseTo = createInstances(of: Reference.self, for: "inResponseTo", in: json, context: &instCtx, owner: self) ?? inResponseTo
+		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		medium = createInstances(of: CodeableConcept.self, for: "medium", in: json, context: &instCtx, owner: self) ?? medium
-		notDone = createInstance(type: FHIRBool.self, for: "notDone", in: json, context: &instCtx, owner: self) ?? notDone
-		notDoneReason = createInstance(type: CodeableConcept.self, for: "notDoneReason", in: json, context: &instCtx, owner: self) ?? notDoneReason
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
 		payload = createInstances(of: CommunicationPayload.self, for: "payload", in: json, context: &instCtx, owner: self) ?? payload
+		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
 		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		received = createInstance(type: DateTime.self, for: "received", in: json, context: &instCtx, owner: self) ?? received
@@ -112,24 +124,27 @@ open class Communication: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
+		statusReason = createInstance(type: CodeableConcept.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
-		topic = createInstances(of: Reference.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
+		topic = createInstance(type: CodeableConcept.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "about", using: self.about, errors: &errors)
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
-		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "inResponseTo", using: self.inResponseTo, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesCanonical", using: self.instantiatesCanonical, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesUri", using: self.instantiatesUri, errors: &errors)
 		arrayDecorate(json: &json, withKey: "medium", using: self.medium, errors: &errors)
-		self.notDone?.decorate(json: &json, withKey: "notDone", errors: &errors)
-		self.notDoneReason?.decorate(json: &json, withKey: "notDoneReason", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		arrayDecorate(json: &json, withKey: "payload", using: self.payload, errors: &errors)
+		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.received?.decorate(json: &json, withKey: "received", errors: &errors)
@@ -140,8 +155,9 @@ open class Communication: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		self.statusReason?.decorate(json: &json, withKey: "statusReason", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
-		arrayDecorate(json: &json, withKey: "topic", using: self.topic, errors: &errors)
+		self.topic?.decorate(json: &json, withKey: "topic", errors: &errors)
 	}
 }
 
@@ -179,7 +195,7 @@ open class CommunicationPayload: BackboneElement {
 			self.contentReference = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: content))” for property “\(content)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: content))” for property “\(content)” is invalid, ignoring")
 		}
 	}
 	

@@ -28,18 +28,30 @@ class SummaryTests: XCTestCase {
 	func testFull() {
 		do {
 			_ = try instantiateFrom(filename: "metadata.full.json")
+			XCTAssertTrue(false, "Should have thrown but am still here")
 		}
-		catch {
-			XCTAssertNil(error)
+		catch let error as FHIRValidationError {
+			let lines = error.description.components(separatedBy: CharacterSet.newlines)
+			XCTAssertEqual(1, lines.count)
+			XCTAssertEqual(lines[0], "CapabilityStatement.rest.0.operation.23.definition: problem with property “definition”: “not done yet” is not a valid URI")
+		}
+		catch let error {
+			XCTAssertNil(error, "Should not have gotten this error")
 		}
 	}
 	
 	func testSummary() {
 		do {
 			_ = try instantiateFrom(filename: "metadata.summary.json")
+			XCTAssertTrue(false, "Should have thrown but am still here")
 		}
-		catch {
-			XCTAssertNil(error)
+		catch let error as FHIRValidationError {
+			let lines = error.description.components(separatedBy: CharacterSet.newlines)
+			XCTAssertEqual(1, lines.count)
+			XCTAssertEqual(lines[0], "CapabilityStatement.rest.0.operation.23.definition: problem with property “definition”: “not done yet” is not a valid URI")
+		}
+		catch let error {
+			XCTAssertNil(error, "Should not have gotten this error")
 		}
 	}
 }

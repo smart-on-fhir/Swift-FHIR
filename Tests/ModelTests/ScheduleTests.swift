@@ -2,8 +2,8 @@
 //  ScheduleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -38,24 +38,29 @@ class ScheduleTests: XCTestCase {
 	
 	@discardableResult
 	func runSchedule1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSchedule {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-provider-location1-example.json")
 		
 		XCTAssertEqual(inst.active, true)
-		XCTAssertEqual(inst.actor?[0].display, "Burgers UMC, South Wing, second floor")
-		XCTAssertEqual(inst.actor?[0].reference, "Location/1")
-		XCTAssertEqual(inst.comment, "The slots attached to this schedule should be specialized to cover immunizations within the clinic")
-		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.actor?[0].display, "Dr. Beverly Crusher")
+		XCTAssertEqual(inst.actor?[0].reference, "Practitioner/1")
+		XCTAssertEqual(inst.actor?[1].display, "USS Enterprise-D Sickbay")
+		XCTAssertEqual(inst.actor?[1].reference, "Location/3")
+		XCTAssertEqual(inst.comment, "The slots attached to this schedule are for genetic counselling in the USS Enterprise-D Sickbay.")
+		XCTAssertEqual(inst.id, "exampleloc1")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/scheduleid")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "usual")!)
-		XCTAssertEqual(inst.identifier?[0].value, "45")
-		XCTAssertEqual(inst.planningHorizon?.end?.description, "2013-12-25T09:30:00Z")
-		XCTAssertEqual(inst.planningHorizon?.start?.description, "2013-12-25T09:15:00Z")
-		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "17")
-		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
-		XCTAssertEqual(inst.serviceType?[0].coding?[0].code, "57")
-		XCTAssertEqual(inst.serviceType?[0].coding?[0].display, "Immunization")
-		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "408480009")
-		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Clinical immunology")
+		XCTAssertEqual(inst.identifier?[0].value, "46")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.planningHorizon?.end?.description, "2017-12-25T09:30:00Z")
+		XCTAssertEqual(inst.planningHorizon?.start?.description, "2017-12-25T09:15:00Z")
+		XCTAssertEqual(inst.serviceCategory?[0].coding?[0].code, "17")
+		XCTAssertEqual(inst.serviceCategory?[0].coding?[0].display, "General Practice")
+		XCTAssertEqual(inst.serviceType?[0].coding?[0].code, "75")
+		XCTAssertEqual(inst.serviceType?[0].coding?[0].display, "Genetic Counselling")
+		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "394580004")
+		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Clinical genetics")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -73,26 +78,27 @@ class ScheduleTests: XCTestCase {
 	
 	@discardableResult
 	func runSchedule2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSchedule {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-provider-location1-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-example.json")
 		
 		XCTAssertEqual(inst.active, true)
-		XCTAssertEqual(inst.actor?[0].display, "Dr. Beverly Crusher")
-		XCTAssertEqual(inst.actor?[0].reference, "Practitioner/1")
-		XCTAssertEqual(inst.actor?[1].display, "USS Enterprise-D Sickbay")
-		XCTAssertEqual(inst.actor?[1].reference, "Location/3")
-		XCTAssertEqual(inst.comment, "The slots attached to this schedule are for genetic counselling in the USS Enterprise-D Sickbay.")
-		XCTAssertEqual(inst.id, "exampleloc1")
+		XCTAssertEqual(inst.actor?[0].display, "Burgers UMC, South Wing, second floor")
+		XCTAssertEqual(inst.actor?[0].reference, "Location/1")
+		XCTAssertEqual(inst.comment, "The slots attached to this schedule should be specialized to cover immunizations within the clinic")
+		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/scheduleid")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "usual")!)
-		XCTAssertEqual(inst.identifier?[0].value, "46")
-		XCTAssertEqual(inst.planningHorizon?.end?.description, "2017-12-25T09:30:00Z")
-		XCTAssertEqual(inst.planningHorizon?.start?.description, "2017-12-25T09:15:00Z")
-		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "17")
-		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
-		XCTAssertEqual(inst.serviceType?[0].coding?[0].code, "75")
-		XCTAssertEqual(inst.serviceType?[0].coding?[0].display, "Genetic Counselling")
-		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "394580004")
-		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Clinical genetics")
+		XCTAssertEqual(inst.identifier?[0].value, "45")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.planningHorizon?.end?.description, "2013-12-25T09:30:00Z")
+		XCTAssertEqual(inst.planningHorizon?.start?.description, "2013-12-25T09:15:00Z")
+		XCTAssertEqual(inst.serviceCategory?[0].coding?[0].code, "17")
+		XCTAssertEqual(inst.serviceCategory?[0].coding?[0].display, "General Practice")
+		XCTAssertEqual(inst.serviceType?[0].coding?[0].code, "57")
+		XCTAssertEqual(inst.serviceType?[0].coding?[0].display, "Immunization")
+		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "408480009")
+		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Clinical immunology")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst
@@ -122,10 +128,13 @@ class ScheduleTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/scheduleid")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[0].value, "47")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.planningHorizon?.end?.description, "2017-12-25T09:30:00Z")
 		XCTAssertEqual(inst.planningHorizon?.start?.description, "2017-12-25T09:15:00Z")
-		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "31")
-		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "Specialist Surgical")
+		XCTAssertEqual(inst.serviceCategory?[0].coding?[0].code, "31")
+		XCTAssertEqual(inst.serviceCategory?[0].coding?[0].display, "Specialist Surgical")
 		XCTAssertEqual(inst.serviceType?[0].coding?[0].code, "221")
 		XCTAssertEqual(inst.serviceType?[0].coding?[0].display, "Surgery - General")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "394610002")

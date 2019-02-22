@@ -2,8 +2,8 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -20,23 +20,23 @@ open class AllergyIntolerance: DomainResource {
 		get { return "AllergyIntolerance" }
 	}
 	
-	/// Date record was believed accurate.
-	public var assertedDate: DateTime?
-	
 	/// Source of the information about the allergy.
 	public var asserter: Reference?
 	
 	/// Category of the identified substance.
 	public var category: [AllergyIntoleranceCategory]?
 	
-	/// The clinical status of the allergy or intolerance.
-	public var clinicalStatus: AllergyIntoleranceClinicalStatus?
+	/// active | inactive | resolved.
+	public var clinicalStatus: CodeableConcept?
 	
 	/// Code that identifies the allergy or intolerance.
 	public var code: CodeableConcept?
 	
 	/// Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance.
 	public var criticality: AllergyIntoleranceCriticality?
+	
+	/// Encounter when the allergy or intolerance was asserted.
+	public var encounter: Reference?
 	
 	/// External ids for this item.
 	public var identifier: [Identifier]?
@@ -68,34 +68,35 @@ open class AllergyIntolerance: DomainResource {
 	/// Adverse Reaction Events linked to exposure to substance.
 	public var reaction: [AllergyIntoleranceReaction]?
 	
+	/// Date first version of the resource instance was recorded.
+	public var recordedDate: DateTime?
+	
 	/// Who recorded the sensitivity.
 	public var recorder: Reference?
 	
 	/// Identification of the underlying physiological mechanism for the reaction risk.
 	public var type: AllergyIntoleranceType?
 	
-	/// Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified
-	/// substance (including pharmaceutical product).
-	public var verificationStatus: AllergyIntoleranceVerificationStatus?
+	/// unconfirmed | confirmed | refuted | entered-in-error.
+	public var verificationStatus: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, verificationStatus: AllergyIntoleranceVerificationStatus) {
+	public convenience init(patient: Reference) {
 		self.init()
 		self.patient = patient
-		self.verificationStatus = verificationStatus
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		assertedDate = createInstance(type: DateTime.self, for: "assertedDate", in: json, context: &instCtx, owner: self) ?? assertedDate
 		asserter = createInstance(type: Reference.self, for: "asserter", in: json, context: &instCtx, owner: self) ?? asserter
 		category = createEnums(of: AllergyIntoleranceCategory.self, for: "category", in: json, context: &instCtx) ?? category
-		clinicalStatus = createEnum(type: AllergyIntoleranceClinicalStatus.self, for: "clinicalStatus", in: json, context: &instCtx) ?? clinicalStatus
+		clinicalStatus = createInstance(type: CodeableConcept.self, for: "clinicalStatus", in: json, context: &instCtx, owner: self) ?? clinicalStatus
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		criticality = createEnum(type: AllergyIntoleranceCriticality.self, for: "criticality", in: json, context: &instCtx) ?? criticality
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		lastOccurrence = createInstance(type: DateTime.self, for: "lastOccurrence", in: json, context: &instCtx, owner: self) ?? lastOccurrence
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
@@ -109,23 +110,21 @@ open class AllergyIntolerance: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "patient"))
 		}
 		reaction = createInstances(of: AllergyIntoleranceReaction.self, for: "reaction", in: json, context: &instCtx, owner: self) ?? reaction
+		recordedDate = createInstance(type: DateTime.self, for: "recordedDate", in: json, context: &instCtx, owner: self) ?? recordedDate
 		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
 		type = createEnum(type: AllergyIntoleranceType.self, for: "type", in: json, context: &instCtx) ?? type
-		verificationStatus = createEnum(type: AllergyIntoleranceVerificationStatus.self, for: "verificationStatus", in: json, context: &instCtx) ?? verificationStatus
-		if nil == verificationStatus && !instCtx.containsKey("verificationStatus") {
-			instCtx.addError(FHIRValidationError(missing: "verificationStatus"))
-		}
+		verificationStatus = createInstance(type: CodeableConcept.self, for: "verificationStatus", in: json, context: &instCtx, owner: self) ?? verificationStatus
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.assertedDate?.decorate(json: &json, withKey: "assertedDate", errors: &errors)
 		self.asserter?.decorate(json: &json, withKey: "asserter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.clinicalStatus?.decorate(json: &json, withKey: "clinicalStatus", errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.criticality?.decorate(json: &json, withKey: "criticality", errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.lastOccurrence?.decorate(json: &json, withKey: "lastOccurrence", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
@@ -139,12 +138,10 @@ open class AllergyIntolerance: DomainResource {
 			errors.append(FHIRValidationError(missing: "patient"))
 		}
 		arrayDecorate(json: &json, withKey: "reaction", using: self.reaction, errors: &errors)
+		self.recordedDate?.decorate(json: &json, withKey: "recordedDate", errors: &errors)
 		self.recorder?.decorate(json: &json, withKey: "recorder", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		self.verificationStatus?.decorate(json: &json, withKey: "verificationStatus", errors: &errors)
-		if nil == self.verificationStatus {
-			errors.append(FHIRValidationError(missing: "verificationStatus"))
-		}
 	}
 }
 

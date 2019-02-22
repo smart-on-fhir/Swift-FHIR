@@ -2,8 +2,8 @@
 //  MessageHeaderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -41,16 +41,21 @@ class MessageHeaderTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "messageheader-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.definition?.absoluteString, "http:////acme.com/ehr/fhir/messagedefinition/patientrequest")
 		XCTAssertEqual(inst.destination?[0].endpoint?.absoluteString, "llp:10.11.12.14:5432")
 		XCTAssertEqual(inst.destination?[0].name, "Acme Message Gateway")
+		XCTAssertEqual(inst.destination?[0].receiver?.reference, "http://acme.com/ehr/fhir/Practitioner/2323-33-4")
 		XCTAssertEqual(inst.destination?[0].target?.reference, "Device/example")
 		XCTAssertEqual(inst.enterer?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.event?.code, "admin-notify")
-		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-events")
+		XCTAssertEqual(inst.eventCoding?.code, "admin-notify")
+		XCTAssertEqual(inst.eventCoding?.system?.absoluteString, "http://example.org/fhir/message-events")
 		XCTAssertEqual(inst.focus?[0].reference, "Patient/example")
 		XCTAssertEqual(inst.id, "1cbdfb97-5859-48a4-8301-d54eab818d68")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.reason?.coding?[0].code, "admit")
-		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/message-reasons-encounter")
+		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/message-reasons-encounter")
 		XCTAssertEqual(inst.response?.code, ResponseType(rawValue: "ok")!)
 		XCTAssertEqual(inst.response?.identifier, "5015fe84-8e76-4526-89d8-44b322e8d4fb")
 		XCTAssertEqual(inst.sender?.reference, "Organization/1")
@@ -61,7 +66,6 @@ class MessageHeaderTests: XCTestCase {
 		XCTAssertEqual(inst.source?.software, "FooBar Patient Manager")
 		XCTAssertEqual(inst.source?.version, "3.1.45.AABB")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.timestamp?.description, "2012-01-04T09:10:14Z")
 		
 		return inst
 	}

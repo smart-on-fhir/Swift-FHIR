@@ -2,8 +2,8 @@
 //  PractitionerRoleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -52,7 +52,7 @@ class PractitionerRoleTests: XCTestCase {
 		XCTAssertEqual(inst.availableTime?[1].daysOfWeek?[0], DaysOfWeek(rawValue: "thu")!)
 		XCTAssertEqual(inst.availableTime?[1].daysOfWeek?[1], DaysOfWeek(rawValue: "fri")!)
 		XCTAssertEqual(inst.code?[0].coding?[0].code, "RP")
-		XCTAssertEqual(inst.code?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0286")
+		XCTAssertEqual(inst.code?[0].coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0286")
 		XCTAssertEqual(inst.endpoint?[0].reference, "Endpoint/example")
 		XCTAssertEqual(inst.healthcareService?[0].reference, "HealthcareService/example")
 		XCTAssertEqual(inst.id, "example")
@@ -60,6 +60,9 @@ class PractitionerRoleTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "23")
 		XCTAssertEqual(inst.location?[0].display, "South Wing, second floor")
 		XCTAssertEqual(inst.location?[0].reference, "Location/1")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.notAvailable?[0].description_fhir, "Adam will be on extended leave during May 2017")
 		XCTAssertEqual(inst.notAvailable?[0].during?.end?.description, "2017-05-20")
 		XCTAssertEqual(inst.notAvailable?[0].during?.start?.description, "2017-05-01")

@@ -2,8 +2,8 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -20,20 +20,26 @@ open class GuidanceResponse: DomainResource {
 		get { return "GuidanceResponse" }
 	}
 	
-	/// Encounter or Episode during which the response was returned.
-	public var context: Reference?
-	
 	/// Additional required data.
 	public var dataRequirement: [DataRequirement]?
+	
+	/// Encounter during which the response was returned.
+	public var encounter: Reference?
 	
 	/// Messages resulting from the evaluation of the artifact or artifacts.
 	public var evaluationMessage: [Reference]?
 	
 	/// Business identifier.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
-	/// A reference to a knowledge module.
-	public var module: Reference?
+	/// What guidance was requested.
+	public var moduleCanonical: FHIRURL?
+	
+	/// What guidance was requested.
+	public var moduleCodeableConcept: CodeableConcept?
+	
+	/// What guidance was requested.
+	public var moduleUri: FHIRURL?
 	
 	/// Additional notes about the response.
 	public var note: [Annotation]?
@@ -47,14 +53,14 @@ open class GuidanceResponse: DomainResource {
 	/// Device returning the guidance.
 	public var performer: Reference?
 	
-	/// Reason for the response.
-	public var reasonCodeableConcept: CodeableConcept?
+	/// Why guidance is needed.
+	public var reasonCode: [CodeableConcept]?
 	
-	/// Reason for the response.
-	public var reasonReference: Reference?
+	/// Why guidance is needed.
+	public var reasonReference: [Reference]?
 	
-	/// The id of the request associated with this response, if any.
-	public var requestId: FHIRString?
+	/// The identifier of the request associated with this response, if any.
+	public var requestIdentifier: Identifier?
 	
 	/// Proposed actions, if any.
 	public var result: Reference?
@@ -72,9 +78,20 @@ open class GuidanceResponse: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(module: Reference, status: GuidanceResponseStatus) {
+	public convenience init(module: Any, status: GuidanceResponseStatus) {
 		self.init()
-		self.module = module
+		if let value = module as? FHIRURL {
+			self.moduleUri = value
+		}
+		else if let value = module as? FHIRURL {
+			self.moduleCanonical = value
+		}
+		else if let value = module as? CodeableConcept {
+			self.moduleCodeableConcept = value
+		}
+		else {
+			fhir_warn("Type “\(Swift.type(of: module))” for property “\(module)” is invalid, ignoring")
+		}
 		self.status = status
 	}
 	
@@ -82,53 +99,62 @@ open class GuidanceResponse: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		dataRequirement = createInstances(of: DataRequirement.self, for: "dataRequirement", in: json, context: &instCtx, owner: self) ?? dataRequirement
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		evaluationMessage = createInstances(of: Reference.self, for: "evaluationMessage", in: json, context: &instCtx, owner: self) ?? evaluationMessage
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		module = createInstance(type: Reference.self, for: "module", in: json, context: &instCtx, owner: self) ?? module
-		if nil == module && !instCtx.containsKey("module") {
-			instCtx.addError(FHIRValidationError(missing: "module"))
-		}
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		moduleCanonical = createInstance(type: FHIRURL.self, for: "moduleCanonical", in: json, context: &instCtx, owner: self) ?? moduleCanonical
+		moduleCodeableConcept = createInstance(type: CodeableConcept.self, for: "moduleCodeableConcept", in: json, context: &instCtx, owner: self) ?? moduleCodeableConcept
+		moduleUri = createInstance(type: FHIRURL.self, for: "moduleUri", in: json, context: &instCtx, owner: self) ?? moduleUri
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
 		outputParameters = createInstance(type: Reference.self, for: "outputParameters", in: json, context: &instCtx, owner: self) ?? outputParameters
 		performer = createInstance(type: Reference.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
-		reasonCodeableConcept = createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, context: &instCtx, owner: self) ?? reasonCodeableConcept
-		reasonReference = createInstance(type: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
-		requestId = createInstance(type: FHIRString.self, for: "requestId", in: json, context: &instCtx, owner: self) ?? requestId
+		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
+		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
+		requestIdentifier = createInstance(type: Identifier.self, for: "requestIdentifier", in: json, context: &instCtx, owner: self) ?? requestIdentifier
 		result = createInstance(type: Reference.self, for: "result", in: json, context: &instCtx, owner: self) ?? result
 		status = createEnum(type: GuidanceResponseStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.moduleUri && nil == self.moduleCanonical && nil == self.moduleCodeableConcept {
+			instCtx.addError(FHIRValidationError(missing: "module[x]"))
+		}
+		
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
 		arrayDecorate(json: &json, withKey: "dataRequirement", using: self.dataRequirement, errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "evaluationMessage", using: self.evaluationMessage, errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		self.module?.decorate(json: &json, withKey: "module", errors: &errors)
-		if nil == self.module {
-			errors.append(FHIRValidationError(missing: "module"))
-		}
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		self.moduleCanonical?.decorate(json: &json, withKey: "moduleCanonical", errors: &errors)
+		self.moduleCodeableConcept?.decorate(json: &json, withKey: "moduleCodeableConcept", errors: &errors)
+		self.moduleUri?.decorate(json: &json, withKey: "moduleUri", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
 		self.outputParameters?.decorate(json: &json, withKey: "outputParameters", errors: &errors)
 		self.performer?.decorate(json: &json, withKey: "performer", errors: &errors)
-		self.reasonCodeableConcept?.decorate(json: &json, withKey: "reasonCodeableConcept", errors: &errors)
-		self.reasonReference?.decorate(json: &json, withKey: "reasonReference", errors: &errors)
-		self.requestId?.decorate(json: &json, withKey: "requestId", errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
+		self.requestIdentifier?.decorate(json: &json, withKey: "requestIdentifier", errors: &errors)
 		self.result?.decorate(json: &json, withKey: "result", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.moduleUri && nil == self.moduleCanonical && nil == self.moduleCodeableConcept {
+			errors.append(FHIRValidationError(missing: "module[x]"))
+		}
 	}
 }
 

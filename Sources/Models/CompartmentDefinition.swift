@@ -2,8 +2,8 @@
 //  CompartmentDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -25,7 +25,7 @@ open class CompartmentDefinition: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the compartment definition.
@@ -33,9 +33,6 @@ open class CompartmentDefinition: DomainResource {
 	
 	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
-	
-	/// Intended jurisdiction for compartment definition (if applicable).
-	public var jurisdiction: [CodeableConcept]?
 	
 	/// Name for this compartment definition (computer friendly).
 	public var name: FHIRString?
@@ -55,14 +52,14 @@ open class CompartmentDefinition: DomainResource {
 	/// The status of this compartment definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
 	
-	/// Name for this compartment definition (human friendly).
-	public var title: FHIRString?
-	
-	/// Logical URI to reference this compartment definition (globally unique).
+	/// Canonical identifier for this compartment definition, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
+	
+	/// Business version of the compartment definition.
+	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -87,7 +84,6 @@ open class CompartmentDefinition: DomainResource {
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
-		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
@@ -103,12 +99,12 @@ open class CompartmentDefinition: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 		if nil == url && !instCtx.containsKey("url") {
 			instCtx.addError(FHIRValidationError(missing: "url"))
 		}
 		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
+		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -122,7 +118,6 @@ open class CompartmentDefinition: DomainResource {
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
-		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		if nil == self.name {
 			errors.append(FHIRValidationError(missing: "name"))
@@ -138,12 +133,12 @@ open class CompartmentDefinition: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		self.url?.decorate(json: &json, withKey: "url", errors: &errors)
 		if nil == self.url {
 			errors.append(FHIRValidationError(missing: "url"))
 		}
 		arrayDecorate(json: &json, withKey: "useContext", using: self.useContext, errors: &errors)
+		self.version?.decorate(json: &json, withKey: "version", errors: &errors)
 	}
 }
 
@@ -158,8 +153,8 @@ open class CompartmentDefinitionResource: BackboneElement {
 		get { return "CompartmentDefinitionResource" }
 	}
 	
-	/// Name of resource type.
-	public var code: FHIRString?
+	/// The name of a resource supported by the server.
+	public var code: ResourceType?
 	
 	/// Additional documentation about the resource and compartment.
 	public var documentation: FHIRString?
@@ -169,7 +164,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: FHIRString) {
+	public convenience init(code: ResourceType) {
 		self.init()
 		self.code = code
 	}
@@ -178,7 +173,7 @@ open class CompartmentDefinitionResource: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		code = createEnum(type: ResourceType.self, for: "code", in: json, context: &instCtx) ?? code
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}

@@ -2,8 +2,8 @@
 //  DocumentManifestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -42,7 +42,7 @@ class DocumentManifestTests: XCTestCase {
 		
 		XCTAssertEqual(inst.author?[0].reference, "#a1")
 		XCTAssertEqual(inst.contained?[0].id, "a1")
-		XCTAssertEqual(inst.content?[0].pReference?.reference, "DocumentReference/example")
+		XCTAssertEqual(inst.content?[0].reference, "DocumentReference/example")
 		XCTAssertEqual(inst.created?.description, "2004-12-25T23:50:50-05:00")
 		XCTAssertEqual(inst.description_fhir, "Physical")
 		XCTAssertEqual(inst.id, "example")
@@ -50,6 +50,9 @@ class DocumentManifestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "23425234234-2347")
 		XCTAssertEqual(inst.masterIdentifier?.system?.absoluteString, "http://example.org/documents")
 		XCTAssertEqual(inst.masterIdentifier?.value, "23425234234-2346")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.recipient?[0].reference, "Practitioner/xcda1")
 		XCTAssertEqual(inst.related?[0].identifier?.system?.absoluteString, "http://example.org/documents")
 		XCTAssertEqual(inst.related?[0].identifier?.value, "23425234234-9999")

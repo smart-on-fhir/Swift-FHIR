@@ -2,8 +2,8 @@
 //  PaymentNoticeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -40,21 +40,26 @@ class PaymentNoticeTests: XCTestCase {
 	func runPaymentNotice1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPaymentNotice {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentnotice-example.json")
 		
+		XCTAssertEqual(inst.amount?.currency, "USD")
+		XCTAssertEqual(inst.amount?.value, "12500.0")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.id, "77654")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://benefitsinc.com/paymentnotice")
 		XCTAssertEqual(inst.identifier?[0].value, "776543")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.payee?.reference, "Organization/1")
+		XCTAssertEqual(inst.payment?.reference, "PaymentReconciliation/ER2500")
+		XCTAssertEqual(inst.paymentDate?.description, "2014-08-15")
 		XCTAssertEqual(inst.paymentStatus?.coding?[0].code, "paid")
-		XCTAssertEqual(inst.paymentStatus?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/paymentstatus")
-		XCTAssertEqual(inst.provider?.identifier?.system?.absoluteString, "http://npid.org/provider")
-		XCTAssertEqual(inst.provider?.identifier?.value, "PR957857")
+		XCTAssertEqual(inst.paymentStatus?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/paymentstatus")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
+		XCTAssertEqual(inst.recipient?.identifier?.system?.absoluteString, "http://regulators.gov")
+		XCTAssertEqual(inst.recipient?.identifier?.value, "AB123")
 		XCTAssertEqual(inst.request?.reference, "http://benefitsinc.com/fhir/claim/12345")
 		XCTAssertEqual(inst.response?.reference, "http://benefitsinc.com/fhir/claimresponse/CR12345")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.statusDate?.description, "2014-08-15")
-		XCTAssertEqual(inst.target?.identifier?.system?.absoluteString, "http://regulators.gov")
-		XCTAssertEqual(inst.target?.identifier?.value, "AB123")
+		XCTAssertEqual(inst.status, FinancialResourceStatusCodes(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the PaymentNotice</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

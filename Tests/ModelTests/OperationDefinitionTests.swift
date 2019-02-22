@@ -2,8 +2,8 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -40,14 +40,14 @@ class OperationDefinitionTests: XCTestCase {
 	func runOperationDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationdefinition-example.json")
 		
-		XCTAssertEqual(inst.base?.reference, "OperationDefinition/Questionnaire-populate")
+		XCTAssertEqual(inst.base?.absoluteString, "OperationDefinition/Questionnaire-populate")
 		XCTAssertEqual(inst.code, "populate")
 		XCTAssertEqual(inst.comment, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.contact?[0].name, "System Administrator")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "email")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "beep@coyote.acme.com")
 		XCTAssertEqual(inst.date?.description, "2015-08-04")
-		XCTAssertEqual(inst.description_fhir, "Limited implementation of the Populate Questionnaire implemenation")
+		XCTAssertEqual(inst.description_fhir, "Limited implementation of the Populate Questionnaire implementation")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.instance, true)
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "GB")
@@ -77,7 +77,7 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.parameter?[2].type, "QuestionnaireResponse")
 		XCTAssertEqual(inst.parameter?[2].use, OperationParameterUse(rawValue: "out")!)
 		XCTAssertEqual(inst.publisher, "Acme Healthcare Services")
-		XCTAssertEqual(inst.resource?[0], "Questionnaire")
+		XCTAssertEqual(inst.resource?[0], ResourceType(rawValue: "Questionnaire")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.system, false)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -88,7 +88,7 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://build.fhir.org/codesystem-usage-context-type")
 		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].code, "IMP")
 		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].display, "inpatient encounter")
-		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActCode")
 		XCTAssertEqual(inst.version, "B")
 		
 		return inst

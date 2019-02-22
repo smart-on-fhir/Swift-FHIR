@@ -2,8 +2,8 @@
 //  Identifier.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Identifier) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Foundation
 /**
 An identifier intended for computation.
 
-A technical identifier - identifies some entity uniquely and unambiguously.
+An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.
 */
 open class Identifier: Element {
 	override open class var resourceType: String {

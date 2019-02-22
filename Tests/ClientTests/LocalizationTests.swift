@@ -32,7 +32,9 @@ class LocalizationTests: XCTestCase {
 			let json = try readJSONFile("Localization.json", directory: testResourcesDirectory)
 			let questionnaire = try Questionnaire(json: json)
 			item = questionnaire.item?.first
-			let valueSet = item?.options?.resolved(ValueSet.self)
+			// TODO resolve canonical URI
+//			let valueSet = item?.answerValueSet?.resolved(ValueSet.self)
+			let valueSet: ValueSet? = nil
 			concept1 = valueSet?.compose?.include?.first?.concept?.first
 			concept2 = valueSet?.compose?.include?.first?.concept?.last
 		}

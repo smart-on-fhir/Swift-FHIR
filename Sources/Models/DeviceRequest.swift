@@ -2,8 +2,8 @@
 //  DeviceRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DeviceRequest) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceRequest) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -32,11 +32,8 @@ open class DeviceRequest: DomainResource {
 	/// Device requested.
 	public var codeReference: Reference?
 	
-	/// Encounter or Episode motivating request.
-	public var context: Reference?
-	
-	/// Protocol or definition.
-	public var definition: [Reference]?
+	/// Encounter motivating request.
+	public var encounter: Reference?
 	
 	/// Identifier of composite request.
 	public var groupIdentifier: Identifier?
@@ -44,8 +41,17 @@ open class DeviceRequest: DomainResource {
 	/// External Request identifier.
 	public var identifier: [Identifier]?
 	
-	/// proposal | plan | original-order | encoded | reflex-order.
-	public var intent: CodeableConcept?
+	/// Instantiates FHIR protocol or definition.
+	public var instantiatesCanonical: [FHIRURL]?
+	
+	/// Instantiates external protocol or definition.
+	public var instantiatesUri: [FHIRURL]?
+	
+	/// Associated insurance coverage.
+	public var insurance: [Reference]?
+	
+	/// Whether the request is a proposal, plan, an original order or a reflex order.
+	public var intent: RequestIntent?
 	
 	/// Notes or comments.
 	public var note: [Annotation]?
@@ -59,10 +65,13 @@ open class DeviceRequest: DomainResource {
 	/// Desired time or schedule for use.
 	public var occurrenceTiming: Timing?
 	
+	/// Device details.
+	public var parameter: [DeviceRequestParameter]?
+	
 	/// Requested Filler.
 	public var performer: Reference?
 	
-	/// Fille role.
+	/// Filler role.
 	public var performerType: CodeableConcept?
 	
 	/// What request replaces.
@@ -81,7 +90,7 @@ open class DeviceRequest: DomainResource {
 	public var relevantHistory: [Reference]?
 	
 	/// Who/what is requesting diagnostics.
-	public var requester: DeviceRequestRequester?
+	public var requester: Reference?
 	
 	/// The status of the request.
 	public var status: RequestStatus?
@@ -94,7 +103,7 @@ open class DeviceRequest: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Any, intent: CodeableConcept, subject: Reference) {
+	public convenience init(code: Any, intent: RequestIntent, subject: Reference) {
 		self.init()
 		if let value = code as? Reference {
 			self.codeReference = value
@@ -103,7 +112,7 @@ open class DeviceRequest: DomainResource {
 			self.codeCodeableConcept = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: code))” for property “\(code)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: code))” for property “\(code)” is invalid, ignoring")
 		}
 		self.intent = intent
 		self.subject = subject
@@ -117,11 +126,13 @@ open class DeviceRequest: DomainResource {
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		codeCodeableConcept = createInstance(type: CodeableConcept.self, for: "codeCodeableConcept", in: json, context: &instCtx, owner: self) ?? codeCodeableConcept
 		codeReference = createInstance(type: Reference.self, for: "codeReference", in: json, context: &instCtx, owner: self) ?? codeReference
-		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		groupIdentifier = createInstance(type: Identifier.self, for: "groupIdentifier", in: json, context: &instCtx, owner: self) ?? groupIdentifier
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		intent = createInstance(type: CodeableConcept.self, for: "intent", in: json, context: &instCtx, owner: self) ?? intent
+		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
+		insurance = createInstances(of: Reference.self, for: "insurance", in: json, context: &instCtx, owner: self) ?? insurance
+		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
 		if nil == intent && !instCtx.containsKey("intent") {
 			instCtx.addError(FHIRValidationError(missing: "intent"))
 		}
@@ -129,6 +140,7 @@ open class DeviceRequest: DomainResource {
 		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
 		occurrencePeriod = createInstance(type: Period.self, for: "occurrencePeriod", in: json, context: &instCtx, owner: self) ?? occurrencePeriod
 		occurrenceTiming = createInstance(type: Timing.self, for: "occurrenceTiming", in: json, context: &instCtx, owner: self) ?? occurrenceTiming
+		parameter = createInstances(of: DeviceRequestParameter.self, for: "parameter", in: json, context: &instCtx, owner: self) ?? parameter
 		performer = createInstance(type: Reference.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
 		performerType = createInstance(type: CodeableConcept.self, for: "performerType", in: json, context: &instCtx, owner: self) ?? performerType
 		priorRequest = createInstances(of: Reference.self, for: "priorRequest", in: json, context: &instCtx, owner: self) ?? priorRequest
@@ -136,7 +148,7 @@ open class DeviceRequest: DomainResource {
 		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		relevantHistory = createInstances(of: Reference.self, for: "relevantHistory", in: json, context: &instCtx, owner: self) ?? relevantHistory
-		requester = createInstance(type: DeviceRequestRequester.self, for: "requester", in: json, context: &instCtx, owner: self) ?? requester
+		requester = createInstance(type: Reference.self, for: "requester", in: json, context: &instCtx, owner: self) ?? requester
 		status = createEnum(type: RequestStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		if nil == subject && !instCtx.containsKey("subject") {
@@ -158,10 +170,12 @@ open class DeviceRequest: DomainResource {
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.codeCodeableConcept?.decorate(json: &json, withKey: "codeCodeableConcept", errors: &errors)
 		self.codeReference?.decorate(json: &json, withKey: "codeReference", errors: &errors)
-		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		self.groupIdentifier?.decorate(json: &json, withKey: "groupIdentifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesCanonical", using: self.instantiatesCanonical, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesUri", using: self.instantiatesUri, errors: &errors)
+		arrayDecorate(json: &json, withKey: "insurance", using: self.insurance, errors: &errors)
 		self.intent?.decorate(json: &json, withKey: "intent", errors: &errors)
 		if nil == self.intent {
 			errors.append(FHIRValidationError(missing: "intent"))
@@ -170,6 +184,7 @@ open class DeviceRequest: DomainResource {
 		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
 		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)
 		self.occurrenceTiming?.decorate(json: &json, withKey: "occurrenceTiming", errors: &errors)
+		arrayDecorate(json: &json, withKey: "parameter", using: self.parameter, errors: &errors)
 		self.performer?.decorate(json: &json, withKey: "performer", errors: &errors)
 		self.performerType?.decorate(json: &json, withKey: "performerType", errors: &errors)
 		arrayDecorate(json: &json, withKey: "priorRequest", using: self.priorRequest, errors: &errors)
@@ -194,47 +209,49 @@ open class DeviceRequest: DomainResource {
 
 
 /**
-Who/what is requesting diagnostics.
+Device details.
 
-The individual who initiated the request and has responsibility for its activation.
+Specific parameters for the ordered item.  For example, the prism value for lenses.
 */
-open class DeviceRequestRequester: BackboneElement {
+open class DeviceRequestParameter: BackboneElement {
 	override open class var resourceType: String {
-		get { return "DeviceRequestRequester" }
+		get { return "DeviceRequestParameter" }
 	}
 	
-	/// Individual making the request.
-	public var agent: Reference?
+	/// Device detail.
+	public var code: CodeableConcept?
 	
-	/// Organization agent is acting for.
-	public var onBehalfOf: Reference?
+	/// Value of detail.
+	public var valueBoolean: FHIRBool?
 	
+	/// Value of detail.
+	public var valueCodeableConcept: CodeableConcept?
 	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(agent: Reference) {
-		self.init()
-		self.agent = agent
-	}
+	/// Value of detail.
+	public var valueQuantity: Quantity?
+	
+	/// Value of detail.
+	public var valueRange: Range?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		agent = createInstance(type: Reference.self, for: "agent", in: json, context: &instCtx, owner: self) ?? agent
-		if nil == agent && !instCtx.containsKey("agent") {
-			instCtx.addError(FHIRValidationError(missing: "agent"))
-		}
-		onBehalfOf = createInstance(type: Reference.self, for: "onBehalfOf", in: json, context: &instCtx, owner: self) ?? onBehalfOf
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
+		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
+		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
+		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.agent?.decorate(json: &json, withKey: "agent", errors: &errors)
-		if nil == self.agent {
-			errors.append(FHIRValidationError(missing: "agent"))
-		}
-		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
+		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
+		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
+		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
 	}
 }
 

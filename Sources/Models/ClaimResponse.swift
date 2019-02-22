@@ -2,15 +2,15 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Remittance resource.
+Response to a claim predetermination or preauthorization.
 
 This resource provides the adjudication details from the processing of a Claim resource.
 */
@@ -22,10 +22,13 @@ open class ClaimResponse: DomainResource {
 	/// Insurer added line items.
 	public var addItem: [ClaimResponseAddItem]?
 	
+	/// Header-level adjudication.
+	public var adjudication: [ClaimResponseItemAdjudication]?
+	
 	/// Request for additional information.
 	public var communicationRequest: [Reference]?
 	
-	/// Creation date.
+	/// Response creation date.
 	public var created: DateTime?
 	
 	/// Disposition Message.
@@ -34,115 +37,189 @@ open class ClaimResponse: DomainResource {
 	/// Processing errors.
 	public var error: [ClaimResponseError]?
 	
-	/// Printed Form Identifier.
-	public var form: CodeableConcept?
+	/// Printed reference or actual form.
+	public var form: Attachment?
 	
-	/// Response  number.
+	/// Printed form identifier.
+	public var formCode: CodeableConcept?
+	
+	/// Funds reserved status.
+	public var fundsReserve: CodeableConcept?
+	
+	/// Business Identifier for a claim response.
 	public var identifier: [Identifier]?
 	
-	/// Insurance or medical plan.
+	/// Patient insurance information.
 	public var insurance: [ClaimResponseInsurance]?
 	
-	/// Insurance issuing organization.
+	/// Party responsible for reimbursement.
 	public var insurer: Reference?
 	
-	/// Line items.
+	/// Adjudication for claim line items.
 	public var item: [ClaimResponseItem]?
 	
-	/// complete | error | partial.
-	public var outcome: CodeableConcept?
+	/// The outcome of the claim, predetermination, or preauthorization processing.
+	public var outcome: ClaimProcessingCodes?
 	
-	/// The subject of the Products and Services.
+	/// The recipient of the products and services.
 	public var patient: Reference?
 	
 	/// Party to be paid any benefits payable.
 	public var payeeType: CodeableConcept?
 	
-	/// Payment details, if paid.
+	/// Payment Details.
 	public var payment: ClaimResponsePayment?
 	
-	/// Processing notes.
+	/// Preauthorization reference effective period.
+	public var preAuthPeriod: Period?
+	
+	/// Preauthorization reference.
+	public var preAuthRef: FHIRString?
+	
+	/// Note concerning adjudication.
 	public var processNote: [ClaimResponseProcessNote]?
 	
 	/// Id of resource triggering adjudication.
 	public var request: Reference?
 	
-	/// Responsible organization.
-	public var requestOrganization: Reference?
+	/// Party responsible for the claim.
+	public var requestor: Reference?
 	
-	/// Responsible practitioner.
-	public var requestProvider: Reference?
+	/// The status of the resource instance.
+	public var status: FinancialResourceStatusCodes?
 	
-	/// Funds reserved status.
-	public var reserved: Coding?
+	/// More granular claim type.
+	public var subType: CodeableConcept?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: FHIRString?
+	/// Adjudication totals.
+	public var total: [ClaimResponseTotal]?
 	
-	/// Total benefit payable for the Claim.
-	public var totalBenefit: Money?
+	/// More granular claim type.
+	public var type: CodeableConcept?
 	
-	/// Total Cost of service from the Claim.
-	public var totalCost: Money?
+	/// A code to indicate whether the nature of the request is: to request adjudication of products and services
+	/// previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the
+	/// non-binding adjudication of the listed products and services which could be provided in the future.
+	public var use: Use?
 	
-	/// Unallocated deductible.
-	public var unallocDeductable: Money?
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(created: DateTime, insurer: Reference, outcome: ClaimProcessingCodes, patient: Reference, status: FinancialResourceStatusCodes, type: CodeableConcept, use: Use) {
+		self.init()
+		self.created = created
+		self.insurer = insurer
+		self.outcome = outcome
+		self.patient = patient
+		self.status = status
+		self.type = type
+		self.use = use
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		addItem = createInstances(of: ClaimResponseAddItem.self, for: "addItem", in: json, context: &instCtx, owner: self) ?? addItem
+		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
 		communicationRequest = createInstances(of: Reference.self, for: "communicationRequest", in: json, context: &instCtx, owner: self) ?? communicationRequest
 		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
+		if nil == created && !instCtx.containsKey("created") {
+			instCtx.addError(FHIRValidationError(missing: "created"))
+		}
 		disposition = createInstance(type: FHIRString.self, for: "disposition", in: json, context: &instCtx, owner: self) ?? disposition
 		error = createInstances(of: ClaimResponseError.self, for: "error", in: json, context: &instCtx, owner: self) ?? error
-		form = createInstance(type: CodeableConcept.self, for: "form", in: json, context: &instCtx, owner: self) ?? form
+		form = createInstance(type: Attachment.self, for: "form", in: json, context: &instCtx, owner: self) ?? form
+		formCode = createInstance(type: CodeableConcept.self, for: "formCode", in: json, context: &instCtx, owner: self) ?? formCode
+		fundsReserve = createInstance(type: CodeableConcept.self, for: "fundsReserve", in: json, context: &instCtx, owner: self) ?? fundsReserve
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		insurance = createInstances(of: ClaimResponseInsurance.self, for: "insurance", in: json, context: &instCtx, owner: self) ?? insurance
 		insurer = createInstance(type: Reference.self, for: "insurer", in: json, context: &instCtx, owner: self) ?? insurer
+		if nil == insurer && !instCtx.containsKey("insurer") {
+			instCtx.addError(FHIRValidationError(missing: "insurer"))
+		}
 		item = createInstances(of: ClaimResponseItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
-		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		outcome = createEnum(type: ClaimProcessingCodes.self, for: "outcome", in: json, context: &instCtx) ?? outcome
+		if nil == outcome && !instCtx.containsKey("outcome") {
+			instCtx.addError(FHIRValidationError(missing: "outcome"))
+		}
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
+		if nil == patient && !instCtx.containsKey("patient") {
+			instCtx.addError(FHIRValidationError(missing: "patient"))
+		}
 		payeeType = createInstance(type: CodeableConcept.self, for: "payeeType", in: json, context: &instCtx, owner: self) ?? payeeType
 		payment = createInstance(type: ClaimResponsePayment.self, for: "payment", in: json, context: &instCtx, owner: self) ?? payment
+		preAuthPeriod = createInstance(type: Period.self, for: "preAuthPeriod", in: json, context: &instCtx, owner: self) ?? preAuthPeriod
+		preAuthRef = createInstance(type: FHIRString.self, for: "preAuthRef", in: json, context: &instCtx, owner: self) ?? preAuthRef
 		processNote = createInstances(of: ClaimResponseProcessNote.self, for: "processNote", in: json, context: &instCtx, owner: self) ?? processNote
 		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
-		requestOrganization = createInstance(type: Reference.self, for: "requestOrganization", in: json, context: &instCtx, owner: self) ?? requestOrganization
-		requestProvider = createInstance(type: Reference.self, for: "requestProvider", in: json, context: &instCtx, owner: self) ?? requestProvider
-		reserved = createInstance(type: Coding.self, for: "reserved", in: json, context: &instCtx, owner: self) ?? reserved
-		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
-		totalBenefit = createInstance(type: Money.self, for: "totalBenefit", in: json, context: &instCtx, owner: self) ?? totalBenefit
-		totalCost = createInstance(type: Money.self, for: "totalCost", in: json, context: &instCtx, owner: self) ?? totalCost
-		unallocDeductable = createInstance(type: Money.self, for: "unallocDeductable", in: json, context: &instCtx, owner: self) ?? unallocDeductable
+		requestor = createInstance(type: Reference.self, for: "requestor", in: json, context: &instCtx, owner: self) ?? requestor
+		status = createEnum(type: FinancialResourceStatusCodes.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
+		}
+		subType = createInstance(type: CodeableConcept.self, for: "subType", in: json, context: &instCtx, owner: self) ?? subType
+		total = createInstances(of: ClaimResponseTotal.self, for: "total", in: json, context: &instCtx, owner: self) ?? total
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
+		}
+		use = createEnum(type: Use.self, for: "use", in: json, context: &instCtx) ?? use
+		if nil == use && !instCtx.containsKey("use") {
+			instCtx.addError(FHIRValidationError(missing: "use"))
+		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "addItem", using: self.addItem, errors: &errors)
+		arrayDecorate(json: &json, withKey: "adjudication", using: self.adjudication, errors: &errors)
 		arrayDecorate(json: &json, withKey: "communicationRequest", using: self.communicationRequest, errors: &errors)
 		self.created?.decorate(json: &json, withKey: "created", errors: &errors)
+		if nil == self.created {
+			errors.append(FHIRValidationError(missing: "created"))
+		}
 		self.disposition?.decorate(json: &json, withKey: "disposition", errors: &errors)
 		arrayDecorate(json: &json, withKey: "error", using: self.error, errors: &errors)
 		self.form?.decorate(json: &json, withKey: "form", errors: &errors)
+		self.formCode?.decorate(json: &json, withKey: "formCode", errors: &errors)
+		self.fundsReserve?.decorate(json: &json, withKey: "fundsReserve", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "insurance", using: self.insurance, errors: &errors)
 		self.insurer?.decorate(json: &json, withKey: "insurer", errors: &errors)
+		if nil == self.insurer {
+			errors.append(FHIRValidationError(missing: "insurer"))
+		}
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
+		if nil == self.outcome {
+			errors.append(FHIRValidationError(missing: "outcome"))
+		}
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
+		if nil == self.patient {
+			errors.append(FHIRValidationError(missing: "patient"))
+		}
 		self.payeeType?.decorate(json: &json, withKey: "payeeType", errors: &errors)
 		self.payment?.decorate(json: &json, withKey: "payment", errors: &errors)
+		self.preAuthPeriod?.decorate(json: &json, withKey: "preAuthPeriod", errors: &errors)
+		self.preAuthRef?.decorate(json: &json, withKey: "preAuthRef", errors: &errors)
 		arrayDecorate(json: &json, withKey: "processNote", using: self.processNote, errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
-		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
-		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
-		self.reserved?.decorate(json: &json, withKey: "reserved", errors: &errors)
+		self.requestor?.decorate(json: &json, withKey: "requestor", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
-		self.totalBenefit?.decorate(json: &json, withKey: "totalBenefit", errors: &errors)
-		self.totalCost?.decorate(json: &json, withKey: "totalCost", errors: &errors)
-		self.unallocDeductable?.decorate(json: &json, withKey: "unallocDeductable", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
+		self.subType?.decorate(json: &json, withKey: "subType", errors: &errors)
+		arrayDecorate(json: &json, withKey: "total", using: self.total, errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		self.use?.decorate(json: &json, withKey: "use", errors: &errors)
+		if nil == self.use {
+			errors.append(FHIRValidationError(missing: "use"))
+		}
 	}
 }
 
@@ -150,7 +227,7 @@ open class ClaimResponse: DomainResource {
 /**
 Insurer added line items.
 
-The first tier service adjudications for payor added services.
+The first-tier service adjudications for payor added product or service lines.
 */
 open class ClaimResponseAddItem: BackboneElement {
 	override open class var resourceType: String {
@@ -160,65 +237,145 @@ open class ClaimResponseAddItem: BackboneElement {
 	/// Added items adjudication.
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
-	/// Type of service or product.
-	public var category: CodeableConcept?
+	/// Anatomical location.
+	public var bodySite: CodeableConcept?
 	
-	/// Added items details.
+	/// Insurer added line details.
 	public var detail: [ClaimResponseAddItemDetail]?
 	
-	/// Professional fee or Product charge.
-	public var fee: Money?
+	/// Detail sequence number.
+	public var detailSequence: [FHIRInteger]?
+	
+	/// Price scaling factor.
+	public var factor: FHIRDecimal?
+	
+	/// Item sequence number.
+	public var itemSequence: [FHIRInteger]?
+	
+	/// Place of service or where product was supplied.
+	public var locationAddress: Address?
+	
+	/// Place of service or where product was supplied.
+	public var locationCodeableConcept: CodeableConcept?
+	
+	/// Place of service or where product was supplied.
+	public var locationReference: Reference?
 	
 	/// Service/Product billing modifiers.
 	public var modifier: [CodeableConcept]?
 	
-	/// List of note numbers which apply.
+	/// Total item cost.
+	public var net: Money?
+	
+	/// Applicable note numbers.
 	public var noteNumber: [FHIRInteger]?
 	
-	/// Revenue or cost center code.
-	public var revenue: CodeableConcept?
+	/// Billing, service, product, or drug code.
+	public var productOrService: CodeableConcept?
 	
-	/// Service instances.
-	public var sequenceLinkId: [FHIRInteger]?
+	/// Program the product or service is provided under.
+	public var programCode: [CodeableConcept]?
 	
-	/// Group, Service or Product.
-	public var service: CodeableConcept?
+	/// Authorized providers.
+	public var provider: [Reference]?
+	
+	/// Count of products or services.
+	public var quantity: Quantity?
+	
+	/// Date or dates of service or product delivery.
+	public var servicedDate: FHIRDate?
+	
+	/// Date or dates of service or product delivery.
+	public var servicedPeriod: Period?
+	
+	/// Anatomical sub-location.
+	public var subSite: [CodeableConcept]?
+	
+	/// Subdetail sequence number.
+	public var subdetailSequence: [FHIRInteger]?
+	
+	/// Fee, charge or cost per item.
+	public var unitPrice: Money?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(adjudication: [ClaimResponseItemAdjudication], productOrService: CodeableConcept) {
+		self.init()
+		self.adjudication = adjudication
+		self.productOrService = productOrService
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
-		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		if (nil == adjudication || adjudication!.isEmpty) && !instCtx.containsKey("adjudication") {
+			instCtx.addError(FHIRValidationError(missing: "adjudication"))
+		}
+		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
 		detail = createInstances(of: ClaimResponseAddItemDetail.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
-		fee = createInstance(type: Money.self, for: "fee", in: json, context: &instCtx, owner: self) ?? fee
+		detailSequence = createInstances(of: FHIRInteger.self, for: "detailSequence", in: json, context: &instCtx, owner: self) ?? detailSequence
+		factor = createInstance(type: FHIRDecimal.self, for: "factor", in: json, context: &instCtx, owner: self) ?? factor
+		itemSequence = createInstances(of: FHIRInteger.self, for: "itemSequence", in: json, context: &instCtx, owner: self) ?? itemSequence
+		locationAddress = createInstance(type: Address.self, for: "locationAddress", in: json, context: &instCtx, owner: self) ?? locationAddress
+		locationCodeableConcept = createInstance(type: CodeableConcept.self, for: "locationCodeableConcept", in: json, context: &instCtx, owner: self) ?? locationCodeableConcept
+		locationReference = createInstance(type: Reference.self, for: "locationReference", in: json, context: &instCtx, owner: self) ?? locationReference
 		modifier = createInstances(of: CodeableConcept.self, for: "modifier", in: json, context: &instCtx, owner: self) ?? modifier
+		net = createInstance(type: Money.self, for: "net", in: json, context: &instCtx, owner: self) ?? net
 		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
-		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
-		sequenceLinkId = createInstances(of: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
+		productOrService = createInstance(type: CodeableConcept.self, for: "productOrService", in: json, context: &instCtx, owner: self) ?? productOrService
+		if nil == productOrService && !instCtx.containsKey("productOrService") {
+			instCtx.addError(FHIRValidationError(missing: "productOrService"))
+		}
+		programCode = createInstances(of: CodeableConcept.self, for: "programCode", in: json, context: &instCtx, owner: self) ?? programCode
+		provider = createInstances(of: Reference.self, for: "provider", in: json, context: &instCtx, owner: self) ?? provider
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		servicedDate = createInstance(type: FHIRDate.self, for: "servicedDate", in: json, context: &instCtx, owner: self) ?? servicedDate
+		servicedPeriod = createInstance(type: Period.self, for: "servicedPeriod", in: json, context: &instCtx, owner: self) ?? servicedPeriod
+		subSite = createInstances(of: CodeableConcept.self, for: "subSite", in: json, context: &instCtx, owner: self) ?? subSite
+		subdetailSequence = createInstances(of: FHIRInteger.self, for: "subdetailSequence", in: json, context: &instCtx, owner: self) ?? subdetailSequence
+		unitPrice = createInstance(type: Money.self, for: "unitPrice", in: json, context: &instCtx, owner: self) ?? unitPrice
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "adjudication", using: self.adjudication, errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		if nil == adjudication || self.adjudication!.isEmpty {
+			errors.append(FHIRValidationError(missing: "adjudication"))
+		}
+		self.bodySite?.decorate(json: &json, withKey: "bodySite", errors: &errors)
 		arrayDecorate(json: &json, withKey: "detail", using: self.detail, errors: &errors)
-		self.fee?.decorate(json: &json, withKey: "fee", errors: &errors)
+		arrayDecorate(json: &json, withKey: "detailSequence", using: self.detailSequence, errors: &errors)
+		self.factor?.decorate(json: &json, withKey: "factor", errors: &errors)
+		arrayDecorate(json: &json, withKey: "itemSequence", using: self.itemSequence, errors: &errors)
+		self.locationAddress?.decorate(json: &json, withKey: "locationAddress", errors: &errors)
+		self.locationCodeableConcept?.decorate(json: &json, withKey: "locationCodeableConcept", errors: &errors)
+		self.locationReference?.decorate(json: &json, withKey: "locationReference", errors: &errors)
 		arrayDecorate(json: &json, withKey: "modifier", using: self.modifier, errors: &errors)
+		self.net?.decorate(json: &json, withKey: "net", errors: &errors)
 		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
-		self.revenue?.decorate(json: &json, withKey: "revenue", errors: &errors)
-		arrayDecorate(json: &json, withKey: "sequenceLinkId", using: self.sequenceLinkId, errors: &errors)
-		self.service?.decorate(json: &json, withKey: "service", errors: &errors)
+		self.productOrService?.decorate(json: &json, withKey: "productOrService", errors: &errors)
+		if nil == self.productOrService {
+			errors.append(FHIRValidationError(missing: "productOrService"))
+		}
+		arrayDecorate(json: &json, withKey: "programCode", using: self.programCode, errors: &errors)
+		arrayDecorate(json: &json, withKey: "provider", using: self.provider, errors: &errors)
+		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
+		self.servicedDate?.decorate(json: &json, withKey: "servicedDate", errors: &errors)
+		self.servicedPeriod?.decorate(json: &json, withKey: "servicedPeriod", errors: &errors)
+		arrayDecorate(json: &json, withKey: "subSite", using: self.subSite, errors: &errors)
+		arrayDecorate(json: &json, withKey: "subdetailSequence", using: self.subdetailSequence, errors: &errors)
+		self.unitPrice?.decorate(json: &json, withKey: "unitPrice", errors: &errors)
 	}
 }
 
 
 /**
-Added items details.
+Insurer added line details.
 
-The second tier service adjudications for payor added services.
+The second-tier service adjudications for payor added services.
 */
 open class ClaimResponseAddItemDetail: BackboneElement {
 	override open class var resourceType: String {
@@ -228,47 +385,160 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 	/// Added items detail adjudication.
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
-	/// Type of service or product.
-	public var category: CodeableConcept?
-	
-	/// Professional fee or Product charge.
-	public var fee: Money?
+	/// Price scaling factor.
+	public var factor: FHIRDecimal?
 	
 	/// Service/Product billing modifiers.
 	public var modifier: [CodeableConcept]?
 	
-	/// List of note numbers which apply.
+	/// Total item cost.
+	public var net: Money?
+	
+	/// Applicable note numbers.
 	public var noteNumber: [FHIRInteger]?
 	
-	/// Revenue or cost center code.
-	public var revenue: CodeableConcept?
+	/// Billing, service, product, or drug code.
+	public var productOrService: CodeableConcept?
 	
-	/// Service or Product.
-	public var service: CodeableConcept?
+	/// Count of products or services.
+	public var quantity: Quantity?
+	
+	/// Insurer added line items.
+	public var subDetail: [ClaimResponseAddItemDetailSubDetail]?
+	
+	/// Fee, charge or cost per item.
+	public var unitPrice: Money?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(adjudication: [ClaimResponseItemAdjudication], productOrService: CodeableConcept) {
+		self.init()
+		self.adjudication = adjudication
+		self.productOrService = productOrService
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
-		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		fee = createInstance(type: Money.self, for: "fee", in: json, context: &instCtx, owner: self) ?? fee
+		if (nil == adjudication || adjudication!.isEmpty) && !instCtx.containsKey("adjudication") {
+			instCtx.addError(FHIRValidationError(missing: "adjudication"))
+		}
+		factor = createInstance(type: FHIRDecimal.self, for: "factor", in: json, context: &instCtx, owner: self) ?? factor
 		modifier = createInstances(of: CodeableConcept.self, for: "modifier", in: json, context: &instCtx, owner: self) ?? modifier
+		net = createInstance(type: Money.self, for: "net", in: json, context: &instCtx, owner: self) ?? net
 		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
-		revenue = createInstance(type: CodeableConcept.self, for: "revenue", in: json, context: &instCtx, owner: self) ?? revenue
-		service = createInstance(type: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
+		productOrService = createInstance(type: CodeableConcept.self, for: "productOrService", in: json, context: &instCtx, owner: self) ?? productOrService
+		if nil == productOrService && !instCtx.containsKey("productOrService") {
+			instCtx.addError(FHIRValidationError(missing: "productOrService"))
+		}
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		subDetail = createInstances(of: ClaimResponseAddItemDetailSubDetail.self, for: "subDetail", in: json, context: &instCtx, owner: self) ?? subDetail
+		unitPrice = createInstance(type: Money.self, for: "unitPrice", in: json, context: &instCtx, owner: self) ?? unitPrice
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "adjudication", using: self.adjudication, errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
-		self.fee?.decorate(json: &json, withKey: "fee", errors: &errors)
+		if nil == adjudication || self.adjudication!.isEmpty {
+			errors.append(FHIRValidationError(missing: "adjudication"))
+		}
+		self.factor?.decorate(json: &json, withKey: "factor", errors: &errors)
 		arrayDecorate(json: &json, withKey: "modifier", using: self.modifier, errors: &errors)
+		self.net?.decorate(json: &json, withKey: "net", errors: &errors)
 		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
-		self.revenue?.decorate(json: &json, withKey: "revenue", errors: &errors)
-		self.service?.decorate(json: &json, withKey: "service", errors: &errors)
+		self.productOrService?.decorate(json: &json, withKey: "productOrService", errors: &errors)
+		if nil == self.productOrService {
+			errors.append(FHIRValidationError(missing: "productOrService"))
+		}
+		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
+		arrayDecorate(json: &json, withKey: "subDetail", using: self.subDetail, errors: &errors)
+		self.unitPrice?.decorate(json: &json, withKey: "unitPrice", errors: &errors)
+	}
+}
+
+
+/**
+Insurer added line items.
+
+The third-tier service adjudications for payor added services.
+*/
+open class ClaimResponseAddItemDetailSubDetail: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ClaimResponseAddItemDetailSubDetail" }
+	}
+	
+	/// Added items detail adjudication.
+	public var adjudication: [ClaimResponseItemAdjudication]?
+	
+	/// Price scaling factor.
+	public var factor: FHIRDecimal?
+	
+	/// Service/Product billing modifiers.
+	public var modifier: [CodeableConcept]?
+	
+	/// Total item cost.
+	public var net: Money?
+	
+	/// Applicable note numbers.
+	public var noteNumber: [FHIRInteger]?
+	
+	/// Billing, service, product, or drug code.
+	public var productOrService: CodeableConcept?
+	
+	/// Count of products or services.
+	public var quantity: Quantity?
+	
+	/// Fee, charge or cost per item.
+	public var unitPrice: Money?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(adjudication: [ClaimResponseItemAdjudication], productOrService: CodeableConcept) {
+		self.init()
+		self.adjudication = adjudication
+		self.productOrService = productOrService
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
+		if (nil == adjudication || adjudication!.isEmpty) && !instCtx.containsKey("adjudication") {
+			instCtx.addError(FHIRValidationError(missing: "adjudication"))
+		}
+		factor = createInstance(type: FHIRDecimal.self, for: "factor", in: json, context: &instCtx, owner: self) ?? factor
+		modifier = createInstances(of: CodeableConcept.self, for: "modifier", in: json, context: &instCtx, owner: self) ?? modifier
+		net = createInstance(type: Money.self, for: "net", in: json, context: &instCtx, owner: self) ?? net
+		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
+		productOrService = createInstance(type: CodeableConcept.self, for: "productOrService", in: json, context: &instCtx, owner: self) ?? productOrService
+		if nil == productOrService && !instCtx.containsKey("productOrService") {
+			instCtx.addError(FHIRValidationError(missing: "productOrService"))
+		}
+		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
+		unitPrice = createInstance(type: Money.self, for: "unitPrice", in: json, context: &instCtx, owner: self) ?? unitPrice
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		arrayDecorate(json: &json, withKey: "adjudication", using: self.adjudication, errors: &errors)
+		if nil == adjudication || self.adjudication!.isEmpty {
+			errors.append(FHIRValidationError(missing: "adjudication"))
+		}
+		self.factor?.decorate(json: &json, withKey: "factor", errors: &errors)
+		arrayDecorate(json: &json, withKey: "modifier", using: self.modifier, errors: &errors)
+		self.net?.decorate(json: &json, withKey: "net", errors: &errors)
+		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
+		self.productOrService?.decorate(json: &json, withKey: "productOrService", errors: &errors)
+		if nil == self.productOrService {
+			errors.append(FHIRValidationError(missing: "productOrService"))
+		}
+		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
+		self.unitPrice?.decorate(json: &json, withKey: "unitPrice", errors: &errors)
 	}
 }
 
@@ -276,7 +546,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 /**
 Processing errors.
 
-Mutually exclusive with Services Provided (Item).
+Errors encountered during the processing of the adjudication.
 */
 open class ClaimResponseError: BackboneElement {
 	override open class var resourceType: String {
@@ -287,13 +557,13 @@ open class ClaimResponseError: BackboneElement {
 	public var code: CodeableConcept?
 	
 	/// Detail sequence number.
-	public var detailSequenceLinkId: FHIRInteger?
+	public var detailSequence: FHIRInteger?
 	
 	/// Item sequence number.
-	public var sequenceLinkId: FHIRInteger?
+	public var itemSequence: FHIRInteger?
 	
 	/// Subdetail sequence number.
-	public var subdetailSequenceLinkId: FHIRInteger?
+	public var subDetailSequence: FHIRInteger?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -310,9 +580,9 @@ open class ClaimResponseError: BackboneElement {
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		detailSequenceLinkId = createInstance(type: FHIRInteger.self, for: "detailSequenceLinkId", in: json, context: &instCtx, owner: self) ?? detailSequenceLinkId
-		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		subdetailSequenceLinkId = createInstance(type: FHIRInteger.self, for: "subdetailSequenceLinkId", in: json, context: &instCtx, owner: self) ?? subdetailSequenceLinkId
+		detailSequence = createInstance(type: FHIRInteger.self, for: "detailSequence", in: json, context: &instCtx, owner: self) ?? detailSequence
+		itemSequence = createInstance(type: FHIRInteger.self, for: "itemSequence", in: json, context: &instCtx, owner: self) ?? itemSequence
+		subDetailSequence = createInstance(type: FHIRInteger.self, for: "subDetailSequence", in: json, context: &instCtx, owner: self) ?? subDetailSequence
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -322,24 +592,24 @@ open class ClaimResponseError: BackboneElement {
 		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
-		self.detailSequenceLinkId?.decorate(json: &json, withKey: "detailSequenceLinkId", errors: &errors)
-		self.sequenceLinkId?.decorate(json: &json, withKey: "sequenceLinkId", errors: &errors)
-		self.subdetailSequenceLinkId?.decorate(json: &json, withKey: "subdetailSequenceLinkId", errors: &errors)
+		self.detailSequence?.decorate(json: &json, withKey: "detailSequence", errors: &errors)
+		self.itemSequence?.decorate(json: &json, withKey: "itemSequence", errors: &errors)
+		self.subDetailSequence?.decorate(json: &json, withKey: "subDetailSequence", errors: &errors)
 	}
 }
 
 
 /**
-Insurance or medical plan.
+Patient insurance information.
 
-Financial instrument by which payment information for health care.
+Financial instruments for reimbursement for the health care products and services specified on the claim.
 */
 open class ClaimResponseInsurance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseInsurance" }
 	}
 	
-	/// Business agreement.
+	/// Additional provider contract number.
 	public var businessArrangement: FHIRString?
 	
 	/// Adjudication results.
@@ -348,13 +618,10 @@ open class ClaimResponseInsurance: BackboneElement {
 	/// Insurance information.
 	public var coverage: Reference?
 	
-	/// Is the focal Coverage.
+	/// Coverage to be used for adjudication.
 	public var focal: FHIRBool?
 	
-	/// Pre-Authorization/Determination Reference.
-	public var preAuthRef: [FHIRString]?
-	
-	/// Service instance identifier.
+	/// Insurance instance identifier.
 	public var sequence: FHIRInteger?
 	
 	
@@ -380,7 +647,6 @@ open class ClaimResponseInsurance: BackboneElement {
 		if nil == focal && !instCtx.containsKey("focal") {
 			instCtx.addError(FHIRValidationError(missing: "focal"))
 		}
-		preAuthRef = createInstances(of: FHIRString.self, for: "preAuthRef", in: json, context: &instCtx, owner: self) ?? preAuthRef
 		sequence = createInstance(type: FHIRInteger.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
 		if nil == sequence && !instCtx.containsKey("sequence") {
 			instCtx.addError(FHIRValidationError(missing: "sequence"))
@@ -400,7 +666,6 @@ open class ClaimResponseInsurance: BackboneElement {
 		if nil == self.focal {
 			errors.append(FHIRValidationError(missing: "focal"))
 		}
-		arrayDecorate(json: &json, withKey: "preAuthRef", using: self.preAuthRef, errors: &errors)
 		self.sequence?.decorate(json: &json, withKey: "sequence", errors: &errors)
 		if nil == self.sequence {
 			errors.append(FHIRValidationError(missing: "sequence"))
@@ -410,9 +675,10 @@ open class ClaimResponseInsurance: BackboneElement {
 
 
 /**
-Line items.
+Adjudication for claim line items.
 
-The first tier service adjudications for submitted services.
+A claim line. Either a simple (a product or service) or a 'group' of details which can also be a simple items or groups
+of sub-details.
 */
 open class ClaimResponseItem: BackboneElement {
 	override open class var resourceType: String {
@@ -422,20 +688,21 @@ open class ClaimResponseItem: BackboneElement {
 	/// Adjudication details.
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
-	/// Detail line items.
+	/// Adjudication for claim details.
 	public var detail: [ClaimResponseItemDetail]?
 	
-	/// List of note numbers which apply.
-	public var noteNumber: [FHIRInteger]?
+	/// Claim item instance identifier.
+	public var itemSequence: FHIRInteger?
 	
-	/// Service instance.
-	public var sequenceLinkId: FHIRInteger?
+	/// Applicable note numbers.
+	public var noteNumber: [FHIRInteger]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: FHIRInteger) {
+	public convenience init(adjudication: [ClaimResponseItemAdjudication], itemSequence: FHIRInteger) {
 		self.init()
-		self.sequenceLinkId = sequenceLinkId
+		self.adjudication = adjudication
+		self.itemSequence = itemSequence
 	}
 	
 	
@@ -443,24 +710,30 @@ open class ClaimResponseItem: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
-		detail = createInstances(of: ClaimResponseItemDetail.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
-		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
-		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") {
-			instCtx.addError(FHIRValidationError(missing: "sequenceLinkId"))
+		if (nil == adjudication || adjudication!.isEmpty) && !instCtx.containsKey("adjudication") {
+			instCtx.addError(FHIRValidationError(missing: "adjudication"))
 		}
+		detail = createInstances(of: ClaimResponseItemDetail.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
+		itemSequence = createInstance(type: FHIRInteger.self, for: "itemSequence", in: json, context: &instCtx, owner: self) ?? itemSequence
+		if nil == itemSequence && !instCtx.containsKey("itemSequence") {
+			instCtx.addError(FHIRValidationError(missing: "itemSequence"))
+		}
+		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "adjudication", using: self.adjudication, errors: &errors)
-		arrayDecorate(json: &json, withKey: "detail", using: self.detail, errors: &errors)
-		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
-		self.sequenceLinkId?.decorate(json: &json, withKey: "sequenceLinkId", errors: &errors)
-		if nil == self.sequenceLinkId {
-			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
+		if nil == adjudication || self.adjudication!.isEmpty {
+			errors.append(FHIRValidationError(missing: "adjudication"))
 		}
+		arrayDecorate(json: &json, withKey: "detail", using: self.detail, errors: &errors)
+		self.itemSequence?.decorate(json: &json, withKey: "itemSequence", errors: &errors)
+		if nil == self.itemSequence {
+			errors.append(FHIRValidationError(missing: "itemSequence"))
+		}
+		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
 	}
 }
 
@@ -468,7 +741,8 @@ open class ClaimResponseItem: BackboneElement {
 /**
 Adjudication details.
 
-The adjudication results.
+If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a
+simple product or service then this is the result of the adjudication of this item.
 */
 open class ClaimResponseItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
@@ -478,10 +752,10 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 	/// Monetary amount.
 	public var amount: Money?
 	
-	/// Adjudication category such as co-pay, eligible, benefit, etc..
+	/// Type of adjudication information.
 	public var category: CodeableConcept?
 	
-	/// Explanation of Adjudication outcome.
+	/// Explanation of adjudication outcome.
 	public var reason: CodeableConcept?
 	
 	/// Non-monetary value.
@@ -522,9 +796,9 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 
 
 /**
-Detail line items.
+Adjudication for claim details.
 
-The second tier service adjudications for submitted services.
+A claim detail. Either a simple (a product or service) or a 'group' of sub-details which are simple items.
 */
 open class ClaimResponseItemDetail: BackboneElement {
 	override open class var resourceType: String {
@@ -534,20 +808,21 @@ open class ClaimResponseItemDetail: BackboneElement {
 	/// Detail level adjudication details.
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
-	/// List of note numbers which apply.
+	/// Claim detail instance identifier.
+	public var detailSequence: FHIRInteger?
+	
+	/// Applicable note numbers.
 	public var noteNumber: [FHIRInteger]?
 	
-	/// Service instance.
-	public var sequenceLinkId: FHIRInteger?
-	
-	/// Subdetail line items.
+	/// Adjudication for claim sub-details.
 	public var subDetail: [ClaimResponseItemDetailSubDetail]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: FHIRInteger) {
+	public convenience init(adjudication: [ClaimResponseItemAdjudication], detailSequence: FHIRInteger) {
 		self.init()
-		self.sequenceLinkId = sequenceLinkId
+		self.adjudication = adjudication
+		self.detailSequence = detailSequence
 	}
 	
 	
@@ -555,11 +830,14 @@ open class ClaimResponseItemDetail: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
-		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
-		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") {
-			instCtx.addError(FHIRValidationError(missing: "sequenceLinkId"))
+		if (nil == adjudication || adjudication!.isEmpty) && !instCtx.containsKey("adjudication") {
+			instCtx.addError(FHIRValidationError(missing: "adjudication"))
 		}
+		detailSequence = createInstance(type: FHIRInteger.self, for: "detailSequence", in: json, context: &instCtx, owner: self) ?? detailSequence
+		if nil == detailSequence && !instCtx.containsKey("detailSequence") {
+			instCtx.addError(FHIRValidationError(missing: "detailSequence"))
+		}
+		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
 		subDetail = createInstances(of: ClaimResponseItemDetailSubDetail.self, for: "subDetail", in: json, context: &instCtx, owner: self) ?? subDetail
 	}
 	
@@ -567,20 +845,23 @@ open class ClaimResponseItemDetail: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "adjudication", using: self.adjudication, errors: &errors)
-		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
-		self.sequenceLinkId?.decorate(json: &json, withKey: "sequenceLinkId", errors: &errors)
-		if nil == self.sequenceLinkId {
-			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
+		if nil == adjudication || self.adjudication!.isEmpty {
+			errors.append(FHIRValidationError(missing: "adjudication"))
 		}
+		self.detailSequence?.decorate(json: &json, withKey: "detailSequence", errors: &errors)
+		if nil == self.detailSequence {
+			errors.append(FHIRValidationError(missing: "detailSequence"))
+		}
+		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
 		arrayDecorate(json: &json, withKey: "subDetail", using: self.subDetail, errors: &errors)
 	}
 }
 
 
 /**
-Subdetail line items.
+Adjudication for claim sub-details.
 
-The third tier service adjudications for submitted services.
+A sub-detail adjudication of a simple product or service.
 */
 open class ClaimResponseItemDetailSubDetail: BackboneElement {
 	override open class var resourceType: String {
@@ -590,17 +871,17 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 	/// Subdetail level adjudication details.
 	public var adjudication: [ClaimResponseItemAdjudication]?
 	
-	/// List of note numbers which apply.
+	/// Applicable note numbers.
 	public var noteNumber: [FHIRInteger]?
 	
-	/// Service instance.
-	public var sequenceLinkId: FHIRInteger?
+	/// Claim sub-detail instance identifier.
+	public var subDetailSequence: FHIRInteger?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: FHIRInteger) {
+	public convenience init(subDetailSequence: FHIRInteger) {
 		self.init()
-		self.sequenceLinkId = sequenceLinkId
+		self.subDetailSequence = subDetailSequence
 	}
 	
 	
@@ -609,9 +890,9 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		
 		adjudication = createInstances(of: ClaimResponseItemAdjudication.self, for: "adjudication", in: json, context: &instCtx, owner: self) ?? adjudication
 		noteNumber = createInstances(of: FHIRInteger.self, for: "noteNumber", in: json, context: &instCtx, owner: self) ?? noteNumber
-		sequenceLinkId = createInstance(type: FHIRInteger.self, for: "sequenceLinkId", in: json, context: &instCtx, owner: self) ?? sequenceLinkId
-		if nil == sequenceLinkId && !instCtx.containsKey("sequenceLinkId") {
-			instCtx.addError(FHIRValidationError(missing: "sequenceLinkId"))
+		subDetailSequence = createInstance(type: FHIRInteger.self, for: "subDetailSequence", in: json, context: &instCtx, owner: self) ?? subDetailSequence
+		if nil == subDetailSequence && !instCtx.containsKey("subDetailSequence") {
+			instCtx.addError(FHIRValidationError(missing: "subDetailSequence"))
 		}
 	}
 	
@@ -620,41 +901,49 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		
 		arrayDecorate(json: &json, withKey: "adjudication", using: self.adjudication, errors: &errors)
 		arrayDecorate(json: &json, withKey: "noteNumber", using: self.noteNumber, errors: &errors)
-		self.sequenceLinkId?.decorate(json: &json, withKey: "sequenceLinkId", errors: &errors)
-		if nil == self.sequenceLinkId {
-			errors.append(FHIRValidationError(missing: "sequenceLinkId"))
+		self.subDetailSequence?.decorate(json: &json, withKey: "subDetailSequence", errors: &errors)
+		if nil == self.subDetailSequence {
+			errors.append(FHIRValidationError(missing: "subDetailSequence"))
 		}
 	}
 }
 
 
 /**
-Payment details, if paid.
+Payment Details.
 
-Payment details for the claim if the claim has been paid.
+Payment details for the adjudication of the claim.
 */
 open class ClaimResponsePayment: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponsePayment" }
 	}
 	
-	/// Payment adjustment for non-Claim issues.
+	/// Payment adjustment for non-claim issues.
 	public var adjustment: Money?
 	
-	/// Explanation for the non-claim adjustment.
+	/// Explanation for the adjustment.
 	public var adjustmentReason: CodeableConcept?
 	
 	/// Payable amount after adjustment.
 	public var amount: Money?
 	
-	/// Expected data of Payment.
+	/// Expected date of payment.
 	public var date: FHIRDate?
 	
-	/// Identifier of the payment instrument.
+	/// Business identifier for the payment.
 	public var identifier: Identifier?
 	
-	/// Partial or Complete.
+	/// Partial or complete payment.
 	public var type: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(amount: Money, type: CodeableConcept) {
+		self.init()
+		self.amount = amount
+		self.type = type
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -663,9 +952,15 @@ open class ClaimResponsePayment: BackboneElement {
 		adjustment = createInstance(type: Money.self, for: "adjustment", in: json, context: &instCtx, owner: self) ?? adjustment
 		adjustmentReason = createInstance(type: CodeableConcept.self, for: "adjustmentReason", in: json, context: &instCtx, owner: self) ?? adjustmentReason
 		amount = createInstance(type: Money.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
+		if nil == amount && !instCtx.containsKey("amount") {
+			instCtx.addError(FHIRValidationError(missing: "amount"))
+		}
 		date = createInstance(type: FHIRDate.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
+		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -674,34 +969,47 @@ open class ClaimResponsePayment: BackboneElement {
 		self.adjustment?.decorate(json: &json, withKey: "adjustment", errors: &errors)
 		self.adjustmentReason?.decorate(json: &json, withKey: "adjustmentReason", errors: &errors)
 		self.amount?.decorate(json: &json, withKey: "amount", errors: &errors)
+		if nil == self.amount {
+			errors.append(FHIRValidationError(missing: "amount"))
+		}
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 	}
 }
 
 
 /**
-Processing notes.
+Note concerning adjudication.
 
-Note text.
+A note that describes or explains adjudication results in a human readable form.
 */
 open class ClaimResponseProcessNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseProcessNote" }
 	}
 	
-	/// Language if different from the resource.
+	/// Language of the text.
 	public var language: CodeableConcept?
 	
-	/// Sequence Number for this note.
+	/// Note instance identifier.
 	public var number: FHIRInteger?
 	
 	/// Note explanatory text.
 	public var text: FHIRString?
 	
-	/// display | print | printoper.
-	public var type: CodeableConcept?
+	/// The business purpose of the note text.
+	public var type: NoteType?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(text: FHIRString) {
+		self.init()
+		self.text = text
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -710,7 +1018,10 @@ open class ClaimResponseProcessNote: BackboneElement {
 		language = createInstance(type: CodeableConcept.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
 		number = createInstance(type: FHIRInteger.self, for: "number", in: json, context: &instCtx, owner: self) ?? number
 		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
-		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == text && !instCtx.containsKey("text") {
+			instCtx.addError(FHIRValidationError(missing: "text"))
+		}
+		type = createEnum(type: NoteType.self, for: "type", in: json, context: &instCtx) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -719,7 +1030,63 @@ open class ClaimResponseProcessNote: BackboneElement {
 		self.language?.decorate(json: &json, withKey: "language", errors: &errors)
 		self.number?.decorate(json: &json, withKey: "number", errors: &errors)
 		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
+		if nil == self.text {
+			errors.append(FHIRValidationError(missing: "text"))
+		}
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+	}
+}
+
+
+/**
+Adjudication totals.
+
+Categorized monetary totals for the adjudication.
+*/
+open class ClaimResponseTotal: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ClaimResponseTotal" }
+	}
+	
+	/// Financial total for the category.
+	public var amount: Money?
+	
+	/// Type of adjudication information.
+	public var category: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(amount: Money, category: CodeableConcept) {
+		self.init()
+		self.amount = amount
+		self.category = category
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		amount = createInstance(type: Money.self, for: "amount", in: json, context: &instCtx, owner: self) ?? amount
+		if nil == amount && !instCtx.containsKey("amount") {
+			instCtx.addError(FHIRValidationError(missing: "amount"))
+		}
+		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		if nil == category && !instCtx.containsKey("category") {
+			instCtx.addError(FHIRValidationError(missing: "category"))
+		}
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.amount?.decorate(json: &json, withKey: "amount", errors: &errors)
+		if nil == self.amount {
+			errors.append(FHIRValidationError(missing: "amount"))
+		}
+		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		if nil == self.category {
+			errors.append(FHIRValidationError(missing: "category"))
+		}
 	}
 }
 

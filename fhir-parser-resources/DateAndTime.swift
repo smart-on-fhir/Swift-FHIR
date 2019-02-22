@@ -12,7 +12,7 @@ import Foundation
 /**
 A protocol for all our date and time structs.
 */
-protocol DateAndTime: FHIRPrimitive, CustomStringConvertible, Comparable, Equatable {
+protocol DateAndTime: FHIRPrimitive, CustomStringConvertible, Comparable {
 	
 	var nsDate: Date { get }
 	
@@ -340,9 +340,9 @@ public struct FHIRTime: DateAndTime {
 		}
 		if let s = second {
 			#if os(Linux)
-			return String(format: "%02d:%02d:", hour, minute) + ((s < 10) ? "0" : "") + String(format: "%g", s)
+			return String(format: "%02d:%02d:", hour, minute) + ((s < 10.0) ? "0" : "") + String(format: "%g", s)
 			#else
-			return String(format: "%02d:%02d:%@%g", hour, minute, (s < 10) ? "0" : "", s)
+			return String(format: "%02d:%02d:%@%g", hour, minute, (s < 10.0) ? "0" : "", s)
 			#endif
 		}
 		return String(format: "%02d:%02d", hour, minute)
@@ -868,7 +868,7 @@ class DateAndTimeParser {
 							var tzHrMin = hourStr
 							var tzhour = 0
 							var tzmin = 0
-							if 2 == hourStr.characters.count {
+							if 2 == hourStr.count {
 								tzhour = Int(hourStr) ?? 0
 								if nil != scanner.fhir_scanString(":"), let tzm = scanner.fhir_scanInt() {
 									tzHrMin += (tzm < 10) ? ":0\(tzm)" : ":\(tzm)"
@@ -877,7 +877,7 @@ class DateAndTimeParser {
 									}
 								}
 							}
-							else if 4 == hourStr.characters.count {
+							else if 4 == hourStr.count {
 								tzhour = Int(hourStr.substring(to: hourStr.index(hourStr.startIndex, offsetBy: 2)))!
 								tzmin = Int(hourStr.substring(from: hourStr.index(hourStr.startIndex, offsetBy: 2)))!
 							}

@@ -2,8 +2,8 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Annotation) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -25,7 +25,7 @@ open class Annotation: Element {
 	/// Individual responsible for the annotation.
 	public var authorString: FHIRString?
 	
-	/// The annotation  - text content.
+	/// The annotation  - text content (as markdown).
 	public var text: FHIRString?
 	
 	/// When the annotation was made.

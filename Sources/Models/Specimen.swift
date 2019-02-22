@@ -2,8 +2,8 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Specimen) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -24,6 +24,9 @@ open class Specimen: DomainResource {
 	
 	/// Collection details.
 	public var collection: SpecimenCollection?
+	
+	/// State of the specimen.
+	public var condition: [CodeableConcept]?
 	
 	/// Direct container of specimen (tube/slide, etc.).
 	public var container: [SpecimenContainer]?
@@ -49,18 +52,12 @@ open class Specimen: DomainResource {
 	/// The availability of the specimen.
 	public var status: SpecimenStatus?
 	
-	/// Where the specimen came from. This may be from the patient(s) or from the environment or a device.
+	/// Where the specimen came from. This may be from patient(s), from a location (e.g., the source of an environmental
+	/// sample), or a sampling of a substance or a device.
 	public var subject: Reference?
 	
 	/// Kind of material that forms the specimen.
 	public var type: CodeableConcept?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(subject: Reference) {
-		self.init()
-		self.subject = subject
-	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -68,6 +65,7 @@ open class Specimen: DomainResource {
 		
 		accessionIdentifier = createInstance(type: Identifier.self, for: "accessionIdentifier", in: json, context: &instCtx, owner: self) ?? accessionIdentifier
 		collection = createInstance(type: SpecimenCollection.self, for: "collection", in: json, context: &instCtx, owner: self) ?? collection
+		condition = createInstances(of: CodeableConcept.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
 		container = createInstances(of: SpecimenContainer.self, for: "container", in: json, context: &instCtx, owner: self) ?? container
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
@@ -77,9 +75,6 @@ open class Specimen: DomainResource {
 		request = createInstances(of: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
 		status = createEnum(type: SpecimenStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
-		if nil == subject && !instCtx.containsKey("subject") {
-			instCtx.addError(FHIRValidationError(missing: "subject"))
-		}
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
@@ -88,6 +83,7 @@ open class Specimen: DomainResource {
 		
 		self.accessionIdentifier?.decorate(json: &json, withKey: "accessionIdentifier", errors: &errors)
 		self.collection?.decorate(json: &json, withKey: "collection", errors: &errors)
+		arrayDecorate(json: &json, withKey: "condition", using: self.condition, errors: &errors)
 		arrayDecorate(json: &json, withKey: "container", using: self.container, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
@@ -97,9 +93,6 @@ open class Specimen: DomainResource {
 		arrayDecorate(json: &json, withKey: "request", using: self.request, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
-		if nil == self.subject {
-			errors.append(FHIRValidationError(missing: "subject"))
-		}
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
@@ -127,6 +120,15 @@ open class SpecimenCollection: BackboneElement {
 	/// Who collected the specimen.
 	public var collector: Reference?
 	
+	/// How long it took to collect specimen.
+	public var duration: Duration?
+	
+	/// Whether or how long patient abstained from food and/or drink.
+	public var fastingStatusCodeableConcept: CodeableConcept?
+	
+	/// Whether or how long patient abstained from food and/or drink.
+	public var fastingStatusDuration: Duration?
+	
 	/// Technique used to perform collection.
 	public var method: CodeableConcept?
 	
@@ -141,6 +143,9 @@ open class SpecimenCollection: BackboneElement {
 		collectedDateTime = createInstance(type: DateTime.self, for: "collectedDateTime", in: json, context: &instCtx, owner: self) ?? collectedDateTime
 		collectedPeriod = createInstance(type: Period.self, for: "collectedPeriod", in: json, context: &instCtx, owner: self) ?? collectedPeriod
 		collector = createInstance(type: Reference.self, for: "collector", in: json, context: &instCtx, owner: self) ?? collector
+		duration = createInstance(type: Duration.self, for: "duration", in: json, context: &instCtx, owner: self) ?? duration
+		fastingStatusCodeableConcept = createInstance(type: CodeableConcept.self, for: "fastingStatusCodeableConcept", in: json, context: &instCtx, owner: self) ?? fastingStatusCodeableConcept
+		fastingStatusDuration = createInstance(type: Duration.self, for: "fastingStatusDuration", in: json, context: &instCtx, owner: self) ?? fastingStatusDuration
 		method = createInstance(type: CodeableConcept.self, for: "method", in: json, context: &instCtx, owner: self) ?? method
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 	}
@@ -152,6 +157,9 @@ open class SpecimenCollection: BackboneElement {
 		self.collectedDateTime?.decorate(json: &json, withKey: "collectedDateTime", errors: &errors)
 		self.collectedPeriod?.decorate(json: &json, withKey: "collectedPeriod", errors: &errors)
 		self.collector?.decorate(json: &json, withKey: "collector", errors: &errors)
+		self.duration?.decorate(json: &json, withKey: "duration", errors: &errors)
+		self.fastingStatusCodeableConcept?.decorate(json: &json, withKey: "fastingStatusCodeableConcept", errors: &errors)
+		self.fastingStatusDuration?.decorate(json: &json, withKey: "fastingStatusDuration", errors: &errors)
 		self.method?.decorate(json: &json, withKey: "method", errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
 	}

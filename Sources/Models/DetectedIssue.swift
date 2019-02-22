@@ -2,8 +2,8 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -24,16 +24,22 @@ open class DetectedIssue: DomainResource {
 	public var author: Reference?
 	
 	/// Issue Category, e.g. drug-drug, duplicate therapy, etc..
-	public var category: CodeableConcept?
-	
-	/// When identified.
-	public var date: DateTime?
+	public var code: CodeableConcept?
 	
 	/// Description and context.
 	public var detail: FHIRString?
 	
+	/// Supporting evidence.
+	public var evidence: [DetectedIssueEvidence]?
+	
+	/// When identified.
+	public var identifiedDateTime: DateTime?
+	
+	/// When identified.
+	public var identifiedPeriod: Period?
+	
 	/// Unique id for the detected issue.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Problem resource.
 	public var implicated: [Reference]?
@@ -66,10 +72,12 @@ open class DetectedIssue: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
-		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		detail = createInstance(type: FHIRString.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		evidence = createInstances(of: DetectedIssueEvidence.self, for: "evidence", in: json, context: &instCtx, owner: self) ?? evidence
+		identifiedDateTime = createInstance(type: DateTime.self, for: "identifiedDateTime", in: json, context: &instCtx, owner: self) ?? identifiedDateTime
+		identifiedPeriod = createInstance(type: Period.self, for: "identifiedPeriod", in: json, context: &instCtx, owner: self) ?? identifiedPeriod
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		implicated = createInstances(of: Reference.self, for: "implicated", in: json, context: &instCtx, owner: self) ?? implicated
 		mitigation = createInstances(of: DetectedIssueMitigation.self, for: "mitigation", in: json, context: &instCtx, owner: self) ?? mitigation
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
@@ -85,10 +93,12 @@ open class DetectedIssue: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
-		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.detail?.decorate(json: &json, withKey: "detail", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "evidence", using: self.evidence, errors: &errors)
+		self.identifiedDateTime?.decorate(json: &json, withKey: "identifiedDateTime", errors: &errors)
+		self.identifiedPeriod?.decorate(json: &json, withKey: "identifiedPeriod", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "implicated", using: self.implicated, errors: &errors)
 		arrayDecorate(json: &json, withKey: "mitigation", using: self.mitigation, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
@@ -103,10 +113,44 @@ open class DetectedIssue: DomainResource {
 
 
 /**
+Supporting evidence.
+
+Supporting evidence or manifestations that provide the basis for identifying the detected issue such as a
+GuidanceResponse or MeasureReport.
+*/
+open class DetectedIssueEvidence: BackboneElement {
+	override open class var resourceType: String {
+		get { return "DetectedIssueEvidence" }
+	}
+	
+	/// Manifestation.
+	public var code: [CodeableConcept]?
+	
+	/// Supporting information.
+	public var detail: [Reference]?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		code = createInstances(of: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		detail = createInstances(of: Reference.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		arrayDecorate(json: &json, withKey: "code", using: self.code, errors: &errors)
+		arrayDecorate(json: &json, withKey: "detail", using: self.detail, errors: &errors)
+	}
+}
+
+
+/**
 Step taken to address.
 
-Indicates an action that has been taken or is committed to to reduce or eliminate the likelihood of the risk identified
-by the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that may
+Indicates an action that has been taken or is committed to reduce or eliminate the likelihood of the risk identified by
+the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that may
 reduce/eliminate the need for any action.
 */
 open class DetectedIssueMitigation: BackboneElement {

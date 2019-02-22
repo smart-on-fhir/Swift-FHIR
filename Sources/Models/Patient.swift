@@ -2,8 +2,8 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Patient) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -23,16 +23,13 @@ open class Patient: DomainResource {
 	/// Whether this patient's record is in active use.
 	public var active: FHIRBool?
 	
-	/// Addresses for the individual.
+	/// An address for the individual.
 	public var address: [Address]?
-	
-	/// This patient is known to be an animal (non-human).
-	public var animal: PatientAnimal?
 	
 	/// The date of birth for the individual.
 	public var birthDate: FHIRDate?
 	
-	/// A list of Languages which may be used to communicate with the patient about his or her health.
+	/// A language which may be used to communicate with the patient about his or her health.
 	public var communication: [PatientCommunication]?
 	
 	/// A contact party (e.g. guardian, partner, friend) for the patient.
@@ -84,7 +81,6 @@ open class Patient: DomainResource {
 		
 		active = createInstance(type: FHIRBool.self, for: "active", in: json, context: &instCtx, owner: self) ?? active
 		address = createInstances(of: Address.self, for: "address", in: json, context: &instCtx, owner: self) ?? address
-		animal = createInstance(type: PatientAnimal.self, for: "animal", in: json, context: &instCtx, owner: self) ?? animal
 		birthDate = createInstance(type: FHIRDate.self, for: "birthDate", in: json, context: &instCtx, owner: self) ?? birthDate
 		communication = createInstances(of: PatientCommunication.self, for: "communication", in: json, context: &instCtx, owner: self) ?? communication
 		contact = createInstances(of: PatientContact.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
@@ -108,7 +104,6 @@ open class Patient: DomainResource {
 		
 		self.active?.decorate(json: &json, withKey: "active", errors: &errors)
 		arrayDecorate(json: &json, withKey: "address", using: self.address, errors: &errors)
-		self.animal?.decorate(json: &json, withKey: "animal", errors: &errors)
 		self.birthDate?.decorate(json: &json, withKey: "birthDate", errors: &errors)
 		arrayDecorate(json: &json, withKey: "communication", using: self.communication, errors: &errors)
 		arrayDecorate(json: &json, withKey: "contact", using: self.contact, errors: &errors)
@@ -130,60 +125,7 @@ open class Patient: DomainResource {
 
 
 /**
-This patient is known to be an animal (non-human).
-
-This patient is known to be an animal.
-*/
-open class PatientAnimal: BackboneElement {
-	override open class var resourceType: String {
-		get { return "PatientAnimal" }
-	}
-	
-	/// E.g. Poodle, Angus.
-	public var breed: CodeableConcept?
-	
-	/// E.g. Neutered, Intact.
-	public var genderStatus: CodeableConcept?
-	
-	/// E.g. Dog, Cow.
-	public var species: CodeableConcept?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(species: CodeableConcept) {
-		self.init()
-		self.species = species
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		breed = createInstance(type: CodeableConcept.self, for: "breed", in: json, context: &instCtx, owner: self) ?? breed
-		genderStatus = createInstance(type: CodeableConcept.self, for: "genderStatus", in: json, context: &instCtx, owner: self) ?? genderStatus
-		species = createInstance(type: CodeableConcept.self, for: "species", in: json, context: &instCtx, owner: self) ?? species
-		if nil == species && !instCtx.containsKey("species") {
-			instCtx.addError(FHIRValidationError(missing: "species"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.breed?.decorate(json: &json, withKey: "breed", errors: &errors)
-		self.genderStatus?.decorate(json: &json, withKey: "genderStatus", errors: &errors)
-		self.species?.decorate(json: &json, withKey: "species", errors: &errors)
-		if nil == self.species {
-			errors.append(FHIRValidationError(missing: "species"))
-		}
-	}
-}
-
-
-/**
-A list of Languages which may be used to communicate with the patient about his or her health.
-
-Languages which may be used to communicate with the patient about his or her health.
+A language which may be used to communicate with the patient about his or her health.
 */
 open class PatientCommunication: BackboneElement {
 	override open class var resourceType: String {

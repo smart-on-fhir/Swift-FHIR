@@ -2,8 +2,8 @@
 //  PractitionerRole.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -20,7 +20,7 @@ open class PractitionerRole: DomainResource {
 		get { return "PractitionerRole" }
 	}
 	
-	/// Whether this practitioner's record is in active use.
+	/// Whether this practitioner role record is in active use.
 	public var active: FHIRBool?
 	
 	/// Description of availability exceptions.
@@ -53,7 +53,7 @@ open class PractitionerRole: DomainResource {
 	/// The period during which the practitioner is authorized to perform in these role(s).
 	public var period: Period?
 	
-	/// Practitioner that is able to provide the defined services for the organation.
+	/// Practitioner that is able to provide the defined services for the organization.
 	public var practitioner: Reference?
 	
 	/// Specific specialty of the practitioner.
@@ -106,7 +106,7 @@ open class PractitionerRole: DomainResource {
 /**
 Times the Service Site is available.
 
-A collection of times that the Service Site is available.
+A collection of times the practitioner is available or performing this role at the location and/or healthcareservice.
 */
 open class PractitionerRoleAvailableTime: BackboneElement {
 	override open class var resourceType: String {
@@ -149,7 +149,7 @@ open class PractitionerRoleAvailableTime: BackboneElement {
 /**
 Not available during this time due to provided reason.
 
-The HealthcareService is not available during this period of time due to the provided reason.
+The practitioner is not available or performing this role during this period of time due to the provided reason.
 */
 open class PractitionerRoleNotAvailable: BackboneElement {
 	override open class var resourceType: String {
@@ -159,7 +159,7 @@ open class PractitionerRoleNotAvailable: BackboneElement {
 	/// Reason presented to the user explaining why time not available.
 	public var description_fhir: FHIRString?
 	
-	/// Service not availablefrom this date.
+	/// Service not available from this date.
 	public var during: Period?
 	
 	

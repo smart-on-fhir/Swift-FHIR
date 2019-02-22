@@ -20,8 +20,10 @@ classmap = {
     
     'id': 'FHIRString',
     'oid': 'FHIRURL',
-    'uuid': 'FHIRString',
+    'uuid': 'FHIRURL',
     'uri': 'FHIRURL',
+    'url': 'FHIRURL',
+    'canonical': 'FHIRURL',
     
 #   'base64Binary': 'Base64Binary',
     
@@ -80,17 +82,30 @@ reservedmap = {
 # For enum codes where a computer just cannot generate reasonable names
 enum_map = {
     '=': 'eq',
+	'!=': 'neq',
     '<': 'lt',
     '<=': 'lte',
     '>': 'gt',
     '>=': 'gte',
     '*': 'max',
+	'public': 'public_fhir',
+	'private': 'private_fhir'
 }
 
 # If you want to give specific names to enums based on their URI
 enum_namemap = {
-    'http://hl7.org/fhir/contracttermsubtypecodes': 'ContractTermSubtypeCodes',
-    'http://hl7.org/fhir/coverage-exception': 'CoverageExceptionCodes',
+	'http://terminology.hl7.org/CodeSystem/composition-altcode-kind': 'CompositionAlternativeCodeKind',
+	'http://terminology.hl7.org/CodeSystem/codesystem-altcode-kind': 'CodeSystemAlternativeCodeKind',
+	'http://hl7.org/fhir/contract-security-category': 'ContractResourceSecurityCategoryCodes',
+	'http://hl7.org/fhir/contract-security-classification': 'ContractResourceSecurityClassificationCodes',
+	'http://hl7.org/fhir/contracttermsubtypecodes': 'ContractTermSubtypeCodes',
+	'http://hl7.org/fhir/coverage-exception': 'CoverageExceptionCodes',
+	'http://hl7.org/fhir/device-definition-status': 'DeviceDefinitionStatusCodes',
+	'http://hl7.org/fhir/CodeSystem/medication-statement-status': 'MedicationStatementStatusCodes',
+	'http://terminology.hl7.org/CodeSystem/medication-statement-category': 'MedicationStatementCategoryCodes',
+	'http://terminology.hl7.org/CodeSystem/practitioner-role': 'PractitionerRoleCodes',
     'http://hl7.org/fhir/resource-type-link': 'ResourceTypeLink',
+	'http://hl7.org/fhir/secondary-finding': 'SecondaryFindingCodes',
+	'http://hl7.org/fhir/usersession-status': 'UserSessionStatusEnum'
 }
 

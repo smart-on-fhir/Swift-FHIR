@@ -2,8 +2,8 @@
 //  ChargeItem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -34,8 +34,14 @@ open class ChargeItem: DomainResource {
 	/// Encounter / Episode associated with event.
 	public var context: Reference?
 	
+	/// Organization that has ownership of the (potential, future) revenue.
+	public var costCenter: Reference?
+	
+	/// Resource defining the code of this ChargeItem.
+	public var definitionCanonical: [FHIRURL]?
+	
 	/// Defining information about the code of this charge item.
-	public var definition: [FHIRURL]?
+	public var definitionUri: [FHIRURL]?
 	
 	/// Date the charge item was entered.
 	public var enteredDate: DateTime?
@@ -47,7 +53,7 @@ open class ChargeItem: DomainResource {
 	public var factorOverride: FHIRDecimal?
 	
 	/// Business Identifier for item.
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Comments made about the ChargeItem.
 	public var note: [Annotation]?
@@ -68,13 +74,19 @@ open class ChargeItem: DomainResource {
 	public var partOf: [Reference]?
 	
 	/// Who performed charged service.
-	public var participant: [ChargeItemParticipant]?
+	public var performer: [ChargeItemPerformer]?
 	
-	/// Organization providing the charged sevice.
+	/// Organization providing the charged service.
 	public var performingOrganization: Reference?
 	
 	/// Price overriding the associated rules.
 	public var priceOverride: Money?
+	
+	/// Product charged.
+	public var productCodeableConcept: CodeableConcept?
+	
+	/// Product charged.
+	public var productReference: Reference?
 	
 	/// Quantity of which the charge item has been serviced.
 	public var quantity: Quantity?
@@ -94,7 +106,7 @@ open class ChargeItem: DomainResource {
 	/// Individual service was done for/to.
 	public var subject: Reference?
 	
-	/// Further information supporting the this charge.
+	/// Further information supporting this charge.
 	public var supportingInformation: [Reference]?
 	
 	
@@ -117,20 +129,24 @@ open class ChargeItem: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		definition = createInstances(of: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		costCenter = createInstance(type: Reference.self, for: "costCenter", in: json, context: &instCtx, owner: self) ?? costCenter
+		definitionCanonical = createInstances(of: FHIRURL.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
+		definitionUri = createInstances(of: FHIRURL.self, for: "definitionUri", in: json, context: &instCtx, owner: self) ?? definitionUri
 		enteredDate = createInstance(type: DateTime.self, for: "enteredDate", in: json, context: &instCtx, owner: self) ?? enteredDate
 		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer
 		factorOverride = createInstance(type: FHIRDecimal.self, for: "factorOverride", in: json, context: &instCtx, owner: self) ?? factorOverride
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		occurrenceDateTime = createInstance(type: DateTime.self, for: "occurrenceDateTime", in: json, context: &instCtx, owner: self) ?? occurrenceDateTime
 		occurrencePeriod = createInstance(type: Period.self, for: "occurrencePeriod", in: json, context: &instCtx, owner: self) ?? occurrencePeriod
 		occurrenceTiming = createInstance(type: Timing.self, for: "occurrenceTiming", in: json, context: &instCtx, owner: self) ?? occurrenceTiming
 		overrideReason = createInstance(type: FHIRString.self, for: "overrideReason", in: json, context: &instCtx, owner: self) ?? overrideReason
 		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
-		participant = createInstances(of: ChargeItemParticipant.self, for: "participant", in: json, context: &instCtx, owner: self) ?? participant
+		performer = createInstances(of: ChargeItemPerformer.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
 		performingOrganization = createInstance(type: Reference.self, for: "performingOrganization", in: json, context: &instCtx, owner: self) ?? performingOrganization
 		priceOverride = createInstance(type: Money.self, for: "priceOverride", in: json, context: &instCtx, owner: self) ?? priceOverride
+		productCodeableConcept = createInstance(type: CodeableConcept.self, for: "productCodeableConcept", in: json, context: &instCtx, owner: self) ?? productCodeableConcept
+		productReference = createInstance(type: Reference.self, for: "productReference", in: json, context: &instCtx, owner: self) ?? productReference
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
 		reason = createInstances(of: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
 		requestingOrganization = createInstance(type: Reference.self, for: "requestingOrganization", in: json, context: &instCtx, owner: self) ?? requestingOrganization
@@ -156,20 +172,24 @@ open class ChargeItem: DomainResource {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
+		self.costCenter?.decorate(json: &json, withKey: "costCenter", errors: &errors)
+		arrayDecorate(json: &json, withKey: "definitionCanonical", using: self.definitionCanonical, errors: &errors)
+		arrayDecorate(json: &json, withKey: "definitionUri", using: self.definitionUri, errors: &errors)
 		self.enteredDate?.decorate(json: &json, withKey: "enteredDate", errors: &errors)
 		self.enterer?.decorate(json: &json, withKey: "enterer", errors: &errors)
 		self.factorOverride?.decorate(json: &json, withKey: "factorOverride", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.occurrenceDateTime?.decorate(json: &json, withKey: "occurrenceDateTime", errors: &errors)
 		self.occurrencePeriod?.decorate(json: &json, withKey: "occurrencePeriod", errors: &errors)
 		self.occurrenceTiming?.decorate(json: &json, withKey: "occurrenceTiming", errors: &errors)
 		self.overrideReason?.decorate(json: &json, withKey: "overrideReason", errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
-		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
+		arrayDecorate(json: &json, withKey: "performer", using: self.performer, errors: &errors)
 		self.performingOrganization?.decorate(json: &json, withKey: "performingOrganization", errors: &errors)
 		self.priceOverride?.decorate(json: &json, withKey: "priceOverride", errors: &errors)
+		self.productCodeableConcept?.decorate(json: &json, withKey: "productCodeableConcept", errors: &errors)
+		self.productReference?.decorate(json: &json, withKey: "productReference", errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
 		arrayDecorate(json: &json, withKey: "reason", using: self.reason, errors: &errors)
 		self.requestingOrganization?.decorate(json: &json, withKey: "requestingOrganization", errors: &errors)
@@ -192,16 +212,16 @@ Who performed charged service.
 
 Indicates who or what performed or participated in the charged service.
 */
-open class ChargeItemParticipant: BackboneElement {
+open class ChargeItemPerformer: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ChargeItemParticipant" }
+		get { return "ChargeItemPerformer" }
 	}
 	
 	/// Individual who was performing.
 	public var actor: Reference?
 	
 	/// What type of performance was done.
-	public var role: CodeableConcept?
+	public var function: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -218,7 +238,7 @@ open class ChargeItemParticipant: BackboneElement {
 		if nil == actor && !instCtx.containsKey("actor") {
 			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
-		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		function = createInstance(type: CodeableConcept.self, for: "function", in: json, context: &instCtx, owner: self) ?? function
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -228,7 +248,7 @@ open class ChargeItemParticipant: BackboneElement {
 		if nil == self.actor {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
-		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
+		self.function?.decorate(json: &json, withKey: "function", errors: &errors)
 	}
 }
 

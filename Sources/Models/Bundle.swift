@@ -2,8 +2,8 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Bundle) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -19,7 +19,7 @@ open class Bundle: Resource {
 		get { return "Bundle" }
 	}
 	
-	/// Entry in the bundle - will have a resource, or information.
+	/// Entry in the bundle - will have a resource or information.
 	public var entry: [BundleEntry]?
 	
 	/// Persistent identifier for the bundle.
@@ -31,10 +31,13 @@ open class Bundle: Resource {
 	/// Digital Signature.
 	public var signature: Signature?
 	
+	/// When the bundle was assembled.
+	public var timestamp: Instant?
+	
 	/// If search, the total number of matches.
 	public var total: FHIRInteger?
 	
-	/// Indicates the purpose of this bundle - how it was intended to be used.
+	/// Indicates the purpose of this bundle - how it is intended to be used.
 	public var type: BundleType?
 	
 	
@@ -52,6 +55,7 @@ open class Bundle: Resource {
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		link = createInstances(of: BundleLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
 		signature = createInstance(type: Signature.self, for: "signature", in: json, context: &instCtx, owner: self) ?? signature
+		timestamp = createInstance(type: Instant.self, for: "timestamp", in: json, context: &instCtx, owner: self) ?? timestamp
 		total = createInstance(type: FHIRInteger.self, for: "total", in: json, context: &instCtx, owner: self) ?? total
 		type = createEnum(type: BundleType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
@@ -66,6 +70,7 @@ open class Bundle: Resource {
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "link", using: self.link, errors: &errors)
 		self.signature?.decorate(json: &json, withKey: "signature", errors: &errors)
+		self.timestamp?.decorate(json: &json, withKey: "timestamp", errors: &errors)
 		self.total?.decorate(json: &json, withKey: "total", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
@@ -76,29 +81,29 @@ open class Bundle: Resource {
 
 
 /**
-Entry in the bundle - will have a resource, or information.
+Entry in the bundle - will have a resource or information.
 
-An entry in a bundle resource - will either contain a resource, or information about a resource (transactions and
-history only).
+An entry in a bundle resource - will either contain a resource or information about a resource (transactions and history
+only).
 */
 open class BundleEntry: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntry" }
 	}
 	
-	/// Absolute URL for resource (server address, or UUID/OID).
+	/// URI for resource (Absolute URL server address or URI for UUID/OID).
 	public var fullUrl: FHIRURL?
 	
 	/// Links related to this entry.
 	public var link: [BundleLink]?
 	
-	/// Transaction Related Information.
+	/// Additional execution information (transaction/batch/history).
 	public var request: BundleEntryRequest?
 	
 	/// A resource in the bundle.
 	public var resource: Resource?
 	
-	/// Transaction Related Information.
+	/// Results of execution (transaction/batch/history).
 	public var response: BundleEntryResponse?
 	
 	/// Search related information.
@@ -130,9 +135,10 @@ open class BundleEntry: BackboneElement {
 
 
 /**
-Transaction Related Information.
+Additional execution information (transaction/batch/history).
 
-Additional information about how this entry should be processed as part of a transaction.
+Additional information about how this entry should be processed as part of a transaction or batch.  For history, it
+shows how the entry was processed to create the version contained in the entry.
 */
 open class BundleEntryRequest: BackboneElement {
 	override open class var resourceType: String {
@@ -142,7 +148,7 @@ open class BundleEntryRequest: BackboneElement {
 	/// For managing update contention.
 	public var ifMatch: FHIRString?
 	
-	/// For managing update contention.
+	/// For managing cache currency.
 	public var ifModifiedSince: Instant?
 	
 	/// For conditional creates.
@@ -151,7 +157,8 @@ open class BundleEntryRequest: BackboneElement {
 	/// For managing cache currency.
 	public var ifNoneMatch: FHIRString?
 	
-	/// The HTTP verb for this entry in either a change history, or a transaction/ transaction response.
+	/// In a transaction or batch, this is the HTTP action to be executed for this entry. In a history bundle, this
+	/// indicates the HTTP action that occurred.
 	public var method: HTTPVerb?
 	
 	/// URL for HTTP equivalent of this entry.
@@ -203,22 +210,23 @@ open class BundleEntryRequest: BackboneElement {
 
 
 /**
-Transaction Related Information.
+Results of execution (transaction/batch/history).
 
-Additional information about how this entry should be processed as part of a transaction.
+Indicates the results of processing the corresponding 'request' entry in the batch or transaction being responded to or
+what the results of an operation where when returning history.
 */
 open class BundleEntryResponse: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntryResponse" }
 	}
 	
-	/// The etag for the resource (if relevant).
+	/// The Etag for the resource (if relevant).
 	public var etag: FHIRString?
 	
 	/// Server's date time modified.
 	public var lastModified: Instant?
 	
-	/// The location, if the operation returns a location.
+	/// The location (if the operation returns a location).
 	public var location: FHIRURL?
 	
 	/// OperationOutcome with hints and warnings (for batch/transaction).
@@ -273,7 +281,8 @@ open class BundleEntrySearch: BackboneElement {
 		get { return "BundleEntrySearch" }
 	}
 	
-	/// Why this entry is in the result set - whether it's included as a match or because of an _include requirement.
+	/// Why this entry is in the result set - whether it's included as a match or because of an _include requirement, or
+	/// to convey information or warning information about the search process.
 	public var mode: SearchEntryMode?
 	
 	/// Search ranking (between 0 and 1).

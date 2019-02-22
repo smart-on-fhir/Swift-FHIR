@@ -254,7 +254,7 @@ public func instantiate<T: FHIRAbstractBase>(type: T.Type, for key: String, in j
 	
 	// correct type?
 	guard let arr = exist as? [T.JSONType] else {
-		errors.append(FHIRValidationError(key: key, wants: Array<T.JSONType>.self, has: type(of: exist)))
+		errors.append(FHIRValidationError(key: key, wants: Array<T.JSONType>.self, has: Swift.type(of: exist)))
 		return nil
 	}
 	

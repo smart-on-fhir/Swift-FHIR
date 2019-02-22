@@ -2,15 +2,17 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Narrative) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-A human-readable formatted text, including images.
+Human-readable summary of the resource (essential clinical and business information).
+
+A human-readable summary of the resource conveying the essential clinical and business information for the resource.
 */
 open class Narrative: Element {
 	override open class var resourceType: String {

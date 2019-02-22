@@ -2,8 +2,8 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -44,11 +44,14 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7-australia.wikispaces.com/FHIR+Australia")
 		XCTAssertEqual(inst.date?.description, "2015-08-31")
-		XCTAssertEqual(inst.description_fhir, "Australian HI Identifier as established by relevant regulations etc")
+		XCTAssertEqual(inst.description_fhir, "Australian HI Identifier as established by relevant regulations etc.")
 		XCTAssertEqual(inst.id, "example-id")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "AU")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		XCTAssertEqual(inst.kind, NamingSystemType(rawValue: "identifier")!)
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name, "Austalian Healthcare Identifier - Individual")
 		XCTAssertEqual(inst.publisher, "HL7 Australia on behalf of NEHTA")
 		XCTAssertEqual(inst.responsible, "HI Service Operator / NEHTA")
@@ -56,7 +59,7 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "NI")
 		XCTAssertEqual(inst.type?.coding?[0].display, "National unique individual identifier")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0203")
 		XCTAssertEqual(inst.type?.text, "IHI")
 		XCTAssertEqual(inst.uniqueId?[0].comment, "This value is used in Australian CDA documents")
 		XCTAssertEqual(inst.uniqueId?[0].type, NamingSystemIdentifierType(rawValue: "oid")!)
@@ -82,35 +85,6 @@ class NamingSystemTests: XCTestCase {
 	
 	@discardableResult
 	func runNamingSystem2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRNamingSystem {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-replaced.json")
-		
-		XCTAssertEqual(inst.date?.description, "2005-01-25")
-		XCTAssertEqual(inst.description_fhir, "This was a wrong registration for the spanish editions of SNOMED CT. Do not use")
-		XCTAssertEqual(inst.id, "example-replaced")
-		XCTAssertEqual(inst.kind, NamingSystemType(rawValue: "codesystem")!)
-		XCTAssertEqual(inst.name, "SNOMED CT Spanish")
-		XCTAssertEqual(inst.publisher, "Not HL7!")
-		XCTAssertEqual(inst.replacedBy?.reference, "NamingSystem/example")
-		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "retired")!)
-		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.uniqueId?[0].type, NamingSystemIdentifierType(rawValue: "oid")!)
-		XCTAssertEqual(inst.uniqueId?[0].value, "2.16.840.1.113883.6.96.1")
-		
-		return inst
-	}
-	
-	func testNamingSystem3() {
-		do {
-			let instance = try runNamingSystem3()
-			try runNamingSystem3(instance.asJSON())
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw:\n---\n\(error)\n---")
-		}
-	}
-	
-	@discardableResult
-	func runNamingSystem3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRNamingSystem {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
@@ -119,6 +93,9 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2014-12-13")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.kind, NamingSystemType(rawValue: "codesystem")!)
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name, "SNOMED CT")
 		XCTAssertEqual(inst.publisher, "HL7 International on behalf of IHTSDO")
 		XCTAssertEqual(inst.responsible, "IHTSDO & affiliates")

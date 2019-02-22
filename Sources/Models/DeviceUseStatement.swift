@@ -2,8 +2,8 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -20,8 +20,14 @@ open class DeviceUseStatement: DomainResource {
 		get { return "DeviceUseStatement" }
 	}
 	
+	/// Fulfills plan, proposal or order.
+	public var basedOn: [Reference]?
+	
 	/// Target body site.
 	public var bodySite: CodeableConcept?
+	
+	/// Supporting information.
+	public var derivedFrom: [Reference]?
 	
 	/// Reference to device used.
 	public var device: Reference?
@@ -29,11 +35,14 @@ open class DeviceUseStatement: DomainResource {
 	/// External identifier for this record.
 	public var identifier: [Identifier]?
 	
-	/// Why device was used.
-	public var indication: [CodeableConcept]?
-	
 	/// Addition details (comments, instructions).
 	public var note: [Annotation]?
+	
+	/// Why device was used.
+	public var reasonCode: [CodeableConcept]?
+	
+	/// Why was DeviceUseStatement performed?.
+	public var reasonReference: [Reference]?
 	
 	/// When statement was recorded.
 	public var recordedOn: DateTime?
@@ -57,9 +66,6 @@ open class DeviceUseStatement: DomainResource {
 	/// How often  the device was used.
 	public var timingTiming: Timing?
 	
-	/// Period device was used.
-	public var whenUsed: Period?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(device: Reference, status: DeviceUseStatementStatus, subject: Reference) {
@@ -73,14 +79,17 @@ open class DeviceUseStatement: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		bodySite = createInstance(type: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
+		derivedFrom = createInstances(of: Reference.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
 		device = createInstance(type: Reference.self, for: "device", in: json, context: &instCtx, owner: self) ?? device
 		if nil == device && !instCtx.containsKey("device") {
 			instCtx.addError(FHIRValidationError(missing: "device"))
 		}
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		indication = createInstances(of: CodeableConcept.self, for: "indication", in: json, context: &instCtx, owner: self) ?? indication
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
+		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		recordedOn = createInstance(type: DateTime.self, for: "recordedOn", in: json, context: &instCtx, owner: self) ?? recordedOn
 		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		status = createEnum(type: DeviceUseStatementStatus.self, for: "status", in: json, context: &instCtx) ?? status
@@ -94,20 +103,22 @@ open class DeviceUseStatement: DomainResource {
 		timingDateTime = createInstance(type: DateTime.self, for: "timingDateTime", in: json, context: &instCtx, owner: self) ?? timingDateTime
 		timingPeriod = createInstance(type: Period.self, for: "timingPeriod", in: json, context: &instCtx, owner: self) ?? timingPeriod
 		timingTiming = createInstance(type: Timing.self, for: "timingTiming", in: json, context: &instCtx, owner: self) ?? timingTiming
-		whenUsed = createInstance(type: Period.self, for: "whenUsed", in: json, context: &instCtx, owner: self) ?? whenUsed
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		self.bodySite?.decorate(json: &json, withKey: "bodySite", errors: &errors)
+		arrayDecorate(json: &json, withKey: "derivedFrom", using: self.derivedFrom, errors: &errors)
 		self.device?.decorate(json: &json, withKey: "device", errors: &errors)
 		if nil == self.device {
 			errors.append(FHIRValidationError(missing: "device"))
 		}
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		arrayDecorate(json: &json, withKey: "indication", using: self.indication, errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.recordedOn?.decorate(json: &json, withKey: "recordedOn", errors: &errors)
 		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
@@ -121,7 +132,6 @@ open class DeviceUseStatement: DomainResource {
 		self.timingDateTime?.decorate(json: &json, withKey: "timingDateTime", errors: &errors)
 		self.timingPeriod?.decorate(json: &json, withKey: "timingPeriod", errors: &errors)
 		self.timingTiming?.decorate(json: &json, withKey: "timingTiming", errors: &errors)
-		self.whenUsed?.decorate(json: &json, withKey: "whenUsed", errors: &errors)
 	}
 }
 

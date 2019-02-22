@@ -2,8 +2,8 @@
 //  ResearchSubjectTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -41,10 +41,13 @@ class ResearchSubjectTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "researchsubject-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://example.org/studysubjectids")
-		XCTAssertEqual(inst.identifier?.type?.text, "Subject id")
-		XCTAssertEqual(inst.identifier?.value, "123")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/studysubjectids")
+		XCTAssertEqual(inst.identifier?[0].type?.text, "Subject id")
+		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.individual?.reference, "Patient/example")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.status, ResearchSubjectStatus(rawValue: "candidate")!)
 		XCTAssertEqual(inst.study?.reference, "ResearchStudy/example")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")

@@ -2,8 +2,8 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Location) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,8 +12,8 @@ import Foundation
 /**
 Details and position information for a physical place.
 
-Details and position information for a physical place where services are provided  and resources and participants may be
-stored, found, contained or accommodated.
+Details and position information for a physical place where services are provided and resources and participants may be
+stored, found, contained, or accommodated.
 */
 open class Location: DomainResource {
 	override open class var resourceType: String {
@@ -23,8 +23,11 @@ open class Location: DomainResource {
 	/// Physical location.
 	public var address: Address?
 	
-	/// A list of alternate names that the location is known as, or was known as in the past.
+	/// A list of alternate names that the location is known as, or was known as, in the past.
 	public var alias: [FHIRString]?
+	
+	/// Description of availability exceptions.
+	public var availabilityExceptions: FHIRString?
 	
 	/// Additional details about the location that could be displayed as further information to identify the location
 	/// beyond its name.
@@ -32,6 +35,9 @@ open class Location: DomainResource {
 	
 	/// Technical endpoints providing access to services operated for the location.
 	public var endpoint: [Reference]?
+	
+	/// What days/times during a week is this location usually open.
+	public var hoursOfOperation: [LocationHoursOfOperation]?
 	
 	/// Unique code or number identifying the location to its users.
 	public var identifier: [Identifier]?
@@ -45,10 +51,10 @@ open class Location: DomainResource {
 	/// Name of the location as used by humans.
 	public var name: FHIRString?
 	
-	/// The Operational status of the location (typically only for a bed/room).
+	/// The operational status of the location (typically only for a bed/room).
 	public var operationalStatus: Coding?
 	
-	/// Another Location this one is physically part of.
+	/// Another Location this one is physically a part of.
 	public var partOf: Reference?
 	
 	/// Physical form of the location.
@@ -65,7 +71,7 @@ open class Location: DomainResource {
 	public var telecom: [ContactPoint]?
 	
 	/// Type of function performed.
-	public var type: CodeableConcept?
+	public var type: [CodeableConcept]?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -73,8 +79,10 @@ open class Location: DomainResource {
 		
 		address = createInstance(type: Address.self, for: "address", in: json, context: &instCtx, owner: self) ?? address
 		alias = createInstances(of: FHIRString.self, for: "alias", in: json, context: &instCtx, owner: self) ?? alias
+		availabilityExceptions = createInstance(type: FHIRString.self, for: "availabilityExceptions", in: json, context: &instCtx, owner: self) ?? availabilityExceptions
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		endpoint = createInstances(of: Reference.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
+		hoursOfOperation = createInstances(of: LocationHoursOfOperation.self, for: "hoursOfOperation", in: json, context: &instCtx, owner: self) ?? hoursOfOperation
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		managingOrganization = createInstance(type: Reference.self, for: "managingOrganization", in: json, context: &instCtx, owner: self) ?? managingOrganization
 		mode = createEnum(type: LocationMode.self, for: "mode", in: json, context: &instCtx) ?? mode
@@ -85,7 +93,7 @@ open class Location: DomainResource {
 		position = createInstance(type: LocationPosition.self, for: "position", in: json, context: &instCtx, owner: self) ?? position
 		status = createEnum(type: LocationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
-		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		type = createInstances(of: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -93,8 +101,10 @@ open class Location: DomainResource {
 		
 		self.address?.decorate(json: &json, withKey: "address", errors: &errors)
 		arrayDecorate(json: &json, withKey: "alias", using: self.alias, errors: &errors)
+		self.availabilityExceptions?.decorate(json: &json, withKey: "availabilityExceptions", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "endpoint", using: self.endpoint, errors: &errors)
+		arrayDecorate(json: &json, withKey: "hoursOfOperation", using: self.hoursOfOperation, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.managingOrganization?.decorate(json: &json, withKey: "managingOrganization", errors: &errors)
 		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
@@ -105,7 +115,48 @@ open class Location: DomainResource {
 		self.position?.decorate(json: &json, withKey: "position", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		arrayDecorate(json: &json, withKey: "type", using: self.type, errors: &errors)
+	}
+}
+
+
+/**
+What days/times during a week is this location usually open.
+*/
+open class LocationHoursOfOperation: BackboneElement {
+	override open class var resourceType: String {
+		get { return "LocationHoursOfOperation" }
+	}
+	
+	/// The Location is open all day.
+	public var allDay: FHIRBool?
+	
+	/// Time that the Location closes.
+	public var closingTime: FHIRTime?
+	
+	/// Indicates which days of the week are available between the start and end Times.
+	public var daysOfWeek: [DaysOfWeek]?
+	
+	/// Time that the Location opens.
+	public var openingTime: FHIRTime?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		allDay = createInstance(type: FHIRBool.self, for: "allDay", in: json, context: &instCtx, owner: self) ?? allDay
+		closingTime = createInstance(type: FHIRTime.self, for: "closingTime", in: json, context: &instCtx, owner: self) ?? closingTime
+		daysOfWeek = createEnums(of: DaysOfWeek.self, for: "daysOfWeek", in: json, context: &instCtx) ?? daysOfWeek
+		openingTime = createInstance(type: FHIRTime.self, for: "openingTime", in: json, context: &instCtx, owner: self) ?? openingTime
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.allDay?.decorate(json: &json, withKey: "allDay", errors: &errors)
+		self.closingTime?.decorate(json: &json, withKey: "closingTime", errors: &errors)
+		arrayDecorate(json: &json, withKey: "daysOfWeek", using: self.daysOfWeek, errors: &errors)
+		self.openingTime?.decorate(json: &json, withKey: "openingTime", errors: &errors)
 	}
 }
 

@@ -2,8 +2,8 @@
 //  ChargeItemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -44,32 +44,33 @@ class ChargeItemTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].code, "01510")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Zusatzpauschale für Beobachtung nach diagnostischer Koronarangiografie")
 		XCTAssertEqual(inst.context?.reference, "Encounter/example")
-		XCTAssertEqual(inst.definition?[0].absoluteString, "http://www.kbv.de/tools/ebm/html/01520_2904360860826220813632.html")
+		XCTAssertEqual(inst.definitionUri?[0].absoluteString, "http://www.kbv.de/tools/ebm/html/01520_2904360860826220813632.html")
 		XCTAssertEqual(inst.enteredDate?.description, "2017-01-25T23:55:04+01:00")
 		XCTAssertEqual(inst.enterer?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.factorOverride, "0.8")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://myHospital.org/ChargeItems")
-		XCTAssertEqual(inst.identifier?.value, "654321")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://myHospital.org/ChargeItems")
+		XCTAssertEqual(inst.identifier?[0].value, "654321")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.note?[0].authorReference?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.note?[0].text, "The code is only applicable for periods longer than 4h")
 		XCTAssertEqual(inst.note?[0].time?.description, "2017-01-25T23:55:04+01:00")
 		XCTAssertEqual(inst.occurrencePeriod?.end?.description, "2017-01-25T12:35:00+01:00")
 		XCTAssertEqual(inst.occurrencePeriod?.start?.description, "2017-01-25T08:00:00+01:00")
 		XCTAssertEqual(inst.overrideReason, "Patient is Cardiologist's golf buddy, so he gets a 20% discount!")
-		XCTAssertEqual(inst.participant?[0].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.participant?[0].role?.coding?[0].code, "17561000")
-		XCTAssertEqual(inst.participant?[0].role?.coding?[0].display, "Cardiologist")
-		XCTAssertEqual(inst.participant?[0].role?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.participant?[1].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.participant?[1].role?.coding?[0].code, "224542009")
-		XCTAssertEqual(inst.participant?[1].role?.coding?[0].display, "Coronary Care Nurse")
-		XCTAssertEqual(inst.participant?[1].role?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.performer?[0].actor?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.performer?[0].function?.coding?[0].code, "17561000")
+		XCTAssertEqual(inst.performer?[0].function?.coding?[0].display, "Cardiologist")
+		XCTAssertEqual(inst.performer?[0].function?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.performer?[1].actor?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.performer?[1].function?.coding?[0].code, "224542009")
+		XCTAssertEqual(inst.performer?[1].function?.coding?[0].display, "Coronary Care Nurse")
+		XCTAssertEqual(inst.performer?[1].function?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.performingOrganization?.identifier?.system?.absoluteString, "http://myhospital/NamingSystem/departments")
 		XCTAssertEqual(inst.performingOrganization?.identifier?.value, "CARD_INTERMEDIATE_CARE")
-		XCTAssertEqual(inst.priceOverride?.code, "EUR")
-		XCTAssertEqual(inst.priceOverride?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.priceOverride?.unit, "EUR")
+		XCTAssertEqual(inst.priceOverride?.currency, "EUR")
 		XCTAssertEqual(inst.priceOverride?.value, "40")
 		XCTAssertEqual(inst.quantity?.value, "1")
 		XCTAssertEqual(inst.reason?[0].coding?[0].code, "123456")

@@ -2,8 +2,8 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Composition) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,24 +12,26 @@ import Foundation
 /**
 A set of resources composed into a single coherent clinical statement with clinical attestation.
 
-A set of healthcare-related information that is assembled together into a single logical document that provides a single
+A set of healthcare-related information that is assembled together into a single logical package that provides a single
 coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is
-making the statement. While a Composition defines the structure, it does not actually contain the content: rather the
-full content of a document is contained in a Bundle, of which the Composition is the first resource contained.
+making the statement. A Composition defines the structure and narrative content necessary for a document. However, a
+Composition alone does not constitute a document. Rather, the Composition must be the first entry in a Bundle where
+Bundle.type=document, and any other resources referenced from Composition must be included as subsequent entries in the
+Bundle (for example Patient, Practitioner, Encounter, etc.).
 */
 open class Composition: DomainResource {
 	override open class var resourceType: String {
 		get { return "Composition" }
 	}
 	
-	/// Categorization of Composition.
-	public var `class`: CodeableConcept?
-	
 	/// Attests to accuracy of composition.
 	public var attester: [CompositionAttester]?
 	
 	/// Who and/or what authored the composition.
 	public var author: [Reference]?
+	
+	/// Categorization of Composition.
+	public var category: [CodeableConcept]?
 	
 	/// As defined by affinity domain.
 	public var confidentiality: FHIRString?
@@ -46,7 +48,7 @@ open class Composition: DomainResource {
 	/// The clinical service(s) being documented.
 	public var event: [CompositionEvent]?
 	
-	/// Logical identifier of composition (version-independent).
+	/// Version-independent identifier for the Composition.
 	public var identifier: Identifier?
 	
 	/// Relationships to other compositions/documents.
@@ -70,12 +72,11 @@ open class Composition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(author: [Reference], date: DateTime, status: CompositionStatus, subject: Reference, title: FHIRString, type: CodeableConcept) {
+	public convenience init(author: [Reference], date: DateTime, status: CompositionStatus, title: FHIRString, type: CodeableConcept) {
 		self.init()
 		self.author = author
 		self.date = date
 		self.status = status
-		self.subject = subject
 		self.title = title
 		self.type = type
 	}
@@ -84,12 +85,12 @@ open class Composition: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		`class` = createInstance(type: CodeableConcept.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
 		attester = createInstances(of: CompositionAttester.self, for: "attester", in: json, context: &instCtx, owner: self) ?? attester
 		author = createInstances(of: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
 		if (nil == author || author!.isEmpty) && !instCtx.containsKey("author") {
 			instCtx.addError(FHIRValidationError(missing: "author"))
 		}
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		confidentiality = createInstance(type: FHIRString.self, for: "confidentiality", in: json, context: &instCtx, owner: self) ?? confidentiality
 		custodian = createInstance(type: Reference.self, for: "custodian", in: json, context: &instCtx, owner: self) ?? custodian
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
@@ -106,9 +107,6 @@ open class Composition: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
-		if nil == subject && !instCtx.containsKey("subject") {
-			instCtx.addError(FHIRValidationError(missing: "subject"))
-		}
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		if nil == title && !instCtx.containsKey("title") {
 			instCtx.addError(FHIRValidationError(missing: "title"))
@@ -122,12 +120,12 @@ open class Composition: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
 		arrayDecorate(json: &json, withKey: "attester", using: self.attester, errors: &errors)
 		arrayDecorate(json: &json, withKey: "author", using: self.author, errors: &errors)
 		if nil == author || self.author!.isEmpty {
 			errors.append(FHIRValidationError(missing: "author"))
 		}
+		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.confidentiality?.decorate(json: &json, withKey: "confidentiality", errors: &errors)
 		self.custodian?.decorate(json: &json, withKey: "custodian", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
@@ -144,9 +142,6 @@ open class Composition: DomainResource {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
-		if nil == self.subject {
-			errors.append(FHIRValidationError(missing: "subject"))
-		}
 		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		if nil == self.title {
 			errors.append(FHIRValidationError(missing: "title"))
@@ -170,7 +165,7 @@ open class CompositionAttester: BackboneElement {
 	}
 	
 	/// The type of attestation the authenticator offers.
-	public var mode: [CompositionAttestationMode]?
+	public var mode: CompositionAttestationMode?
 	
 	/// Who attested the composition.
 	public var party: Reference?
@@ -180,7 +175,7 @@ open class CompositionAttester: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: [CompositionAttestationMode]) {
+	public convenience init(mode: CompositionAttestationMode) {
 		self.init()
 		self.mode = mode
 	}
@@ -189,8 +184,8 @@ open class CompositionAttester: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		mode = createEnums(of: CompositionAttestationMode.self, for: "mode", in: json, context: &instCtx) ?? mode
-		if (nil == mode || mode!.isEmpty) && !instCtx.containsKey("mode") {
+		mode = createEnum(type: CompositionAttestationMode.self, for: "mode", in: json, context: &instCtx) ?? mode
+		if nil == mode && !instCtx.containsKey("mode") {
 			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
 		party = createInstance(type: Reference.self, for: "party", in: json, context: &instCtx, owner: self) ?? party
@@ -200,8 +195,8 @@ open class CompositionAttester: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "mode", using: self.mode, errors: &errors)
-		if nil == mode || self.mode!.isEmpty {
+		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
+		if nil == self.mode {
 			errors.append(FHIRValidationError(missing: "mode"))
 		}
 		self.party?.decorate(json: &json, withKey: "party", errors: &errors)
@@ -279,7 +274,7 @@ open class CompositionRelatesTo: BackboneElement {
 			self.targetReference = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: target))” for property “\(target)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: target))” for property “\(target)” is invalid, ignoring")
 		}
 	}
 	
@@ -329,6 +324,9 @@ open class CompositionSection: BackboneElement {
 		get { return "CompositionSection" }
 	}
 	
+	/// Who and/or what authored the section.
+	public var author: [Reference]?
+	
 	/// Classification of section (recommended).
 	public var code: CodeableConcept?
 	
@@ -337,6 +335,9 @@ open class CompositionSection: BackboneElement {
 	
 	/// A reference to data that supports this section.
 	public var entry: [Reference]?
+	
+	/// Who/what the section is about, when it is not about the subject of composition.
+	public var focus: Reference?
 	
 	/// How the entry list was prepared - whether it is a working list that is suitable for being maintained on an
 	/// ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a
@@ -359,9 +360,11 @@ open class CompositionSection: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		author = createInstances(of: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		emptyReason = createInstance(type: CodeableConcept.self, for: "emptyReason", in: json, context: &instCtx, owner: self) ?? emptyReason
 		entry = createInstances(of: Reference.self, for: "entry", in: json, context: &instCtx, owner: self) ?? entry
+		focus = createInstance(type: Reference.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
 		mode = createEnum(type: ListMode.self, for: "mode", in: json, context: &instCtx) ?? mode
 		orderedBy = createInstance(type: CodeableConcept.self, for: "orderedBy", in: json, context: &instCtx, owner: self) ?? orderedBy
 		section = createInstances(of: CompositionSection.self, for: "section", in: json, context: &instCtx, owner: self) ?? section
@@ -372,9 +375,11 @@ open class CompositionSection: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "author", using: self.author, errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.emptyReason?.decorate(json: &json, withKey: "emptyReason", errors: &errors)
 		arrayDecorate(json: &json, withKey: "entry", using: self.entry, errors: &errors)
+		self.focus?.decorate(json: &json, withKey: "focus", errors: &errors)
 		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
 		self.orderedBy?.decorate(json: &json, withKey: "orderedBy", errors: &errors)
 		arrayDecorate(json: &json, withKey: "section", using: self.section, errors: &errors)

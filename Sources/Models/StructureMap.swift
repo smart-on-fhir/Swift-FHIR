@@ -2,8 +2,8 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -23,7 +23,7 @@ open class StructureMap: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the structure map.
@@ -62,10 +62,10 @@ open class StructureMap: DomainResource {
 	/// Name for this structure map (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this structure map (globally unique).
+	/// Canonical identifier for this structure map, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the structure map.
@@ -157,14 +157,14 @@ open class StructureMap: DomainResource {
 /**
 Named sections for reader convenience.
 
-Organizes the mapping into managable chunks for human review/ease of maintenance.
+Organizes the mapping into manageable chunks for human review/ease of maintenance.
 */
 open class StructureMapGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureMapGroup" }
 	}
 	
-	/// Additional description/explaination for group.
+	/// Additional description/explanation for group.
 	public var documentation: FHIRString?
 	
 	/// Another group that this group adds rules to.
@@ -179,7 +179,7 @@ open class StructureMapGroup: BackboneElement {
 	/// Transform Rule from source to target.
 	public var rule: [StructureMapGroupRule]?
 	
-	/// If this is the default rule set to apply for thie source type, or this combination of types.
+	/// If this is the default rule set to apply for the source type or this combination of types.
 	public var typeMode: StructureMapGroupTypeMode?
 	
 	
@@ -462,6 +462,9 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var defaultValueBoolean: FHIRBool?
 	
 	/// Default value if no value exists.
+	public var defaultValueCanonical: FHIRURL?
+	
+	/// Default value if no value exists.
 	public var defaultValueCode: FHIRString?
 	
 	/// Default value if no value exists.
@@ -471,10 +474,19 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var defaultValueCoding: Coding?
 	
 	/// Default value if no value exists.
+	public var defaultValueContactDetail: ContactDetail?
+	
+	/// Default value if no value exists.
 	public var defaultValueContactPoint: ContactPoint?
 	
 	/// Default value if no value exists.
+	public var defaultValueContributor: Contributor?
+	
+	/// Default value if no value exists.
 	public var defaultValueCount: Count?
+	
+	/// Default value if no value exists.
+	public var defaultValueDataRequirement: DataRequirement?
 	
 	/// Default value if no value exists.
 	public var defaultValueDate: FHIRDate?
@@ -489,7 +501,13 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var defaultValueDistance: Distance?
 	
 	/// Default value if no value exists.
+	public var defaultValueDosage: Dosage?
+	
+	/// Default value if no value exists.
 	public var defaultValueDuration: Duration?
+	
+	/// Default value if no value exists.
+	public var defaultValueExpression: Expression?
 	
 	/// Default value if no value exists.
 	public var defaultValueHumanName: HumanName?
@@ -510,13 +528,13 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var defaultValueMarkdown: FHIRString?
 	
 	/// Default value if no value exists.
-	public var defaultValueMeta: Meta?
-	
-	/// Default value if no value exists.
 	public var defaultValueMoney: Money?
 	
 	/// Default value if no value exists.
 	public var defaultValueOid: FHIRURL?
+	
+	/// Default value if no value exists.
+	public var defaultValueParameterDefinition: ParameterDefinition?
 	
 	/// Default value if no value exists.
 	public var defaultValuePeriod: Period?
@@ -537,6 +555,9 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var defaultValueReference: Reference?
 	
 	/// Default value if no value exists.
+	public var defaultValueRelatedArtifact: RelatedArtifact?
+	
+	/// Default value if no value exists.
 	public var defaultValueSampledData: SampledData?
 	
 	/// Default value if no value exists.
@@ -552,16 +573,31 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var defaultValueTiming: Timing?
 	
 	/// Default value if no value exists.
+	public var defaultValueTriggerDefinition: TriggerDefinition?
+	
+	/// Default value if no value exists.
 	public var defaultValueUnsignedInt: FHIRInteger?
 	
 	/// Default value if no value exists.
 	public var defaultValueUri: FHIRURL?
+	
+	/// Default value if no value exists.
+	public var defaultValueUrl: FHIRURL?
+	
+	/// Default value if no value exists.
+	public var defaultValueUsageContext: UsageContext?
+	
+	/// Default value if no value exists.
+	public var defaultValueUuid: FHIRURL?
 	
 	/// Optional field for this source.
 	public var element: FHIRString?
 	
 	/// How to handle the list mode for this element.
 	public var listMode: StructureMapSourceListMode?
+	
+	/// Message to put in log if source exists (FHIRPath).
+	public var logMessage: FHIRString?
 	
 	/// Specified maximum cardinality (number or *).
 	public var max: FHIRString?
@@ -598,40 +634,52 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		defaultValueAttachment = createInstance(type: Attachment.self, for: "defaultValueAttachment", in: json, context: &instCtx, owner: self) ?? defaultValueAttachment
 		defaultValueBase64Binary = createInstance(type: Base64Binary.self, for: "defaultValueBase64Binary", in: json, context: &instCtx, owner: self) ?? defaultValueBase64Binary
 		defaultValueBoolean = createInstance(type: FHIRBool.self, for: "defaultValueBoolean", in: json, context: &instCtx, owner: self) ?? defaultValueBoolean
+		defaultValueCanonical = createInstance(type: FHIRURL.self, for: "defaultValueCanonical", in: json, context: &instCtx, owner: self) ?? defaultValueCanonical
 		defaultValueCode = createInstance(type: FHIRString.self, for: "defaultValueCode", in: json, context: &instCtx, owner: self) ?? defaultValueCode
 		defaultValueCodeableConcept = createInstance(type: CodeableConcept.self, for: "defaultValueCodeableConcept", in: json, context: &instCtx, owner: self) ?? defaultValueCodeableConcept
 		defaultValueCoding = createInstance(type: Coding.self, for: "defaultValueCoding", in: json, context: &instCtx, owner: self) ?? defaultValueCoding
+		defaultValueContactDetail = createInstance(type: ContactDetail.self, for: "defaultValueContactDetail", in: json, context: &instCtx, owner: self) ?? defaultValueContactDetail
 		defaultValueContactPoint = createInstance(type: ContactPoint.self, for: "defaultValueContactPoint", in: json, context: &instCtx, owner: self) ?? defaultValueContactPoint
+		defaultValueContributor = createInstance(type: Contributor.self, for: "defaultValueContributor", in: json, context: &instCtx, owner: self) ?? defaultValueContributor
 		defaultValueCount = createInstance(type: Count.self, for: "defaultValueCount", in: json, context: &instCtx, owner: self) ?? defaultValueCount
+		defaultValueDataRequirement = createInstance(type: DataRequirement.self, for: "defaultValueDataRequirement", in: json, context: &instCtx, owner: self) ?? defaultValueDataRequirement
 		defaultValueDate = createInstance(type: FHIRDate.self, for: "defaultValueDate", in: json, context: &instCtx, owner: self) ?? defaultValueDate
 		defaultValueDateTime = createInstance(type: DateTime.self, for: "defaultValueDateTime", in: json, context: &instCtx, owner: self) ?? defaultValueDateTime
 		defaultValueDecimal = createInstance(type: FHIRDecimal.self, for: "defaultValueDecimal", in: json, context: &instCtx, owner: self) ?? defaultValueDecimal
 		defaultValueDistance = createInstance(type: Distance.self, for: "defaultValueDistance", in: json, context: &instCtx, owner: self) ?? defaultValueDistance
+		defaultValueDosage = createInstance(type: Dosage.self, for: "defaultValueDosage", in: json, context: &instCtx, owner: self) ?? defaultValueDosage
 		defaultValueDuration = createInstance(type: Duration.self, for: "defaultValueDuration", in: json, context: &instCtx, owner: self) ?? defaultValueDuration
+		defaultValueExpression = createInstance(type: Expression.self, for: "defaultValueExpression", in: json, context: &instCtx, owner: self) ?? defaultValueExpression
 		defaultValueHumanName = createInstance(type: HumanName.self, for: "defaultValueHumanName", in: json, context: &instCtx, owner: self) ?? defaultValueHumanName
 		defaultValueId = createInstance(type: FHIRString.self, for: "defaultValueId", in: json, context: &instCtx, owner: self) ?? defaultValueId
 		defaultValueIdentifier = createInstance(type: Identifier.self, for: "defaultValueIdentifier", in: json, context: &instCtx, owner: self) ?? defaultValueIdentifier
 		defaultValueInstant = createInstance(type: Instant.self, for: "defaultValueInstant", in: json, context: &instCtx, owner: self) ?? defaultValueInstant
 		defaultValueInteger = createInstance(type: FHIRInteger.self, for: "defaultValueInteger", in: json, context: &instCtx, owner: self) ?? defaultValueInteger
 		defaultValueMarkdown = createInstance(type: FHIRString.self, for: "defaultValueMarkdown", in: json, context: &instCtx, owner: self) ?? defaultValueMarkdown
-		defaultValueMeta = createInstance(type: Meta.self, for: "defaultValueMeta", in: json, context: &instCtx, owner: self) ?? defaultValueMeta
 		defaultValueMoney = createInstance(type: Money.self, for: "defaultValueMoney", in: json, context: &instCtx, owner: self) ?? defaultValueMoney
 		defaultValueOid = createInstance(type: FHIRURL.self, for: "defaultValueOid", in: json, context: &instCtx, owner: self) ?? defaultValueOid
+		defaultValueParameterDefinition = createInstance(type: ParameterDefinition.self, for: "defaultValueParameterDefinition", in: json, context: &instCtx, owner: self) ?? defaultValueParameterDefinition
 		defaultValuePeriod = createInstance(type: Period.self, for: "defaultValuePeriod", in: json, context: &instCtx, owner: self) ?? defaultValuePeriod
 		defaultValuePositiveInt = createInstance(type: FHIRInteger.self, for: "defaultValuePositiveInt", in: json, context: &instCtx, owner: self) ?? defaultValuePositiveInt
 		defaultValueQuantity = createInstance(type: Quantity.self, for: "defaultValueQuantity", in: json, context: &instCtx, owner: self) ?? defaultValueQuantity
 		defaultValueRange = createInstance(type: Range.self, for: "defaultValueRange", in: json, context: &instCtx, owner: self) ?? defaultValueRange
 		defaultValueRatio = createInstance(type: Ratio.self, for: "defaultValueRatio", in: json, context: &instCtx, owner: self) ?? defaultValueRatio
 		defaultValueReference = createInstance(type: Reference.self, for: "defaultValueReference", in: json, context: &instCtx, owner: self) ?? defaultValueReference
+		defaultValueRelatedArtifact = createInstance(type: RelatedArtifact.self, for: "defaultValueRelatedArtifact", in: json, context: &instCtx, owner: self) ?? defaultValueRelatedArtifact
 		defaultValueSampledData = createInstance(type: SampledData.self, for: "defaultValueSampledData", in: json, context: &instCtx, owner: self) ?? defaultValueSampledData
 		defaultValueSignature = createInstance(type: Signature.self, for: "defaultValueSignature", in: json, context: &instCtx, owner: self) ?? defaultValueSignature
 		defaultValueString = createInstance(type: FHIRString.self, for: "defaultValueString", in: json, context: &instCtx, owner: self) ?? defaultValueString
 		defaultValueTime = createInstance(type: FHIRTime.self, for: "defaultValueTime", in: json, context: &instCtx, owner: self) ?? defaultValueTime
 		defaultValueTiming = createInstance(type: Timing.self, for: "defaultValueTiming", in: json, context: &instCtx, owner: self) ?? defaultValueTiming
+		defaultValueTriggerDefinition = createInstance(type: TriggerDefinition.self, for: "defaultValueTriggerDefinition", in: json, context: &instCtx, owner: self) ?? defaultValueTriggerDefinition
 		defaultValueUnsignedInt = createInstance(type: FHIRInteger.self, for: "defaultValueUnsignedInt", in: json, context: &instCtx, owner: self) ?? defaultValueUnsignedInt
 		defaultValueUri = createInstance(type: FHIRURL.self, for: "defaultValueUri", in: json, context: &instCtx, owner: self) ?? defaultValueUri
+		defaultValueUrl = createInstance(type: FHIRURL.self, for: "defaultValueUrl", in: json, context: &instCtx, owner: self) ?? defaultValueUrl
+		defaultValueUsageContext = createInstance(type: UsageContext.self, for: "defaultValueUsageContext", in: json, context: &instCtx, owner: self) ?? defaultValueUsageContext
+		defaultValueUuid = createInstance(type: FHIRURL.self, for: "defaultValueUuid", in: json, context: &instCtx, owner: self) ?? defaultValueUuid
 		element = createInstance(type: FHIRString.self, for: "element", in: json, context: &instCtx, owner: self) ?? element
 		listMode = createEnum(type: StructureMapSourceListMode.self, for: "listMode", in: json, context: &instCtx) ?? listMode
+		logMessage = createInstance(type: FHIRString.self, for: "logMessage", in: json, context: &instCtx, owner: self) ?? logMessage
 		max = createInstance(type: FHIRString.self, for: "max", in: json, context: &instCtx, owner: self) ?? max
 		min = createInstance(type: FHIRInteger.self, for: "min", in: json, context: &instCtx, owner: self) ?? min
 		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
@@ -653,40 +701,52 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		self.defaultValueAttachment?.decorate(json: &json, withKey: "defaultValueAttachment", errors: &errors)
 		self.defaultValueBase64Binary?.decorate(json: &json, withKey: "defaultValueBase64Binary", errors: &errors)
 		self.defaultValueBoolean?.decorate(json: &json, withKey: "defaultValueBoolean", errors: &errors)
+		self.defaultValueCanonical?.decorate(json: &json, withKey: "defaultValueCanonical", errors: &errors)
 		self.defaultValueCode?.decorate(json: &json, withKey: "defaultValueCode", errors: &errors)
 		self.defaultValueCodeableConcept?.decorate(json: &json, withKey: "defaultValueCodeableConcept", errors: &errors)
 		self.defaultValueCoding?.decorate(json: &json, withKey: "defaultValueCoding", errors: &errors)
+		self.defaultValueContactDetail?.decorate(json: &json, withKey: "defaultValueContactDetail", errors: &errors)
 		self.defaultValueContactPoint?.decorate(json: &json, withKey: "defaultValueContactPoint", errors: &errors)
+		self.defaultValueContributor?.decorate(json: &json, withKey: "defaultValueContributor", errors: &errors)
 		self.defaultValueCount?.decorate(json: &json, withKey: "defaultValueCount", errors: &errors)
+		self.defaultValueDataRequirement?.decorate(json: &json, withKey: "defaultValueDataRequirement", errors: &errors)
 		self.defaultValueDate?.decorate(json: &json, withKey: "defaultValueDate", errors: &errors)
 		self.defaultValueDateTime?.decorate(json: &json, withKey: "defaultValueDateTime", errors: &errors)
 		self.defaultValueDecimal?.decorate(json: &json, withKey: "defaultValueDecimal", errors: &errors)
 		self.defaultValueDistance?.decorate(json: &json, withKey: "defaultValueDistance", errors: &errors)
+		self.defaultValueDosage?.decorate(json: &json, withKey: "defaultValueDosage", errors: &errors)
 		self.defaultValueDuration?.decorate(json: &json, withKey: "defaultValueDuration", errors: &errors)
+		self.defaultValueExpression?.decorate(json: &json, withKey: "defaultValueExpression", errors: &errors)
 		self.defaultValueHumanName?.decorate(json: &json, withKey: "defaultValueHumanName", errors: &errors)
 		self.defaultValueId?.decorate(json: &json, withKey: "defaultValueId", errors: &errors)
 		self.defaultValueIdentifier?.decorate(json: &json, withKey: "defaultValueIdentifier", errors: &errors)
 		self.defaultValueInstant?.decorate(json: &json, withKey: "defaultValueInstant", errors: &errors)
 		self.defaultValueInteger?.decorate(json: &json, withKey: "defaultValueInteger", errors: &errors)
 		self.defaultValueMarkdown?.decorate(json: &json, withKey: "defaultValueMarkdown", errors: &errors)
-		self.defaultValueMeta?.decorate(json: &json, withKey: "defaultValueMeta", errors: &errors)
 		self.defaultValueMoney?.decorate(json: &json, withKey: "defaultValueMoney", errors: &errors)
 		self.defaultValueOid?.decorate(json: &json, withKey: "defaultValueOid", errors: &errors)
+		self.defaultValueParameterDefinition?.decorate(json: &json, withKey: "defaultValueParameterDefinition", errors: &errors)
 		self.defaultValuePeriod?.decorate(json: &json, withKey: "defaultValuePeriod", errors: &errors)
 		self.defaultValuePositiveInt?.decorate(json: &json, withKey: "defaultValuePositiveInt", errors: &errors)
 		self.defaultValueQuantity?.decorate(json: &json, withKey: "defaultValueQuantity", errors: &errors)
 		self.defaultValueRange?.decorate(json: &json, withKey: "defaultValueRange", errors: &errors)
 		self.defaultValueRatio?.decorate(json: &json, withKey: "defaultValueRatio", errors: &errors)
 		self.defaultValueReference?.decorate(json: &json, withKey: "defaultValueReference", errors: &errors)
+		self.defaultValueRelatedArtifact?.decorate(json: &json, withKey: "defaultValueRelatedArtifact", errors: &errors)
 		self.defaultValueSampledData?.decorate(json: &json, withKey: "defaultValueSampledData", errors: &errors)
 		self.defaultValueSignature?.decorate(json: &json, withKey: "defaultValueSignature", errors: &errors)
 		self.defaultValueString?.decorate(json: &json, withKey: "defaultValueString", errors: &errors)
 		self.defaultValueTime?.decorate(json: &json, withKey: "defaultValueTime", errors: &errors)
 		self.defaultValueTiming?.decorate(json: &json, withKey: "defaultValueTiming", errors: &errors)
+		self.defaultValueTriggerDefinition?.decorate(json: &json, withKey: "defaultValueTriggerDefinition", errors: &errors)
 		self.defaultValueUnsignedInt?.decorate(json: &json, withKey: "defaultValueUnsignedInt", errors: &errors)
 		self.defaultValueUri?.decorate(json: &json, withKey: "defaultValueUri", errors: &errors)
+		self.defaultValueUrl?.decorate(json: &json, withKey: "defaultValueUrl", errors: &errors)
+		self.defaultValueUsageContext?.decorate(json: &json, withKey: "defaultValueUsageContext", errors: &errors)
+		self.defaultValueUuid?.decorate(json: &json, withKey: "defaultValueUuid", errors: &errors)
 		self.element?.decorate(json: &json, withKey: "element", errors: &errors)
 		self.listMode?.decorate(json: &json, withKey: "listMode", errors: &errors)
+		self.logMessage?.decorate(json: &json, withKey: "logMessage", errors: &errors)
 		self.max?.decorate(json: &json, withKey: "max", errors: &errors)
 		self.min?.decorate(json: &json, withKey: "min", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
@@ -799,7 +859,7 @@ open class StructureMapGroupRuleTargetParameter: BackboneElement {
 			self.valueDecimal = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: value))” for property “\(value)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: value))” for property “\(value)” is invalid, ignoring")
 		}
 	}
 	
@@ -857,7 +917,7 @@ open class StructureMapStructure: BackboneElement {
 	/// How the referenced structure is used in this mapping.
 	public var mode: StructureMapModelMode?
 	
-	/// Canonical URL for structure definition.
+	/// Canonical reference to structure definition.
 	public var url: FHIRURL?
 	
 	

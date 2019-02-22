@@ -2,8 +2,8 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -29,8 +29,8 @@ open class QuestionnaireResponse: DomainResource {
 	/// Request fulfilled by this QuestionnaireResponse.
 	public var basedOn: [Reference]?
 	
-	/// Encounter or Episode during which questionnaire was completed.
-	public var context: Reference?
+	/// Encounter created as part of.
+	public var encounter: Reference?
 	
 	/// Unique id for this set of answers.
 	public var identifier: Identifier?
@@ -39,10 +39,10 @@ open class QuestionnaireResponse: DomainResource {
 	public var item: [QuestionnaireResponseItem]?
 	
 	/// Part of this action.
-	public var parent: [Reference]?
+	public var partOf: [Reference]?
 	
 	/// Form being answered.
-	public var questionnaire: Reference?
+	public var questionnaire: FHIRURL?
 	
 	/// The person who answered the questions.
 	public var source: Reference?
@@ -67,11 +67,11 @@ open class QuestionnaireResponse: DomainResource {
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
 		authored = createInstance(type: DateTime.self, for: "authored", in: json, context: &instCtx, owner: self) ?? authored
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
-		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		item = createInstances(of: QuestionnaireResponseItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
-		parent = createInstances(of: Reference.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
-		questionnaire = createInstance(type: Reference.self, for: "questionnaire", in: json, context: &instCtx, owner: self) ?? questionnaire
+		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		questionnaire = createInstance(type: FHIRURL.self, for: "questionnaire", in: json, context: &instCtx, owner: self) ?? questionnaire
 		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		status = createEnum(type: QuestionnaireResponseStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
@@ -86,10 +86,10 @@ open class QuestionnaireResponse: DomainResource {
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
 		self.authored?.decorate(json: &json, withKey: "authored", errors: &errors)
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
-		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "item", using: self.item, errors: &errors)
-		arrayDecorate(json: &json, withKey: "parent", using: self.parent, errors: &errors)
+		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		self.questionnaire?.decorate(json: &json, withKey: "questionnaire", errors: &errors)
 		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
@@ -123,9 +123,6 @@ open class QuestionnaireResponseItem: BackboneElement {
 	/// Pointer to specific item from Questionnaire.
 	public var linkId: FHIRString?
 	
-	/// The subject this group's answers are about.
-	public var subject: Reference?
-	
 	/// Name for group or question text.
 	public var text: FHIRString?
 	
@@ -147,7 +144,6 @@ open class QuestionnaireResponseItem: BackboneElement {
 		if nil == linkId && !instCtx.containsKey("linkId") {
 			instCtx.addError(FHIRValidationError(missing: "linkId"))
 		}
-		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		text = createInstance(type: FHIRString.self, for: "text", in: json, context: &instCtx, owner: self) ?? text
 	}
 	
@@ -161,7 +157,6 @@ open class QuestionnaireResponseItem: BackboneElement {
 		if nil == self.linkId {
 			errors.append(FHIRValidationError(missing: "linkId"))
 		}
-		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		self.text?.decorate(json: &json, withKey: "text", errors: &errors)
 	}
 }

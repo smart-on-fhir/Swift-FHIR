@@ -2,8 +2,8 @@
 //  TriggerDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,30 +12,34 @@ import Foundation
 /**
 Defines an expected trigger for a module.
 
-A description of a triggering event.
+A description of a triggering event. Triggering events can be named events, data events, or periodic, as determined by
+the type element.
 */
 open class TriggerDefinition: Element {
 	override open class var resourceType: String {
 		get { return "TriggerDefinition" }
 	}
 	
-	/// Triggering data of the event.
-	public var eventData: DataRequirement?
+	/// Whether the event triggers (boolean expression).
+	public var condition: Expression?
 	
-	/// Triggering event name.
-	public var eventName: FHIRString?
+	/// Triggering data of the event (multiple = 'and').
+	public var data: [DataRequirement]?
 	
-	/// Timing of the event.
-	public var eventTimingDate: FHIRDate?
-	
-	/// Timing of the event.
-	public var eventTimingDateTime: DateTime?
+	/// Name or URI that identifies the event.
+	public var name: FHIRString?
 	
 	/// Timing of the event.
-	public var eventTimingReference: Reference?
+	public var timingDate: FHIRDate?
 	
 	/// Timing of the event.
-	public var eventTimingTiming: Timing?
+	public var timingDateTime: DateTime?
+	
+	/// Timing of the event.
+	public var timingReference: Reference?
+	
+	/// Timing of the event.
+	public var timingTiming: Timing?
 	
 	/// The type of triggering event.
 	public var type: TriggerType?
@@ -51,12 +55,13 @@ open class TriggerDefinition: Element {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		eventData = createInstance(type: DataRequirement.self, for: "eventData", in: json, context: &instCtx, owner: self) ?? eventData
-		eventName = createInstance(type: FHIRString.self, for: "eventName", in: json, context: &instCtx, owner: self) ?? eventName
-		eventTimingDate = createInstance(type: FHIRDate.self, for: "eventTimingDate", in: json, context: &instCtx, owner: self) ?? eventTimingDate
-		eventTimingDateTime = createInstance(type: DateTime.self, for: "eventTimingDateTime", in: json, context: &instCtx, owner: self) ?? eventTimingDateTime
-		eventTimingReference = createInstance(type: Reference.self, for: "eventTimingReference", in: json, context: &instCtx, owner: self) ?? eventTimingReference
-		eventTimingTiming = createInstance(type: Timing.self, for: "eventTimingTiming", in: json, context: &instCtx, owner: self) ?? eventTimingTiming
+		condition = createInstance(type: Expression.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
+		data = createInstances(of: DataRequirement.self, for: "data", in: json, context: &instCtx, owner: self) ?? data
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		timingDate = createInstance(type: FHIRDate.self, for: "timingDate", in: json, context: &instCtx, owner: self) ?? timingDate
+		timingDateTime = createInstance(type: DateTime.self, for: "timingDateTime", in: json, context: &instCtx, owner: self) ?? timingDateTime
+		timingReference = createInstance(type: Reference.self, for: "timingReference", in: json, context: &instCtx, owner: self) ?? timingReference
+		timingTiming = createInstance(type: Timing.self, for: "timingTiming", in: json, context: &instCtx, owner: self) ?? timingTiming
 		type = createEnum(type: TriggerType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
@@ -66,12 +71,13 @@ open class TriggerDefinition: Element {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.eventData?.decorate(json: &json, withKey: "eventData", errors: &errors)
-		self.eventName?.decorate(json: &json, withKey: "eventName", errors: &errors)
-		self.eventTimingDate?.decorate(json: &json, withKey: "eventTimingDate", errors: &errors)
-		self.eventTimingDateTime?.decorate(json: &json, withKey: "eventTimingDateTime", errors: &errors)
-		self.eventTimingReference?.decorate(json: &json, withKey: "eventTimingReference", errors: &errors)
-		self.eventTimingTiming?.decorate(json: &json, withKey: "eventTimingTiming", errors: &errors)
+		self.condition?.decorate(json: &json, withKey: "condition", errors: &errors)
+		arrayDecorate(json: &json, withKey: "data", using: self.data, errors: &errors)
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		self.timingDate?.decorate(json: &json, withKey: "timingDate", errors: &errors)
+		self.timingDateTime?.decorate(json: &json, withKey: "timingDateTime", errors: &errors)
+		self.timingReference?.decorate(json: &json, withKey: "timingReference", errors: &errors)
+		self.timingTiming?.decorate(json: &json, withKey: "timingTiming", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))

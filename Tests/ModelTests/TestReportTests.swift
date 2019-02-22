@@ -2,8 +2,8 @@
 //  TestReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -44,6 +44,9 @@ class TestReportTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?.value, "urn:oid:1.3.6.1.4.1.21367.2005.3.7.9878")
 		XCTAssertEqual(inst.issued?.description, "2016-10-07T08:25:34-05:00")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name, "TestReport Example for TestScript Example")
 		XCTAssertEqual(inst.participant?[0].display, "Crucible")
 		XCTAssertEqual(inst.participant?[0].type, TestReportParticipantType(rawValue: "test-engine")!)

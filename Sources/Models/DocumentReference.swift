@@ -2,8 +2,8 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -11,14 +11,15 @@ import Foundation
 
 /**
 A reference to a document.
+
+A reference to a document of any kind for any purpose. Provides metadata about the document so that the document can be
+discovered and managed. The scope of a document is any seralized object with a mime-type, so includes formal patient
+centric documents (CDA), cliical notes, scanned paper, and non-patient specific documents like policy text.
 */
 open class DocumentReference: DomainResource {
 	override open class var resourceType: String {
 		get { return "DocumentReference" }
 	}
-	
-	/// Categorization of document.
-	public var `class`: CodeableConcept?
 	
 	/// Who/what authenticated the document.
 	public var authenticator: Reference?
@@ -26,19 +27,22 @@ open class DocumentReference: DomainResource {
 	/// Who and/or what authored the document.
 	public var author: [Reference]?
 	
+	/// Categorization of document.
+	public var category: [CodeableConcept]?
+	
 	/// Document referenced.
 	public var content: [DocumentReferenceContent]?
 	
 	/// Clinical context of document.
 	public var context: DocumentReferenceContext?
 	
-	/// Document creation time.
-	public var created: DateTime?
-	
 	/// Organization which maintains the document.
 	public var custodian: Reference?
 	
-	/// Human-readable description (title).
+	/// When this document reference was created.
+	public var date: Instant?
+	
+	/// Human-readable description.
 	public var description_fhir: FHIRString?
 	
 	/// The status of the underlying document.
@@ -46,9 +50,6 @@ open class DocumentReference: DomainResource {
 	
 	/// Other identifiers for the document.
 	public var identifier: [Identifier]?
-	
-	/// When this document reference was created.
-	public var indexed: Instant?
 	
 	/// Master Version Specific Identifier.
 	public var masterIdentifier: Identifier?
@@ -70,35 +71,29 @@ open class DocumentReference: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: [DocumentReferenceContent], indexed: Instant, status: DocumentReferenceStatus, type: CodeableConcept) {
+	public convenience init(content: [DocumentReferenceContent], status: DocumentReferenceStatus) {
 		self.init()
 		self.content = content
-		self.indexed = indexed
 		self.status = status
-		self.type = type
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		`class` = createInstance(type: CodeableConcept.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
 		authenticator = createInstance(type: Reference.self, for: "authenticator", in: json, context: &instCtx, owner: self) ?? authenticator
 		author = createInstances(of: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		content = createInstances(of: DocumentReferenceContent.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
 		if (nil == content || content!.isEmpty) && !instCtx.containsKey("content") {
 			instCtx.addError(FHIRValidationError(missing: "content"))
 		}
 		context = createInstance(type: DocumentReferenceContext.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		created = createInstance(type: DateTime.self, for: "created", in: json, context: &instCtx, owner: self) ?? created
 		custodian = createInstance(type: Reference.self, for: "custodian", in: json, context: &instCtx, owner: self) ?? custodian
+		date = createInstance(type: Instant.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		docStatus = createEnum(type: CompositionStatus.self, for: "docStatus", in: json, context: &instCtx) ?? docStatus
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		indexed = createInstance(type: Instant.self, for: "indexed", in: json, context: &instCtx, owner: self) ?? indexed
-		if nil == indexed && !instCtx.containsKey("indexed") {
-			instCtx.addError(FHIRValidationError(missing: "indexed"))
-		}
 		masterIdentifier = createInstance(type: Identifier.self, for: "masterIdentifier", in: json, context: &instCtx, owner: self) ?? masterIdentifier
 		relatesTo = createInstances(of: DocumentReferenceRelatesTo.self, for: "relatesTo", in: json, context: &instCtx, owner: self) ?? relatesTo
 		securityLabel = createInstances(of: CodeableConcept.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
@@ -108,31 +103,24 @@ open class DocumentReference: DomainResource {
 		}
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-		if nil == type && !instCtx.containsKey("type") {
-			instCtx.addError(FHIRValidationError(missing: "type"))
-		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
 		self.authenticator?.decorate(json: &json, withKey: "authenticator", errors: &errors)
 		arrayDecorate(json: &json, withKey: "author", using: self.author, errors: &errors)
+		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		arrayDecorate(json: &json, withKey: "content", using: self.content, errors: &errors)
 		if nil == content || self.content!.isEmpty {
 			errors.append(FHIRValidationError(missing: "content"))
 		}
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		self.created?.decorate(json: &json, withKey: "created", errors: &errors)
 		self.custodian?.decorate(json: &json, withKey: "custodian", errors: &errors)
+		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.docStatus?.decorate(json: &json, withKey: "docStatus", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		self.indexed?.decorate(json: &json, withKey: "indexed", errors: &errors)
-		if nil == self.indexed {
-			errors.append(FHIRValidationError(missing: "indexed"))
-		}
 		self.masterIdentifier?.decorate(json: &json, withKey: "masterIdentifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "relatesTo", using: self.relatesTo, errors: &errors)
 		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
@@ -142,9 +130,6 @@ open class DocumentReference: DomainResource {
 		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-		if nil == self.type {
-			errors.append(FHIRValidationError(missing: "type"))
-		}
 	}
 }
 
@@ -206,7 +191,7 @@ open class DocumentReferenceContext: BackboneElement {
 	}
 	
 	/// Context of the document  content.
-	public var encounter: Reference?
+	public var encounter: [Reference]?
 	
 	/// Main clinical acts documented.
 	public var event: [CodeableConcept]?
@@ -221,7 +206,7 @@ open class DocumentReferenceContext: BackboneElement {
 	public var practiceSetting: CodeableConcept?
 	
 	/// Related identifiers or resources.
-	public var related: [DocumentReferenceContextRelated]?
+	public var related: [Reference]?
 	
 	/// Patient demographics from source.
 	public var sourcePatientInfo: Reference?
@@ -230,58 +215,25 @@ open class DocumentReferenceContext: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
+		encounter = createInstances(of: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		event = createInstances(of: CodeableConcept.self, for: "event", in: json, context: &instCtx, owner: self) ?? event
 		facilityType = createInstance(type: CodeableConcept.self, for: "facilityType", in: json, context: &instCtx, owner: self) ?? facilityType
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		practiceSetting = createInstance(type: CodeableConcept.self, for: "practiceSetting", in: json, context: &instCtx, owner: self) ?? practiceSetting
-		related = createInstances(of: DocumentReferenceContextRelated.self, for: "related", in: json, context: &instCtx, owner: self) ?? related
+		related = createInstances(of: Reference.self, for: "related", in: json, context: &instCtx, owner: self) ?? related
 		sourcePatientInfo = createInstance(type: Reference.self, for: "sourcePatientInfo", in: json, context: &instCtx, owner: self) ?? sourcePatientInfo
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
+		arrayDecorate(json: &json, withKey: "encounter", using: self.encounter, errors: &errors)
 		arrayDecorate(json: &json, withKey: "event", using: self.event, errors: &errors)
 		self.facilityType?.decorate(json: &json, withKey: "facilityType", errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		self.practiceSetting?.decorate(json: &json, withKey: "practiceSetting", errors: &errors)
 		arrayDecorate(json: &json, withKey: "related", using: self.related, errors: &errors)
 		self.sourcePatientInfo?.decorate(json: &json, withKey: "sourcePatientInfo", errors: &errors)
-	}
-}
-
-
-/**
-Related identifiers or resources.
-
-Related identifiers or resources associated with the DocumentReference.
-*/
-open class DocumentReferenceContextRelated: BackboneElement {
-	override open class var resourceType: String {
-		get { return "DocumentReferenceContextRelated" }
-	}
-	
-	/// Identifier of related objects or events.
-	public var identifier: Identifier?
-	
-	/// Related Resource.
-	public var ref: Reference?
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		ref = createInstance(type: Reference.self, for: "ref", in: json, context: &instCtx, owner: self) ?? ref
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		self.ref?.decorate(json: &json, withKey: "ref", errors: &errors)
 	}
 }
 

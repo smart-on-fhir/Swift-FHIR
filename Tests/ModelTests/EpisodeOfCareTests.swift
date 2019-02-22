@@ -2,8 +2,8 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -48,11 +48,14 @@ class EpisodeOfCareTests: XCTestCase {
 		XCTAssertEqual(inst.diagnosis?[0].rank, 1)
 		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].code, "CC")
 		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].display, "Chief complaint")
-		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/diagnosis-role")
+		XCTAssertEqual(inst.diagnosis?[0].role?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/diagnosis-role")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/sampleepisodeofcare-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/hl7")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.period?.start?.description, "2014-09-01")
 		XCTAssertEqual(inst.referralRequest?[0].display, "Referral from Example Aged Care Services")
@@ -73,7 +76,7 @@ class EpisodeOfCareTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?[0].coding?[0].code, "hacc")
 		XCTAssertEqual(inst.type?[0].coding?[0].display, "Home and Community Care")
-		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/episodeofcare-type")
+		XCTAssertEqual(inst.type?[0].coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/episodeofcare-type")
 		
 		return inst
 	}

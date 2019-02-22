@@ -2,17 +2,15 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/List) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/List) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Information summarized from a list of other resources.
-
-A set of information summarized from a list of other resources.
+A list is a curated collection of resources.
 */
 open class List: DomainResource {
 	override open class var resourceType: String {

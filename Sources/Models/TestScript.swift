@@ -2,8 +2,8 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TestScript) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,7 +12,8 @@ import Foundation
 /**
 Describes a set of tests.
 
-A structured set of tests against a FHIR server implementation to determine compliance against the FHIR specification.
+A structured set of tests against a FHIR server or client implementation to determine compliance against the FHIR
+specification.
 */
 open class TestScript: DomainResource {
 	override open class var resourceType: String {
@@ -25,7 +26,7 @@ open class TestScript: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the test script.
@@ -64,12 +65,6 @@ open class TestScript: DomainResource {
 	/// Why this test script is defined.
 	public var purpose: FHIRString?
 	
-	/// Assert rule used within the test script.
-	public var rule: [TestScriptRule]?
-	
-	/// Assert ruleset used within the test script.
-	public var ruleset: [TestScriptRuleset]?
-	
 	/// A series of required setup operations before tests are executed.
 	public var setup: TestScriptSetup?
 	
@@ -85,10 +80,10 @@ open class TestScript: DomainResource {
 	/// Name for this test script (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this test script (globally unique).
+	/// Canonical identifier for this test script, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Placeholder for evaluated elements.
@@ -128,8 +123,6 @@ open class TestScript: DomainResource {
 		profile = createInstances(of: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
-		rule = createInstances(of: TestScriptRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
-		ruleset = createInstances(of: TestScriptRuleset.self, for: "ruleset", in: json, context: &instCtx, owner: self) ?? ruleset
 		setup = createInstance(type: TestScriptSetup.self, for: "setup", in: json, context: &instCtx, owner: self) ?? setup
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
@@ -168,8 +161,6 @@ open class TestScript: DomainResource {
 		arrayDecorate(json: &json, withKey: "profile", using: self.profile, errors: &errors)
 		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
 		self.purpose?.decorate(json: &json, withKey: "purpose", errors: &errors)
-		arrayDecorate(json: &json, withKey: "rule", using: self.rule, errors: &errors)
-		arrayDecorate(json: &json, withKey: "ruleset", using: self.ruleset, errors: &errors)
 		self.setup?.decorate(json: &json, withKey: "setup", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
@@ -262,11 +253,25 @@ open class TestScriptFixture: BackboneElement {
 	public var resource: Reference?
 	
 	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(autocreate: FHIRBool, autodelete: FHIRBool) {
+		self.init()
+		self.autocreate = autocreate
+		self.autodelete = autodelete
+	}
+	
+	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		autocreate = createInstance(type: FHIRBool.self, for: "autocreate", in: json, context: &instCtx, owner: self) ?? autocreate
+		if nil == autocreate && !instCtx.containsKey("autocreate") {
+			instCtx.addError(FHIRValidationError(missing: "autocreate"))
+		}
 		autodelete = createInstance(type: FHIRBool.self, for: "autodelete", in: json, context: &instCtx, owner: self) ?? autodelete
+		if nil == autodelete && !instCtx.containsKey("autodelete") {
+			instCtx.addError(FHIRValidationError(missing: "autodelete"))
+		}
 		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
 	}
 	
@@ -274,7 +279,13 @@ open class TestScriptFixture: BackboneElement {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.autocreate?.decorate(json: &json, withKey: "autocreate", errors: &errors)
+		if nil == self.autocreate {
+			errors.append(FHIRValidationError(missing: "autocreate"))
+		}
 		self.autodelete?.decorate(json: &json, withKey: "autodelete", errors: &errors)
+		if nil == self.autodelete {
+			errors.append(FHIRValidationError(missing: "autodelete"))
+		}
 		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
 	}
 }
@@ -337,7 +348,7 @@ open class TestScriptMetadataCapability: BackboneElement {
 	}
 	
 	/// Required Capability Statement.
-	public var capabilities: Reference?
+	public var capabilities: FHIRURL?
 	
 	/// The expected capabilities of the server.
 	public var description_fhir: FHIRString?
@@ -359,16 +370,18 @@ open class TestScriptMetadataCapability: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(capabilities: Reference) {
+	public convenience init(capabilities: FHIRURL, required: FHIRBool, validated: FHIRBool) {
 		self.init()
 		self.capabilities = capabilities
+		self.required = required
+		self.validated = validated
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		capabilities = createInstance(type: Reference.self, for: "capabilities", in: json, context: &instCtx, owner: self) ?? capabilities
+		capabilities = createInstance(type: FHIRURL.self, for: "capabilities", in: json, context: &instCtx, owner: self) ?? capabilities
 		if nil == capabilities && !instCtx.containsKey("capabilities") {
 			instCtx.addError(FHIRValidationError(missing: "capabilities"))
 		}
@@ -377,7 +390,13 @@ open class TestScriptMetadataCapability: BackboneElement {
 		link = createInstances(of: FHIRURL.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
 		origin = createInstances(of: FHIRInteger.self, for: "origin", in: json, context: &instCtx, owner: self) ?? origin
 		required = createInstance(type: FHIRBool.self, for: "required", in: json, context: &instCtx, owner: self) ?? required
+		if nil == required && !instCtx.containsKey("required") {
+			instCtx.addError(FHIRValidationError(missing: "required"))
+		}
 		validated = createInstance(type: FHIRBool.self, for: "validated", in: json, context: &instCtx, owner: self) ?? validated
+		if nil == validated && !instCtx.containsKey("validated") {
+			instCtx.addError(FHIRValidationError(missing: "validated"))
+		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -392,7 +411,13 @@ open class TestScriptMetadataCapability: BackboneElement {
 		arrayDecorate(json: &json, withKey: "link", using: self.link, errors: &errors)
 		arrayDecorate(json: &json, withKey: "origin", using: self.origin, errors: &errors)
 		self.required?.decorate(json: &json, withKey: "required", errors: &errors)
+		if nil == self.required {
+			errors.append(FHIRValidationError(missing: "required"))
+		}
 		self.validated?.decorate(json: &json, withKey: "validated", errors: &errors)
+		if nil == self.validated {
+			errors.append(FHIRValidationError(missing: "validated"))
+		}
 	}
 }
 
@@ -497,244 +522,6 @@ open class TestScriptOrigin: BackboneElement {
 
 
 /**
-Assert rule used within the test script.
-
-Assert rule to be used in one or more asserts within the test script.
-*/
-open class TestScriptRule: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptRule" }
-	}
-	
-	/// Rule parameter template.
-	public var param: [TestScriptRuleParam]?
-	
-	/// Assert rule resource reference.
-	public var resource: Reference?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(resource: Reference) {
-		self.init()
-		self.resource = resource
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		param = createInstances(of: TestScriptRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
-		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
-		if nil == resource && !instCtx.containsKey("resource") {
-			instCtx.addError(FHIRValidationError(missing: "resource"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		arrayDecorate(json: &json, withKey: "param", using: self.param, errors: &errors)
-		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
-		if nil == self.resource {
-			errors.append(FHIRValidationError(missing: "resource"))
-		}
-	}
-}
-
-
-/**
-Rule parameter template.
-
-Each rule template can take one or more parameters for rule evaluation.
-*/
-open class TestScriptRuleParam: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptRuleParam" }
-	}
-	
-	/// Parameter name matching external assert rule parameter.
-	public var name: FHIRString?
-	
-	/// Parameter value defined either explicitly or dynamically.
-	public var value: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: FHIRString) {
-		self.init()
-		self.name = name
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") {
-			instCtx.addError(FHIRValidationError(missing: "name"))
-		}
-		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		if nil == self.name {
-			errors.append(FHIRValidationError(missing: "name"))
-		}
-		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
-	}
-}
-
-
-/**
-Assert ruleset used within the test script.
-
-Contains one or more rules.  Offers a way to group rules so assertions could reference the group of rules and have them
-all applied.
-*/
-open class TestScriptRuleset: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptRuleset" }
-	}
-	
-	/// Assert ruleset resource reference.
-	public var resource: Reference?
-	
-	/// The referenced rule within the ruleset.
-	public var rule: [TestScriptRulesetRule]?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(resource: Reference, rule: [TestScriptRulesetRule]) {
-		self.init()
-		self.resource = resource
-		self.rule = rule
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
-		if nil == resource && !instCtx.containsKey("resource") {
-			instCtx.addError(FHIRValidationError(missing: "resource"))
-		}
-		rule = createInstances(of: TestScriptRulesetRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
-		if (nil == rule || rule!.isEmpty) && !instCtx.containsKey("rule") {
-			instCtx.addError(FHIRValidationError(missing: "rule"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
-		if nil == self.resource {
-			errors.append(FHIRValidationError(missing: "resource"))
-		}
-		arrayDecorate(json: &json, withKey: "rule", using: self.rule, errors: &errors)
-		if nil == rule || self.rule!.isEmpty {
-			errors.append(FHIRValidationError(missing: "rule"))
-		}
-	}
-}
-
-
-/**
-The referenced rule within the ruleset.
-
-The referenced rule within the external ruleset template.
-*/
-open class TestScriptRulesetRule: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptRulesetRule" }
-	}
-	
-	/// Ruleset rule parameter template.
-	public var param: [TestScriptRulesetRuleParam]?
-	
-	/// Id of referenced rule within the ruleset.
-	public var ruleId: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(ruleId: FHIRString) {
-		self.init()
-		self.ruleId = ruleId
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		param = createInstances(of: TestScriptRulesetRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
-		ruleId = createInstance(type: FHIRString.self, for: "ruleId", in: json, context: &instCtx, owner: self) ?? ruleId
-		if nil == ruleId && !instCtx.containsKey("ruleId") {
-			instCtx.addError(FHIRValidationError(missing: "ruleId"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		arrayDecorate(json: &json, withKey: "param", using: self.param, errors: &errors)
-		self.ruleId?.decorate(json: &json, withKey: "ruleId", errors: &errors)
-		if nil == self.ruleId {
-			errors.append(FHIRValidationError(missing: "ruleId"))
-		}
-	}
-}
-
-
-/**
-Ruleset rule parameter template.
-
-Each rule template can take one or more parameters for rule evaluation.
-*/
-open class TestScriptRulesetRuleParam: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptRulesetRuleParam" }
-	}
-	
-	/// Parameter name matching external assert ruleset rule parameter.
-	public var name: FHIRString?
-	
-	/// Parameter value defined either explicitly or dynamically.
-	public var value: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: FHIRString) {
-		self.init()
-		self.name = name
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") {
-			instCtx.addError(FHIRValidationError(missing: "name"))
-		}
-		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		if nil == self.name {
-			errors.append(FHIRValidationError(missing: "name"))
-		}
-		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
-	}
-}
-
-
-/**
 A series of required setup operations before tests are executed.
 */
 open class TestScriptSetup: BackboneElement {
@@ -816,7 +603,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		get { return "TestScriptSetupActionAssert" }
 	}
 	
-	/// The fluentpath expression to evaluate against the source fixture.
+	/// The FHIRPath expression to evaluate against the source fixture.
 	public var compareToSourceExpression: FHIRString?
 	
 	/// Id of the source fixture to be evaluated.
@@ -825,8 +612,8 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// XPath or JSONPath expression to evaluate against the source fixture.
 	public var compareToSourcePath: FHIRString?
 	
-	/// The content-type or mime-type to use for RESTful operation in the 'Content-Type' header.
-	public var contentType: ContentType?
+	/// Mime type to compare against the 'Content-Type' header.
+	public var contentType: FHIRString?
 	
 	/// Tracking/reporting assertion description.
 	public var description_fhir: FHIRString?
@@ -834,7 +621,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// The direction to use for the assertion.
 	public var direction: AssertionDirectionType?
 	
-	/// The fluentpath expression to be evaluated.
+	/// The FHIRPath expression to be evaluated.
 	public var expression: FHIRString?
 	
 	/// HTTP header field name.
@@ -870,12 +657,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	/// HTTP response code to test.
 	public var responseCode: FHIRString?
 	
-	/// The reference to a TestScript.rule.
-	public var rule: TestScriptSetupActionAssertRule?
-	
-	/// The reference to a TestScript.ruleset.
-	public var ruleset: TestScriptSetupActionAssertRuleset?
-	
 	/// Fixture Id of source expression or headerField.
 	public var sourceId: FHIRString?
 	
@@ -889,13 +670,20 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	public var warningOnly: FHIRBool?
 	
 	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(warningOnly: FHIRBool) {
+		self.init()
+		self.warningOnly = warningOnly
+	}
+	
+	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		compareToSourceExpression = createInstance(type: FHIRString.self, for: "compareToSourceExpression", in: json, context: &instCtx, owner: self) ?? compareToSourceExpression
 		compareToSourceId = createInstance(type: FHIRString.self, for: "compareToSourceId", in: json, context: &instCtx, owner: self) ?? compareToSourceId
 		compareToSourcePath = createInstance(type: FHIRString.self, for: "compareToSourcePath", in: json, context: &instCtx, owner: self) ?? compareToSourcePath
-		contentType = createEnum(type: ContentType.self, for: "contentType", in: json, context: &instCtx) ?? contentType
+		contentType = createInstance(type: FHIRString.self, for: "contentType", in: json, context: &instCtx, owner: self) ?? contentType
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		direction = createEnum(type: AssertionDirectionType.self, for: "direction", in: json, context: &instCtx) ?? direction
 		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
@@ -910,12 +698,13 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		resource = createInstance(type: FHIRString.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
 		response = createEnum(type: AssertionResponseTypes.self, for: "response", in: json, context: &instCtx) ?? response
 		responseCode = createInstance(type: FHIRString.self, for: "responseCode", in: json, context: &instCtx, owner: self) ?? responseCode
-		rule = createInstance(type: TestScriptSetupActionAssertRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
-		ruleset = createInstance(type: TestScriptSetupActionAssertRuleset.self, for: "ruleset", in: json, context: &instCtx, owner: self) ?? ruleset
 		sourceId = createInstance(type: FHIRString.self, for: "sourceId", in: json, context: &instCtx, owner: self) ?? sourceId
 		validateProfileId = createInstance(type: FHIRString.self, for: "validateProfileId", in: json, context: &instCtx, owner: self) ?? validateProfileId
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
 		warningOnly = createInstance(type: FHIRBool.self, for: "warningOnly", in: json, context: &instCtx, owner: self) ?? warningOnly
+		if nil == warningOnly && !instCtx.containsKey("warningOnly") {
+			instCtx.addError(FHIRValidationError(missing: "warningOnly"))
+		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -939,255 +728,12 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
 		self.response?.decorate(json: &json, withKey: "response", errors: &errors)
 		self.responseCode?.decorate(json: &json, withKey: "responseCode", errors: &errors)
-		self.rule?.decorate(json: &json, withKey: "rule", errors: &errors)
-		self.ruleset?.decorate(json: &json, withKey: "ruleset", errors: &errors)
 		self.sourceId?.decorate(json: &json, withKey: "sourceId", errors: &errors)
 		self.validateProfileId?.decorate(json: &json, withKey: "validateProfileId", errors: &errors)
 		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
 		self.warningOnly?.decorate(json: &json, withKey: "warningOnly", errors: &errors)
-	}
-}
-
-
-/**
-The reference to a TestScript.rule.
-
-The TestScript.rule this assert will evaluate.
-*/
-open class TestScriptSetupActionAssertRule: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptSetupActionAssertRule" }
-	}
-	
-	/// Rule parameter template.
-	public var param: [TestScriptSetupActionAssertRuleParam]?
-	
-	/// Id of the TestScript.rule.
-	public var ruleId: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(ruleId: FHIRString) {
-		self.init()
-		self.ruleId = ruleId
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		param = createInstances(of: TestScriptSetupActionAssertRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
-		ruleId = createInstance(type: FHIRString.self, for: "ruleId", in: json, context: &instCtx, owner: self) ?? ruleId
-		if nil == ruleId && !instCtx.containsKey("ruleId") {
-			instCtx.addError(FHIRValidationError(missing: "ruleId"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		arrayDecorate(json: &json, withKey: "param", using: self.param, errors: &errors)
-		self.ruleId?.decorate(json: &json, withKey: "ruleId", errors: &errors)
-		if nil == self.ruleId {
-			errors.append(FHIRValidationError(missing: "ruleId"))
-		}
-	}
-}
-
-
-/**
-Rule parameter template.
-
-Each rule template can take one or more parameters for rule evaluation.
-*/
-open class TestScriptSetupActionAssertRuleParam: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptSetupActionAssertRuleParam" }
-	}
-	
-	/// Parameter name matching external assert rule parameter.
-	public var name: FHIRString?
-	
-	/// Parameter value defined either explicitly or dynamically.
-	public var value: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: FHIRString, value: FHIRString) {
-		self.init()
-		self.name = name
-		self.value = value
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") {
-			instCtx.addError(FHIRValidationError(missing: "name"))
-		}
-		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") {
-			instCtx.addError(FHIRValidationError(missing: "value"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		if nil == self.name {
-			errors.append(FHIRValidationError(missing: "name"))
-		}
-		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
-		if nil == self.value {
-			errors.append(FHIRValidationError(missing: "value"))
-		}
-	}
-}
-
-
-/**
-The reference to a TestScript.ruleset.
-
-The TestScript.ruleset this assert will evaluate.
-*/
-open class TestScriptSetupActionAssertRuleset: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptSetupActionAssertRuleset" }
-	}
-	
-	/// The referenced rule within the ruleset.
-	public var rule: [TestScriptSetupActionAssertRulesetRule]?
-	
-	/// Id of the TestScript.ruleset.
-	public var rulesetId: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(rulesetId: FHIRString) {
-		self.init()
-		self.rulesetId = rulesetId
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		rule = createInstances(of: TestScriptSetupActionAssertRulesetRule.self, for: "rule", in: json, context: &instCtx, owner: self) ?? rule
-		rulesetId = createInstance(type: FHIRString.self, for: "rulesetId", in: json, context: &instCtx, owner: self) ?? rulesetId
-		if nil == rulesetId && !instCtx.containsKey("rulesetId") {
-			instCtx.addError(FHIRValidationError(missing: "rulesetId"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		arrayDecorate(json: &json, withKey: "rule", using: self.rule, errors: &errors)
-		self.rulesetId?.decorate(json: &json, withKey: "rulesetId", errors: &errors)
-		if nil == self.rulesetId {
-			errors.append(FHIRValidationError(missing: "rulesetId"))
-		}
-	}
-}
-
-
-/**
-The referenced rule within the ruleset.
-
-The referenced rule within the external ruleset template.
-*/
-open class TestScriptSetupActionAssertRulesetRule: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptSetupActionAssertRulesetRule" }
-	}
-	
-	/// Rule parameter template.
-	public var param: [TestScriptSetupActionAssertRulesetRuleParam]?
-	
-	/// Id of referenced rule within the ruleset.
-	public var ruleId: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(ruleId: FHIRString) {
-		self.init()
-		self.ruleId = ruleId
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		param = createInstances(of: TestScriptSetupActionAssertRulesetRuleParam.self, for: "param", in: json, context: &instCtx, owner: self) ?? param
-		ruleId = createInstance(type: FHIRString.self, for: "ruleId", in: json, context: &instCtx, owner: self) ?? ruleId
-		if nil == ruleId && !instCtx.containsKey("ruleId") {
-			instCtx.addError(FHIRValidationError(missing: "ruleId"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		arrayDecorate(json: &json, withKey: "param", using: self.param, errors: &errors)
-		self.ruleId?.decorate(json: &json, withKey: "ruleId", errors: &errors)
-		if nil == self.ruleId {
-			errors.append(FHIRValidationError(missing: "ruleId"))
-		}
-	}
-}
-
-
-/**
-Rule parameter template.
-
-Each rule template can take one or more parameters for rule evaluation.
-*/
-open class TestScriptSetupActionAssertRulesetRuleParam: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptSetupActionAssertRulesetRuleParam" }
-	}
-	
-	/// Parameter name matching external assert ruleset rule parameter.
-	public var name: FHIRString?
-	
-	/// Parameter value defined either explicitly or dynamically.
-	public var value: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: FHIRString, value: FHIRString) {
-		self.init()
-		self.name = name
-		self.value = value
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") {
-			instCtx.addError(FHIRValidationError(missing: "name"))
-		}
-		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") {
-			instCtx.addError(FHIRValidationError(missing: "value"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		if nil == self.name {
-			errors.append(FHIRValidationError(missing: "name"))
-		}
-		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
-		if nil == self.value {
-			errors.append(FHIRValidationError(missing: "value"))
+		if nil == self.warningOnly {
+			errors.append(FHIRValidationError(missing: "warningOnly"))
 		}
 	}
 }
@@ -1203,11 +749,11 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		get { return "TestScriptSetupActionOperation" }
 	}
 	
-	/// The content-type or mime-type to use for RESTful operation in the 'Accept' header.
-	public var accept: ContentType?
+	/// Mime type to accept in the payload of the response, with charset etc..
+	public var accept: FHIRString?
 	
-	/// The content-type or mime-type to use for RESTful operation in the 'Content-Type' header.
-	public var contentType: ContentType?
+	/// Mime type of the request payload contents, with charset etc..
+	public var contentType: FHIRString?
 	
 	/// Tracking/reporting operation description.
 	public var description_fhir: FHIRString?
@@ -1220,6 +766,9 @@ open class TestScriptSetupActionOperation: BackboneElement {
 	
 	/// Tracking/logging operation label.
 	public var label: FHIRString?
+	
+	/// The HTTP method the test engine MUST use for this operation regardless of any other operation details.
+	public var method: TestScriptRequestMethodCode?
 	
 	/// Server initiating the request.
 	public var origin: FHIRInteger?
@@ -1252,15 +801,26 @@ open class TestScriptSetupActionOperation: BackboneElement {
 	public var url: FHIRString?
 	
 	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(encodeRequestUrl: FHIRBool) {
+		self.init()
+		self.encodeRequestUrl = encodeRequestUrl
+	}
+	
+	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		accept = createEnum(type: ContentType.self, for: "accept", in: json, context: &instCtx) ?? accept
-		contentType = createEnum(type: ContentType.self, for: "contentType", in: json, context: &instCtx) ?? contentType
+		accept = createInstance(type: FHIRString.self, for: "accept", in: json, context: &instCtx, owner: self) ?? accept
+		contentType = createInstance(type: FHIRString.self, for: "contentType", in: json, context: &instCtx, owner: self) ?? contentType
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		destination = createInstance(type: FHIRInteger.self, for: "destination", in: json, context: &instCtx, owner: self) ?? destination
 		encodeRequestUrl = createInstance(type: FHIRBool.self, for: "encodeRequestUrl", in: json, context: &instCtx, owner: self) ?? encodeRequestUrl
+		if nil == encodeRequestUrl && !instCtx.containsKey("encodeRequestUrl") {
+			instCtx.addError(FHIRValidationError(missing: "encodeRequestUrl"))
+		}
 		label = createInstance(type: FHIRString.self, for: "label", in: json, context: &instCtx, owner: self) ?? label
+		method = createEnum(type: TestScriptRequestMethodCode.self, for: "method", in: json, context: &instCtx) ?? method
 		origin = createInstance(type: FHIRInteger.self, for: "origin", in: json, context: &instCtx, owner: self) ?? origin
 		params = createInstance(type: FHIRString.self, for: "params", in: json, context: &instCtx, owner: self) ?? params
 		requestHeader = createInstances(of: TestScriptSetupActionOperationRequestHeader.self, for: "requestHeader", in: json, context: &instCtx, owner: self) ?? requestHeader
@@ -1281,7 +841,11 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.destination?.decorate(json: &json, withKey: "destination", errors: &errors)
 		self.encodeRequestUrl?.decorate(json: &json, withKey: "encodeRequestUrl", errors: &errors)
+		if nil == self.encodeRequestUrl {
+			errors.append(FHIRValidationError(missing: "encodeRequestUrl"))
+		}
 		self.label?.decorate(json: &json, withKey: "label", errors: &errors)
+		self.method?.decorate(json: &json, withKey: "method", errors: &errors)
 		self.origin?.decorate(json: &json, withKey: "origin", errors: &errors)
 		self.params?.decorate(json: &json, withKey: "params", errors: &errors)
 		arrayDecorate(json: &json, withKey: "requestHeader", using: self.requestHeader, errors: &errors)
@@ -1352,7 +916,7 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 /**
 A series of required clean up steps.
 
-A series of operations required to clean up after the all the tests are executed (successfully or otherwise).
+A series of operations required to clean up after all the tests are executed (successfully or otherwise).
 */
 open class TestScriptTeardown: BackboneElement {
 	override open class var resourceType: String {
@@ -1529,7 +1093,7 @@ open class TestScriptVariable: BackboneElement {
 	/// Natural language description of the variable.
 	public var description_fhir: FHIRString?
 	
-	/// The fluentpath expression against the fixture body.
+	/// The FHIRPath expression against the fixture body.
 	public var expression: FHIRString?
 	
 	/// HTTP header field name for source.

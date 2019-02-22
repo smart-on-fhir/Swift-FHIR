@@ -2,8 +2,8 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,16 +12,14 @@ import Foundation
 /**
 A statement of system capabilities.
 
-A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server that may be used as a statement of
-actual server functionality or a statement of required or desired server implementation.
+A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server for a particular version of FHIR
+that may be used as a statement of actual server functionality or a statement of required or desired server
+implementation.
 */
 open class CapabilityStatement: DomainResource {
 	override open class var resourceType: String {
 		get { return "CapabilityStatement" }
 	}
-	
-	/// A code that indicates whether the application accepts unknown elements or extensions when reading resources.
-	public var acceptUnknown: UnknownContentCode?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
@@ -29,7 +27,7 @@ open class CapabilityStatement: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the capability statement.
@@ -41,7 +39,7 @@ open class CapabilityStatement: DomainResource {
 	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
-	/// FHIR Version the system uses.
+	/// FHIR Version the system supports.
 	public var fhirVersion: FHIRString?
 	
 	/// formats supported (xml | json | ttl | mime type).
@@ -53,6 +51,9 @@ open class CapabilityStatement: DomainResource {
 	/// Implementation guides supported.
 	public var implementationGuide: [FHIRURL]?
 	
+	/// Canonical URL of another capability statement this adds to.
+	public var imports: [FHIRURL]?
+	
 	/// Canonical URL of another capability statement this implements.
 	public var instantiates: [FHIRURL]?
 	
@@ -60,7 +61,7 @@ open class CapabilityStatement: DomainResource {
 	public var jurisdiction: [CodeableConcept]?
 	
 	/// The way that this statement is intended to be used, to describe an actual running instance of software, a
-	/// particular product (kind not instance of software) or a class of implementation (e.g. a desired purchase).
+	/// particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).
 	public var kind: CapabilityStatementKind?
 	
 	/// If messaging is supported.
@@ -71,9 +72,6 @@ open class CapabilityStatement: DomainResource {
 	
 	/// Patch formats supported.
 	public var patchFormat: [FHIRString]?
-	
-	/// Profiles for use cases supported.
-	public var profile: [Reference]?
 	
 	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
@@ -93,10 +91,10 @@ open class CapabilityStatement: DomainResource {
 	/// Name for this capability statement (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this capability statement (globally unique).
+	/// Canonical identifier for this capability statement, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the capability statement.
@@ -104,9 +102,8 @@ open class CapabilityStatement: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(acceptUnknown: UnknownContentCode, date: DateTime, fhirVersion: FHIRString, format: [FHIRString], kind: CapabilityStatementKind, status: PublicationStatus) {
+	public convenience init(date: DateTime, fhirVersion: FHIRString, format: [FHIRString], kind: CapabilityStatementKind, status: PublicationStatus) {
 		self.init()
-		self.acceptUnknown = acceptUnknown
 		self.date = date
 		self.fhirVersion = fhirVersion
 		self.format = format
@@ -118,10 +115,6 @@ open class CapabilityStatement: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		acceptUnknown = createEnum(type: UnknownContentCode.self, for: "acceptUnknown", in: json, context: &instCtx) ?? acceptUnknown
-		if nil == acceptUnknown && !instCtx.containsKey("acceptUnknown") {
-			instCtx.addError(FHIRValidationError(missing: "acceptUnknown"))
-		}
 		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
 		copyright = createInstance(type: FHIRString.self, for: "copyright", in: json, context: &instCtx, owner: self) ?? copyright
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
@@ -141,6 +134,7 @@ open class CapabilityStatement: DomainResource {
 		}
 		implementation = createInstance(type: CapabilityStatementImplementation.self, for: "implementation", in: json, context: &instCtx, owner: self) ?? implementation
 		implementationGuide = createInstances(of: FHIRURL.self, for: "implementationGuide", in: json, context: &instCtx, owner: self) ?? implementationGuide
+		imports = createInstances(of: FHIRURL.self, for: "imports", in: json, context: &instCtx, owner: self) ?? imports
 		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		kind = createEnum(type: CapabilityStatementKind.self, for: "kind", in: json, context: &instCtx) ?? kind
@@ -150,7 +144,6 @@ open class CapabilityStatement: DomainResource {
 		messaging = createInstances(of: CapabilityStatementMessaging.self, for: "messaging", in: json, context: &instCtx, owner: self) ?? messaging
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		patchFormat = createInstances(of: FHIRString.self, for: "patchFormat", in: json, context: &instCtx, owner: self) ?? patchFormat
-		profile = createInstances(of: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
 		rest = createInstances(of: CapabilityStatementRest.self, for: "rest", in: json, context: &instCtx, owner: self) ?? rest
@@ -168,10 +161,6 @@ open class CapabilityStatement: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.acceptUnknown?.decorate(json: &json, withKey: "acceptUnknown", errors: &errors)
-		if nil == self.acceptUnknown {
-			errors.append(FHIRValidationError(missing: "acceptUnknown"))
-		}
 		arrayDecorate(json: &json, withKey: "contact", using: self.contact, errors: &errors)
 		self.copyright?.decorate(json: &json, withKey: "copyright", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
@@ -191,6 +180,7 @@ open class CapabilityStatement: DomainResource {
 		}
 		self.implementation?.decorate(json: &json, withKey: "implementation", errors: &errors)
 		arrayDecorate(json: &json, withKey: "implementationGuide", using: self.implementationGuide, errors: &errors)
+		arrayDecorate(json: &json, withKey: "imports", using: self.imports, errors: &errors)
 		arrayDecorate(json: &json, withKey: "instantiates", using: self.instantiates, errors: &errors)
 		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
 		self.kind?.decorate(json: &json, withKey: "kind", errors: &errors)
@@ -200,7 +190,6 @@ open class CapabilityStatement: DomainResource {
 		arrayDecorate(json: &json, withKey: "messaging", using: self.messaging, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		arrayDecorate(json: &json, withKey: "patchFormat", using: self.patchFormat, errors: &errors)
-		arrayDecorate(json: &json, withKey: "profile", using: self.profile, errors: &errors)
 		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
 		self.purpose?.decorate(json: &json, withKey: "purpose", errors: &errors)
 		arrayDecorate(json: &json, withKey: "rest", using: self.rest, errors: &errors)
@@ -233,12 +222,12 @@ open class CapabilityStatementDocument: BackboneElement {
 	/// Mode of this document declaration - whether an application is a producer or consumer.
 	public var mode: DocumentMode?
 	
-	/// Constraint on a resource used in the document.
-	public var profile: Reference?
+	/// Constraint on the resources used in the document.
+	public var profile: FHIRURL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: DocumentMode, profile: Reference) {
+	public convenience init(mode: DocumentMode, profile: FHIRURL) {
 		self.init()
 		self.mode = mode
 		self.profile = profile
@@ -250,10 +239,10 @@ open class CapabilityStatementDocument: BackboneElement {
 		
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		mode = createEnum(type: DocumentMode.self, for: "mode", in: json, context: &instCtx) ?? mode
-		if nil == mode && !instCtx.containsKey("mode") && !_isSummaryResource {
+		if nil == mode && !instCtx.containsKey("mode") {
 			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		profile = createInstance(type: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		if nil == profile && !instCtx.containsKey("profile") {
 			instCtx.addError(FHIRValidationError(missing: "profile"))
 		}
@@ -286,6 +275,9 @@ open class CapabilityStatementImplementation: BackboneElement {
 		get { return "CapabilityStatementImplementation" }
 	}
 	
+	/// Organization that manages the data.
+	public var custodian: Reference?
+	
 	/// Describes this specific instance.
 	public var description_fhir: FHIRString?
 	
@@ -303,6 +295,7 @@ open class CapabilityStatementImplementation: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		custodian = createInstance(type: Reference.self, for: "custodian", in: json, context: &instCtx, owner: self) ?? custodian
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		if nil == description_fhir && !instCtx.containsKey("description") {
 			instCtx.addError(FHIRValidationError(missing: "description"))
@@ -313,6 +306,7 @@ open class CapabilityStatementImplementation: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.custodian?.decorate(json: &json, withKey: "custodian", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		if nil == self.description_fhir {
 			errors.append(FHIRValidationError(missing: "description"))
@@ -338,9 +332,6 @@ open class CapabilityStatementMessaging: BackboneElement {
 	/// Where messages should be sent.
 	public var endpoint: [CapabilityStatementMessagingEndpoint]?
 	
-	/// Declare support for this event.
-	public var event: [CapabilityStatementMessagingEvent]?
-	
 	/// Reliable Message Cache Length (min).
 	public var reliableCache: FHIRInteger?
 	
@@ -353,7 +344,6 @@ open class CapabilityStatementMessaging: BackboneElement {
 		
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		endpoint = createInstances(of: CapabilityStatementMessagingEndpoint.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
-		event = createInstances(of: CapabilityStatementMessagingEvent.self, for: "event", in: json, context: &instCtx, owner: self) ?? event
 		reliableCache = createInstance(type: FHIRInteger.self, for: "reliableCache", in: json, context: &instCtx, owner: self) ?? reliableCache
 		supportedMessage = createInstances(of: CapabilityStatementMessagingSupportedMessage.self, for: "supportedMessage", in: json, context: &instCtx, owner: self) ?? supportedMessage
 	}
@@ -363,7 +353,6 @@ open class CapabilityStatementMessaging: BackboneElement {
 		
 		self.documentation?.decorate(json: &json, withKey: "documentation", errors: &errors)
 		arrayDecorate(json: &json, withKey: "endpoint", using: self.endpoint, errors: &errors)
-		arrayDecorate(json: &json, withKey: "event", using: self.event, errors: &errors)
 		self.reliableCache?.decorate(json: &json, withKey: "reliableCache", errors: &errors)
 		arrayDecorate(json: &json, withKey: "supportedMessage", using: self.supportedMessage, errors: &errors)
 	}
@@ -424,105 +413,6 @@ open class CapabilityStatementMessagingEndpoint: BackboneElement {
 
 
 /**
-Declare support for this event.
-
-A description of the solution's support for an event at this end-point.
-*/
-open class CapabilityStatementMessagingEvent: BackboneElement {
-	override open class var resourceType: String {
-		get { return "CapabilityStatementMessagingEvent" }
-	}
-	
-	/// The impact of the content of the message.
-	public var category: MessageSignificanceCategory?
-	
-	/// Event type.
-	public var code: Coding?
-	
-	/// Endpoint-specific event documentation.
-	public var documentation: FHIRString?
-	
-	/// Resource that's focus of message.
-	public var focus: FHIRString?
-	
-	/// The mode of this event declaration - whether an application is a sender or receiver.
-	public var mode: EventCapabilityMode?
-	
-	/// Profile that describes the request.
-	public var request: Reference?
-	
-	/// Profile that describes the response.
-	public var response: Reference?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding, focus: FHIRString, mode: EventCapabilityMode, request: Reference, response: Reference) {
-		self.init()
-		self.code = code
-		self.focus = focus
-		self.mode = mode
-		self.request = request
-		self.response = response
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		category = createEnum(type: MessageSignificanceCategory.self, for: "category", in: json, context: &instCtx) ?? category
-		code = createInstance(type: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		if nil == code && !instCtx.containsKey("code") {
-			instCtx.addError(FHIRValidationError(missing: "code"))
-		}
-		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
-		focus = createInstance(type: FHIRString.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
-		if nil == focus && !instCtx.containsKey("focus") && !_isSummaryResource {
-			instCtx.addError(FHIRValidationError(missing: "focus"))
-		}
-		mode = createEnum(type: EventCapabilityMode.self, for: "mode", in: json, context: &instCtx) ?? mode
-		if nil == mode && !instCtx.containsKey("mode") && !_isSummaryResource {
-			instCtx.addError(FHIRValidationError(missing: "mode"))
-		}
-		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
-		if nil == request && !instCtx.containsKey("request") {
-			instCtx.addError(FHIRValidationError(missing: "request"))
-		}
-		response = createInstance(type: Reference.self, for: "response", in: json, context: &instCtx, owner: self) ?? response
-		if nil == response && !instCtx.containsKey("response") {
-			instCtx.addError(FHIRValidationError(missing: "response"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
-		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		if nil == self.code {
-			errors.append(FHIRValidationError(missing: "code"))
-		}
-		self.documentation?.decorate(json: &json, withKey: "documentation", errors: &errors)
-		self.focus?.decorate(json: &json, withKey: "focus", errors: &errors)
-		if nil == self.focus {
-			errors.append(FHIRValidationError(missing: "focus"))
-		}
-		self.mode?.decorate(json: &json, withKey: "mode", errors: &errors)
-		if nil == self.mode {
-			errors.append(FHIRValidationError(missing: "mode"))
-		}
-		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
-		if nil == self.request {
-			errors.append(FHIRValidationError(missing: "request"))
-		}
-		self.response?.decorate(json: &json, withKey: "response", errors: &errors)
-		if nil == self.response {
-			errors.append(FHIRValidationError(missing: "response"))
-		}
-	}
-}
-
-
-/**
 Messages supported by this system.
 
 References to message definitions for messages this system can send or receive.
@@ -533,14 +423,14 @@ open class CapabilityStatementMessagingSupportedMessage: BackboneElement {
 	}
 	
 	/// Message supported by this system.
-	public var definition: Reference?
+	public var definition: FHIRURL?
 	
 	/// The mode of this event declaration - whether application is sender or receiver.
 	public var mode: EventCapabilityMode?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: Reference, mode: EventCapabilityMode) {
+	public convenience init(definition: FHIRURL, mode: EventCapabilityMode) {
 		self.init()
 		self.definition = definition
 		self.mode = mode
@@ -550,7 +440,7 @@ open class CapabilityStatementMessagingSupportedMessage: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definition = createInstance(type: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		if nil == definition && !instCtx.containsKey("definition") {
 			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}
@@ -598,8 +488,8 @@ open class CapabilityStatementRest: BackboneElement {
 	/// operations.
 	public var mode: RestfulCapabilityMode?
 	
-	/// Definition of an operation or a custom query.
-	public var operation: [CapabilityStatementRestOperation]?
+	/// Definition of a system level operation.
+	public var operation: [CapabilityStatementRestResourceOperation]?
 	
 	/// Resource served on the REST interface.
 	public var resource: [CapabilityStatementRestResource]?
@@ -628,7 +518,7 @@ open class CapabilityStatementRest: BackboneElement {
 		if nil == mode && !instCtx.containsKey("mode") {
 			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		operation = createInstances(of: CapabilityStatementRestOperation.self, for: "operation", in: json, context: &instCtx, owner: self) ?? operation
+		operation = createInstances(of: CapabilityStatementRestResourceOperation.self, for: "operation", in: json, context: &instCtx, owner: self) ?? operation
 		resource = createInstances(of: CapabilityStatementRestResource.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
 		searchParam = createInstances(of: CapabilityStatementRestResourceSearchParam.self, for: "searchParam", in: json, context: &instCtx, owner: self) ?? searchParam
 		security = createInstance(type: CapabilityStatementRestSecurity.self, for: "security", in: json, context: &instCtx, owner: self) ?? security
@@ -700,59 +590,6 @@ open class CapabilityStatementRestInteraction: BackboneElement {
 
 
 /**
-Definition of an operation or a custom query.
-
-Definition of an operation or a named query together with its parameters and their meaning and type.
-*/
-open class CapabilityStatementRestOperation: BackboneElement {
-	override open class var resourceType: String {
-		get { return "CapabilityStatementRestOperation" }
-	}
-	
-	/// The defined operation/query.
-	public var definition: Reference?
-	
-	/// Name by which the operation/query is invoked.
-	public var name: FHIRString?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: Reference, name: FHIRString) {
-		self.init()
-		self.definition = definition
-		self.name = name
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		definition = createInstance(type: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
-		if nil == definition && !instCtx.containsKey("definition") {
-			instCtx.addError(FHIRValidationError(missing: "definition"))
-		}
-		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		if nil == name && !instCtx.containsKey("name") && !_isSummaryResource {
-			instCtx.addError(FHIRValidationError(missing: "name"))
-		}
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
-		if nil == self.definition {
-			errors.append(FHIRValidationError(missing: "definition"))
-		}
-		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		if nil == self.name {
-			errors.append(FHIRValidationError(missing: "name"))
-		}
-	}
-}
-
-
-/**
 Resource served on the REST interface.
 
 A specification of the restful capabilities of the solution for a specific resource type.
@@ -780,8 +617,11 @@ open class CapabilityStatementRestResource: BackboneElement {
 	/// What operations are supported?.
 	public var interaction: [CapabilityStatementRestResourceInteraction]?
 	
+	/// Definition of a resource operation.
+	public var operation: [CapabilityStatementRestResourceOperation]?
+	
 	/// Base System profile for all uses of resource.
-	public var profile: Reference?
+	public var profile: FHIRURL?
 	
 	/// Whether vRead can return past versions.
 	public var readHistory: FHIRBool?
@@ -798,8 +638,11 @@ open class CapabilityStatementRestResource: BackboneElement {
 	/// _revinclude values supported by the server.
 	public var searchRevInclude: [FHIRString]?
 	
-	/// A resource type that is supported.
-	public var type: FHIRString?
+	/// Profiles for use cases supported.
+	public var supportedProfile: [FHIRURL]?
+	
+	/// A type of resource exposed via the restful interface.
+	public var type: ResourceType?
 	
 	/// If update can commit to a new identity.
 	public var updateCreate: FHIRBool?
@@ -812,9 +655,8 @@ open class CapabilityStatementRestResource: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(interaction: [CapabilityStatementRestResourceInteraction], type: FHIRString) {
+	public convenience init(type: ResourceType) {
 		self.init()
-		self.interaction = interaction
 		self.type = type
 	}
 	
@@ -828,16 +670,15 @@ open class CapabilityStatementRestResource: BackboneElement {
 		conditionalUpdate = createInstance(type: FHIRBool.self, for: "conditionalUpdate", in: json, context: &instCtx, owner: self) ?? conditionalUpdate
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		interaction = createInstances(of: CapabilityStatementRestResourceInteraction.self, for: "interaction", in: json, context: &instCtx, owner: self) ?? interaction
-		if (nil == interaction || interaction!.isEmpty) && !instCtx.containsKey("interaction") && !_isSummaryResource {
-			instCtx.addError(FHIRValidationError(missing: "interaction"))
-		}
-		profile = createInstance(type: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		operation = createInstances(of: CapabilityStatementRestResourceOperation.self, for: "operation", in: json, context: &instCtx, owner: self) ?? operation
+		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		readHistory = createInstance(type: FHIRBool.self, for: "readHistory", in: json, context: &instCtx, owner: self) ?? readHistory
 		referencePolicy = createEnums(of: ReferenceHandlingPolicy.self, for: "referencePolicy", in: json, context: &instCtx) ?? referencePolicy
 		searchInclude = createInstances(of: FHIRString.self, for: "searchInclude", in: json, context: &instCtx, owner: self) ?? searchInclude
 		searchParam = createInstances(of: CapabilityStatementRestResourceSearchParam.self, for: "searchParam", in: json, context: &instCtx, owner: self) ?? searchParam
 		searchRevInclude = createInstances(of: FHIRString.self, for: "searchRevInclude", in: json, context: &instCtx, owner: self) ?? searchRevInclude
-		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		supportedProfile = createInstances(of: FHIRURL.self, for: "supportedProfile", in: json, context: &instCtx, owner: self) ?? supportedProfile
+		type = createEnum(type: ResourceType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
@@ -854,15 +695,14 @@ open class CapabilityStatementRestResource: BackboneElement {
 		self.conditionalUpdate?.decorate(json: &json, withKey: "conditionalUpdate", errors: &errors)
 		self.documentation?.decorate(json: &json, withKey: "documentation", errors: &errors)
 		arrayDecorate(json: &json, withKey: "interaction", using: self.interaction, errors: &errors)
-		if nil == interaction || self.interaction!.isEmpty {
-			errors.append(FHIRValidationError(missing: "interaction"))
-		}
+		arrayDecorate(json: &json, withKey: "operation", using: self.operation, errors: &errors)
 		self.profile?.decorate(json: &json, withKey: "profile", errors: &errors)
 		self.readHistory?.decorate(json: &json, withKey: "readHistory", errors: &errors)
 		arrayDecorate(json: &json, withKey: "referencePolicy", using: self.referencePolicy, errors: &errors)
 		arrayDecorate(json: &json, withKey: "searchInclude", using: self.searchInclude, errors: &errors)
 		arrayDecorate(json: &json, withKey: "searchParam", using: self.searchParam, errors: &errors)
 		arrayDecorate(json: &json, withKey: "searchRevInclude", using: self.searchRevInclude, errors: &errors)
+		arrayDecorate(json: &json, withKey: "supportedProfile", using: self.supportedProfile, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
@@ -916,6 +756,65 @@ open class CapabilityStatementRestResourceInteraction: BackboneElement {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
 		self.documentation?.decorate(json: &json, withKey: "documentation", errors: &errors)
+	}
+}
+
+
+/**
+Definition of a resource operation.
+
+Definition of an operation or a named query together with its parameters and their meaning and type. Consult the
+definition of the operation for details about how to invoke the operation, and the parameters.
+*/
+open class CapabilityStatementRestResourceOperation: BackboneElement {
+	override open class var resourceType: String {
+		get { return "CapabilityStatementRestResourceOperation" }
+	}
+	
+	/// The defined operation/query.
+	public var definition: FHIRURL?
+	
+	/// Specific details about operation behavior.
+	public var documentation: FHIRString?
+	
+	/// Name by which the operation/query is invoked.
+	public var name: FHIRString?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(definition: FHIRURL, name: FHIRString) {
+		self.init()
+		self.definition = definition
+		self.name = name
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		if nil == definition && !instCtx.containsKey("definition") {
+			instCtx.addError(FHIRValidationError(missing: "definition"))
+		}
+		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		if nil == name && !instCtx.containsKey("name") {
+			instCtx.addError(FHIRValidationError(missing: "name"))
+		}
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
+		if nil == self.definition {
+			errors.append(FHIRValidationError(missing: "definition"))
+		}
+		self.documentation?.decorate(json: &json, withKey: "documentation", errors: &errors)
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		if nil == self.name {
+			errors.append(FHIRValidationError(missing: "name"))
+		}
 	}
 }
 
@@ -994,9 +893,6 @@ open class CapabilityStatementRestSecurity: BackboneElement {
 		get { return "CapabilityStatementRestSecurity" }
 	}
 	
-	/// Certificates associated with security profiles.
-	public var certificate: [CapabilityStatementRestSecurityCertificate]?
-	
 	/// Adds CORS Headers (http://enable-cors.org/).
 	public var cors: FHIRBool?
 	
@@ -1010,7 +906,6 @@ open class CapabilityStatementRestSecurity: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		certificate = createInstances(of: CapabilityStatementRestSecurityCertificate.self, for: "certificate", in: json, context: &instCtx, owner: self) ?? certificate
 		cors = createInstance(type: FHIRBool.self, for: "cors", in: json, context: &instCtx, owner: self) ?? cors
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		service = createInstances(of: CodeableConcept.self, for: "service", in: json, context: &instCtx, owner: self) ?? service
@@ -1019,41 +914,9 @@ open class CapabilityStatementRestSecurity: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		arrayDecorate(json: &json, withKey: "certificate", using: self.certificate, errors: &errors)
 		self.cors?.decorate(json: &json, withKey: "cors", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "service", using: self.service, errors: &errors)
-	}
-}
-
-
-/**
-Certificates associated with security profiles.
-*/
-open class CapabilityStatementRestSecurityCertificate: BackboneElement {
-	override open class var resourceType: String {
-		get { return "CapabilityStatementRestSecurityCertificate" }
-	}
-	
-	/// Actual certificate.
-	public var blob: Base64Binary?
-	
-	/// Mime type for certificates.
-	public var type: FHIRString?
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		blob = createInstance(type: Base64Binary.self, for: "blob", in: json, context: &instCtx, owner: self) ?? blob
-		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.blob?.decorate(json: &json, withKey: "blob", errors: &errors)
-		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 
@@ -1072,7 +935,7 @@ open class CapabilityStatementSoftware: BackboneElement {
 	/// A name the software is known by.
 	public var name: FHIRString?
 	
-	/// Date this version released.
+	/// Date this version was released.
 	public var releaseDate: DateTime?
 	
 	/// Version covered by this statement.

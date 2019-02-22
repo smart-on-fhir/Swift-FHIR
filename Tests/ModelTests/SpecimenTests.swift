@@ -2,8 +2,8 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -45,9 +45,12 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2015-08-16T07:03:00Z")
 		XCTAssertEqual(inst.collection?.collector?.reference, "Practitioner/f202")
 		XCTAssertEqual(inst.collection?.method?.coding?[0].code, "BAP")
-		XCTAssertEqual(inst.collection?.method?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0488")
+		XCTAssertEqual(inst.collection?.method?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0488")
 		XCTAssertEqual(inst.contained?[0].id, "stool")
 		XCTAssertEqual(inst.id, "isolate")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.note?[0].text, "Patient dropped off specimen")
 		XCTAssertEqual(inst.parent?[0].reference, "#stool")
 		XCTAssertEqual(inst.receivedTime?.description, "2015-08-18T07:03:00Z")
@@ -73,22 +76,27 @@ class SpecimenTests: XCTestCase {
 	
 	@discardableResult
 	func runSpecimen2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSpecimen {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-serum.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-pooled-serum.json")
 		
-		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://acme.com/labs/accession-ids")
-		XCTAssertEqual(inst.accessionIdentifier?.value, "20150816-00124")
-		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2015-08-16T06:40:17Z")
-		XCTAssertEqual(inst.collection?.collector?.reference, "Practitioner/f202")
-		XCTAssertEqual(inst.container?[0].type?.coding?[0].code, "SST")
-		XCTAssertEqual(inst.container?[0].type?.coding?[0].display, "Serum Separator Tube")
-		XCTAssertEqual(inst.container?[0].type?.coding?[0].system?.absoluteString, "http://acme.com/labs")
-		XCTAssertEqual(inst.id, "sst")
-		XCTAssertEqual(inst.request?[0].reference, "ProcedureRequest/ft4")
-		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
+		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "https://vetmed.iastate.edu/vdl")
+		XCTAssertEqual(inst.accessionIdentifier?.value, "20171120-1234")
+		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2017-11-14")
+		XCTAssertEqual(inst.collection?.collector?.display, "James Herriot, FRCVS")
+		XCTAssertEqual(inst.container?[0].type?.coding?[0].code, "RTT")
+		XCTAssertEqual(inst.container?[0].type?.coding?[0].display, "Red Top Tube")
+		XCTAssertEqual(inst.container?[0].type?.coding?[0].system?.absoluteString, "https://vetmed.iastate.edu/vdl")
+		XCTAssertEqual(inst.container?[0].type?.text, "Red Top Blood Collection Tube")
+		XCTAssertEqual(inst.id, "pooled-serum")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.note?[0].text, "Pooled serum sample from 30 individuals")
+		XCTAssertEqual(inst.subject?.reference, "Group/herd1")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.type?.coding?[0].code, "119364003")
-		XCTAssertEqual(inst.type?.coding?[0].display, "Serum sample")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type?.coding?[0].code, "Serum sample, pooled")
+		XCTAssertEqual(inst.type?.coding?[0].display, "Serum sample, pooled")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "https://vetmed.iastate.edu/vdl")
+		XCTAssertEqual(inst.type?.text, "Pooled serum sample")
 		
 		return inst
 	}
@@ -117,10 +125,13 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.container?[0].specimenQuantity?.value, "10")
 		XCTAssertEqual(inst.container?[0].type?.text, "Non-sterile specimen container")
 		XCTAssertEqual(inst.id, "vma-urine")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.processing?[0].additive?[0].display, "6 N HCl")
 		XCTAssertEqual(inst.processing?[0].description_fhir, "Acidify to pH < 3.0 with 6 N HCl.")
 		XCTAssertEqual(inst.processing?[0].procedure?.coding?[0].code, "ACID")
-		XCTAssertEqual(inst.processing?[0].procedure?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0373")
+		XCTAssertEqual(inst.processing?[0].procedure?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0373")
 		XCTAssertEqual(inst.processing?[0].timeDateTime?.description, "2015-08-18T08:10:00Z")
 		XCTAssertEqual(inst.receivedTime?.description, "2015-08-18T07:03:00Z")
 		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
@@ -128,7 +139,7 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type?.coding?[0].code, "RANDU")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Urine, Random")
-		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0487")
 		
 		return inst
 	}
@@ -145,6 +156,41 @@ class SpecimenTests: XCTestCase {
 	
 	@discardableResult
 	func runSpecimen4(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSpecimen {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-serum.json")
+		
+		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://acme.com/labs/accession-ids")
+		XCTAssertEqual(inst.accessionIdentifier?.value, "20150816-00124")
+		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2015-08-16T06:40:17Z")
+		XCTAssertEqual(inst.collection?.collector?.reference, "Practitioner/f202")
+		XCTAssertEqual(inst.container?[0].type?.coding?[0].code, "SST")
+		XCTAssertEqual(inst.container?[0].type?.coding?[0].display, "Serum Separator Tube")
+		XCTAssertEqual(inst.container?[0].type?.coding?[0].system?.absoluteString, "http://acme.com/labs")
+		XCTAssertEqual(inst.id, "sst")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.request?[0].reference, "ServiceRequest/ft4")
+		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		XCTAssertEqual(inst.type?.coding?[0].code, "119364003")
+		XCTAssertEqual(inst.type?.coding?[0].display, "Serum sample")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		
+		return inst
+	}
+	
+	func testSpecimen5() {
+		do {
+			let instance = try runSpecimen5()
+			try runSpecimen5(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runSpecimen5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRSpecimen {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://lab.acme.org/specimens/2011")
@@ -156,7 +202,7 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2011-05-30T06:15:00Z")
 		XCTAssertEqual(inst.collection?.collector?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.collection?.method?.coding?[0].code, "LNV")
-		XCTAssertEqual(inst.collection?.method?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0488")
+		XCTAssertEqual(inst.collection?.method?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0488")
 		XCTAssertEqual(inst.collection?.quantity?.unit, "mL")
 		XCTAssertEqual(inst.collection?.quantity?.value, "6")
 		XCTAssertEqual(inst.contained?[0].id, "hep")
@@ -171,9 +217,12 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://ehr.acme.org/identifiers/collections")
 		XCTAssertEqual(inst.identifier?[0].value, "23234352356")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.note?[0].text, "Specimen is grossly lipemic")
 		XCTAssertEqual(inst.receivedTime?.description, "2011-03-04T07:03:00Z")
-		XCTAssertEqual(inst.request?[0].reference, "ProcedureRequest/example")
+		XCTAssertEqual(inst.request?[0].reference, "ServiceRequest/example")
 		XCTAssertEqual(inst.status, SpecimenStatus(rawValue: "available")!)
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")

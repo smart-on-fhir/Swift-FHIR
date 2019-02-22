@@ -2,8 +2,8 @@
 //  LinkageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -48,6 +48,9 @@ class LinkageTests: XCTestCase {
 		XCTAssertEqual(inst.item?[1].resource?.display, "Severe burn of left ear (Date: 24-May 2012)")
 		XCTAssertEqual(inst.item?[1].resource?.reference, "Condition/condition-example")
 		XCTAssertEqual(inst.item?[1].type, LinkageType(rawValue: "alternate")!)
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
 		return inst

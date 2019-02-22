@@ -2,8 +2,8 @@
 //  AllergyIntoleranceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -40,10 +40,11 @@ class AllergyIntoleranceTests: XCTestCase {
 	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRAllergyIntolerance {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "allergyintolerance-example.json")
 		
-		XCTAssertEqual(inst.assertedDate?.description, "2014-10-09T14:58:00+11:00")
 		XCTAssertEqual(inst.asserter?.reference, "Patient/example")
 		XCTAssertEqual(inst.category?[0], AllergyIntoleranceCategory(rawValue: "food")!)
-		XCTAssertEqual(inst.clinicalStatus, AllergyIntoleranceClinicalStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.clinicalStatus?.coding?[0].code, "active")
+		XCTAssertEqual(inst.clinicalStatus?.coding?[0].display, "Active")
+		XCTAssertEqual(inst.clinicalStatus?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
 		XCTAssertEqual(inst.code?.coding?[0].code, "227493005")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Cashew nuts")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -52,6 +53,9 @@ class AllergyIntoleranceTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/ids/patients/risks")
 		XCTAssertEqual(inst.identifier?[0].value, "49476534")
 		XCTAssertEqual(inst.lastOccurrence?.description, "2012-06")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.note?[0].text, "The criticality is high becasue of the observed anaphylactic reaction when challenged with cashew extract.")
 		XCTAssertEqual(inst.onsetDateTime?.description, "2004")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
@@ -73,10 +77,13 @@ class AllergyIntoleranceTests: XCTestCase {
 		XCTAssertEqual(inst.reaction?[1].note?[0].text, "The patient reports that the onset of urticaria was within 15 minutes of eating cashews.")
 		XCTAssertEqual(inst.reaction?[1].onset?.description, "2004")
 		XCTAssertEqual(inst.reaction?[1].severity, AllergyIntoleranceSeverity(rawValue: "moderate")!)
+		XCTAssertEqual(inst.recordedDate?.description, "2014-10-09T14:58:00+11:00")
 		XCTAssertEqual(inst.recorder?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.type, AllergyIntoleranceType(rawValue: "allergy")!)
-		XCTAssertEqual(inst.verificationStatus, AllergyIntoleranceVerificationStatus(rawValue: "confirmed")!)
+		XCTAssertEqual(inst.verificationStatus?.coding?[0].code, "confirmed")
+		XCTAssertEqual(inst.verificationStatus?.coding?[0].display, "Confirmed")
+		XCTAssertEqual(inst.verificationStatus?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
 		
 		return inst
 	}

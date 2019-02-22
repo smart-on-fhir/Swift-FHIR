@@ -2,8 +2,8 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Organization) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ A grouping of people or organizations with a common purpose.
 
 A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of
 collective action.  Includes companies, institutions, corporations, departments, community groups, healthcare practice
-groups, etc.
+groups, payer/insurer, etc.
 */
 open class Organization: DomainResource {
 	override open class var resourceType: String {
@@ -27,7 +27,7 @@ open class Organization: DomainResource {
 	/// An address for the organization.
 	public var address: [Address]?
 	
-	/// A list of alternate names that the organization is known as, or was known as in the past.
+	/// A list of alternate names that the organization is known as, or was known as in the past.
 	public var alias: [FHIRString]?
 	
 	/// Contact for the organization for a certain purpose.

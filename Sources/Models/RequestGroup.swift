@@ -2,8 +2,8 @@
 //  RequestGroup.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RequestGroup) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -32,17 +32,23 @@ open class RequestGroup: DomainResource {
 	/// Fulfills plan, proposal, or order.
 	public var basedOn: [Reference]?
 	
-	/// Encounter or Episode for the request group.
-	public var context: Reference?
+	/// What's being requested/ordered.
+	public var code: CodeableConcept?
 	
-	/// Instantiates protocol or definition.
-	public var definition: [Reference]?
+	/// Created as part of.
+	public var encounter: Reference?
 	
 	/// Composite request this is part of.
 	public var groupIdentifier: Identifier?
 	
 	/// Business identifier.
 	public var identifier: [Identifier]?
+	
+	/// Instantiates FHIR protocol or definition.
+	public var instantiatesCanonical: [FHIRURL]?
+	
+	/// Instantiates external protocol or definition.
+	public var instantiatesUri: [FHIRURL]?
 	
 	/// Indicates the level of authority/intentionality associated with the request and where the request fits into the
 	/// workflow chain.
@@ -54,11 +60,11 @@ open class RequestGroup: DomainResource {
 	/// Indicates how quickly the request should be addressed with respect to other requests.
 	public var priority: RequestPriority?
 	
-	/// Reason for the request group.
-	public var reasonCodeableConcept: CodeableConcept?
+	/// Why the request group is needed.
+	public var reasonCode: [CodeableConcept]?
 	
-	/// Reason for the request group.
-	public var reasonReference: Reference?
+	/// Why the request group is needed.
+	public var reasonReference: [Reference]?
 	
 	/// Request(s) replaced by this request.
 	public var replaces: [Reference]?
@@ -86,18 +92,20 @@ open class RequestGroup: DomainResource {
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
 		authoredOn = createInstance(type: DateTime.self, for: "authoredOn", in: json, context: &instCtx, owner: self) ?? authoredOn
 		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
-		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		groupIdentifier = createInstance(type: Identifier.self, for: "groupIdentifier", in: json, context: &instCtx, owner: self) ?? groupIdentifier
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
 		if nil == intent && !instCtx.containsKey("intent") {
 			instCtx.addError(FHIRValidationError(missing: "intent"))
 		}
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
-		reasonCodeableConcept = createInstance(type: CodeableConcept.self, for: "reasonCodeableConcept", in: json, context: &instCtx, owner: self) ?? reasonCodeableConcept
-		reasonReference = createInstance(type: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
+		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
+		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		replaces = createInstances(of: Reference.self, for: "replaces", in: json, context: &instCtx, owner: self) ?? replaces
 		status = createEnum(type: RequestStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
@@ -113,18 +121,20 @@ open class RequestGroup: DomainResource {
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
 		self.authoredOn?.decorate(json: &json, withKey: "authoredOn", errors: &errors)
 		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
-		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		self.groupIdentifier?.decorate(json: &json, withKey: "groupIdentifier", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesCanonical", using: self.instantiatesCanonical, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesUri", using: self.instantiatesUri, errors: &errors)
 		self.intent?.decorate(json: &json, withKey: "intent", errors: &errors)
 		if nil == self.intent {
 			errors.append(FHIRValidationError(missing: "intent"))
 		}
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
-		self.reasonCodeableConcept?.decorate(json: &json, withKey: "reasonCodeableConcept", errors: &errors)
-		self.reasonReference?.decorate(json: &json, withKey: "reasonReference", errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		arrayDecorate(json: &json, withKey: "replaces", using: self.replaces, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
@@ -166,19 +176,22 @@ open class RequestGroupAction: BackboneElement {
 	/// Defines the grouping behavior for the action and its children.
 	public var groupingBehavior: ActionGroupingBehavior?
 	
-	/// User-visible label for the action (e.g. 1. or A.).
-	public var label: FHIRString?
-	
 	/// Who should perform the action.
 	public var participant: [Reference]?
 	
 	/// Defines whether the action should usually be preselected.
 	public var precheckBehavior: ActionPrecheckBehavior?
 	
+	/// User-visible prefix for the action (e.g. 1. or A.).
+	public var prefix: FHIRString?
+	
+	/// Indicates how quickly the action should be addressed with respect to other actions.
+	public var priority: RequestPriority?
+	
 	/// Relationship to another action.
 	public var relatedAction: [RequestGroupActionRelatedAction]?
 	
-	/// Defines the requiredness behavior for the action.
+	/// Defines expectations around whether an action is required.
 	public var requiredBehavior: ActionRequiredBehavior?
 	
 	/// The target of the action.
@@ -189,6 +202,9 @@ open class RequestGroupAction: BackboneElement {
 	
 	/// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system.
 	public var textEquivalent: FHIRString?
+	
+	/// When the action should take place.
+	public var timingAge: Age?
 	
 	/// When the action should take place.
 	public var timingDateTime: DateTime?
@@ -209,7 +225,7 @@ open class RequestGroupAction: BackboneElement {
 	public var title: FHIRString?
 	
 	/// create | update | remove | fire-event.
-	public var type: Coding?
+	public var type: CodeableConcept?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -222,21 +238,23 @@ open class RequestGroupAction: BackboneElement {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		documentation = createInstances(of: RelatedArtifact.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		groupingBehavior = createEnum(type: ActionGroupingBehavior.self, for: "groupingBehavior", in: json, context: &instCtx) ?? groupingBehavior
-		label = createInstance(type: FHIRString.self, for: "label", in: json, context: &instCtx, owner: self) ?? label
 		participant = createInstances(of: Reference.self, for: "participant", in: json, context: &instCtx, owner: self) ?? participant
 		precheckBehavior = createEnum(type: ActionPrecheckBehavior.self, for: "precheckBehavior", in: json, context: &instCtx) ?? precheckBehavior
+		prefix = createInstance(type: FHIRString.self, for: "prefix", in: json, context: &instCtx, owner: self) ?? prefix
+		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
 		relatedAction = createInstances(of: RequestGroupActionRelatedAction.self, for: "relatedAction", in: json, context: &instCtx, owner: self) ?? relatedAction
 		requiredBehavior = createEnum(type: ActionRequiredBehavior.self, for: "requiredBehavior", in: json, context: &instCtx) ?? requiredBehavior
 		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
 		selectionBehavior = createEnum(type: ActionSelectionBehavior.self, for: "selectionBehavior", in: json, context: &instCtx) ?? selectionBehavior
 		textEquivalent = createInstance(type: FHIRString.self, for: "textEquivalent", in: json, context: &instCtx, owner: self) ?? textEquivalent
+		timingAge = createInstance(type: Age.self, for: "timingAge", in: json, context: &instCtx, owner: self) ?? timingAge
 		timingDateTime = createInstance(type: DateTime.self, for: "timingDateTime", in: json, context: &instCtx, owner: self) ?? timingDateTime
 		timingDuration = createInstance(type: Duration.self, for: "timingDuration", in: json, context: &instCtx, owner: self) ?? timingDuration
 		timingPeriod = createInstance(type: Period.self, for: "timingPeriod", in: json, context: &instCtx, owner: self) ?? timingPeriod
 		timingRange = createInstance(type: Range.self, for: "timingRange", in: json, context: &instCtx, owner: self) ?? timingRange
 		timingTiming = createInstance(type: Timing.self, for: "timingTiming", in: json, context: &instCtx, owner: self) ?? timingTiming
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
-		type = createInstance(type: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -249,14 +267,16 @@ open class RequestGroupAction: BackboneElement {
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "documentation", using: self.documentation, errors: &errors)
 		self.groupingBehavior?.decorate(json: &json, withKey: "groupingBehavior", errors: &errors)
-		self.label?.decorate(json: &json, withKey: "label", errors: &errors)
 		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
 		self.precheckBehavior?.decorate(json: &json, withKey: "precheckBehavior", errors: &errors)
+		self.prefix?.decorate(json: &json, withKey: "prefix", errors: &errors)
+		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
 		arrayDecorate(json: &json, withKey: "relatedAction", using: self.relatedAction, errors: &errors)
 		self.requiredBehavior?.decorate(json: &json, withKey: "requiredBehavior", errors: &errors)
 		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
 		self.selectionBehavior?.decorate(json: &json, withKey: "selectionBehavior", errors: &errors)
 		self.textEquivalent?.decorate(json: &json, withKey: "textEquivalent", errors: &errors)
+		self.timingAge?.decorate(json: &json, withKey: "timingAge", errors: &errors)
 		self.timingDateTime?.decorate(json: &json, withKey: "timingDateTime", errors: &errors)
 		self.timingDuration?.decorate(json: &json, withKey: "timingDuration", errors: &errors)
 		self.timingPeriod?.decorate(json: &json, withKey: "timingPeriod", errors: &errors)
@@ -278,17 +298,11 @@ open class RequestGroupActionCondition: BackboneElement {
 		get { return "RequestGroupActionCondition" }
 	}
 	
-	/// Natural language description of the condition.
-	public var description_fhir: FHIRString?
-	
 	/// Boolean-valued expression.
-	public var expression: FHIRString?
+	public var expression: Expression?
 	
 	/// The kind of condition.
 	public var kind: ActionConditionKind?
-	
-	/// Language of the expression.
-	public var language: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -301,25 +315,21 @@ open class RequestGroupActionCondition: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
-		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
+		expression = createInstance(type: Expression.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
 		kind = createEnum(type: ActionConditionKind.self, for: "kind", in: json, context: &instCtx) ?? kind
 		if nil == kind && !instCtx.containsKey("kind") {
 			instCtx.addError(FHIRValidationError(missing: "kind"))
 		}
-		language = createInstance(type: FHIRString.self, for: "language", in: json, context: &instCtx, owner: self) ?? language
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.expression?.decorate(json: &json, withKey: "expression", errors: &errors)
 		self.kind?.decorate(json: &json, withKey: "kind", errors: &errors)
 		if nil == self.kind {
 			errors.append(FHIRValidationError(missing: "kind"))
 		}
-		self.language?.decorate(json: &json, withKey: "language", errors: &errors)
 	}
 }
 

@@ -2,8 +2,8 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Timing) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -16,12 +16,12 @@ Specifies an event that may occur multiple times. Timing schedules are used to r
 or requested to occur. The most common usage is in dosage instructions for medications. They are also used when planning
 care of various kinds, and may be used for reporting the schedule to which past regular activities were carried out.
 */
-open class Timing: Element {
+open class Timing: BackboneElement {
 	override open class var resourceType: String {
 		get { return "Timing" }
 	}
 	
-	/// BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +.
+	/// BID | TID | QID | AM | PM | QD | QOD | +.
 	public var code: CodeableConcept?
 	
 	/// When the event occurs.
@@ -107,7 +107,7 @@ open class TimingRepeat: Element {
 	/// Time of day for action.
 	public var timeOfDay: [FHIRTime]?
 	
-	/// Regular life events the event is tied to.
+	/// Code for time period of occurrence.
 	public var when: [FHIRString]?
 	
 	

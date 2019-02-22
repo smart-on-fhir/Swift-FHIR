@@ -57,7 +57,7 @@ open class {{ klass.name }}: {{ klass.superclass.name|default('FHIRAbstractBase'
 		}
 		{%- endfor %}
 		else {
-			fhir_warn("Type “\(type(of: {{ nonop.one_of_many }}))” for property “\({{ nonop.one_of_many }})” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: {{ nonop.one_of_many }}))” for property “\({{ nonop.one_of_many }})” is invalid, ignoring")
 		}
 		{%- else %}
 		self.{{ nonop.name }} = {{ nonop.name }}

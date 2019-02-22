@@ -2,8 +2,8 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Condition) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -20,26 +20,20 @@ open class Condition: DomainResource {
 		get { return "Condition" }
 	}
 	
-	/// If/when in resolution/remission.
+	/// When in resolution/remission.
 	public var abatementAge: Age?
 	
-	/// If/when in resolution/remission.
-	public var abatementBoolean: FHIRBool?
-	
-	/// If/when in resolution/remission.
+	/// When in resolution/remission.
 	public var abatementDateTime: DateTime?
 	
-	/// If/when in resolution/remission.
+	/// When in resolution/remission.
 	public var abatementPeriod: Period?
 	
-	/// If/when in resolution/remission.
+	/// When in resolution/remission.
 	public var abatementRange: Range?
 	
-	/// If/when in resolution/remission.
+	/// When in resolution/remission.
 	public var abatementString: FHIRString?
-	
-	/// Date record was believed accurate.
-	public var assertedDate: DateTime?
 	
 	/// Person who asserts this condition.
 	public var asserter: Reference?
@@ -50,14 +44,14 @@ open class Condition: DomainResource {
 	/// problem-list-item | encounter-diagnosis.
 	public var category: [CodeableConcept]?
 	
-	/// active | recurrence | inactive | remission | resolved.
-	public var clinicalStatus: FHIRString?
+	/// active | recurrence | relapse | inactive | remission | resolved.
+	public var clinicalStatus: CodeableConcept?
 	
 	/// Identification of the condition, problem or diagnosis.
 	public var code: CodeableConcept?
 	
-	/// Encounter or episode when condition first asserted.
-	public var context: Reference?
+	/// Encounter created as part of.
+	public var encounter: Reference?
 	
 	/// Supporting evidence.
 	public var evidence: [ConditionEvidence]?
@@ -83,17 +77,23 @@ open class Condition: DomainResource {
 	/// Estimated or actual date,  date-time, or age.
 	public var onsetString: FHIRString?
 	
+	/// Date record was first recorded.
+	public var recordedDate: DateTime?
+	
+	/// Who recorded the condition.
+	public var recorder: Reference?
+	
 	/// Subjective severity of condition.
 	public var severity: CodeableConcept?
 	
 	/// Stage/grade, usually assessed formally.
-	public var stage: ConditionStage?
+	public var stage: [ConditionStage]?
 	
 	/// Who has the condition?.
 	public var subject: Reference?
 	
-	/// The verification status to support the clinical status of the condition.
-	public var verificationStatus: ConditionVerificationStatus?
+	/// unconfirmed | provisional | differential | confirmed | refuted | entered-in-error.
+	public var verificationStatus: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -107,18 +107,16 @@ open class Condition: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		abatementAge = createInstance(type: Age.self, for: "abatementAge", in: json, context: &instCtx, owner: self) ?? abatementAge
-		abatementBoolean = createInstance(type: FHIRBool.self, for: "abatementBoolean", in: json, context: &instCtx, owner: self) ?? abatementBoolean
 		abatementDateTime = createInstance(type: DateTime.self, for: "abatementDateTime", in: json, context: &instCtx, owner: self) ?? abatementDateTime
 		abatementPeriod = createInstance(type: Period.self, for: "abatementPeriod", in: json, context: &instCtx, owner: self) ?? abatementPeriod
 		abatementRange = createInstance(type: Range.self, for: "abatementRange", in: json, context: &instCtx, owner: self) ?? abatementRange
 		abatementString = createInstance(type: FHIRString.self, for: "abatementString", in: json, context: &instCtx, owner: self) ?? abatementString
-		assertedDate = createInstance(type: DateTime.self, for: "assertedDate", in: json, context: &instCtx, owner: self) ?? assertedDate
 		asserter = createInstance(type: Reference.self, for: "asserter", in: json, context: &instCtx, owner: self) ?? asserter
 		bodySite = createInstances(of: CodeableConcept.self, for: "bodySite", in: json, context: &instCtx, owner: self) ?? bodySite
 		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		clinicalStatus = createInstance(type: FHIRString.self, for: "clinicalStatus", in: json, context: &instCtx, owner: self) ?? clinicalStatus
+		clinicalStatus = createInstance(type: CodeableConcept.self, for: "clinicalStatus", in: json, context: &instCtx, owner: self) ?? clinicalStatus
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
-		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		evidence = createInstances(of: ConditionEvidence.self, for: "evidence", in: json, context: &instCtx, owner: self) ?? evidence
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
@@ -127,31 +125,31 @@ open class Condition: DomainResource {
 		onsetPeriod = createInstance(type: Period.self, for: "onsetPeriod", in: json, context: &instCtx, owner: self) ?? onsetPeriod
 		onsetRange = createInstance(type: Range.self, for: "onsetRange", in: json, context: &instCtx, owner: self) ?? onsetRange
 		onsetString = createInstance(type: FHIRString.self, for: "onsetString", in: json, context: &instCtx, owner: self) ?? onsetString
+		recordedDate = createInstance(type: DateTime.self, for: "recordedDate", in: json, context: &instCtx, owner: self) ?? recordedDate
+		recorder = createInstance(type: Reference.self, for: "recorder", in: json, context: &instCtx, owner: self) ?? recorder
 		severity = createInstance(type: CodeableConcept.self, for: "severity", in: json, context: &instCtx, owner: self) ?? severity
-		stage = createInstance(type: ConditionStage.self, for: "stage", in: json, context: &instCtx, owner: self) ?? stage
+		stage = createInstances(of: ConditionStage.self, for: "stage", in: json, context: &instCtx, owner: self) ?? stage
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		if nil == subject && !instCtx.containsKey("subject") {
 			instCtx.addError(FHIRValidationError(missing: "subject"))
 		}
-		verificationStatus = createEnum(type: ConditionVerificationStatus.self, for: "verificationStatus", in: json, context: &instCtx) ?? verificationStatus
+		verificationStatus = createInstance(type: CodeableConcept.self, for: "verificationStatus", in: json, context: &instCtx, owner: self) ?? verificationStatus
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.abatementAge?.decorate(json: &json, withKey: "abatementAge", errors: &errors)
-		self.abatementBoolean?.decorate(json: &json, withKey: "abatementBoolean", errors: &errors)
 		self.abatementDateTime?.decorate(json: &json, withKey: "abatementDateTime", errors: &errors)
 		self.abatementPeriod?.decorate(json: &json, withKey: "abatementPeriod", errors: &errors)
 		self.abatementRange?.decorate(json: &json, withKey: "abatementRange", errors: &errors)
 		self.abatementString?.decorate(json: &json, withKey: "abatementString", errors: &errors)
-		self.assertedDate?.decorate(json: &json, withKey: "assertedDate", errors: &errors)
 		self.asserter?.decorate(json: &json, withKey: "asserter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "bodySite", using: self.bodySite, errors: &errors)
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		self.clinicalStatus?.decorate(json: &json, withKey: "clinicalStatus", errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
-		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "evidence", using: self.evidence, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
@@ -160,8 +158,10 @@ open class Condition: DomainResource {
 		self.onsetPeriod?.decorate(json: &json, withKey: "onsetPeriod", errors: &errors)
 		self.onsetRange?.decorate(json: &json, withKey: "onsetRange", errors: &errors)
 		self.onsetString?.decorate(json: &json, withKey: "onsetString", errors: &errors)
+		self.recordedDate?.decorate(json: &json, withKey: "recordedDate", errors: &errors)
+		self.recorder?.decorate(json: &json, withKey: "recorder", errors: &errors)
 		self.severity?.decorate(json: &json, withKey: "severity", errors: &errors)
-		self.stage?.decorate(json: &json, withKey: "stage", errors: &errors)
+		arrayDecorate(json: &json, withKey: "stage", using: self.stage, errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
@@ -174,7 +174,8 @@ open class Condition: DomainResource {
 /**
 Supporting evidence.
 
-Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed.
+Supporting evidence / manifestations that are the basis of the Condition's verification status, such as evidence that
+confirmed or refuted the condition.
 */
 open class ConditionEvidence: BackboneElement {
 	override open class var resourceType: String {
@@ -220,12 +221,16 @@ open class ConditionStage: BackboneElement {
 	/// Simple summary (disease specific).
 	public var summary: CodeableConcept?
 	
+	/// Kind of staging.
+	public var type: CodeableConcept?
+	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		assessment = createInstances(of: Reference.self, for: "assessment", in: json, context: &instCtx, owner: self) ?? assessment
 		summary = createInstance(type: CodeableConcept.self, for: "summary", in: json, context: &instCtx, owner: self) ?? summary
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -233,6 +238,7 @@ open class ConditionStage: BackboneElement {
 		
 		arrayDecorate(json: &json, withKey: "assessment", using: self.assessment, errors: &errors)
 		self.summary?.decorate(json: &json, withKey: "summary", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 

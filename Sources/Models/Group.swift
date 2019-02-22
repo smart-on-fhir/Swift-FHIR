@@ -2,8 +2,8 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Group) on 2019-02-22.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import Foundation
 Group of multiple entities.
 
 Represents a defined collection of entities that may be discussed or acted upon collectively but which are not expected
-to act collectively and are not formally or legally recognized; i.e. a collection of entities that isn't an
+to act collectively, and are not formally or legally recognized; i.e. a collection of entities that isn't an
 Organization.
 */
 open class Group: DomainResource {
@@ -27,7 +27,7 @@ open class Group: DomainResource {
 	/// Descriptive or actual.
 	public var actual: FHIRBool?
 	
-	/// Trait of group members.
+	/// Include / Exclude group members by Trait.
 	public var characteristic: [GroupCharacteristic]?
 	
 	/// Kind of Group members.
@@ -35,6 +35,9 @@ open class Group: DomainResource {
 	
 	/// Unique id.
 	public var identifier: [Identifier]?
+	
+	/// Entity that is the custodian of the Group's definition.
+	public var managingEntity: Reference?
 	
 	/// Who or what is in group.
 	public var member: [GroupMember]?
@@ -68,6 +71,7 @@ open class Group: DomainResource {
 		characteristic = createInstances(of: GroupCharacteristic.self, for: "characteristic", in: json, context: &instCtx, owner: self) ?? characteristic
 		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		managingEntity = createInstance(type: Reference.self, for: "managingEntity", in: json, context: &instCtx, owner: self) ?? managingEntity
 		member = createInstances(of: GroupMember.self, for: "member", in: json, context: &instCtx, owner: self) ?? member
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		quantity = createInstance(type: FHIRInteger.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
@@ -88,6 +92,7 @@ open class Group: DomainResource {
 		arrayDecorate(json: &json, withKey: "characteristic", using: self.characteristic, errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		self.managingEntity?.decorate(json: &json, withKey: "managingEntity", errors: &errors)
 		arrayDecorate(json: &json, withKey: "member", using: self.member, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		self.quantity?.decorate(json: &json, withKey: "quantity", errors: &errors)
@@ -100,9 +105,9 @@ open class Group: DomainResource {
 
 
 /**
-Trait of group members.
+Include / Exclude group members by Trait.
 
-Identifies the traits shared by members of the group.
+Identifies traits whose presence r absence is shared by members of the group.
 */
 open class GroupCharacteristic: BackboneElement {
 	override open class var resourceType: String {
@@ -130,6 +135,9 @@ open class GroupCharacteristic: BackboneElement {
 	/// Value held by characteristic.
 	public var valueRange: Range?
 	
+	/// Value held by characteristic.
+	public var valueReference: Reference?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(code: CodeableConcept, exclude: FHIRBool, value: Any) {
@@ -148,8 +156,11 @@ open class GroupCharacteristic: BackboneElement {
 		else if let value = value as? Range {
 			self.valueRange = value
 		}
+		else if let value = value as? Reference {
+			self.valueReference = value
+		}
 		else {
-			fhir_warn("Type “\(type(of: value))” for property “\(value)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: value))” for property “\(value)” is invalid, ignoring")
 		}
 	}
 	
@@ -170,9 +181,10 @@ open class GroupCharacteristic: BackboneElement {
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
 		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
+		valueReference = createInstance(type: Reference.self, for: "valueReference", in: json, context: &instCtx, owner: self) ?? valueReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.valueCodeableConcept && nil == self.valueBoolean && nil == self.valueQuantity && nil == self.valueRange {
+		if nil == self.valueCodeableConcept && nil == self.valueBoolean && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueReference {
 			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
@@ -194,9 +206,10 @@ open class GroupCharacteristic: BackboneElement {
 		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
 		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
 		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
+		self.valueReference?.decorate(json: &json, withKey: "valueReference", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
-		if nil == self.valueCodeableConcept && nil == self.valueBoolean && nil == self.valueQuantity && nil == self.valueRange {
+		if nil == self.valueCodeableConcept && nil == self.valueBoolean && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueReference {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 	}

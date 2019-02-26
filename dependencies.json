@@ -35,6 +35,9 @@
 	"BackboneElement": {
 		"dependencies": ["Element","Extension"]
 	},
+	"Base64Binary": {
+		"dependencies": []
+	},
 	"Basic": {
 		"dependencies": ["CodeableConcept","DomainResource","FHIRDate","Identifier","Reference"]
 	},
@@ -134,6 +137,9 @@
 	"DataRequirement": {
 		"dependencies": ["CodeableConcept","Coding","DateTime","Duration","Element","FHIRInteger","FHIRString","FHIRURL","Period","Reference"]
 	},
+	"DateTime": {
+		"dependencies": []
+	},
 	"DetectedIssue": {
 		"dependencies": ["BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRString","FHIRURL","Identifier","Period","Reference"]
 	},
@@ -218,6 +224,42 @@
 	"Extension": {
 		"dependencies": ["Address","Age","Annotation","Attachment","Base64Binary","CodeableConcept","Coding","ContactDetail","ContactPoint","Contributor","Count","DataRequirement","DateTime","Distance","Dosage","Duration","Element","Expression","FHIRBool","FHIRDate","FHIRDecimal","FHIRInteger","FHIRString","FHIRTime","FHIRURL","HumanName","Identifier","Instant","Money","ParameterDefinition","Period","Quantity","Range","Ratio","Reference","RelatedArtifact","SampledData","Signature","Timing","TriggerDefinition","UsageContext"]
 	},
+	"FHIRAbstractBase": {
+		"dependencies": []
+	},
+	"FHIRAbstractResource": {
+		"dependencies": []
+	},
+	"FHIRBool": {
+		"dependencies": []
+	},
+	"FHIRDate": {
+		"dependencies": []
+	},
+	"FHIRDecimal": {
+		"dependencies": []
+	},
+	"FHIRError": {
+		"dependencies": []
+	},
+	"FHIRInteger": {
+		"dependencies": []
+	},
+	"FHIRServer": {
+		"dependencies": []
+	},
+	"FHIRString": {
+		"dependencies": []
+	},
+	"FHIRTime": {
+		"dependencies": []
+	},
+	"FHIRURL": {
+		"dependencies": []
+	},
+	"FHIRValidationError": {
+		"dependencies": []
+	},
 	"FamilyMemberHistory": {
 		"dependencies": ["Age","Annotation","BackboneElement","CodeableConcept","DateTime","DomainResource","FHIRBool","FHIRDate","FHIRString","FHIRURL","Identifier","Period","Range","Reference"]
 	},
@@ -259,6 +301,9 @@
 	},
 	"ImplementationGuide": {
 		"dependencies": ["BackboneElement","CodeableConcept","ContactDetail","DateTime","DomainResource","FHIRBool","FHIRString","FHIRURL","Reference","UsageContext"]
+	},
+	"Instant": {
+		"dependencies": []
 	},
 	"InsurancePlan": {
 		"dependencies": ["Address","BackboneElement","CodeableConcept","ContactPoint","DomainResource","FHIRInteger","FHIRString","HumanName","Identifier","Money","Period","Quantity","Reference"]

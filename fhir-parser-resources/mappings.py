@@ -71,41 +71,41 @@ reservedmap = {
     'import': 'import_fhir',
     'in': '`in`',
     'protocol': 'protocol_fhir',
+    'private': 'private_fhir',
+    'public': 'public_fhir',
     'operator': 'operator_fhir',
     'repeat': 'repeat_fhir',
     'return': '`return`',
     'self': '`self`',
     'true': '`true`',
-    'description': 'description_fhir',    # Reserved for `Printable` classes
+    'description': 'description_fhir'    # Reserved for `Printable` classes
 }
 
 # For enum codes where a computer just cannot generate reasonable names
 enum_map = {
     '=': 'eq',
-	'!=': 'neq',
+    '!=': 'ne',
     '<': 'lt',
     '<=': 'lte',
     '>': 'gt',
     '>=': 'gte',
-    '*': 'max',
-	'public': 'public_fhir',
-	'private': 'private_fhir'
+    '*': 'max'
 }
 
 # If you want to give specific names to enums based on their URI
 enum_namemap = {
-	'http://terminology.hl7.org/CodeSystem/composition-altcode-kind': 'CompositionAlternativeCodeKind',
-	'http://terminology.hl7.org/CodeSystem/codesystem-altcode-kind': 'CodeSystemAlternativeCodeKind',
-	'http://hl7.org/fhir/contract-security-category': 'ContractResourceSecurityCategoryCodes',
-	'http://hl7.org/fhir/contract-security-classification': 'ContractResourceSecurityClassificationCodes',
-	'http://hl7.org/fhir/contracttermsubtypecodes': 'ContractTermSubtypeCodes',
-	'http://hl7.org/fhir/coverage-exception': 'CoverageExceptionCodes',
-	'http://hl7.org/fhir/device-definition-status': 'DeviceDefinitionStatusCodes',
-	'http://hl7.org/fhir/CodeSystem/medication-statement-status': 'MedicationStatementStatusCodes',
-	'http://terminology.hl7.org/CodeSystem/medication-statement-category': 'MedicationStatementCategoryCodes',
-	'http://terminology.hl7.org/CodeSystem/practitioner-role': 'PractitionerRoleCodes',
+    'http://terminology.hl7.org/CodeSystem/composition-altcode-kind': 'CompositionAlternativeCodeKind',
+    'http://terminology.hl7.org/CodeSystem/codesystem-altcode-kind': 'CodeSystemAlternativeCodeKind',
+    'http://hl7.org/fhir/contract-security-category': 'ContractResourceSecurityCategoryCodes',
+    'http://hl7.org/fhir/contract-security-classification': 'ContractResourceSecurityClassificationCodes',
+    'http://hl7.org/fhir/contracttermsubtypecodes': 'ContractTermSubtypeCodes',
+    'http://hl7.org/fhir/coverage-exception': 'CoverageExceptionCodes',
+    'http://hl7.org/fhir/device-definition-status': 'DeviceDefinitionStatusCodes',
+    'http://hl7.org/fhir/CodeSystem/medication-statement-status': 'MedicationStatementStatusCodes',
+    'http://terminology.hl7.org/CodeSystem/medication-statement-category': 'MedicationStatementCategoryCodes',
+    'http://terminology.hl7.org/CodeSystem/practitioner-role': 'PractitionerRoleCodes',
     'http://hl7.org/fhir/resource-type-link': 'ResourceTypeLink',
-	'http://hl7.org/fhir/secondary-finding': 'SecondaryFindingCodes',
-	'http://hl7.org/fhir/usersession-status': 'UserSessionStatusEnum'
+    'http://hl7.org/fhir/secondary-finding': 'SecondaryFindingCodes',
+    'http://hl7.org/fhir/usersession-status': 'UserSessionStatusEnum'
 }
 

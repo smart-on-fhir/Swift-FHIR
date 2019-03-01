@@ -2,7 +2,7 @@
 //  CodeSystems.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-02-26.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
 //  2019, SMART Health IT.
 //
 
@@ -10636,7 +10636,7 @@ public enum QuestionnaireItemOperator: String {
 	case eq = "="
 	
 	/// True if whether at least no answer has a value that is equal to the enableWhen answer.
-	case neq = "!="
+	case ne = "!="
 	
 	/// True if whether at least no answer has a value that is greater than the enableWhen answer.
 	case gt = ">"

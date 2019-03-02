@@ -2,8 +2,8 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -50,10 +50,11 @@ class SubscriptionTests: XCTestCase {
 		XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
 		XCTAssertEqual(inst.error, "Socket Error 10060 - can't connect to host")
 		XCTAssertEqual(inst.id, "example-error")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.reason, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status, SubscriptionStatus(rawValue: "error")!)
-		XCTAssertEqual(inst.tag?[0].code, "bili-done")
-		XCTAssertEqual(inst.tag?[0].system?.absoluteString, "http://example.org/fhir/cs/internal")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -83,10 +84,11 @@ class SubscriptionTests: XCTestCase {
 		XCTAssertEqual(inst.criteria, "Observation?code=http://loinc.org|1975-2")
 		XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.reason, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status, SubscriptionStatus(rawValue: "requested")!)
-		XCTAssertEqual(inst.tag?[0].code, "bili-done")
-		XCTAssertEqual(inst.tag?[0].system?.absoluteString, "http://example.org/fhir/cs/internal")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

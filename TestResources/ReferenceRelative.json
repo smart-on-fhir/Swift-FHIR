@@ -1,6 +1,7 @@
 {
 	"resourceType": "MedicationRequest",
 	"id": "order-ref-relative",
+	"status": "active",
 	"intent": "proposal",
 	"medicationReference": {
 		"reference": "Medication/med-1234"

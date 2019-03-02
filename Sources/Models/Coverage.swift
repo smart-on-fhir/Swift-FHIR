@@ -2,8 +2,8 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Coverage) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,26 +12,30 @@ import Foundation
 /**
 Insurance or medical plan or a payment agreement.
 
-Financial instrument which may be used to reimburse or pay for health care products and services.
+Financial instrument which may be used to reimburse or pay for health care products and services. Includes both
+insurance and self-payment.
 */
 open class Coverage: DomainResource {
 	override open class var resourceType: String {
 		get { return "Coverage" }
 	}
 	
-	/// Plan Beneficiary.
+	/// Additional coverage classifications.
+	public var `class`: [CoverageClass]?
+	
+	/// Plan beneficiary.
 	public var beneficiary: Reference?
 	
 	/// Contract details.
 	public var contract: [Reference]?
 	
+	/// Patient payments for services/products.
+	public var costToBeneficiary: [CoverageCostToBeneficiary]?
+	
 	/// Dependent number.
 	public var dependent: FHIRString?
 	
-	/// Additional coverage classifications.
-	public var grouping: CoverageGrouping?
-	
-	/// The primary coverage ID.
+	/// Business Identifier for the coverage.
 	public var identifier: [Identifier]?
 	
 	/// Insurer network.
@@ -40,7 +44,7 @@ open class Coverage: DomainResource {
 	/// Relative order of the coverage.
 	public var order: FHIRInteger?
 	
-	/// Identifier for the plan or agreement issuer.
+	/// Issuer of the policy.
 	public var payor: [Reference]?
 	
 	/// Coverage start and end dates.
@@ -49,41 +53,60 @@ open class Coverage: DomainResource {
 	/// Owner of the policy.
 	public var policyHolder: Reference?
 	
-	/// Beneficiary relationship to the Subscriber.
+	/// Beneficiary relationship to the subscriber.
 	public var relationship: CodeableConcept?
 	
-	/// The plan instance or sequence counter.
-	public var sequence: FHIRString?
+	/// The status of the resource instance.
+	public var status: FinancialResourceStatusCodes?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: FHIRString?
+	/// Reimbursement to insurer.
+	public var subrogation: FHIRBool?
 	
 	/// Subscriber to the policy.
 	public var subscriber: Reference?
 	
-	/// ID assigned to the Subscriber.
+	/// ID assigned to the subscriber.
 	public var subscriberId: FHIRString?
 	
-	/// Type of coverage such as medical or accident.
+	/// Coverage category such as medical or accident.
 	public var type: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(beneficiary: Reference, payor: [Reference], status: FinancialResourceStatusCodes) {
+		self.init()
+		self.beneficiary = beneficiary
+		self.payor = payor
+		self.status = status
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
+		`class` = createInstances(of: CoverageClass.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
 		beneficiary = createInstance(type: Reference.self, for: "beneficiary", in: json, context: &instCtx, owner: self) ?? beneficiary
+		if nil == beneficiary && !instCtx.containsKey("beneficiary") {
+			instCtx.addError(FHIRValidationError(missing: "beneficiary"))
+		}
 		contract = createInstances(of: Reference.self, for: "contract", in: json, context: &instCtx, owner: self) ?? contract
+		costToBeneficiary = createInstances(of: CoverageCostToBeneficiary.self, for: "costToBeneficiary", in: json, context: &instCtx, owner: self) ?? costToBeneficiary
 		dependent = createInstance(type: FHIRString.self, for: "dependent", in: json, context: &instCtx, owner: self) ?? dependent
-		grouping = createInstance(type: CoverageGrouping.self, for: "grouping", in: json, context: &instCtx, owner: self) ?? grouping
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		network = createInstance(type: FHIRString.self, for: "network", in: json, context: &instCtx, owner: self) ?? network
 		order = createInstance(type: FHIRInteger.self, for: "order", in: json, context: &instCtx, owner: self) ?? order
 		payor = createInstances(of: Reference.self, for: "payor", in: json, context: &instCtx, owner: self) ?? payor
+		if (nil == payor || payor!.isEmpty) && !instCtx.containsKey("payor") {
+			instCtx.addError(FHIRValidationError(missing: "payor"))
+		}
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		policyHolder = createInstance(type: Reference.self, for: "policyHolder", in: json, context: &instCtx, owner: self) ?? policyHolder
 		relationship = createInstance(type: CodeableConcept.self, for: "relationship", in: json, context: &instCtx, owner: self) ?? relationship
-		sequence = createInstance(type: FHIRString.self, for: "sequence", in: json, context: &instCtx, owner: self) ?? sequence
-		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
+		status = createEnum(type: FinancialResourceStatusCodes.self, for: "status", in: json, context: &instCtx) ?? status
+		if nil == status && !instCtx.containsKey("status") {
+			instCtx.addError(FHIRValidationError(missing: "status"))
+		}
+		subrogation = createInstance(type: FHIRBool.self, for: "subrogation", in: json, context: &instCtx, owner: self) ?? subrogation
 		subscriber = createInstance(type: Reference.self, for: "subscriber", in: json, context: &instCtx, owner: self) ?? subscriber
 		subscriberId = createInstance(type: FHIRString.self, for: "subscriberId", in: json, context: &instCtx, owner: self) ?? subscriberId
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
@@ -92,19 +115,29 @@ open class Coverage: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		arrayDecorate(json: &json, withKey: "class", using: self.`class`, errors: &errors)
 		self.beneficiary?.decorate(json: &json, withKey: "beneficiary", errors: &errors)
+		if nil == self.beneficiary {
+			errors.append(FHIRValidationError(missing: "beneficiary"))
+		}
 		arrayDecorate(json: &json, withKey: "contract", using: self.contract, errors: &errors)
+		arrayDecorate(json: &json, withKey: "costToBeneficiary", using: self.costToBeneficiary, errors: &errors)
 		self.dependent?.decorate(json: &json, withKey: "dependent", errors: &errors)
-		self.grouping?.decorate(json: &json, withKey: "grouping", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.network?.decorate(json: &json, withKey: "network", errors: &errors)
 		self.order?.decorate(json: &json, withKey: "order", errors: &errors)
 		arrayDecorate(json: &json, withKey: "payor", using: self.payor, errors: &errors)
+		if nil == payor || self.payor!.isEmpty {
+			errors.append(FHIRValidationError(missing: "payor"))
+		}
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		self.policyHolder?.decorate(json: &json, withKey: "policyHolder", errors: &errors)
 		self.relationship?.decorate(json: &json, withKey: "relationship", errors: &errors)
-		self.sequence?.decorate(json: &json, withKey: "sequence", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
+		if nil == self.status {
+			errors.append(FHIRValidationError(missing: "status"))
+		}
+		self.subrogation?.decorate(json: &json, withKey: "subrogation", errors: &errors)
 		self.subscriber?.decorate(json: &json, withKey: "subscriber", errors: &errors)
 		self.subscriberId?.decorate(json: &json, withKey: "subscriberId", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
@@ -115,83 +148,173 @@ open class Coverage: DomainResource {
 /**
 Additional coverage classifications.
 
-A suite of underwrite specific classifiers, for example may be used to identify a class of coverage or employer group,
-Policy, Plan.
+A suite of underwriter specific classifiers.
 */
-open class CoverageGrouping: BackboneElement {
+open class CoverageClass: BackboneElement {
 	override open class var resourceType: String {
-		get { return "CoverageGrouping" }
+		get { return "CoverageClass" }
 	}
 	
-	/// An identifier for the class.
-	public var `class`: FHIRString?
+	/// Human readable description of the type and value.
+	public var name: FHIRString?
 	
-	/// Display text for the class.
-	public var classDisplay: FHIRString?
+	/// Type of class such as 'group' or 'plan'.
+	public var type: CodeableConcept?
 	
-	/// An identifier for the group.
-	public var group: FHIRString?
+	/// Value associated with the type.
+	public var value: FHIRString?
 	
-	/// Display text for an identifier for the group.
-	public var groupDisplay: FHIRString?
 	
-	/// An identifier for the plan.
-	public var plan: FHIRString?
-	
-	/// Display text for the plan.
-	public var planDisplay: FHIRString?
-	
-	/// An identifier for the subsection of the class.
-	public var subClass: FHIRString?
-	
-	/// Display text for the subsection of the subclass.
-	public var subClassDisplay: FHIRString?
-	
-	/// An identifier for the subsection of the group.
-	public var subGroup: FHIRString?
-	
-	/// Display text for the subsection of the group.
-	public var subGroupDisplay: FHIRString?
-	
-	/// An identifier for the subsection of the plan.
-	public var subPlan: FHIRString?
-	
-	/// Display text for the subsection of the plan.
-	public var subPlanDisplay: FHIRString?
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: CodeableConcept, value: FHIRString) {
+		self.init()
+		self.type = type
+		self.value = value
+	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		`class` = createInstance(type: FHIRString.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
-		classDisplay = createInstance(type: FHIRString.self, for: "classDisplay", in: json, context: &instCtx, owner: self) ?? classDisplay
-		group = createInstance(type: FHIRString.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
-		groupDisplay = createInstance(type: FHIRString.self, for: "groupDisplay", in: json, context: &instCtx, owner: self) ?? groupDisplay
-		plan = createInstance(type: FHIRString.self, for: "plan", in: json, context: &instCtx, owner: self) ?? plan
-		planDisplay = createInstance(type: FHIRString.self, for: "planDisplay", in: json, context: &instCtx, owner: self) ?? planDisplay
-		subClass = createInstance(type: FHIRString.self, for: "subClass", in: json, context: &instCtx, owner: self) ?? subClass
-		subClassDisplay = createInstance(type: FHIRString.self, for: "subClassDisplay", in: json, context: &instCtx, owner: self) ?? subClassDisplay
-		subGroup = createInstance(type: FHIRString.self, for: "subGroup", in: json, context: &instCtx, owner: self) ?? subGroup
-		subGroupDisplay = createInstance(type: FHIRString.self, for: "subGroupDisplay", in: json, context: &instCtx, owner: self) ?? subGroupDisplay
-		subPlan = createInstance(type: FHIRString.self, for: "subPlan", in: json, context: &instCtx, owner: self) ?? subPlan
-		subPlanDisplay = createInstance(type: FHIRString.self, for: "subPlanDisplay", in: json, context: &instCtx, owner: self) ?? subPlanDisplay
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
+		}
+		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
+		if nil == value && !instCtx.containsKey("value") {
+			instCtx.addError(FHIRValidationError(missing: "value"))
+		}
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
-		self.classDisplay?.decorate(json: &json, withKey: "classDisplay", errors: &errors)
-		self.group?.decorate(json: &json, withKey: "group", errors: &errors)
-		self.groupDisplay?.decorate(json: &json, withKey: "groupDisplay", errors: &errors)
-		self.plan?.decorate(json: &json, withKey: "plan", errors: &errors)
-		self.planDisplay?.decorate(json: &json, withKey: "planDisplay", errors: &errors)
-		self.subClass?.decorate(json: &json, withKey: "subClass", errors: &errors)
-		self.subClassDisplay?.decorate(json: &json, withKey: "subClassDisplay", errors: &errors)
-		self.subGroup?.decorate(json: &json, withKey: "subGroup", errors: &errors)
-		self.subGroupDisplay?.decorate(json: &json, withKey: "subGroupDisplay", errors: &errors)
-		self.subPlan?.decorate(json: &json, withKey: "subPlan", errors: &errors)
-		self.subPlanDisplay?.decorate(json: &json, withKey: "subPlanDisplay", errors: &errors)
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
+		if nil == self.value {
+			errors.append(FHIRValidationError(missing: "value"))
+		}
+	}
+}
+
+
+/**
+Patient payments for services/products.
+
+A suite of codes indicating the cost category and associated amount which have been detailed in the policy and may have
+been  included on the health card.
+*/
+open class CoverageCostToBeneficiary: BackboneElement {
+	override open class var resourceType: String {
+		get { return "CoverageCostToBeneficiary" }
+	}
+	
+	/// Exceptions for patient payments.
+	public var exception: [CoverageCostToBeneficiaryException]?
+	
+	/// Cost category.
+	public var type: CodeableConcept?
+	
+	/// The amount or percentage due from the beneficiary.
+	public var valueMoney: Money?
+	
+	/// The amount or percentage due from the beneficiary.
+	public var valueQuantity: Quantity?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(value: Any) {
+		self.init()
+		if let value = value as? Quantity {
+			self.valueQuantity = value
+		}
+		else if let value = value as? Money {
+			self.valueMoney = value
+		}
+		else {
+			fhir_warn("Type “\(Swift.type(of: value))” for property “\(value)” is invalid, ignoring")
+		}
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		exception = createInstances(of: CoverageCostToBeneficiaryException.self, for: "exception", in: json, context: &instCtx, owner: self) ?? exception
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		valueMoney = createInstance(type: Money.self, for: "valueMoney", in: json, context: &instCtx, owner: self) ?? valueMoney
+		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.valueQuantity && nil == self.valueMoney {
+			instCtx.addError(FHIRValidationError(missing: "value[x]"))
+		}
+		
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		arrayDecorate(json: &json, withKey: "exception", using: self.exception, errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		self.valueMoney?.decorate(json: &json, withKey: "valueMoney", errors: &errors)
+		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueQuantity && nil == self.valueMoney {
+			errors.append(FHIRValidationError(missing: "value[x]"))
+		}
+	}
+}
+
+
+/**
+Exceptions for patient payments.
+
+A suite of codes indicating exceptions or reductions to patient costs and their effective periods.
+*/
+open class CoverageCostToBeneficiaryException: BackboneElement {
+	override open class var resourceType: String {
+		get { return "CoverageCostToBeneficiaryException" }
+	}
+	
+	/// The effective period of the exception.
+	public var period: Period?
+	
+	/// Exception category.
+	public var type: CodeableConcept?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: CodeableConcept) {
+		self.init()
+		self.type = type
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
+		}
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 	}
 }
 

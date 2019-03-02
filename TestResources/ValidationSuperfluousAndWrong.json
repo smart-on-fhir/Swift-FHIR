@@ -30,7 +30,7 @@
 			"linkId": "c",
 			"fhir_comments": "is also missing “type”",
 			"type": "choice",
-			"option": [
+			"answerOption": [
 				{
 					"fhir_comments": "“valueNumber” has a string",
 					"valueNumber": "I’m here!"	

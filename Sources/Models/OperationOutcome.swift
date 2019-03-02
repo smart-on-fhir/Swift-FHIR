@@ -2,8 +2,8 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Foundation
 /**
 Information about the success/failure of an action.
 
-A collection of error, warning or information messages that result from a system action.
+A collection of error, warning, or information messages that result from a system action.
 */
 open class OperationOutcome: DomainResource {
 	override open class var resourceType: String {
@@ -53,7 +53,7 @@ open class OperationOutcome: DomainResource {
 /**
 A single issue associated with the action.
 
-An error, warning or information message that results from a system action.
+An error, warning, or information message that results from a system action.
 */
 open class OperationOutcomeIssue: BackboneElement {
 	override open class var resourceType: String {
@@ -73,7 +73,7 @@ open class OperationOutcomeIssue: BackboneElement {
 	/// FHIRPath of element(s) related to issue.
 	public var expression: [FHIRString]?
 	
-	/// Path of element(s) related to issue.
+	/// Deprecated: Path of element(s) related to issue.
 	public var location: [FHIRString]?
 	
 	/// Indicates whether the issue indicates a variation from successful processing.

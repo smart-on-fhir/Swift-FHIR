@@ -2,8 +2,8 @@
 //  HealthcareServiceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -55,22 +55,25 @@ class HealthcareServiceTests: XCTestCase {
 		XCTAssertEqual(inst.availableTime?[2].availableStartTime?.description, "09:30:00")
 		XCTAssertEqual(inst.availableTime?[2].daysOfWeek?[0], DaysOfWeek(rawValue: "sat")!)
 		XCTAssertEqual(inst.availableTime?[2].daysOfWeek?[1], DaysOfWeek(rawValue: "fri")!)
-		XCTAssertEqual(inst.category?.coding?[0].code, "8")
-		XCTAssertEqual(inst.category?.coding?[0].display, "Counselling")
-		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/service-category")
-		XCTAssertEqual(inst.category?.text, "Counselling")
+		XCTAssertEqual(inst.category?[0].coding?[0].code, "8")
+		XCTAssertEqual(inst.category?[0].coding?[0].display, "Counselling")
+		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/service-category")
+		XCTAssertEqual(inst.category?[0].text, "Counselling")
 		XCTAssertEqual(inst.characteristic?[0].coding?[0].display, "Wheelchair access")
 		XCTAssertEqual(inst.comment, "Providing Specialist psychology services to the greater Den Burg area, many years of experience dealing with PTSD issues")
 		XCTAssertEqual(inst.contained?[0].id, "DenBurg")
 		XCTAssertEqual(inst.coverageArea?[0].display, "Greater Denburg area")
 		XCTAssertEqual(inst.coverageArea?[0].reference, "#DenBurg")
-		XCTAssertEqual(inst.eligibility?.coding?[0].display, "DVA Required")
-		XCTAssertEqual(inst.eligibilityNote, "Evidence of application for DVA status may be sufficient for commencing assessment")
+		XCTAssertEqual(inst.eligibility?[0].code?.coding?[0].display, "DVA Required")
+		XCTAssertEqual(inst.eligibility?[0].comment, "Evidence of application for DVA status may be sufficient for commencing assessment")
 		XCTAssertEqual(inst.endpoint?[0].reference, "Endpoint/example")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/shared-ids")
 		XCTAssertEqual(inst.identifier?[0].value, "HS-12")
 		XCTAssertEqual(inst.location?[0].reference, "Location/1")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name, "Consulting psychologists and/or psychology services")
 		XCTAssertEqual(inst.notAvailable?[0].description_fhir, "Christmas/Boxing Day")
 		XCTAssertEqual(inst.notAvailable?[0].during?.end?.description, "2015-12-26")
@@ -78,7 +81,7 @@ class HealthcareServiceTests: XCTestCase {
 		XCTAssertEqual(inst.notAvailable?[1].description_fhir, "New Years Day")
 		XCTAssertEqual(inst.notAvailable?[1].during?.end?.description, "2016-01-01")
 		XCTAssertEqual(inst.notAvailable?[1].during?.start?.description, "2016-01-01")
-		XCTAssertEqual(inst.programName?[0], "PTSD outreach")
+		XCTAssertEqual(inst.program?[0].text, "PTSD outreach")
 		XCTAssertEqual(inst.providedBy?.display, "Burgers University Medical Center")
 		XCTAssertEqual(inst.providedBy?.reference, "Organization/f001")
 		XCTAssertEqual(inst.referralMethod?[0].coding?[0].code, "phone")
@@ -91,7 +94,7 @@ class HealthcareServiceTests: XCTestCase {
 		XCTAssertEqual(inst.referralMethod?[3].coding?[0].display, "Secure Email")
 		XCTAssertEqual(inst.serviceProvisionCode?[0].coding?[0].code, "cost")
 		XCTAssertEqual(inst.serviceProvisionCode?[0].coding?[0].display, "Fees apply")
-		XCTAssertEqual(inst.serviceProvisionCode?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/service-provision-conditions")
+		XCTAssertEqual(inst.serviceProvisionCode?[0].coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/service-provision-conditions")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "47505003")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Posttraumatic stress disorder")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")

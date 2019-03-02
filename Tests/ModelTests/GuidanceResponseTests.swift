@@ -2,8 +2,8 @@
 //  GuidanceResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -41,16 +41,20 @@ class GuidanceResponseTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "guidanceresponse-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "outputParameters1")
-		XCTAssertEqual(inst.context?.reference, "Encounter/example")
+		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://example.org")
-		XCTAssertEqual(inst.identifier?.value, "guidanceResponse1")
-		XCTAssertEqual(inst.module?.reference, "ServiceDefinition/example")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org")
+		XCTAssertEqual(inst.identifier?[0].value, "guidanceResponse1")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.moduleUri?.absoluteString, "http://someguidelineprovider.org/radiology-appropriateness-guidelines.html")
 		XCTAssertEqual(inst.occurrenceDateTime?.description, "2017-03-10T16:02:00Z")
 		XCTAssertEqual(inst.outputParameters?.reference, "#outputParameters1")
 		XCTAssertEqual(inst.performer?.reference, "Device/software")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Guideline Appropriate Ordering Assessment")
-		XCTAssertEqual(inst.requestId, "guidanceRequest1")
+		XCTAssertEqual(inst.reasonCode?[0].text, "Guideline Appropriate Ordering Assessment")
+		XCTAssertEqual(inst.requestIdentifier?.system?.absoluteString, "http://example.org")
+		XCTAssertEqual(inst.requestIdentifier?.value, "guidanceRequest1")
 		XCTAssertEqual(inst.status, GuidanceResponseStatus(rawValue: "success")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

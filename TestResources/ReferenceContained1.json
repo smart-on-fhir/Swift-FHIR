@@ -1,6 +1,7 @@
 {
 	"resourceType": "MedicationRequest",
 	"id": "order-ref-contained",
+	"status": "active",
 	"intent": "proposal",
 	"contained": [
 		{

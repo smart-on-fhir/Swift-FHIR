@@ -2,8 +2,8 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Person) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -90,7 +90,7 @@ open class PersonLink: BackboneElement {
 		get { return "PersonLink" }
 	}
 	
-	/// Level of assurance that this link is actually associated with the target resource.
+	/// Level of assurance that this link is associated with the target resource.
 	public var assurance: IdentityAssuranceLevel?
 	
 	/// The resource to which this actual person is associated.

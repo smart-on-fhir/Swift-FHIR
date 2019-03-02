@@ -2,8 +2,8 @@
 //  ResearchStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchStudy) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -28,6 +28,9 @@ open class ResearchStudy: DomainResource {
 	/// Classifications for the study.
 	public var category: [CodeableConcept]?
 	
+	/// Condition being studied.
+	public var condition: [CodeableConcept]?
+	
 	/// Contact details for the study.
 	public var contact: [ContactDetail]?
 	
@@ -37,20 +40,23 @@ open class ResearchStudy: DomainResource {
 	/// Inclusion & exclusion criteria.
 	public var enrollment: [Reference]?
 	
-	/// Drugs, devices, conditions, etc. under study.
+	/// Drugs, devices, etc. under study.
 	public var focus: [CodeableConcept]?
 	
 	/// Business Identifier for study.
 	public var identifier: [Identifier]?
 	
-	/// Geographic region(s) for study.
-	public var jurisdiction: [CodeableConcept]?
-	
 	/// Used to search for the study.
 	public var keyword: [CodeableConcept]?
 	
-	/// Comments made about the event.
+	/// Geographic region(s) for study.
+	public var location: [CodeableConcept]?
+	
+	/// Comments made about the study.
 	public var note: [Annotation]?
+	
+	/// A goal for the study.
+	public var objective: [ResearchStudyObjective]?
 	
 	/// Part of larger study.
 	public var partOf: [Reference]?
@@ -58,22 +64,30 @@ open class ResearchStudy: DomainResource {
 	/// When the study began and ended.
 	public var period: Period?
 	
-	/// The individual responsible for the study.
+	/// n-a | early-phase-1 | phase-1 | phase-1-phase-2 | phase-2 | phase-2-phase-3 | phase-3 | phase-4.
+	public var phase: CodeableConcept?
+	
+	/// treatment | prevention | diagnostic | supportive-care | screening | health-services-research | basic-science |
+	/// device-feasibility.
+	public var primaryPurposeType: CodeableConcept?
+	
+	/// Researcher who oversees multiple aspects of the study.
 	public var principalInvestigator: Reference?
 	
 	/// Steps followed in executing study.
 	public var protocol_fhir: [Reference]?
 	
-	/// Reason for terminating study early.
+	/// accrual-goal-met | closed-due-to-toxicity | closed-due-to-lack-of-study-progress | temporarily-closed-per-study-
+	/// design.
 	public var reasonStopped: CodeableConcept?
 	
 	/// References and dependencies.
 	public var relatedArtifact: [RelatedArtifact]?
 	
-	/// Location involved in study execution.
+	/// Facility where study activities are conducted.
 	public var site: [Reference]?
 	
-	/// Organization responsible for the study.
+	/// Organization that initiates and is legally responsible for the study.
 	public var sponsor: Reference?
 	
 	/// The current state of the study.
@@ -95,16 +109,20 @@ open class ResearchStudy: DomainResource {
 		
 		arm = createInstances(of: ResearchStudyArm.self, for: "arm", in: json, context: &instCtx, owner: self) ?? arm
 		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		condition = createInstances(of: CodeableConcept.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
 		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		enrollment = createInstances(of: Reference.self, for: "enrollment", in: json, context: &instCtx, owner: self) ?? enrollment
 		focus = createInstances(of: CodeableConcept.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		keyword = createInstances(of: CodeableConcept.self, for: "keyword", in: json, context: &instCtx, owner: self) ?? keyword
+		location = createInstances(of: CodeableConcept.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
+		objective = createInstances(of: ResearchStudyObjective.self, for: "objective", in: json, context: &instCtx, owner: self) ?? objective
 		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		phase = createInstance(type: CodeableConcept.self, for: "phase", in: json, context: &instCtx, owner: self) ?? phase
+		primaryPurposeType = createInstance(type: CodeableConcept.self, for: "primaryPurposeType", in: json, context: &instCtx, owner: self) ?? primaryPurposeType
 		principalInvestigator = createInstance(type: Reference.self, for: "principalInvestigator", in: json, context: &instCtx, owner: self) ?? principalInvestigator
 		protocol_fhir = createInstances(of: Reference.self, for: "protocol", in: json, context: &instCtx, owner: self) ?? protocol_fhir
 		reasonStopped = createInstance(type: CodeableConcept.self, for: "reasonStopped", in: json, context: &instCtx, owner: self) ?? reasonStopped
@@ -123,16 +141,20 @@ open class ResearchStudy: DomainResource {
 		
 		arrayDecorate(json: &json, withKey: "arm", using: self.arm, errors: &errors)
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
+		arrayDecorate(json: &json, withKey: "condition", using: self.condition, errors: &errors)
 		arrayDecorate(json: &json, withKey: "contact", using: self.contact, errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "enrollment", using: self.enrollment, errors: &errors)
 		arrayDecorate(json: &json, withKey: "focus", using: self.focus, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
 		arrayDecorate(json: &json, withKey: "keyword", using: self.keyword, errors: &errors)
+		arrayDecorate(json: &json, withKey: "location", using: self.location, errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
+		arrayDecorate(json: &json, withKey: "objective", using: self.objective, errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		self.phase?.decorate(json: &json, withKey: "phase", errors: &errors)
+		self.primaryPurposeType?.decorate(json: &json, withKey: "primaryPurposeType", errors: &errors)
 		self.principalInvestigator?.decorate(json: &json, withKey: "principalInvestigator", errors: &errors)
 		arrayDecorate(json: &json, withKey: "protocol", using: self.protocol_fhir, errors: &errors)
 		self.reasonStopped?.decorate(json: &json, withKey: "reasonStopped", errors: &errors)
@@ -159,14 +181,14 @@ open class ResearchStudyArm: BackboneElement {
 		get { return "ResearchStudyArm" }
 	}
 	
-	/// Categorization of study arm.
-	public var code: CodeableConcept?
-	
 	/// Short explanation of study path.
 	public var description_fhir: FHIRString?
 	
 	/// Label for study arm.
 	public var name: FHIRString?
+	
+	/// Categorization of study arm.
+	public var type: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -179,23 +201,57 @@ open class ResearchStudyArm: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		if nil == self.name {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+	}
+}
+
+
+/**
+A goal for the study.
+
+A goal that the study is aiming to achieve in terms of a scientific question to be answered by the analysis of data
+collected during the study.
+*/
+open class ResearchStudyObjective: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ResearchStudyObjective" }
+	}
+	
+	/// Label for the objective.
+	public var name: FHIRString?
+	
+	/// primary | secondary | exploratory.
+	public var type: CodeableConcept?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 	}
 }
 

@@ -2,8 +2,8 @@
 //  EnrollmentRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -40,14 +40,18 @@ class EnrollmentRequestTests: XCTestCase {
 	func runEnrollmentRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIREnrollmentRequest {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "enrollmentrequest-example.json")
 		
+		XCTAssertEqual(inst.candidate?.reference, "Patient/1")
 		XCTAssertEqual(inst.coverage?.reference, "Coverage/9876B1")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.id, "22345")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/enrollmentrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "EN22345")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.subject?.reference, "Patient/1")
+		XCTAssertEqual(inst.insurer?.reference, "Organization/2")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.provider?.reference, "Organization/1")
+		XCTAssertEqual(inst.status, FinancialResourceStatusCodes(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EnrollmentRequest.</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		

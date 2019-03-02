@@ -2,8 +2,8 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -28,14 +28,14 @@ open class Practitioner: DomainResource {
 	/// The date  on which the practitioner was born.
 	public var birthDate: FHIRDate?
 	
-	/// A language the practitioner is able to use in patient communication.
+	/// A language the practitioner can use in patient communication.
 	public var communication: [CodeableConcept]?
 	
 	/// Administrative Gender - the gender that the person is considered to have for administration and record keeping
 	/// purposes.
 	public var gender: AdministrativeGender?
 	
-	/// A identifier for the person as this agent.
+	/// An identifier for the person as this agent.
 	public var identifier: [Identifier]?
 	
 	/// The name(s) associated with the practitioner.
@@ -44,7 +44,7 @@ open class Practitioner: DomainResource {
 	/// Image of the person.
 	public var photo: [Attachment]?
 	
-	/// Qualifications obtained by training and certification.
+	/// Certification, licenses, or training pertaining to the provision of care.
 	public var qualification: [PractitionerQualification]?
 	
 	/// A contact detail for the practitioner (that apply to all roles).
@@ -84,7 +84,11 @@ open class Practitioner: DomainResource {
 
 
 /**
-Qualifications obtained by training and certification.
+Certification, licenses, or training pertaining to the provision of care.
+
+The official certifications, training, and licenses that authorize or otherwise pertain to the provision of care by the
+practitioner.  For example, a medical license issued by a medical board authorizing the practitioner to practice
+medicine within a certian locality.
 */
 open class PractitionerQualification: BackboneElement {
 	override open class var resourceType: String {

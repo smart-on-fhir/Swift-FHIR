@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 4.0
+
+- Update to FHIR `R4` (v4.0.0-a53ec6ee1b)
+
+
 ## 3.0
 
 - Update to FHIR `STU-3` (v3.0.0.11832)

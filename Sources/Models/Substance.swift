@@ -2,8 +2,8 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Substance) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -108,7 +108,7 @@ open class SubstanceIngredient: BackboneElement {
 			self.substanceReference = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: substance))” for property “\(substance)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: substance))” for property “\(substance)” is invalid, ignoring")
 		}
 	}
 	

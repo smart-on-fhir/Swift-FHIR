@@ -18,7 +18,7 @@ Base implementation of `FHIRRequestHandler`.
 open class FHIRBaseRequestHandler: FHIRRequestHandler {
 	
 	/// The HTTP method of the request.
-	open let method: FHIRRequestMethod
+	public let method: FHIRRequestMethod
 	
 	/// Headers to be used on the request.
 	open var headers = FHIRRequestHeaders()
@@ -168,7 +168,7 @@ If you use this as PUT/POST, you are responsible for setting the `data` property
 */
 open class FHIRDataRequestHandler: FHIRBaseRequestHandler {
 	
-	open let contentType: String
+	public let contentType: String
 	
 	init(_ method: FHIRRequestMethod, contentType: String) {
 		self.contentType = contentType

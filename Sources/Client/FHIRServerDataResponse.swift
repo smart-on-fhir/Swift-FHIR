@@ -58,13 +58,13 @@ extension FHIRServerResponse {
 		// inspect ETag header
 		if var etag = headers["ETag"] {
 			if etag.hasPrefix("W/") {
-				etag = etag[etag.index(etag.startIndex, offsetBy: 2)..<etag.endIndex]
+				etag = String(etag[etag.index(etag.startIndex, offsetBy: 2)..<etag.endIndex])
 			}
 			if etag.hasPrefix("\"") {
-				etag = etag[etag.index(etag.startIndex, offsetBy: 1)..<etag.endIndex]
+				etag = String(etag[etag.index(etag.startIndex, offsetBy: 1)..<etag.endIndex])
 			}
 			if etag.hasSuffix("\"") {
-				etag = etag[etag.startIndex..<etag.index(etag.endIndex, offsetBy: -1)]
+				etag = String(etag[etag.startIndex..<etag.index(etag.endIndex, offsetBy: -1)])
 			}
 			resource.meta = resource.meta ?? Meta()
 			resource.meta!.versionId = FHIRString(etag)
@@ -93,10 +93,10 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 	public internal(set) var handler: FHIRRequestHandler?
 	
 	/// The HTTP status code.
-	open let status: Int
+	public let status: Int
 	
 	/// Response headers.
-	open let headers: [String: String]
+	public let headers: [String: String]
 	
 	/// The response body data.
 	open var body: Data?

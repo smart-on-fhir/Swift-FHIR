@@ -2,8 +2,8 @@
 //  GraphDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -49,15 +49,17 @@ class GraphDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.link?[0].path, "Composition.section.entry")
 		XCTAssertEqual(inst.link?[0].target?[0].compartment?[0].code, CompartmentType(rawValue: "Patient")!)
 		XCTAssertEqual(inst.link?[0].target?[0].compartment?[0].rule, GraphCompartmentRule(rawValue: "identical")!)
+		XCTAssertEqual(inst.link?[0].target?[0].compartment?[0].use, GraphCompartmentUse(rawValue: "requirement")!)
 		XCTAssertEqual(inst.link?[0].target?[0].link?[0].description_fhir, "Include any list entries")
 		XCTAssertEqual(inst.link?[0].target?[0].link?[0].path, "List.entry.item")
 		XCTAssertEqual(inst.link?[0].target?[0].link?[0].target?[0].compartment?[0].code, CompartmentType(rawValue: "Patient")!)
 		XCTAssertEqual(inst.link?[0].target?[0].link?[0].target?[0].compartment?[0].rule, GraphCompartmentRule(rawValue: "identical")!)
-		XCTAssertEqual(inst.link?[0].target?[0].link?[0].target?[0].type, "Resource")
-		XCTAssertEqual(inst.link?[0].target?[0].type, "List")
+		XCTAssertEqual(inst.link?[0].target?[0].link?[0].target?[0].compartment?[0].use, GraphCompartmentUse(rawValue: "requirement")!)
+		XCTAssertEqual(inst.link?[0].target?[0].link?[0].target?[0].type, ResourceType(rawValue: "Resource")!)
+		XCTAssertEqual(inst.link?[0].target?[0].type, ResourceType(rawValue: "List")!)
 		XCTAssertEqual(inst.name, "Document Generation Template")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
-		XCTAssertEqual(inst.start, "Composition")
+		XCTAssertEqual(inst.start, ResourceType(rawValue: "Composition")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://h7.org/fhir/GraphDefinition/example")

@@ -2,8 +2,8 @@
 //  AppointmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -49,9 +49,12 @@ class AppointmentResponseTests: XCTestCase {
 		XCTAssertEqual(inst.id, "exampleresp")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/sampleappointmentresponse-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "response123")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.participantStatus, ParticipationStatus(rawValue: "tentative")!)
 		XCTAssertEqual(inst.participantType?[0].coding?[0].code, "ATND")
-		XCTAssertEqual(inst.participantType?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
+		XCTAssertEqual(inst.participantType?[0].coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ParticipationType")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T13:15:00Z")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Accept Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -78,6 +81,9 @@ class AppointmentResponseTests: XCTestCase {
 		XCTAssertEqual(inst.appointment?.display, "Brian MRI results discussion")
 		XCTAssertEqual(inst.appointment?.reference, "Appointment/example")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.participantStatus, ParticipationStatus(rawValue: "accepted")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Accept Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

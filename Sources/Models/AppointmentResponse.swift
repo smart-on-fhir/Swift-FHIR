@@ -2,8 +2,8 @@
 //  AppointmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ open class AppointmentResponse: DomainResource {
 		get { return "AppointmentResponse" }
 	}
 	
-	/// Person, Location/HealthcareService or Device.
+	/// Person, Location, HealthcareService, or Device.
 	public var actor: Reference?
 	
 	/// Appointment this response relates to.

@@ -2,8 +2,8 @@
 //  RelatedArtifact.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -28,8 +28,11 @@ open class RelatedArtifact: Element {
 	/// What document is being referenced.
 	public var document: Attachment?
 	
+	/// Short label.
+	public var label: FHIRString?
+	
 	/// What resource is being referenced.
-	public var resource: Reference?
+	public var resource: FHIRURL?
 	
 	/// The type of relationship to the related artifact.
 	public var type: RelatedArtifactType?
@@ -51,7 +54,8 @@ open class RelatedArtifact: Element {
 		citation = createInstance(type: FHIRString.self, for: "citation", in: json, context: &instCtx, owner: self) ?? citation
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		document = createInstance(type: Attachment.self, for: "document", in: json, context: &instCtx, owner: self) ?? document
-		resource = createInstance(type: Reference.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
+		label = createInstance(type: FHIRString.self, for: "label", in: json, context: &instCtx, owner: self) ?? label
+		resource = createInstance(type: FHIRURL.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
 		type = createEnum(type: RelatedArtifactType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
@@ -65,6 +69,7 @@ open class RelatedArtifact: Element {
 		self.citation?.decorate(json: &json, withKey: "citation", errors: &errors)
 		self.display?.decorate(json: &json, withKey: "display", errors: &errors)
 		self.document?.decorate(json: &json, withKey: "document", errors: &errors)
+		self.label?.decorate(json: &json, withKey: "label", errors: &errors)
 		self.resource?.decorate(json: &json, withKey: "resource", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {

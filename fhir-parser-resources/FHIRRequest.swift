@@ -52,15 +52,26 @@ public struct FHIRRequestHeaders {
 	/// All the headers the instance is holding on to.
 	public var headers: [FHIRRequestHeaderField: String]
 	
+	/// Other custom headers.
+	public var customHeaders: [String: String]
+	
 	public init(_ headers: [FHIRRequestHeaderField: String]? = nil) {
 		var hdrs = [FHIRRequestHeaderField.acceptCharset: "utf-8"]
 		headers?.forEach() { hdrs[$0] = $1 }
 		self.headers = hdrs
+		self.customHeaders = [:]
 	}
 	
 	public subscript(key: FHIRRequestHeaderField) -> String? {
 		get { return headers[key] }
 		set { headers[key] = newValue }
+	}
+	
+	public func merged(with headers: FHIRRequestHeaders) -> FHIRRequestHeaders {
+		var merged = self
+		headers.headers.forEach { merged.headers[$0] = $1 }
+		headers.customHeaders.forEach { merged.customHeaders[$0] = $1 }
+		return merged
 	}
 	
 	
@@ -70,6 +81,9 @@ public struct FHIRRequestHeaders {
 	public func prepare(request: inout URLRequest) {
 		headers.forEach {
 			request.setValue($1, forHTTPHeaderField: $0.rawValue)
+		}
+		customHeaders.forEach {
+			request.setValue($1, forHTTPHeaderField: $0)
 		}
 	}
 }

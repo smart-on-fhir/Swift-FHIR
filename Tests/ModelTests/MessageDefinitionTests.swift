@@ -2,8 +2,8 @@
 //  MessageDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -40,18 +40,17 @@ class MessageDefinitionTests: XCTestCase {
 	func runMessageDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRMessageDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "messagedefinition-example.json")
 		
-		XCTAssertEqual(inst.category, MessageSignificanceCategory(rawValue: "Notification")!)
+		XCTAssertEqual(inst.category, MessageSignificanceCategory(rawValue: "notification")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org")
 		XCTAssertEqual(inst.date?.description, "2016-11-09")
-		XCTAssertEqual(inst.event?.code, "communication-request")
-		XCTAssertEqual(inst.event?.system?.absoluteString, "http://hl7.org/fhir/message-events")
+		XCTAssertEqual(inst.eventCoding?.code, "admin-notify")
+		XCTAssertEqual(inst.eventCoding?.system?.absoluteString, "http://example.org/fhir/message-events")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.name, "EXAMPLE")
 		XCTAssertEqual(inst.publisher, "Health Level Seven, Int'l")
-		XCTAssertEqual(inst.purpose, "Defines a base example for other MessageDefintion instances.")
-		XCTAssertEqual(inst.responseRequired, false)
+		XCTAssertEqual(inst.purpose, "Defines a base example for other MessageDefinition instances.")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Message definition base example</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

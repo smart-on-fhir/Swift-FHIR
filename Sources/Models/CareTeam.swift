@@ -2,8 +2,8 @@
 //  CareTeam.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CareTeam) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -23,8 +23,8 @@ open class CareTeam: DomainResource {
 	/// Type of team.
 	public var category: [CodeableConcept]?
 	
-	/// Encounter or episode associated with CareTeam.
-	public var context: Reference?
+	/// Encounter created as part of.
+	public var encounter: Reference?
 	
 	/// External Ids for this team.
 	public var identifier: [Identifier]?
@@ -56,12 +56,15 @@ open class CareTeam: DomainResource {
 	/// Who care team is for.
 	public var subject: Reference?
 	
+	/// A contact detail for the care team (that applies to all members).
+	public var telecom: [ContactPoint]?
+	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
-		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		managingOrganization = createInstances(of: Reference.self, for: "managingOrganization", in: json, context: &instCtx, owner: self) ?? managingOrganization
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
@@ -72,13 +75,14 @@ open class CareTeam: DomainResource {
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		status = createEnum(type: CareTeamStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
+		telecom = createInstances(of: ContactPoint.self, for: "telecom", in: json, context: &instCtx, owner: self) ?? telecom
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
-		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
+		self.encounter?.decorate(json: &json, withKey: "encounter", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		arrayDecorate(json: &json, withKey: "managingOrganization", using: self.managingOrganization, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
@@ -89,6 +93,7 @@ open class CareTeam: DomainResource {
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
+		arrayDecorate(json: &json, withKey: "telecom", using: self.telecom, errors: &errors)
 	}
 }
 
@@ -113,7 +118,7 @@ open class CareTeamParticipant: BackboneElement {
 	public var period: Period?
 	
 	/// Type of involvement.
-	public var role: CodeableConcept?
+	public var role: [CodeableConcept]?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -122,7 +127,7 @@ open class CareTeamParticipant: BackboneElement {
 		member = createInstance(type: Reference.self, for: "member", in: json, context: &instCtx, owner: self) ?? member
 		onBehalfOf = createInstance(type: Reference.self, for: "onBehalfOf", in: json, context: &instCtx, owner: self) ?? onBehalfOf
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
-		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -131,7 +136,7 @@ open class CareTeamParticipant: BackboneElement {
 		self.member?.decorate(json: &json, withKey: "member", errors: &errors)
 		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
-		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
+		arrayDecorate(json: &json, withKey: "role", using: self.role, errors: &errors)
 	}
 }
 

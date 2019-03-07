@@ -2,8 +2,8 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -19,11 +19,11 @@ open class DocumentManifest: DomainResource {
 		get { return "DocumentManifest" }
 	}
 	
-	/// Who and/or what authored the manifest.
+	/// Who and/or what authored the DocumentManifest.
 	public var author: [Reference]?
 	
-	/// The items included.
-	public var content: [DocumentManifestContent]?
+	/// Items in manifest.
+	public var content: [Reference]?
 	
 	/// When this document manifest created.
 	public var created: DateTime?
@@ -57,7 +57,7 @@ open class DocumentManifest: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: [DocumentManifestContent], status: DocumentReferenceStatus) {
+	public convenience init(content: [Reference], status: DocumentReferenceStatus) {
 		self.init()
 		self.content = content
 		self.status = status
@@ -68,7 +68,7 @@ open class DocumentManifest: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		author = createInstances(of: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
-		content = createInstances(of: DocumentManifestContent.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
+		content = createInstances(of: Reference.self, for: "content", in: json, context: &instCtx, owner: self) ?? content
 		if (nil == content || content!.isEmpty) && !instCtx.containsKey("content") {
 			instCtx.addError(FHIRValidationError(missing: "content"))
 		}
@@ -108,65 +108,6 @@ open class DocumentManifest: DomainResource {
 		}
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
-	}
-}
-
-
-/**
-The items included.
-
-The list of Documents included in the manifest.
-*/
-open class DocumentManifestContent: BackboneElement {
-	override open class var resourceType: String {
-		get { return "DocumentManifestContent" }
-	}
-	
-	/// Contents of this set of documents.
-	public var pAttachment: Attachment?
-	
-	/// Contents of this set of documents.
-	public var pReference: Reference?
-	
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(p: Any) {
-		self.init()
-		if let value = p as? Attachment {
-			self.pAttachment = value
-		}
-		else if let value = p as? Reference {
-			self.pReference = value
-		}
-		else {
-			fhir_warn("Type “\(type(of: p))” for property “\(p)” is invalid, ignoring")
-		}
-	}
-	
-	
-	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
-		super.populate(from: json, context: &instCtx)
-		
-		pAttachment = createInstance(type: Attachment.self, for: "pAttachment", in: json, context: &instCtx, owner: self) ?? pAttachment
-		pReference = createInstance(type: Reference.self, for: "pReference", in: json, context: &instCtx, owner: self) ?? pReference
-		
-		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.pAttachment && nil == self.pReference {
-			instCtx.addError(FHIRValidationError(missing: "p[x]"))
-		}
-		
-	}
-	
-	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
-		super.decorate(json: &json, errors: &errors)
-		
-		self.pAttachment?.decorate(json: &json, withKey: "pAttachment", errors: &errors)
-		self.pReference?.decorate(json: &json, withKey: "pReference", errors: &errors)
-		
-		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
-		if nil == self.pAttachment && nil == self.pReference {
-			errors.append(FHIRValidationError(missing: "p[x]"))
-		}
 	}
 }
 

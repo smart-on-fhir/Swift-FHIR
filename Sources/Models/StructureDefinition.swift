@@ -2,8 +2,8 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -29,19 +29,16 @@ open class StructureDefinition: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Where the extension can be used in instances.
-	public var context: [FHIRString]?
+	/// If an extension, where it can be used in instances.
+	public var context: [StructureDefinitionContext]?
 	
 	/// FHIRPath invariants - when the extension can be used.
 	public var contextInvariant: [FHIRString]?
 	
-	/// If this is an extension, Identifies the context within FHIR resources where the extension can be used.
-	public var contextType: ExtensionContext?
-	
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// How the type relates to the baseDefinition.
@@ -93,12 +90,12 @@ open class StructureDefinition: DomainResource {
 	public var title: FHIRString?
 	
 	/// Type defined or constrained by this structure.
-	public var type: FHIRString?
+	public var type: FHIRURL?
 	
-	/// Logical URI to reference this structure definition (globally unique).
+	/// Canonical identifier for this structure definition, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the structure definition.
@@ -106,7 +103,7 @@ open class StructureDefinition: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(abstract: FHIRBool, kind: StructureDefinitionKind, name: FHIRString, status: PublicationStatus, type: FHIRString, url: FHIRURL) {
+	public convenience init(abstract: FHIRBool, kind: StructureDefinitionKind, name: FHIRString, status: PublicationStatus, type: FHIRURL, url: FHIRURL) {
 		self.init()
 		self.abstract = abstract
 		self.kind = kind
@@ -126,9 +123,8 @@ open class StructureDefinition: DomainResource {
 		}
 		baseDefinition = createInstance(type: FHIRURL.self, for: "baseDefinition", in: json, context: &instCtx, owner: self) ?? baseDefinition
 		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
-		context = createInstances(of: FHIRString.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
+		context = createInstances(of: StructureDefinitionContext.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		contextInvariant = createInstances(of: FHIRString.self, for: "contextInvariant", in: json, context: &instCtx, owner: self) ?? contextInvariant
-		contextType = createEnum(type: ExtensionContext.self, for: "contextType", in: json, context: &instCtx) ?? contextType
 		copyright = createInstance(type: FHIRString.self, for: "copyright", in: json, context: &instCtx, owner: self) ?? copyright
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		derivation = createEnum(type: TypeDerivationRule.self, for: "derivation", in: json, context: &instCtx) ?? derivation
@@ -156,7 +152,7 @@ open class StructureDefinition: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
-		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		type = createInstance(type: FHIRURL.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
@@ -179,7 +175,6 @@ open class StructureDefinition: DomainResource {
 		arrayDecorate(json: &json, withKey: "contact", using: self.contact, errors: &errors)
 		arrayDecorate(json: &json, withKey: "context", using: self.context, errors: &errors)
 		arrayDecorate(json: &json, withKey: "contextInvariant", using: self.contextInvariant, errors: &errors)
-		self.contextType?.decorate(json: &json, withKey: "contextType", errors: &errors)
 		self.copyright?.decorate(json: &json, withKey: "copyright", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.derivation?.decorate(json: &json, withKey: "derivation", errors: &errors)
@@ -217,6 +212,59 @@ open class StructureDefinition: DomainResource {
 		}
 		arrayDecorate(json: &json, withKey: "useContext", using: self.useContext, errors: &errors)
 		self.version?.decorate(json: &json, withKey: "version", errors: &errors)
+	}
+}
+
+
+/**
+If an extension, where it can be used in instances.
+
+Identifies the types of resource or data type elements to which the extension can be applied.
+*/
+open class StructureDefinitionContext: BackboneElement {
+	override open class var resourceType: String {
+		get { return "StructureDefinitionContext" }
+	}
+	
+	/// Where the extension can be used in instances.
+	public var expression: FHIRString?
+	
+	/// Defines how to interpret the expression that defines what the context of the extension is.
+	public var type: ExtensionContextType?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(expression: FHIRString, type: ExtensionContextType) {
+		self.init()
+		self.expression = expression
+		self.type = type
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		expression = createInstance(type: FHIRString.self, for: "expression", in: json, context: &instCtx, owner: self) ?? expression
+		if nil == expression && !instCtx.containsKey("expression") {
+			instCtx.addError(FHIRValidationError(missing: "expression"))
+		}
+		type = createEnum(type: ExtensionContextType.self, for: "type", in: json, context: &instCtx) ?? type
+		if nil == type && !instCtx.containsKey("type") {
+			instCtx.addError(FHIRValidationError(missing: "type"))
+		}
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.expression?.decorate(json: &json, withKey: "expression", errors: &errors)
+		if nil == self.expression {
+			errors.append(FHIRValidationError(missing: "expression"))
+		}
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		if nil == self.type {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
 	}
 }
 
@@ -321,7 +369,7 @@ open class StructureDefinitionMapping: BackboneElement {
 /**
 Snapshot view of the structure.
 
-A snapshot view is expressed in a stand alone form that can be used and interpreted without considering the base
+A snapshot view is expressed in a standalone form that can be used and interpreted without considering the base
 StructureDefinition.
 */
 open class StructureDefinitionSnapshot: BackboneElement {

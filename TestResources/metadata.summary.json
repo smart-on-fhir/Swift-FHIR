@@ -2,7 +2,7 @@
 	"resourceType": "CapabilityStatement",
 	"id": "FhirServer",
 	"url": "http://fhir3.healthintersections.com.au:80/open/metadata",
-	"version": "1.9.0-1.0.118",
+	"version": "4.0.0",
 	"meta": {
 		"tag": [{
 			"system": "http://hl7.org/fhir/v3/ObservationValue",
@@ -37,8 +37,7 @@
 		"description": "FHIR Server running at http://fhir3.healthintersections.com.au:80/open",
 		"url": "http://fhir3.healthintersections.com.au:80/open"
 	},
-	"fhirVersion": "1.9.0",
-	"acceptUnknown": "both",
+	"fhirVersion": "4.0.0",
 	"format": [
 		"application/fhir+xml",
 		"application/fhir+json"
@@ -110,158 +109,125 @@
 			"resource": [
 				{
 					"type": "Account",
-					"profile": {
-						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/account"
-					}
+					"profile": "http://fhir3.healthintersections.com.au/open/StructureDefinition/account"
 				},
 				{
 					"type": "ActivityDefinition",
-					"profile": {
-						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/activitydefinition"
-					}
+					"profile": "http://fhir3.healthintersections.com.au/open/StructureDefinition/activitydefinition"
 				},
 				{
 					"type": "AdverseEvent",
-					"profile": {
-						"reference": "http://fhir3.healthintersections.com.au/open/StructureDefinition/adverseevent"
-					}
+					"profile": "http://fhir3.healthintersections.com.au/open/StructureDefinition/adverseevent"
 				}
 			],
 			"operation": [
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"
-					}
+					"name": "expand",
+					"definition": "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-lookup"
-					}
+					"name": "lookup",
+					"definition": "http://hl7.org/fhir/OperationDefinition/CodeSystem-lookup"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-validate"
-					}
+					"name": "validate-code",
+					"definition": "http://hl7.org/fhir/OperationDefinition/Resource-validate"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"
-					}
+					"name": "translate",
+					"definition": "http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/ConceptMap-closure"
-					}
+					"name": "closure",
+					"definition": "http://hl7.org/fhir/OperationDefinition/ConceptMap-closure"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code"
-					}
+					"name": "validate",
+					"definition": "http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-document"
-					}
+					"name": "document",
+					"definition": "OperationDefinition/fso-document"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/Patient-everything"
-					}
+					"name": "everything",
+					"definition": "http://hl7.org/fhir/OperationDefinition/Patient-everything"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-qa-edit"
-					}
+					"name": "qa-edit",
+					"definition": "OperationDefinition/fso-qa-edit"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-qa-post"
-					}
+					"name": "qa-post",
+					"definition": "OperationDefinition/fso-qa-post"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-questionnaire"
-					}
+					"name": "questionnaire",
+					"definition": "OperationDefinition/fso-questionnaire"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-process"
-					}
+					"name": "process",
+					"definition": "OperationDefinition/fso-process"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-current"
-					}
+					"name": "current",
+					"definition": "OperationDefinition/fso-current"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-snapshot"
-					}
+					"name": "snapshot",
+					"definition": "OperationDefinition/fso-snapshot"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-cds-hook"
-					}
+					"name": "cds-hook",
+					"definition": "OperationDefinition/fso-cds-hook"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-generate-template"
-					}
+					"name": "generate-template",
+					"definition": "OperationDefinition/fso-generate-template"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-generate-narrative"
-					}
+					"name": "generate-narrative",
+					"definition": "OperationDefinition/fso-generate-narrative"
 				},
 				{
-					"definition": {
-						"reference": "OperationDefinition/fso-suggest-keywords"
-					}
+					"name": "suggest-keywords",
+					"definition": "OperationDefinition/fso-suggest-keywords"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta"
-					}
+					"name": "meta",
+					"definition": "http://hl7.org/fhir/OperationDefinition/Resource-meta"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
-					}
+					"name": "meta-add",
+					"definition": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
-					}
+					"name": "meta-delete",
+					"definition": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/Resource-diff"
-					}
+					"name": "diff",
+					"definition": "http://hl7.org/fhir/OperationDefinition/Resource-diff"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/StructureMap-transform"
-					}
+					"name": "transform",
+					"definition": "http://hl7.org/fhir/OperationDefinition/StructureMap-transform"
 				},
 				{
-					"definition": {
-						"reference": "not done yet"
-					}
+					"name": "activate",
+					"definition": "not done yet"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes"
-					}
+					"name": "subsumes",
+					"definition": "http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/CodeSystem-compose"
-					}
+					"name": "compose",
+					"definition":"http://hl7.org/fhir/OperationDefinition/CodeSystem-compose"
 				},
 				{
-					"definition": {
-						"reference": "http://hl7.org/fhir/OperationDefinition/Observation-Stats"
-					}
+					"name": "stats",
+					"definition": "http://hl7.org/fhir/OperationDefinition/Observation-Stats"
 				}
 			]
 		}

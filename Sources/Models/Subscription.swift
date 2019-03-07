@@ -2,20 +2,20 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Subscription) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-A server push subscription criteria.
+Server push subscription criteria.
 
-The subscription resource is used to define a push based subscription from a server to another system. Once a
+The subscription resource is used to define a push-based subscription from a server to another system. Once a
 subscription is registered with the server, the server checks every resource that is created or updated, and if the
-resource matches the given criteria, it sends a message on the defined "channel" so that another system is able to take
-an appropriate action.
+resource matches the given criteria, it sends a message on the defined "channel" so that another system can take an
+appropriate action.
 */
 open class Subscription: DomainResource {
 	override open class var resourceType: String {
@@ -28,7 +28,7 @@ open class Subscription: DomainResource {
 	/// Contact details for source (e.g. troubleshooting).
 	public var contact: [ContactPoint]?
 	
-	/// Rule for server push criteria.
+	/// Rule for server push.
 	public var criteria: FHIRString?
 	
 	/// When to automatically delete the subscription.
@@ -42,9 +42,6 @@ open class Subscription: DomainResource {
 	
 	/// The status of the subscription, which marks the server state for managing the subscription.
 	public var status: SubscriptionStatus?
-	
-	/// A tag to add to matching resources.
-	public var tag: [Coding]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -79,7 +76,6 @@ open class Subscription: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		tag = createInstances(of: Coding.self, for: "tag", in: json, context: &instCtx, owner: self) ?? tag
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -104,7 +100,6 @@ open class Subscription: DomainResource {
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
-		arrayDecorate(json: &json, withKey: "tag", using: self.tag, errors: &errors)
 	}
 }
 
@@ -125,7 +120,7 @@ open class SubscriptionChannel: BackboneElement {
 	/// Usage depends on the channel type.
 	public var header: [FHIRString]?
 	
-	/// Mimetype to send, or omit for no payload.
+	/// MIME type to send, or omit for no payload.
 	public var payload: FHIRString?
 	
 	/// The type of channel to send notifications on.

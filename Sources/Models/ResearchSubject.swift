@@ -2,20 +2,17 @@
 //  ResearchSubject.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchSubject) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
-Investigation to increase healthcare-related patient-independent knowledge.
+Physical entity which is the primary unit of interest in the study.
 
-A process where a researcher or organization plans and then executes a series of steps intended to increase the field of
-healthcare-related knowledge.  This includes studies of safety, efficacy, comparative effectiveness and other
-information about medications, devices, therapies and other interventional and investigative techniques.  A
-ResearchStudy involves the gathering of information about human or animal subjects.
+A physical entity which is the primary unit of operational and/or administrative interest in a study.
 */
 open class ResearchSubject: DomainResource {
 	override open class var resourceType: String {
@@ -31,8 +28,8 @@ open class ResearchSubject: DomainResource {
 	/// Agreement to participate in study.
 	public var consent: Reference?
 	
-	/// Business Identifier for research subject.
-	public var identifier: Identifier?
+	/// Business Identifier for research subject in a study.
+	public var identifier: [Identifier]?
 	
 	/// Who is part of study.
 	public var individual: Reference?
@@ -62,7 +59,7 @@ open class ResearchSubject: DomainResource {
 		actualArm = createInstance(type: FHIRString.self, for: "actualArm", in: json, context: &instCtx, owner: self) ?? actualArm
 		assignedArm = createInstance(type: FHIRString.self, for: "assignedArm", in: json, context: &instCtx, owner: self) ?? assignedArm
 		consent = createInstance(type: Reference.self, for: "consent", in: json, context: &instCtx, owner: self) ?? consent
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		individual = createInstance(type: Reference.self, for: "individual", in: json, context: &instCtx, owner: self) ?? individual
 		if nil == individual && !instCtx.containsKey("individual") {
 			instCtx.addError(FHIRValidationError(missing: "individual"))
@@ -84,7 +81,7 @@ open class ResearchSubject: DomainResource {
 		self.actualArm?.decorate(json: &json, withKey: "actualArm", errors: &errors)
 		self.assignedArm?.decorate(json: &json, withKey: "assignedArm", errors: &errors)
 		self.consent?.decorate(json: &json, withKey: "consent", errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
+		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.individual?.decorate(json: &json, withKey: "individual", errors: &errors)
 		if nil == self.individual {
 			errors.append(FHIRValidationError(missing: "individual"))

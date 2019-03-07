@@ -2,8 +2,8 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ open class HealthcareService: DomainResource {
 		get { return "HealthcareService" }
 	}
 	
-	/// Whether this healthcareservice is in active use.
+	/// Whether this HealthcareService record is in active use.
 	public var active: FHIRBool?
 	
 	/// If an appointment is required for access to this service.
@@ -30,7 +30,7 @@ open class HealthcareService: DomainResource {
 	public var availableTime: [HealthcareServiceAvailableTime]?
 	
 	/// Broad category of service being performed or delivered.
-	public var category: CodeableConcept?
+	public var category: [CodeableConcept]?
 	
 	/// Collection of characteristics (attributes).
 	public var characteristic: [CodeableConcept]?
@@ -38,16 +38,16 @@ open class HealthcareService: DomainResource {
 	/// Additional description and/or any specific issues not covered elsewhere.
 	public var comment: FHIRString?
 	
-	/// Location(s) service is inteded for/available to.
+	/// The language that this service is offered in.
+	public var communication: [CodeableConcept]?
+	
+	/// Location(s) service is intended for/available to.
 	public var coverageArea: [Reference]?
 	
 	/// Specific eligibility requirements required to use the service.
-	public var eligibility: CodeableConcept?
+	public var eligibility: [HealthcareServiceEligibility]?
 	
-	/// Describes the eligibility conditions for the service.
-	public var eligibilityNote: FHIRString?
-	
-	/// Technical endpoints providing access to services operated for the location.
+	/// Technical endpoints providing access to electronic services operated for the healthcare service.
 	public var endpoint: [Reference]?
 	
 	/// Extra details about the service that can't be placed in the other fields.
@@ -68,8 +68,8 @@ open class HealthcareService: DomainResource {
 	/// Facilitates quick identification of the service.
 	public var photo: Attachment?
 	
-	/// Program Names that categorize the service.
-	public var programName: [FHIRString]?
+	/// Programs that this service is applicable to.
+	public var program: [CodeableConcept]?
 	
 	/// Organization that provides this service.
 	public var providedBy: Reference?
@@ -97,12 +97,12 @@ open class HealthcareService: DomainResource {
 		appointmentRequired = createInstance(type: FHIRBool.self, for: "appointmentRequired", in: json, context: &instCtx, owner: self) ?? appointmentRequired
 		availabilityExceptions = createInstance(type: FHIRString.self, for: "availabilityExceptions", in: json, context: &instCtx, owner: self) ?? availabilityExceptions
 		availableTime = createInstances(of: HealthcareServiceAvailableTime.self, for: "availableTime", in: json, context: &instCtx, owner: self) ?? availableTime
-		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
+		category = createInstances(of: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		characteristic = createInstances(of: CodeableConcept.self, for: "characteristic", in: json, context: &instCtx, owner: self) ?? characteristic
 		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
+		communication = createInstances(of: CodeableConcept.self, for: "communication", in: json, context: &instCtx, owner: self) ?? communication
 		coverageArea = createInstances(of: Reference.self, for: "coverageArea", in: json, context: &instCtx, owner: self) ?? coverageArea
-		eligibility = createInstance(type: CodeableConcept.self, for: "eligibility", in: json, context: &instCtx, owner: self) ?? eligibility
-		eligibilityNote = createInstance(type: FHIRString.self, for: "eligibilityNote", in: json, context: &instCtx, owner: self) ?? eligibilityNote
+		eligibility = createInstances(of: HealthcareServiceEligibility.self, for: "eligibility", in: json, context: &instCtx, owner: self) ?? eligibility
 		endpoint = createInstances(of: Reference.self, for: "endpoint", in: json, context: &instCtx, owner: self) ?? endpoint
 		extraDetails = createInstance(type: FHIRString.self, for: "extraDetails", in: json, context: &instCtx, owner: self) ?? extraDetails
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
@@ -110,7 +110,7 @@ open class HealthcareService: DomainResource {
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		notAvailable = createInstances(of: HealthcareServiceNotAvailable.self, for: "notAvailable", in: json, context: &instCtx, owner: self) ?? notAvailable
 		photo = createInstance(type: Attachment.self, for: "photo", in: json, context: &instCtx, owner: self) ?? photo
-		programName = createInstances(of: FHIRString.self, for: "programName", in: json, context: &instCtx, owner: self) ?? programName
+		program = createInstances(of: CodeableConcept.self, for: "program", in: json, context: &instCtx, owner: self) ?? program
 		providedBy = createInstance(type: Reference.self, for: "providedBy", in: json, context: &instCtx, owner: self) ?? providedBy
 		referralMethod = createInstances(of: CodeableConcept.self, for: "referralMethod", in: json, context: &instCtx, owner: self) ?? referralMethod
 		serviceProvisionCode = createInstances(of: CodeableConcept.self, for: "serviceProvisionCode", in: json, context: &instCtx, owner: self) ?? serviceProvisionCode
@@ -126,12 +126,12 @@ open class HealthcareService: DomainResource {
 		self.appointmentRequired?.decorate(json: &json, withKey: "appointmentRequired", errors: &errors)
 		self.availabilityExceptions?.decorate(json: &json, withKey: "availabilityExceptions", errors: &errors)
 		arrayDecorate(json: &json, withKey: "availableTime", using: self.availableTime, errors: &errors)
-		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
+		arrayDecorate(json: &json, withKey: "category", using: self.category, errors: &errors)
 		arrayDecorate(json: &json, withKey: "characteristic", using: self.characteristic, errors: &errors)
 		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
+		arrayDecorate(json: &json, withKey: "communication", using: self.communication, errors: &errors)
 		arrayDecorate(json: &json, withKey: "coverageArea", using: self.coverageArea, errors: &errors)
-		self.eligibility?.decorate(json: &json, withKey: "eligibility", errors: &errors)
-		self.eligibilityNote?.decorate(json: &json, withKey: "eligibilityNote", errors: &errors)
+		arrayDecorate(json: &json, withKey: "eligibility", using: self.eligibility, errors: &errors)
 		arrayDecorate(json: &json, withKey: "endpoint", using: self.endpoint, errors: &errors)
 		self.extraDetails?.decorate(json: &json, withKey: "extraDetails", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
@@ -139,7 +139,7 @@ open class HealthcareService: DomainResource {
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		arrayDecorate(json: &json, withKey: "notAvailable", using: self.notAvailable, errors: &errors)
 		self.photo?.decorate(json: &json, withKey: "photo", errors: &errors)
-		arrayDecorate(json: &json, withKey: "programName", using: self.programName, errors: &errors)
+		arrayDecorate(json: &json, withKey: "program", using: self.program, errors: &errors)
 		self.providedBy?.decorate(json: &json, withKey: "providedBy", errors: &errors)
 		arrayDecorate(json: &json, withKey: "referralMethod", using: self.referralMethod, errors: &errors)
 		arrayDecorate(json: &json, withKey: "serviceProvisionCode", using: self.serviceProvisionCode, errors: &errors)
@@ -194,6 +194,39 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 
 
 /**
+Specific eligibility requirements required to use the service.
+
+Does this service have specific eligibility requirements that need to be met in order to use the service?
+*/
+open class HealthcareServiceEligibility: BackboneElement {
+	override open class var resourceType: String {
+		get { return "HealthcareServiceEligibility" }
+	}
+	
+	/// Coded value for the eligibility.
+	public var code: CodeableConcept?
+	
+	/// Describes the eligibility conditions for the service.
+	public var comment: FHIRString?
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		code = createInstance(type: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
+		comment = createInstance(type: FHIRString.self, for: "comment", in: json, context: &instCtx, owner: self) ?? comment
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
+		self.comment?.decorate(json: &json, withKey: "comment", errors: &errors)
+	}
+}
+
+
+/**
 Not available during this time due to provided reason.
 
 The HealthcareService is not available during this period of time due to the provided reason.
@@ -206,7 +239,7 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 	/// Reason presented to the user explaining why time not available.
 	public var description_fhir: FHIRString?
 	
-	/// Service not availablefrom this date.
+	/// Service not available from this date.
 	public var during: Period?
 	
 	

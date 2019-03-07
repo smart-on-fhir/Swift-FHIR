@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FHIR"
-  s.version      = "3.0.0"
+  s.version      = "4.0.0"
   s.summary      = "Swift 🔥FHIR data model classes, with some goodies."
   s.description  = <<-DESC
                    Swift 🔥FHIR data model classes, generated from spec. Uses custom Date/Time structs to facilitate
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.author       = { "Pascal Pfiffner" => "phase.of.matter@gmail.com" }
   s.source       = { :git => "https://github.com/smart-on-fhir/Swift-FHIR.git", :tag => "#{s.version}" }
 
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "11.0"
   s.osx.deployment_target = "10.10"
   s.requires_arc          = true
   s.pod_target_xcconfig   = { 'OTHER_SWIFT_FLAGS' => '-DNO_MODEL_IMPORT' }

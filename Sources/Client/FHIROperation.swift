@@ -47,7 +47,7 @@ open class FHIROperation: CustomStringConvertible {
 	var instance: Resource? {
 		didSet {
 			if let inst = instance {
-				type = type(of: inst)
+				type = Swift.type(of: inst)
 				context = .instance
 			}
 		}
@@ -87,7 +87,7 @@ open class FHIROperation: CustomStringConvertible {
 			guard definition.type?.bool ?? false else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in type context")
 			}
-			guard let resources = definition.resource, let typ = type, resources.contains(FHIRString(typ.resourceType)) else {
+			guard let resources = definition.resource, let typ = type, let resType = ResourceType(rawValue: typ.resourceType), resources.contains(resType) else {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed against \(String(describing: type)) type")
 			}
 		case .instance:
@@ -181,5 +181,5 @@ open class FHIROperation: CustomStringConvertible {
 
 
 /// Alias to `FHIROperation` for neat operation usage.
-public typealias $ = FHIROperation
+public typealias `$` = FHIROperation
 

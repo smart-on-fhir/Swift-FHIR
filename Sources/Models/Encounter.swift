@@ -2,8 +2,8 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Encounter) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -20,14 +20,17 @@ open class Encounter: DomainResource {
 		get { return "Encounter" }
 	}
 	
-	/// inpatient | outpatient | ambulatory | emergency +.
+	/// Classification of patient encounter.
 	public var `class`: Coding?
 	
 	/// The set of accounts that may be used for billing for this Encounter.
 	public var account: [Reference]?
 	
 	/// The appointment that scheduled this encounter.
-	public var appointment: Reference?
+	public var appointment: [Reference]?
+	
+	/// The ServiceRequest that initiated this encounter.
+	public var basedOn: [Reference]?
 	
 	/// List of past encounter classes.
 	public var classHistory: [EncounterClassHistory]?
@@ -43,9 +46,6 @@ open class Encounter: DomainResource {
 	
 	/// Identifier(s) by which this encounter is known.
 	public var identifier: [Identifier]?
-	
-	/// The ReferralRequest that initiated this encounter.
-	public var incomingReferral: [Reference]?
 	
 	/// Quantity of time the encounter lasted (less time absent).
 	public var length: Duration?
@@ -65,11 +65,17 @@ open class Encounter: DomainResource {
 	/// Indicates the urgency of the encounter.
 	public var priority: CodeableConcept?
 	
-	/// Reason the encounter takes place (code).
-	public var reason: [CodeableConcept]?
+	/// Coded reason the encounter takes place.
+	public var reasonCode: [CodeableConcept]?
 	
-	/// The custodian organization of this Encounter record.
+	/// Reason the encounter takes place (reference).
+	public var reasonReference: [Reference]?
+	
+	/// The organization (facility) responsible for this encounter.
 	public var serviceProvider: Reference?
+	
+	/// Specific type of service.
+	public var serviceType: CodeableConcept?
 	
 	/// None
 	public var status: EncounterStatus?
@@ -77,7 +83,7 @@ open class Encounter: DomainResource {
 	/// List of past encounter statuses.
 	public var statusHistory: [EncounterStatusHistory]?
 	
-	/// The patient ro group present at the encounter.
+	/// The patient or group present at the encounter.
 	public var subject: Reference?
 	
 	/// Specific type of encounter.
@@ -85,8 +91,9 @@ open class Encounter: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: EncounterStatus) {
+	public convenience init(`class`: Coding, status: EncounterStatus) {
 		self.init()
+		self.`class` = `class`
 		self.status = status
 	}
 	
@@ -95,22 +102,27 @@ open class Encounter: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		`class` = createInstance(type: Coding.self, for: "class", in: json, context: &instCtx, owner: self) ?? `class`
+		if nil == `class` && !instCtx.containsKey("class") {
+			instCtx.addError(FHIRValidationError(missing: "class"))
+		}
 		account = createInstances(of: Reference.self, for: "account", in: json, context: &instCtx, owner: self) ?? account
-		appointment = createInstance(type: Reference.self, for: "appointment", in: json, context: &instCtx, owner: self) ?? appointment
+		appointment = createInstances(of: Reference.self, for: "appointment", in: json, context: &instCtx, owner: self) ?? appointment
+		basedOn = createInstances(of: Reference.self, for: "basedOn", in: json, context: &instCtx, owner: self) ?? basedOn
 		classHistory = createInstances(of: EncounterClassHistory.self, for: "classHistory", in: json, context: &instCtx, owner: self) ?? classHistory
 		diagnosis = createInstances(of: EncounterDiagnosis.self, for: "diagnosis", in: json, context: &instCtx, owner: self) ?? diagnosis
 		episodeOfCare = createInstances(of: Reference.self, for: "episodeOfCare", in: json, context: &instCtx, owner: self) ?? episodeOfCare
 		hospitalization = createInstance(type: EncounterHospitalization.self, for: "hospitalization", in: json, context: &instCtx, owner: self) ?? hospitalization
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		incomingReferral = createInstances(of: Reference.self, for: "incomingReferral", in: json, context: &instCtx, owner: self) ?? incomingReferral
 		length = createInstance(type: Duration.self, for: "length", in: json, context: &instCtx, owner: self) ?? length
 		location = createInstances(of: EncounterLocation.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
 		partOf = createInstance(type: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
 		participant = createInstances(of: EncounterParticipant.self, for: "participant", in: json, context: &instCtx, owner: self) ?? participant
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		priority = createInstance(type: CodeableConcept.self, for: "priority", in: json, context: &instCtx, owner: self) ?? priority
-		reason = createInstances(of: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
+		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
+		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
 		serviceProvider = createInstance(type: Reference.self, for: "serviceProvider", in: json, context: &instCtx, owner: self) ?? serviceProvider
+		serviceType = createInstance(type: CodeableConcept.self, for: "serviceType", in: json, context: &instCtx, owner: self) ?? serviceType
 		status = createEnum(type: EncounterStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
@@ -124,22 +136,27 @@ open class Encounter: DomainResource {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.`class`?.decorate(json: &json, withKey: "class", errors: &errors)
+		if nil == self.`class` {
+			errors.append(FHIRValidationError(missing: "class"))
+		}
 		arrayDecorate(json: &json, withKey: "account", using: self.account, errors: &errors)
-		self.appointment?.decorate(json: &json, withKey: "appointment", errors: &errors)
+		arrayDecorate(json: &json, withKey: "appointment", using: self.appointment, errors: &errors)
+		arrayDecorate(json: &json, withKey: "basedOn", using: self.basedOn, errors: &errors)
 		arrayDecorate(json: &json, withKey: "classHistory", using: self.classHistory, errors: &errors)
 		arrayDecorate(json: &json, withKey: "diagnosis", using: self.diagnosis, errors: &errors)
 		arrayDecorate(json: &json, withKey: "episodeOfCare", using: self.episodeOfCare, errors: &errors)
 		self.hospitalization?.decorate(json: &json, withKey: "hospitalization", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
-		arrayDecorate(json: &json, withKey: "incomingReferral", using: self.incomingReferral, errors: &errors)
 		self.length?.decorate(json: &json, withKey: "length", errors: &errors)
 		arrayDecorate(json: &json, withKey: "location", using: self.location, errors: &errors)
 		self.partOf?.decorate(json: &json, withKey: "partOf", errors: &errors)
 		arrayDecorate(json: &json, withKey: "participant", using: self.participant, errors: &errors)
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		self.priority?.decorate(json: &json, withKey: "priority", errors: &errors)
-		arrayDecorate(json: &json, withKey: "reason", using: self.reason, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
+		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
 		self.serviceProvider?.decorate(json: &json, withKey: "serviceProvider", errors: &errors)
+		self.serviceType?.decorate(json: &json, withKey: "serviceType", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -155,12 +172,10 @@ open class Encounter: DomainResource {
 List of past encounter classes.
 
 The class history permits the tracking of the encounters transitions without needing to go  through the resource
-history.
-
-This would be used for a case where an admission starts of as an emergency encounter, then transisions into an inpatient
-scenario. Doing this and not restarting a new encounter ensures that any lab/diagnostic results can more easily follow
-the patient and not require re-processing and not get lost or cancelled during a kindof discharge from emergency to
-inpatient.
+history.  This would be used for a case where an admission starts of as an emergency encounter, then transitions into an
+inpatient scenario. Doing this and not restarting a new encounter ensures that any lab/diagnostic results can more
+easily follow the patient and not require re-processing and not get lost or cancelled during a kind of discharge from
+emergency to inpatient.
 */
 open class EncounterClassHistory: BackboneElement {
 	override open class var resourceType: String {
@@ -218,14 +233,14 @@ open class EncounterDiagnosis: BackboneElement {
 		get { return "EncounterDiagnosis" }
 	}
 	
-	/// Reason the encounter takes place (resource).
+	/// The diagnosis or procedure relevant to the encounter.
 	public var condition: Reference?
 	
 	/// Ranking of the diagnosis (for each role type).
 	public var rank: FHIRInteger?
 	
 	/// Role that this diagnosis has within the encounter (e.g. admission, billing, discharge …).
-	public var role: CodeableConcept?
+	public var use: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -239,11 +254,11 @@ open class EncounterDiagnosis: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		condition = createInstance(type: Reference.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
-		if nil == condition && !instCtx.containsKey("condition") && !_isSummaryResource {
+		if nil == condition && !instCtx.containsKey("condition") {
 			instCtx.addError(FHIRValidationError(missing: "condition"))
 		}
 		rank = createInstance(type: FHIRInteger.self, for: "rank", in: json, context: &instCtx, owner: self) ?? rank
-		role = createInstance(type: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
+		use = createInstance(type: CodeableConcept.self, for: "use", in: json, context: &instCtx, owner: self) ?? use
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -254,7 +269,7 @@ open class EncounterDiagnosis: BackboneElement {
 			errors.append(FHIRValidationError(missing: "condition"))
 		}
 		self.rank?.decorate(json: &json, withKey: "rank", errors: &errors)
-		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
+		self.use?.decorate(json: &json, withKey: "use", errors: &errors)
 	}
 }
 
@@ -270,7 +285,7 @@ open class EncounterHospitalization: BackboneElement {
 	/// From where patient was admitted (physician referral, transfer).
 	public var admitSource: CodeableConcept?
 	
-	/// Location to which the patient is discharged.
+	/// Location/organization to which the patient is discharged.
 	public var destination: Reference?
 	
 	/// Diet preferences reported by the patient.
@@ -279,7 +294,7 @@ open class EncounterHospitalization: BackboneElement {
 	/// Category or kind of location after discharge.
 	public var dischargeDisposition: CodeableConcept?
 	
-	/// The location from which the patient came before admission.
+	/// The location/organization from which the patient came before admission.
 	public var origin: Reference?
 	
 	/// Pre-admission identifier.
@@ -342,8 +357,11 @@ open class EncounterLocation: BackboneElement {
 	/// Time period during which the patient was present at the location.
 	public var period: Period?
 	
+	/// The physical type of the location (usually the level in the location hierachy - bed room ward etc.).
+	public var physicalType: CodeableConcept?
+	
 	/// The status of the participants' presence at the specified location during the period specified. If the
-	/// participant is is no longer at the location, then the period will have an end date/time.
+	/// participant is no longer at the location, then the period will have an end date/time.
 	public var status: EncounterLocationStatus?
 	
 	
@@ -362,6 +380,7 @@ open class EncounterLocation: BackboneElement {
 			instCtx.addError(FHIRValidationError(missing: "location"))
 		}
 		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
+		physicalType = createInstance(type: CodeableConcept.self, for: "physicalType", in: json, context: &instCtx, owner: self) ?? physicalType
 		status = createEnum(type: EncounterLocationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 	}
 	
@@ -373,6 +392,7 @@ open class EncounterLocation: BackboneElement {
 			errors.append(FHIRValidationError(missing: "location"))
 		}
 		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
+		self.physicalType?.decorate(json: &json, withKey: "physicalType", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 	}
 }
@@ -381,7 +401,7 @@ open class EncounterLocation: BackboneElement {
 /**
 List of participants involved in the encounter.
 
-The list of people responsible for providing the service.
+The list of people responsible for providing the service.
 */
 open class EncounterParticipant: BackboneElement {
 	override open class var resourceType: String {

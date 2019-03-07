@@ -2,8 +2,8 @@
 //  DeviceRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -45,12 +45,15 @@ class DeviceRequestTests: XCTestCase {
 		XCTAssertEqual(inst.codeCodeableConcept?.coding?[0].code, "43148-6")
 		XCTAssertEqual(inst.codeCodeableConcept?.coding?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.codeCodeableConcept?.text, "Insulin delivery device panel")
-		XCTAssertEqual(inst.context?.display, "Encounter 1")
-		XCTAssertEqual(inst.definition?[0].display, "DM ambulatory protocol II")
+		XCTAssertEqual(inst.encounter?.display, "Encounter 1")
 		XCTAssertEqual(inst.groupIdentifier?.value, "ip_request1")
 		XCTAssertEqual(inst.id, "insulinpump")
 		XCTAssertEqual(inst.identifier?[0].value, "ip_request1.1")
-		XCTAssertEqual(inst.intent?.text, "instance-order")
+		XCTAssertEqual(inst.instantiatesCanonical?[0].absoluteString, "http://motivemi.com/artifacts/PlanDefinition/low-suicide-risk-order-set")
+		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "instance-order")!)
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.note?[0].text, "this is the right device brand and model")
 		XCTAssertEqual(inst.occurrenceDateTime?.description, "2013-05-08T09:33:27+07:00")
 		XCTAssertEqual(inst.performer?.display, "Nurse Rossignol")
@@ -61,9 +64,8 @@ class DeviceRequestTests: XCTestCase {
 		XCTAssertEqual(inst.reasonCode?[0].text, "gastroparesis")
 		XCTAssertEqual(inst.reasonReference?[0].display, "Gastroparesis")
 		XCTAssertEqual(inst.relevantHistory?[0].display, "Request for unspecified device")
-		XCTAssertEqual(inst.requester?.agent?.display, "Dr. Adam Careful")
-		XCTAssertEqual(inst.requester?.agent?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.requester?.onBehalfOf?.reference, "Organization/2.16.840.1.113883.19.5")
+		XCTAssertEqual(inst.requester?.display, "Dr. Adam Careful")
+		XCTAssertEqual(inst.requester?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.status, RequestStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/dicom")
 		XCTAssertEqual(inst.supportingInfo?[0].display, "Previous results")
@@ -88,7 +90,10 @@ class DeviceRequestTests: XCTestCase {
 		
 		XCTAssertEqual(inst.codeReference?.reference, "Device/example")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.intent?.coding?[0].code, "original-order")
+		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "original-order")!)
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.status, RequestStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

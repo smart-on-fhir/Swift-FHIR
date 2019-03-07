@@ -2,8 +2,8 @@
 //  EnrollmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Foundation
 /**
 EnrollmentResponse resource.
 
-This resource provides enrollment and plan details from the processing of an Enrollment resource.
+This resource provides enrollment and plan details from the processing of an EnrollmentRequest resource.
 */
 open class EnrollmentResponse: DomainResource {
 	override open class var resourceType: String {
@@ -31,20 +31,17 @@ open class EnrollmentResponse: DomainResource {
 	/// Insurer.
 	public var organization: Reference?
 	
-	/// complete | error | partial.
-	public var outcome: CodeableConcept?
+	/// Processing status: error, complete.
+	public var outcome: ClaimProcessingCodes?
 	
 	/// Claim reference.
 	public var request: Reference?
 	
-	/// Responsible organization.
-	public var requestOrganization: Reference?
-	
 	/// Responsible practitioner.
 	public var requestProvider: Reference?
 	
-	/// active | cancelled | draft | entered-in-error.
-	public var status: FHIRString?
+	/// The status of the resource instance.
+	public var status: FinancialResourceStatusCodes?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -54,11 +51,10 @@ open class EnrollmentResponse: DomainResource {
 		disposition = createInstance(type: FHIRString.self, for: "disposition", in: json, context: &instCtx, owner: self) ?? disposition
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		organization = createInstance(type: Reference.self, for: "organization", in: json, context: &instCtx, owner: self) ?? organization
-		outcome = createInstance(type: CodeableConcept.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
+		outcome = createEnum(type: ClaimProcessingCodes.self, for: "outcome", in: json, context: &instCtx) ?? outcome
 		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
-		requestOrganization = createInstance(type: Reference.self, for: "requestOrganization", in: json, context: &instCtx, owner: self) ?? requestOrganization
 		requestProvider = createInstance(type: Reference.self, for: "requestProvider", in: json, context: &instCtx, owner: self) ?? requestProvider
-		status = createInstance(type: FHIRString.self, for: "status", in: json, context: &instCtx, owner: self) ?? status
+		status = createEnum(type: FinancialResourceStatusCodes.self, for: "status", in: json, context: &instCtx) ?? status
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -70,7 +66,6 @@ open class EnrollmentResponse: DomainResource {
 		self.organization?.decorate(json: &json, withKey: "organization", errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
 		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
-		self.requestOrganization?.decorate(json: &json, withKey: "requestOrganization", errors: &errors)
 		self.requestProvider?.decorate(json: &json, withKey: "requestProvider", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 	}

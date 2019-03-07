@@ -2,8 +2,8 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,14 +12,16 @@ import Foundation
 /**
 A set of codes drawn from one or more code systems.
 
-A value set specifies a set of codes drawn from one or more code systems.
+A ValueSet resource instance specifies a set of codes drawn from one or more code systems, intended for use in a
+particular context. Value sets link between [CodeSystem](codesystem.html) definitions and their use in [coded
+elements](terminologies.html).
 */
 open class ValueSet: DomainResource {
 	override open class var resourceType: String {
 		get { return "ValueSet" }
 	}
 	
-	/// Definition of the content of the value set (CLD).
+	/// Content logical definition of the value set (CLD).
 	public var compose: ValueSetCompose?
 	
 	/// Contact details for the publisher.
@@ -28,7 +30,7 @@ open class ValueSet: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: FHIRString?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the value set.
@@ -40,10 +42,7 @@ open class ValueSet: DomainResource {
 	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
-	/// Whether this is intended to be used with an extensible binding.
-	public var extensible: FHIRBool?
-	
-	/// Additional identifier for the value set.
+	/// Additional identifier for the value set (business identifier).
 	public var identifier: [Identifier]?
 	
 	/// Indicates whether or not any change to the content logical definition may occur.
@@ -61,16 +60,18 @@ open class ValueSet: DomainResource {
 	/// Why this value set is defined.
 	public var purpose: FHIRString?
 	
-	/// The status of this value set. Enables tracking the life-cycle of the content.
+	/// The status of this value set. Enables tracking the life-cycle of the content. The status of the value set
+	/// applies to the value set definition (ValueSet.compose) and the associated ValueSet metadata. Expansions do not
+	/// have a state.
 	public var status: PublicationStatus?
 	
 	/// Name for this value set (human friendly).
 	public var title: FHIRString?
 	
-	/// Logical URI to reference this value set (globally unique).
+	/// Canonical identifier for this value set, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the value set.
@@ -94,7 +95,6 @@ open class ValueSet: DomainResource {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		expansion = createInstance(type: ValueSetExpansion.self, for: "expansion", in: json, context: &instCtx, owner: self) ?? expansion
 		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
-		extensible = createInstance(type: FHIRBool.self, for: "extensible", in: json, context: &instCtx, owner: self) ?? extensible
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		immutable = createInstance(type: FHIRBool.self, for: "immutable", in: json, context: &instCtx, owner: self) ?? immutable
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
@@ -121,7 +121,6 @@ open class ValueSet: DomainResource {
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.expansion?.decorate(json: &json, withKey: "expansion", errors: &errors)
 		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
-		self.extensible?.decorate(json: &json, withKey: "extensible", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
 		self.immutable?.decorate(json: &json, withKey: "immutable", errors: &errors)
 		arrayDecorate(json: &json, withKey: "jurisdiction", using: self.jurisdiction, errors: &errors)
@@ -141,10 +140,10 @@ open class ValueSet: DomainResource {
 
 
 /**
-Definition of the content of the value set (CLD).
+Content logical definition of the value set (CLD).
 
-A set of criteria that define the content logical definition of the value set by including or excluding codes from
-outside this value set. This I also known as the "Content Logical Definition" (CLD).
+A set of criteria that define the contents of the value set by including or excluding codes selected from the specified
+code system(s) that the value set draws from. This is also known as the Content Logical Definition (CLD).
 */
 open class ValueSetCompose: BackboneElement {
 	override open class var resourceType: String {
@@ -160,7 +159,7 @@ open class ValueSetCompose: BackboneElement {
 	/// Include one or more codes from a code system or other value set(s).
 	public var include: [ValueSetComposeInclude]?
 	
-	/// Fixed date for version-less references (transitive).
+	/// Fixed date for references with no specified version (transitive).
 	public var lockedDate: FHIRDate?
 	
 	
@@ -214,7 +213,7 @@ open class ValueSetComposeInclude: BackboneElement {
 	/// The system the codes come from.
 	public var system: FHIRURL?
 	
-	/// Select only contents included in this value set.
+	/// Select the contents included in this value set.
 	public var valueSet: [FHIRURL]?
 	
 	/// Specific version of the code system referred to.
@@ -308,7 +307,7 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 	/// Human language of the designation.
 	public var language: FHIRString?
 	
-	/// Details how this designation would be used.
+	/// Types of uses of designations.
 	public var use: Coding?
 	
 	/// The text value for this designation.
@@ -349,8 +348,8 @@ open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 /**
 Select codes/concepts by their properties (including relationships).
 
-Select concepts by specify a matching criteria based on the properties (including relationships) defined by the system.
-If multiple filters are specified, they SHALL all be true.
+Select concepts by specify a matching criterion based on the properties (including relationships) defined by the system,
+or on filters defined by the system. If multiple filters are specified, they SHALL all be true.
 */
 open class ValueSetComposeIncludeFilter: BackboneElement {
 	override open class var resourceType: String {
@@ -360,7 +359,7 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 	/// The kind of operation to perform as a part of the filter criteria.
 	public var op: FilterOperator?
 	
-	/// A property defined by the code system.
+	/// A property/filter defined by the code system.
 	public var property: FHIRString?
 	
 	/// Code from the system, or regex criteria, or boolean value for exists.
@@ -426,7 +425,7 @@ open class ValueSetExpansion: BackboneElement {
 	/// Codes in the value set.
 	public var contains: [ValueSetExpansionContains]?
 	
-	/// Uniquely identifies this expansion.
+	/// Identifies the value set expansion (business identifier).
 	public var identifier: FHIRURL?
 	
 	/// Offset at which this resource starts.
@@ -443,9 +442,8 @@ open class ValueSetExpansion: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: FHIRURL, timestamp: DateTime) {
+	public convenience init(timestamp: DateTime) {
 		self.init()
-		self.identifier = identifier
 		self.timestamp = timestamp
 	}
 	
@@ -455,9 +453,6 @@ open class ValueSetExpansion: BackboneElement {
 		
 		contains = createInstances(of: ValueSetExpansionContains.self, for: "contains", in: json, context: &instCtx, owner: self) ?? contains
 		identifier = createInstance(type: FHIRURL.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") {
-			instCtx.addError(FHIRValidationError(missing: "identifier"))
-		}
 		offset = createInstance(type: FHIRInteger.self, for: "offset", in: json, context: &instCtx, owner: self) ?? offset
 		parameter = createInstances(of: ValueSetExpansionParameter.self, for: "parameter", in: json, context: &instCtx, owner: self) ?? parameter
 		timestamp = createInstance(type: DateTime.self, for: "timestamp", in: json, context: &instCtx, owner: self) ?? timestamp
@@ -472,9 +467,6 @@ open class ValueSetExpansion: BackboneElement {
 		
 		arrayDecorate(json: &json, withKey: "contains", using: self.contains, errors: &errors)
 		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
-		}
 		self.offset?.decorate(json: &json, withKey: "offset", errors: &errors)
 		arrayDecorate(json: &json, withKey: "parameter", using: self.parameter, errors: &errors)
 		self.timestamp?.decorate(json: &json, withKey: "timestamp", errors: &errors)
@@ -560,7 +552,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		get { return "ValueSetExpansionParameter" }
 	}
 	
-	/// Name as assigned by the server.
+	/// Name as assigned by the client or server.
 	public var name: FHIRString?
 	
 	/// Value of the named parameter.
@@ -568,6 +560,9 @@ open class ValueSetExpansionParameter: BackboneElement {
 	
 	/// Value of the named parameter.
 	public var valueCode: FHIRString?
+	
+	/// Value of the named parameter.
+	public var valueDateTime: DateTime?
 	
 	/// Value of the named parameter.
 	public var valueDecimal: FHIRDecimal?
@@ -598,6 +593,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		}
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
 		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
+		valueDateTime = createInstance(type: DateTime.self, for: "valueDateTime", in: json, context: &instCtx, owner: self) ?? valueDateTime
 		valueDecimal = createInstance(type: FHIRDecimal.self, for: "valueDecimal", in: json, context: &instCtx, owner: self) ?? valueDecimal
 		valueInteger = createInstance(type: FHIRInteger.self, for: "valueInteger", in: json, context: &instCtx, owner: self) ?? valueInteger
 		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
@@ -613,6 +609,7 @@ open class ValueSetExpansionParameter: BackboneElement {
 		}
 		self.valueBoolean?.decorate(json: &json, withKey: "valueBoolean", errors: &errors)
 		self.valueCode?.decorate(json: &json, withKey: "valueCode", errors: &errors)
+		self.valueDateTime?.decorate(json: &json, withKey: "valueDateTime", errors: &errors)
 		self.valueDecimal?.decorate(json: &json, withKey: "valueDecimal", errors: &errors)
 		self.valueInteger?.decorate(json: &json, withKey: "valueInteger", errors: &errors)
 		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)

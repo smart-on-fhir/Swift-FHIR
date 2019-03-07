@@ -64,7 +64,7 @@ public struct FHIRURL: FHIRPrimitive, CustomStringConvertible {
 		}
 		else {
 			context.addError(FHIRValidationError(key: "", problem: "“\(json)” is not a valid URI"))
-			url = URL(string: "")!
+			url = URL(string: "error")!	// empty string is invalid URL
 		}
 		_owner = owner
 	}

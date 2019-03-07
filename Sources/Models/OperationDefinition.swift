@@ -2,8 +2,8 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -20,8 +20,11 @@ open class OperationDefinition: DomainResource {
 		get { return "OperationDefinition" }
 	}
 	
+	/// Whether content is changed by the operation.
+	public var affectsState: FHIRBool?
+	
 	/// Marks this as a profile of the base.
-	public var base: Reference?
+	public var base: FHIRURL?
 	
 	/// Name used to invoke the operation.
 	public var code: FHIRString?
@@ -32,7 +35,7 @@ open class OperationDefinition: DomainResource {
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
-	/// Date this was last changed.
+	/// Date last changed.
 	public var date: DateTime?
 	
 	/// Natural language description of the operation definition.
@@ -41,8 +44,8 @@ open class OperationDefinition: DomainResource {
 	/// For testing purposes, not real usage.
 	public var experimental: FHIRBool?
 	
-	/// Whether content is unchanged by the operation.
-	public var idempotent: FHIRBool?
+	/// Validation information for in parameters.
+	public var inputProfile: FHIRURL?
 	
 	/// Invoke on an instance?.
 	public var instance: FHIRBool?
@@ -56,6 +59,9 @@ open class OperationDefinition: DomainResource {
 	/// Name for this operation definition (computer friendly).
 	public var name: FHIRString?
 	
+	/// Validation information for out parameters.
+	public var outputProfile: FHIRURL?
+	
 	/// Define overloaded variants for when  generating code.
 	public var overload: [OperationDefinitionOverload]?
 	
@@ -68,8 +74,8 @@ open class OperationDefinition: DomainResource {
 	/// Why this operation definition is defined.
 	public var purpose: FHIRString?
 	
-	/// Types this operation applies to.
-	public var resource: [FHIRString]?
+	/// The types on which this operation can be executed.
+	public var resource: [ResourceType]?
 	
 	/// The status of this operation definition. Enables tracking the life-cycle of the content.
 	public var status: PublicationStatus?
@@ -77,13 +83,16 @@ open class OperationDefinition: DomainResource {
 	/// Invoke at the system level?.
 	public var system: FHIRBool?
 	
-	/// Invole at the type level?.
+	/// Name for this operation definition (human friendly).
+	public var title: FHIRString?
+	
+	/// Invoke at the type level?.
 	public var type: FHIRBool?
 	
-	/// Logical URI to reference this operation definition (globally unique).
+	/// Canonical identifier for this operation definition, represented as a URI (globally unique).
 	public var url: FHIRURL?
 	
-	/// Context the content is intended to support.
+	/// The context that the content is intended to support.
 	public var useContext: [UsageContext]?
 	
 	/// Business version of the operation definition.
@@ -106,7 +115,8 @@ open class OperationDefinition: DomainResource {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		base = createInstance(type: Reference.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
+		affectsState = createInstance(type: FHIRBool.self, for: "affectsState", in: json, context: &instCtx, owner: self) ?? affectsState
+		base = createInstance(type: FHIRURL.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
@@ -116,7 +126,7 @@ open class OperationDefinition: DomainResource {
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
-		idempotent = createInstance(type: FHIRBool.self, for: "idempotent", in: json, context: &instCtx, owner: self) ?? idempotent
+		inputProfile = createInstance(type: FHIRURL.self, for: "inputProfile", in: json, context: &instCtx, owner: self) ?? inputProfile
 		instance = createInstance(type: FHIRBool.self, for: "instance", in: json, context: &instCtx, owner: self) ?? instance
 		if nil == instance && !instCtx.containsKey("instance") {
 			instCtx.addError(FHIRValidationError(missing: "instance"))
@@ -130,11 +140,12 @@ open class OperationDefinition: DomainResource {
 		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
+		outputProfile = createInstance(type: FHIRURL.self, for: "outputProfile", in: json, context: &instCtx, owner: self) ?? outputProfile
 		overload = createInstances(of: OperationDefinitionOverload.self, for: "overload", in: json, context: &instCtx, owner: self) ?? overload
 		parameter = createInstances(of: OperationDefinitionParameter.self, for: "parameter", in: json, context: &instCtx, owner: self) ?? parameter
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
-		resource = createInstances(of: FHIRString.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
+		resource = createEnums(of: ResourceType.self, for: "resource", in: json, context: &instCtx) ?? resource
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
@@ -143,6 +154,7 @@ open class OperationDefinition: DomainResource {
 		if nil == system && !instCtx.containsKey("system") {
 			instCtx.addError(FHIRValidationError(missing: "system"))
 		}
+		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		type = createInstance(type: FHIRBool.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
@@ -155,6 +167,7 @@ open class OperationDefinition: DomainResource {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
+		self.affectsState?.decorate(json: &json, withKey: "affectsState", errors: &errors)
 		self.base?.decorate(json: &json, withKey: "base", errors: &errors)
 		self.code?.decorate(json: &json, withKey: "code", errors: &errors)
 		if nil == self.code {
@@ -165,7 +178,7 @@ open class OperationDefinition: DomainResource {
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		self.experimental?.decorate(json: &json, withKey: "experimental", errors: &errors)
-		self.idempotent?.decorate(json: &json, withKey: "idempotent", errors: &errors)
+		self.inputProfile?.decorate(json: &json, withKey: "inputProfile", errors: &errors)
 		self.instance?.decorate(json: &json, withKey: "instance", errors: &errors)
 		if nil == self.instance {
 			errors.append(FHIRValidationError(missing: "instance"))
@@ -179,6 +192,7 @@ open class OperationDefinition: DomainResource {
 		if nil == self.name {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
+		self.outputProfile?.decorate(json: &json, withKey: "outputProfile", errors: &errors)
 		arrayDecorate(json: &json, withKey: "overload", using: self.overload, errors: &errors)
 		arrayDecorate(json: &json, withKey: "parameter", using: self.parameter, errors: &errors)
 		self.publisher?.decorate(json: &json, withKey: "publisher", errors: &errors)
@@ -192,6 +206,7 @@ open class OperationDefinition: DomainResource {
 		if nil == self.system {
 			errors.append(FHIRValidationError(missing: "system"))
 		}
+		self.title?.decorate(json: &json, withKey: "title", errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
@@ -265,11 +280,14 @@ open class OperationDefinitionParameter: BackboneElement {
 	/// Parts of a nested Parameter.
 	public var part: [OperationDefinitionParameter]?
 	
-	/// Profile on the type.
-	public var profile: Reference?
+	/// References to this parameter.
+	public var referencedFrom: [OperationDefinitionParameterReferencedFrom]?
 	
 	/// How the parameter is understood as a search parameter. This is only used if the parameter type is 'string'.
 	public var searchType: SearchParamType?
+	
+	/// If type is Reference | canonical, allowed targets.
+	public var targetProfile: [FHIRURL]?
 	
 	/// What type this parameter has.
 	public var type: FHIRString?
@@ -306,8 +324,9 @@ open class OperationDefinitionParameter: BackboneElement {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
 		part = createInstances(of: OperationDefinitionParameter.self, for: "part", in: json, context: &instCtx, owner: self) ?? part
-		profile = createInstance(type: Reference.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		referencedFrom = createInstances(of: OperationDefinitionParameterReferencedFrom.self, for: "referencedFrom", in: json, context: &instCtx, owner: self) ?? referencedFrom
 		searchType = createEnum(type: SearchParamType.self, for: "searchType", in: json, context: &instCtx) ?? searchType
+		targetProfile = createInstances(of: FHIRURL.self, for: "targetProfile", in: json, context: &instCtx, owner: self) ?? targetProfile
 		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		use = createEnum(type: OperationParameterUse.self, for: "use", in: json, context: &instCtx) ?? use
 		if nil == use && !instCtx.containsKey("use") {
@@ -333,8 +352,9 @@ open class OperationDefinitionParameter: BackboneElement {
 			errors.append(FHIRValidationError(missing: "name"))
 		}
 		arrayDecorate(json: &json, withKey: "part", using: self.part, errors: &errors)
-		self.profile?.decorate(json: &json, withKey: "profile", errors: &errors)
+		arrayDecorate(json: &json, withKey: "referencedFrom", using: self.referencedFrom, errors: &errors)
 		self.searchType?.decorate(json: &json, withKey: "searchType", errors: &errors)
+		arrayDecorate(json: &json, withKey: "targetProfile", using: self.targetProfile, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
 		self.use?.decorate(json: &json, withKey: "use", errors: &errors)
 		if nil == self.use {
@@ -359,25 +379,14 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 	public var strength: BindingStrength?
 	
 	/// Source of value set.
-	public var valueSetReference: Reference?
-	
-	/// Source of value set.
-	public var valueSetUri: FHIRURL?
+	public var valueSet: FHIRURL?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(strength: BindingStrength, valueSet: Any) {
+	public convenience init(strength: BindingStrength, valueSet: FHIRURL) {
 		self.init()
 		self.strength = strength
-		if let value = valueSet as? FHIRURL {
-			self.valueSetUri = value
-		}
-		else if let value = valueSet as? Reference {
-			self.valueSetReference = value
-		}
-		else {
-			fhir_warn("Type “\(type(of: valueSet))” for property “\(valueSet)” is invalid, ignoring")
-		}
+		self.valueSet = valueSet
 	}
 	
 	
@@ -388,14 +397,10 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		if nil == strength && !instCtx.containsKey("strength") {
 			instCtx.addError(FHIRValidationError(missing: "strength"))
 		}
-		valueSetReference = createInstance(type: Reference.self, for: "valueSetReference", in: json, context: &instCtx, owner: self) ?? valueSetReference
-		valueSetUri = createInstance(type: FHIRURL.self, for: "valueSetUri", in: json, context: &instCtx, owner: self) ?? valueSetUri
-		
-		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.valueSetUri && nil == self.valueSetReference {
-			instCtx.addError(FHIRValidationError(missing: "valueSet[x]"))
+		valueSet = createInstance(type: FHIRURL.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
+		if nil == valueSet && !instCtx.containsKey("valueSet") {
+			instCtx.addError(FHIRValidationError(missing: "valueSet"))
 		}
-		
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -405,13 +410,56 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		if nil == self.strength {
 			errors.append(FHIRValidationError(missing: "strength"))
 		}
-		self.valueSetReference?.decorate(json: &json, withKey: "valueSetReference", errors: &errors)
-		self.valueSetUri?.decorate(json: &json, withKey: "valueSetUri", errors: &errors)
-		
-		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
-		if nil == self.valueSetUri && nil == self.valueSetReference {
-			errors.append(FHIRValidationError(missing: "valueSet[x]"))
+		self.valueSet?.decorate(json: &json, withKey: "valueSet", errors: &errors)
+		if nil == self.valueSet {
+			errors.append(FHIRValidationError(missing: "valueSet"))
 		}
+	}
+}
+
+
+/**
+References to this parameter.
+
+Identifies other resource parameters within the operation invocation that are expected to resolve to this resource.
+*/
+open class OperationDefinitionParameterReferencedFrom: BackboneElement {
+	override open class var resourceType: String {
+		get { return "OperationDefinitionParameterReferencedFrom" }
+	}
+	
+	/// Referencing parameter.
+	public var source: FHIRString?
+	
+	/// Element id of reference.
+	public var sourceId: FHIRString?
+	
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(source: FHIRString) {
+		self.init()
+		self.source = source
+	}
+	
+	
+	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
+		super.populate(from: json, context: &instCtx)
+		
+		source = createInstance(type: FHIRString.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		if nil == source && !instCtx.containsKey("source") {
+			instCtx.addError(FHIRValidationError(missing: "source"))
+		}
+		sourceId = createInstance(type: FHIRString.self, for: "sourceId", in: json, context: &instCtx, owner: self) ?? sourceId
+	}
+	
+	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
+		super.decorate(json: &json, errors: &errors)
+		
+		self.source?.decorate(json: &json, withKey: "source", errors: &errors)
+		if nil == self.source {
+			errors.append(FHIRValidationError(missing: "source"))
+		}
+		self.sourceId?.decorate(json: &json, withKey: "sourceId", errors: &errors)
 	}
 }
 

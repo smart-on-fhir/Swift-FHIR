@@ -2,8 +2,8 @@
 //  UsageContext.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Foundation
 /**
 Describes the context of use for a conformance or knowledge resource.
 
-Specifies clinical/business/etc metadata that can be used to retrieve, index and/or categorize an artifact. This
+Specifies clinical/business/etc. metadata that can be used to retrieve, index and/or categorize an artifact. This
 metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific context of care
 (e.g., venue, care setting, provider of care).
 */
@@ -33,6 +33,9 @@ open class UsageContext: Element {
 	/// Value that defines the context.
 	public var valueRange: Range?
 	
+	/// Value that defines the context.
+	public var valueReference: Reference?
+	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(code: Coding, value: Any) {
@@ -47,8 +50,11 @@ open class UsageContext: Element {
 		else if let value = value as? Range {
 			self.valueRange = value
 		}
+		else if let value = value as? Reference {
+			self.valueReference = value
+		}
 		else {
-			fhir_warn("Type “\(type(of: value))” for property “\(value)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: value))” for property “\(value)” is invalid, ignoring")
 		}
 	}
 	
@@ -63,9 +69,10 @@ open class UsageContext: Element {
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueQuantity = createInstance(type: Quantity.self, for: "valueQuantity", in: json, context: &instCtx, owner: self) ?? valueQuantity
 		valueRange = createInstance(type: Range.self, for: "valueRange", in: json, context: &instCtx, owner: self) ?? valueRange
+		valueReference = createInstance(type: Reference.self, for: "valueReference", in: json, context: &instCtx, owner: self) ?? valueReference
 		
 		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
-		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange {
+		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueReference {
 			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
 		
@@ -81,9 +88,10 @@ open class UsageContext: Element {
 		self.valueCodeableConcept?.decorate(json: &json, withKey: "valueCodeableConcept", errors: &errors)
 		self.valueQuantity?.decorate(json: &json, withKey: "valueQuantity", errors: &errors)
 		self.valueRange?.decorate(json: &json, withKey: "valueRange", errors: &errors)
+		self.valueReference?.decorate(json: &json, withKey: "valueReference", errors: &errors)
 		
 		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
-		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange {
+		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueReference {
 			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 	}

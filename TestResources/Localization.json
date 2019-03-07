@@ -19,9 +19,13 @@
 				]}
 			]
 		},
-		"options": {
-			"reference": "#withdrawalReasons"
-		}
+		"answerOption": [
+			{
+				"valueReference": {
+					"reference": "#withdrawalReasons"
+				}
+			}
+		]
 	}],
 	"contained": [{
 		"id": "withdrawalReasons",

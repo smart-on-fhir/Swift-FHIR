@@ -58,8 +58,8 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 		super.populate(from: json, context: &context)
 		if let type = json["resourceType"] as? String {
 			context.insertKey("resourceType")
-			if type != type(of: self).resourceType {
-				context.addError(FHIRValidationError(key: "resourceType", problem: "should be “\(type(of: self).resourceType)” but is “\(type)”"))
+			if type != Swift.type(of: self).resourceType {
+				context.addError(FHIRValidationError(key: "resourceType", problem: "should be “\(Swift.type(of: self).resourceType)” but is “\(type)”"))
 			}
 		}
 		else {
@@ -69,14 +69,14 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
-		json["resourceType"] = type(of: self).resourceType
+		json["resourceType"] = Swift.type(of: self).resourceType
 	}
 	
 	
 	// MARK: - CustomStringConvertible
 	
 	override open var description: String {
-		return "<\(type(of: self).resourceType)> \(__server?.baseURL.absoluteString ?? "nil")"
+		return "<\(Swift.type(of: self).resourceType)> \(__server?.baseURL.absoluteString ?? "nil")"
 	}
 }
 

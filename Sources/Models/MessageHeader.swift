@@ -2,8 +2,8 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -24,23 +24,26 @@ open class MessageHeader: DomainResource {
 	/// The source of the decision.
 	public var author: Reference?
 	
+	/// Link to the definition for this message.
+	public var definition: FHIRURL?
+	
 	/// Message destination application(s).
 	public var destination: [MessageHeaderDestination]?
 	
 	/// The source of the data entry.
 	public var enterer: Reference?
 	
-	/// Code for the event this message represents.
-	public var event: Coding?
+	/// Code for the event this message represents or link to event definition.
+	public var eventCoding: Coding?
+	
+	/// Code for the event this message represents or link to event definition.
+	public var eventUri: FHIRURL?
 	
 	/// The actual content of the message.
 	public var focus: [Reference]?
 	
 	/// Cause of event.
 	public var reason: CodeableConcept?
-	
-	/// Intended "real-world" recipient for the data.
-	public var receiver: Reference?
 	
 	/// If this is a reply to prior message.
 	public var response: MessageHeaderResponse?
@@ -54,16 +57,20 @@ open class MessageHeader: DomainResource {
 	/// Message source application.
 	public var source: MessageHeaderSource?
 	
-	/// Time that the message was sent.
-	public var timestamp: Instant?
-	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: Coding, source: MessageHeaderSource, timestamp: Instant) {
+	public convenience init(event: Any, source: MessageHeaderSource) {
 		self.init()
-		self.event = event
+		if let value = event as? Coding {
+			self.eventCoding = value
+		}
+		else if let value = event as? FHIRURL {
+			self.eventUri = value
+		}
+		else {
+			fhir_warn("Type “\(Swift.type(of: event))” for property “\(event)” is invalid, ignoring")
+		}
 		self.source = source
-		self.timestamp = timestamp
 	}
 	
 	
@@ -71,15 +78,13 @@ open class MessageHeader: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
+		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		destination = createInstances(of: MessageHeaderDestination.self, for: "destination", in: json, context: &instCtx, owner: self) ?? destination
 		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer
-		event = createInstance(type: Coding.self, for: "event", in: json, context: &instCtx, owner: self) ?? event
-		if nil == event && !instCtx.containsKey("event") {
-			instCtx.addError(FHIRValidationError(missing: "event"))
-		}
+		eventCoding = createInstance(type: Coding.self, for: "eventCoding", in: json, context: &instCtx, owner: self) ?? eventCoding
+		eventUri = createInstance(type: FHIRURL.self, for: "eventUri", in: json, context: &instCtx, owner: self) ?? eventUri
 		focus = createInstances(of: Reference.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
 		reason = createInstance(type: CodeableConcept.self, for: "reason", in: json, context: &instCtx, owner: self) ?? reason
-		receiver = createInstance(type: Reference.self, for: "receiver", in: json, context: &instCtx, owner: self) ?? receiver
 		response = createInstance(type: MessageHeaderResponse.self, for: "response", in: json, context: &instCtx, owner: self) ?? response
 		responsible = createInstance(type: Reference.self, for: "responsible", in: json, context: &instCtx, owner: self) ?? responsible
 		sender = createInstance(type: Reference.self, for: "sender", in: json, context: &instCtx, owner: self) ?? sender
@@ -87,25 +92,25 @@ open class MessageHeader: DomainResource {
 		if nil == source && !instCtx.containsKey("source") {
 			instCtx.addError(FHIRValidationError(missing: "source"))
 		}
-		timestamp = createInstance(type: Instant.self, for: "timestamp", in: json, context: &instCtx, owner: self) ?? timestamp
-		if nil == timestamp && !instCtx.containsKey("timestamp") {
-			instCtx.addError(FHIRValidationError(missing: "timestamp"))
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.eventCoding && nil == self.eventUri {
+			instCtx.addError(FHIRValidationError(missing: "event[x]"))
 		}
+		
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
 		self.author?.decorate(json: &json, withKey: "author", errors: &errors)
+		self.definition?.decorate(json: &json, withKey: "definition", errors: &errors)
 		arrayDecorate(json: &json, withKey: "destination", using: self.destination, errors: &errors)
 		self.enterer?.decorate(json: &json, withKey: "enterer", errors: &errors)
-		self.event?.decorate(json: &json, withKey: "event", errors: &errors)
-		if nil == self.event {
-			errors.append(FHIRValidationError(missing: "event"))
-		}
+		self.eventCoding?.decorate(json: &json, withKey: "eventCoding", errors: &errors)
+		self.eventUri?.decorate(json: &json, withKey: "eventUri", errors: &errors)
 		arrayDecorate(json: &json, withKey: "focus", using: self.focus, errors: &errors)
 		self.reason?.decorate(json: &json, withKey: "reason", errors: &errors)
-		self.receiver?.decorate(json: &json, withKey: "receiver", errors: &errors)
 		self.response?.decorate(json: &json, withKey: "response", errors: &errors)
 		self.responsible?.decorate(json: &json, withKey: "responsible", errors: &errors)
 		self.sender?.decorate(json: &json, withKey: "sender", errors: &errors)
@@ -113,9 +118,10 @@ open class MessageHeader: DomainResource {
 		if nil == self.source {
 			errors.append(FHIRValidationError(missing: "source"))
 		}
-		self.timestamp?.decorate(json: &json, withKey: "timestamp", errors: &errors)
-		if nil == self.timestamp {
-			errors.append(FHIRValidationError(missing: "timestamp"))
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.eventCoding && nil == self.eventUri {
+			errors.append(FHIRValidationError(missing: "event[x]"))
 		}
 	}
 }
@@ -137,6 +143,9 @@ open class MessageHeaderDestination: BackboneElement {
 	/// Name of system.
 	public var name: FHIRString?
 	
+	/// Intended "real-world" recipient for the data.
+	public var receiver: Reference?
+	
 	/// Particular delivery destination within the destination.
 	public var target: Reference?
 	
@@ -156,6 +165,7 @@ open class MessageHeaderDestination: BackboneElement {
 			instCtx.addError(FHIRValidationError(missing: "endpoint"))
 		}
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
+		receiver = createInstance(type: Reference.self, for: "receiver", in: json, context: &instCtx, owner: self) ?? receiver
 		target = createInstance(type: Reference.self, for: "target", in: json, context: &instCtx, owner: self) ?? target
 	}
 	
@@ -167,6 +177,7 @@ open class MessageHeaderDestination: BackboneElement {
 			errors.append(FHIRValidationError(missing: "endpoint"))
 		}
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
+		self.receiver?.decorate(json: &json, withKey: "receiver", errors: &errors)
 		self.target?.decorate(json: &json, withKey: "target", errors: &errors)
 	}
 }

@@ -2,8 +2,8 @@
 //  EndpointTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -42,8 +42,11 @@ class EndpointTests: XCTestCase {
 		
 		XCTAssertEqual(inst.address?.absoluteString, "https://pacs.hospital.org/IHEInvokeImageDisplay")
 		XCTAssertEqual(inst.connectionType?.code, "ihe-iid")
-		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://hl7.org/fhir/endpoint-connection-type")
+		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://terminology.hl7.org/CodeSystem/endpoint-connection-type")
 		XCTAssertEqual(inst.id, "example-iid")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name, "PACS Hospital Invoke Image Display endpoint")
 		XCTAssertEqual(inst.payloadType?[0].text, "DICOM IID")
 		XCTAssertEqual(inst.status, EndpointStatus(rawValue: "active")!)
@@ -64,15 +67,18 @@ class EndpointTests: XCTestCase {
 	
 	@discardableResult
 	func runEndpoint2(_ json: FHIRJSON? = nil) throws -> SwiftFHIREndpoint {
-		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-example-wadors.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-example-direct.json")
 		
-		XCTAssertEqual(inst.address?.absoluteString, "https://pacs.hospital.org/wado-rs")
-		XCTAssertEqual(inst.connectionType?.code, "dicom-wado-rs")
-		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://hl7.org/fhir/endpoint-connection-type")
-		XCTAssertEqual(inst.id, "example-wadors")
-		XCTAssertEqual(inst.name, "PACS Hospital DICOM WADO-RS endpoint")
-		XCTAssertEqual(inst.payloadMimeType?[0], "application/dicom")
-		XCTAssertEqual(inst.payloadType?[0].text, "DICOM WADO-RS")
+		XCTAssertEqual(inst.address?.absoluteString, "mailto:MARTIN.SMIETANKA@directnppes.com")
+		XCTAssertEqual(inst.connectionType?.code, "direct-project")
+		XCTAssertEqual(inst.id, "direct-endpoint")
+		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/299")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.name, "MARTIN SMIETANKA")
+		XCTAssertEqual(inst.payloadType?[0].coding?[0].code, "urn:hl7-org:sdwg:ccda-structuredBody:1.1")
+		XCTAssertEqual(inst.payloadType?[0].coding?[0].system?.absoluteString, "urn:oid:1.3.6.1.4.1.19376.1.2.3")
 		XCTAssertEqual(inst.status, EndpointStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		
@@ -91,11 +97,41 @@ class EndpointTests: XCTestCase {
 	
 	@discardableResult
 	func runEndpoint3(_ json: FHIRJSON? = nil) throws -> SwiftFHIREndpoint {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-example-wadors.json")
+		
+		XCTAssertEqual(inst.address?.absoluteString, "https://pacs.hospital.org/wado-rs")
+		XCTAssertEqual(inst.connectionType?.code, "dicom-wado-rs")
+		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://terminology.hl7.org/CodeSystem/endpoint-connection-type")
+		XCTAssertEqual(inst.id, "example-wadors")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
+		XCTAssertEqual(inst.name, "PACS Hospital DICOM WADO-RS endpoint")
+		XCTAssertEqual(inst.payloadMimeType?[0], "application/dicom")
+		XCTAssertEqual(inst.payloadType?[0].text, "DICOM WADO-RS")
+		XCTAssertEqual(inst.status, EndpointStatus(rawValue: "active")!)
+		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
+		
+		return inst
+	}
+	
+	func testEndpoint4() {
+		do {
+			let instance = try runEndpoint4()
+			try runEndpoint4(instance.asJSON())
+		}
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Endpoint successfully, but threw:\n---\n\(error)\n---")
+		}
+	}
+	
+	@discardableResult
+	func runEndpoint4(_ json: FHIRJSON? = nil) throws -> SwiftFHIREndpoint {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-example.json")
 		
 		XCTAssertEqual(inst.address?.absoluteString, "http://fhir3.healthintersections.com.au/open/CarePlan")
 		XCTAssertEqual(inst.connectionType?.code, "hl7-fhir-rest")
-		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://hl7.org/fhir/endpoint-connection-type")
+		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://terminology.hl7.org/CodeSystem/endpoint-connection-type")
 		XCTAssertEqual(inst.contact?[0].system, ContactPointSystem(rawValue: "email")!)
 		XCTAssertEqual(inst.contact?[0].use, ContactPointUse(rawValue: "work")!)
 		XCTAssertEqual(inst.contact?[0].value, "endpointmanager@example.org")
@@ -104,6 +140,9 @@ class EndpointTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/enpoint-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "epcp12")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/hl7")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name, "Health Intersections CarePlan Hub")
 		XCTAssertEqual(inst.payloadMimeType?[0], "application/fhir+xml")
 		XCTAssertEqual(inst.payloadType?[0].coding?[0].code, "CarePlan")

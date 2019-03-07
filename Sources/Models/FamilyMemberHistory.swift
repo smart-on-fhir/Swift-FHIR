@@ -2,8 +2,8 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -12,8 +12,7 @@ import Foundation
 /**
 Information about patient's relatives, relevant for patient.
 
-Significant health events and conditions for a person related to the patient relevant in the context of care for the
-patient.
+Significant health conditions for a person related to the patient relevant in the context of care for the patient.
 */
 open class FamilyMemberHistory: DomainResource {
 	override open class var resourceType: String {
@@ -41,7 +40,10 @@ open class FamilyMemberHistory: DomainResource {
 	/// Condition that the related person had.
 	public var condition: [FamilyMemberHistoryCondition]?
 	
-	/// When history was captured/updated.
+	/// subject-unknown | withheld | unable-to-obtain | deferred.
+	public var dataAbsentReason: CodeableConcept?
+	
+	/// When history was recorded or last updated.
 	public var date: DateTime?
 	
 	/// Dead? How old/when?.
@@ -59,27 +61,20 @@ open class FamilyMemberHistory: DomainResource {
 	/// Dead? How old/when?.
 	public var deceasedString: FHIRString?
 	
-	/// Instantiates protocol or definition.
-	public var definition: [Reference]?
-	
 	/// Age is estimated?.
 	public var estimatedAge: FHIRBool?
-	
-	/// Administrative Gender - the gender that the relative is considered to have for administration and record keeping
-	/// purposes.
-	public var gender: AdministrativeGender?
 	
 	/// External Id(s) for this record.
 	public var identifier: [Identifier]?
 	
+	/// Instantiates FHIR protocol or definition.
+	public var instantiatesCanonical: [FHIRURL]?
+	
+	/// Instantiates external protocol or definition.
+	public var instantiatesUri: [FHIRURL]?
+	
 	/// The family member described.
 	public var name: FHIRString?
-	
-	/// The taking of a family member's history did not occur.
-	public var notDone: FHIRBool?
-	
-	/// subject-unknown | withheld | unable-to-obtain | deferred.
-	public var notDoneReason: CodeableConcept?
 	
 	/// General note about related person.
 	public var note: [Annotation]?
@@ -95,6 +90,9 @@ open class FamilyMemberHistory: DomainResource {
 	
 	/// Relationship to the subject.
 	public var relationship: CodeableConcept?
+	
+	/// male | female | other | unknown.
+	public var sex: CodeableConcept?
 	
 	/// A code specifying the status of the record of the family history of a specific family member.
 	public var status: FamilyHistoryStatus?
@@ -119,19 +117,18 @@ open class FamilyMemberHistory: DomainResource {
 		bornPeriod = createInstance(type: Period.self, for: "bornPeriod", in: json, context: &instCtx, owner: self) ?? bornPeriod
 		bornString = createInstance(type: FHIRString.self, for: "bornString", in: json, context: &instCtx, owner: self) ?? bornString
 		condition = createInstances(of: FamilyMemberHistoryCondition.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
+		dataAbsentReason = createInstance(type: CodeableConcept.self, for: "dataAbsentReason", in: json, context: &instCtx, owner: self) ?? dataAbsentReason
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		deceasedAge = createInstance(type: Age.self, for: "deceasedAge", in: json, context: &instCtx, owner: self) ?? deceasedAge
 		deceasedBoolean = createInstance(type: FHIRBool.self, for: "deceasedBoolean", in: json, context: &instCtx, owner: self) ?? deceasedBoolean
 		deceasedDate = createInstance(type: FHIRDate.self, for: "deceasedDate", in: json, context: &instCtx, owner: self) ?? deceasedDate
 		deceasedRange = createInstance(type: Range.self, for: "deceasedRange", in: json, context: &instCtx, owner: self) ?? deceasedRange
 		deceasedString = createInstance(type: FHIRString.self, for: "deceasedString", in: json, context: &instCtx, owner: self) ?? deceasedString
-		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		estimatedAge = createInstance(type: FHIRBool.self, for: "estimatedAge", in: json, context: &instCtx, owner: self) ?? estimatedAge
-		gender = createEnum(type: AdministrativeGender.self, for: "gender", in: json, context: &instCtx) ?? gender
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		notDone = createInstance(type: FHIRBool.self, for: "notDone", in: json, context: &instCtx, owner: self) ?? notDone
-		notDoneReason = createInstance(type: CodeableConcept.self, for: "notDoneReason", in: json, context: &instCtx, owner: self) ?? notDoneReason
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		patient = createInstance(type: Reference.self, for: "patient", in: json, context: &instCtx, owner: self) ?? patient
 		if nil == patient && !instCtx.containsKey("patient") {
@@ -143,6 +140,7 @@ open class FamilyMemberHistory: DomainResource {
 		if nil == relationship && !instCtx.containsKey("relationship") {
 			instCtx.addError(FHIRValidationError(missing: "relationship"))
 		}
+		sex = createInstance(type: CodeableConcept.self, for: "sex", in: json, context: &instCtx, owner: self) ?? sex
 		status = createEnum(type: FamilyHistoryStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
@@ -159,19 +157,18 @@ open class FamilyMemberHistory: DomainResource {
 		self.bornPeriod?.decorate(json: &json, withKey: "bornPeriod", errors: &errors)
 		self.bornString?.decorate(json: &json, withKey: "bornString", errors: &errors)
 		arrayDecorate(json: &json, withKey: "condition", using: self.condition, errors: &errors)
+		self.dataAbsentReason?.decorate(json: &json, withKey: "dataAbsentReason", errors: &errors)
 		self.date?.decorate(json: &json, withKey: "date", errors: &errors)
 		self.deceasedAge?.decorate(json: &json, withKey: "deceasedAge", errors: &errors)
 		self.deceasedBoolean?.decorate(json: &json, withKey: "deceasedBoolean", errors: &errors)
 		self.deceasedDate?.decorate(json: &json, withKey: "deceasedDate", errors: &errors)
 		self.deceasedRange?.decorate(json: &json, withKey: "deceasedRange", errors: &errors)
 		self.deceasedString?.decorate(json: &json, withKey: "deceasedString", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		self.estimatedAge?.decorate(json: &json, withKey: "estimatedAge", errors: &errors)
-		self.gender?.decorate(json: &json, withKey: "gender", errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesCanonical", using: self.instantiatesCanonical, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiatesUri", using: self.instantiatesUri, errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
-		self.notDone?.decorate(json: &json, withKey: "notDone", errors: &errors)
-		self.notDoneReason?.decorate(json: &json, withKey: "notDoneReason", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.patient?.decorate(json: &json, withKey: "patient", errors: &errors)
 		if nil == self.patient {
@@ -183,6 +180,7 @@ open class FamilyMemberHistory: DomainResource {
 		if nil == self.relationship {
 			errors.append(FHIRValidationError(missing: "relationship"))
 		}
+		self.sex?.decorate(json: &json, withKey: "sex", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
@@ -204,6 +202,9 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 	
 	/// Condition suffered by relation.
 	public var code: CodeableConcept?
+	
+	/// Whether the condition contributed to the cause of death.
+	public var contributedToDeath: FHIRBool?
 	
 	/// Extra information about condition.
 	public var note: [Annotation]?
@@ -238,6 +239,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
+		contributedToDeath = createInstance(type: FHIRBool.self, for: "contributedToDeath", in: json, context: &instCtx, owner: self) ?? contributedToDeath
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		onsetAge = createInstance(type: Age.self, for: "onsetAge", in: json, context: &instCtx, owner: self) ?? onsetAge
 		onsetPeriod = createInstance(type: Period.self, for: "onsetPeriod", in: json, context: &instCtx, owner: self) ?? onsetPeriod
@@ -253,6 +255,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		if nil == self.code {
 			errors.append(FHIRValidationError(missing: "code"))
 		}
+		self.contributedToDeath?.decorate(json: &json, withKey: "contributedToDeath", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		self.onsetAge?.decorate(json: &json, withKey: "onsetAge", errors: &errors)
 		self.onsetPeriod?.decorate(json: &json, withKey: "onsetPeriod", errors: &errors)

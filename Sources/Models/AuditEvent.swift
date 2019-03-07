@@ -2,8 +2,8 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -35,10 +35,13 @@ open class AuditEvent: DomainResource {
 	/// Description of the event outcome.
 	public var outcomeDesc: FHIRString?
 	
+	/// When the activity occurred.
+	public var period: Period?
+	
 	/// The purposeOfUse of the event.
 	public var purposeOfEvent: [CodeableConcept]?
 	
-	/// Time when the event occurred on source.
+	/// Time when the event was recorded.
 	public var recorded: Instant?
 	
 	/// Audit Event Reporter.
@@ -72,6 +75,7 @@ open class AuditEvent: DomainResource {
 		entity = createInstances(of: AuditEventEntity.self, for: "entity", in: json, context: &instCtx, owner: self) ?? entity
 		outcome = createInstance(type: FHIRString.self, for: "outcome", in: json, context: &instCtx, owner: self) ?? outcome
 		outcomeDesc = createInstance(type: FHIRString.self, for: "outcomeDesc", in: json, context: &instCtx, owner: self) ?? outcomeDesc
+		period = createInstance(type: Period.self, for: "period", in: json, context: &instCtx, owner: self) ?? period
 		purposeOfEvent = createInstances(of: CodeableConcept.self, for: "purposeOfEvent", in: json, context: &instCtx, owner: self) ?? purposeOfEvent
 		recorded = createInstance(type: Instant.self, for: "recorded", in: json, context: &instCtx, owner: self) ?? recorded
 		if nil == recorded && !instCtx.containsKey("recorded") {
@@ -99,6 +103,7 @@ open class AuditEvent: DomainResource {
 		arrayDecorate(json: &json, withKey: "entity", using: self.entity, errors: &errors)
 		self.outcome?.decorate(json: &json, withKey: "outcome", errors: &errors)
 		self.outcomeDesc?.decorate(json: &json, withKey: "outcomeDesc", errors: &errors)
+		self.period?.decorate(json: &json, withKey: "period", errors: &errors)
 		arrayDecorate(json: &json, withKey: "purposeOfEvent", using: self.purposeOfEvent, errors: &errors)
 		self.recorded?.decorate(json: &json, withKey: "recorded", errors: &errors)
 		if nil == self.recorded {
@@ -127,7 +132,7 @@ open class AuditEventAgent: BackboneElement {
 		get { return "AuditEventAgent" }
 	}
 	
-	/// Alternative User id e.g. authentication.
+	/// Alternative User identity.
 	public var altId: FHIRString?
 	
 	/// Where.
@@ -136,7 +141,7 @@ open class AuditEventAgent: BackboneElement {
 	/// Type of media.
 	public var media: Coding?
 	
-	/// Human-meaningful name for the agent.
+	/// Human friendly name for the agent.
 	public var name: FHIRString?
 	
 	/// Logical network location for application activity.
@@ -148,17 +153,17 @@ open class AuditEventAgent: BackboneElement {
 	/// Reason given for this user.
 	public var purposeOfUse: [CodeableConcept]?
 	
-	/// Direct reference to resource.
-	public var reference: Reference?
-	
 	/// Whether user is initiator.
 	public var requestor: FHIRBool?
 	
 	/// Agent role in the event.
 	public var role: [CodeableConcept]?
 	
-	/// Unique identifier for the user.
-	public var userId: Identifier?
+	/// How agent participated.
+	public var type: CodeableConcept?
+	
+	/// Identifier of who.
+	public var who: Reference?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -178,13 +183,13 @@ open class AuditEventAgent: BackboneElement {
 		network = createInstance(type: AuditEventAgentNetwork.self, for: "network", in: json, context: &instCtx, owner: self) ?? network
 		policy = createInstances(of: FHIRURL.self, for: "policy", in: json, context: &instCtx, owner: self) ?? policy
 		purposeOfUse = createInstances(of: CodeableConcept.self, for: "purposeOfUse", in: json, context: &instCtx, owner: self) ?? purposeOfUse
-		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
 		requestor = createInstance(type: FHIRBool.self, for: "requestor", in: json, context: &instCtx, owner: self) ?? requestor
 		if nil == requestor && !instCtx.containsKey("requestor") {
 			instCtx.addError(FHIRValidationError(missing: "requestor"))
 		}
 		role = createInstances(of: CodeableConcept.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
-		userId = createInstance(type: Identifier.self, for: "userId", in: json, context: &instCtx, owner: self) ?? userId
+		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		who = createInstance(type: Reference.self, for: "who", in: json, context: &instCtx, owner: self) ?? who
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -197,13 +202,13 @@ open class AuditEventAgent: BackboneElement {
 		self.network?.decorate(json: &json, withKey: "network", errors: &errors)
 		arrayDecorate(json: &json, withKey: "policy", using: self.policy, errors: &errors)
 		arrayDecorate(json: &json, withKey: "purposeOfUse", using: self.purposeOfUse, errors: &errors)
-		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
 		self.requestor?.decorate(json: &json, withKey: "requestor", errors: &errors)
 		if nil == self.requestor {
 			errors.append(FHIRValidationError(missing: "requestor"))
 		}
 		arrayDecorate(json: &json, withKey: "role", using: self.role, errors: &errors)
-		self.userId?.decorate(json: &json, withKey: "userId", errors: &errors)
+		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		self.who?.decorate(json: &json, withKey: "who", errors: &errors)
 	}
 }
 
@@ -257,9 +262,6 @@ open class AuditEventEntity: BackboneElement {
 	/// Additional Information about the entity.
 	public var detail: [AuditEventEntityDetail]?
 	
-	/// Specific instance of object.
-	public var identifier: Identifier?
-	
 	/// Life-cycle stage for the entity.
 	public var lifecycle: Coding?
 	
@@ -268,9 +270,6 @@ open class AuditEventEntity: BackboneElement {
 	
 	/// Query parameters.
 	public var query: Base64Binary?
-	
-	/// Specific instance of resource.
-	public var reference: Reference?
 	
 	/// What role the entity played.
 	public var role: Coding?
@@ -281,20 +280,22 @@ open class AuditEventEntity: BackboneElement {
 	/// Type of entity involved.
 	public var type: Coding?
 	
+	/// Specific instance of resource.
+	public var what: Reference?
+	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		detail = createInstances(of: AuditEventEntityDetail.self, for: "detail", in: json, context: &instCtx, owner: self) ?? detail
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		lifecycle = createInstance(type: Coding.self, for: "lifecycle", in: json, context: &instCtx, owner: self) ?? lifecycle
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		query = createInstance(type: Base64Binary.self, for: "query", in: json, context: &instCtx, owner: self) ?? query
-		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
 		role = createInstance(type: Coding.self, for: "role", in: json, context: &instCtx, owner: self) ?? role
 		securityLabel = createInstances(of: Coding.self, for: "securityLabel", in: json, context: &instCtx, owner: self) ?? securityLabel
 		type = createInstance(type: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
+		what = createInstance(type: Reference.self, for: "what", in: json, context: &instCtx, owner: self) ?? what
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -302,14 +303,13 @@ open class AuditEventEntity: BackboneElement {
 		
 		self.description_fhir?.decorate(json: &json, withKey: "description", errors: &errors)
 		arrayDecorate(json: &json, withKey: "detail", using: self.detail, errors: &errors)
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
 		self.lifecycle?.decorate(json: &json, withKey: "lifecycle", errors: &errors)
 		self.name?.decorate(json: &json, withKey: "name", errors: &errors)
 		self.query?.decorate(json: &json, withKey: "query", errors: &errors)
-		self.reference?.decorate(json: &json, withKey: "reference", errors: &errors)
 		self.role?.decorate(json: &json, withKey: "role", errors: &errors)
 		arrayDecorate(json: &json, withKey: "securityLabel", using: self.securityLabel, errors: &errors)
 		self.type?.decorate(json: &json, withKey: "type", errors: &errors)
+		self.what?.decorate(json: &json, withKey: "what", errors: &errors)
 	}
 }
 
@@ -328,14 +328,25 @@ open class AuditEventEntityDetail: BackboneElement {
 	public var type: FHIRString?
 	
 	/// Property value.
-	public var value: Base64Binary?
+	public var valueBase64Binary: Base64Binary?
+	
+	/// Property value.
+	public var valueString: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: FHIRString, value: Base64Binary) {
+	public convenience init(type: FHIRString, value: Any) {
 		self.init()
 		self.type = type
-		self.value = value
+		if let value = value as? FHIRString {
+			self.valueString = value
+		}
+		else if let value = value as? Base64Binary {
+			self.valueBase64Binary = value
+		}
+		else {
+			fhir_warn("Type “\(Swift.type(of: value))” for property “\(value)” is invalid, ignoring")
+		}
 	}
 	
 	
@@ -346,10 +357,14 @@ open class AuditEventEntityDetail: BackboneElement {
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
 		}
-		value = createInstance(type: Base64Binary.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
-		if nil == value && !instCtx.containsKey("value") {
-			instCtx.addError(FHIRValidationError(missing: "value"))
+		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
+		valueString = createInstance(type: FHIRString.self, for: "valueString", in: json, context: &instCtx, owner: self) ?? valueString
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.valueString && nil == self.valueBase64Binary {
+			instCtx.addError(FHIRValidationError(missing: "value[x]"))
 		}
+		
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -359,9 +374,12 @@ open class AuditEventEntityDetail: BackboneElement {
 		if nil == self.type {
 			errors.append(FHIRValidationError(missing: "type"))
 		}
-		self.value?.decorate(json: &json, withKey: "value", errors: &errors)
-		if nil == self.value {
-			errors.append(FHIRValidationError(missing: "value"))
+		self.valueBase64Binary?.decorate(json: &json, withKey: "valueBase64Binary", errors: &errors)
+		self.valueString?.decorate(json: &json, withKey: "valueString", errors: &errors)
+		
+		// check if nonoptional expanded properties (i.e. at least one "value" for "value[x]") are present
+		if nil == self.valueString && nil == self.valueBase64Binary {
+			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 	}
 }
@@ -378,7 +396,7 @@ open class AuditEventSource: BackboneElement {
 	}
 	
 	/// The identity of source detecting the event.
-	public var identifier: Identifier?
+	public var observer: Reference?
 	
 	/// Logical source location within the enterprise.
 	public var site: FHIRString?
@@ -388,18 +406,18 @@ open class AuditEventSource: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier) {
+	public convenience init(observer: Reference) {
 		self.init()
-		self.identifier = identifier
+		self.observer = observer
 	}
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		if nil == identifier && !instCtx.containsKey("identifier") {
-			instCtx.addError(FHIRValidationError(missing: "identifier"))
+		observer = createInstance(type: Reference.self, for: "observer", in: json, context: &instCtx, owner: self) ?? observer
+		if nil == observer && !instCtx.containsKey("observer") {
+			instCtx.addError(FHIRValidationError(missing: "observer"))
 		}
 		site = createInstance(type: FHIRString.self, for: "site", in: json, context: &instCtx, owner: self) ?? site
 		type = createInstances(of: Coding.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
@@ -408,9 +426,9 @@ open class AuditEventSource: BackboneElement {
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
 		super.decorate(json: &json, errors: &errors)
 		
-		self.identifier?.decorate(json: &json, withKey: "identifier", errors: &errors)
-		if nil == self.identifier {
-			errors.append(FHIRValidationError(missing: "identifier"))
+		self.observer?.decorate(json: &json, withKey: "observer", errors: &errors)
+		if nil == self.observer {
+			errors.append(FHIRValidationError(missing: "observer"))
 		}
 		self.site?.decorate(json: &json, withKey: "site", errors: &errors)
 		arrayDecorate(json: &json, withKey: "type", using: self.type, errors: &errors)

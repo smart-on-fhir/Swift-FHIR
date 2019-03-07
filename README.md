@@ -1,7 +1,7 @@
 FHIR Swift Classes
 ==================
 
-These are [Swift][] classes representing data models of [🔥 FHIR][fhir] elements and resources, compatible with **iOS 8** and **OS X 10.9** and later.
+These are [Swift][] classes representing data models of [🔥 FHIR][fhir] elements and resources, compatible with **iOS 11** and **OS X 10.13** and later.
 
 This work is [Apache licensed](LICENSE.txt).
 FHIR® is the registered trademark of [HL7][] and is used with the permission of HL7.
@@ -19,6 +19,7 @@ See [tags/releases](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
+**4.0**|       4.2 | `4.0.0-a53ec6ee1b` | R4
   **3.1**|       3.2 | `3.0.0.11832` | STU 3
  **3.0** |       3.0 | `3.0.0.11832` | STU 3
 **2.10** |       3.0 | `1.8.0.10521` | STU 3 Freeze, Jan 2017

@@ -2,8 +2,8 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import Foundation
@@ -27,9 +27,6 @@ open class MedicationAdministration: DomainResource {
 	/// Encounter or Episode of Care administered as part of.
 	public var context: Reference?
 	
-	/// Instantiates protocol or definition.
-	public var definition: [Reference]?
-	
 	/// Device used to administer.
 	public var device: [Reference]?
 	
@@ -48,14 +45,14 @@ open class MedicationAdministration: DomainResource {
 	/// External identifier.
 	public var identifier: [Identifier]?
 	
+	/// Instantiates protocol or definition.
+	public var instantiates: [FHIRURL]?
+	
 	/// What was administered.
 	public var medicationCodeableConcept: CodeableConcept?
 	
 	/// What was administered.
 	public var medicationReference: Reference?
-	
-	/// True if medication not administered.
-	public var notGiven: FHIRBool?
 	
 	/// Information about the administration.
 	public var note: [Annotation]?
@@ -63,25 +60,25 @@ open class MedicationAdministration: DomainResource {
 	/// Part of referenced event.
 	public var partOf: [Reference]?
 	
-	/// Who administered substance.
+	/// Who performed the medication administration and what they did.
 	public var performer: [MedicationAdministrationPerformer]?
-	
-	/// Request administration performed against.
-	public var prescription: Reference?
 	
 	/// Reason administration performed.
 	public var reasonCode: [CodeableConcept]?
 	
-	/// Reason administration not performed.
-	public var reasonNotGiven: [CodeableConcept]?
-	
-	/// Condition or Observation that supports why the medication was administered.
+	/// Condition or observation that supports why the medication was administered.
 	public var reasonReference: [Reference]?
 	
+	/// Request administration performed against.
+	public var request: Reference?
+	
 	/// Will generally be set to show that the administration has been completed.  For some long running administrations
-	/// such as infusions it is possible for an administration to be started but not completed or it may be paused while
-	/// some other process is under way.
-	public var status: MedicationAdministrationStatus?
+	/// such as infusions, it is possible for an administration to be started but not completed or it may be paused
+	/// while some other process is under way.
+	public var status: MedicationAdministrationStatusCodes?
+	
+	/// Reason administration not performed.
+	public var statusReason: [CodeableConcept]?
 	
 	/// Who received medication.
 	public var subject: Reference?
@@ -91,7 +88,7 @@ open class MedicationAdministration: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(effective: Any, medication: Any, status: MedicationAdministrationStatus, subject: Reference) {
+	public convenience init(effective: Any, medication: Any, status: MedicationAdministrationStatusCodes, subject: Reference) {
 		self.init()
 		if let value = effective as? DateTime {
 			self.effectiveDateTime = value
@@ -100,7 +97,7 @@ open class MedicationAdministration: DomainResource {
 			self.effectivePeriod = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: effective))” for property “\(effective)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: effective))” for property “\(effective)” is invalid, ignoring")
 		}
 		if let value = medication as? CodeableConcept {
 			self.medicationCodeableConcept = value
@@ -109,7 +106,7 @@ open class MedicationAdministration: DomainResource {
 			self.medicationReference = value
 		}
 		else {
-			fhir_warn("Type “\(type(of: medication))” for property “\(medication)” is invalid, ignoring")
+			fhir_warn("Type “\(Swift.type(of: medication))” for property “\(medication)” is invalid, ignoring")
 		}
 		self.status = status
 		self.subject = subject
@@ -121,27 +118,26 @@ open class MedicationAdministration: DomainResource {
 		
 		category = createInstance(type: CodeableConcept.self, for: "category", in: json, context: &instCtx, owner: self) ?? category
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
-		definition = createInstances(of: Reference.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		device = createInstances(of: Reference.self, for: "device", in: json, context: &instCtx, owner: self) ?? device
 		dosage = createInstance(type: MedicationAdministrationDosage.self, for: "dosage", in: json, context: &instCtx, owner: self) ?? dosage
 		effectiveDateTime = createInstance(type: DateTime.self, for: "effectiveDateTime", in: json, context: &instCtx, owner: self) ?? effectiveDateTime
 		effectivePeriod = createInstance(type: Period.self, for: "effectivePeriod", in: json, context: &instCtx, owner: self) ?? effectivePeriod
 		eventHistory = createInstances(of: Reference.self, for: "eventHistory", in: json, context: &instCtx, owner: self) ?? eventHistory
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
+		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
 		medicationCodeableConcept = createInstance(type: CodeableConcept.self, for: "medicationCodeableConcept", in: json, context: &instCtx, owner: self) ?? medicationCodeableConcept
 		medicationReference = createInstance(type: Reference.self, for: "medicationReference", in: json, context: &instCtx, owner: self) ?? medicationReference
-		notGiven = createInstance(type: FHIRBool.self, for: "notGiven", in: json, context: &instCtx, owner: self) ?? notGiven
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note
 		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
 		performer = createInstances(of: MedicationAdministrationPerformer.self, for: "performer", in: json, context: &instCtx, owner: self) ?? performer
-		prescription = createInstance(type: Reference.self, for: "prescription", in: json, context: &instCtx, owner: self) ?? prescription
 		reasonCode = createInstances(of: CodeableConcept.self, for: "reasonCode", in: json, context: &instCtx, owner: self) ?? reasonCode
-		reasonNotGiven = createInstances(of: CodeableConcept.self, for: "reasonNotGiven", in: json, context: &instCtx, owner: self) ?? reasonNotGiven
 		reasonReference = createInstances(of: Reference.self, for: "reasonReference", in: json, context: &instCtx, owner: self) ?? reasonReference
-		status = createEnum(type: MedicationAdministrationStatus.self, for: "status", in: json, context: &instCtx) ?? status
+		request = createInstance(type: Reference.self, for: "request", in: json, context: &instCtx, owner: self) ?? request
+		status = createEnum(type: MedicationAdministrationStatusCodes.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
+		statusReason = createInstances(of: CodeableConcept.self, for: "statusReason", in: json, context: &instCtx, owner: self) ?? statusReason
 		subject = createInstance(type: Reference.self, for: "subject", in: json, context: &instCtx, owner: self) ?? subject
 		if nil == subject && !instCtx.containsKey("subject") {
 			instCtx.addError(FHIRValidationError(missing: "subject"))
@@ -163,27 +159,26 @@ open class MedicationAdministration: DomainResource {
 		
 		self.category?.decorate(json: &json, withKey: "category", errors: &errors)
 		self.context?.decorate(json: &json, withKey: "context", errors: &errors)
-		arrayDecorate(json: &json, withKey: "definition", using: self.definition, errors: &errors)
 		arrayDecorate(json: &json, withKey: "device", using: self.device, errors: &errors)
 		self.dosage?.decorate(json: &json, withKey: "dosage", errors: &errors)
 		self.effectiveDateTime?.decorate(json: &json, withKey: "effectiveDateTime", errors: &errors)
 		self.effectivePeriod?.decorate(json: &json, withKey: "effectivePeriod", errors: &errors)
 		arrayDecorate(json: &json, withKey: "eventHistory", using: self.eventHistory, errors: &errors)
 		arrayDecorate(json: &json, withKey: "identifier", using: self.identifier, errors: &errors)
+		arrayDecorate(json: &json, withKey: "instantiates", using: self.instantiates, errors: &errors)
 		self.medicationCodeableConcept?.decorate(json: &json, withKey: "medicationCodeableConcept", errors: &errors)
 		self.medicationReference?.decorate(json: &json, withKey: "medicationReference", errors: &errors)
-		self.notGiven?.decorate(json: &json, withKey: "notGiven", errors: &errors)
 		arrayDecorate(json: &json, withKey: "note", using: self.note, errors: &errors)
 		arrayDecorate(json: &json, withKey: "partOf", using: self.partOf, errors: &errors)
 		arrayDecorate(json: &json, withKey: "performer", using: self.performer, errors: &errors)
-		self.prescription?.decorate(json: &json, withKey: "prescription", errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonCode", using: self.reasonCode, errors: &errors)
-		arrayDecorate(json: &json, withKey: "reasonNotGiven", using: self.reasonNotGiven, errors: &errors)
 		arrayDecorate(json: &json, withKey: "reasonReference", using: self.reasonReference, errors: &errors)
+		self.request?.decorate(json: &json, withKey: "request", errors: &errors)
 		self.status?.decorate(json: &json, withKey: "status", errors: &errors)
 		if nil == self.status {
 			errors.append(FHIRValidationError(missing: "status"))
 		}
+		arrayDecorate(json: &json, withKey: "statusReason", using: self.statusReason, errors: &errors)
 		self.subject?.decorate(json: &json, withKey: "subject", errors: &errors)
 		if nil == self.subject {
 			errors.append(FHIRValidationError(missing: "subject"))
@@ -260,20 +255,20 @@ open class MedicationAdministrationDosage: BackboneElement {
 
 
 /**
-Who administered substance.
+Who performed the medication administration and what they did.
 
-The individual who was responsible for giving the medication to the patient.
+Indicates who or what performed the medication administration and how they were involved.
 */
 open class MedicationAdministrationPerformer: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationAdministrationPerformer" }
 	}
 	
-	/// Individual who was performing.
+	/// Who performed the medication administration.
 	public var actor: Reference?
 	
-	/// Organization organization was acting for.
-	public var onBehalfOf: Reference?
+	/// Type of performance.
+	public var function: CodeableConcept?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -290,7 +285,7 @@ open class MedicationAdministrationPerformer: BackboneElement {
 		if nil == actor && !instCtx.containsKey("actor") {
 			instCtx.addError(FHIRValidationError(missing: "actor"))
 		}
-		onBehalfOf = createInstance(type: Reference.self, for: "onBehalfOf", in: json, context: &instCtx, owner: self) ?? onBehalfOf
+		function = createInstance(type: CodeableConcept.self, for: "function", in: json, context: &instCtx, owner: self) ?? function
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -300,7 +295,7 @@ open class MedicationAdministrationPerformer: BackboneElement {
 		if nil == self.actor {
 			errors.append(FHIRValidationError(missing: "actor"))
 		}
-		self.onBehalfOf?.decorate(json: &json, withKey: "onBehalfOf", errors: &errors)
+		self.function?.decorate(json: &json, withKey: "function", errors: &errors)
 	}
 }
 

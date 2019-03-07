@@ -2,8 +2,8 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -40,11 +40,18 @@ class CommunicationTests: XCTestCase {
 	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRCommunication {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-attachment.json")
 		
+		XCTAssertEqual(inst.about?[0].identifier?.system?.absoluteString, "http://happyvalley.com/claim")
+		XCTAssertEqual(inst.about?[0].identifier?.value, "12345")
+		XCTAssertEqual(inst.about?[1].identifier?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/claimresponse")
+		XCTAssertEqual(inst.about?[1].identifier?.value, "R3500")
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "SolicitedAttachment")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.id, "fm-attachment")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.providerco.com/communication")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.payload?[0].contentAttachment?.contentType, "application/pdf")
 		XCTAssertEqual(inst.payload?[0].contentAttachment?.creation?.description, "2010-02-01T11:50:23-05:00")
 		XCTAssertEqual(inst.payload?[0].contentAttachment?.data, Base64Binary(value: "SGVsbG8="))
@@ -53,7 +60,7 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.creation?.description, "2010-02-01T10:57:34+01:00")
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.hash, Base64Binary(value: "SGVsbG8gdGhlcmU="))
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, 104274)
-		XCTAssertEqual(inst.payload?[1].contentAttachment?.url?.absoluteString, "http://happyvalley.com/docs/AB12345")
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.url?.absoluteString, "http://example.org/docs/AB12345")
 		XCTAssertEqual(inst.recipient?[0].identifier?.system?.absoluteString, "http://www.jurisdiction.com/insurer")
 		XCTAssertEqual(inst.recipient?[0].identifier?.value, "123456")
 		XCTAssertEqual(inst.sender?.identifier?.system?.absoluteString, "http://www.jurisdiction.com/provideroffices")
@@ -63,10 +70,6 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment which is unsolicited</div>")
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.topic?[0].identifier?.system?.absoluteString, "http://happyvalley.com/claim")
-		XCTAssertEqual(inst.topic?[0].identifier?.value, "12345")
-		XCTAssertEqual(inst.topic?[1].identifier?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/claimresponse")
-		XCTAssertEqual(inst.topic?[1].identifier?.value, "R3500")
 		
 		return inst
 	}
@@ -94,6 +97,9 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.id, "fm-solicited")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.providerco.com/communication")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.payload?[0].contentAttachment?.contentType, "application/pdf")
 		XCTAssertEqual(inst.payload?[0].contentAttachment?.creation?.description, "2010-02-01T11:50:23-05:00")
 		XCTAssertEqual(inst.payload?[0].contentAttachment?.data, Base64Binary(value: "SGVsbG8="))
@@ -131,16 +137,19 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "Alert")
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.category?[0].text, "Alert")
-		XCTAssertEqual(inst.context?.reference, "Encounter/example")
-		XCTAssertEqual(inst.definition?[0].display, "Hyperkalemia")
+		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "Paging System")
 		XCTAssertEqual(inst.identifier?[0].value, "2345678901")
+		XCTAssertEqual(inst.instantiatesUri?[0].absoluteString, "http://example.org/hyperkalemia")
 		XCTAssertEqual(inst.medium?[0].coding?[0].code, "WRITTEN")
 		XCTAssertEqual(inst.medium?[0].coding?[0].display, "written")
-		XCTAssertEqual(inst.medium?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationMode")
+		XCTAssertEqual(inst.medium?[0].coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ParticipationMode")
 		XCTAssertEqual(inst.medium?[0].text, "written")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.partOf?[0].display, "Serum Potassium Observation")
 		XCTAssertEqual(inst.payload?[0].contentString, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
 		XCTAssertEqual(inst.payload?[1].contentReference?.display, "Serum Potassium Observation")

@@ -2,8 +2,8 @@
 //  PersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 3.0.0.11832 on 2017-03-22.
-//  2017, SMART Health IT.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  2019, SMART Health IT.
 //
 
 import XCTest
@@ -46,6 +46,9 @@ class PersonTests: XCTestCase {
 		XCTAssertEqual(inst.id, "f002")
 		XCTAssertEqual(inst.link?[0].target?.display, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.link?[0].target?.reference, "RelatedPerson/f002")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name?[0].text, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.name?[0].use, NameUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.photo?.contentType, "image/jpeg")
@@ -84,13 +87,16 @@ class PersonTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].period?.start?.description, "2001-05-06")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:1.2.36.146.595.217.0.1")
 		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].code, "MR")
-		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0203")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "usual")!)
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.link?[0].target?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.link?[0].target?.reference, "RelatedPerson/peter")
 		XCTAssertEqual(inst.link?[1].target?.display, "Peter Chalmers")
 		XCTAssertEqual(inst.link?[1].target?.reference, "Patient/example")
+		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
+		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
+		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
 		XCTAssertEqual(inst.name?[0].family, "Chalmers")
 		XCTAssertEqual(inst.name?[0].given?[0], "Peter")
 		XCTAssertEqual(inst.name?[0].given?[1], "James")

@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ open class StructureDefinition: DomainResource {
 	public var abstract: FHIRBool?
 	
 	/// Definition that this type is constrained/specialized from.
-	public var baseDefinition: FHIRURL?
+	public var baseDefinition: FHIRCanonical?
 	
 	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
@@ -121,7 +121,7 @@ open class StructureDefinition: DomainResource {
 		if nil == abstract && !instCtx.containsKey("abstract") {
 			instCtx.addError(FHIRValidationError(missing: "abstract"))
 		}
-		baseDefinition = createInstance(type: FHIRURL.self, for: "baseDefinition", in: json, context: &instCtx, owner: self) ?? baseDefinition
+		baseDefinition = createInstance(type: FHIRCanonical.self, for: "baseDefinition", in: json, context: &instCtx, owner: self) ?? baseDefinition
 		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
 		context = createInstances(of: StructureDefinitionContext.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		contextInvariant = createInstances(of: FHIRString.self, for: "contextInvariant", in: json, context: &instCtx, owner: self) ?? contextInvariant

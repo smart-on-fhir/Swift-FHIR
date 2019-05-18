@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -44,7 +44,7 @@ open class NutritionOrder: DomainResource {
 	public var instantiates: [FHIRURL]?
 	
 	/// Instantiates FHIR protocol or definition.
-	public var instantiatesCanonical: [FHIRURL]?
+	public var instantiatesCanonical: [FHIRCanonical]?
 	
 	/// Instantiates external protocol or definition.
 	public var instantiatesUri: [FHIRURL]?
@@ -96,7 +96,7 @@ open class NutritionOrder: DomainResource {
 		foodPreferenceModifier = createInstances(of: CodeableConcept.self, for: "foodPreferenceModifier", in: json, context: &instCtx, owner: self) ?? foodPreferenceModifier
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
-		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstances(of: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
 		if nil == intent && !instCtx.containsKey("intent") {

@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TestScript) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TestScript) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -348,7 +348,7 @@ open class TestScriptMetadataCapability: BackboneElement {
 	}
 	
 	/// Required Capability Statement.
-	public var capabilities: FHIRURL?
+	public var capabilities: FHIRCanonical?
 	
 	/// The expected capabilities of the server.
 	public var description_fhir: FHIRString?
@@ -370,7 +370,7 @@ open class TestScriptMetadataCapability: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(capabilities: FHIRURL, required: FHIRBool, validated: FHIRBool) {
+	public convenience init(capabilities: FHIRCanonical, required: FHIRBool, validated: FHIRBool) {
 		self.init()
 		self.capabilities = capabilities
 		self.required = required
@@ -381,7 +381,7 @@ open class TestScriptMetadataCapability: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		capabilities = createInstance(type: FHIRURL.self, for: "capabilities", in: json, context: &instCtx, owner: self) ?? capabilities
+		capabilities = createInstance(type: FHIRCanonical.self, for: "capabilities", in: json, context: &instCtx, owner: self) ?? capabilities
 		if nil == capabilities && !instCtx.containsKey("capabilities") {
 			instCtx.addError(FHIRValidationError(missing: "capabilities"))
 		}

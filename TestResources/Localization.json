@@ -19,13 +19,7 @@
 				]}
 			]
 		},
-		"answerOption": [
-			{
-				"valueReference": {
-					"reference": "#withdrawalReasons"
-				}
-			}
-		]
+		"answerValueSet": "#withdrawalReasons"
 	}],
 	"contained": [{
 		"id": "withdrawalReasons",

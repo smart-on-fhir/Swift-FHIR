@@ -2,7 +2,7 @@
 //  TriggerDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 

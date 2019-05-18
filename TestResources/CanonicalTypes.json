@@ -1,0 +1,70 @@
+{
+	"initCanonicalWithVersion": {
+		"canonical": "http://example.org/fhir/ActivityDefinition/activity-edu-hypertension|1.0.5"
+	},
+	
+	"initCanonicalWithoutVersion": {
+		"canonical": "http://example.org/fhir/ActivityDefinition/activity-edu-diabetes"
+	},
+	
+	"initCanonicalWithFragment": {
+		"canonical": "http://example.org/fhir/ActivityDefinition/activity-edu-diabetes|2.0.0#ref1"
+	},
+	
+	"initCanonicalContained": {
+		"resourceType": "PlanDefinition",
+		"id": "plan-ref-contained",
+		"status": "active",
+		"action": [
+			{
+				"definitionCanonical": "#edu-hypertension"
+			},
+			{
+				"definitionCanonical": "http://example.org/fhir/ActivityDefinition/activity-edu-hypertension|1.0.5#edu-hypertension"
+			}
+		],
+		"contained": [
+			{
+				"resourceType": "ActivityDefinition",
+				"id": "edu-hypertension",
+				"url": "http://example.org/fhir/ActivityDefinition/activity-edu-hypertension",
+				"version": "1.0.5",
+				"status": "active"
+			}
+		]
+	},
+	
+	"initCanonicalBundled": {
+		"resourceType": "Bundle",
+		"type": "collection",
+		"entry": [
+			{
+				"resource": {
+					"resourceType": "PlanDefinition",
+					"id": "plan-ref-contained",
+					"status": "active",
+					"action": [
+						{
+							"definitionCanonical": "http://example.org/fhir/ActivityDefinition/activity-edu-hypertension"
+						},
+						{
+							"definitionCanonical": "http://example.org/fhir/ActivityDefinition/activity-edu-hypertension|1.0.5"
+						},
+						{
+							"definitionCanonical": "http://example.org/fhir/ActivityDefinition/activity-edu-hypertension|2.0.0"
+						}
+					]
+				}
+			},
+			{
+				"resource": {
+					"resourceType": "ActivityDefinition",
+					"id": "edu-hypertension",
+					"url": "http://example.org/fhir/ActivityDefinition/activity-edu-hypertension",
+					"version": "1.0.5",
+					"status": "active"
+				}
+			}
+		]
+	}
+}

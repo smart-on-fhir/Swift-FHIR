@@ -2,7 +2,7 @@
 //  Task.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Task) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Task) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ open class Task: DomainResource {
 	public var input: [TaskInput]?
 	
 	/// Formal definition of task.
-	public var instantiatesCanonical: FHIRURL?
+	public var instantiatesCanonical: FHIRCanonical?
 	
 	/// Formal definition of task.
 	public var instantiatesUri: FHIRURL?
@@ -134,7 +134,7 @@ open class Task: DomainResource {
 		groupIdentifier = createInstance(type: Identifier.self, for: "groupIdentifier", in: json, context: &instCtx, owner: self) ?? groupIdentifier
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		input = createInstances(of: TaskInput.self, for: "input", in: json, context: &instCtx, owner: self) ?? input
-		instantiatesCanonical = createInstance(type: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstance(type: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstance(type: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		insurance = createInstances(of: Reference.self, for: "insurance", in: json, context: &instCtx, owner: self) ?? insurance
 		intent = createInstance(type: FHIRString.self, for: "intent", in: json, context: &instCtx, owner: self) ?? intent
@@ -237,7 +237,7 @@ open class TaskInput: BackboneElement {
 	public var valueBoolean: FHIRBool?
 	
 	/// Content to use in performing the task.
-	public var valueCanonical: FHIRURL?
+	public var valueCanonical: FHIRCanonical?
 	
 	/// Content to use in performing the task.
 	public var valueCode: FHIRString?
@@ -376,7 +376,7 @@ open class TaskInput: BackboneElement {
 		else if let value = value as? FHIRBool {
 			self.valueBoolean = value
 		}
-		else if let value = value as? FHIRURL {
+		else if let value = value as? FHIRCanonical {
 			self.valueCanonical = value
 		}
 		else if let value = value as? FHIRString {
@@ -536,7 +536,7 @@ open class TaskInput: BackboneElement {
 		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
 		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
-		valueCanonical = createInstance(type: FHIRURL.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
+		valueCanonical = createInstance(type: FHIRCanonical.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
 		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
@@ -684,7 +684,7 @@ open class TaskOutput: BackboneElement {
 	public var valueBoolean: FHIRBool?
 	
 	/// Result of output.
-	public var valueCanonical: FHIRURL?
+	public var valueCanonical: FHIRCanonical?
 	
 	/// Result of output.
 	public var valueCode: FHIRString?
@@ -823,7 +823,7 @@ open class TaskOutput: BackboneElement {
 		else if let value = value as? FHIRBool {
 			self.valueBoolean = value
 		}
-		else if let value = value as? FHIRURL {
+		else if let value = value as? FHIRCanonical {
 			self.valueCanonical = value
 		}
 		else if let value = value as? FHIRString {
@@ -983,7 +983,7 @@ open class TaskOutput: BackboneElement {
 		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
 		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
-		valueCanonical = createInstance(type: FHIRURL.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
+		valueCanonical = createInstance(type: FHIRCanonical.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
 		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding

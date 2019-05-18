@@ -2,7 +2,7 @@
 //  RelatedArtifact.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -32,7 +32,7 @@ open class RelatedArtifact: Element {
 	public var label: FHIRString?
 	
 	/// What resource is being referenced.
-	public var resource: FHIRURL?
+	public var resource: FHIRCanonical?
 	
 	/// The type of relationship to the related artifact.
 	public var type: RelatedArtifactType?
@@ -55,7 +55,7 @@ open class RelatedArtifact: Element {
 		display = createInstance(type: FHIRString.self, for: "display", in: json, context: &instCtx, owner: self) ?? display
 		document = createInstance(type: Attachment.self, for: "document", in: json, context: &instCtx, owner: self) ?? document
 		label = createInstance(type: FHIRString.self, for: "label", in: json, context: &instCtx, owner: self) ?? label
-		resource = createInstance(type: FHIRURL.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
+		resource = createInstance(type: FHIRCanonical.self, for: "resource", in: json, context: &instCtx, owner: self) ?? resource
 		type = createEnum(type: RelatedArtifactType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))

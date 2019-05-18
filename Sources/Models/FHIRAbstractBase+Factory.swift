@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -992,6 +992,8 @@ extension FHIRAbstractBase {
 				if let res = ProvenanceAgent(json: json, owner: owner, context: &context) as? T { return res }
 			case "ProvenanceEntity":
 				if let res = ProvenanceEntity(json: json, owner: owner, context: &context) as? T { return res }
+			case "Quantity":
+				if let res = Quantity(json: json, owner: owner, context: &context) as? T { return res }
 			case "Quantity":
 				if let res = Quantity(json: json, owner: owner, context: &context) as? T { return res }
 			case "Questionnaire":

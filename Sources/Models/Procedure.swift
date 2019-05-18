@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Procedure) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ open class Procedure: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Instantiates FHIR protocol or definition.
-	public var instantiatesCanonical: [FHIRURL]?
+	public var instantiatesCanonical: [FHIRCanonical]?
 	
 	/// Instantiates external protocol or definition.
 	public var instantiatesUri: [FHIRURL]?
@@ -139,7 +139,7 @@ open class Procedure: DomainResource {
 		focalDevice = createInstances(of: ProcedureFocalDevice.self, for: "focalDevice", in: json, context: &instCtx, owner: self) ?? focalDevice
 		followUp = createInstances(of: CodeableConcept.self, for: "followUp", in: json, context: &instCtx, owner: self) ?? followUp
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstances(of: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note

@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ class StructureDefinitionTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example-section-library.json")
 		
 		XCTAssertEqual(inst.abstract, true)
-		XCTAssertEqual(inst.baseDefinition?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Composition")
+		// Don't know how to create unit test for "baseDefinition", which is a FHIRCanonical
 		XCTAssertEqual(inst.date?.description, "2018-11-05T17:57:00+11:00")
 		XCTAssertEqual(inst.derivation, TypeDerivationRule(rawValue: "constraint")!)
 		XCTAssertEqual(inst.differential?.element?[0].id, "Composition")
@@ -114,7 +114,7 @@ class StructureDefinitionTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example-composition.json")
 		
 		XCTAssertEqual(inst.abstract, false)
-		XCTAssertEqual(inst.baseDefinition?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Composition")
+		// Don't know how to create unit test for "baseDefinition", which is a FHIRCanonical
 		XCTAssertEqual(inst.date?.description, "2018-11-05T17:47:00+11:00")
 		XCTAssertEqual(inst.derivation, TypeDerivationRule(rawValue: "constraint")!)
 		XCTAssertEqual(inst.differential?.element?[0].id, "Composition")
@@ -131,19 +131,19 @@ class StructureDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.differential?.element?[2].path, "Composition.section")
 		XCTAssertEqual(inst.differential?.element?[2].sliceName, "procedure")
 		XCTAssertEqual(inst.differential?.element?[2].type?[0].code?.absoluteString, "BackboneElement")
-		XCTAssertEqual(inst.differential?.element?[2].type?[0].profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/document-section-library")
+		// Don't know how to create unit test for "differential?.element?[2].type?[0].profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.differential?.element?[3].id, "Composition.section:medications")
 		XCTAssertEqual(inst.differential?.element?[3].min, 1)
 		XCTAssertEqual(inst.differential?.element?[3].path, "Composition.section")
 		XCTAssertEqual(inst.differential?.element?[3].sliceName, "medications")
 		XCTAssertEqual(inst.differential?.element?[3].type?[0].code?.absoluteString, "BackboneElement")
-		XCTAssertEqual(inst.differential?.element?[3].type?[0].profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/document-section-library")
+		// Don't know how to create unit test for "differential?.element?[3].type?[0].profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.differential?.element?[4].id, "Composition.section:plan")
 		XCTAssertEqual(inst.differential?.element?[4].min, 0)
 		XCTAssertEqual(inst.differential?.element?[4].path, "Composition.section")
 		XCTAssertEqual(inst.differential?.element?[4].sliceName, "plan")
 		XCTAssertEqual(inst.differential?.element?[4].type?[0].code?.absoluteString, "BackboneElement")
-		XCTAssertEqual(inst.differential?.element?[4].type?[0].profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/document-section-library")
+		// Don't know how to create unit test for "differential?.element?[4].type?[0].profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.experimental, false)
 		XCTAssertEqual(inst.id, "example-composition")
 		XCTAssertEqual(inst.kind, StructureDefinitionKind(rawValue: "complex-type")!)

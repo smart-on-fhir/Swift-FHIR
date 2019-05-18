@@ -2,7 +2,7 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -62,7 +62,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.property?[0].type, PropertyType(rawValue: "boolean")!)
 		XCTAssertEqual(inst.publisher, "ACME Co")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.supplements?.absoluteString, "http://hl7.org/fhir/CodeSystem/example")
+		// Don't know how to create unit test for "supplements", which is a FHIRCanonical
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/CodeSystem/example-supplement")
 		XCTAssertEqual(inst.version, "201801103")
@@ -127,14 +127,14 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.1.1105")
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2018-12-27T22:37:54.724+11:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "ExampleUseCodesForList")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "Example Use Codes for List")
 		XCTAssertEqual(inst.url?.absoluteString, "http://terminology.hl7.org/CodeSystem/list-example-use-codes")
-		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
+		// Don't know how to create unit test for "valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.version, "4.0.0")
 		
 		return inst
@@ -185,7 +185,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.title, "ExampleScenarioActorType")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/examplescenario-actor-type")
-		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/examplescenario-actor-type")
+		// Don't know how to create unit test for "valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.version, "4.0.0")
 		
 		return inst
@@ -278,7 +278,7 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/codesystems")
 		XCTAssertEqual(inst.identifier?[0].value, "internal-cholesterol-inl")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "ACMECholCodesBlood")
 		XCTAssertEqual(inst.publisher, "Acme Co")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)

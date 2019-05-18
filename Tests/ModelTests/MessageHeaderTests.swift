@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ class MessageHeaderTests: XCTestCase {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "messageheader-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.definition?.absoluteString, "http:////acme.com/ehr/fhir/messagedefinition/patientrequest")
+		// Don't know how to create unit test for "definition", which is a FHIRCanonical
 		XCTAssertEqual(inst.destination?[0].endpoint?.absoluteString, "llp:10.11.12.14:5432")
 		XCTAssertEqual(inst.destination?[0].name, "Acme Message Gateway")
 		XCTAssertEqual(inst.destination?[0].receiver?.reference, "http://acme.com/ehr/fhir/Practitioner/2323-33-4")

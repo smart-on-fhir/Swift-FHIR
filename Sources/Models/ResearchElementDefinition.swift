@@ -2,7 +2,7 @@
 //  ResearchElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -66,7 +66,7 @@ open class ResearchElementDefinition: DomainResource {
 	public var lastReviewDate: FHIRDate?
 	
 	/// Logic used by the ResearchElementDefinition.
-	public var library: [FHIRURL]?
+	public var library: [FHIRCanonical]?
 	
 	/// Name for this research element definition (computer friendly).
 	public var name: FHIRString?
@@ -153,7 +153,7 @@ open class ResearchElementDefinition: DomainResource {
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		lastReviewDate = createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, context: &instCtx, owner: self) ?? lastReviewDate
-		library = createInstances(of: FHIRURL.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
+		library = createInstances(of: FHIRCanonical.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
@@ -242,7 +242,7 @@ open class ResearchElementDefinitionCharacteristic: BackboneElement {
 	}
 	
 	/// What code or expression defines members?.
-	public var definitionCanonical: FHIRURL?
+	public var definitionCanonical: FHIRCanonical?
 	
 	/// What code or expression defines members?.
 	public var definitionCodeableConcept: CodeableConcept?
@@ -311,7 +311,7 @@ open class ResearchElementDefinitionCharacteristic: BackboneElement {
 		if let value = definition as? CodeableConcept {
 			self.definitionCodeableConcept = value
 		}
-		else if let value = definition as? FHIRURL {
+		else if let value = definition as? FHIRCanonical {
 			self.definitionCanonical = value
 		}
 		else if let value = definition as? Expression {
@@ -329,7 +329,7 @@ open class ResearchElementDefinitionCharacteristic: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definitionCanonical = createInstance(type: FHIRURL.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
+		definitionCanonical = createInstance(type: FHIRCanonical.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
 		definitionCodeableConcept = createInstance(type: CodeableConcept.self, for: "definitionCodeableConcept", in: json, context: &instCtx, owner: self) ?? definitionCodeableConcept
 		definitionDataRequirement = createInstance(type: DataRequirement.self, for: "definitionDataRequirement", in: json, context: &instCtx, owner: self) ?? definitionDataRequirement
 		definitionExpression = createInstance(type: Expression.self, for: "definitionExpression", in: json, context: &instCtx, owner: self) ?? definitionExpression

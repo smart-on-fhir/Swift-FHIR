@@ -2,7 +2,7 @@
 //  ActivityDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ActivityDefinition) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -83,7 +83,7 @@ open class ActivityDefinition: DomainResource {
 	public var lastReviewDate: FHIRDate?
 	
 	/// Logic used by the activity definition.
-	public var library: [FHIRURL]?
+	public var library: [FHIRCanonical]?
 	
 	/// Where it should happen.
 	public var location: Reference?
@@ -110,7 +110,7 @@ open class ActivityDefinition: DomainResource {
 	public var productReference: Reference?
 	
 	/// What profile the resource needs to conform to.
-	public var profile: FHIRURL?
+	public var profile: FHIRCanonical?
 	
 	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
@@ -167,7 +167,7 @@ open class ActivityDefinition: DomainResource {
 	public var topic: [CodeableConcept]?
 	
 	/// Transform to apply the template.
-	public var transform: FHIRURL?
+	public var transform: FHIRCanonical?
 	
 	/// Canonical identifier for this activity definition, represented as a URI (globally unique).
 	public var url: FHIRURL?
@@ -212,7 +212,7 @@ open class ActivityDefinition: DomainResource {
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		kind = createEnum(type: RequestResourceType.self, for: "kind", in: json, context: &instCtx) ?? kind
 		lastReviewDate = createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, context: &instCtx, owner: self) ?? lastReviewDate
-		library = createInstances(of: FHIRURL.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
+		library = createInstances(of: FHIRCanonical.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
 		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		observationRequirement = createInstances(of: Reference.self, for: "observationRequirement", in: json, context: &instCtx, owner: self) ?? observationRequirement
@@ -221,7 +221,7 @@ open class ActivityDefinition: DomainResource {
 		priority = createEnum(type: RequestPriority.self, for: "priority", in: json, context: &instCtx) ?? priority
 		productCodeableConcept = createInstance(type: CodeableConcept.self, for: "productCodeableConcept", in: json, context: &instCtx, owner: self) ?? productCodeableConcept
 		productReference = createInstance(type: Reference.self, for: "productReference", in: json, context: &instCtx, owner: self) ?? productReference
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
 		quantity = createInstance(type: Quantity.self, for: "quantity", in: json, context: &instCtx, owner: self) ?? quantity
@@ -243,7 +243,7 @@ open class ActivityDefinition: DomainResource {
 		timingTiming = createInstance(type: Timing.self, for: "timingTiming", in: json, context: &instCtx, owner: self) ?? timingTiming
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		topic = createInstances(of: CodeableConcept.self, for: "topic", in: json, context: &instCtx, owner: self) ?? topic
-		transform = createInstance(type: FHIRURL.self, for: "transform", in: json, context: &instCtx, owner: self) ?? transform
+		transform = createInstance(type: FHIRCanonical.self, for: "transform", in: json, context: &instCtx, owner: self) ?? transform
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 		usage = createInstance(type: FHIRString.self, for: "usage", in: json, context: &instCtx, owner: self) ?? usage
 		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext

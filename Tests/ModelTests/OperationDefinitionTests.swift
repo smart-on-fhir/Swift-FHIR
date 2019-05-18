@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -40,7 +40,7 @@ class OperationDefinitionTests: XCTestCase {
 	func runOperationDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIROperationDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationdefinition-example.json")
 		
-		XCTAssertEqual(inst.base?.absoluteString, "OperationDefinition/Questionnaire-populate")
+		// Don't know how to create unit test for "base", which is a FHIRCanonical
 		XCTAssertEqual(inst.code, "populate")
 		XCTAssertEqual(inst.comment, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.contact?[0].name, "System Administrator")

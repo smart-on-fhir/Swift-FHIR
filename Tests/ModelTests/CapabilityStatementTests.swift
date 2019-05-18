@@ -2,7 +2,7 @@
 //  CapabilityStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -48,7 +48,7 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.description_fhir, "This is the FHIR capability statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document?[0].documentation, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst.document?[0].mode, DocumentMode(rawValue: "consumer")!)
-		XCTAssertEqual(inst.document?[0].profile?.absoluteString, "http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796")
+		// Don't know how to create unit test for "document?[0].profile", which is a FHIRCanonical
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.fhirVersion, "4.0.0")
 		XCTAssertEqual(inst.format?[0], "xml")
@@ -56,8 +56,8 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.implementation?.description_fhir, "main EHR at ACME")
 		XCTAssertEqual(inst.implementation?.url?.absoluteString, "http://10.2.3.4/fhir")
-		XCTAssertEqual(inst.implementationGuide?[0].absoluteString, "http://hl7.org/fhir/us/lab")
-		XCTAssertEqual(inst.instantiates?[0].absoluteString, "http://ihe.org/fhir/CapabilityStatement/pixm-client")
+		// Don't know how to create unit test for "implementationGuide?[0]", which is a FHIRCanonical
+		// Don't know how to create unit test for "instantiates?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
@@ -67,14 +67,14 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.messaging?[0].endpoint?[0].protocol_fhir?.code, "mllp")
 		XCTAssertEqual(inst.messaging?[0].endpoint?[0].protocol_fhir?.system?.absoluteString, "http://terminology.hl7.org/CodeSystem/message-transport")
 		XCTAssertEqual(inst.messaging?[0].reliableCache, 30)
-		XCTAssertEqual(inst.messaging?[0].supportedMessage?[0].definition?.absoluteString, "MessageDefinition/example")
+		// Don't know how to create unit test for "messaging?[0].supportedMessage?[0].definition", which is a FHIRCanonical
 		XCTAssertEqual(inst.messaging?[0].supportedMessage?[0].mode, EventCapabilityMode(rawValue: "receiver")!)
 		XCTAssertEqual(inst.name, "ACME-EHR")
 		XCTAssertEqual(inst.patchFormat?[0], "application/xml-patch+xml")
 		XCTAssertEqual(inst.patchFormat?[1], "application/json-patch+json")
 		XCTAssertEqual(inst.publisher, "ACME Corporation")
 		XCTAssertEqual(inst.purpose, "Main EHR capability statement, published for contracting and operational support")
-		XCTAssertEqual(inst.rest?[0].compartment?[0].absoluteString, "http://hl7.org/fhir/CompartmentDefinition/patient")
+		// Don't know how to create unit test for "rest?[0].compartment?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.rest?[0].documentation, "Main FHIR endpoint for acem health")
 		XCTAssertEqual(inst.rest?[0].interaction?[0].code, FHIRRestfulInteractions(rawValue: "transaction")!)
 		XCTAssertEqual(inst.rest?[0].interaction?[1].code, FHIRRestfulInteractions(rawValue: "history-system")!)
@@ -91,18 +91,18 @@ class CapabilityStatementTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[3].code, FHIRRestfulInteractions(rawValue: "history-instance")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[4].code, FHIRRestfulInteractions(rawValue: "create")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[5].code, FHIRRestfulInteractions(rawValue: "history-type")!)
-		XCTAssertEqual(inst.rest?[0].resource?[0].profile?.absoluteString, "http://registry.fhir.org/r4/StructureDefinition/7896271d-57f6-4231-89dc-dcc91eab2416")
+		// Don't know how to create unit test for "rest?[0].resource?[0].profile", which is a FHIRCanonical
 		XCTAssertEqual(inst.rest?[0].resource?[0].readHistory, true)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchInclude?[0], "Organization")
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-identifier")
+		// Don't know how to create unit test for "rest?[0].resource?[0].searchParam?[0].definition", which is a FHIRCanonical
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].documentation, "Only supports search by institution MRN")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].name, "identifier")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].type, SearchParamType(rawValue: "token")!)
-		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-general-practitioner")
+		// Don't know how to create unit test for "rest?[0].resource?[0].searchParam?[1].definition", which is a FHIRCanonical
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].name, "general-practitioner")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[1].type, SearchParamType(rawValue: "reference")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchRevInclude?[0], "Person")
-		XCTAssertEqual(inst.rest?[0].resource?[0].supportedProfile?[0].absoluteString, "http://registry.fhir.org/r4/StructureDefinition/00ab9e7a-06c7-4f77-9234-4154ca1e3347")
+		// Don't know how to create unit test for "rest?[0].resource?[0].supportedProfile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.rest?[0].resource?[0].type, ResourceType(rawValue: "Patient")!)
 		XCTAssertEqual(inst.rest?[0].resource?[0].updateCreate, false)
 		XCTAssertEqual(inst.rest?[0].resource?[0].versioning, ResourceVersionPolicy(rawValue: "versioned-update")!)

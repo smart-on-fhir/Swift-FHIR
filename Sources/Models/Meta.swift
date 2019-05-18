@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Meta) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Meta) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ open class Meta: Element {
 	public var lastUpdated: Instant?
 	
 	/// Profiles this resource claims to conform to.
-	public var profile: [FHIRURL]?
+	public var profile: [FHIRCanonical]?
 	
 	/// Security Labels applied to this resource.
 	public var security: [Coding]?
@@ -43,7 +43,7 @@ open class Meta: Element {
 		super.populate(from: json, context: &instCtx)
 		
 		lastUpdated = createInstance(type: Instant.self, for: "lastUpdated", in: json, context: &instCtx, owner: self) ?? lastUpdated
-		profile = createInstances(of: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstances(of: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		security = createInstances(of: Coding.self, for: "security", in: json, context: &instCtx, owner: self) ?? security
 		source = createInstance(type: FHIRURL.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		tag = createInstances(of: Coding.self, for: "tag", in: json, context: &instCtx, owner: self) ?? tag

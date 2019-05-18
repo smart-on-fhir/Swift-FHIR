@@ -23,7 +23,7 @@ classmap = {
     'uuid': 'FHIRURL',
     'uri': 'FHIRURL',
     'url': 'FHIRURL',
-    'canonical': 'FHIRCanonical',
+    'canonical': 'FHIRURL',
     
 #   'base64Binary': 'Base64Binary',
     
@@ -51,7 +51,6 @@ jsonmap = {
     
     'FHIRString': 'String',
     'FHIRURL': 'String',
-    'FHIRCanonical': 'String',
     'Base64Binary': 'String',
     
     'FHIRDate': 'String',

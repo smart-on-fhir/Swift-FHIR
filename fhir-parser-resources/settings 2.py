@@ -60,9 +60,6 @@ manual_profiles = [
     ('../fhir-parser-resources/FHIRURL.swift', None, [
         'uri', 'oid'
     ]),
-    ('../fhir-parser-resources/FHIRCanonical.swift', None, [
-        'canonical'
-    ]),
     ('../fhir-parser-resources/DateAndTime.swift', None, [
         'date', 'dateTime', 'time', 'instant',
     ]),

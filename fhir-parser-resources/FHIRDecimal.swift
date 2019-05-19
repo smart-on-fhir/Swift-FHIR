@@ -59,7 +59,7 @@ public struct FHIRDecimal: FHIRPrimitive, LosslessStringConvertible, Expressible
 		#if os(Linux)
 		self.init(Decimal(json))
 		#else
-		if let _ = json.stringValue.index(of: ".") {
+		if let _ = json.stringValue.firstIndex(of: ".") {
 			self.init(stringLiteral: String(format: "%.15g", json.doubleValue))
 		}
 		else {

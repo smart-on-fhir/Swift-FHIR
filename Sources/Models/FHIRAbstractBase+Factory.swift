@@ -994,8 +994,6 @@ extension FHIRAbstractBase {
 				if let res = ProvenanceEntity(json: json, owner: owner, context: &context) as? T { return res }
 			case "Quantity":
 				if let res = Quantity(json: json, owner: owner, context: &context) as? T { return res }
-			case "Quantity":
-				if let res = Quantity(json: json, owner: owner, context: &context) as? T { return res }
 			case "Questionnaire":
 				if let res = Questionnaire(json: json, owner: owner, context: &context) as? T { return res }
 			case "QuestionnaireItem":

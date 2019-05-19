@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -44,60 +44,60 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.code?[0].display, "PHQ-9 quick depression assessment panel:-:Pt:^Patient:-:Report.PHQ-9")
 		XCTAssertEqual(inst.code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.extension_fhir?[0].url, "http://hl7.org/fhir/StructureDefinition/cqf-library")
-		XCTAssertEqual(inst.extension_fhir?[0].valueCanonical?.absoluteString, "Library/phq-9-logic")
+		// Don't know how to create unit test for "extension_fhir?[0].valueCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.id, "phq-9-questionnaire")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "phq-9")
-		XCTAssertEqual(inst.item?[0].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[0].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[0].code?[0].code, "44250-9")
 		XCTAssertEqual(inst.item?[0].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[0].linkId, "LittleInterest")
 		XCTAssertEqual(inst.item?[0].required, true)
 		XCTAssertEqual(inst.item?[0].text, "Little interest or pleasure in doing things")
 		XCTAssertEqual(inst.item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[1].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[1].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[1].code?[0].code, "44255-8")
 		XCTAssertEqual(inst.item?[1].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[1].linkId, "FeelingDown")
 		XCTAssertEqual(inst.item?[1].required, true)
 		XCTAssertEqual(inst.item?[1].text, "Feeling down, depressed, or hopeless")
 		XCTAssertEqual(inst.item?[1].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[2].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[2].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[2].code?[0].code, "44259-0")
 		XCTAssertEqual(inst.item?[2].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[2].linkId, "TroubleSleeping")
 		XCTAssertEqual(inst.item?[2].required, true)
 		XCTAssertEqual(inst.item?[2].text, "Trouble falling or staying asleep")
 		XCTAssertEqual(inst.item?[2].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[3].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[3].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[3].code?[0].code, "44254-1")
 		XCTAssertEqual(inst.item?[3].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[3].linkId, "FeelingTired")
 		XCTAssertEqual(inst.item?[3].required, true)
 		XCTAssertEqual(inst.item?[3].text, "Feeling tired or having little energy")
 		XCTAssertEqual(inst.item?[3].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[4].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[4].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[4].code?[0].code, "44251-7")
 		XCTAssertEqual(inst.item?[4].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[4].linkId, "BadAppetite")
 		XCTAssertEqual(inst.item?[4].required, true)
 		XCTAssertEqual(inst.item?[4].text, "Poor appetite or overeating")
 		XCTAssertEqual(inst.item?[4].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[5].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[5].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[5].code?[0].code, "44258-2")
 		XCTAssertEqual(inst.item?[5].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[5].linkId, "FeelingBadAboutSelf")
 		XCTAssertEqual(inst.item?[5].required, true)
 		XCTAssertEqual(inst.item?[5].text, "Feeling bad about yourself - or that you are a failure or have let yourself or your family down")
 		XCTAssertEqual(inst.item?[5].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[6].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[6].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[6].code?[0].code, "44252-5")
 		XCTAssertEqual(inst.item?[6].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[6].linkId, "TroubleConcentrating")
 		XCTAssertEqual(inst.item?[6].required, true)
 		XCTAssertEqual(inst.item?[6].text, "Trouble concentrating on things, such as reading the newspaper or watching television")
 		XCTAssertEqual(inst.item?[6].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[7].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[7].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[7].code?[0].code, "44253-3")
 		XCTAssertEqual(inst.item?[7].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[7].linkId, "MovingSpeaking")
@@ -113,14 +113,14 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[8].required, true)
 		XCTAssertEqual(inst.item?[8].text, "Total score")
 		XCTAssertEqual(inst.item?[8].type, QuestionnaireItemType(rawValue: "integer")!)
-		XCTAssertEqual(inst.item?[9].answerValueSet?.absoluteString, "http://loinc.org/vs/LL358-3")
+		// Don't know how to create unit test for "item?[9].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[9].code?[0].code, "44256-6")
 		XCTAssertEqual(inst.item?[9].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[9].linkId, "Difficulty")
 		XCTAssertEqual(inst.item?[9].required, true)
 		XCTAssertEqual(inst.item?[9].text, "If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people")
 		XCTAssertEqual(inst.item?[9].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/cqf-questionnaire")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
@@ -152,7 +152,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.id, "3141")
 		XCTAssertEqual(inst.item?[0].code?[0].code, "COMORBIDITY")
 		XCTAssertEqual(inst.item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/sections")
-		XCTAssertEqual(inst.item?[0].item?[0].answerValueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/yesnodontknow")
+		// Don't know how to create unit test for "item?[0].item?[0].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[0].item?[0].code?[0].code, "COMORB")
 		XCTAssertEqual(inst.item?[0].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].code?[0].code, "CARDIAL")
@@ -161,10 +161,10 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].enableWhen?[0].answerCoding?.system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v2-0136")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].enableWhen?[0].operator_fhir, QuestionnaireItemOperator(rawValue: "=")!)
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].enableWhen?[0].question, "1.1")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].answerValueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/yesnodontknow")
+		// Don't know how to create unit test for "item?[0].item?[0].item?[0].item?[0].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].code?[0].code, "COMORBCAR")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[0].answerValueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/yesnodontknow")
+		// Don't know how to create unit test for "item?[0].item?[0].item?[0].item?[0].item?[0].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[0].code?[0].code, "COMCAR00")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[0].code?[0].display, "Angina Pectoris")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[0].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
@@ -174,7 +174,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[0].linkId, "1.1.1.1.1")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[0].prefix, "1.1.1")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[1].answerValueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/yesnodontknow")
+		// Don't know how to create unit test for "item?[0].item?[0].item?[0].item?[0].item?[1].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[1].code?[0].code, "22298006")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[1].code?[0].display, "Myocardial infarction (disorder)")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].item?[1].code?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -184,7 +184,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].linkId, "1.1.1.1")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].prefix, "1.1")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].answerValueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/yesnodontknow")
+		// Don't know how to create unit test for "item?[0].item?[0].item?[0].item?[1].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[0].code, "COMORBVAS")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].code?[0].system?.absoluteString, "http://example.org/system/code/questions")
 		XCTAssertEqual(inst.item?[0].item?[0].item?[0].item?[1].linkId, "1.1.1.2")
@@ -294,17 +294,17 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.contained?[2].id, "eye")
 		XCTAssertEqual(inst.date?.description, "2015-08-03")
 		XCTAssertEqual(inst.id, "gcs")
-		XCTAssertEqual(inst.item?[0].answerValueSet?.absoluteString, "#verbal")
+		// Don't know how to create unit test for "item?[0].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[0].code?[0].code, "9270-0")
 		XCTAssertEqual(inst.item?[0].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[0].linkId, "1.1")
 		XCTAssertEqual(inst.item?[0].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[1].answerValueSet?.absoluteString, "#motor")
+		// Don't know how to create unit test for "item?[1].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[1].code?[0].code, "9268-4")
 		XCTAssertEqual(inst.item?[1].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[1].linkId, "1.2")
 		XCTAssertEqual(inst.item?[1].type, QuestionnaireItemType(rawValue: "choice")!)
-		XCTAssertEqual(inst.item?[2].answerValueSet?.absoluteString, "#eye")
+		// Don't know how to create unit test for "item?[2].answerValueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.item?[2].code?[0].code, "9267-6")
 		XCTAssertEqual(inst.item?[2].code?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.item?[2].linkId, "1.3")

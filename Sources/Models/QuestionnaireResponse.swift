@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -42,7 +42,7 @@ open class QuestionnaireResponse: DomainResource {
 	public var partOf: [Reference]?
 	
 	/// Form being answered.
-	public var questionnaire: FHIRURL?
+	public var questionnaire: FHIRCanonical?
 	
 	/// The person who answered the questions.
 	public var source: Reference?
@@ -71,7 +71,7 @@ open class QuestionnaireResponse: DomainResource {
 		identifier = createInstance(type: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		item = createInstances(of: QuestionnaireResponseItem.self, for: "item", in: json, context: &instCtx, owner: self) ?? item
 		partOf = createInstances(of: Reference.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
-		questionnaire = createInstance(type: FHIRURL.self, for: "questionnaire", in: json, context: &instCtx, owner: self) ?? questionnaire
+		questionnaire = createInstance(type: FHIRCanonical.self, for: "questionnaire", in: json, context: &instCtx, owner: self) ?? questionnaire
 		source = createInstance(type: Reference.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		status = createEnum(type: QuestionnaireResponseStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {

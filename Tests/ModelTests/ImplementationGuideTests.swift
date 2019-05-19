@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -59,13 +59,13 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.definition?.parameter?[0].code, GuideParameterCode(rawValue: "apply")!)
 		XCTAssertEqual(inst.definition?.parameter?[0].value, "version")
 		XCTAssertEqual(inst.definition?.resource?[0].description_fhir, "A test example to show how an implementation guide works")
-		XCTAssertEqual(inst.definition?.resource?[0].exampleCanonical?.absoluteString, "http://hl7.org/fhir/us/core/StructureDefinition/patient")
+		// Don't know how to create unit test for "definition?.resource?[0].exampleCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.definition?.resource?[0].name, "Test Example")
 		XCTAssertEqual(inst.definition?.resource?[0].reference?.reference, "Patient/test")
-		XCTAssertEqual(inst.dependsOn?[0].uri?.absoluteString, "http://hl7.org/fhir/ImplementationGuide/uscore")
+		// Don't know how to create unit test for "dependsOn?[0].uri", which is a FHIRCanonical
 		XCTAssertEqual(inst.experimental, false)
 		XCTAssertEqual(inst.fhirVersion?[0], "4.0.0")
-		XCTAssertEqual(inst.global?[0].profile?.absoluteString, "http://hl7.org/fhir/us/core/StructureDefinition/patient")
+		// Don't know how to create unit test for "global?[0].profile", which is a FHIRCanonical
 		XCTAssertEqual(inst.global?[0].type, ResourceType(rawValue: "Patient")!)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
@@ -79,7 +79,7 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.manifest?.page?[0].name, "patient-test.html")
 		XCTAssertEqual(inst.manifest?.page?[0].title, "Test Patient Example")
 		XCTAssertEqual(inst.manifest?.rendering?.absoluteString, "http://hl7.org/fhir/us/daf")
-		XCTAssertEqual(inst.manifest?.resource?[0].exampleCanonical?.absoluteString, "http://hl7.org/fhir/us/core/StructureDefinition/patient")
+		// Don't know how to create unit test for "manifest?.resource?[0].exampleCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.manifest?.resource?[0].reference?.reference, "Patient/test")
 		XCTAssertEqual(inst.manifest?.resource?[0].relativePath?.absoluteString, "patient-test.html#patient-test")
 		XCTAssertEqual(inst.name, "Data Access Framework (DAF)")

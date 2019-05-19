@@ -2,7 +2,7 @@
 //  ActivityDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -77,7 +77,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "citation")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "ActivityDefinition/referralPrimaryCareMentalHealth")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "successor")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "retired")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -195,7 +195,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "citation")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "#citalopramMedication")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "composed-of")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -294,7 +294,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "citation")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "ActivityDefinition/referralPrimaryCareMentalHealth-initial")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "predecessor")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -419,7 +419,7 @@ class ActivityDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.quantity?.value, "10")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
-		XCTAssertEqual(inst.transform?.absoluteString, "StructureMap/supplyrequest-transform")
+		// Don't know how to create unit test for "transform", which is a FHIRCanonical
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  ChargeItem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItem) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -38,7 +38,7 @@ open class ChargeItem: DomainResource {
 	public var costCenter: Reference?
 	
 	/// Resource defining the code of this ChargeItem.
-	public var definitionCanonical: [FHIRURL]?
+	public var definitionCanonical: [FHIRCanonical]?
 	
 	/// Defining information about the code of this charge item.
 	public var definitionUri: [FHIRURL]?
@@ -130,7 +130,7 @@ open class ChargeItem: DomainResource {
 		}
 		context = createInstance(type: Reference.self, for: "context", in: json, context: &instCtx, owner: self) ?? context
 		costCenter = createInstance(type: Reference.self, for: "costCenter", in: json, context: &instCtx, owner: self) ?? costCenter
-		definitionCanonical = createInstances(of: FHIRURL.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
+		definitionCanonical = createInstances(of: FHIRCanonical.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
 		definitionUri = createInstances(of: FHIRURL.self, for: "definitionUri", in: json, context: &instCtx, owner: self) ?? definitionUri
 		enteredDate = createInstance(type: DateTime.self, for: "enteredDate", in: json, context: &instCtx, owner: self) ?? enteredDate
 		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer

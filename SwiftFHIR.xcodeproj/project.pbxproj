@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B45EC456228FB4B2004495F7 /* FHIRCanonical.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC455228FB4B2004495F7 /* FHIRCanonical.swift */; };
+		B45EC457228FB4B2004495F7 /* FHIRCanonical.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC455228FB4B2004495F7 /* FHIRCanonical.swift */; };
+		B45EC458228FB4B2004495F7 /* FHIRCanonical.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC455228FB4B2004495F7 /* FHIRCanonical.swift */; };
+		B45EC45A228FB540004495F7 /* FHIRCanonical+Resolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC459228FB540004495F7 /* FHIRCanonical+Resolving.swift */; };
+		B45EC45B228FB540004495F7 /* FHIRCanonical+Resolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC459228FB540004495F7 /* FHIRCanonical+Resolving.swift */; };
+		B45EC45C228FB540004495F7 /* FHIRCanonical+Resolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC459228FB540004495F7 /* FHIRCanonical+Resolving.swift */; };
+		B45EC461228FB696004495F7 /* CanonicalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC45D228FB5F2004495F7 /* CanonicalTests.swift */; };
+		B45EC462228FB69A004495F7 /* CanonicalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45EC45D228FB5F2004495F7 /* CanonicalTests.swift */; };
 		B47BEB04221E32AF00929C5D /* BiologicallyDerivedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47BEAD4221E32AA00929C5D /* BiologicallyDerivedProduct.swift */; };
 		B47BEB05221E32AF00929C5D /* CoverageEligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47BEAD5221E32AA00929C5D /* CoverageEligibilityResponse.swift */; };
 		B47BEB06221E32AF00929C5D /* BodyStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47BEAD6221E32AA00929C5D /* BodyStructure.swift */; };
@@ -923,6 +931,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B45EC455228FB4B2004495F7 /* FHIRCanonical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRCanonical.swift; sourceTree = "<group>"; };
+		B45EC459228FB540004495F7 /* FHIRCanonical+Resolving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRCanonical+Resolving.swift"; sourceTree = "<group>"; };
+		B45EC45D228FB5F2004495F7 /* CanonicalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanonicalTests.swift; sourceTree = "<group>"; };
 		B47BEAD4221E32AA00929C5D /* BiologicallyDerivedProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiologicallyDerivedProduct.swift; sourceTree = "<group>"; };
 		B47BEAD5221E32AA00929C5D /* CoverageEligibilityResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverageEligibilityResponse.swift; sourceTree = "<group>"; };
 		B47BEAD6221E32AA00929C5D /* BodyStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyStructure.swift; sourceTree = "<group>"; };
@@ -1444,6 +1455,7 @@
 				EE1310B31C1B435300D9DAE7 /* FHIRAbstractBase+Factory.swift */,
 				EE1310B41C1B435300D9DAE7 /* FHIRAbstractResource.swift */,
 				EEED291A1DF94619007ADD02 /* FHIRBool.swift */,
+				B45EC455228FB4B2004495F7 /* FHIRCanonical.swift */,
 				EEB4302E1DF973010040415A /* FHIRDecimal.swift */,
 				EE86F3ED1DF9BDE100922994 /* FHIREnum.swift */,
 				EE1310D01C1B602B00D9DAE7 /* FHIRError.swift */,
@@ -1582,6 +1594,7 @@
 		EE8250321DD61DBD0097A737 /* ClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				B45EC45D228FB5F2004495F7 /* CanonicalTests.swift */,
 				EE109CEA1DF75A2C00DB1774 /* PrimitiveTests.swift */,
 				EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */,
 				EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */,
@@ -1611,6 +1624,7 @@
 				EE1310CE1C1B5EE500D9DAE7 /* Resource+Instantiation.swift */,
 				EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */,
 				EE01F96F1C58F6AB003AEA7E /* DomainResource+Containment.swift */,
+				B45EC459228FB540004495F7 /* FHIRCanonical+Resolving.swift */,
 				EE02F6ED1ACF257000179969 /* FHIRSearch.swift */,
 				EE9EE2601ACB43D1004DBCBB /* FHIROperation.swift */,
 				EE9ABA2A1D803D8400BA8B54 /* Patient+SMART.swift */,
@@ -1863,27 +1877,27 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "SMART Health IT";
 				TargetAttributes = {
 					EE684C1D19A789BA00B5A2C0 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					EE684C2819A789BA00B5A2C0 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					EE6DA7CD1A5D4B1000E00708 = {
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					EE6DA85C1A5D4B3A00E00708 = {
 						CreatedOnToolsVersion = 6.2;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					EEB830591E67278C0084E030 = {
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -1892,6 +1906,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = EE684C1419A789BA00B5A2C0;
@@ -1976,6 +1991,7 @@
 				B47BEB10221E32AF00929C5D /* SubstanceNucleicAcid.swift in Sources */,
 				EE02F6951ACF252000179969 /* NamingSystem.swift in Sources */,
 				EE02F61D1ACF252000179969 /* Claim.swift in Sources */,
+				B45EC456228FB4B2004495F7 /* FHIRCanonical.swift in Sources */,
 				EE02F6211ACF252000179969 /* ClinicalImpression.swift in Sources */,
 				EE02F61B1ACF252000179969 /* CarePlan.swift in Sources */,
 				EE02F6E31ACF252000179969 /* Substance.swift in Sources */,
@@ -2103,6 +2119,7 @@
 				EEA97F9C1DCA1C6F00C3F016 /* RequestGroup.swift in Sources */,
 				EE4720A11E5F2C86008E3BB6 /* Resource+Meta.swift in Sources */,
 				EE1310DA1C1B681500D9DAE7 /* FHIRServerDataResponse.swift in Sources */,
+				B45EC45A228FB540004495F7 /* FHIRCanonical+Resolving.swift in Sources */,
 				EE02F65D1ACF252000179969 /* Encounter.swift in Sources */,
 				EE02F6C71ACF252000179969 /* Ratio.swift in Sources */,
 				B47BEB24221E32AF00929C5D /* MedicinalProductManufactured.swift in Sources */,
@@ -2245,6 +2262,7 @@
 				EE31DC571D64AC3600B04BEA /* EndpointTests.swift in Sources */,
 				EEA97F961DCA1C3C00C3F016 /* RequestGroupTests.swift in Sources */,
 				EE02F7941ACF259B00179969 /* EpisodeOfCareTests.swift in Sources */,
+				B45EC461228FB696004495F7 /* CanonicalTests.swift in Sources */,
 				EE02F7581ACF259B00179969 /* BundleTests.swift in Sources */,
 				EE02F7721ACF259B00179969 /* CoverageTests.swift in Sources */,
 				EE1F49D51C0D14F60095BF0F /* ReferenceTests.swift in Sources */,
@@ -2326,6 +2344,7 @@
 				B47BEB48221E336A00929C5D /* MedicinalProductContraindication.swift in Sources */,
 				B47BEB49221E336A00929C5D /* MedicinalProductIndication.swift in Sources */,
 				B47BEB4A221E336A00929C5D /* MedicinalProductIngredient.swift in Sources */,
+				B45EC457228FB4B2004495F7 /* FHIRCanonical.swift in Sources */,
 				B47BEB4B221E336A00929C5D /* MedicinalProductInteraction.swift in Sources */,
 				B47BEB4C221E336A00929C5D /* MedicinalProductManufactured.swift in Sources */,
 				B47BEB4D221E336A00929C5D /* MedicinalProductPackaged.swift in Sources */,
@@ -2453,6 +2472,7 @@
 				EE65DB771CB39FFD00E25C72 /* MeasureReport.swift in Sources */,
 				EE02F6681ACF252000179969 /* Extension.swift in Sources */,
 				EE65DB6D1CB39FFD00E25C72 /* CompartmentDefinition.swift in Sources */,
+				B45EC45B228FB540004495F7 /* FHIRCanonical+Resolving.swift in Sources */,
 				EE1310D51C1B605D00D9DAE7 /* Resource+Instantiation.swift in Sources */,
 				EE02F6EF1ACF257000179969 /* FHIRSearch.swift in Sources */,
 				EE02F63C1ACF252000179969 /* Coverage.swift in Sources */,
@@ -2595,6 +2615,7 @@
 				EE65DB651CB39FE200E25C72 /* PractitionerRoleTests.swift in Sources */,
 				EE3906A01CD3E4F6008FECEA /* RequestTests.swift in Sources */,
 				EE02F7591ACF259B00179969 /* BundleTests.swift in Sources */,
+				B45EC462228FB69A004495F7 /* CanonicalTests.swift in Sources */,
 				EEA97F971DCA1C3C00C3F016 /* RequestGroupTests.swift in Sources */,
 				EE02F7731ACF259B00179969 /* CoverageTests.swift in Sources */,
 				EE82503F1DD61DE20097A737 /* ResourceTests.swift in Sources */,
@@ -2740,6 +2761,7 @@
 				B4FA8C81221F16A500BD72A1 /* MedicinalProductIndication.swift in Sources */,
 				B4FA8C82221F16A500BD72A1 /* MedicinalProductIngredient.swift in Sources */,
 				B4FA8C83221F16A500BD72A1 /* MedicinalProductInteraction.swift in Sources */,
+				B45EC45C228FB540004495F7 /* FHIRCanonical+Resolving.swift in Sources */,
 				B4FA8C84221F16A500BD72A1 /* MedicinalProductManufactured.swift in Sources */,
 				B4FA8C85221F16A500BD72A1 /* MedicinalProductPackaged.swift in Sources */,
 				B4FA8C86221F16A500BD72A1 /* MedicinalProductPharmaceutical.swift in Sources */,
@@ -2815,6 +2837,7 @@
 				B4FA8C24221F025700BD72A1 /* ParameterDefinition.swift in Sources */,
 				B4FA8C25221F025700BD72A1 /* UsageContext.swift in Sources */,
 				EEB831DF1E672A5E0084E030 /* FHIRServer.swift in Sources */,
+				B45EC458228FB4B2004495F7 /* FHIRCanonical.swift in Sources */,
 				EEB831CE1E672A210084E030 /* DateAndTime.swift in Sources */,
 				EEB831C71E6729FD0084E030 /* CodeSystems.swift in Sources */,
 				EEB831EE1E672AB50084E030 /* Ratio.swift in Sources */,
@@ -2896,6 +2919,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2954,6 +2978,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -3017,8 +3042,7 @@
 				PRODUCT_NAME = SwiftFHIR;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -3040,8 +3064,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -3056,8 +3079,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -3073,8 +3095,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -3097,8 +3118,7 @@
 				PRODUCT_NAME = SwiftFHIR;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -3122,8 +3142,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -3139,8 +3158,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -3157,8 +3175,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -3181,8 +3198,7 @@
 				PRODUCT_NAME = SwiftFHIRMin;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -3206,8 +3222,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

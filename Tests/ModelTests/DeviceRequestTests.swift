@@ -2,7 +2,7 @@
 //  DeviceRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -49,7 +49,7 @@ class DeviceRequestTests: XCTestCase {
 		XCTAssertEqual(inst.groupIdentifier?.value, "ip_request1")
 		XCTAssertEqual(inst.id, "insulinpump")
 		XCTAssertEqual(inst.identifier?[0].value, "ip_request1.1")
-		XCTAssertEqual(inst.instantiatesCanonical?[0].absoluteString, "http://motivemi.com/artifacts/PlanDefinition/low-suicide-risk-order-set")
+		// Don't know how to create unit test for "instantiatesCanonical?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.intent, RequestIntent(rawValue: "instance-order")!)
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")

@@ -2,7 +2,7 @@
 //  MeasureReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MeasureReport) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -36,7 +36,7 @@ open class MeasureReport: DomainResource {
 	public var improvementNotation: CodeableConcept?
 	
 	/// What measure was calculated.
-	public var measure: FHIRURL?
+	public var measure: FHIRCanonical?
 	
 	/// What period the report covers.
 	public var period: Period?
@@ -59,7 +59,7 @@ open class MeasureReport: DomainResource {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(measure: FHIRURL, period: Period, status: MeasureReportStatus, type: MeasureReportType) {
+	public convenience init(measure: FHIRCanonical, period: Period, status: MeasureReportStatus, type: MeasureReportType) {
 		self.init()
 		self.measure = measure
 		self.period = period
@@ -76,7 +76,7 @@ open class MeasureReport: DomainResource {
 		group = createInstances(of: MeasureReportGroup.self, for: "group", in: json, context: &instCtx, owner: self) ?? group
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		improvementNotation = createInstance(type: CodeableConcept.self, for: "improvementNotation", in: json, context: &instCtx, owner: self) ?? improvementNotation
-		measure = createInstance(type: FHIRURL.self, for: "measure", in: json, context: &instCtx, owner: self) ?? measure
+		measure = createInstance(type: FHIRCanonical.self, for: "measure", in: json, context: &instCtx, owner: self) ?? measure
 		if nil == measure && !instCtx.containsKey("measure") {
 			instCtx.addError(FHIRValidationError(missing: "measure"))
 		}

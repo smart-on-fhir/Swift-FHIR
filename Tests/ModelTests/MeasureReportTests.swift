@@ -2,7 +2,7 @@
 //  MeasureReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -129,7 +129,7 @@ class MeasureReportTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].value?.text, "unknown")
 		XCTAssertEqual(inst.id, "measurereport-cms146-cat1-example")
 		XCTAssertEqual(inst.identifier?[0].value, "measurereport-cms146-cat1-example-2017-03-13")
-		XCTAssertEqual(inst.measure?.absoluteString, "Measure/CMS146")
+		// Don't know how to create unit test for "measure", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
@@ -282,7 +282,7 @@ class MeasureReportTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].value?.text, "unknown")
 		XCTAssertEqual(inst.id, "measurereport-cms146-cat2-example")
 		XCTAssertEqual(inst.identifier?[0].value, "measurereport-cms146-cat2-example-2017-03-13")
-		XCTAssertEqual(inst.measure?.absoluteString, "Measure/CMS146")
+		// Don't know how to create unit test for "measure", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
@@ -398,7 +398,7 @@ class MeasureReportTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].stratifier?[2].stratum?[3].value?.text, "unknown")
 		XCTAssertEqual(inst.id, "measurereport-cms146-cat3-example")
 		XCTAssertEqual(inst.identifier?[0].value, "measurereport-cms146-cat3-example-2017-03-13")
-		XCTAssertEqual(inst.measure?.absoluteString, "Measure/CMS146")
+		// Don't know how to create unit test for "measure", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")

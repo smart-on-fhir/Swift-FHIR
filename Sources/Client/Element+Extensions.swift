@@ -19,7 +19,7 @@ public extension FHIRPrimitive {
 	
 	- parameter forURI: The URI defining the extension on the receiver
 	*/
-	public func extensions(forURI uri: String) -> [Extension]? {
+	func extensions(forURI uri: String) -> [Extension]? {
 		return extension_fhir?.filter() { return $0.url?.string == uri }
 	}
 }
@@ -32,7 +32,7 @@ public extension Element {
 	
 	- parameter forURI: The URI defining the extension on the receiver
 	*/
-	public final func extensions(forURI uri: String) -> [Extension]? {
+	final func extensions(forURI uri: String) -> [Extension]? {
 		return extension_fhir?.filter() { return $0.url?.string == uri }
 	}
 }
@@ -45,7 +45,7 @@ public extension DomainResource {
 	
 	- parameter forURI: The URI defining the extension on the receiver
 	*/
-	public final func extensions(forURI uri: String) -> [Extension]? {
+	final func extensions(forURI uri: String) -> [Extension]? {
 		return extension_fhir?.filter() { return $0.url?.string == uri }
 	}
 	
@@ -54,7 +54,7 @@ public extension DomainResource {
 	
 	- parameter forURI: The URI defining the modifier extension on the receiver
 	*/
-	public final func modifierExtensions(forURI uri: String) -> [Extension]? {
+	final func modifierExtensions(forURI uri: String) -> [Extension]? {
 		return modifierExtension?.filter() { return $0.url?.string == uri }
 	}
 }

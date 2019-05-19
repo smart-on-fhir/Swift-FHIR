@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -49,7 +49,7 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.encounter?.display, "Roel's encounter on January 28th, 2013")
 		XCTAssertEqual(inst.encounter?.reference, "Encounter/f202")
 		XCTAssertEqual(inst.id, "f201")
-		XCTAssertEqual(inst.instantiatesCanonical?[0].absoluteString, "PlanDefinition/KDN5")
+		// Don't know how to create unit test for "instantiatesCanonical?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")

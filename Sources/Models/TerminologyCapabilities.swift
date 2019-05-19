@@ -2,7 +2,7 @@
 //  TerminologyCapabilities.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -224,7 +224,7 @@ open class TerminologyCapabilitiesCodeSystem: BackboneElement {
 	public var subsumption: FHIRBool?
 	
 	/// URI for the Code System.
-	public var uri: FHIRURL?
+	public var uri: FHIRCanonical?
 	
 	/// Version of Code System supported.
 	public var version: [TerminologyCapabilitiesCodeSystemVersion]?
@@ -234,7 +234,7 @@ open class TerminologyCapabilitiesCodeSystem: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		subsumption = createInstance(type: FHIRBool.self, for: "subsumption", in: json, context: &instCtx, owner: self) ?? subsumption
-		uri = createInstance(type: FHIRURL.self, for: "uri", in: json, context: &instCtx, owner: self) ?? uri
+		uri = createInstance(type: FHIRCanonical.self, for: "uri", in: json, context: &instCtx, owner: self) ?? uri
 		version = createInstances(of: TerminologyCapabilitiesCodeSystemVersion.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	

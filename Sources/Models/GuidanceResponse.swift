@@ -2,7 +2,7 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -33,7 +33,7 @@ open class GuidanceResponse: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// What guidance was requested.
-	public var moduleCanonical: FHIRURL?
+	public var moduleCanonical: FHIRCanonical?
 	
 	/// What guidance was requested.
 	public var moduleCodeableConcept: CodeableConcept?
@@ -83,7 +83,7 @@ open class GuidanceResponse: DomainResource {
 		if let value = module as? FHIRURL {
 			self.moduleUri = value
 		}
-		else if let value = module as? FHIRURL {
+		else if let value = module as? FHIRCanonical {
 			self.moduleCanonical = value
 		}
 		else if let value = module as? CodeableConcept {
@@ -103,7 +103,7 @@ open class GuidanceResponse: DomainResource {
 		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		evaluationMessage = createInstances(of: Reference.self, for: "evaluationMessage", in: json, context: &instCtx, owner: self) ?? evaluationMessage
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		moduleCanonical = createInstance(type: FHIRURL.self, for: "moduleCanonical", in: json, context: &instCtx, owner: self) ?? moduleCanonical
+		moduleCanonical = createInstance(type: FHIRCanonical.self, for: "moduleCanonical", in: json, context: &instCtx, owner: self) ?? moduleCanonical
 		moduleCodeableConcept = createInstance(type: CodeableConcept.self, for: "moduleCodeableConcept", in: json, context: &instCtx, owner: self) ?? moduleCodeableConcept
 		moduleUri = createInstance(type: FHIRURL.self, for: "moduleUri", in: json, context: &instCtx, owner: self) ?? moduleUri
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note

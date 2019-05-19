@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -439,7 +439,7 @@ open class ImplementationGuideDefinitionResource: BackboneElement {
 	public var exampleBoolean: FHIRBool?
 	
 	/// Is an example/What is this an example of?.
-	public var exampleCanonical: FHIRURL?
+	public var exampleCanonical: FHIRCanonical?
 	
 	/// Versions this applies to (if different to IG).
 	public var fhirVersion: [FHIRString]?
@@ -466,7 +466,7 @@ open class ImplementationGuideDefinitionResource: BackboneElement {
 		
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		exampleBoolean = createInstance(type: FHIRBool.self, for: "exampleBoolean", in: json, context: &instCtx, owner: self) ?? exampleBoolean
-		exampleCanonical = createInstance(type: FHIRURL.self, for: "exampleCanonical", in: json, context: &instCtx, owner: self) ?? exampleCanonical
+		exampleCanonical = createInstance(type: FHIRCanonical.self, for: "exampleCanonical", in: json, context: &instCtx, owner: self) ?? exampleCanonical
 		fhirVersion = createInstances(of: FHIRString.self, for: "fhirVersion", in: json, context: &instCtx, owner: self) ?? fhirVersion
 		groupingId = createInstance(type: FHIRString.self, for: "groupingId", in: json, context: &instCtx, owner: self) ?? groupingId
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
@@ -564,14 +564,14 @@ open class ImplementationGuideDependsOn: BackboneElement {
 	public var packageId: FHIRString?
 	
 	/// Identity of the IG that this depends on.
-	public var uri: FHIRURL?
+	public var uri: FHIRCanonical?
 	
 	/// Version of the IG.
 	public var version: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(uri: FHIRURL) {
+	public convenience init(uri: FHIRCanonical) {
 		self.init()
 		self.uri = uri
 	}
@@ -581,7 +581,7 @@ open class ImplementationGuideDependsOn: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		packageId = createInstance(type: FHIRString.self, for: "packageId", in: json, context: &instCtx, owner: self) ?? packageId
-		uri = createInstance(type: FHIRURL.self, for: "uri", in: json, context: &instCtx, owner: self) ?? uri
+		uri = createInstance(type: FHIRCanonical.self, for: "uri", in: json, context: &instCtx, owner: self) ?? uri
 		if nil == uri && !instCtx.containsKey("uri") {
 			instCtx.addError(FHIRValidationError(missing: "uri"))
 		}
@@ -612,14 +612,14 @@ open class ImplementationGuideGlobal: BackboneElement {
 	}
 	
 	/// Profile that all resources must conform to.
-	public var profile: FHIRURL?
+	public var profile: FHIRCanonical?
 	
 	/// The type of resource that all instances must conform to.
 	public var type: ResourceType?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(profile: FHIRURL, type: ResourceType) {
+	public convenience init(profile: FHIRCanonical, type: ResourceType) {
 		self.init()
 		self.profile = profile
 		self.type = type
@@ -629,7 +629,7 @@ open class ImplementationGuideGlobal: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		if nil == profile && !instCtx.containsKey("profile") {
 			instCtx.addError(FHIRValidationError(missing: "profile"))
 		}
@@ -781,7 +781,7 @@ open class ImplementationGuideManifestResource: BackboneElement {
 	public var exampleBoolean: FHIRBool?
 	
 	/// Is an example/What is this an example of?.
-	public var exampleCanonical: FHIRURL?
+	public var exampleCanonical: FHIRCanonical?
 	
 	/// Location of the resource.
 	public var reference: Reference?
@@ -801,7 +801,7 @@ open class ImplementationGuideManifestResource: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		exampleBoolean = createInstance(type: FHIRBool.self, for: "exampleBoolean", in: json, context: &instCtx, owner: self) ?? exampleBoolean
-		exampleCanonical = createInstance(type: FHIRURL.self, for: "exampleCanonical", in: json, context: &instCtx, owner: self) ?? exampleCanonical
+		exampleCanonical = createInstance(type: FHIRCanonical.self, for: "exampleCanonical", in: json, context: &instCtx, owner: self) ?? exampleCanonical
 		reference = createInstance(type: Reference.self, for: "reference", in: json, context: &instCtx, owner: self) ?? reference
 		if nil == reference && !instCtx.containsKey("reference") {
 			instCtx.addError(FHIRValidationError(missing: "reference"))

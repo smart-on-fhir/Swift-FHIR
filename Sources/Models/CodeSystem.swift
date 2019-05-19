@@ -2,7 +2,7 @@
 //  CodeSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -79,7 +79,7 @@ open class CodeSystem: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// Canonical URL of Code System this adds designations and properties to.
-	public var supplements: FHIRURL?
+	public var supplements: FHIRCanonical?
 	
 	/// Name for this code system (human friendly).
 	public var title: FHIRString?
@@ -91,7 +91,7 @@ open class CodeSystem: DomainResource {
 	public var useContext: [UsageContext]?
 	
 	/// Canonical reference to the value set with entire code system.
-	public var valueSet: FHIRURL?
+	public var valueSet: FHIRCanonical?
 	
 	/// Business version of the code system (Coding.version).
 	public var version: FHIRString?
@@ -136,11 +136,11 @@ open class CodeSystem: DomainResource {
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		supplements = createInstance(type: FHIRURL.self, for: "supplements", in: json, context: &instCtx, owner: self) ?? supplements
+		supplements = createInstance(type: FHIRCanonical.self, for: "supplements", in: json, context: &instCtx, owner: self) ?? supplements
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
-		valueSet = createInstance(type: FHIRURL.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
+		valueSet = createInstance(type: FHIRCanonical.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
 		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 		versionNeeded = createInstance(type: FHIRBool.self, for: "versionNeeded", in: json, context: &instCtx, owner: self) ?? versionNeeded
 	}

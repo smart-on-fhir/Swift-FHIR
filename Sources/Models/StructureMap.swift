@@ -2,7 +2,7 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -39,7 +39,7 @@ open class StructureMap: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Other maps used by this map (canonical URLs).
-	public var import_fhir: [FHIRURL]?
+	public var import_fhir: [FHIRCanonical]?
 	
 	/// Intended jurisdiction for structure map (if applicable).
 	public var jurisdiction: [CodeableConcept]?
@@ -95,7 +95,7 @@ open class StructureMap: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "group"))
 		}
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		import_fhir = createInstances(of: FHIRURL.self, for: "import", in: json, context: &instCtx, owner: self) ?? import_fhir
+		import_fhir = createInstances(of: FHIRCanonical.self, for: "import", in: json, context: &instCtx, owner: self) ?? import_fhir
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		if nil == name && !instCtx.containsKey("name") {
@@ -462,7 +462,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 	public var defaultValueBoolean: FHIRBool?
 	
 	/// Default value if no value exists.
-	public var defaultValueCanonical: FHIRURL?
+	public var defaultValueCanonical: FHIRCanonical?
 	
 	/// Default value if no value exists.
 	public var defaultValueCode: FHIRString?
@@ -634,7 +634,7 @@ open class StructureMapGroupRuleSource: BackboneElement {
 		defaultValueAttachment = createInstance(type: Attachment.self, for: "defaultValueAttachment", in: json, context: &instCtx, owner: self) ?? defaultValueAttachment
 		defaultValueBase64Binary = createInstance(type: Base64Binary.self, for: "defaultValueBase64Binary", in: json, context: &instCtx, owner: self) ?? defaultValueBase64Binary
 		defaultValueBoolean = createInstance(type: FHIRBool.self, for: "defaultValueBoolean", in: json, context: &instCtx, owner: self) ?? defaultValueBoolean
-		defaultValueCanonical = createInstance(type: FHIRURL.self, for: "defaultValueCanonical", in: json, context: &instCtx, owner: self) ?? defaultValueCanonical
+		defaultValueCanonical = createInstance(type: FHIRCanonical.self, for: "defaultValueCanonical", in: json, context: &instCtx, owner: self) ?? defaultValueCanonical
 		defaultValueCode = createInstance(type: FHIRString.self, for: "defaultValueCode", in: json, context: &instCtx, owner: self) ?? defaultValueCode
 		defaultValueCodeableConcept = createInstance(type: CodeableConcept.self, for: "defaultValueCodeableConcept", in: json, context: &instCtx, owner: self) ?? defaultValueCodeableConcept
 		defaultValueCoding = createInstance(type: Coding.self, for: "defaultValueCoding", in: json, context: &instCtx, owner: self) ?? defaultValueCoding
@@ -918,11 +918,11 @@ open class StructureMapStructure: BackboneElement {
 	public var mode: StructureMapModelMode?
 	
 	/// Canonical reference to structure definition.
-	public var url: FHIRURL?
+	public var url: FHIRCanonical?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: StructureMapModelMode, url: FHIRURL) {
+	public convenience init(mode: StructureMapModelMode, url: FHIRCanonical) {
 		self.init()
 		self.mode = mode
 		self.url = url
@@ -938,7 +938,7 @@ open class StructureMapStructure: BackboneElement {
 		if nil == mode && !instCtx.containsKey("mode") {
 			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		url = createInstance(type: FHIRCanonical.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 		if nil == url && !instCtx.containsKey("url") {
 			instCtx.addError(FHIRValidationError(missing: "url"))
 		}

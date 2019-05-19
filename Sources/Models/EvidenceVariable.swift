@@ -2,7 +2,7 @@
 //  EvidenceVariable.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EvidenceVariable) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/EvidenceVariable) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -199,7 +199,7 @@ open class EvidenceVariableCharacteristic: BackboneElement {
 	}
 	
 	/// What code or expression defines members?.
-	public var definitionCanonical: FHIRURL?
+	public var definitionCanonical: FHIRCanonical?
 	
 	/// What code or expression defines members?.
 	public var definitionCodeableConcept: CodeableConcept?
@@ -250,7 +250,7 @@ open class EvidenceVariableCharacteristic: BackboneElement {
 		if let value = definition as? Reference {
 			self.definitionReference = value
 		}
-		else if let value = definition as? FHIRURL {
+		else if let value = definition as? FHIRCanonical {
 			self.definitionCanonical = value
 		}
 		else if let value = definition as? CodeableConcept {
@@ -274,7 +274,7 @@ open class EvidenceVariableCharacteristic: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definitionCanonical = createInstance(type: FHIRURL.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
+		definitionCanonical = createInstance(type: FHIRCanonical.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
 		definitionCodeableConcept = createInstance(type: CodeableConcept.self, for: "definitionCodeableConcept", in: json, context: &instCtx, owner: self) ?? definitionCodeableConcept
 		definitionDataRequirement = createInstance(type: DataRequirement.self, for: "definitionDataRequirement", in: json, context: &instCtx, owner: self) ?? definitionDataRequirement
 		definitionExpression = createInstance(type: Expression.self, for: "definitionExpression", in: json, context: &instCtx, owner: self) ?? definitionExpression

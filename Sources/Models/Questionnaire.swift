@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2019-05-17.
 //  2019, SMART Health IT.
 //
 
@@ -36,7 +36,7 @@ open class Questionnaire: DomainResource {
 	public var date: DateTime?
 	
 	/// Instantiates protocol or definition.
-	public var derivedFrom: [FHIRURL]?
+	public var derivedFrom: [FHIRCanonical]?
 	
 	/// Natural language description of the questionnaire.
 	public var description_fhir: FHIRString?
@@ -102,7 +102,7 @@ open class Questionnaire: DomainResource {
 		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
 		copyright = createInstance(type: FHIRString.self, for: "copyright", in: json, context: &instCtx, owner: self) ?? copyright
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
-		derivedFrom = createInstances(of: FHIRURL.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
+		derivedFrom = createInstances(of: FHIRCanonical.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		effectivePeriod = createInstance(type: Period.self, for: "effectivePeriod", in: json, context: &instCtx, owner: self) ?? effectivePeriod
 		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
@@ -170,7 +170,7 @@ open class QuestionnaireItem: BackboneElement {
 	public var answerOption: [QuestionnaireItemAnswerOption]?
 	
 	/// Valueset containing permitted answers.
-	public var answerValueSet: FHIRURL?
+	public var answerValueSet: FHIRCanonical?
 	
 	/// Corresponding concept for this item in a terminology.
 	public var code: [Coding]?
@@ -228,7 +228,7 @@ open class QuestionnaireItem: BackboneElement {
 		super.populate(from: json, context: &instCtx)
 		
 		answerOption = createInstances(of: QuestionnaireItemAnswerOption.self, for: "answerOption", in: json, context: &instCtx, owner: self) ?? answerOption
-		answerValueSet = createInstance(type: FHIRURL.self, for: "answerValueSet", in: json, context: &instCtx, owner: self) ?? answerValueSet
+		answerValueSet = createInstance(type: FHIRCanonical.self, for: "answerValueSet", in: json, context: &instCtx, owner: self) ?? answerValueSet
 		code = createInstances(of: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		enableBehavior = createEnum(type: EnableWhenBehavior.self, for: "enableBehavior", in: json, context: &instCtx) ?? enableBehavior

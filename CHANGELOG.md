@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## 4.0
+## 4.1
 
 - Update to Swift 5.0
 

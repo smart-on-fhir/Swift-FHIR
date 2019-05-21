@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -135,7 +135,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.code?.text, "Respiratory rate")
 		XCTAssertEqual(inst.effectiveDateTime?.description, "1999-07-02")
 		XCTAssertEqual(inst.id, "respiratory-rate")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/vitalsigns")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
@@ -336,7 +336,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.code?.text, "BMI")
 		XCTAssertEqual(inst.effectiveDateTime?.description, "1999-07-02")
 		XCTAssertEqual(inst.id, "bmi")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/vitalsigns")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
@@ -375,7 +375,7 @@ class ObservationTests: XCTestCase {
 		XCTAssertEqual(inst.code?.text, "Body height")
 		XCTAssertEqual(inst.effectiveDateTime?.description, "1999-07-02")
 		XCTAssertEqual(inst.id, "body-height")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/vitalsigns")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")

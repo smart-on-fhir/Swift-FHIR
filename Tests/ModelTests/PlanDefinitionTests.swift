@@ -2,7 +2,7 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -40,7 +40,7 @@ class PlanDefinitionTests: XCTestCase {
 	func runPlanDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example-kdn5-simplified.json")
 		
-		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].definitionCanonical?.absoluteString, "#1111")
+		// Don't know how to create unit test for "action?[0].action?[0].action?[0].action?[0].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[0].url, "day")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[0].valueInteger, 1)
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].extension_fhir?[1].url, "day")
@@ -48,7 +48,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].extension_fhir?[0].url, "http://hl7.org/fhir/StructureDefinition/timing-daysOfCycle")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].id, "action-1")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[0].textEquivalent, "Gemcitabine 1250 mg/m² IV over 30 minutes on days 1 and 8")
-		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].definitionCanonical?.absoluteString, "#2222")
+		// Don't know how to create unit test for "action?[0].action?[0].action?[0].action?[0].action?[1].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].extension_fhir?[0].extension_fhir?[0].url, "day")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].extension_fhir?[0].extension_fhir?[0].valueInteger, 1)
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].action?[0].action?[1].extension_fhir?[0].url, "http://hl7.org/fhir/StructureDefinition/timing-daysOfCycle")
@@ -138,10 +138,10 @@ class PlanDefinitionTests: XCTestCase {
 	func runPlanDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-options-example.json")
 		
-		XCTAssertEqual(inst.action?[0].action?[0].definitionCanonical?.absoluteString, "#activitydefinition-medicationrequest-1")
+		// Don't know how to create unit test for "action?[0].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[0].id, "medication-action-1")
 		XCTAssertEqual(inst.action?[0].action?[0].title, "Administer Medication 1")
-		XCTAssertEqual(inst.action?[0].action?[1].definitionCanonical?.absoluteString, "#activitydefinition-medicationrequest-2")
+		// Don't know how to create unit test for "action?[0].action?[1].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[1].id, "medication-action-2")
 		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].actionId, "medication-action-1")
 		XCTAssertEqual(inst.action?[0].action?[1].relatedAction?[0].offsetDuration?.unit, "h")
@@ -178,7 +178,7 @@ class PlanDefinitionTests: XCTestCase {
 	func runPlanDefinition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example-cardiology-os.json")
 		
-		XCTAssertEqual(inst.action?[0].action?[0].action?[0].definitionCanonical?.absoluteString, "#referralToCardiologyConsult")
+		// Don't know how to create unit test for "action?[0].action?[0].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].expression?.expression, "Now()")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].path, "timing.event")
@@ -201,16 +201,16 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[6].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[6].path, "reasonReference")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].textEquivalent, "Referral to cardiology to evaluate chest pain (routine)")
-		XCTAssertEqual(inst.action?[0].action?[0].action?[1].definitionCanonical?.absoluteString, "#CollectReferralReason")
+		// Don't know how to create unit test for "action?[0].action?[0].action?[1].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[0].action?[1].title, "Reason for cardiology consultation")
-		XCTAssertEqual(inst.action?[0].action?[0].action?[2].definitionCanonical?.absoluteString, "#CardiologyConsultationGoal")
+		// Don't know how to create unit test for "action?[0].action?[0].action?[2].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[0].action?[2].title, "Goal of cardiology consultation")
 		XCTAssertEqual(inst.action?[0].action?[0].groupingBehavior, ActionGroupingBehavior(rawValue: "logical-group")!)
 		XCTAssertEqual(inst.action?[0].action?[0].selectionBehavior, ActionSelectionBehavior(rawValue: "any")!)
 		XCTAssertEqual(inst.action?[0].action?[0].title, "Consults and Referrals")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[0].groupingBehavior, ActionGroupingBehavior(rawValue: "logical-group")!)
 		XCTAssertEqual(inst.action?[0].action?[1].action?[0].selectionBehavior, ActionSelectionBehavior(rawValue: "at-most-one")!)
-		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[0].definitionCanonical?.absoluteString, "#metoprololTartrate25Prescription")
+		// Don't know how to create unit test for "action?[0].action?[1].action?[1].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[0].dynamicValue?[0].expression?.expression, "'draft'")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[0].dynamicValue?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[0].dynamicValue?[0].path, "status")
@@ -221,7 +221,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[0].dynamicValue?[2].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[0].dynamicValue?[2].path, "prescriber")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[0].textEquivalent, "metoprolol tartrate 25 mg tablet 1 tablet oral 2 time daily")
-		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[1].definitionCanonical?.absoluteString, "#metoprololTartrate50Prescription")
+		// Don't know how to create unit test for "action?[0].action?[1].action?[1].action?[1].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[1].dynamicValue?[0].expression?.expression, "'draft'")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[1].dynamicValue?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[1].dynamicValue?[0].path, "status")
@@ -232,7 +232,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[1].dynamicValue?[2].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[1].dynamicValue?[2].path, "prescriber")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[1].textEquivalent, "metoprolol tartrate 50 mg tablet 1 tablet oral 2 time daily")
-		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[2].definitionCanonical?.absoluteString, "#amlodipinePrescription")
+		// Don't know how to create unit test for "action?[0].action?[1].action?[1].action?[2].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[2].dynamicValue?[0].expression?.expression, "'draft'")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[2].dynamicValue?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].action?[2].dynamicValue?[0].path, "status")
@@ -246,7 +246,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].groupingBehavior, ActionGroupingBehavior(rawValue: "logical-group")!)
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].selectionBehavior, ActionSelectionBehavior(rawValue: "at-most-one")!)
 		XCTAssertEqual(inst.action?[0].action?[1].action?[1].title, "Antianginal Therapy")
-		XCTAssertEqual(inst.action?[0].action?[1].action?[2].action?[0].definitionCanonical?.absoluteString, "#nitroglycerinPrescription")
+		// Don't know how to create unit test for "action?[0].action?[1].action?[2].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[1].action?[2].action?[0].dynamicValue?[0].expression?.expression, "'draft'")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[2].action?[0].dynamicValue?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[2].action?[0].dynamicValue?[0].path, "status")
@@ -285,7 +285,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[1].value, "CLIN0004AG")
 		XCTAssertEqual(inst.identifier?[2].system?.absoluteString, "urn:cognitivemedicine.com:lab:jira")
 		XCTAssertEqual(inst.identifier?[2].value, "KP-914")
-		XCTAssertEqual(inst.library?[0].absoluteString, "#cardiology-chestPain-logic")
+		// Don't know how to create unit test for "library?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "ChestPainCoronaryArteryDiseaseOrderSetKNART")
 		XCTAssertEqual(inst.publisher, "Department of Veterans Affairs")
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Cardiology: Chest Pain (CP) / Coronary Artery Disease (CAD) Clinical Content White Paper")
@@ -351,7 +351,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].condition?[0].expression?.expression, "exists ([Condition: Obesity]) or not exists ([Observation: BMI] O where O.effectiveDateTime 2 years or less before Today())")
 		XCTAssertEqual(inst.action?[0].condition?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
-		XCTAssertEqual(inst.action?[0].definitionCanonical?.absoluteString, "#procedure")
+		// Don't know how to create unit test for "action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].description_fhir, "Measure, Weight, Height, Waist, Circumference; Calculate BMI")
 		XCTAssertEqual(inst.action?[0].goalId?[0], "reduce-bmi-ratio")
 		XCTAssertEqual(inst.action?[0].requiredBehavior, ActionRequiredBehavior(rawValue: "must-unless-documented")!)
@@ -414,7 +414,7 @@ class PlanDefinitionTests: XCTestCase {
 	func runPlanDefinition5(_ json: FHIRJSON? = nil) throws -> SwiftFHIRPlanDefinition {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example.json")
 		
-		XCTAssertEqual(inst.action?[0].action?[0].action?[0].definitionCanonical?.absoluteString, "#referralToMentalHealthCare")
+		// Don't know how to create unit test for "action?[0].action?[0].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].expression?.expression, "Now()")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[0].action?[0].dynamicValue?[0].path, "timing.event")
@@ -440,7 +440,7 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[0].groupingBehavior, ActionGroupingBehavior(rawValue: "logical-group")!)
 		XCTAssertEqual(inst.action?[0].action?[0].selectionBehavior, ActionSelectionBehavior(rawValue: "any")!)
 		XCTAssertEqual(inst.action?[0].action?[0].title, "Consults and Referrals")
-		XCTAssertEqual(inst.action?[0].action?[1].action?[0].action?[0].action?[0].definitionCanonical?.absoluteString, "#citalopramPrescription")
+		// Don't know how to create unit test for "action?[0].action?[1].action?[0].action?[0].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[1].action?[0].action?[0].action?[0].dynamicValue?[0].expression?.expression, "'draft'")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[0].action?[0].action?[0].dynamicValue?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].action?[0].action?[0].action?[0].dynamicValue?[0].path, "status")
@@ -517,16 +517,16 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		XCTAssertEqual(inst.lastReviewDate?.description, "2016-08-15")
-		XCTAssertEqual(inst.library?[0].absoluteString, "Library/suiciderisk-orderset-logic")
+		// Don't know how to create unit test for "library?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "LowSuicideRiskOrderSet")
 		XCTAssertEqual(inst.publisher, "Motive Medical Intelligence")
 		XCTAssertEqual(inst.purpose, "This order set helps ensure consistent application of appropriate orders for the care of low suicide risk patients.")
 		XCTAssertEqual(inst.relatedArtifact?[0].display, "Practice Guideline for the Treatment of Patients with Major Depressive Disorder")
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "derived-from")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/mdd.pdf")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "ActivityDefinition/referralPrimaryCareMentalHealth")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "composed-of")!)
-		XCTAssertEqual(inst.relatedArtifact?[2].resource?.absoluteString, "ActivityDefinition/citalopramPrescription")
+		// Don't know how to create unit test for "relatedArtifact?[2].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[2].type, RelatedArtifactType(rawValue: "composed-of")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -591,21 +591,21 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.action?[0].action?[0].condition?[0].expression?.expression, "Should Administer Zika Virus Exposure Assessment")
 		XCTAssertEqual(inst.action?[0].action?[0].condition?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[0].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
-		XCTAssertEqual(inst.action?[0].action?[0].definitionCanonical?.absoluteString, "ActivityDefinition/administer-zika-virus-exposure-assessment")
+		// Don't know how to create unit test for "action?[0].action?[0].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[1].condition?[0].expression?.expression, "Should Order Serum + Urine rRT-PCR Test")
 		XCTAssertEqual(inst.action?[0].action?[1].condition?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[1].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
-		XCTAssertEqual(inst.action?[0].action?[1].definitionCanonical?.absoluteString, "ActivityDefinition/order-serum-urine-rrt-pcr-test")
+		// Don't know how to create unit test for "action?[0].action?[1].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[2].condition?[0].expression?.expression, "Should Order Serum Zika Virus IgM + Dengue Virus IgM")
 		XCTAssertEqual(inst.action?[0].action?[2].condition?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[2].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
-		XCTAssertEqual(inst.action?[0].action?[2].definitionCanonical?.absoluteString, "ActivityDefinition/order-serum-zika-dengue-virus-igm")
+		// Don't know how to create unit test for "action?[0].action?[2].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[3].condition?[0].expression?.expression, "Should Consider IgM Antibody Testing")
 		XCTAssertEqual(inst.action?[0].action?[3].condition?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[3].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
-		XCTAssertEqual(inst.action?[0].action?[3].definitionCanonical?.absoluteString, "ActivityDefinition/consider-igm-antibody-testing")
-		XCTAssertEqual(inst.action?[0].action?[4].action?[0].definitionCanonical?.absoluteString, "ActivityDefinition/provide-mosquito-prevention-advice")
-		XCTAssertEqual(inst.action?[0].action?[4].action?[1].definitionCanonical?.absoluteString, "ActivityDefinition/provide-contraception-advice")
+		// Don't know how to create unit test for "action?[0].action?[3].definitionCanonical", which is a FHIRCanonical
+		// Don't know how to create unit test for "action?[0].action?[4].action?[0].definitionCanonical", which is a FHIRCanonical
+		// Don't know how to create unit test for "action?[0].action?[4].action?[1].definitionCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.action?[0].action?[4].condition?[0].expression?.expression, "Should Provide Mosquito Prevention and Contraception Advice")
 		XCTAssertEqual(inst.action?[0].action?[4].condition?[0].expression?.language, "text/cql")
 		XCTAssertEqual(inst.action?[0].action?[4].condition?[0].kind, ActionConditionKind(rawValue: "applicability")!)
@@ -620,10 +620,10 @@ class PlanDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.id, "zika-virus-intervention-initial")
 		XCTAssertEqual(inst.identifier?[0].use, IdentifierUse(rawValue: "official")!)
 		XCTAssertEqual(inst.identifier?[0].value, "zika-virus-intervention")
-		XCTAssertEqual(inst.library?[0].absoluteString, "Library/zika-virus-intervention-logic")
+		// Don't know how to create unit test for "library?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "derived-from")!)
 		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "https://www.cdc.gov/mmwr/volumes/65/wr/mm6539e1.htm?s_cid=mm6539e1_w")
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "PlanDefinition/zika-virus-intervention")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "successor")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)

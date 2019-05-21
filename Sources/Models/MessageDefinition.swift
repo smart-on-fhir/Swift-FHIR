@@ -2,7 +2,7 @@
 //  MessageDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageDefinition) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ open class MessageDefinition: DomainResource {
 	public var allowedResponse: [MessageDefinitionAllowedResponse]?
 	
 	/// Definition this one is based on.
-	public var base: FHIRURL?
+	public var base: FHIRCanonical?
 	
 	/// The impact of the content of the message.
 	public var category: MessageSignificanceCategory?
@@ -54,7 +54,7 @@ open class MessageDefinition: DomainResource {
 	public var focus: [MessageDefinitionFocus]?
 	
 	/// Canonical reference to a GraphDefinition.
-	public var graph: [FHIRURL]?
+	public var graph: [FHIRCanonical]?
 	
 	/// Primary key for the message definition on a given server.
 	public var identifier: [Identifier]?
@@ -66,7 +66,7 @@ open class MessageDefinition: DomainResource {
 	public var name: FHIRString?
 	
 	/// Protocol/workflow this is part of.
-	public var parent: [FHIRURL]?
+	public var parent: [FHIRCanonical]?
 	
 	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
@@ -75,7 +75,7 @@ open class MessageDefinition: DomainResource {
 	public var purpose: FHIRString?
 	
 	/// Takes the place of.
-	public var replaces: [FHIRURL]?
+	public var replaces: [FHIRCanonical]?
 	
 	/// Declare at a message definition level whether a response is required or only upon error or success, or never.
 	public var responseRequired: MessageheaderResponseRequest?
@@ -117,7 +117,7 @@ open class MessageDefinition: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		allowedResponse = createInstances(of: MessageDefinitionAllowedResponse.self, for: "allowedResponse", in: json, context: &instCtx, owner: self) ?? allowedResponse
-		base = createInstance(type: FHIRURL.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
+		base = createInstance(type: FHIRCanonical.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
 		category = createEnum(type: MessageSignificanceCategory.self, for: "category", in: json, context: &instCtx) ?? category
 		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
 		copyright = createInstance(type: FHIRString.self, for: "copyright", in: json, context: &instCtx, owner: self) ?? copyright
@@ -130,14 +130,14 @@ open class MessageDefinition: DomainResource {
 		eventUri = createInstance(type: FHIRURL.self, for: "eventUri", in: json, context: &instCtx, owner: self) ?? eventUri
 		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
 		focus = createInstances(of: MessageDefinitionFocus.self, for: "focus", in: json, context: &instCtx, owner: self) ?? focus
-		graph = createInstances(of: FHIRURL.self, for: "graph", in: json, context: &instCtx, owner: self) ?? graph
+		graph = createInstances(of: FHIRCanonical.self, for: "graph", in: json, context: &instCtx, owner: self) ?? graph
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
-		parent = createInstances(of: FHIRURL.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
+		parent = createInstances(of: FHIRCanonical.self, for: "parent", in: json, context: &instCtx, owner: self) ?? parent
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
-		replaces = createInstances(of: FHIRURL.self, for: "replaces", in: json, context: &instCtx, owner: self) ?? replaces
+		replaces = createInstances(of: FHIRCanonical.self, for: "replaces", in: json, context: &instCtx, owner: self) ?? replaces
 		responseRequired = createEnum(type: MessageheaderResponseRequest.self, for: "responseRequired", in: json, context: &instCtx) ?? responseRequired
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
@@ -209,14 +209,14 @@ open class MessageDefinitionAllowedResponse: BackboneElement {
 	}
 	
 	/// Reference to allowed message definition response.
-	public var message: FHIRURL?
+	public var message: FHIRCanonical?
 	
 	/// When should this response be used.
 	public var situation: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(message: FHIRURL) {
+	public convenience init(message: FHIRCanonical) {
 		self.init()
 		self.message = message
 	}
@@ -225,7 +225,7 @@ open class MessageDefinitionAllowedResponse: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		message = createInstance(type: FHIRURL.self, for: "message", in: json, context: &instCtx, owner: self) ?? message
+		message = createInstance(type: FHIRCanonical.self, for: "message", in: json, context: &instCtx, owner: self) ?? message
 		if nil == message && !instCtx.containsKey("message") {
 			instCtx.addError(FHIRValidationError(missing: "message"))
 		}
@@ -265,7 +265,7 @@ open class MessageDefinitionFocus: BackboneElement {
 	public var min: FHIRInteger?
 	
 	/// Profile that must be adhered to by focus.
-	public var profile: FHIRURL?
+	public var profile: FHIRCanonical?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -288,7 +288,7 @@ open class MessageDefinitionFocus: BackboneElement {
 		if nil == min && !instCtx.containsKey("min") {
 			instCtx.addError(FHIRValidationError(missing: "min"))
 		}
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

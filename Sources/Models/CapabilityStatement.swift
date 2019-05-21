@@ -2,7 +2,7 @@
 //  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -49,13 +49,13 @@ open class CapabilityStatement: DomainResource {
 	public var implementation: CapabilityStatementImplementation?
 	
 	/// Implementation guides supported.
-	public var implementationGuide: [FHIRURL]?
+	public var implementationGuide: [FHIRCanonical]?
 	
 	/// Canonical URL of another capability statement this adds to.
-	public var imports: [FHIRURL]?
+	public var imports: [FHIRCanonical]?
 	
 	/// Canonical URL of another capability statement this implements.
-	public var instantiates: [FHIRURL]?
+	public var instantiates: [FHIRCanonical]?
 	
 	/// Intended jurisdiction for capability statement (if applicable).
 	public var jurisdiction: [CodeableConcept]?
@@ -133,9 +133,9 @@ open class CapabilityStatement: DomainResource {
 			instCtx.addError(FHIRValidationError(missing: "format"))
 		}
 		implementation = createInstance(type: CapabilityStatementImplementation.self, for: "implementation", in: json, context: &instCtx, owner: self) ?? implementation
-		implementationGuide = createInstances(of: FHIRURL.self, for: "implementationGuide", in: json, context: &instCtx, owner: self) ?? implementationGuide
-		imports = createInstances(of: FHIRURL.self, for: "imports", in: json, context: &instCtx, owner: self) ?? imports
-		instantiates = createInstances(of: FHIRURL.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
+		implementationGuide = createInstances(of: FHIRCanonical.self, for: "implementationGuide", in: json, context: &instCtx, owner: self) ?? implementationGuide
+		imports = createInstances(of: FHIRCanonical.self, for: "imports", in: json, context: &instCtx, owner: self) ?? imports
+		instantiates = createInstances(of: FHIRCanonical.self, for: "instantiates", in: json, context: &instCtx, owner: self) ?? instantiates
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		kind = createEnum(type: CapabilityStatementKind.self, for: "kind", in: json, context: &instCtx) ?? kind
 		if nil == kind && !instCtx.containsKey("kind") {
@@ -223,11 +223,11 @@ open class CapabilityStatementDocument: BackboneElement {
 	public var mode: DocumentMode?
 	
 	/// Constraint on the resources used in the document.
-	public var profile: FHIRURL?
+	public var profile: FHIRCanonical?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: DocumentMode, profile: FHIRURL) {
+	public convenience init(mode: DocumentMode, profile: FHIRCanonical) {
 		self.init()
 		self.mode = mode
 		self.profile = profile
@@ -242,7 +242,7 @@ open class CapabilityStatementDocument: BackboneElement {
 		if nil == mode && !instCtx.containsKey("mode") {
 			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		if nil == profile && !instCtx.containsKey("profile") {
 			instCtx.addError(FHIRValidationError(missing: "profile"))
 		}
@@ -423,14 +423,14 @@ open class CapabilityStatementMessagingSupportedMessage: BackboneElement {
 	}
 	
 	/// Message supported by this system.
-	public var definition: FHIRURL?
+	public var definition: FHIRCanonical?
 	
 	/// The mode of this event declaration - whether application is sender or receiver.
 	public var mode: EventCapabilityMode?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: FHIRURL, mode: EventCapabilityMode) {
+	public convenience init(definition: FHIRCanonical, mode: EventCapabilityMode) {
 		self.init()
 		self.definition = definition
 		self.mode = mode
@@ -440,7 +440,7 @@ open class CapabilityStatementMessagingSupportedMessage: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		definition = createInstance(type: FHIRCanonical.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		if nil == definition && !instCtx.containsKey("definition") {
 			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}
@@ -476,7 +476,7 @@ open class CapabilityStatementRest: BackboneElement {
 	}
 	
 	/// Compartments served/used by system.
-	public var compartment: [FHIRURL]?
+	public var compartment: [FHIRCanonical]?
 	
 	/// General description of implementation.
 	public var documentation: FHIRString?
@@ -511,7 +511,7 @@ open class CapabilityStatementRest: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		compartment = createInstances(of: FHIRURL.self, for: "compartment", in: json, context: &instCtx, owner: self) ?? compartment
+		compartment = createInstances(of: FHIRCanonical.self, for: "compartment", in: json, context: &instCtx, owner: self) ?? compartment
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		interaction = createInstances(of: CapabilityStatementRestInteraction.self, for: "interaction", in: json, context: &instCtx, owner: self) ?? interaction
 		mode = createEnum(type: RestfulCapabilityMode.self, for: "mode", in: json, context: &instCtx) ?? mode
@@ -621,7 +621,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 	public var operation: [CapabilityStatementRestResourceOperation]?
 	
 	/// Base System profile for all uses of resource.
-	public var profile: FHIRURL?
+	public var profile: FHIRCanonical?
 	
 	/// Whether vRead can return past versions.
 	public var readHistory: FHIRBool?
@@ -639,7 +639,7 @@ open class CapabilityStatementRestResource: BackboneElement {
 	public var searchRevInclude: [FHIRString]?
 	
 	/// Profiles for use cases supported.
-	public var supportedProfile: [FHIRURL]?
+	public var supportedProfile: [FHIRCanonical]?
 	
 	/// A type of resource exposed via the restful interface.
 	public var type: ResourceType?
@@ -671,13 +671,13 @@ open class CapabilityStatementRestResource: BackboneElement {
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		interaction = createInstances(of: CapabilityStatementRestResourceInteraction.self, for: "interaction", in: json, context: &instCtx, owner: self) ?? interaction
 		operation = createInstances(of: CapabilityStatementRestResourceOperation.self, for: "operation", in: json, context: &instCtx, owner: self) ?? operation
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		readHistory = createInstance(type: FHIRBool.self, for: "readHistory", in: json, context: &instCtx, owner: self) ?? readHistory
 		referencePolicy = createEnums(of: ReferenceHandlingPolicy.self, for: "referencePolicy", in: json, context: &instCtx) ?? referencePolicy
 		searchInclude = createInstances(of: FHIRString.self, for: "searchInclude", in: json, context: &instCtx, owner: self) ?? searchInclude
 		searchParam = createInstances(of: CapabilityStatementRestResourceSearchParam.self, for: "searchParam", in: json, context: &instCtx, owner: self) ?? searchParam
 		searchRevInclude = createInstances(of: FHIRString.self, for: "searchRevInclude", in: json, context: &instCtx, owner: self) ?? searchRevInclude
-		supportedProfile = createInstances(of: FHIRURL.self, for: "supportedProfile", in: json, context: &instCtx, owner: self) ?? supportedProfile
+		supportedProfile = createInstances(of: FHIRCanonical.self, for: "supportedProfile", in: json, context: &instCtx, owner: self) ?? supportedProfile
 		type = createEnum(type: ResourceType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))
@@ -772,7 +772,7 @@ open class CapabilityStatementRestResourceOperation: BackboneElement {
 	}
 	
 	/// The defined operation/query.
-	public var definition: FHIRURL?
+	public var definition: FHIRCanonical?
 	
 	/// Specific details about operation behavior.
 	public var documentation: FHIRString?
@@ -782,7 +782,7 @@ open class CapabilityStatementRestResourceOperation: BackboneElement {
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: FHIRURL, name: FHIRString) {
+	public convenience init(definition: FHIRCanonical, name: FHIRString) {
 		self.init()
 		self.definition = definition
 		self.name = name
@@ -792,7 +792,7 @@ open class CapabilityStatementRestResourceOperation: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		definition = createInstance(type: FHIRCanonical.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		if nil == definition && !instCtx.containsKey("definition") {
 			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}
@@ -831,7 +831,7 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	}
 	
 	/// Source of definition for parameter.
-	public var definition: FHIRURL?
+	public var definition: FHIRCanonical?
 	
 	/// Server-specific usage.
 	public var documentation: FHIRString?
@@ -854,7 +854,7 @@ open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		definition = createInstance(type: FHIRCanonical.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		documentation = createInstance(type: FHIRString.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		if nil == name && !instCtx.containsKey("name") {

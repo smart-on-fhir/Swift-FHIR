@@ -2,7 +2,7 @@
 //  LibraryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -52,9 +52,9 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-		XCTAssertEqual(inst.relatedArtifact?[0].resource?.absoluteString, "Library/fhir-model-definition")
+		// Don't know how to create unit test for "relatedArtifact?[0].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "depends-on")!)
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "Library/library-fhir-helpers")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "successor")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "active")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -88,37 +88,37 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.dataRequirement?[1].codeFilter?[1].code?[0].code, "confirmed")
 		XCTAssertEqual(inst.dataRequirement?[1].codeFilter?[1].path, "clinicalStatus")
 		XCTAssertEqual(inst.dataRequirement?[1].codeFilter?[2].path, "code")
-		XCTAssertEqual(inst.dataRequirement?[1].codeFilter?[2].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.102.12.1011")
+		// Don't know how to create unit test for "dataRequirement?[1].codeFilter?[2].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[1].type, "Condition")
 		XCTAssertEqual(inst.dataRequirement?[2].codeFilter?[0].code?[0].code, "diagnosis")
 		XCTAssertEqual(inst.dataRequirement?[2].codeFilter?[0].path, "category")
 		XCTAssertEqual(inst.dataRequirement?[2].codeFilter?[1].code?[0].code, "confirmed")
 		XCTAssertEqual(inst.dataRequirement?[2].codeFilter?[1].path, "clinicalStatus")
 		XCTAssertEqual(inst.dataRequirement?[2].codeFilter?[2].path, "code")
-		XCTAssertEqual(inst.dataRequirement?[2].codeFilter?[2].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.102.12.1012")
+		// Don't know how to create unit test for "dataRequirement?[2].codeFilter?[2].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[2].type, "Condition")
 		XCTAssertEqual(inst.dataRequirement?[3].codeFilter?[0].code?[0].code, "finished")
 		XCTAssertEqual(inst.dataRequirement?[3].codeFilter?[0].path, "status")
 		XCTAssertEqual(inst.dataRequirement?[3].codeFilter?[1].code?[0].code, "ambulatory")
 		XCTAssertEqual(inst.dataRequirement?[3].codeFilter?[1].path, "class")
 		XCTAssertEqual(inst.dataRequirement?[3].codeFilter?[2].path, "type")
-		XCTAssertEqual(inst.dataRequirement?[3].codeFilter?[2].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.101.12.1061")
+		// Don't know how to create unit test for "dataRequirement?[3].codeFilter?[2].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[3].type, "Encounter")
 		XCTAssertEqual(inst.dataRequirement?[4].codeFilter?[0].path, "diagnosis")
-		XCTAssertEqual(inst.dataRequirement?[4].codeFilter?[0].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.198.12.1012")
+		// Don't know how to create unit test for "dataRequirement?[4].codeFilter?[0].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[4].type, "DiagnosticReport")
 		XCTAssertEqual(inst.dataRequirement?[5].codeFilter?[0].path, "code")
-		XCTAssertEqual(inst.dataRequirement?[5].codeFilter?[0].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.196.12.1001")
+		// Don't know how to create unit test for "dataRequirement?[5].codeFilter?[0].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[5].type, "Medication")
 		XCTAssertEqual(inst.dataRequirement?[6].codeFilter?[0].code?[0].code, "active")
 		XCTAssertEqual(inst.dataRequirement?[6].codeFilter?[0].path, "status")
 		XCTAssertEqual(inst.dataRequirement?[6].codeFilter?[1].path, "medication.code")
-		XCTAssertEqual(inst.dataRequirement?[6].codeFilter?[1].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.196.12.1001")
+		// Don't know how to create unit test for "dataRequirement?[6].codeFilter?[1].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[6].type, "MedicationRequest")
 		XCTAssertEqual(inst.dataRequirement?[7].codeFilter?[0].code?[0].code, "completed")
 		XCTAssertEqual(inst.dataRequirement?[7].codeFilter?[0].path, "status")
 		XCTAssertEqual(inst.dataRequirement?[7].codeFilter?[1].path, "medication.code")
-		XCTAssertEqual(inst.dataRequirement?[7].codeFilter?[1].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.196.12.1001")
+		// Don't know how to create unit test for "dataRequirement?[7].codeFilter?[1].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[7].type, "MedicationStatement")
 		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Logic for CMS 146: Appropriate Testing for Children with Pharyngitis")
@@ -128,7 +128,7 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-		XCTAssertEqual(inst.relatedArtifact?[0].resource?.absoluteString, "Library/library-quick-model-definition")
+		// Don't know how to create unit test for "relatedArtifact?[0].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "depends-on")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -156,7 +156,7 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.content?[0].contentType, "text/cql")
 		XCTAssertEqual(inst.content?[0].url?.absoluteString, "library-example-content.cql")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].path, "code")
-		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].valueSet?.absoluteString, "urn:oid:2.16.840.1.113883.3.464.1003.111.12.1006")
+		// Don't know how to create unit test for "dataRequirement?[0].codeFilter?[0].valueSet", which is a FHIRCanonical
 		XCTAssertEqual(inst.dataRequirement?[0].type, "Condition")
 		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Common Logic for adherence to Chlamydia Screening guidelines")
@@ -166,7 +166,7 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-		XCTAssertEqual(inst.relatedArtifact?[0].resource?.absoluteString, "Library/library-quick-model-definition")
+		// Don't know how to create unit test for "relatedArtifact?[0].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "depends-on")!)
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
@@ -201,17 +201,17 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-		XCTAssertEqual(inst.relatedArtifact?[0].resource?.absoluteString, "ActivityDefinition/administer-zika-virus-exposure-assessment")
+		// Don't know how to create unit test for "relatedArtifact?[0].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "composed-of")!)
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "ActivityDefinition/order-serum-zika-dengue-virus-igm")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "composed-of")!)
-		XCTAssertEqual(inst.relatedArtifact?[2].resource?.absoluteString, "ActivityDefinition/provide-mosquito-prevention-advice")
+		// Don't know how to create unit test for "relatedArtifact?[2].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[2].type, RelatedArtifactType(rawValue: "composed-of")!)
-		XCTAssertEqual(inst.relatedArtifact?[3].resource?.absoluteString, "Library/zika-virus-intervention-logic")
+		// Don't know how to create unit test for "relatedArtifact?[3].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[3].type, RelatedArtifactType(rawValue: "composed-of")!)
-		XCTAssertEqual(inst.relatedArtifact?[4].resource?.absoluteString, "PlanDefinition/zika-virus-intervention")
+		// Don't know how to create unit test for "relatedArtifact?[4].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[4].type, RelatedArtifactType(rawValue: "composed-of")!)
-		XCTAssertEqual(inst.relatedArtifact?[5].resource?.absoluteString, "Questionnaire/zika-virus-exposure-assessment")
+		// Don't know how to create unit test for "relatedArtifact?[5].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[5].type, RelatedArtifactType(rawValue: "composed-of")!)
 		XCTAssertEqual(inst.relatedArtifact?[6].type, RelatedArtifactType(rawValue: "derived-from")!)
 		XCTAssertEqual(inst.relatedArtifact?[6].url?.absoluteString, "https://www.cdc.gov/mmwr/volumes/65/wr/mm6539e1.htm?s_cid=mm6539e1_w")

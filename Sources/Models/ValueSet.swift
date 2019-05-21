@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -214,7 +214,7 @@ open class ValueSetComposeInclude: BackboneElement {
 	public var system: FHIRURL?
 	
 	/// Select the contents included in this value set.
-	public var valueSet: [FHIRURL]?
+	public var valueSet: [FHIRCanonical]?
 	
 	/// Specific version of the code system referred to.
 	public var version: FHIRString?
@@ -226,7 +226,7 @@ open class ValueSetComposeInclude: BackboneElement {
 		concept = createInstances(of: ValueSetComposeIncludeConcept.self, for: "concept", in: json, context: &instCtx, owner: self) ?? concept
 		filter = createInstances(of: ValueSetComposeIncludeFilter.self, for: "filter", in: json, context: &instCtx, owner: self) ?? filter
 		system = createInstance(type: FHIRURL.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
-		valueSet = createInstances(of: FHIRURL.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
+		valueSet = createInstances(of: FHIRCanonical.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
 		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
 	}
 	

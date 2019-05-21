@@ -2,7 +2,7 @@
 //  DataRequirement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -33,7 +33,7 @@ open class DataRequirement: Element {
 	public var mustSupport: [FHIRString]?
 	
 	/// The profile of the required data.
-	public var profile: [FHIRURL]?
+	public var profile: [FHIRCanonical]?
 	
 	/// Order of the results.
 	public var sort: [DataRequirementSort]?
@@ -62,7 +62,7 @@ open class DataRequirement: Element {
 		dateFilter = createInstances(of: DataRequirementDateFilter.self, for: "dateFilter", in: json, context: &instCtx, owner: self) ?? dateFilter
 		limit = createInstance(type: FHIRInteger.self, for: "limit", in: json, context: &instCtx, owner: self) ?? limit
 		mustSupport = createInstances(of: FHIRString.self, for: "mustSupport", in: json, context: &instCtx, owner: self) ?? mustSupport
-		profile = createInstances(of: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstances(of: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		sort = createInstances(of: DataRequirementSort.self, for: "sort", in: json, context: &instCtx, owner: self) ?? sort
 		subjectCodeableConcept = createInstance(type: CodeableConcept.self, for: "subjectCodeableConcept", in: json, context: &instCtx, owner: self) ?? subjectCodeableConcept
 		subjectReference = createInstance(type: Reference.self, for: "subjectReference", in: json, context: &instCtx, owner: self) ?? subjectReference
@@ -112,7 +112,7 @@ open class DataRequirementCodeFilter: Element {
 	public var searchParam: FHIRString?
 	
 	/// Valueset for the filter.
-	public var valueSet: FHIRURL?
+	public var valueSet: FHIRCanonical?
 	
 	
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
@@ -121,7 +121,7 @@ open class DataRequirementCodeFilter: Element {
 		code = createInstances(of: Coding.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		path = createInstance(type: FHIRString.self, for: "path", in: json, context: &instCtx, owner: self) ?? path
 		searchParam = createInstance(type: FHIRString.self, for: "searchParam", in: json, context: &instCtx, owner: self) ?? searchParam
-		valueSet = createInstance(type: FHIRURL.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
+		valueSet = createInstance(type: FHIRCanonical.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

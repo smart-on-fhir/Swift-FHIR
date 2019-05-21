@@ -2,7 +2,7 @@
 //  GraphDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/GraphDefinition) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -42,7 +42,7 @@ open class GraphDefinition: DomainResource {
 	public var name: FHIRString?
 	
 	/// Profile on base resource.
-	public var profile: FHIRURL?
+	public var profile: FHIRCanonical?
 	
 	/// Name of the publisher (organization or individual).
 	public var publisher: FHIRString?
@@ -88,7 +88,7 @@ open class GraphDefinition: DomainResource {
 		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
 		start = createEnum(type: ResourceType.self, for: "start", in: json, context: &instCtx) ?? start
@@ -204,7 +204,7 @@ open class GraphDefinitionLinkTarget: BackboneElement {
 	public var params: FHIRString?
 	
 	/// Profile for the target resource.
-	public var profile: FHIRURL?
+	public var profile: FHIRCanonical?
 	
 	/// None
 	public var type: ResourceType?
@@ -223,7 +223,7 @@ open class GraphDefinitionLinkTarget: BackboneElement {
 		compartment = createInstances(of: GraphDefinitionLinkTargetCompartment.self, for: "compartment", in: json, context: &instCtx, owner: self) ?? compartment
 		link = createInstances(of: GraphDefinitionLink.self, for: "link", in: json, context: &instCtx, owner: self) ?? link
 		params = createInstance(type: FHIRString.self, for: "params", in: json, context: &instCtx, owner: self) ?? params
-		profile = createInstance(type: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		profile = createInstance(type: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
 		type = createEnum(type: ResourceType.self, for: "type", in: json, context: &instCtx) ?? type
 		if nil == type && !instCtx.containsKey("type") {
 			instCtx.addError(FHIRValidationError(missing: "type"))

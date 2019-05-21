@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Communication) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Communication) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -39,7 +39,7 @@ open class Communication: DomainResource {
 	public var inResponseTo: [Reference]?
 	
 	/// Instantiates FHIR protocol or definition.
-	public var instantiatesCanonical: [FHIRURL]?
+	public var instantiatesCanonical: [FHIRCanonical]?
 	
 	/// Instantiates external protocol or definition.
 	public var instantiatesUri: [FHIRURL]?
@@ -107,7 +107,7 @@ open class Communication: DomainResource {
 		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		inResponseTo = createInstances(of: Reference.self, for: "inResponseTo", in: json, context: &instCtx, owner: self) ?? inResponseTo
-		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstances(of: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		medium = createInstances(of: CodeableConcept.self, for: "medium", in: json, context: &instCtx, owner: self) ?? medium
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note

@@ -2,7 +2,7 @@
 //  TestScriptTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -57,14 +57,14 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.absoluteString, "CapabilityStatement/example")
+		// Don't know how to create unit test for "metadata?.capability?[0].capabilities", which is a FHIRCanonical
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Read Operation")
 		XCTAssertEqual(inst.metadata?.capability?[0].destination, 1)
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#read")
 		XCTAssertEqual(inst.metadata?.capability?[0].origin?[0], 1)
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
 		XCTAssertEqual(inst.metadata?.capability?[0].validated, false)
-		XCTAssertEqual(inst.metadata?.capability?[1].capabilities?.absoluteString, "CapabilityStatement/example")
+		// Don't know how to create unit test for "metadata?.capability?[1].capabilities", which is a FHIRCanonical
 		XCTAssertEqual(inst.metadata?.capability?[1].description_fhir, "Patient Read Operation")
 		XCTAssertEqual(inst.metadata?.capability?[1].destination, 2)
 		XCTAssertEqual(inst.metadata?.capability?[1].link?[0].absoluteString, "http://hl7.org/fhir/http.html#read")
@@ -196,7 +196,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.absoluteString, "CapabilityStatement/example")
+		// Don't know how to create unit test for "metadata?.capability?[0].capabilities", which is a FHIRCanonical
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Update, Delete and History (Instance) Operations")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#update")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/http.html#delete")
@@ -326,7 +326,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.absoluteString, "CapabilityStatement/example")
+		// Don't know how to create unit test for "metadata?.capability?[0].capabilities", which is a FHIRCanonical
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Update and Delete Operations")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#update")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/http.html#delete")
@@ -433,7 +433,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.absoluteString, "CapabilityStatement/example")
+		// Don't know how to create unit test for "metadata?.capability?[0].capabilities", which is a FHIRCanonical
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Search Operation")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#search")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)
@@ -587,7 +587,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.absoluteString, "CapabilityStatement/example")
+		// Don't know how to create unit test for "metadata?.capability?[0].capabilities", which is a FHIRCanonical
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Update, Read and Delete Operations")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#delete")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[1].absoluteString, "http://hl7.org/fhir/http.html#read")
@@ -743,7 +743,7 @@ class TestScriptTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].display, "United States of America (the)")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.metadata?.capability?[0].capabilities?.absoluteString, "CapabilityStatement/example")
+		// Don't know how to create unit test for "metadata?.capability?[0].capabilities", which is a FHIRCanonical
 		XCTAssertEqual(inst.metadata?.capability?[0].description_fhir, "Patient Read Operation")
 		XCTAssertEqual(inst.metadata?.capability?[0].link?[0].absoluteString, "http://hl7.org/fhir/http.html#read")
 		XCTAssertEqual(inst.metadata?.capability?[0].required, true)

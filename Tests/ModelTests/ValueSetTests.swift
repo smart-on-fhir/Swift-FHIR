@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -64,7 +64,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-int")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
 		XCTAssertEqual(inst.purpose, "This value set was published by ACME Inc in order to make clear which codes are used for Cholesterol by AcmeClinicals (Adult Ambulatory care support in USA)")
@@ -213,7 +213,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.expansion?.timestamp?.description, "2018-07-20T23:14:07+10:00")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example-hierarchical")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "Example Hierarchical ValueSet")
 		XCTAssertEqual(inst.publisher, "FHIR Project team")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -293,7 +293,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.expansion?.total, 8)
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.id, "example-expansion")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "FHIR Project team")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -403,7 +403,7 @@ class ValueSetTests: XCTestCase {
 	func runValueSet6(_ json: FHIRJSON? = nil) throws -> SwiftFHIRValueSet {
 		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-yesnodontknow.json")
 		
-		XCTAssertEqual(inst.compose?.include?[0].valueSet?[0].absoluteString, "http://terminology.hl7.org/ValueSet/v2-0136")
+		// Don't know how to create unit test for "compose?.include?[0].valueSet?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.compose?.include?[1].concept?[0].code, "asked-unknown")
 		XCTAssertEqual(inst.compose?.include?[1].concept?[0].display, "Don't know")
 		XCTAssertEqual(inst.compose?.include?[1].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/data-absent-reason")
@@ -462,7 +462,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.3.858")
 		XCTAssertEqual(inst.immutable, true)
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2018-12-27T22:37:54.724+11:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "ExampleScenarioActorType")
 		XCTAssertEqual(inst.publisher, "HL7 (FHIR Project)")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -505,7 +505,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.3.316")
 		XCTAssertEqual(inst.immutable, true)
 		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2018-12-27T22:37:54.724+11:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "ExampleUseCodesForList")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
@@ -548,7 +548,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example-intensional")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
 		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-ext")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+		// Don't know how to create unit test for "meta?.profile?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)

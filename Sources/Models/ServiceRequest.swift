@@ -2,7 +2,7 @@
 //  ServiceRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ServiceRequest) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ServiceRequest) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -50,7 +50,7 @@ open class ServiceRequest: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Instantiates FHIR protocol or definition.
-	public var instantiatesCanonical: [FHIRURL]?
+	public var instantiatesCanonical: [FHIRCanonical]?
 	
 	/// Instantiates external protocol or definition.
 	public var instantiatesUri: [FHIRURL]?
@@ -156,7 +156,7 @@ open class ServiceRequest: DomainResource {
 		doNotPerform = createInstance(type: FHIRBool.self, for: "doNotPerform", in: json, context: &instCtx, owner: self) ?? doNotPerform
 		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstances(of: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		insurance = createInstances(of: Reference.self, for: "insurance", in: json, context: &instCtx, owner: self) ?? insurance
 		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent

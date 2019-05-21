@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ open class ConceptMap: DomainResource {
 	public var purpose: FHIRString?
 	
 	/// The source value set that contains the concepts that are being mapped.
-	public var sourceCanonical: FHIRURL?
+	public var sourceCanonical: FHIRCanonical?
 	
 	/// The source value set that contains the concepts that are being mapped.
 	public var sourceUri: FHIRURL?
@@ -63,7 +63,7 @@ open class ConceptMap: DomainResource {
 	public var status: PublicationStatus?
 	
 	/// The target value set which provides context for the mappings.
-	public var targetCanonical: FHIRURL?
+	public var targetCanonical: FHIRCanonical?
 	
 	/// The target value set which provides context for the mappings.
 	public var targetUri: FHIRURL?
@@ -102,13 +102,13 @@ open class ConceptMap: DomainResource {
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
-		sourceCanonical = createInstance(type: FHIRURL.self, for: "sourceCanonical", in: json, context: &instCtx, owner: self) ?? sourceCanonical
+		sourceCanonical = createInstance(type: FHIRCanonical.self, for: "sourceCanonical", in: json, context: &instCtx, owner: self) ?? sourceCanonical
 		sourceUri = createInstance(type: FHIRURL.self, for: "sourceUri", in: json, context: &instCtx, owner: self) ?? sourceUri
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))
 		}
-		targetCanonical = createInstance(type: FHIRURL.self, for: "targetCanonical", in: json, context: &instCtx, owner: self) ?? targetCanonical
+		targetCanonical = createInstance(type: FHIRCanonical.self, for: "targetCanonical", in: json, context: &instCtx, owner: self) ?? targetCanonical
 		targetUri = createInstance(type: FHIRURL.self, for: "targetUri", in: json, context: &instCtx, owner: self) ?? targetUri
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
@@ -335,7 +335,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 	public var property: FHIRURL?
 	
 	/// Code System (if necessary).
-	public var system: FHIRURL?
+	public var system: FHIRCanonical?
 	
 	/// Value of the referenced element.
 	public var value: FHIRString?
@@ -357,7 +357,7 @@ open class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 		if nil == property && !instCtx.containsKey("property") {
 			instCtx.addError(FHIRValidationError(missing: "property"))
 		}
-		system = createInstance(type: FHIRURL.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
+		system = createInstance(type: FHIRCanonical.self, for: "system", in: json, context: &instCtx, owner: self) ?? system
 		value = createInstance(type: FHIRString.self, for: "value", in: json, context: &instCtx, owner: self) ?? value
 		if nil == value && !instCtx.containsKey("value") {
 			instCtx.addError(FHIRValidationError(missing: "value"))
@@ -405,7 +405,7 @@ open class ConceptMapGroupUnmapped: BackboneElement {
 	public var mode: ConceptMapGroupUnmappedMode?
 	
 	/// canonical reference to an additional ConceptMap to use for mapping if the source concept is unmapped.
-	public var url: FHIRURL?
+	public var url: FHIRCanonical?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -424,7 +424,7 @@ open class ConceptMapGroupUnmapped: BackboneElement {
 		if nil == mode && !instCtx.containsKey("mode") {
 			instCtx.addError(FHIRValidationError(missing: "mode"))
 		}
-		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
+		url = createInstance(type: FHIRCanonical.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

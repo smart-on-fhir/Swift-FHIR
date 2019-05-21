@@ -2,7 +2,7 @@
 //  MeasureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -109,7 +109,7 @@ class MeasureTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "exclusive-breastfeeding-measure")
 		XCTAssertEqual(inst.improvementNotation?.coding?[0].code, "increase")
 		XCTAssertEqual(inst.improvementNotation?.coding?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/measure-improvement-notation")
-		XCTAssertEqual(inst.library?[0].absoluteString, "Library/library-exclusive-breastfeeding-cqm-logic")
+		// Don't know how to create unit test for "library?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
@@ -196,7 +196,7 @@ class MeasureTests: XCTestCase {
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
 		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		XCTAssertEqual(inst.lastReviewDate?.description, "2016-09-01")
-		XCTAssertEqual(inst.library?[0].absoluteString, "Library/library-cms146-example")
+		// Don't know how to create unit test for "library?[0]", which is a FHIRCanonical
 		XCTAssertEqual(inst.name, "CMS146")
 		XCTAssertEqual(inst.publisher, "National Committee for Quality Assurance")
 		XCTAssertEqual(inst.purpose, "Measure of children with a group A streptococcus test in the 7-day period from 3 days prior through 3 days after the diagnosis of pharyngitis")
@@ -287,9 +287,9 @@ class MeasureTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-		XCTAssertEqual(inst.relatedArtifact?[0].resource?.absoluteString, "Measure/component-a-example")
+		// Don't know how to create unit test for "relatedArtifact?[0].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[0].type, RelatedArtifactType(rawValue: "composed-of")!)
-		XCTAssertEqual(inst.relatedArtifact?[1].resource?.absoluteString, "Measure/component-b-example")
+		// Don't know how to create unit test for "relatedArtifact?[1].resource", which is a FHIRCanonical
 		XCTAssertEqual(inst.relatedArtifact?[1].type, RelatedArtifactType(rawValue: "composed-of")!)
 		XCTAssertEqual(inst.scoring?.coding?[0].code, "proportion")
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)

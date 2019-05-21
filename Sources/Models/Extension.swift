@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Extension) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/Extension) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ open class Extension: Element {
 	public var valueBoolean: FHIRBool?
 	
 	/// Value of extension.
-	public var valueCanonical: FHIRURL?
+	public var valueCanonical: FHIRCanonical?
 	
 	/// Value of extension.
 	public var valueCode: FHIRString?
@@ -190,7 +190,7 @@ open class Extension: Element {
 		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
 		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
-		valueCanonical = createInstance(type: FHIRURL.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
+		valueCanonical = createInstance(type: FHIRCanonical.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
 		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding

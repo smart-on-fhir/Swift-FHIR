@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -122,7 +122,7 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, ContactPointSystem(rawValue: "url")!)
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2013-10-23")
-		XCTAssertEqual(inst.derivedFrom?.absoluteString, "http://hl7.org/fhir/SearchParameter/Resource-id")
+		// Don't know how to create unit test for "derivedFrom", which is a FHIRCanonical
 		XCTAssertEqual(inst.description_fhir, "Search by resource identifier - e.g. same as the read interaction, but can return included resources")
 		XCTAssertEqual(inst.experimental, true)
 		XCTAssertEqual(inst.expression, "id")

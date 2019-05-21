@@ -2,7 +2,7 @@
 //  ChargeItemDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -64,7 +64,7 @@ open class ChargeItemDefinition: DomainResource {
 	public var lastReviewDate: FHIRDate?
 	
 	/// A larger definition of which this particular definition is a component or step.
-	public var partOf: [FHIRURL]?
+	public var partOf: [FHIRCanonical]?
 	
 	/// Group of properties which are applicable under the same conditions.
 	public var propertyGroup: [ChargeItemDefinitionPropertyGroup]?
@@ -73,7 +73,7 @@ open class ChargeItemDefinition: DomainResource {
 	public var publisher: FHIRString?
 	
 	/// Completed or terminated request(s) whose function is taken by this new request.
-	public var replaces: [FHIRURL]?
+	public var replaces: [FHIRCanonical]?
 	
 	/// The current state of the ChargeItemDefinition.
 	public var status: PublicationStatus?
@@ -116,10 +116,10 @@ open class ChargeItemDefinition: DomainResource {
 		instance = createInstances(of: Reference.self, for: "instance", in: json, context: &instCtx, owner: self) ?? instance
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		lastReviewDate = createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, context: &instCtx, owner: self) ?? lastReviewDate
-		partOf = createInstances(of: FHIRURL.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
+		partOf = createInstances(of: FHIRCanonical.self, for: "partOf", in: json, context: &instCtx, owner: self) ?? partOf
 		propertyGroup = createInstances(of: ChargeItemDefinitionPropertyGroup.self, for: "propertyGroup", in: json, context: &instCtx, owner: self) ?? propertyGroup
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
-		replaces = createInstances(of: FHIRURL.self, for: "replaces", in: json, context: &instCtx, owner: self) ?? replaces
+		replaces = createInstances(of: FHIRCanonical.self, for: "replaces", in: json, context: &instCtx, owner: self) ?? replaces
 		status = createEnum(type: PublicationStatus.self, for: "status", in: json, context: &instCtx) ?? status
 		if nil == status && !instCtx.containsKey("status") {
 			instCtx.addError(FHIRValidationError(missing: "status"))

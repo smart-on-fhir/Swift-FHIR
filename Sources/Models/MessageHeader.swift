@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -25,7 +25,7 @@ open class MessageHeader: DomainResource {
 	public var author: Reference?
 	
 	/// Link to the definition for this message.
-	public var definition: FHIRURL?
+	public var definition: FHIRCanonical?
 	
 	/// Message destination application(s).
 	public var destination: [MessageHeaderDestination]?
@@ -78,7 +78,7 @@ open class MessageHeader: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		author = createInstance(type: Reference.self, for: "author", in: json, context: &instCtx, owner: self) ?? author
-		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		definition = createInstance(type: FHIRCanonical.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		destination = createInstances(of: MessageHeaderDestination.self, for: "destination", in: json, context: &instCtx, owner: self) ?? destination
 		enterer = createInstance(type: Reference.self, for: "enterer", in: json, context: &instCtx, owner: self) ?? enterer
 		eventCoding = createInstance(type: Coding.self, for: "eventCoding", in: json, context: &instCtx, owner: self) ?? eventCoding

@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -68,7 +68,7 @@ open class FamilyMemberHistory: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Instantiates FHIR protocol or definition.
-	public var instantiatesCanonical: [FHIRURL]?
+	public var instantiatesCanonical: [FHIRCanonical]?
 	
 	/// Instantiates external protocol or definition.
 	public var instantiatesUri: [FHIRURL]?
@@ -126,7 +126,7 @@ open class FamilyMemberHistory: DomainResource {
 		deceasedString = createInstance(type: FHIRString.self, for: "deceasedString", in: json, context: &instCtx, owner: self) ?? deceasedString
 		estimatedAge = createInstance(type: FHIRBool.self, for: "estimatedAge", in: json, context: &instCtx, owner: self) ?? estimatedAge
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstances(of: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		note = createInstances(of: Annotation.self, for: "note", in: json, context: &instCtx, owner: self) ?? note

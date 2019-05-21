@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 4.1
+
+- Update to Swift 5.0
+
 ## 4.0
 
 - Update to FHIR `R4` (v4.0.0-a53ec6ee1b)

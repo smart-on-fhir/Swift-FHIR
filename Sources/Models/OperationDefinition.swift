@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ open class OperationDefinition: DomainResource {
 	public var affectsState: FHIRBool?
 	
 	/// Marks this as a profile of the base.
-	public var base: FHIRURL?
+	public var base: FHIRCanonical?
 	
 	/// Name used to invoke the operation.
 	public var code: FHIRString?
@@ -45,7 +45,7 @@ open class OperationDefinition: DomainResource {
 	public var experimental: FHIRBool?
 	
 	/// Validation information for in parameters.
-	public var inputProfile: FHIRURL?
+	public var inputProfile: FHIRCanonical?
 	
 	/// Invoke on an instance?.
 	public var instance: FHIRBool?
@@ -60,7 +60,7 @@ open class OperationDefinition: DomainResource {
 	public var name: FHIRString?
 	
 	/// Validation information for out parameters.
-	public var outputProfile: FHIRURL?
+	public var outputProfile: FHIRCanonical?
 	
 	/// Define overloaded variants for when  generating code.
 	public var overload: [OperationDefinitionOverload]?
@@ -116,7 +116,7 @@ open class OperationDefinition: DomainResource {
 		super.populate(from: json, context: &instCtx)
 		
 		affectsState = createInstance(type: FHIRBool.self, for: "affectsState", in: json, context: &instCtx, owner: self) ?? affectsState
-		base = createInstance(type: FHIRURL.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
+		base = createInstance(type: FHIRCanonical.self, for: "base", in: json, context: &instCtx, owner: self) ?? base
 		code = createInstance(type: FHIRString.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
@@ -126,7 +126,7 @@ open class OperationDefinition: DomainResource {
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		experimental = createInstance(type: FHIRBool.self, for: "experimental", in: json, context: &instCtx, owner: self) ?? experimental
-		inputProfile = createInstance(type: FHIRURL.self, for: "inputProfile", in: json, context: &instCtx, owner: self) ?? inputProfile
+		inputProfile = createInstance(type: FHIRCanonical.self, for: "inputProfile", in: json, context: &instCtx, owner: self) ?? inputProfile
 		instance = createInstance(type: FHIRBool.self, for: "instance", in: json, context: &instCtx, owner: self) ?? instance
 		if nil == instance && !instCtx.containsKey("instance") {
 			instCtx.addError(FHIRValidationError(missing: "instance"))
@@ -140,7 +140,7 @@ open class OperationDefinition: DomainResource {
 		if nil == name && !instCtx.containsKey("name") {
 			instCtx.addError(FHIRValidationError(missing: "name"))
 		}
-		outputProfile = createInstance(type: FHIRURL.self, for: "outputProfile", in: json, context: &instCtx, owner: self) ?? outputProfile
+		outputProfile = createInstance(type: FHIRCanonical.self, for: "outputProfile", in: json, context: &instCtx, owner: self) ?? outputProfile
 		overload = createInstances(of: OperationDefinitionOverload.self, for: "overload", in: json, context: &instCtx, owner: self) ?? overload
 		parameter = createInstances(of: OperationDefinitionParameter.self, for: "parameter", in: json, context: &instCtx, owner: self) ?? parameter
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
@@ -287,7 +287,7 @@ open class OperationDefinitionParameter: BackboneElement {
 	public var searchType: SearchParamType?
 	
 	/// If type is Reference | canonical, allowed targets.
-	public var targetProfile: [FHIRURL]?
+	public var targetProfile: [FHIRCanonical]?
 	
 	/// What type this parameter has.
 	public var type: FHIRString?
@@ -326,7 +326,7 @@ open class OperationDefinitionParameter: BackboneElement {
 		part = createInstances(of: OperationDefinitionParameter.self, for: "part", in: json, context: &instCtx, owner: self) ?? part
 		referencedFrom = createInstances(of: OperationDefinitionParameterReferencedFrom.self, for: "referencedFrom", in: json, context: &instCtx, owner: self) ?? referencedFrom
 		searchType = createEnum(type: SearchParamType.self, for: "searchType", in: json, context: &instCtx) ?? searchType
-		targetProfile = createInstances(of: FHIRURL.self, for: "targetProfile", in: json, context: &instCtx, owner: self) ?? targetProfile
+		targetProfile = createInstances(of: FHIRCanonical.self, for: "targetProfile", in: json, context: &instCtx, owner: self) ?? targetProfile
 		type = createInstance(type: FHIRString.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 		use = createEnum(type: OperationParameterUse.self, for: "use", in: json, context: &instCtx) ?? use
 		if nil == use && !instCtx.containsKey("use") {
@@ -379,11 +379,11 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 	public var strength: BindingStrength?
 	
 	/// Source of value set.
-	public var valueSet: FHIRURL?
+	public var valueSet: FHIRCanonical?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(strength: BindingStrength, valueSet: FHIRURL) {
+	public convenience init(strength: BindingStrength, valueSet: FHIRCanonical) {
 		self.init()
 		self.strength = strength
 		self.valueSet = valueSet
@@ -397,7 +397,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		if nil == strength && !instCtx.containsKey("strength") {
 			instCtx.addError(FHIRValidationError(missing: "strength"))
 		}
-		valueSet = createInstance(type: FHIRURL.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
+		valueSet = createInstance(type: FHIRCanonical.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
 		if nil == valueSet && !instCtx.containsKey("valueSet") {
 			instCtx.addError(FHIRValidationError(missing: "valueSet"))
 		}

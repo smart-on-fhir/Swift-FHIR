@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -62,7 +62,7 @@ open class ElementDefinition: BackboneElement {
 	public var defaultValueBoolean: FHIRBool?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueCanonical: FHIRURL?
+	public var defaultValueCanonical: FHIRCanonical?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueCode: FHIRString?
@@ -215,7 +215,7 @@ open class ElementDefinition: BackboneElement {
 	public var fixedBoolean: FHIRBool?
 	
 	/// Value must be exactly this.
-	public var fixedCanonical: FHIRURL?
+	public var fixedCanonical: FHIRCanonical?
 	
 	/// Value must be exactly this.
 	public var fixedCode: FHIRString?
@@ -452,7 +452,7 @@ open class ElementDefinition: BackboneElement {
 	public var patternBoolean: FHIRBool?
 	
 	/// Value must have at least these property values.
-	public var patternCanonical: FHIRURL?
+	public var patternCanonical: FHIRCanonical?
 	
 	/// Value must have at least these property values.
 	public var patternCode: FHIRString?
@@ -626,7 +626,7 @@ open class ElementDefinition: BackboneElement {
 		defaultValueAttachment = createInstance(type: Attachment.self, for: "defaultValueAttachment", in: json, context: &instCtx, owner: self) ?? defaultValueAttachment
 		defaultValueBase64Binary = createInstance(type: Base64Binary.self, for: "defaultValueBase64Binary", in: json, context: &instCtx, owner: self) ?? defaultValueBase64Binary
 		defaultValueBoolean = createInstance(type: FHIRBool.self, for: "defaultValueBoolean", in: json, context: &instCtx, owner: self) ?? defaultValueBoolean
-		defaultValueCanonical = createInstance(type: FHIRURL.self, for: "defaultValueCanonical", in: json, context: &instCtx, owner: self) ?? defaultValueCanonical
+		defaultValueCanonical = createInstance(type: FHIRCanonical.self, for: "defaultValueCanonical", in: json, context: &instCtx, owner: self) ?? defaultValueCanonical
 		defaultValueCode = createInstance(type: FHIRString.self, for: "defaultValueCode", in: json, context: &instCtx, owner: self) ?? defaultValueCode
 		defaultValueCodeableConcept = createInstance(type: CodeableConcept.self, for: "defaultValueCodeableConcept", in: json, context: &instCtx, owner: self) ?? defaultValueCodeableConcept
 		defaultValueCoding = createInstance(type: Coding.self, for: "defaultValueCoding", in: json, context: &instCtx, owner: self) ?? defaultValueCoding
@@ -677,7 +677,7 @@ open class ElementDefinition: BackboneElement {
 		fixedAttachment = createInstance(type: Attachment.self, for: "fixedAttachment", in: json, context: &instCtx, owner: self) ?? fixedAttachment
 		fixedBase64Binary = createInstance(type: Base64Binary.self, for: "fixedBase64Binary", in: json, context: &instCtx, owner: self) ?? fixedBase64Binary
 		fixedBoolean = createInstance(type: FHIRBool.self, for: "fixedBoolean", in: json, context: &instCtx, owner: self) ?? fixedBoolean
-		fixedCanonical = createInstance(type: FHIRURL.self, for: "fixedCanonical", in: json, context: &instCtx, owner: self) ?? fixedCanonical
+		fixedCanonical = createInstance(type: FHIRCanonical.self, for: "fixedCanonical", in: json, context: &instCtx, owner: self) ?? fixedCanonical
 		fixedCode = createInstance(type: FHIRString.self, for: "fixedCode", in: json, context: &instCtx, owner: self) ?? fixedCode
 		fixedCodeableConcept = createInstance(type: CodeableConcept.self, for: "fixedCodeableConcept", in: json, context: &instCtx, owner: self) ?? fixedCodeableConcept
 		fixedCoding = createInstance(type: Coding.self, for: "fixedCoding", in: json, context: &instCtx, owner: self) ?? fixedCoding
@@ -759,7 +759,7 @@ open class ElementDefinition: BackboneElement {
 		patternAttachment = createInstance(type: Attachment.self, for: "patternAttachment", in: json, context: &instCtx, owner: self) ?? patternAttachment
 		patternBase64Binary = createInstance(type: Base64Binary.self, for: "patternBase64Binary", in: json, context: &instCtx, owner: self) ?? patternBase64Binary
 		patternBoolean = createInstance(type: FHIRBool.self, for: "patternBoolean", in: json, context: &instCtx, owner: self) ?? patternBoolean
-		patternCanonical = createInstance(type: FHIRURL.self, for: "patternCanonical", in: json, context: &instCtx, owner: self) ?? patternCanonical
+		patternCanonical = createInstance(type: FHIRCanonical.self, for: "patternCanonical", in: json, context: &instCtx, owner: self) ?? patternCanonical
 		patternCode = createInstance(type: FHIRString.self, for: "patternCode", in: json, context: &instCtx, owner: self) ?? patternCode
 		patternCodeableConcept = createInstance(type: CodeableConcept.self, for: "patternCodeableConcept", in: json, context: &instCtx, owner: self) ?? patternCodeableConcept
 		patternCoding = createInstance(type: Coding.self, for: "patternCoding", in: json, context: &instCtx, owner: self) ?? patternCoding
@@ -1103,7 +1103,7 @@ open class ElementDefinitionBinding: Element {
 	public var strength: BindingStrength?
 	
 	/// Source of value set.
-	public var valueSet: FHIRURL?
+	public var valueSet: FHIRCanonical?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1121,7 +1121,7 @@ open class ElementDefinitionBinding: Element {
 		if nil == strength && !instCtx.containsKey("strength") {
 			instCtx.addError(FHIRValidationError(missing: "strength"))
 		}
-		valueSet = createInstance(type: FHIRURL.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
+		valueSet = createInstance(type: FHIRCanonical.self, for: "valueSet", in: json, context: &instCtx, owner: self) ?? valueSet
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {
@@ -1164,7 +1164,7 @@ open class ElementDefinitionConstraint: Element {
 	public var severity: ConstraintSeverity?
 	
 	/// Reference to original source of constraint.
-	public var source: FHIRURL?
+	public var source: FHIRCanonical?
 	
 	/// XPath expression of constraint.
 	public var xpath: FHIRString?
@@ -1196,7 +1196,7 @@ open class ElementDefinitionConstraint: Element {
 		if nil == severity && !instCtx.containsKey("severity") {
 			instCtx.addError(FHIRValidationError(missing: "severity"))
 		}
-		source = createInstance(type: FHIRURL.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
+		source = createInstance(type: FHIRCanonical.self, for: "source", in: json, context: &instCtx, owner: self) ?? source
 		xpath = createInstance(type: FHIRString.self, for: "xpath", in: json, context: &instCtx, owner: self) ?? xpath
 	}
 	
@@ -1255,7 +1255,7 @@ open class ElementDefinitionExample: Element {
 	public var valueBoolean: FHIRBool?
 	
 	/// Value of Example (one of allowed types).
-	public var valueCanonical: FHIRURL?
+	public var valueCanonical: FHIRCanonical?
 	
 	/// Value of Example (one of allowed types).
 	public var valueCode: FHIRString?
@@ -1394,7 +1394,7 @@ open class ElementDefinitionExample: Element {
 		else if let value = value as? FHIRBool {
 			self.valueBoolean = value
 		}
-		else if let value = value as? FHIRURL {
+		else if let value = value as? FHIRCanonical {
 			self.valueCanonical = value
 		}
 		else if let value = value as? FHIRString {
@@ -1554,7 +1554,7 @@ open class ElementDefinitionExample: Element {
 		valueAttachment = createInstance(type: Attachment.self, for: "valueAttachment", in: json, context: &instCtx, owner: self) ?? valueAttachment
 		valueBase64Binary = createInstance(type: Base64Binary.self, for: "valueBase64Binary", in: json, context: &instCtx, owner: self) ?? valueBase64Binary
 		valueBoolean = createInstance(type: FHIRBool.self, for: "valueBoolean", in: json, context: &instCtx, owner: self) ?? valueBoolean
-		valueCanonical = createInstance(type: FHIRURL.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
+		valueCanonical = createInstance(type: FHIRCanonical.self, for: "valueCanonical", in: json, context: &instCtx, owner: self) ?? valueCanonical
 		valueCode = createInstance(type: FHIRString.self, for: "valueCode", in: json, context: &instCtx, owner: self) ?? valueCode
 		valueCodeableConcept = createInstance(type: CodeableConcept.self, for: "valueCodeableConcept", in: json, context: &instCtx, owner: self) ?? valueCodeableConcept
 		valueCoding = createInstance(type: Coding.self, for: "valueCoding", in: json, context: &instCtx, owner: self) ?? valueCoding
@@ -1867,10 +1867,10 @@ open class ElementDefinitionType: Element {
 	public var code: FHIRURL?
 	
 	/// Profiles (StructureDefinition or IG) - one must apply.
-	public var profile: [FHIRURL]?
+	public var profile: [FHIRCanonical]?
 	
 	/// Profile (StructureDefinition or IG) on the Reference/canonical target - one must apply.
-	public var targetProfile: [FHIRURL]?
+	public var targetProfile: [FHIRCanonical]?
 	
 	/// Whether this reference needs to be version specific or version independent, or whether either can be used.
 	public var versioning: ReferenceVersionRules?
@@ -1891,8 +1891,8 @@ open class ElementDefinitionType: Element {
 		if nil == code && !instCtx.containsKey("code") {
 			instCtx.addError(FHIRValidationError(missing: "code"))
 		}
-		profile = createInstances(of: FHIRURL.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
-		targetProfile = createInstances(of: FHIRURL.self, for: "targetProfile", in: json, context: &instCtx, owner: self) ?? targetProfile
+		profile = createInstances(of: FHIRCanonical.self, for: "profile", in: json, context: &instCtx, owner: self) ?? profile
+		targetProfile = createInstances(of: FHIRCanonical.self, for: "targetProfile", in: json, context: &instCtx, owner: self) ?? targetProfile
 		versioning = createEnum(type: ReferenceVersionRules.self, for: "versioning", in: json, context: &instCtx) ?? versioning
 	}
 	

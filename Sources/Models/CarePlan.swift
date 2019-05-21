@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -57,7 +57,7 @@ open class CarePlan: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Instantiates FHIR protocol or definition.
-	public var instantiatesCanonical: [FHIRURL]?
+	public var instantiatesCanonical: [FHIRCanonical]?
 	
 	/// Instantiates external protocol or definition.
 	public var instantiatesUri: [FHIRURL]?
@@ -117,7 +117,7 @@ open class CarePlan: DomainResource {
 		encounter = createInstance(type: Reference.self, for: "encounter", in: json, context: &instCtx, owner: self) ?? encounter
 		goal = createInstances(of: Reference.self, for: "goal", in: json, context: &instCtx, owner: self) ?? goal
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
-		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstances(of: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		intent = createEnum(type: RequestIntent.self, for: "intent", in: json, context: &instCtx) ?? intent
 		if nil == intent && !instCtx.containsKey("intent") {
@@ -254,7 +254,7 @@ open class CarePlanActivityDetail: BackboneElement {
 	public var goal: [Reference]?
 	
 	/// Instantiates FHIR protocol or definition.
-	public var instantiatesCanonical: [FHIRURL]?
+	public var instantiatesCanonical: [FHIRCanonical]?
 	
 	/// Instantiates external protocol or definition.
 	public var instantiatesUri: [FHIRURL]?
@@ -317,7 +317,7 @@ open class CarePlanActivityDetail: BackboneElement {
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		doNotPerform = createInstance(type: FHIRBool.self, for: "doNotPerform", in: json, context: &instCtx, owner: self) ?? doNotPerform
 		goal = createInstances(of: Reference.self, for: "goal", in: json, context: &instCtx, owner: self) ?? goal
-		instantiatesCanonical = createInstances(of: FHIRURL.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
+		instantiatesCanonical = createInstances(of: FHIRCanonical.self, for: "instantiatesCanonical", in: json, context: &instCtx, owner: self) ?? instantiatesCanonical
 		instantiatesUri = createInstances(of: FHIRURL.self, for: "instantiatesUri", in: json, context: &instCtx, owner: self) ?? instantiatesUri
 		kind = createEnum(type: ResourceType.self, for: "kind", in: json, context: &instCtx) ?? kind
 		location = createInstance(type: Reference.self, for: "location", in: json, context: &instCtx, owner: self) ?? location

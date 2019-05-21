@@ -2,7 +2,7 @@
 //  ExampleScenario.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ExampleScenario) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/ExampleScenario) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -66,7 +66,7 @@ open class ExampleScenario: DomainResource {
 	public var version: FHIRString?
 	
 	/// Another nested workflow.
-	public var workflow: [FHIRURL]?
+	public var workflow: [FHIRCanonical]?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -98,7 +98,7 @@ open class ExampleScenario: DomainResource {
 		url = createInstance(type: FHIRURL.self, for: "url", in: json, context: &instCtx, owner: self) ?? url
 		useContext = createInstances(of: UsageContext.self, for: "useContext", in: json, context: &instCtx, owner: self) ?? useContext
 		version = createInstance(type: FHIRString.self, for: "version", in: json, context: &instCtx, owner: self) ?? version
-		workflow = createInstances(of: FHIRURL.self, for: "workflow", in: json, context: &instCtx, owner: self) ?? workflow
+		workflow = createInstances(of: FHIRCanonical.self, for: "workflow", in: json, context: &instCtx, owner: self) ?? workflow
 	}
 	
 	override open func decorate(json: inout FHIRJSON, errors: inout [FHIRValidationError]) {

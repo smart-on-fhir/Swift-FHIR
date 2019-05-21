@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -120,14 +120,14 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].code, "code2")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].display, "Something Coded")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].property?.absoluteString, "http://example.org/fhir/property-value/example")
-		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].system?.absoluteString, "http://example.org/fhir/example3")
+		// Don't know how to create unit test for "group?[0].element?[0].target?[0].dependsOn?[0].system", which is a FHIRCanonical
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].dependsOn?[0].value, "some-code")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].display, "Some Example Code")
 		XCTAssertEqual(inst.group?[0].element?[0].target?[0].equivalence, ConceptMapEquivalence(rawValue: "equivalent")!)
 		XCTAssertEqual(inst.group?[0].source?.absoluteString, "http://example.org/fhir/example1")
 		XCTAssertEqual(inst.group?[0].target?.absoluteString, "http://example.org/fhir/example2")
 		XCTAssertEqual(inst.group?[0].unmapped?.mode, ConceptMapGroupUnmappedMode(rawValue: "other-map")!)
-		XCTAssertEqual(inst.group?[0].unmapped?.url?.absoluteString, "http://example.org/fhir/ConceptMap/map2")
+		// Don't know how to create unit test for "group?[0].unmapped?.url", which is a FHIRCanonical
 		XCTAssertEqual(inst.id, "example2")
 		XCTAssertEqual(inst.name, "FHIR-exanple-2")
 		XCTAssertEqual(inst.publisher, "HL7, Inc")
@@ -171,7 +171,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].comment, "HL7 term is a historical term. mapped to Pus")
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].equivalence, ConceptMapEquivalence(rawValue: "equivalent")!)
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].product?[0].property?.absoluteString, "TypeModifier")
-		XCTAssertEqual(inst.group?[0].element?[1].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
+		// Don't know how to create unit test for "group?[0].element?[1].target?[0].product?[0].system", which is a FHIRCanonical
 		XCTAssertEqual(inst.group?[0].element?[1].target?[0].product?[0].value, "47002008")
 		XCTAssertEqual(inst.group?[0].element?[2].code, "AIRS")
 		XCTAssertEqual(inst.group?[0].element?[2].target?[0].code, "446302006")
@@ -180,13 +180,13 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[3].target?[0].code, "119376003")
 		XCTAssertEqual(inst.group?[0].element?[3].target?[0].equivalence, ConceptMapEquivalence(rawValue: "equivalent")!)
 		XCTAssertEqual(inst.group?[0].element?[3].target?[0].product?[0].property?.absoluteString, "TypeModifier")
-		XCTAssertEqual(inst.group?[0].element?[3].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
+		// Don't know how to create unit test for "group?[0].element?[3].target?[0].product?[0].system", which is a FHIRCanonical
 		XCTAssertEqual(inst.group?[0].element?[3].target?[0].product?[0].value, "7970006")
 		XCTAssertEqual(inst.group?[0].element?[4].code, "AMP")
 		XCTAssertEqual(inst.group?[0].element?[4].target?[0].code, "408654003")
 		XCTAssertEqual(inst.group?[0].element?[4].target?[0].equivalence, ConceptMapEquivalence(rawValue: "equivalent")!)
 		XCTAssertEqual(inst.group?[0].element?[4].target?[0].product?[0].property?.absoluteString, "http://snomed.info/id/246380002")
-		XCTAssertEqual(inst.group?[0].element?[4].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
+		// Don't know how to create unit test for "group?[0].element?[4].target?[0].product?[0].system", which is a FHIRCanonical
 		XCTAssertEqual(inst.group?[0].element?[4].target?[0].product?[0].value, "81723002")
 		XCTAssertEqual(inst.group?[0].element?[5].code, "ANGI")
 		XCTAssertEqual(inst.group?[0].element?[5].target?[0].code, "119312009")
@@ -203,7 +203,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].code, "119295008")
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].equivalence, ConceptMapEquivalence(rawValue: "equivalent")!)
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].product?[0].property?.absoluteString, "http://snomed.info/id/246380002")
-		XCTAssertEqual(inst.group?[0].element?[8].target?[0].product?[0].system?.absoluteString, "http://snomed.info/sct")
+		// Don't know how to create unit test for "group?[0].element?[8].target?[0].product?[0].system", which is a FHIRCanonical
 		XCTAssertEqual(inst.group?[0].element?[8].target?[0].product?[0].value, "14766002")
 		XCTAssertEqual(inst.group?[0].element?[9].code, "ATTE")
 		XCTAssertEqual(inst.group?[0].element?[9].target?[0].comment, "TBD")
@@ -213,9 +213,9 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.id, "102")
 		XCTAssertEqual(inst.name, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher, "FHIR project team (original source: LabMCoP)")
-		XCTAssertEqual(inst.sourceCanonical?.absoluteString, "http://terminology.hl7.org/ValueSet/v2-0487")
+		// Don't know how to create unit test for "sourceCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.status, PublicationStatus(rawValue: "draft")!)
-		XCTAssertEqual(inst.targetCanonical?.absoluteString, "http://snomed.info/id?fhir_vs")
+		// Don't know how to create unit test for "targetCanonical", which is a FHIRCanonical
 		XCTAssertEqual(inst.text?.status, NarrativeStatus(rawValue: "generated")!)
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ConceptMap/102")
 		XCTAssertEqual(inst.version, "4.0.0")

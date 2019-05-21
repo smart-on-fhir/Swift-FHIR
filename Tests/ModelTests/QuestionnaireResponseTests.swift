@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -639,7 +639,7 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-		XCTAssertEqual(inst.questionnaire?.absoluteString, "Questionnaire/ussg-fht")
+		// Don't know how to create unit test for "questionnaire", which is a FHIRCanonical
 		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "in-progress")!)
 		XCTAssertEqual(inst.subject?.reference, "http://hl7.org/fhir/Patient/proband")
 		XCTAssertEqual(inst.subject?.type?.absoluteString, "Patient")
@@ -805,7 +805,7 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.meta?.tag?[0].code, "HTEST")
 		XCTAssertEqual(inst.meta?.tag?[0].display, "test health data")
 		XCTAssertEqual(inst.meta?.tag?[0].system?.absoluteString, "http://terminology.hl7.org/CodeSystem/v3-ActReason")
-		XCTAssertEqual(inst.questionnaire?.absoluteString, "Questionnaire/gcs")
+		// Don't know how to create unit test for "questionnaire", which is a FHIRCanonical
 		XCTAssertEqual(inst.source?.reference, "Practitioner/f007")
 		XCTAssertEqual(inst.status, QuestionnaireResponseStatus(rawValue: "completed")!)
 		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers")

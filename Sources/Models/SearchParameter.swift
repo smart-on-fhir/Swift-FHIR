@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ open class SearchParameter: DomainResource {
 	public var date: DateTime?
 	
 	/// Original definition for the search parameter.
-	public var derivedFrom: FHIRURL?
+	public var derivedFrom: FHIRCanonical?
 	
 	/// Natural language description of the search parameter.
 	public var description_fhir: FHIRString?
@@ -127,7 +127,7 @@ open class SearchParameter: DomainResource {
 		component = createInstances(of: SearchParameterComponent.self, for: "component", in: json, context: &instCtx, owner: self) ?? component
 		contact = createInstances(of: ContactDetail.self, for: "contact", in: json, context: &instCtx, owner: self) ?? contact
 		date = createInstance(type: DateTime.self, for: "date", in: json, context: &instCtx, owner: self) ?? date
-		derivedFrom = createInstance(type: FHIRURL.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
+		derivedFrom = createInstance(type: FHIRCanonical.self, for: "derivedFrom", in: json, context: &instCtx, owner: self) ?? derivedFrom
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		if nil == description_fhir && !instCtx.containsKey("description") {
 			instCtx.addError(FHIRValidationError(missing: "description"))
@@ -228,14 +228,14 @@ open class SearchParameterComponent: BackboneElement {
 	}
 	
 	/// Defines how the part works.
-	public var definition: FHIRURL?
+	public var definition: FHIRCanonical?
 	
 	/// Subexpression relative to main expression.
 	public var expression: FHIRString?
 	
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: FHIRURL, expression: FHIRString) {
+	public convenience init(definition: FHIRCanonical, expression: FHIRString) {
 		self.init()
 		self.definition = definition
 		self.expression = expression
@@ -245,7 +245,7 @@ open class SearchParameterComponent: BackboneElement {
 	override open func populate(from json: FHIRJSON, context instCtx: inout FHIRInstantiationContext) {
 		super.populate(from: json, context: &instCtx)
 		
-		definition = createInstance(type: FHIRURL.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
+		definition = createInstance(type: FHIRCanonical.self, for: "definition", in: json, context: &instCtx, owner: self) ?? definition
 		if nil == definition && !instCtx.containsKey("definition") {
 			instCtx.addError(FHIRValidationError(missing: "definition"))
 		}

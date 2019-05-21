@@ -2,7 +2,7 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2019-03-01.
+//  Generated from FHIR 4.0.0-a53ec6ee1b (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2019-05-21.
 //  2019, SMART Health IT.
 //
 
@@ -67,7 +67,7 @@ open class PlanDefinition: DomainResource {
 	public var lastReviewDate: FHIRDate?
 	
 	/// Logic used by the plan definition.
-	public var library: [FHIRURL]?
+	public var library: [FHIRCanonical]?
 	
 	/// Name for this plan definition (computer friendly).
 	public var name: FHIRString?
@@ -143,7 +143,7 @@ open class PlanDefinition: DomainResource {
 		identifier = createInstances(of: Identifier.self, for: "identifier", in: json, context: &instCtx, owner: self) ?? identifier
 		jurisdiction = createInstances(of: CodeableConcept.self, for: "jurisdiction", in: json, context: &instCtx, owner: self) ?? jurisdiction
 		lastReviewDate = createInstance(type: FHIRDate.self, for: "lastReviewDate", in: json, context: &instCtx, owner: self) ?? lastReviewDate
-		library = createInstances(of: FHIRURL.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
+		library = createInstances(of: FHIRCanonical.self, for: "library", in: json, context: &instCtx, owner: self) ?? library
 		name = createInstance(type: FHIRString.self, for: "name", in: json, context: &instCtx, owner: self) ?? name
 		publisher = createInstance(type: FHIRString.self, for: "publisher", in: json, context: &instCtx, owner: self) ?? publisher
 		purpose = createInstance(type: FHIRString.self, for: "purpose", in: json, context: &instCtx, owner: self) ?? purpose
@@ -230,7 +230,7 @@ open class PlanDefinitionAction: BackboneElement {
 	public var condition: [PlanDefinitionActionCondition]?
 	
 	/// Description of the activity to be performed.
-	public var definitionCanonical: FHIRURL?
+	public var definitionCanonical: FHIRCanonical?
 	
 	/// Description of the activity to be performed.
 	public var definitionUri: FHIRURL?
@@ -311,7 +311,7 @@ open class PlanDefinitionAction: BackboneElement {
 	public var title: FHIRString?
 	
 	/// Transform to apply the template.
-	public var transform: FHIRURL?
+	public var transform: FHIRCanonical?
 	
 	/// When the action should be triggered.
 	public var trigger: [TriggerDefinition]?
@@ -327,7 +327,7 @@ open class PlanDefinitionAction: BackboneElement {
 		cardinalityBehavior = createEnum(type: ActionCardinalityBehavior.self, for: "cardinalityBehavior", in: json, context: &instCtx) ?? cardinalityBehavior
 		code = createInstances(of: CodeableConcept.self, for: "code", in: json, context: &instCtx, owner: self) ?? code
 		condition = createInstances(of: PlanDefinitionActionCondition.self, for: "condition", in: json, context: &instCtx, owner: self) ?? condition
-		definitionCanonical = createInstance(type: FHIRURL.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
+		definitionCanonical = createInstance(type: FHIRCanonical.self, for: "definitionCanonical", in: json, context: &instCtx, owner: self) ?? definitionCanonical
 		definitionUri = createInstance(type: FHIRURL.self, for: "definitionUri", in: json, context: &instCtx, owner: self) ?? definitionUri
 		description_fhir = createInstance(type: FHIRString.self, for: "description", in: json, context: &instCtx, owner: self) ?? description_fhir
 		documentation = createInstances(of: RelatedArtifact.self, for: "documentation", in: json, context: &instCtx, owner: self) ?? documentation
@@ -354,7 +354,7 @@ open class PlanDefinitionAction: BackboneElement {
 		timingRange = createInstance(type: Range.self, for: "timingRange", in: json, context: &instCtx, owner: self) ?? timingRange
 		timingTiming = createInstance(type: Timing.self, for: "timingTiming", in: json, context: &instCtx, owner: self) ?? timingTiming
 		title = createInstance(type: FHIRString.self, for: "title", in: json, context: &instCtx, owner: self) ?? title
-		transform = createInstance(type: FHIRURL.self, for: "transform", in: json, context: &instCtx, owner: self) ?? transform
+		transform = createInstance(type: FHIRCanonical.self, for: "transform", in: json, context: &instCtx, owner: self) ?? transform
 		trigger = createInstances(of: TriggerDefinition.self, for: "trigger", in: json, context: &instCtx, owner: self) ?? trigger
 		type = createInstance(type: CodeableConcept.self, for: "type", in: json, context: &instCtx, owner: self) ?? type
 	}

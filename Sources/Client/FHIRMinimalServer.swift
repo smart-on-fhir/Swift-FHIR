@@ -26,7 +26,7 @@ open class FHIRMinimalServer: FHIRServer {
 	public final let baseURL: URL
 	
 	/// The active URL session.
-	var session: URLSession?
+	public var session: URLSession?
 	
 	
 	/**
@@ -154,7 +154,7 @@ open class FHIRMinimalServer: FHIRServer {
 		return Foundation.URLSession.shared
 	}
 	
-	func abortSession() {
+	public func abortSession() {
 		if nil != session {
 			session!.invalidateAndCancel()
 			session = nil

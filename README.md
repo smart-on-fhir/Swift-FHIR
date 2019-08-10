@@ -19,6 +19,7 @@ See [tags/releases](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
+**4.2**|       5.0 Packages | `4.0.0-a53ec6ee1b` | R4
 **4.1**|       5.0 | `4.0.0-a53ec6ee1b` | R4
 **4.0**|       4.2 | `4.0.0-a53ec6ee1b` | R4
   **3.1**|       3.2 | `3.0.0.11832` | STU 3

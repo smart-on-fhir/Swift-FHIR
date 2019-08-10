@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 4.2
+
+- Update Swift 5.0 package manifest.
+
 ## 4.1
 
 - Update to Swift 5.0

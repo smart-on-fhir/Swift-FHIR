@@ -170,7 +170,7 @@ open class FHIRDataRequestHandler: FHIRBaseRequestHandler {
 	
 	public let contentType: String
 	
-	init(_ method: FHIRRequestMethod, contentType: String) {
+	public init(_ method: FHIRRequestMethod, contentType: String) {
 		self.contentType = contentType
 		super.init(method, resource: nil)
 	}

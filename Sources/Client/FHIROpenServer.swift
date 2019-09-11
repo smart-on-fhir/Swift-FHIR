@@ -68,7 +68,7 @@ open class FHIROpenServer: FHIRMinimalServer {
 	Executes a `read` action against the server's "metadata" path, as returned from `cababilityStatementPath()`, which should return the
 	cabability statement.
 	*/
-	final func getCapabilityStatement(_ callback: @escaping (_ error: FHIRError?) -> ()) {
+	public final func getCapabilityStatement(_ callback: @escaping (_ error: FHIRError?) -> ()) {
 		if nil != cabability {
 			callback(nil)
 			return

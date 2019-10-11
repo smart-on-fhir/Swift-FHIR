@@ -68,14 +68,14 @@ open class FHIROpenServer: FHIRMinimalServer {
 	Executes a `read` action against the server's "metadata" path, as returned from `cababilityStatementPath()`, which should return the
 	cabability statement.
 	*/
-	public final func getCapabilityStatement(_ callback: @escaping (_ error: FHIRError?) -> ()) {
+    public final func getCapabilityStatement(options: FHIRRequestOption = [.lenient], _ callback: @escaping (_ error: FHIRError?) -> ()) {
 		if nil != cabability {
 			callback(nil)
 			return
 		}
 		
 		// not yet fetched, fetch it
-		CapabilityStatement.readFrom("metadata", server: self, options: [.summary, .lenient]) { resource, error in
+		CapabilityStatement.readFrom("metadata", server: self, options: options) { resource, error in
 			if let conf = resource as? CapabilityStatement {
 				self.cabability = conf
 				callback(nil)

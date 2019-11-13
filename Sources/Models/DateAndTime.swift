@@ -738,7 +738,9 @@ class DateNSDateConverter {
 		
 		let date = FHIRDate(year: comp.year!, month: UInt8(comp.month!), day: UInt8(comp.day!))
 		let zone = comp.timeZone ?? utc
-		let secs = Double(comp.second!) + (Double(comp.nanosecond!) / 1000000000)
+		let secs = Double(comp.second!)
+        // on Ubuntu Linux - Swift 4 - comp.nanosecond is null
+        // + (Double(comp.nanosecond!) / 1000000000)
 		let time = FHIRTime(hour: UInt8(comp.hour!), minute: UInt8(comp.minute!), second: secs)
 		
 		return (date, time, zone)
@@ -960,7 +962,7 @@ extension Scanner {
 	
 	public var fhir_isAtEnd: Bool {
 		#if os(Linux)
-		return atEnd
+		return isAtEnd
 		#else
 		return isAtEnd
 		#endif
@@ -968,7 +970,9 @@ extension Scanner {
 	
 	public func fhir_scanString(_ searchString: String) -> String? {
 		#if os(Linux)
-		return scanString(string: searchString)
+        var buffer: String?
+        _ = scanString(searchString, into: &buffer)
+        return buffer
 		#else
 		var str: NSString?
 		if scanString(searchString, into: &str) {
@@ -993,7 +997,7 @@ extension Scanner {
 	public func fhir_scanInt() -> Int? {
 		var int = 0
 		#if os(Linux)
-		let flag = scanInteger(&int)
+		let flag = scanInt(&int)
 		#else
 		let flag = scanInt(&int)
 		#endif

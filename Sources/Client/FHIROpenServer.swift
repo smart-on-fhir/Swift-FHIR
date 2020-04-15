@@ -15,7 +15,7 @@ import Models
 /**
 A very basic FHIRServer implementation that deals with Open FHIR servers in JSON.
 
-It knows its base URL, can fetch and hold on to the cabability statement and perform requests and operations.
+It knows its base URL, can fetch and hold on to the capability statement and perform requests and operations.
 
 These methods are of interest to you when you create a subclass:
 
@@ -27,19 +27,19 @@ open class FHIROpenServer: FHIRMinimalServer {
 	
 	// MARK: - Server Capability
 	
-	/// The server's cabability statement. Must be implicitly fetched using `getCapabilityStatement()`
-	public final internal(set) var cabability: CapabilityStatement? {
+	/// The server's capability statement. Must be implicitly fetched using `getCapabilityStatement()`
+	public final internal(set) var capability: CapabilityStatement? {
 		didSet {
-			if let cabability = cabability {
-				didSetCapabilityStatement(cabability)
+			if let capability = capability {
+				didSetCapabilityStatement(capability)
 			}
 		}
 	}
 	
-	open func didSetCapabilityStatement(_ cabability: CapabilityStatement) {
+	open func didSetCapabilityStatement(_ capability: CapabilityStatement) {
 		
 		// look at CapabilityStatementRest entries for security and operation information
-		if let rests = cabability.rest {
+		if let rests = capability.rest {
 			var best: CapabilityStatementRest?
 			for rest in rests {
 				if nil == best {
@@ -60,16 +60,16 @@ open class FHIROpenServer: FHIRMinimalServer {
 	
 	open func didFindCapabilityStatementRest(_ rest: CapabilityStatementRest) {
 		if let operations = rest.operation {
-			cababilityOperations = operations
+			capabilityOperations = operations
 		}
 	}
 	
 	/**
-	Executes a `read` action against the server's "metadata" path, as returned from `cababilityStatementPath()`, which should return the
-	cabability statement.
+	Executes a `read` action against the server's "metadata" path, as returned from `capabilityStatementPath()`, which should return the
+	capability statement.
 	*/
     public final func getCapabilityStatement(options: FHIRRequestOption = [.lenient], _ callback: @escaping (_ error: FHIRError?) -> ()) {
-		if nil != cabability {
+		if nil != capability {
 			callback(nil)
 			return
 		}
@@ -77,7 +77,7 @@ open class FHIROpenServer: FHIRMinimalServer {
 		// not yet fetched, fetch it
 		CapabilityStatement.readFrom("metadata", server: self, options: options) { resource, error in
 			if let conf = resource as? CapabilityStatement {
-				self.cabability = conf
+				self.capability = conf
 				callback(nil)
 			}
 			else {
@@ -89,15 +89,15 @@ open class FHIROpenServer: FHIRMinimalServer {
 	
 	// MARK: - Operations
 	
-	/// The operations the server supports, as specified in the cabability statement.
+	/// The operations the server supports, as specified in the capability statement.
 	var operations: [String: OperationDefinition]?
 	
-	/// Operations as found in the cabability statement.
-	var cababilityOperations: [CapabilityStatementRestResourceOperation]?
+	/// Operations as found in the capability statement.
+	var capabilityOperations: [CapabilityStatementRestResourceOperation]?
 	
 	/** Find operation with given name. */
-	func cababilityOperation(_ name: String) -> CapabilityStatementRestResourceOperation? {
-		if let defs = cababilityOperations {
+	func capabilityOperation(_ name: String) -> CapabilityStatementRestResourceOperation? {
+		if let defs = capabilityOperations {
 			for def in defs {
 				if name == def.name?.string {
 					return def
@@ -111,7 +111,7 @@ open class FHIROpenServer: FHIRMinimalServer {
 	Retrieve the operation definition with the given name, either from cache or load the OperationDefinition resource.
 	
 	Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must be used after the
-	cabability statement has been fetched, i.e. after using `ready` or `getCapabilityStatement`.
+	capability statement has been fetched, i.e. after using `ready` or `getCapabilityStatement`.
 	*/
 	open func operation(_ name: String, callback: @escaping ((OperationDefinition?) -> Void)) {
 		if let op = operations?[name] {
@@ -119,7 +119,7 @@ open class FHIROpenServer: FHIRMinimalServer {
 		}
 		// TODO resolve a 'canonical' reference
 		/*
-		else if let def = cababilityOperation(name) {
+		else if let def = capabilityOperation(name) {
 			def.definition?.resolve(OperationDefinition.self) { optop in
 				if let op = optop {
 					if nil != self.operations {

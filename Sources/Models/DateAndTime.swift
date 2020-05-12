@@ -780,8 +780,9 @@ class DateNSDateConverter {
 			comp.minute = Int(min)
 		}
 		if let sec = time?.second {
-			comp.second = Int(floor(sec))
-			comp.nanosecond = Int(sec.truncatingRemainder(dividingBy: 1000000000))
+			let floorSec = floor(sec)
+			comp.second = Int(floorSec)
+			comp.nanosecond = Int((sec - floorSec) * 1000000000)
 		}
 		
 		return calendar.date(from: comp) ?? Date()

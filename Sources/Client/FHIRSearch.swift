@@ -290,6 +290,7 @@ struct FHIRSearchConstruct
 		FHIRSearchConstructModifierHandler(),
 		FHIRSearchConstructOperatorHandler(),
 		FHIRSearchConstructTypeHandler(),
+		FHIRSearchConstructHasHandler()
 	]
 	
 	static func handlerFor(_ key: String) -> FHIRSearchConstructHandler? {
@@ -511,6 +512,29 @@ struct FHIRSearchConstructTypeHandler: FHIRSearchConstructHandler
 		else {
 			fhir_warn("must supply a String to a $type modifier, got \(value)")
 		}
+	}
+}
+
+/**
+Handles the has operator to allow reverse chain requests.
+Expects a tuple of the chained properties and the value to look for: ([String], String)
+Example: ["$has": (["Organization", "endpoint", "_id"], "1337")]
+
+See: http://build.fhir.org/search.html#has
+*/
+struct FHIRSearchConstructHasHandler: FHIRSearchConstructHandler
+{
+	func handles(_ key: String) -> Bool {
+		return ("$has" == key)
+	}
+	
+	func handle(_ param: FHIRSearchParam, value: Any) {
+		guard let (chain, valueStr) = value as? ([String], String) else {
+			fhir_warn("$has couldn't be constructed. Got \(value)")
+			return
+		}
+		param.name = "_has:\(chain.joined(separator: ":"))"
+		param.value = valueStr
 	}
 }
 

@@ -1,4 +1,4 @@
 colorlog==2.7.0
-Jinja2==2.8
+Jinja2==2.11.3
 MarkupSafe==0.23
 requests==2.11.1
